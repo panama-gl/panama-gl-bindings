@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     unsigned char *UserName;
+ *     unsigned char *ComputerName;
+ *     unsigned short Privilege;
+ *     unsigned long AuthFlags;
+ * }
+ * }
+ */
 public class RPC_CLIENT_INFORMATION1 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("UserName"),
-        Constants$root.C_POINTER$LAYOUT.withName("ComputerName"),
-        Constants$root.C_SHORT$LAYOUT.withName("Privilege"),
-        MemoryLayout.paddingLayout(16),
-        Constants$root.C_LONG$LAYOUT.withName("AuthFlags")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return RPC_CLIENT_INFORMATION1.$struct$LAYOUT;
+    RPC_CLIENT_INFORMATION1() {
+        // Should not be called directly
     }
-    static final VarHandle UserName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserName"));
-    public static VarHandle UserName$VH() {
-        return RPC_CLIENT_INFORMATION1.UserName$VH;
-    }
-    public static MemoryAddress UserName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)RPC_CLIENT_INFORMATION1.UserName$VH.get(seg);
-    }
-    public static void UserName$set( MemorySegment seg, MemoryAddress x) {
-        RPC_CLIENT_INFORMATION1.UserName$VH.set(seg, x);
-    }
-    public static MemoryAddress UserName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)RPC_CLIENT_INFORMATION1.UserName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserName$set(MemorySegment seg, long index, MemoryAddress x) {
-        RPC_CLIENT_INFORMATION1.UserName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ComputerName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ComputerName"));
-    public static VarHandle ComputerName$VH() {
-        return RPC_CLIENT_INFORMATION1.ComputerName$VH;
-    }
-    public static MemoryAddress ComputerName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)RPC_CLIENT_INFORMATION1.ComputerName$VH.get(seg);
-    }
-    public static void ComputerName$set( MemorySegment seg, MemoryAddress x) {
-        RPC_CLIENT_INFORMATION1.ComputerName$VH.set(seg, x);
-    }
-    public static MemoryAddress ComputerName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)RPC_CLIENT_INFORMATION1.ComputerName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ComputerName$set(MemorySegment seg, long index, MemoryAddress x) {
-        RPC_CLIENT_INFORMATION1.ComputerName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Privilege$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Privilege"));
-    public static VarHandle Privilege$VH() {
-        return RPC_CLIENT_INFORMATION1.Privilege$VH;
-    }
-    public static short Privilege$get(MemorySegment seg) {
-        return (short)RPC_CLIENT_INFORMATION1.Privilege$VH.get(seg);
-    }
-    public static void Privilege$set( MemorySegment seg, short x) {
-        RPC_CLIENT_INFORMATION1.Privilege$VH.set(seg, x);
-    }
-    public static short Privilege$get(MemorySegment seg, long index) {
-        return (short)RPC_CLIENT_INFORMATION1.Privilege$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Privilege$set(MemorySegment seg, long index, short x) {
-        RPC_CLIENT_INFORMATION1.Privilege$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthFlags"));
-    public static VarHandle AuthFlags$VH() {
-        return RPC_CLIENT_INFORMATION1.AuthFlags$VH;
-    }
-    public static int AuthFlags$get(MemorySegment seg) {
-        return (int)RPC_CLIENT_INFORMATION1.AuthFlags$VH.get(seg);
-    }
-    public static void AuthFlags$set( MemorySegment seg, int x) {
-        RPC_CLIENT_INFORMATION1.AuthFlags$VH.set(seg, x);
-    }
-    public static int AuthFlags$get(MemorySegment seg, long index) {
-        return (int)RPC_CLIENT_INFORMATION1.AuthFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthFlags$set(MemorySegment seg, long index, int x) {
-        RPC_CLIENT_INFORMATION1.AuthFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("UserName"),
+        wgl_h.C_POINTER.withName("ComputerName"),
+        wgl_h.C_SHORT.withName("Privilege"),
+        MemoryLayout.paddingLayout(2),
+        wgl_h.C_LONG.withName("AuthFlags")
+    ).withName("$anon$2628:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout UserName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UserName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char *UserName
+     * }
+     */
+    public static final AddressLayout UserName$layout() {
+        return UserName$LAYOUT;
+    }
+
+    private static final long UserName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char *UserName
+     * }
+     */
+    public static final long UserName$offset() {
+        return UserName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char *UserName
+     * }
+     */
+    public static MemorySegment UserName(MemorySegment struct) {
+        return struct.get(UserName$LAYOUT, UserName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char *UserName
+     * }
+     */
+    public static void UserName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UserName$LAYOUT, UserName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ComputerName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ComputerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char *ComputerName
+     * }
+     */
+    public static final AddressLayout ComputerName$layout() {
+        return ComputerName$LAYOUT;
+    }
+
+    private static final long ComputerName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char *ComputerName
+     * }
+     */
+    public static final long ComputerName$offset() {
+        return ComputerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char *ComputerName
+     * }
+     */
+    public static MemorySegment ComputerName(MemorySegment struct) {
+        return struct.get(ComputerName$LAYOUT, ComputerName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char *ComputerName
+     * }
+     */
+    public static void ComputerName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ComputerName$LAYOUT, ComputerName$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Privilege$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Privilege"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short Privilege
+     * }
+     */
+    public static final OfShort Privilege$layout() {
+        return Privilege$LAYOUT;
+    }
+
+    private static final long Privilege$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short Privilege
+     * }
+     */
+    public static final long Privilege$offset() {
+        return Privilege$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short Privilege
+     * }
+     */
+    public static short Privilege(MemorySegment struct) {
+        return struct.get(Privilege$LAYOUT, Privilege$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short Privilege
+     * }
+     */
+    public static void Privilege(MemorySegment struct, short fieldValue) {
+        struct.set(Privilege$LAYOUT, Privilege$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthFlags
+     * }
+     */
+    public static final OfInt AuthFlags$layout() {
+        return AuthFlags$LAYOUT;
+    }
+
+    private static final long AuthFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthFlags
+     * }
+     */
+    public static final long AuthFlags$offset() {
+        return AuthFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthFlags
+     * }
+     */
+    public static int AuthFlags(MemorySegment struct) {
+        return struct.get(AuthFlags$LAYOUT, AuthFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthFlags
+     * }
+     */
+    public static void AuthFlags(MemorySegment struct, int fieldValue) {
+        struct.set(AuthFlags$LAYOUT, AuthFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

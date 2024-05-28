@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _KCRM_MARSHAL_HEADER {
+ *     ULONG VersionMajor;
+ *     ULONG VersionMinor;
+ *     ULONG NumProtocols;
+ *     ULONG Unused;
+ * }
+ * }
+ */
 public class _KCRM_MARSHAL_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("VersionMajor"),
-        Constants$root.C_LONG$LAYOUT.withName("VersionMinor"),
-        Constants$root.C_LONG$LAYOUT.withName("NumProtocols"),
-        Constants$root.C_LONG$LAYOUT.withName("Unused")
-    ).withName("_KCRM_MARSHAL_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _KCRM_MARSHAL_HEADER.$struct$LAYOUT;
+    _KCRM_MARSHAL_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle VersionMajor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VersionMajor"));
-    public static VarHandle VersionMajor$VH() {
-        return _KCRM_MARSHAL_HEADER.VersionMajor$VH;
-    }
-    public static int VersionMajor$get(MemorySegment seg) {
-        return (int)_KCRM_MARSHAL_HEADER.VersionMajor$VH.get(seg);
-    }
-    public static void VersionMajor$set( MemorySegment seg, int x) {
-        _KCRM_MARSHAL_HEADER.VersionMajor$VH.set(seg, x);
-    }
-    public static int VersionMajor$get(MemorySegment seg, long index) {
-        return (int)_KCRM_MARSHAL_HEADER.VersionMajor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VersionMajor$set(MemorySegment seg, long index, int x) {
-        _KCRM_MARSHAL_HEADER.VersionMajor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VersionMinor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VersionMinor"));
-    public static VarHandle VersionMinor$VH() {
-        return _KCRM_MARSHAL_HEADER.VersionMinor$VH;
-    }
-    public static int VersionMinor$get(MemorySegment seg) {
-        return (int)_KCRM_MARSHAL_HEADER.VersionMinor$VH.get(seg);
-    }
-    public static void VersionMinor$set( MemorySegment seg, int x) {
-        _KCRM_MARSHAL_HEADER.VersionMinor$VH.set(seg, x);
-    }
-    public static int VersionMinor$get(MemorySegment seg, long index) {
-        return (int)_KCRM_MARSHAL_HEADER.VersionMinor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VersionMinor$set(MemorySegment seg, long index, int x) {
-        _KCRM_MARSHAL_HEADER.VersionMinor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumProtocols$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumProtocols"));
-    public static VarHandle NumProtocols$VH() {
-        return _KCRM_MARSHAL_HEADER.NumProtocols$VH;
-    }
-    public static int NumProtocols$get(MemorySegment seg) {
-        return (int)_KCRM_MARSHAL_HEADER.NumProtocols$VH.get(seg);
-    }
-    public static void NumProtocols$set( MemorySegment seg, int x) {
-        _KCRM_MARSHAL_HEADER.NumProtocols$VH.set(seg, x);
-    }
-    public static int NumProtocols$get(MemorySegment seg, long index) {
-        return (int)_KCRM_MARSHAL_HEADER.NumProtocols$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumProtocols$set(MemorySegment seg, long index, int x) {
-        _KCRM_MARSHAL_HEADER.NumProtocols$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Unused$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Unused"));
-    public static VarHandle Unused$VH() {
-        return _KCRM_MARSHAL_HEADER.Unused$VH;
-    }
-    public static int Unused$get(MemorySegment seg) {
-        return (int)_KCRM_MARSHAL_HEADER.Unused$VH.get(seg);
-    }
-    public static void Unused$set( MemorySegment seg, int x) {
-        _KCRM_MARSHAL_HEADER.Unused$VH.set(seg, x);
-    }
-    public static int Unused$get(MemorySegment seg, long index) {
-        return (int)_KCRM_MARSHAL_HEADER.Unused$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Unused$set(MemorySegment seg, long index, int x) {
-        _KCRM_MARSHAL_HEADER.Unused$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("VersionMajor"),
+        wgl_h.C_LONG.withName("VersionMinor"),
+        wgl_h.C_LONG.withName("NumProtocols"),
+        wgl_h.C_LONG.withName("Unused")
+    ).withName("_KCRM_MARSHAL_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt VersionMajor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VersionMajor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG VersionMajor
+     * }
+     */
+    public static final OfInt VersionMajor$layout() {
+        return VersionMajor$LAYOUT;
+    }
+
+    private static final long VersionMajor$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG VersionMajor
+     * }
+     */
+    public static final long VersionMajor$offset() {
+        return VersionMajor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG VersionMajor
+     * }
+     */
+    public static int VersionMajor(MemorySegment struct) {
+        return struct.get(VersionMajor$LAYOUT, VersionMajor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG VersionMajor
+     * }
+     */
+    public static void VersionMajor(MemorySegment struct, int fieldValue) {
+        struct.set(VersionMajor$LAYOUT, VersionMajor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt VersionMinor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VersionMinor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG VersionMinor
+     * }
+     */
+    public static final OfInt VersionMinor$layout() {
+        return VersionMinor$LAYOUT;
+    }
+
+    private static final long VersionMinor$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG VersionMinor
+     * }
+     */
+    public static final long VersionMinor$offset() {
+        return VersionMinor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG VersionMinor
+     * }
+     */
+    public static int VersionMinor(MemorySegment struct) {
+        return struct.get(VersionMinor$LAYOUT, VersionMinor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG VersionMinor
+     * }
+     */
+    public static void VersionMinor(MemorySegment struct, int fieldValue) {
+        struct.set(VersionMinor$LAYOUT, VersionMinor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumProtocols$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumProtocols"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG NumProtocols
+     * }
+     */
+    public static final OfInt NumProtocols$layout() {
+        return NumProtocols$LAYOUT;
+    }
+
+    private static final long NumProtocols$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG NumProtocols
+     * }
+     */
+    public static final long NumProtocols$offset() {
+        return NumProtocols$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG NumProtocols
+     * }
+     */
+    public static int NumProtocols(MemorySegment struct) {
+        return struct.get(NumProtocols$LAYOUT, NumProtocols$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG NumProtocols
+     * }
+     */
+    public static void NumProtocols(MemorySegment struct, int fieldValue) {
+        struct.set(NumProtocols$LAYOUT, NumProtocols$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Unused$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Unused"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Unused
+     * }
+     */
+    public static final OfInt Unused$layout() {
+        return Unused$LAYOUT;
+    }
+
+    private static final long Unused$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Unused
+     * }
+     */
+    public static final long Unused$offset() {
+        return Unused$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Unused
+     * }
+     */
+    public static int Unused(MemorySegment struct) {
+        return struct.get(Unused$LAYOUT, Unused$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Unused
+     * }
+     */
+    public static void Unused(MemorySegment struct, int fieldValue) {
+        struct.set(Unused$LAYOUT, Unused$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress pContext, java.lang.foreign.MemoryAddress rgIdentifierOrNameList, int dwIdentifierOrNameListCount);
-    static MemorySegment allocate(PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH.class, fi, constants$813.PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH)(LPVOID, PCERT_NAME_BLOB *, DWORD) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH {
+
+    PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pContext, java.lang.foreign.MemoryAddress _rgIdentifierOrNameList, int _dwIdentifierOrNameListCount) -> {
-            try {
-                return (int)constants$813.PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pContext, (java.lang.foreign.Addressable)_rgIdentifierOrNameList, _dwIdentifierOrNameListCount);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment pContext, MemorySegment rgIdentifierOrNameList, int dwIdentifierOrNameListCount);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FLUSH.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment pContext, MemorySegment rgIdentifierOrNameList, int dwIdentifierOrNameListCount) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, pContext, rgIdentifierOrNameList, dwIdentifierOrNameListCount);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

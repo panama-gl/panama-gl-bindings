@@ -2,196 +2,9072 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class wgl_h_40 extends wgl_h_39 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static int MDM_PROTOCOL_X75_BTX() {
-        return (int)4390912L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class wgl_h_40 {
+
+    wgl_h_40() {
+        // Should not be called directly
     }
-    public static int MDM_PROTOCOL_V110_1DOT2K() {
-        return (int)1310720L;
+
+    static final Arena LIBRARY_ARENA = Arena.ofAuto();
+    static final boolean TRACE_DOWNCALLS = Boolean.getBoolean("jextract.trace.downcalls");
+
+    static void traceDowncall(String name, Object... args) {
+         String traceArgs = Arrays.stream(args)
+                       .map(Object::toString)
+                       .collect(Collectors.joining(", "));
+         System.out.printf("%s(%s)\n", name, traceArgs);
     }
-    public static int MDM_PROTOCOL_V110_2DOT4K() {
-        return (int)2359296L;
+
+    static MemorySegment findOrThrow(String symbol) {
+        return SYMBOL_LOOKUP.find(symbol)
+            .orElseThrow(() -> new UnsatisfiedLinkError("unresolved symbol: " + symbol));
     }
-    public static int MDM_PROTOCOL_V110_4DOT8K() {
-        return (int)3407872L;
+
+    static MethodHandle upcallHandle(Class<?> fi, String name, FunctionDescriptor fdesc) {
+        try {
+            return MethodHandles.lookup().findVirtual(fi, name, fdesc.toMethodType());
+        } catch (ReflectiveOperationException ex) {
+            throw new AssertionError(ex);
+        }
     }
-    public static int MDM_PROTOCOL_V110_9DOT6K() {
-        return (int)4456448L;
+
+    static MemoryLayout align(MemoryLayout layout, long align) {
+        return switch (layout) {
+            case PaddingLayout p -> p;
+            case ValueLayout v -> v.withByteAlignment(align);
+            case GroupLayout g -> {
+                MemoryLayout[] alignedMembers = g.memberLayouts().stream()
+                        .map(m -> align(m, align)).toArray(MemoryLayout[]::new);
+                yield g instanceof StructLayout ?
+                        MemoryLayout.structLayout(alignedMembers) : MemoryLayout.unionLayout(alignedMembers);
+            }
+            case SequenceLayout s -> MemoryLayout.sequenceLayout(s.elementCount(), align(s.elementLayout(), align));
+        };
     }
-    public static int MDM_PROTOCOL_V110_12DOT0K() {
-        return (int)5505024L;
+
+    static final SymbolLookup SYMBOL_LOOKUP = SymbolLookup.loaderLookup()
+            .or(Linker.nativeLinker().defaultLookup());
+
+    public static final ValueLayout.OfBoolean C_BOOL = ValueLayout.JAVA_BOOLEAN;
+    public static final ValueLayout.OfByte C_CHAR = ValueLayout.JAVA_BYTE;
+    public static final ValueLayout.OfShort C_SHORT = ValueLayout.JAVA_SHORT;
+    public static final ValueLayout.OfInt C_INT = ValueLayout.JAVA_INT;
+    public static final ValueLayout.OfLong C_LONG_LONG = ValueLayout.JAVA_LONG;
+    public static final ValueLayout.OfFloat C_FLOAT = ValueLayout.JAVA_FLOAT;
+    public static final ValueLayout.OfDouble C_DOUBLE = ValueLayout.JAVA_DOUBLE;
+    public static final AddressLayout C_POINTER = ValueLayout.ADDRESS
+            .withTargetLayout(MemoryLayout.sequenceLayout(java.lang.Long.MAX_VALUE, JAVA_BYTE));
+    public static final ValueLayout.OfInt C_LONG = ValueLayout.JAVA_INT;
+    public static final ValueLayout.OfDouble C_LONG_DOUBLE = ValueLayout.JAVA_DOUBLE;
+    private static final int WINAPI_FAMILY_PC_APP = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_PC_APP 2
+     * }
+     */
+    public static int WINAPI_FAMILY_PC_APP() {
+        return WINAPI_FAMILY_PC_APP;
     }
-    public static int MDM_PROTOCOL_V110_14DOT4K() {
-        return (int)6553600L;
+    private static final int WINAPI_FAMILY_PHONE_APP = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_PHONE_APP 3
+     * }
+     */
+    public static int WINAPI_FAMILY_PHONE_APP() {
+        return WINAPI_FAMILY_PHONE_APP;
     }
-    public static int MDM_PROTOCOL_V110_19DOT2K() {
-        return (int)7602176L;
+    private static final int WINAPI_FAMILY_SYSTEM = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_SYSTEM 4
+     * }
+     */
+    public static int WINAPI_FAMILY_SYSTEM() {
+        return WINAPI_FAMILY_SYSTEM;
     }
-    public static int MDM_PROTOCOL_V110_28DOT8K() {
-        return (int)8650752L;
+    private static final int WINAPI_FAMILY_SERVER = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_SERVER 5
+     * }
+     */
+    public static int WINAPI_FAMILY_SERVER() {
+        return WINAPI_FAMILY_SERVER;
     }
-    public static int MDM_PROTOCOL_V110_38DOT4K() {
-        return (int)9699328L;
+    private static final int WINAPI_FAMILY_GAMES = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_GAMES 6
+     * }
+     */
+    public static int WINAPI_FAMILY_GAMES() {
+        return WINAPI_FAMILY_GAMES;
     }
-    public static int MDM_PROTOCOL_V110_57DOT6K() {
-        return (int)10747904L;
+    private static final int WINAPI_FAMILY_DESKTOP_APP = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define WINAPI_FAMILY_DESKTOP_APP 100
+     * }
+     */
+    public static int WINAPI_FAMILY_DESKTOP_APP() {
+        return WINAPI_FAMILY_DESKTOP_APP;
     }
-    public static int MDM_MASK_AUTO_ML() {
-        return (int)192L;
+    private static final int _WIN32_WINNT_NT4 = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_NT4 1024
+     * }
+     */
+    public static int _WIN32_WINNT_NT4() {
+        return _WIN32_WINNT_NT4;
     }
-    public static int MDM_PROTOCOL_AUTO_1CH() {
-        return (int)67502080L;
+    private static final int _WIN32_WINNT_WIN2K = (int)1280L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WIN2K 1280
+     * }
+     */
+    public static int _WIN32_WINNT_WIN2K() {
+        return _WIN32_WINNT_WIN2K;
     }
-    public static int MDM_PROTOCOL_AUTO_2CH() {
-        return (int)134610944L;
+    private static final int _WIN32_WINNT_WINXP = (int)1281L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WINXP 1281
+     * }
+     */
+    public static int _WIN32_WINNT_WINXP() {
+        return _WIN32_WINNT_WINXP;
     }
-    public static int MDM_PROTOCOL_ANALOG_RLP() {
-        return (int)458752L;
+    private static final int _WIN32_WINNT_WS03 = (int)1282L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WS03 1282
+     * }
+     */
+    public static int _WIN32_WINNT_WS03() {
+        return _WIN32_WINNT_WS03;
     }
-    public static int MDM_PROTOCOL_ANALOG_NRLP() {
-        return (int)1507328L;
+    private static final int _WIN32_WINNT_WIN6 = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WIN6 1536
+     * }
+     */
+    public static int _WIN32_WINNT_WIN6() {
+        return _WIN32_WINNT_WIN6;
     }
-    public static int MDM_PROTOCOL_ANALOG_V34() {
-        return (int)2555904L;
+    private static final int _WIN32_WINNT_VISTA = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_VISTA 1536
+     * }
+     */
+    public static int _WIN32_WINNT_VISTA() {
+        return _WIN32_WINNT_VISTA;
     }
-    public static int MDM_PROTOCOL_GPRS() {
-        return (int)524288L;
+    private static final int _WIN32_WINNT_WS08 = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WS08 1536
+     * }
+     */
+    public static int _WIN32_WINNT_WS08() {
+        return _WIN32_WINNT_WS08;
     }
-    public static int MDM_PROTOCOL_PIAFS_INCOMING() {
-        return (int)589824L;
+    private static final int _WIN32_WINNT_LONGHORN = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_LONGHORN 1536
+     * }
+     */
+    public static int _WIN32_WINNT_LONGHORN() {
+        return _WIN32_WINNT_LONGHORN;
     }
-    public static int MDM_PROTOCOL_PIAFS_OUTGOING() {
-        return (int)1638400L;
+    private static final int _WIN32_WINNT_WIN7 = (int)1537L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WIN7 1537
+     * }
+     */
+    public static int _WIN32_WINNT_WIN7() {
+        return _WIN32_WINNT_WIN7;
     }
-    public static int ISC_SHOWUICOMPOSITIONWINDOW() {
-        return (int)2147483648L;
+    private static final int _WIN32_WINNT_WIN8 = (int)1538L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WIN8 1538
+     * }
+     */
+    public static int _WIN32_WINNT_WIN8() {
+        return _WIN32_WINNT_WIN8;
     }
-    public static int ISC_SHOWUIALL() {
-        return (int)3221225487L;
+    private static final int _WIN32_WINNT_WINBLUE = (int)1539L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WINBLUE 1539
+     * }
+     */
+    public static int _WIN32_WINNT_WINBLUE() {
+        return _WIN32_WINNT_WINBLUE;
     }
-    public static int IGP_GETIMEVERSION() {
-        return (int)4294967292L;
+    private static final int _WIN32_WINNT_WINTHRESHOLD = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WINTHRESHOLD 2560
+     * }
+     */
+    public static int _WIN32_WINNT_WINTHRESHOLD() {
+        return _WIN32_WINNT_WINTHRESHOLD;
     }
-    public static int SCS_SETSTR() {
-        return (int)9L;
+    private static final int _WIN32_WINNT_WIN10 = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT_WIN10 2560
+     * }
+     */
+    public static int _WIN32_WINNT_WIN10() {
+        return _WIN32_WINNT_WIN10;
     }
-    public static int SCS_CHANGEATTR() {
-        return (int)18L;
+    private static final int _WIN32_IE_IE20 = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE20 512
+     * }
+     */
+    public static int _WIN32_IE_IE20() {
+        return _WIN32_IE_IE20;
     }
-    public static int SCS_CHANGECLAUSE() {
-        return (int)36L;
+    private static final int _WIN32_IE_IE30 = (int)768L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE30 768
+     * }
+     */
+    public static int _WIN32_IE_IE30() {
+        return _WIN32_IE_IE30;
     }
-    public static int IME_CMODE_CHINESE() {
-        return (int)1L;
+    private static final int _WIN32_IE_IE302 = (int)770L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE302 770
+     * }
+     */
+    public static int _WIN32_IE_IE302() {
+        return _WIN32_IE_IE302;
     }
-    public static int IME_CMODE_HANGUL() {
-        return (int)1L;
+    private static final int _WIN32_IE_IE40 = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE40 1024
+     * }
+     */
+    public static int _WIN32_IE_IE40() {
+        return _WIN32_IE_IE40;
     }
-    public static int IME_CMODE_JAPANESE() {
-        return (int)1L;
+    private static final int _WIN32_IE_IE401 = (int)1025L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE401 1025
+     * }
+     */
+    public static int _WIN32_IE_IE401() {
+        return _WIN32_IE_IE401;
     }
-    public static int IME_CMODE_HANGEUL() {
-        return (int)1L;
+    private static final int _WIN32_IE_IE50 = (int)1280L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE50 1280
+     * }
+     */
+    public static int _WIN32_IE_IE50() {
+        return _WIN32_IE_IE50;
     }
-    public static int IME_CMODE_RESERVED() {
-        return (int)4026531840L;
+    private static final int _WIN32_IE_IE501 = (int)1281L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE501 1281
+     * }
+     */
+    public static int _WIN32_IE_IE501() {
+        return _WIN32_IE_IE501;
     }
-    public static int IMM_ERROR_NODATA() {
-        return (int)-1L;
+    private static final int _WIN32_IE_IE55 = (int)1360L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE55 1360
+     * }
+     */
+    public static int _WIN32_IE_IE55() {
+        return _WIN32_IE_IE55;
     }
-    public static int IMM_ERROR_GENERAL() {
-        return (int)-2L;
+    private static final int _WIN32_IE_IE60 = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE60 1536
+     * }
+     */
+    public static int _WIN32_IE_IE60() {
+        return _WIN32_IE_IE60;
     }
-    public static int IME_REGWORD_STYLE_USER_FIRST() {
-        return (int)2147483648L;
+    private static final int _WIN32_IE_IE60SP1 = (int)1537L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE60SP1 1537
+     * }
+     */
+    public static int _WIN32_IE_IE60SP1() {
+        return _WIN32_IE_IE60SP1;
     }
-    public static int IME_REGWORD_STYLE_USER_LAST() {
-        return (int)4294967295L;
+    private static final int _WIN32_IE_IE60SP2 = (int)1539L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE60SP2 1539
+     * }
+     */
+    public static int _WIN32_IE_IE60SP2() {
+        return _WIN32_IE_IE60SP2;
     }
-    public static int IMFS_GRAYED() {
-        return (int)3L;
+    private static final int _WIN32_IE_IE70 = (int)1792L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE70 1792
+     * }
+     */
+    public static int _WIN32_IE_IE70() {
+        return _WIN32_IE_IE70;
     }
-    public static int IMFS_DISABLED() {
-        return (int)3L;
+    private static final int _WIN32_IE_IE80 = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE80 2048
+     * }
+     */
+    public static int _WIN32_IE_IE80() {
+        return _WIN32_IE_IE80;
     }
-    public static int IMFS_CHECKED() {
-        return (int)8L;
+    private static final int _WIN32_IE_IE90 = (int)2304L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE90 2304
+     * }
+     */
+    public static int _WIN32_IE_IE90() {
+        return _WIN32_IE_IE90;
     }
-    public static int IMFS_HILITE() {
-        return (int)128L;
+    private static final int _WIN32_IE_IE100 = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE100 2560
+     * }
+     */
+    public static int _WIN32_IE_IE100() {
+        return _WIN32_IE_IE100;
     }
-    public static int IMFS_ENABLED() {
-        return (int)0L;
+    private static final int _WIN32_IE_IE110 = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_IE110 2560
+     * }
+     */
+    public static int _WIN32_IE_IE110() {
+        return _WIN32_IE_IE110;
     }
-    public static int IMFS_UNCHECKED() {
-        return (int)0L;
+    private static final int _WIN32_IE_WS03 = (int)1538L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE_WS03 1538
+     * }
+     */
+    public static int _WIN32_IE_WS03() {
+        return _WIN32_IE_WS03;
     }
-    public static int IMFS_UNHILITE() {
-        return (int)0L;
+    private static final int NTDDI_WIN2K = (int)83886080L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN2K 83886080
+     * }
+     */
+    public static int NTDDI_WIN2K() {
+        return NTDDI_WIN2K;
     }
-    public static int IMFS_DEFAULT() {
-        return (int)4096L;
+    private static final int NTDDI_WIN2KSP1 = (int)83886336L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN2KSP1 83886336
+     * }
+     */
+    public static int NTDDI_WIN2KSP1() {
+        return NTDDI_WIN2KSP1;
     }
-    public static int GL_CLIENT_ALL_ATTRIB_BITS() {
-        return (int)4294967295L;
+    private static final int NTDDI_WIN2KSP2 = (int)83886592L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN2KSP2 83886592
+     * }
+     */
+    public static int NTDDI_WIN2KSP2() {
+        return NTDDI_WIN2KSP2;
     }
-    public static int GL_DOUBLE_EXT() {
-        return (int)5130L;
+    private static final int NTDDI_WIN2KSP3 = (int)83886848L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN2KSP3 83886848
+     * }
+     */
+    public static int NTDDI_WIN2KSP3() {
+        return NTDDI_WIN2KSP3;
     }
-    public static int GL_LOGIC_OP() {
-        return (int)3057L;
+    private static final int NTDDI_WIN2KSP4 = (int)83887104L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN2KSP4 83887104
+     * }
+     */
+    public static int NTDDI_WIN2KSP4() {
+        return NTDDI_WIN2KSP4;
     }
-    public static int GL_TEXTURE_COMPONENTS() {
-        return (int)4099L;
+    private static final int NTDDI_WINXP = (int)83951616L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINXP 83951616
+     * }
+     */
+    public static int NTDDI_WINXP() {
+        return NTDDI_WINXP;
     }
-    public static int GLU_TRUE() {
-        return (int)1L;
+    private static final int NTDDI_WINXPSP1 = (int)83951872L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINXPSP1 83951872
+     * }
+     */
+    public static int NTDDI_WINXPSP1() {
+        return NTDDI_WINXPSP1;
     }
-    public static int GLU_FALSE() {
-        return (int)0L;
+    private static final int NTDDI_WINXPSP2 = (int)83952128L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINXPSP2 83952128
+     * }
+     */
+    public static int NTDDI_WINXPSP2() {
+        return NTDDI_WINXPSP2;
     }
-    public static double GLU_TESS_MAX_COORD() {
-        return 1.0E150d;
+    private static final int NTDDI_WINXPSP3 = (int)83952384L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINXPSP3 83952384
+     * }
+     */
+    public static int NTDDI_WINXPSP3() {
+        return NTDDI_WINXPSP3;
     }
-    public static int GLU_TESS_MISSING_BEGIN_POLYGON() {
-        return (int)100151L;
+    private static final int NTDDI_WINXPSP4 = (int)83952640L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINXPSP4 83952640
+     * }
+     */
+    public static int NTDDI_WINXPSP4() {
+        return NTDDI_WINXPSP4;
     }
-    public static int GLU_TESS_MISSING_BEGIN_CONTOUR() {
-        return (int)100152L;
+    private static final int NTDDI_WS03 = (int)84017152L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WS03 84017152
+     * }
+     */
+    public static int NTDDI_WS03() {
+        return NTDDI_WS03;
     }
-    public static int GLU_TESS_MISSING_END_POLYGON() {
-        return (int)100153L;
+    private static final int NTDDI_WS03SP1 = (int)84017408L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WS03SP1 84017408
+     * }
+     */
+    public static int NTDDI_WS03SP1() {
+        return NTDDI_WS03SP1;
     }
-    public static int GLU_TESS_MISSING_END_CONTOUR() {
-        return (int)100154L;
+    private static final int NTDDI_WS03SP2 = (int)84017664L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WS03SP2 84017664
+     * }
+     */
+    public static int NTDDI_WS03SP2() {
+        return NTDDI_WS03SP2;
     }
-    public static int GLU_TESS_COORD_TOO_LARGE() {
-        return (int)100155L;
+    private static final int NTDDI_WS03SP3 = (int)84017920L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WS03SP3 84017920
+     * }
+     */
+    public static int NTDDI_WS03SP3() {
+        return NTDDI_WS03SP3;
     }
-    public static int GLU_TESS_NEED_COMBINE_CALLBACK() {
-        return (int)100156L;
+    private static final int NTDDI_WS03SP4 = (int)84018176L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WS03SP4 84018176
+     * }
+     */
+    public static int NTDDI_WS03SP4() {
+        return NTDDI_WS03SP4;
     }
-    public static int GLU_BEGIN() {
-        return (int)100100L;
+    private static final int NTDDI_WIN6 = (int)100663296L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN6 100663296
+     * }
+     */
+    public static int NTDDI_WIN6() {
+        return NTDDI_WIN6;
     }
-    public static int GLU_VERTEX() {
-        return (int)100101L;
+    private static final int NTDDI_WIN6SP1 = (int)100663552L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN6SP1 100663552
+     * }
+     */
+    public static int NTDDI_WIN6SP1() {
+        return NTDDI_WIN6SP1;
     }
-    public static int GLU_END() {
-        return (int)100102L;
+    private static final int NTDDI_WIN6SP2 = (int)100663808L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN6SP2 100663808
+     * }
+     */
+    public static int NTDDI_WIN6SP2() {
+        return NTDDI_WIN6SP2;
     }
-    public static int GLU_ERROR() {
-        return (int)100103L;
+    private static final int NTDDI_WIN6SP3 = (int)100664064L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN6SP3 100664064
+     * }
+     */
+    public static int NTDDI_WIN6SP3() {
+        return NTDDI_WIN6SP3;
     }
-    public static int GLU_EDGE_FLAG() {
-        return (int)100104L;
+    private static final int NTDDI_WIN6SP4 = (int)100664320L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN6SP4 100664320
+     * }
+     */
+    public static int NTDDI_WIN6SP4() {
+        return NTDDI_WIN6SP4;
+    }
+    private static final int NTDDI_WIN7 = (int)100728832L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN7 100728832
+     * }
+     */
+    public static int NTDDI_WIN7() {
+        return NTDDI_WIN7;
+    }
+    private static final int NTDDI_WIN8 = (int)100794368L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN8 100794368
+     * }
+     */
+    public static int NTDDI_WIN8() {
+        return NTDDI_WIN8;
+    }
+    private static final int NTDDI_WINBLUE = (int)100859904L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINBLUE 100859904
+     * }
+     */
+    public static int NTDDI_WINBLUE() {
+        return NTDDI_WINBLUE;
+    }
+    private static final int NTDDI_WINTHRESHOLD = (int)167772160L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WINTHRESHOLD 167772160
+     * }
+     */
+    public static int NTDDI_WINTHRESHOLD() {
+        return NTDDI_WINTHRESHOLD;
+    }
+    private static final int NTDDI_WIN10 = (int)167772160L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10 167772160
+     * }
+     */
+    public static int NTDDI_WIN10() {
+        return NTDDI_WIN10;
+    }
+    private static final int NTDDI_WIN10_TH2 = (int)167772161L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_TH2 167772161
+     * }
+     */
+    public static int NTDDI_WIN10_TH2() {
+        return NTDDI_WIN10_TH2;
+    }
+    private static final int NTDDI_WIN10_RS1 = (int)167772162L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_RS1 167772162
+     * }
+     */
+    public static int NTDDI_WIN10_RS1() {
+        return NTDDI_WIN10_RS1;
+    }
+    private static final int NTDDI_WIN10_RS2 = (int)167772163L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_RS2 167772163
+     * }
+     */
+    public static int NTDDI_WIN10_RS2() {
+        return NTDDI_WIN10_RS2;
+    }
+    private static final int NTDDI_WIN10_RS3 = (int)167772164L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_RS3 167772164
+     * }
+     */
+    public static int NTDDI_WIN10_RS3() {
+        return NTDDI_WIN10_RS3;
+    }
+    private static final int NTDDI_WIN10_RS4 = (int)167772165L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_RS4 167772165
+     * }
+     */
+    public static int NTDDI_WIN10_RS4() {
+        return NTDDI_WIN10_RS4;
+    }
+    private static final int NTDDI_WIN10_RS5 = (int)167772166L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_RS5 167772166
+     * }
+     */
+    public static int NTDDI_WIN10_RS5() {
+        return NTDDI_WIN10_RS5;
+    }
+    private static final int NTDDI_WIN10_19H1 = (int)167772167L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_19H1 167772167
+     * }
+     */
+    public static int NTDDI_WIN10_19H1() {
+        return NTDDI_WIN10_19H1;
+    }
+    private static final int NTDDI_WIN10_VB = (int)167772168L;
+    /**
+     * {@snippet lang=c :
+     * #define NTDDI_WIN10_VB 167772168
+     * }
+     */
+    public static int NTDDI_WIN10_VB() {
+        return NTDDI_WIN10_VB;
+    }
+    private static final int SPVERSION_MASK = (int)65280L;
+    /**
+     * {@snippet lang=c :
+     * #define SPVERSION_MASK 65280
+     * }
+     */
+    public static int SPVERSION_MASK() {
+        return SPVERSION_MASK;
+    }
+    private static final int SUBVERSION_MASK = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBVERSION_MASK 255
+     * }
+     */
+    public static int SUBVERSION_MASK() {
+        return SUBVERSION_MASK;
+    }
+    private static final int _WIN32_WINNT = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_WINNT 2560
+     * }
+     */
+    public static int _WIN32_WINNT() {
+        return _WIN32_WINNT;
+    }
+    private static final int _WIN32_IE = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define _WIN32_IE 2560
+     * }
+     */
+    public static int _WIN32_IE() {
+        return _WIN32_IE;
+    }
+    private static final int _VCRT_COMPILER_PREPROCESSOR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _VCRT_COMPILER_PREPROCESSOR 1
+     * }
+     */
+    public static int _VCRT_COMPILER_PREPROCESSOR() {
+        return _VCRT_COMPILER_PREPROCESSOR;
+    }
+    private static final int _SAL_VERSION = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define _SAL_VERSION 20
+     * }
+     */
+    public static int _SAL_VERSION() {
+        return _SAL_VERSION;
+    }
+    private static final int __SAL_H_VERSION = (int)180000000L;
+    /**
+     * {@snippet lang=c :
+     * #define __SAL_H_VERSION 180000000
+     * }
+     */
+    public static int __SAL_H_VERSION() {
+        return __SAL_H_VERSION;
+    }
+    private static final int _USE_DECLSPECS_FOR_SAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _USE_DECLSPECS_FOR_SAL 0
+     * }
+     */
+    public static int _USE_DECLSPECS_FOR_SAL() {
+        return _USE_DECLSPECS_FOR_SAL;
+    }
+    private static final int _USE_ATTRIBUTES_FOR_SAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _USE_ATTRIBUTES_FOR_SAL 0
+     * }
+     */
+    public static int _USE_ATTRIBUTES_FOR_SAL() {
+        return _USE_ATTRIBUTES_FOR_SAL;
+    }
+    private static final int _CRT_PACKING = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_PACKING 8
+     * }
+     */
+    public static int _CRT_PACKING() {
+        return _CRT_PACKING;
+    }
+    private static final int _HAS_EXCEPTIONS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _HAS_EXCEPTIONS 1
+     * }
+     */
+    public static int _HAS_EXCEPTIONS() {
+        return _HAS_EXCEPTIONS;
+    }
+    private static final int _HAS_CXX17 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _HAS_CXX17 0
+     * }
+     */
+    public static int _HAS_CXX17() {
+        return _HAS_CXX17;
+    }
+    private static final int _HAS_CXX20 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _HAS_CXX20 0
+     * }
+     */
+    public static int _HAS_CXX20() {
+        return _HAS_CXX20;
+    }
+    private static final int _HAS_NODISCARD = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _HAS_NODISCARD 0
+     * }
+     */
+    public static int _HAS_NODISCARD() {
+        return _HAS_NODISCARD;
+    }
+    private static final int EXCEPTION_EXECUTE_HANDLER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_EXECUTE_HANDLER 1
+     * }
+     */
+    public static int EXCEPTION_EXECUTE_HANDLER() {
+        return EXCEPTION_EXECUTE_HANDLER;
+    }
+    private static final int EXCEPTION_CONTINUE_SEARCH = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_CONTINUE_SEARCH 0
+     * }
+     */
+    public static int EXCEPTION_CONTINUE_SEARCH() {
+        return EXCEPTION_CONTINUE_SEARCH;
+    }
+    private static final int __GNUC_VA_LIST = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define __GNUC_VA_LIST 1
+     * }
+     */
+    public static int __GNUC_VA_LIST() {
+        return __GNUC_VA_LIST;
+    }
+    private static final int __SAL_H_FULL_VER = (int)140050727L;
+    /**
+     * {@snippet lang=c :
+     * #define __SAL_H_FULL_VER 140050727
+     * }
+     */
+    public static int __SAL_H_FULL_VER() {
+        return __SAL_H_FULL_VER;
+    }
+    private static final int __SPECSTRINGS_STRICT_LEVEL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define __SPECSTRINGS_STRICT_LEVEL 1
+     * }
+     */
+    public static int __SPECSTRINGS_STRICT_LEVEL() {
+        return __SPECSTRINGS_STRICT_LEVEL;
+    }
+    private static final int __drv_typeConst = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define __drv_typeConst 0
+     * }
+     */
+    public static int __drv_typeConst() {
+        return __drv_typeConst;
+    }
+    private static final int __drv_typeCond = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define __drv_typeCond 1
+     * }
+     */
+    public static int __drv_typeCond() {
+        return __drv_typeCond;
+    }
+    private static final int __drv_typeBitset = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define __drv_typeBitset 2
+     * }
+     */
+    public static int __drv_typeBitset() {
+        return __drv_typeBitset;
+    }
+    private static final int __drv_typeExpr = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define __drv_typeExpr 3
+     * }
+     */
+    public static int __drv_typeExpr() {
+        return __drv_typeExpr;
+    }
+    private static final int STRICT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define STRICT 1
+     * }
+     */
+    public static int STRICT() {
+        return STRICT;
+    }
+    private static final int MAX_PATH = (int)260L;
+    /**
+     * {@snippet lang=c :
+     * #define MAX_PATH 260
+     * }
+     */
+    public static int MAX_PATH() {
+        return MAX_PATH;
+    }
+    private static final int FALSE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define FALSE 0
+     * }
+     */
+    public static int FALSE() {
+        return FALSE;
+    }
+    private static final int TRUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TRUE 1
+     * }
+     */
+    public static int TRUE() {
+        return TRUE;
+    }
+    private static final int _ARGMAX = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define _ARGMAX 100
+     * }
+     */
+    public static int _ARGMAX() {
+        return _ARGMAX;
+    }
+    private static final int _CRT_INT_MAX = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_INT_MAX 2147483647
+     * }
+     */
+    public static int _CRT_INT_MAX() {
+        return _CRT_INT_MAX;
+    }
+    private static final int _CRT_FUNCTIONS_REQUIRED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_FUNCTIONS_REQUIRED 1
+     * }
+     */
+    public static int _CRT_FUNCTIONS_REQUIRED() {
+        return _CRT_FUNCTIONS_REQUIRED;
+    }
+    private static final int _CRT_HAS_CXX17 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_HAS_CXX17 0
+     * }
+     */
+    public static int _CRT_HAS_CXX17() {
+        return _CRT_HAS_CXX17;
+    }
+    private static final int _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE 1
+     * }
+     */
+    public static int _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE() {
+        return _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE;
+    }
+    private static final int _CRT_BUILD_DESKTOP_APP = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_BUILD_DESKTOP_APP 1
+     * }
+     */
+    public static int _CRT_BUILD_DESKTOP_APP() {
+        return _CRT_BUILD_DESKTOP_APP;
+    }
+    private static final int _CRT_INTERNAL_NONSTDC_NAMES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_INTERNAL_NONSTDC_NAMES 1
+     * }
+     */
+    public static int _CRT_INTERNAL_NONSTDC_NAMES() {
+        return _CRT_INTERNAL_NONSTDC_NAMES;
+    }
+    private static final int __STDC_WANT_SECURE_LIB__ = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define __STDC_WANT_SECURE_LIB__ 1
+     * }
+     */
+    public static int __STDC_WANT_SECURE_LIB__() {
+        return __STDC_WANT_SECURE_LIB__;
+    }
+    private static final int _SECURECRT_FILL_BUFFER_PATTERN = (int)254L;
+    /**
+     * {@snippet lang=c :
+     * #define _SECURECRT_FILL_BUFFER_PATTERN 254
+     * }
+     */
+    public static int _SECURECRT_FILL_BUFFER_PATTERN() {
+        return _SECURECRT_FILL_BUFFER_PATTERN;
+    }
+    private static final int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES 0
+     * }
+     */
+    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES() {
+        return _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES;
+    }
+    private static final int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT 0
+     * }
+     */
+    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT() {
+        return _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT;
+    }
+    private static final int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES 1
+     * }
+     */
+    public static int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES() {
+        return _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES;
+    }
+    private static final int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY 0
+     * }
+     */
+    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY() {
+        return _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY;
+    }
+    private static final int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY 0
+     * }
+     */
+    public static int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY() {
+        return _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY;
+    }
+    private static final int _UPPER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _UPPER 1
+     * }
+     */
+    public static int _UPPER() {
+        return _UPPER;
+    }
+    private static final int _LOWER = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define _LOWER 2
+     * }
+     */
+    public static int _LOWER() {
+        return _LOWER;
+    }
+    private static final int _DIGIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define _DIGIT 4
+     * }
+     */
+    public static int _DIGIT() {
+        return _DIGIT;
+    }
+    private static final int _SPACE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define _SPACE 8
+     * }
+     */
+    public static int _SPACE() {
+        return _SPACE;
+    }
+    private static final int _PUNCT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define _PUNCT 16
+     * }
+     */
+    public static int _PUNCT() {
+        return _PUNCT;
+    }
+    private static final int _CONTROL = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define _CONTROL 32
+     * }
+     */
+    public static int _CONTROL() {
+        return _CONTROL;
+    }
+    private static final int _BLANK = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define _BLANK 64
+     * }
+     */
+    public static int _BLANK() {
+        return _BLANK;
+    }
+    private static final int _HEX = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define _HEX 128
+     * }
+     */
+    public static int _HEX() {
+        return _HEX;
+    }
+    private static final int _LEADBYTE = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define _LEADBYTE 32768
+     * }
+     */
+    public static int _LEADBYTE() {
+        return _LEADBYTE;
+    }
+    private static final int ANYSIZE_ARRAY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ANYSIZE_ARRAY 1
+     * }
+     */
+    public static int ANYSIZE_ARRAY() {
+        return ANYSIZE_ARRAY;
+    }
+    private static final int DISPATCH_LEVEL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DISPATCH_LEVEL 2
+     * }
+     */
+    public static int DISPATCH_LEVEL() {
+        return DISPATCH_LEVEL;
+    }
+    private static final int APC_LEVEL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define APC_LEVEL 1
+     * }
+     */
+    public static int APC_LEVEL() {
+        return APC_LEVEL;
+    }
+    private static final int PASSIVE_LEVEL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define PASSIVE_LEVEL 0
+     * }
+     */
+    public static int PASSIVE_LEVEL() {
+        return PASSIVE_LEVEL;
+    }
+    private static final int HIGH_LEVEL = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define HIGH_LEVEL 15
+     * }
+     */
+    public static int HIGH_LEVEL() {
+        return HIGH_LEVEL;
+    }
+    private static final int MEMORY_ALLOCATION_ALIGNMENT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_ALLOCATION_ALIGNMENT 16
+     * }
+     */
+    public static int MEMORY_ALLOCATION_ALIGNMENT() {
+        return MEMORY_ALLOCATION_ALIGNMENT;
+    }
+    private static final int SYSTEM_CACHE_ALIGNMENT_SIZE = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_CACHE_ALIGNMENT_SIZE 64
+     * }
+     */
+    public static int SYSTEM_CACHE_ALIGNMENT_SIZE() {
+        return SYSTEM_CACHE_ALIGNMENT_SIZE;
+    }
+    private static final int PRAGMA_DEPRECATED_DDK = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define PRAGMA_DEPRECATED_DDK 0
+     * }
+     */
+    public static int PRAGMA_DEPRECATED_DDK() {
+        return PRAGMA_DEPRECATED_DDK;
+    }
+    private static final int ALL_PROCESSOR_GROUPS = (int)65535L;
+    /**
+     * {@snippet lang=c :
+     * #define ALL_PROCESSOR_GROUPS 65535
+     * }
+     */
+    public static int ALL_PROCESSOR_GROUPS() {
+        return ALL_PROCESSOR_GROUPS;
+    }
+    private static final int MAXIMUM_PROC_PER_GROUP = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXIMUM_PROC_PER_GROUP 64
+     * }
+     */
+    public static int MAXIMUM_PROC_PER_GROUP() {
+        return MAXIMUM_PROC_PER_GROUP;
+    }
+    private static final int APPLICATION_ERROR_MASK = (int)536870912L;
+    /**
+     * {@snippet lang=c :
+     * #define APPLICATION_ERROR_MASK 536870912
+     * }
+     */
+    public static int APPLICATION_ERROR_MASK() {
+        return APPLICATION_ERROR_MASK;
+    }
+    private static final int ERROR_SEVERITY_SUCCESS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_SEVERITY_SUCCESS 0
+     * }
+     */
+    public static int ERROR_SEVERITY_SUCCESS() {
+        return ERROR_SEVERITY_SUCCESS;
+    }
+    private static final int ERROR_SEVERITY_INFORMATIONAL = (int)1073741824L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_SEVERITY_INFORMATIONAL 1073741824
+     * }
+     */
+    public static int ERROR_SEVERITY_INFORMATIONAL() {
+        return ERROR_SEVERITY_INFORMATIONAL;
+    }
+    private static final int EPERM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define EPERM 1
+     * }
+     */
+    public static int EPERM() {
+        return EPERM;
+    }
+    private static final int ENOENT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOENT 2
+     * }
+     */
+    public static int ENOENT() {
+        return ENOENT;
+    }
+    private static final int ESRCH = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define ESRCH 3
+     * }
+     */
+    public static int ESRCH() {
+        return ESRCH;
+    }
+    private static final int EINTR = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define EINTR 4
+     * }
+     */
+    public static int EINTR() {
+        return EINTR;
+    }
+    private static final int EIO = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define EIO 5
+     * }
+     */
+    public static int EIO() {
+        return EIO;
+    }
+    private static final int ENXIO = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define ENXIO 6
+     * }
+     */
+    public static int ENXIO() {
+        return ENXIO;
+    }
+    private static final int E2BIG = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define E2BIG 7
+     * }
+     */
+    public static int E2BIG() {
+        return E2BIG;
+    }
+    private static final int ENOEXEC = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOEXEC 8
+     * }
+     */
+    public static int ENOEXEC() {
+        return ENOEXEC;
+    }
+    private static final int EBADF = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define EBADF 9
+     * }
+     */
+    public static int EBADF() {
+        return EBADF;
+    }
+    private static final int ECHILD = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define ECHILD 10
+     * }
+     */
+    public static int ECHILD() {
+        return ECHILD;
+    }
+    private static final int EAGAIN = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define EAGAIN 11
+     * }
+     */
+    public static int EAGAIN() {
+        return EAGAIN;
+    }
+    private static final int ENOMEM = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOMEM 12
+     * }
+     */
+    public static int ENOMEM() {
+        return ENOMEM;
+    }
+    private static final int EACCES = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define EACCES 13
+     * }
+     */
+    public static int EACCES() {
+        return EACCES;
+    }
+    private static final int EFAULT = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define EFAULT 14
+     * }
+     */
+    public static int EFAULT() {
+        return EFAULT;
+    }
+    private static final int EBUSY = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define EBUSY 16
+     * }
+     */
+    public static int EBUSY() {
+        return EBUSY;
+    }
+    private static final int EEXIST = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define EEXIST 17
+     * }
+     */
+    public static int EEXIST() {
+        return EEXIST;
+    }
+    private static final int EXDEV = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define EXDEV 18
+     * }
+     */
+    public static int EXDEV() {
+        return EXDEV;
+    }
+    private static final int ENODEV = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define ENODEV 19
+     * }
+     */
+    public static int ENODEV() {
+        return ENODEV;
+    }
+    private static final int ENOTDIR = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTDIR 20
+     * }
+     */
+    public static int ENOTDIR() {
+        return ENOTDIR;
+    }
+    private static final int EISDIR = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define EISDIR 21
+     * }
+     */
+    public static int EISDIR() {
+        return EISDIR;
+    }
+    private static final int ENFILE = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define ENFILE 23
+     * }
+     */
+    public static int ENFILE() {
+        return ENFILE;
+    }
+    private static final int EMFILE = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define EMFILE 24
+     * }
+     */
+    public static int EMFILE() {
+        return EMFILE;
+    }
+    private static final int ENOTTY = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTTY 25
+     * }
+     */
+    public static int ENOTTY() {
+        return ENOTTY;
+    }
+    private static final int EFBIG = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * #define EFBIG 27
+     * }
+     */
+    public static int EFBIG() {
+        return EFBIG;
+    }
+    private static final int ENOSPC = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOSPC 28
+     * }
+     */
+    public static int ENOSPC() {
+        return ENOSPC;
+    }
+    private static final int ESPIPE = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * #define ESPIPE 29
+     * }
+     */
+    public static int ESPIPE() {
+        return ESPIPE;
+    }
+    private static final int EROFS = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * #define EROFS 30
+     * }
+     */
+    public static int EROFS() {
+        return EROFS;
+    }
+    private static final int EMLINK = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define EMLINK 31
+     * }
+     */
+    public static int EMLINK() {
+        return EMLINK;
+    }
+    private static final int EPIPE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define EPIPE 32
+     * }
+     */
+    public static int EPIPE() {
+        return EPIPE;
+    }
+    private static final int EDOM = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define EDOM 33
+     * }
+     */
+    public static int EDOM() {
+        return EDOM;
+    }
+    private static final int EDEADLK = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * #define EDEADLK 36
+     * }
+     */
+    public static int EDEADLK() {
+        return EDEADLK;
+    }
+    private static final int ENAMETOOLONG = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * #define ENAMETOOLONG 38
+     * }
+     */
+    public static int ENAMETOOLONG() {
+        return ENAMETOOLONG;
+    }
+    private static final int ENOLCK = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOLCK 39
+     * }
+     */
+    public static int ENOLCK() {
+        return ENOLCK;
+    }
+    private static final int ENOSYS = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOSYS 40
+     * }
+     */
+    public static int ENOSYS() {
+        return ENOSYS;
+    }
+    private static final int ENOTEMPTY = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTEMPTY 41
+     * }
+     */
+    public static int ENOTEMPTY() {
+        return ENOTEMPTY;
+    }
+    private static final int EINVAL = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * #define EINVAL 22
+     * }
+     */
+    public static int EINVAL() {
+        return EINVAL;
+    }
+    private static final int ERANGE = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * #define ERANGE 34
+     * }
+     */
+    public static int ERANGE() {
+        return ERANGE;
+    }
+    private static final int EILSEQ = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * #define EILSEQ 42
+     * }
+     */
+    public static int EILSEQ() {
+        return EILSEQ;
+    }
+    private static final int STRUNCATE = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define STRUNCATE 80
+     * }
+     */
+    public static int STRUNCATE() {
+        return STRUNCATE;
+    }
+    private static final int EADDRINUSE = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define EADDRINUSE 100
+     * }
+     */
+    public static int EADDRINUSE() {
+        return EADDRINUSE;
+    }
+    private static final int EADDRNOTAVAIL = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define EADDRNOTAVAIL 101
+     * }
+     */
+    public static int EADDRNOTAVAIL() {
+        return EADDRNOTAVAIL;
+    }
+    private static final int EAFNOSUPPORT = (int)102L;
+    /**
+     * {@snippet lang=c :
+     * #define EAFNOSUPPORT 102
+     * }
+     */
+    public static int EAFNOSUPPORT() {
+        return EAFNOSUPPORT;
+    }
+    private static final int EALREADY = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define EALREADY 103
+     * }
+     */
+    public static int EALREADY() {
+        return EALREADY;
+    }
+    private static final int EBADMSG = (int)104L;
+    /**
+     * {@snippet lang=c :
+     * #define EBADMSG 104
+     * }
+     */
+    public static int EBADMSG() {
+        return EBADMSG;
+    }
+    private static final int ECANCELED = (int)105L;
+    /**
+     * {@snippet lang=c :
+     * #define ECANCELED 105
+     * }
+     */
+    public static int ECANCELED() {
+        return ECANCELED;
+    }
+    private static final int ECONNABORTED = (int)106L;
+    /**
+     * {@snippet lang=c :
+     * #define ECONNABORTED 106
+     * }
+     */
+    public static int ECONNABORTED() {
+        return ECONNABORTED;
+    }
+    private static final int ECONNREFUSED = (int)107L;
+    /**
+     * {@snippet lang=c :
+     * #define ECONNREFUSED 107
+     * }
+     */
+    public static int ECONNREFUSED() {
+        return ECONNREFUSED;
+    }
+    private static final int ECONNRESET = (int)108L;
+    /**
+     * {@snippet lang=c :
+     * #define ECONNRESET 108
+     * }
+     */
+    public static int ECONNRESET() {
+        return ECONNRESET;
+    }
+    private static final int EDESTADDRREQ = (int)109L;
+    /**
+     * {@snippet lang=c :
+     * #define EDESTADDRREQ 109
+     * }
+     */
+    public static int EDESTADDRREQ() {
+        return EDESTADDRREQ;
+    }
+    private static final int EHOSTUNREACH = (int)110L;
+    /**
+     * {@snippet lang=c :
+     * #define EHOSTUNREACH 110
+     * }
+     */
+    public static int EHOSTUNREACH() {
+        return EHOSTUNREACH;
+    }
+    private static final int EIDRM = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define EIDRM 111
+     * }
+     */
+    public static int EIDRM() {
+        return EIDRM;
+    }
+    private static final int EINPROGRESS = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define EINPROGRESS 112
+     * }
+     */
+    public static int EINPROGRESS() {
+        return EINPROGRESS;
+    }
+    private static final int EISCONN = (int)113L;
+    /**
+     * {@snippet lang=c :
+     * #define EISCONN 113
+     * }
+     */
+    public static int EISCONN() {
+        return EISCONN;
+    }
+    private static final int ELOOP = (int)114L;
+    /**
+     * {@snippet lang=c :
+     * #define ELOOP 114
+     * }
+     */
+    public static int ELOOP() {
+        return ELOOP;
+    }
+    private static final int EMSGSIZE = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define EMSGSIZE 115
+     * }
+     */
+    public static int EMSGSIZE() {
+        return EMSGSIZE;
+    }
+    private static final int ENETDOWN = (int)116L;
+    /**
+     * {@snippet lang=c :
+     * #define ENETDOWN 116
+     * }
+     */
+    public static int ENETDOWN() {
+        return ENETDOWN;
+    }
+    private static final int ENETRESET = (int)117L;
+    /**
+     * {@snippet lang=c :
+     * #define ENETRESET 117
+     * }
+     */
+    public static int ENETRESET() {
+        return ENETRESET;
+    }
+    private static final int ENETUNREACH = (int)118L;
+    /**
+     * {@snippet lang=c :
+     * #define ENETUNREACH 118
+     * }
+     */
+    public static int ENETUNREACH() {
+        return ENETUNREACH;
+    }
+    private static final int ENOBUFS = (int)119L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOBUFS 119
+     * }
+     */
+    public static int ENOBUFS() {
+        return ENOBUFS;
+    }
+    private static final int ENODATA = (int)120L;
+    /**
+     * {@snippet lang=c :
+     * #define ENODATA 120
+     * }
+     */
+    public static int ENODATA() {
+        return ENODATA;
+    }
+    private static final int ENOLINK = (int)121L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOLINK 121
+     * }
+     */
+    public static int ENOLINK() {
+        return ENOLINK;
+    }
+    private static final int ENOMSG = (int)122L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOMSG 122
+     * }
+     */
+    public static int ENOMSG() {
+        return ENOMSG;
+    }
+    private static final int ENOPROTOOPT = (int)123L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOPROTOOPT 123
+     * }
+     */
+    public static int ENOPROTOOPT() {
+        return ENOPROTOOPT;
+    }
+    private static final int ENOSR = (int)124L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOSR 124
+     * }
+     */
+    public static int ENOSR() {
+        return ENOSR;
+    }
+    private static final int ENOSTR = (int)125L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOSTR 125
+     * }
+     */
+    public static int ENOSTR() {
+        return ENOSTR;
+    }
+    private static final int ENOTCONN = (int)126L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTCONN 126
+     * }
+     */
+    public static int ENOTCONN() {
+        return ENOTCONN;
+    }
+    private static final int ENOTRECOVERABLE = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTRECOVERABLE 127
+     * }
+     */
+    public static int ENOTRECOVERABLE() {
+        return ENOTRECOVERABLE;
+    }
+    private static final int ENOTSOCK = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTSOCK 128
+     * }
+     */
+    public static int ENOTSOCK() {
+        return ENOTSOCK;
+    }
+    private static final int ENOTSUP = (int)129L;
+    /**
+     * {@snippet lang=c :
+     * #define ENOTSUP 129
+     * }
+     */
+    public static int ENOTSUP() {
+        return ENOTSUP;
+    }
+    private static final int EOPNOTSUPP = (int)130L;
+    /**
+     * {@snippet lang=c :
+     * #define EOPNOTSUPP 130
+     * }
+     */
+    public static int EOPNOTSUPP() {
+        return EOPNOTSUPP;
+    }
+    private static final int EOTHER = (int)131L;
+    /**
+     * {@snippet lang=c :
+     * #define EOTHER 131
+     * }
+     */
+    public static int EOTHER() {
+        return EOTHER;
+    }
+    private static final int EOVERFLOW = (int)132L;
+    /**
+     * {@snippet lang=c :
+     * #define EOVERFLOW 132
+     * }
+     */
+    public static int EOVERFLOW() {
+        return EOVERFLOW;
+    }
+    private static final int EOWNERDEAD = (int)133L;
+    /**
+     * {@snippet lang=c :
+     * #define EOWNERDEAD 133
+     * }
+     */
+    public static int EOWNERDEAD() {
+        return EOWNERDEAD;
+    }
+    private static final int EPROTO = (int)134L;
+    /**
+     * {@snippet lang=c :
+     * #define EPROTO 134
+     * }
+     */
+    public static int EPROTO() {
+        return EPROTO;
+    }
+    private static final int EPROTONOSUPPORT = (int)135L;
+    /**
+     * {@snippet lang=c :
+     * #define EPROTONOSUPPORT 135
+     * }
+     */
+    public static int EPROTONOSUPPORT() {
+        return EPROTONOSUPPORT;
+    }
+    private static final int EPROTOTYPE = (int)136L;
+    /**
+     * {@snippet lang=c :
+     * #define EPROTOTYPE 136
+     * }
+     */
+    public static int EPROTOTYPE() {
+        return EPROTOTYPE;
+    }
+    private static final int ETIME = (int)137L;
+    /**
+     * {@snippet lang=c :
+     * #define ETIME 137
+     * }
+     */
+    public static int ETIME() {
+        return ETIME;
+    }
+    private static final int ETIMEDOUT = (int)138L;
+    /**
+     * {@snippet lang=c :
+     * #define ETIMEDOUT 138
+     * }
+     */
+    public static int ETIMEDOUT() {
+        return ETIMEDOUT;
+    }
+    private static final int ETXTBSY = (int)139L;
+    /**
+     * {@snippet lang=c :
+     * #define ETXTBSY 139
+     * }
+     */
+    public static int ETXTBSY() {
+        return ETXTBSY;
+    }
+    private static final int EWOULDBLOCK = (int)140L;
+    /**
+     * {@snippet lang=c :
+     * #define EWOULDBLOCK 140
+     * }
+     */
+    public static int EWOULDBLOCK() {
+        return EWOULDBLOCK;
+    }
+    private static final int MINCHAR = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define MINCHAR 128
+     * }
+     */
+    public static int MINCHAR() {
+        return MINCHAR;
+    }
+    private static final int MAXCHAR = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXCHAR 127
+     * }
+     */
+    public static int MAXCHAR() {
+        return MAXCHAR;
+    }
+    private static final int MINSHORT = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define MINSHORT 32768
+     * }
+     */
+    public static int MINSHORT() {
+        return MINSHORT;
+    }
+    private static final int MAXSHORT = (int)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXSHORT 32767
+     * }
+     */
+    public static int MAXSHORT() {
+        return MAXSHORT;
+    }
+    private static final int MAXLONG = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXLONG 2147483647
+     * }
+     */
+    public static int MAXLONG() {
+        return MAXLONG;
+    }
+    private static final int MAXBYTE = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXBYTE 255
+     * }
+     */
+    public static int MAXBYTE() {
+        return MAXBYTE;
+    }
+    private static final int MAXWORD = (int)65535L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXWORD 65535
+     * }
+     */
+    public static int MAXWORD() {
+        return MAXWORD;
+    }
+    private static final int ENCLAVE_SHORT_ID_LENGTH = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define ENCLAVE_SHORT_ID_LENGTH 16
+     * }
+     */
+    public static int ENCLAVE_SHORT_ID_LENGTH() {
+        return ENCLAVE_SHORT_ID_LENGTH;
+    }
+    private static final int ENCLAVE_LONG_ID_LENGTH = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define ENCLAVE_LONG_ID_LENGTH 32
+     * }
+     */
+    public static int ENCLAVE_LONG_ID_LENGTH() {
+        return ENCLAVE_LONG_ID_LENGTH;
+    }
+    private static final int VER_WORKSTATION_NT = (int)1073741824L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_WORKSTATION_NT 1073741824
+     * }
+     */
+    public static int VER_WORKSTATION_NT() {
+        return VER_WORKSTATION_NT;
+    }
+    private static final int VER_SUITE_SMALLBUSINESS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_SMALLBUSINESS 1
+     * }
+     */
+    public static int VER_SUITE_SMALLBUSINESS() {
+        return VER_SUITE_SMALLBUSINESS;
+    }
+    private static final int VER_SUITE_ENTERPRISE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_ENTERPRISE 2
+     * }
+     */
+    public static int VER_SUITE_ENTERPRISE() {
+        return VER_SUITE_ENTERPRISE;
+    }
+    private static final int VER_SUITE_BACKOFFICE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_BACKOFFICE 4
+     * }
+     */
+    public static int VER_SUITE_BACKOFFICE() {
+        return VER_SUITE_BACKOFFICE;
+    }
+    private static final int VER_SUITE_COMMUNICATIONS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_COMMUNICATIONS 8
+     * }
+     */
+    public static int VER_SUITE_COMMUNICATIONS() {
+        return VER_SUITE_COMMUNICATIONS;
+    }
+    private static final int VER_SUITE_TERMINAL = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_TERMINAL 16
+     * }
+     */
+    public static int VER_SUITE_TERMINAL() {
+        return VER_SUITE_TERMINAL;
+    }
+    private static final int VER_SUITE_SMALLBUSINESS_RESTRICTED = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_SMALLBUSINESS_RESTRICTED 32
+     * }
+     */
+    public static int VER_SUITE_SMALLBUSINESS_RESTRICTED() {
+        return VER_SUITE_SMALLBUSINESS_RESTRICTED;
+    }
+    private static final int VER_SUITE_EMBEDDEDNT = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_EMBEDDEDNT 64
+     * }
+     */
+    public static int VER_SUITE_EMBEDDEDNT() {
+        return VER_SUITE_EMBEDDEDNT;
+    }
+    private static final int VER_SUITE_DATACENTER = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_DATACENTER 128
+     * }
+     */
+    public static int VER_SUITE_DATACENTER() {
+        return VER_SUITE_DATACENTER;
+    }
+    private static final int VER_SUITE_SINGLEUSERTS = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_SINGLEUSERTS 256
+     * }
+     */
+    public static int VER_SUITE_SINGLEUSERTS() {
+        return VER_SUITE_SINGLEUSERTS;
+    }
+    private static final int VER_SUITE_PERSONAL = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_PERSONAL 512
+     * }
+     */
+    public static int VER_SUITE_PERSONAL() {
+        return VER_SUITE_PERSONAL;
+    }
+    private static final int VER_SUITE_BLADE = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_BLADE 1024
+     * }
+     */
+    public static int VER_SUITE_BLADE() {
+        return VER_SUITE_BLADE;
+    }
+    private static final int VER_SUITE_EMBEDDED_RESTRICTED = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_EMBEDDED_RESTRICTED 2048
+     * }
+     */
+    public static int VER_SUITE_EMBEDDED_RESTRICTED() {
+        return VER_SUITE_EMBEDDED_RESTRICTED;
+    }
+    private static final int VER_SUITE_SECURITY_APPLIANCE = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_SECURITY_APPLIANCE 4096
+     * }
+     */
+    public static int VER_SUITE_SECURITY_APPLIANCE() {
+        return VER_SUITE_SECURITY_APPLIANCE;
+    }
+    private static final int VER_SUITE_STORAGE_SERVER = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_STORAGE_SERVER 8192
+     * }
+     */
+    public static int VER_SUITE_STORAGE_SERVER() {
+        return VER_SUITE_STORAGE_SERVER;
+    }
+    private static final int VER_SUITE_COMPUTE_SERVER = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_COMPUTE_SERVER 16384
+     * }
+     */
+    public static int VER_SUITE_COMPUTE_SERVER() {
+        return VER_SUITE_COMPUTE_SERVER;
+    }
+    private static final int VER_SUITE_WH_SERVER = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_WH_SERVER 32768
+     * }
+     */
+    public static int VER_SUITE_WH_SERVER() {
+        return VER_SUITE_WH_SERVER;
+    }
+    private static final int VER_SUITE_MULTIUSERTS = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define VER_SUITE_MULTIUSERTS 131072
+     * }
+     */
+    public static int VER_SUITE_MULTIUSERTS() {
+        return VER_SUITE_MULTIUSERTS;
+    }
+    private static final int PRODUCT_UNDEFINED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_UNDEFINED 0
+     * }
+     */
+    public static int PRODUCT_UNDEFINED() {
+        return PRODUCT_UNDEFINED;
+    }
+    private static final int PRODUCT_ULTIMATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ULTIMATE 1
+     * }
+     */
+    public static int PRODUCT_ULTIMATE() {
+        return PRODUCT_ULTIMATE;
+    }
+    private static final int PRODUCT_HOME_BASIC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_BASIC 2
+     * }
+     */
+    public static int PRODUCT_HOME_BASIC() {
+        return PRODUCT_HOME_BASIC;
+    }
+    private static final int PRODUCT_HOME_PREMIUM = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_PREMIUM 3
+     * }
+     */
+    public static int PRODUCT_HOME_PREMIUM() {
+        return PRODUCT_HOME_PREMIUM;
+    }
+    private static final int PRODUCT_ENTERPRISE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE 4
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE() {
+        return PRODUCT_ENTERPRISE;
+    }
+    private static final int PRODUCT_HOME_BASIC_N = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_BASIC_N 5
+     * }
+     */
+    public static int PRODUCT_HOME_BASIC_N() {
+        return PRODUCT_HOME_BASIC_N;
+    }
+    private static final int PRODUCT_BUSINESS = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_BUSINESS 6
+     * }
+     */
+    public static int PRODUCT_BUSINESS() {
+        return PRODUCT_BUSINESS;
+    }
+    private static final int PRODUCT_STANDARD_SERVER = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER 7
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER() {
+        return PRODUCT_STANDARD_SERVER;
+    }
+    private static final int PRODUCT_DATACENTER_SERVER = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_SERVER 8
+     * }
+     */
+    public static int PRODUCT_DATACENTER_SERVER() {
+        return PRODUCT_DATACENTER_SERVER;
+    }
+    private static final int PRODUCT_SMALLBUSINESS_SERVER = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SMALLBUSINESS_SERVER 9
+     * }
+     */
+    public static int PRODUCT_SMALLBUSINESS_SERVER() {
+        return PRODUCT_SMALLBUSINESS_SERVER;
+    }
+    private static final int PRODUCT_ENTERPRISE_SERVER = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SERVER 10
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SERVER() {
+        return PRODUCT_ENTERPRISE_SERVER;
+    }
+    private static final int PRODUCT_STARTER = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STARTER 11
+     * }
+     */
+    public static int PRODUCT_STARTER() {
+        return PRODUCT_STARTER;
+    }
+    private static final int PRODUCT_DATACENTER_SERVER_CORE = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_SERVER_CORE 12
+     * }
+     */
+    public static int PRODUCT_DATACENTER_SERVER_CORE() {
+        return PRODUCT_DATACENTER_SERVER_CORE;
+    }
+    private static final int PRODUCT_STANDARD_SERVER_CORE = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER_CORE 13
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER_CORE() {
+        return PRODUCT_STANDARD_SERVER_CORE;
+    }
+    private static final int PRODUCT_ENTERPRISE_SERVER_CORE = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SERVER_CORE 14
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SERVER_CORE() {
+        return PRODUCT_ENTERPRISE_SERVER_CORE;
+    }
+    private static final int PRODUCT_ENTERPRISE_SERVER_IA64 = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SERVER_IA64 15
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SERVER_IA64() {
+        return PRODUCT_ENTERPRISE_SERVER_IA64;
+    }
+    private static final int PRODUCT_BUSINESS_N = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_BUSINESS_N 16
+     * }
+     */
+    public static int PRODUCT_BUSINESS_N() {
+        return PRODUCT_BUSINESS_N;
+    }
+    private static final int PRODUCT_WEB_SERVER = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_WEB_SERVER 17
+     * }
+     */
+    public static int PRODUCT_WEB_SERVER() {
+        return PRODUCT_WEB_SERVER;
+    }
+    private static final int PRODUCT_CLUSTER_SERVER = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLUSTER_SERVER 18
+     * }
+     */
+    public static int PRODUCT_CLUSTER_SERVER() {
+        return PRODUCT_CLUSTER_SERVER;
+    }
+    private static final int PRODUCT_HOME_SERVER = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_SERVER 19
+     * }
+     */
+    public static int PRODUCT_HOME_SERVER() {
+        return PRODUCT_HOME_SERVER;
+    }
+    private static final int PRODUCT_STORAGE_EXPRESS_SERVER = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_EXPRESS_SERVER 20
+     * }
+     */
+    public static int PRODUCT_STORAGE_EXPRESS_SERVER() {
+        return PRODUCT_STORAGE_EXPRESS_SERVER;
+    }
+    private static final int PRODUCT_STORAGE_STANDARD_SERVER = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_STANDARD_SERVER 21
+     * }
+     */
+    public static int PRODUCT_STORAGE_STANDARD_SERVER() {
+        return PRODUCT_STORAGE_STANDARD_SERVER;
+    }
+    private static final int PRODUCT_STORAGE_WORKGROUP_SERVER = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_WORKGROUP_SERVER 22
+     * }
+     */
+    public static int PRODUCT_STORAGE_WORKGROUP_SERVER() {
+        return PRODUCT_STORAGE_WORKGROUP_SERVER;
+    }
+    private static final int PRODUCT_STORAGE_ENTERPRISE_SERVER = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_ENTERPRISE_SERVER 23
+     * }
+     */
+    public static int PRODUCT_STORAGE_ENTERPRISE_SERVER() {
+        return PRODUCT_STORAGE_ENTERPRISE_SERVER;
+    }
+    private static final int PRODUCT_SERVER_FOR_SMALLBUSINESS = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVER_FOR_SMALLBUSINESS 24
+     * }
+     */
+    public static int PRODUCT_SERVER_FOR_SMALLBUSINESS() {
+        return PRODUCT_SERVER_FOR_SMALLBUSINESS;
+    }
+    private static final int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SMALLBUSINESS_SERVER_PREMIUM 25
+     * }
+     */
+    public static int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM() {
+        return PRODUCT_SMALLBUSINESS_SERVER_PREMIUM;
+    }
+    private static final int PRODUCT_HOME_PREMIUM_N = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_PREMIUM_N 26
+     * }
+     */
+    public static int PRODUCT_HOME_PREMIUM_N() {
+        return PRODUCT_HOME_PREMIUM_N;
+    }
+    private static final int PRODUCT_ENTERPRISE_N = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_N 27
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_N() {
+        return PRODUCT_ENTERPRISE_N;
+    }
+    private static final int PRODUCT_ULTIMATE_N = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ULTIMATE_N 28
+     * }
+     */
+    public static int PRODUCT_ULTIMATE_N() {
+        return PRODUCT_ULTIMATE_N;
+    }
+    private static final int PRODUCT_WEB_SERVER_CORE = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_WEB_SERVER_CORE 29
+     * }
+     */
+    public static int PRODUCT_WEB_SERVER_CORE() {
+        return PRODUCT_WEB_SERVER_CORE;
+    }
+    private static final int PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT 30
+     * }
+     */
+    public static int PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT() {
+        return PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT;
+    }
+    private static final int PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY 31
+     * }
+     */
+    public static int PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY() {
+        return PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY;
+    }
+    private static final int PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING 32
+     * }
+     */
+    public static int PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING() {
+        return PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING;
+    }
+    private static final int PRODUCT_SERVER_FOUNDATION = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVER_FOUNDATION 33
+     * }
+     */
+    public static int PRODUCT_SERVER_FOUNDATION() {
+        return PRODUCT_SERVER_FOUNDATION;
+    }
+    private static final int PRODUCT_HOME_PREMIUM_SERVER = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_PREMIUM_SERVER 34
+     * }
+     */
+    public static int PRODUCT_HOME_PREMIUM_SERVER() {
+        return PRODUCT_HOME_PREMIUM_SERVER;
+    }
+    private static final int PRODUCT_SERVER_FOR_SMALLBUSINESS_V = (int)35L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVER_FOR_SMALLBUSINESS_V 35
+     * }
+     */
+    public static int PRODUCT_SERVER_FOR_SMALLBUSINESS_V() {
+        return PRODUCT_SERVER_FOR_SMALLBUSINESS_V;
+    }
+    private static final int PRODUCT_STANDARD_SERVER_V = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER_V 36
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER_V() {
+        return PRODUCT_STANDARD_SERVER_V;
+    }
+    private static final int PRODUCT_DATACENTER_SERVER_V = (int)37L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_SERVER_V 37
+     * }
+     */
+    public static int PRODUCT_DATACENTER_SERVER_V() {
+        return PRODUCT_DATACENTER_SERVER_V;
+    }
+    private static final int PRODUCT_ENTERPRISE_SERVER_V = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SERVER_V 38
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SERVER_V() {
+        return PRODUCT_ENTERPRISE_SERVER_V;
+    }
+    private static final int PRODUCT_DATACENTER_SERVER_CORE_V = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_SERVER_CORE_V 39
+     * }
+     */
+    public static int PRODUCT_DATACENTER_SERVER_CORE_V() {
+        return PRODUCT_DATACENTER_SERVER_CORE_V;
+    }
+    private static final int PRODUCT_STANDARD_SERVER_CORE_V = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER_CORE_V 40
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER_CORE_V() {
+        return PRODUCT_STANDARD_SERVER_CORE_V;
+    }
+    private static final int PRODUCT_ENTERPRISE_SERVER_CORE_V = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SERVER_CORE_V 41
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SERVER_CORE_V() {
+        return PRODUCT_ENTERPRISE_SERVER_CORE_V;
+    }
+    private static final int PRODUCT_HYPERV = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HYPERV 42
+     * }
+     */
+    public static int PRODUCT_HYPERV() {
+        return PRODUCT_HYPERV;
+    }
+    private static final int PRODUCT_STORAGE_EXPRESS_SERVER_CORE = (int)43L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_EXPRESS_SERVER_CORE 43
+     * }
+     */
+    public static int PRODUCT_STORAGE_EXPRESS_SERVER_CORE() {
+        return PRODUCT_STORAGE_EXPRESS_SERVER_CORE;
+    }
+    private static final int PRODUCT_STORAGE_STANDARD_SERVER_CORE = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_STANDARD_SERVER_CORE 44
+     * }
+     */
+    public static int PRODUCT_STORAGE_STANDARD_SERVER_CORE() {
+        return PRODUCT_STORAGE_STANDARD_SERVER_CORE;
+    }
+    private static final int PRODUCT_STORAGE_WORKGROUP_SERVER_CORE = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_WORKGROUP_SERVER_CORE 45
+     * }
+     */
+    public static int PRODUCT_STORAGE_WORKGROUP_SERVER_CORE() {
+        return PRODUCT_STORAGE_WORKGROUP_SERVER_CORE;
+    }
+    private static final int PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE 46
+     * }
+     */
+    public static int PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE() {
+        return PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE;
+    }
+    private static final int PRODUCT_STARTER_N = (int)47L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STARTER_N 47
+     * }
+     */
+    public static int PRODUCT_STARTER_N() {
+        return PRODUCT_STARTER_N;
+    }
+    private static final int PRODUCT_PROFESSIONAL = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL 48
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL() {
+        return PRODUCT_PROFESSIONAL;
+    }
+    private static final int PRODUCT_PROFESSIONAL_N = (int)49L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_N 49
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_N() {
+        return PRODUCT_PROFESSIONAL_N;
+    }
+    private static final int PRODUCT_SB_SOLUTION_SERVER = (int)50L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SB_SOLUTION_SERVER 50
+     * }
+     */
+    public static int PRODUCT_SB_SOLUTION_SERVER() {
+        return PRODUCT_SB_SOLUTION_SERVER;
+    }
+    private static final int PRODUCT_SERVER_FOR_SB_SOLUTIONS = (int)51L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVER_FOR_SB_SOLUTIONS 51
+     * }
+     */
+    public static int PRODUCT_SERVER_FOR_SB_SOLUTIONS() {
+        return PRODUCT_SERVER_FOR_SB_SOLUTIONS;
+    }
+    private static final int PRODUCT_STANDARD_SERVER_SOLUTIONS = (int)52L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER_SOLUTIONS 52
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER_SOLUTIONS() {
+        return PRODUCT_STANDARD_SERVER_SOLUTIONS;
+    }
+    private static final int PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE = (int)53L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE 53
+     * }
+     */
+    public static int PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE() {
+        return PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE;
+    }
+    private static final int PRODUCT_SB_SOLUTION_SERVER_EM = (int)54L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SB_SOLUTION_SERVER_EM 54
+     * }
+     */
+    public static int PRODUCT_SB_SOLUTION_SERVER_EM() {
+        return PRODUCT_SB_SOLUTION_SERVER_EM;
+    }
+    private static final int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM = (int)55L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM 55
+     * }
+     */
+    public static int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM() {
+        return PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM;
+    }
+    private static final int PRODUCT_SOLUTION_EMBEDDEDSERVER = (int)56L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SOLUTION_EMBEDDEDSERVER 56
+     * }
+     */
+    public static int PRODUCT_SOLUTION_EMBEDDEDSERVER() {
+        return PRODUCT_SOLUTION_EMBEDDEDSERVER;
+    }
+    private static final int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE = (int)57L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE 57
+     * }
+     */
+    public static int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE() {
+        return PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE;
+    }
+    private static final int PRODUCT_PROFESSIONAL_EMBEDDED = (int)58L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_EMBEDDED 58
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_EMBEDDED() {
+        return PRODUCT_PROFESSIONAL_EMBEDDED;
+    }
+    private static final int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT = (int)59L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT 59
+     * }
+     */
+    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT() {
+        return PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT;
+    }
+    private static final int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL = (int)60L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL 60
+     * }
+     */
+    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL() {
+        return PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL;
+    }
+    private static final int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC = (int)61L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC 61
+     * }
+     */
+    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC() {
+        return PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC;
+    }
+    private static final int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC = (int)62L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC 62
+     * }
+     */
+    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC() {
+        return PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC;
+    }
+    private static final int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE = (int)63L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE 63
+     * }
+     */
+    public static int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE() {
+        return PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE;
+    }
+    private static final int PRODUCT_CLUSTER_SERVER_V = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLUSTER_SERVER_V 64
+     * }
+     */
+    public static int PRODUCT_CLUSTER_SERVER_V() {
+        return PRODUCT_CLUSTER_SERVER_V;
+    }
+    private static final int PRODUCT_EMBEDDED = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED 65
+     * }
+     */
+    public static int PRODUCT_EMBEDDED() {
+        return PRODUCT_EMBEDDED;
+    }
+    private static final int PRODUCT_STARTER_E = (int)66L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STARTER_E 66
+     * }
+     */
+    public static int PRODUCT_STARTER_E() {
+        return PRODUCT_STARTER_E;
+    }
+    private static final int PRODUCT_HOME_BASIC_E = (int)67L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_BASIC_E 67
+     * }
+     */
+    public static int PRODUCT_HOME_BASIC_E() {
+        return PRODUCT_HOME_BASIC_E;
+    }
+    private static final int PRODUCT_HOME_PREMIUM_E = (int)68L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOME_PREMIUM_E 68
+     * }
+     */
+    public static int PRODUCT_HOME_PREMIUM_E() {
+        return PRODUCT_HOME_PREMIUM_E;
+    }
+    private static final int PRODUCT_PROFESSIONAL_E = (int)69L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_E 69
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_E() {
+        return PRODUCT_PROFESSIONAL_E;
+    }
+    private static final int PRODUCT_ENTERPRISE_E = (int)70L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_E 70
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_E() {
+        return PRODUCT_ENTERPRISE_E;
+    }
+    private static final int PRODUCT_ULTIMATE_E = (int)71L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ULTIMATE_E 71
+     * }
+     */
+    public static int PRODUCT_ULTIMATE_E() {
+        return PRODUCT_ULTIMATE_E;
+    }
+    private static final int PRODUCT_ENTERPRISE_EVALUATION = (int)72L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_EVALUATION 72
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_EVALUATION() {
+        return PRODUCT_ENTERPRISE_EVALUATION;
+    }
+    private static final int PRODUCT_MULTIPOINT_STANDARD_SERVER = (int)76L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_MULTIPOINT_STANDARD_SERVER 76
+     * }
+     */
+    public static int PRODUCT_MULTIPOINT_STANDARD_SERVER() {
+        return PRODUCT_MULTIPOINT_STANDARD_SERVER;
+    }
+    private static final int PRODUCT_MULTIPOINT_PREMIUM_SERVER = (int)77L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_MULTIPOINT_PREMIUM_SERVER 77
+     * }
+     */
+    public static int PRODUCT_MULTIPOINT_PREMIUM_SERVER() {
+        return PRODUCT_MULTIPOINT_PREMIUM_SERVER;
+    }
+    private static final int PRODUCT_STANDARD_EVALUATION_SERVER = (int)79L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_EVALUATION_SERVER 79
+     * }
+     */
+    public static int PRODUCT_STANDARD_EVALUATION_SERVER() {
+        return PRODUCT_STANDARD_EVALUATION_SERVER;
+    }
+    private static final int PRODUCT_DATACENTER_EVALUATION_SERVER = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_EVALUATION_SERVER 80
+     * }
+     */
+    public static int PRODUCT_DATACENTER_EVALUATION_SERVER() {
+        return PRODUCT_DATACENTER_EVALUATION_SERVER;
+    }
+    private static final int PRODUCT_ENTERPRISE_N_EVALUATION = (int)84L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_N_EVALUATION 84
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_N_EVALUATION() {
+        return PRODUCT_ENTERPRISE_N_EVALUATION;
+    }
+    private static final int PRODUCT_EMBEDDED_AUTOMOTIVE = (int)85L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_AUTOMOTIVE 85
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_AUTOMOTIVE() {
+        return PRODUCT_EMBEDDED_AUTOMOTIVE;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY_A = (int)86L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY_A 86
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY_A() {
+        return PRODUCT_EMBEDDED_INDUSTRY_A;
+    }
+    private static final int PRODUCT_THINPC = (int)87L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_THINPC 87
+     * }
+     */
+    public static int PRODUCT_THINPC() {
+        return PRODUCT_THINPC;
+    }
+    private static final int PRODUCT_EMBEDDED_A = (int)88L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_A 88
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_A() {
+        return PRODUCT_EMBEDDED_A;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY = (int)89L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY 89
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY() {
+        return PRODUCT_EMBEDDED_INDUSTRY;
+    }
+    private static final int PRODUCT_EMBEDDED_E = (int)90L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_E 90
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_E() {
+        return PRODUCT_EMBEDDED_E;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY_E = (int)91L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY_E 91
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY_E() {
+        return PRODUCT_EMBEDDED_INDUSTRY_E;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY_A_E = (int)92L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY_A_E 92
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY_A_E() {
+        return PRODUCT_EMBEDDED_INDUSTRY_A_E;
+    }
+    private static final int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER = (int)95L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER 95
+     * }
+     */
+    public static int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER() {
+        return PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER;
+    }
+    private static final int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER = (int)96L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER 96
+     * }
+     */
+    public static int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER() {
+        return PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER;
+    }
+    private static final int PRODUCT_CORE_ARM = (int)97L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_ARM 97
+     * }
+     */
+    public static int PRODUCT_CORE_ARM() {
+        return PRODUCT_CORE_ARM;
+    }
+    private static final int PRODUCT_CORE_N = (int)98L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_N 98
+     * }
+     */
+    public static int PRODUCT_CORE_N() {
+        return PRODUCT_CORE_N;
+    }
+    private static final int PRODUCT_CORE_COUNTRYSPECIFIC = (int)99L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_COUNTRYSPECIFIC 99
+     * }
+     */
+    public static int PRODUCT_CORE_COUNTRYSPECIFIC() {
+        return PRODUCT_CORE_COUNTRYSPECIFIC;
+    }
+    private static final int PRODUCT_CORE_SINGLELANGUAGE = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_SINGLELANGUAGE 100
+     * }
+     */
+    public static int PRODUCT_CORE_SINGLELANGUAGE() {
+        return PRODUCT_CORE_SINGLELANGUAGE;
+    }
+    private static final int PRODUCT_CORE = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE 101
+     * }
+     */
+    public static int PRODUCT_CORE() {
+        return PRODUCT_CORE;
+    }
+    private static final int PRODUCT_PROFESSIONAL_WMC = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_WMC 103
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_WMC() {
+        return PRODUCT_PROFESSIONAL_WMC;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY_EVAL = (int)105L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY_EVAL 105
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY_EVAL() {
+        return PRODUCT_EMBEDDED_INDUSTRY_EVAL;
+    }
+    private static final int PRODUCT_EMBEDDED_INDUSTRY_E_EVAL = (int)106L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_INDUSTRY_E_EVAL 106
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_INDUSTRY_E_EVAL() {
+        return PRODUCT_EMBEDDED_INDUSTRY_E_EVAL;
+    }
+    private static final int PRODUCT_EMBEDDED_EVAL = (int)107L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_EVAL 107
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_EVAL() {
+        return PRODUCT_EMBEDDED_EVAL;
+    }
+    private static final int PRODUCT_EMBEDDED_E_EVAL = (int)108L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EMBEDDED_E_EVAL 108
+     * }
+     */
+    public static int PRODUCT_EMBEDDED_E_EVAL() {
+        return PRODUCT_EMBEDDED_E_EVAL;
+    }
+    private static final int PRODUCT_NANO_SERVER = (int)109L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_NANO_SERVER 109
+     * }
+     */
+    public static int PRODUCT_NANO_SERVER() {
+        return PRODUCT_NANO_SERVER;
+    }
+    private static final int PRODUCT_CLOUD_STORAGE_SERVER = (int)110L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUD_STORAGE_SERVER 110
+     * }
+     */
+    public static int PRODUCT_CLOUD_STORAGE_SERVER() {
+        return PRODUCT_CLOUD_STORAGE_SERVER;
+    }
+    private static final int PRODUCT_CORE_CONNECTED = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_CONNECTED 111
+     * }
+     */
+    public static int PRODUCT_CORE_CONNECTED() {
+        return PRODUCT_CORE_CONNECTED;
+    }
+    private static final int PRODUCT_PROFESSIONAL_STUDENT = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_STUDENT 112
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_STUDENT() {
+        return PRODUCT_PROFESSIONAL_STUDENT;
+    }
+    private static final int PRODUCT_CORE_CONNECTED_N = (int)113L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_CONNECTED_N 113
+     * }
+     */
+    public static int PRODUCT_CORE_CONNECTED_N() {
+        return PRODUCT_CORE_CONNECTED_N;
+    }
+    private static final int PRODUCT_PROFESSIONAL_STUDENT_N = (int)114L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_STUDENT_N 114
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_STUDENT_N() {
+        return PRODUCT_PROFESSIONAL_STUDENT_N;
+    }
+    private static final int PRODUCT_CORE_CONNECTED_SINGLELANGUAGE = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_CONNECTED_SINGLELANGUAGE 115
+     * }
+     */
+    public static int PRODUCT_CORE_CONNECTED_SINGLELANGUAGE() {
+        return PRODUCT_CORE_CONNECTED_SINGLELANGUAGE;
+    }
+    private static final int PRODUCT_CORE_CONNECTED_COUNTRYSPECIFIC = (int)116L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CORE_CONNECTED_COUNTRYSPECIFIC 116
+     * }
+     */
+    public static int PRODUCT_CORE_CONNECTED_COUNTRYSPECIFIC() {
+        return PRODUCT_CORE_CONNECTED_COUNTRYSPECIFIC;
+    }
+    private static final int PRODUCT_CONNECTED_CAR = (int)117L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CONNECTED_CAR 117
+     * }
+     */
+    public static int PRODUCT_CONNECTED_CAR() {
+        return PRODUCT_CONNECTED_CAR;
+    }
+    private static final int PRODUCT_INDUSTRY_HANDHELD = (int)118L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_INDUSTRY_HANDHELD 118
+     * }
+     */
+    public static int PRODUCT_INDUSTRY_HANDHELD() {
+        return PRODUCT_INDUSTRY_HANDHELD;
+    }
+    private static final int PRODUCT_PPI_PRO = (int)119L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PPI_PRO 119
+     * }
+     */
+    public static int PRODUCT_PPI_PRO() {
+        return PRODUCT_PPI_PRO;
+    }
+    private static final int PRODUCT_ARM64_SERVER = (int)120L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ARM64_SERVER 120
+     * }
+     */
+    public static int PRODUCT_ARM64_SERVER() {
+        return PRODUCT_ARM64_SERVER;
+    }
+    private static final int PRODUCT_EDUCATION = (int)121L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EDUCATION 121
+     * }
+     */
+    public static int PRODUCT_EDUCATION() {
+        return PRODUCT_EDUCATION;
+    }
+    private static final int PRODUCT_EDUCATION_N = (int)122L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_EDUCATION_N 122
+     * }
+     */
+    public static int PRODUCT_EDUCATION_N() {
+        return PRODUCT_EDUCATION_N;
+    }
+    private static final int PRODUCT_IOTUAP = (int)123L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_IOTUAP 123
+     * }
+     */
+    public static int PRODUCT_IOTUAP() {
+        return PRODUCT_IOTUAP;
+    }
+    private static final int PRODUCT_CLOUD_HOST_INFRASTRUCTURE_SERVER = (int)124L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUD_HOST_INFRASTRUCTURE_SERVER 124
+     * }
+     */
+    public static int PRODUCT_CLOUD_HOST_INFRASTRUCTURE_SERVER() {
+        return PRODUCT_CLOUD_HOST_INFRASTRUCTURE_SERVER;
+    }
+    private static final int PRODUCT_ENTERPRISE_S = (int)125L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_S 125
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_S() {
+        return PRODUCT_ENTERPRISE_S;
+    }
+    private static final int PRODUCT_ENTERPRISE_S_N = (int)126L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_S_N 126
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_S_N() {
+        return PRODUCT_ENTERPRISE_S_N;
+    }
+    private static final int PRODUCT_PROFESSIONAL_S = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_S 127
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_S() {
+        return PRODUCT_PROFESSIONAL_S;
+    }
+    private static final int PRODUCT_PROFESSIONAL_S_N = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PROFESSIONAL_S_N 128
+     * }
+     */
+    public static int PRODUCT_PROFESSIONAL_S_N() {
+        return PRODUCT_PROFESSIONAL_S_N;
+    }
+    private static final int PRODUCT_ENTERPRISE_S_EVALUATION = (int)129L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_S_EVALUATION 129
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_S_EVALUATION() {
+        return PRODUCT_ENTERPRISE_S_EVALUATION;
+    }
+    private static final int PRODUCT_ENTERPRISE_S_N_EVALUATION = (int)130L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_S_N_EVALUATION 130
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_S_N_EVALUATION() {
+        return PRODUCT_ENTERPRISE_S_N_EVALUATION;
+    }
+    private static final int PRODUCT_HOLOGRAPHIC = (int)135L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOLOGRAPHIC 135
+     * }
+     */
+    public static int PRODUCT_HOLOGRAPHIC() {
+        return PRODUCT_HOLOGRAPHIC;
+    }
+    private static final int PRODUCT_HOLOGRAPHIC_BUSINESS = (int)136L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HOLOGRAPHIC_BUSINESS 136
+     * }
+     */
+    public static int PRODUCT_HOLOGRAPHIC_BUSINESS() {
+        return PRODUCT_HOLOGRAPHIC_BUSINESS;
+    }
+    private static final int PRODUCT_PRO_SINGLE_LANGUAGE = (int)138L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_SINGLE_LANGUAGE 138
+     * }
+     */
+    public static int PRODUCT_PRO_SINGLE_LANGUAGE() {
+        return PRODUCT_PRO_SINGLE_LANGUAGE;
+    }
+    private static final int PRODUCT_PRO_CHINA = (int)139L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_CHINA 139
+     * }
+     */
+    public static int PRODUCT_PRO_CHINA() {
+        return PRODUCT_PRO_CHINA;
+    }
+    private static final int PRODUCT_ENTERPRISE_SUBSCRIPTION = (int)140L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SUBSCRIPTION 140
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SUBSCRIPTION() {
+        return PRODUCT_ENTERPRISE_SUBSCRIPTION;
+    }
+    private static final int PRODUCT_ENTERPRISE_SUBSCRIPTION_N = (int)141L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISE_SUBSCRIPTION_N 141
+     * }
+     */
+    public static int PRODUCT_ENTERPRISE_SUBSCRIPTION_N() {
+        return PRODUCT_ENTERPRISE_SUBSCRIPTION_N;
+    }
+    private static final int PRODUCT_DATACENTER_NANO_SERVER = (int)143L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_NANO_SERVER 143
+     * }
+     */
+    public static int PRODUCT_DATACENTER_NANO_SERVER() {
+        return PRODUCT_DATACENTER_NANO_SERVER;
+    }
+    private static final int PRODUCT_STANDARD_NANO_SERVER = (int)144L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_NANO_SERVER 144
+     * }
+     */
+    public static int PRODUCT_STANDARD_NANO_SERVER() {
+        return PRODUCT_STANDARD_NANO_SERVER;
+    }
+    private static final int PRODUCT_DATACENTER_A_SERVER_CORE = (int)145L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_A_SERVER_CORE 145
+     * }
+     */
+    public static int PRODUCT_DATACENTER_A_SERVER_CORE() {
+        return PRODUCT_DATACENTER_A_SERVER_CORE;
+    }
+    private static final int PRODUCT_STANDARD_A_SERVER_CORE = (int)146L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_A_SERVER_CORE 146
+     * }
+     */
+    public static int PRODUCT_STANDARD_A_SERVER_CORE() {
+        return PRODUCT_STANDARD_A_SERVER_CORE;
+    }
+    private static final int PRODUCT_DATACENTER_WS_SERVER_CORE = (int)147L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_WS_SERVER_CORE 147
+     * }
+     */
+    public static int PRODUCT_DATACENTER_WS_SERVER_CORE() {
+        return PRODUCT_DATACENTER_WS_SERVER_CORE;
+    }
+    private static final int PRODUCT_STANDARD_WS_SERVER_CORE = (int)148L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_WS_SERVER_CORE 148
+     * }
+     */
+    public static int PRODUCT_STANDARD_WS_SERVER_CORE() {
+        return PRODUCT_STANDARD_WS_SERVER_CORE;
+    }
+    private static final int PRODUCT_UTILITY_VM = (int)149L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_UTILITY_VM 149
+     * }
+     */
+    public static int PRODUCT_UTILITY_VM() {
+        return PRODUCT_UTILITY_VM;
+    }
+    private static final int PRODUCT_DATACENTER_EVALUATION_SERVER_CORE = (int)159L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_DATACENTER_EVALUATION_SERVER_CORE 159
+     * }
+     */
+    public static int PRODUCT_DATACENTER_EVALUATION_SERVER_CORE() {
+        return PRODUCT_DATACENTER_EVALUATION_SERVER_CORE;
+    }
+    private static final int PRODUCT_STANDARD_EVALUATION_SERVER_CORE = (int)160L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_STANDARD_EVALUATION_SERVER_CORE 160
+     * }
+     */
+    public static int PRODUCT_STANDARD_EVALUATION_SERVER_CORE() {
+        return PRODUCT_STANDARD_EVALUATION_SERVER_CORE;
+    }
+    private static final int PRODUCT_PRO_WORKSTATION = (int)161L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_WORKSTATION 161
+     * }
+     */
+    public static int PRODUCT_PRO_WORKSTATION() {
+        return PRODUCT_PRO_WORKSTATION;
+    }
+    private static final int PRODUCT_PRO_WORKSTATION_N = (int)162L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_WORKSTATION_N 162
+     * }
+     */
+    public static int PRODUCT_PRO_WORKSTATION_N() {
+        return PRODUCT_PRO_WORKSTATION_N;
+    }
+    private static final int PRODUCT_PRO_FOR_EDUCATION = (int)164L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_FOR_EDUCATION 164
+     * }
+     */
+    public static int PRODUCT_PRO_FOR_EDUCATION() {
+        return PRODUCT_PRO_FOR_EDUCATION;
+    }
+    private static final int PRODUCT_PRO_FOR_EDUCATION_N = (int)165L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_PRO_FOR_EDUCATION_N 165
+     * }
+     */
+    public static int PRODUCT_PRO_FOR_EDUCATION_N() {
+        return PRODUCT_PRO_FOR_EDUCATION_N;
+    }
+    private static final int PRODUCT_AZURE_SERVER_CORE = (int)168L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_AZURE_SERVER_CORE 168
+     * }
+     */
+    public static int PRODUCT_AZURE_SERVER_CORE() {
+        return PRODUCT_AZURE_SERVER_CORE;
+    }
+    private static final int PRODUCT_AZURE_NANO_SERVER = (int)169L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_AZURE_NANO_SERVER 169
+     * }
+     */
+    public static int PRODUCT_AZURE_NANO_SERVER() {
+        return PRODUCT_AZURE_NANO_SERVER;
+    }
+    private static final int PRODUCT_ENTERPRISEG = (int)171L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISEG 171
+     * }
+     */
+    public static int PRODUCT_ENTERPRISEG() {
+        return PRODUCT_ENTERPRISEG;
+    }
+    private static final int PRODUCT_ENTERPRISEGN = (int)172L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ENTERPRISEGN 172
+     * }
+     */
+    public static int PRODUCT_ENTERPRISEGN() {
+        return PRODUCT_ENTERPRISEGN;
+    }
+    private static final int PRODUCT_SERVERRDSH = (int)175L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_SERVERRDSH 175
+     * }
+     */
+    public static int PRODUCT_SERVERRDSH() {
+        return PRODUCT_SERVERRDSH;
+    }
+    private static final int PRODUCT_CLOUD = (int)178L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUD 178
+     * }
+     */
+    public static int PRODUCT_CLOUD() {
+        return PRODUCT_CLOUD;
+    }
+    private static final int PRODUCT_CLOUDN = (int)179L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUDN 179
+     * }
+     */
+    public static int PRODUCT_CLOUDN() {
+        return PRODUCT_CLOUDN;
+    }
+    private static final int PRODUCT_HUBOS = (int)180L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_HUBOS 180
+     * }
+     */
+    public static int PRODUCT_HUBOS() {
+        return PRODUCT_HUBOS;
+    }
+    private static final int PRODUCT_ONECOREUPDATEOS = (int)182L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ONECOREUPDATEOS 182
+     * }
+     */
+    public static int PRODUCT_ONECOREUPDATEOS() {
+        return PRODUCT_ONECOREUPDATEOS;
+    }
+    private static final int PRODUCT_CLOUDE = (int)183L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUDE 183
+     * }
+     */
+    public static int PRODUCT_CLOUDE() {
+        return PRODUCT_CLOUDE;
+    }
+    private static final int PRODUCT_ANDROMEDA = (int)184L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_ANDROMEDA 184
+     * }
+     */
+    public static int PRODUCT_ANDROMEDA() {
+        return PRODUCT_ANDROMEDA;
+    }
+    private static final int PRODUCT_IOTOS = (int)185L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_IOTOS 185
+     * }
+     */
+    public static int PRODUCT_IOTOS() {
+        return PRODUCT_IOTOS;
+    }
+    private static final int PRODUCT_CLOUDEN = (int)186L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_CLOUDEN 186
+     * }
+     */
+    public static int PRODUCT_CLOUDEN() {
+        return PRODUCT_CLOUDEN;
+    }
+    private static final int PRODUCT_IOTEDGEOS = (int)187L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_IOTEDGEOS 187
+     * }
+     */
+    public static int PRODUCT_IOTEDGEOS() {
+        return PRODUCT_IOTEDGEOS;
+    }
+    private static final int PRODUCT_IOTENTERPRISE = (int)188L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_IOTENTERPRISE 188
+     * }
+     */
+    public static int PRODUCT_IOTENTERPRISE() {
+        return PRODUCT_IOTENTERPRISE;
+    }
+    private static final int PRODUCT_LITE = (int)189L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_LITE 189
+     * }
+     */
+    public static int PRODUCT_LITE() {
+        return PRODUCT_LITE;
+    }
+    private static final int PRODUCT_IOTENTERPRISES = (int)191L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_IOTENTERPRISES 191
+     * }
+     */
+    public static int PRODUCT_IOTENTERPRISES() {
+        return PRODUCT_IOTENTERPRISES;
+    }
+    private static final int PRODUCT_XBOX_SYSTEMOS = (int)192L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_SYSTEMOS 192
+     * }
+     */
+    public static int PRODUCT_XBOX_SYSTEMOS() {
+        return PRODUCT_XBOX_SYSTEMOS;
+    }
+    private static final int PRODUCT_XBOX_NATIVEOS = (int)193L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_NATIVEOS 193
+     * }
+     */
+    public static int PRODUCT_XBOX_NATIVEOS() {
+        return PRODUCT_XBOX_NATIVEOS;
+    }
+    private static final int PRODUCT_XBOX_GAMEOS = (int)194L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_GAMEOS 194
+     * }
+     */
+    public static int PRODUCT_XBOX_GAMEOS() {
+        return PRODUCT_XBOX_GAMEOS;
+    }
+    private static final int PRODUCT_XBOX_ERAOS = (int)195L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_ERAOS 195
+     * }
+     */
+    public static int PRODUCT_XBOX_ERAOS() {
+        return PRODUCT_XBOX_ERAOS;
+    }
+    private static final int PRODUCT_XBOX_DURANGOHOSTOS = (int)196L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_DURANGOHOSTOS 196
+     * }
+     */
+    public static int PRODUCT_XBOX_DURANGOHOSTOS() {
+        return PRODUCT_XBOX_DURANGOHOSTOS;
+    }
+    private static final int PRODUCT_XBOX_SCARLETTHOSTOS = (int)197L;
+    /**
+     * {@snippet lang=c :
+     * #define PRODUCT_XBOX_SCARLETTHOSTOS 197
+     * }
+     */
+    public static int PRODUCT_XBOX_SCARLETTHOSTOS() {
+        return PRODUCT_XBOX_SCARLETTHOSTOS;
+    }
+    private static final int LANG_NEUTRAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_NEUTRAL 0
+     * }
+     */
+    public static int LANG_NEUTRAL() {
+        return LANG_NEUTRAL;
+    }
+    private static final int LANG_INVARIANT = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_INVARIANT 127
+     * }
+     */
+    public static int LANG_INVARIANT() {
+        return LANG_INVARIANT;
+    }
+    private static final int LANG_AFRIKAANS = (int)54L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_AFRIKAANS 54
+     * }
+     */
+    public static int LANG_AFRIKAANS() {
+        return LANG_AFRIKAANS;
+    }
+    private static final int LANG_ALBANIAN = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ALBANIAN 28
+     * }
+     */
+    public static int LANG_ALBANIAN() {
+        return LANG_ALBANIAN;
+    }
+    private static final int LANG_ALSATIAN = (int)132L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ALSATIAN 132
+     * }
+     */
+    public static int LANG_ALSATIAN() {
+        return LANG_ALSATIAN;
+    }
+    private static final int LANG_AMHARIC = (int)94L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_AMHARIC 94
+     * }
+     */
+    public static int LANG_AMHARIC() {
+        return LANG_AMHARIC;
+    }
+    private static final int LANG_ARABIC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ARABIC 1
+     * }
+     */
+    public static int LANG_ARABIC() {
+        return LANG_ARABIC;
+    }
+    private static final int LANG_ARMENIAN = (int)43L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ARMENIAN 43
+     * }
+     */
+    public static int LANG_ARMENIAN() {
+        return LANG_ARMENIAN;
+    }
+    private static final int LANG_ASSAMESE = (int)77L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ASSAMESE 77
+     * }
+     */
+    public static int LANG_ASSAMESE() {
+        return LANG_ASSAMESE;
+    }
+    private static final int LANG_AZERI = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_AZERI 44
+     * }
+     */
+    public static int LANG_AZERI() {
+        return LANG_AZERI;
+    }
+    private static final int LANG_AZERBAIJANI = (int)44L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_AZERBAIJANI 44
+     * }
+     */
+    public static int LANG_AZERBAIJANI() {
+        return LANG_AZERBAIJANI;
+    }
+    private static final int LANG_BANGLA = (int)69L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BANGLA 69
+     * }
+     */
+    public static int LANG_BANGLA() {
+        return LANG_BANGLA;
+    }
+    private static final int LANG_BASHKIR = (int)109L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BASHKIR 109
+     * }
+     */
+    public static int LANG_BASHKIR() {
+        return LANG_BASHKIR;
+    }
+    private static final int LANG_BASQUE = (int)45L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BASQUE 45
+     * }
+     */
+    public static int LANG_BASQUE() {
+        return LANG_BASQUE;
+    }
+    private static final int LANG_BELARUSIAN = (int)35L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BELARUSIAN 35
+     * }
+     */
+    public static int LANG_BELARUSIAN() {
+        return LANG_BELARUSIAN;
+    }
+    private static final int LANG_BENGALI = (int)69L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BENGALI 69
+     * }
+     */
+    public static int LANG_BENGALI() {
+        return LANG_BENGALI;
+    }
+    private static final int LANG_BRETON = (int)126L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BRETON 126
+     * }
+     */
+    public static int LANG_BRETON() {
+        return LANG_BRETON;
+    }
+    private static final int LANG_BOSNIAN = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BOSNIAN 26
+     * }
+     */
+    public static int LANG_BOSNIAN() {
+        return LANG_BOSNIAN;
+    }
+    private static final int LANG_BOSNIAN_NEUTRAL = (int)30746L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BOSNIAN_NEUTRAL 30746
+     * }
+     */
+    public static int LANG_BOSNIAN_NEUTRAL() {
+        return LANG_BOSNIAN_NEUTRAL;
+    }
+    private static final int LANG_BULGARIAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_BULGARIAN 2
+     * }
+     */
+    public static int LANG_BULGARIAN() {
+        return LANG_BULGARIAN;
+    }
+    private static final int LANG_CATALAN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CATALAN 3
+     * }
+     */
+    public static int LANG_CATALAN() {
+        return LANG_CATALAN;
+    }
+    private static final int LANG_CENTRAL_KURDISH = (int)146L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CENTRAL_KURDISH 146
+     * }
+     */
+    public static int LANG_CENTRAL_KURDISH() {
+        return LANG_CENTRAL_KURDISH;
+    }
+    private static final int LANG_CHEROKEE = (int)92L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CHEROKEE 92
+     * }
+     */
+    public static int LANG_CHEROKEE() {
+        return LANG_CHEROKEE;
+    }
+    private static final int LANG_CHINESE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CHINESE 4
+     * }
+     */
+    public static int LANG_CHINESE() {
+        return LANG_CHINESE;
+    }
+    private static final int LANG_CHINESE_SIMPLIFIED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CHINESE_SIMPLIFIED 4
+     * }
+     */
+    public static int LANG_CHINESE_SIMPLIFIED() {
+        return LANG_CHINESE_SIMPLIFIED;
+    }
+    private static final int LANG_CHINESE_TRADITIONAL = (int)31748L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CHINESE_TRADITIONAL 31748
+     * }
+     */
+    public static int LANG_CHINESE_TRADITIONAL() {
+        return LANG_CHINESE_TRADITIONAL;
+    }
+    private static final int LANG_CORSICAN = (int)131L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CORSICAN 131
+     * }
+     */
+    public static int LANG_CORSICAN() {
+        return LANG_CORSICAN;
+    }
+    private static final int LANG_CROATIAN = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CROATIAN 26
+     * }
+     */
+    public static int LANG_CROATIAN() {
+        return LANG_CROATIAN;
+    }
+    private static final int LANG_CZECH = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_CZECH 5
+     * }
+     */
+    public static int LANG_CZECH() {
+        return LANG_CZECH;
+    }
+    private static final int LANG_DANISH = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_DANISH 6
+     * }
+     */
+    public static int LANG_DANISH() {
+        return LANG_DANISH;
+    }
+    private static final int LANG_DARI = (int)140L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_DARI 140
+     * }
+     */
+    public static int LANG_DARI() {
+        return LANG_DARI;
+    }
+    private static final int LANG_DIVEHI = (int)101L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_DIVEHI 101
+     * }
+     */
+    public static int LANG_DIVEHI() {
+        return LANG_DIVEHI;
+    }
+    private static final int LANG_DUTCH = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_DUTCH 19
+     * }
+     */
+    public static int LANG_DUTCH() {
+        return LANG_DUTCH;
+    }
+    private static final int LANG_ENGLISH = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ENGLISH 9
+     * }
+     */
+    public static int LANG_ENGLISH() {
+        return LANG_ENGLISH;
+    }
+    private static final int LANG_ESTONIAN = (int)37L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ESTONIAN 37
+     * }
+     */
+    public static int LANG_ESTONIAN() {
+        return LANG_ESTONIAN;
+    }
+    private static final int LANG_FAEROESE = (int)56L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FAEROESE 56
+     * }
+     */
+    public static int LANG_FAEROESE() {
+        return LANG_FAEROESE;
+    }
+    private static final int LANG_FARSI = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FARSI 41
+     * }
+     */
+    public static int LANG_FARSI() {
+        return LANG_FARSI;
+    }
+    private static final int LANG_FILIPINO = (int)100L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FILIPINO 100
+     * }
+     */
+    public static int LANG_FILIPINO() {
+        return LANG_FILIPINO;
+    }
+    private static final int LANG_FINNISH = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FINNISH 11
+     * }
+     */
+    public static int LANG_FINNISH() {
+        return LANG_FINNISH;
+    }
+    private static final int LANG_FRENCH = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FRENCH 12
+     * }
+     */
+    public static int LANG_FRENCH() {
+        return LANG_FRENCH;
+    }
+    private static final int LANG_FRISIAN = (int)98L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FRISIAN 98
+     * }
+     */
+    public static int LANG_FRISIAN() {
+        return LANG_FRISIAN;
+    }
+    private static final int LANG_FULAH = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_FULAH 103
+     * }
+     */
+    public static int LANG_FULAH() {
+        return LANG_FULAH;
+    }
+    private static final int LANG_GALICIAN = (int)86L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GALICIAN 86
+     * }
+     */
+    public static int LANG_GALICIAN() {
+        return LANG_GALICIAN;
+    }
+    private static final int LANG_GEORGIAN = (int)55L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GEORGIAN 55
+     * }
+     */
+    public static int LANG_GEORGIAN() {
+        return LANG_GEORGIAN;
+    }
+    private static final int LANG_GERMAN = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GERMAN 7
+     * }
+     */
+    public static int LANG_GERMAN() {
+        return LANG_GERMAN;
+    }
+    private static final int LANG_GREEK = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GREEK 8
+     * }
+     */
+    public static int LANG_GREEK() {
+        return LANG_GREEK;
+    }
+    private static final int LANG_GREENLANDIC = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GREENLANDIC 111
+     * }
+     */
+    public static int LANG_GREENLANDIC() {
+        return LANG_GREENLANDIC;
+    }
+    private static final int LANG_GUJARATI = (int)71L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_GUJARATI 71
+     * }
+     */
+    public static int LANG_GUJARATI() {
+        return LANG_GUJARATI;
+    }
+    private static final int LANG_HAUSA = (int)104L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_HAUSA 104
+     * }
+     */
+    public static int LANG_HAUSA() {
+        return LANG_HAUSA;
+    }
+    private static final int LANG_HAWAIIAN = (int)117L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_HAWAIIAN 117
+     * }
+     */
+    public static int LANG_HAWAIIAN() {
+        return LANG_HAWAIIAN;
+    }
+    private static final int LANG_HEBREW = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_HEBREW 13
+     * }
+     */
+    public static int LANG_HEBREW() {
+        return LANG_HEBREW;
+    }
+    private static final int LANG_HINDI = (int)57L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_HINDI 57
+     * }
+     */
+    public static int LANG_HINDI() {
+        return LANG_HINDI;
+    }
+    private static final int LANG_HUNGARIAN = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_HUNGARIAN 14
+     * }
+     */
+    public static int LANG_HUNGARIAN() {
+        return LANG_HUNGARIAN;
+    }
+    private static final int LANG_ICELANDIC = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ICELANDIC 15
+     * }
+     */
+    public static int LANG_ICELANDIC() {
+        return LANG_ICELANDIC;
+    }
+    private static final int LANG_IGBO = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_IGBO 112
+     * }
+     */
+    public static int LANG_IGBO() {
+        return LANG_IGBO;
+    }
+    private static final int LANG_INDONESIAN = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_INDONESIAN 33
+     * }
+     */
+    public static int LANG_INDONESIAN() {
+        return LANG_INDONESIAN;
+    }
+    private static final int LANG_INUKTITUT = (int)93L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_INUKTITUT 93
+     * }
+     */
+    public static int LANG_INUKTITUT() {
+        return LANG_INUKTITUT;
+    }
+    private static final int LANG_IRISH = (int)60L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_IRISH 60
+     * }
+     */
+    public static int LANG_IRISH() {
+        return LANG_IRISH;
+    }
+    private static final int LANG_ITALIAN = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ITALIAN 16
+     * }
+     */
+    public static int LANG_ITALIAN() {
+        return LANG_ITALIAN;
+    }
+    private static final int LANG_JAPANESE = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_JAPANESE 17
+     * }
+     */
+    public static int LANG_JAPANESE() {
+        return LANG_JAPANESE;
+    }
+    private static final int LANG_KANNADA = (int)75L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KANNADA 75
+     * }
+     */
+    public static int LANG_KANNADA() {
+        return LANG_KANNADA;
+    }
+    private static final int LANG_KASHMIRI = (int)96L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KASHMIRI 96
+     * }
+     */
+    public static int LANG_KASHMIRI() {
+        return LANG_KASHMIRI;
+    }
+    private static final int LANG_KAZAK = (int)63L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KAZAK 63
+     * }
+     */
+    public static int LANG_KAZAK() {
+        return LANG_KAZAK;
+    }
+    private static final int LANG_KHMER = (int)83L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KHMER 83
+     * }
+     */
+    public static int LANG_KHMER() {
+        return LANG_KHMER;
+    }
+    private static final int LANG_KICHE = (int)134L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KICHE 134
+     * }
+     */
+    public static int LANG_KICHE() {
+        return LANG_KICHE;
+    }
+    private static final int LANG_KINYARWANDA = (int)135L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KINYARWANDA 135
+     * }
+     */
+    public static int LANG_KINYARWANDA() {
+        return LANG_KINYARWANDA;
+    }
+    private static final int LANG_KONKANI = (int)87L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KONKANI 87
+     * }
+     */
+    public static int LANG_KONKANI() {
+        return LANG_KONKANI;
+    }
+    private static final int LANG_KOREAN = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KOREAN 18
+     * }
+     */
+    public static int LANG_KOREAN() {
+        return LANG_KOREAN;
+    }
+    private static final int LANG_KYRGYZ = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_KYRGYZ 64
+     * }
+     */
+    public static int LANG_KYRGYZ() {
+        return LANG_KYRGYZ;
+    }
+    private static final int LANG_LAO = (int)84L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_LAO 84
+     * }
+     */
+    public static int LANG_LAO() {
+        return LANG_LAO;
+    }
+    private static final int LANG_LATVIAN = (int)38L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_LATVIAN 38
+     * }
+     */
+    public static int LANG_LATVIAN() {
+        return LANG_LATVIAN;
+    }
+    private static final int LANG_LITHUANIAN = (int)39L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_LITHUANIAN 39
+     * }
+     */
+    public static int LANG_LITHUANIAN() {
+        return LANG_LITHUANIAN;
+    }
+    private static final int LANG_LOWER_SORBIAN = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_LOWER_SORBIAN 46
+     * }
+     */
+    public static int LANG_LOWER_SORBIAN() {
+        return LANG_LOWER_SORBIAN;
+    }
+    private static final int LANG_LUXEMBOURGISH = (int)110L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_LUXEMBOURGISH 110
+     * }
+     */
+    public static int LANG_LUXEMBOURGISH() {
+        return LANG_LUXEMBOURGISH;
+    }
+    private static final int LANG_MACEDONIAN = (int)47L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MACEDONIAN 47
+     * }
+     */
+    public static int LANG_MACEDONIAN() {
+        return LANG_MACEDONIAN;
+    }
+    private static final int LANG_MALAY = (int)62L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MALAY 62
+     * }
+     */
+    public static int LANG_MALAY() {
+        return LANG_MALAY;
+    }
+    private static final int LANG_MALAYALAM = (int)76L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MALAYALAM 76
+     * }
+     */
+    public static int LANG_MALAYALAM() {
+        return LANG_MALAYALAM;
+    }
+    private static final int LANG_MALTESE = (int)58L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MALTESE 58
+     * }
+     */
+    public static int LANG_MALTESE() {
+        return LANG_MALTESE;
+    }
+    private static final int LANG_MANIPURI = (int)88L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MANIPURI 88
+     * }
+     */
+    public static int LANG_MANIPURI() {
+        return LANG_MANIPURI;
+    }
+    private static final int LANG_MAORI = (int)129L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MAORI 129
+     * }
+     */
+    public static int LANG_MAORI() {
+        return LANG_MAORI;
+    }
+    private static final int LANG_MAPUDUNGUN = (int)122L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MAPUDUNGUN 122
+     * }
+     */
+    public static int LANG_MAPUDUNGUN() {
+        return LANG_MAPUDUNGUN;
+    }
+    private static final int LANG_MARATHI = (int)78L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MARATHI 78
+     * }
+     */
+    public static int LANG_MARATHI() {
+        return LANG_MARATHI;
+    }
+    private static final int LANG_MOHAWK = (int)124L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MOHAWK 124
+     * }
+     */
+    public static int LANG_MOHAWK() {
+        return LANG_MOHAWK;
+    }
+    private static final int LANG_MONGOLIAN = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_MONGOLIAN 80
+     * }
+     */
+    public static int LANG_MONGOLIAN() {
+        return LANG_MONGOLIAN;
+    }
+    private static final int LANG_NEPALI = (int)97L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_NEPALI 97
+     * }
+     */
+    public static int LANG_NEPALI() {
+        return LANG_NEPALI;
+    }
+    private static final int LANG_NORWEGIAN = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_NORWEGIAN 20
+     * }
+     */
+    public static int LANG_NORWEGIAN() {
+        return LANG_NORWEGIAN;
+    }
+    private static final int LANG_OCCITAN = (int)130L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_OCCITAN 130
+     * }
+     */
+    public static int LANG_OCCITAN() {
+        return LANG_OCCITAN;
+    }
+    private static final int LANG_ODIA = (int)72L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ODIA 72
+     * }
+     */
+    public static int LANG_ODIA() {
+        return LANG_ODIA;
+    }
+    private static final int LANG_ORIYA = (int)72L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ORIYA 72
+     * }
+     */
+    public static int LANG_ORIYA() {
+        return LANG_ORIYA;
+    }
+    private static final int LANG_PASHTO = (int)99L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_PASHTO 99
+     * }
+     */
+    public static int LANG_PASHTO() {
+        return LANG_PASHTO;
+    }
+    private static final int LANG_PERSIAN = (int)41L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_PERSIAN 41
+     * }
+     */
+    public static int LANG_PERSIAN() {
+        return LANG_PERSIAN;
+    }
+    private static final int LANG_POLISH = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_POLISH 21
+     * }
+     */
+    public static int LANG_POLISH() {
+        return LANG_POLISH;
+    }
+    private static final int LANG_PORTUGUESE = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_PORTUGUESE 22
+     * }
+     */
+    public static int LANG_PORTUGUESE() {
+        return LANG_PORTUGUESE;
+    }
+    private static final int LANG_PULAR = (int)103L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_PULAR 103
+     * }
+     */
+    public static int LANG_PULAR() {
+        return LANG_PULAR;
+    }
+    private static final int LANG_PUNJABI = (int)70L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_PUNJABI 70
+     * }
+     */
+    public static int LANG_PUNJABI() {
+        return LANG_PUNJABI;
+    }
+    private static final int LANG_QUECHUA = (int)107L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_QUECHUA 107
+     * }
+     */
+    public static int LANG_QUECHUA() {
+        return LANG_QUECHUA;
+    }
+    private static final int LANG_ROMANIAN = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ROMANIAN 24
+     * }
+     */
+    public static int LANG_ROMANIAN() {
+        return LANG_ROMANIAN;
+    }
+    private static final int LANG_ROMANSH = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ROMANSH 23
+     * }
+     */
+    public static int LANG_ROMANSH() {
+        return LANG_ROMANSH;
+    }
+    private static final int LANG_RUSSIAN = (int)25L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_RUSSIAN 25
+     * }
+     */
+    public static int LANG_RUSSIAN() {
+        return LANG_RUSSIAN;
+    }
+    private static final int LANG_SAKHA = (int)133L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SAKHA 133
+     * }
+     */
+    public static int LANG_SAKHA() {
+        return LANG_SAKHA;
+    }
+    private static final int LANG_SAMI = (int)59L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SAMI 59
+     * }
+     */
+    public static int LANG_SAMI() {
+        return LANG_SAMI;
+    }
+    private static final int LANG_SANSKRIT = (int)79L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SANSKRIT 79
+     * }
+     */
+    public static int LANG_SANSKRIT() {
+        return LANG_SANSKRIT;
+    }
+    private static final int LANG_SCOTTISH_GAELIC = (int)145L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SCOTTISH_GAELIC 145
+     * }
+     */
+    public static int LANG_SCOTTISH_GAELIC() {
+        return LANG_SCOTTISH_GAELIC;
+    }
+    private static final int LANG_SERBIAN = (int)26L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SERBIAN 26
+     * }
+     */
+    public static int LANG_SERBIAN() {
+        return LANG_SERBIAN;
+    }
+    private static final int LANG_SERBIAN_NEUTRAL = (int)31770L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SERBIAN_NEUTRAL 31770
+     * }
+     */
+    public static int LANG_SERBIAN_NEUTRAL() {
+        return LANG_SERBIAN_NEUTRAL;
+    }
+    private static final int LANG_SINDHI = (int)89L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SINDHI 89
+     * }
+     */
+    public static int LANG_SINDHI() {
+        return LANG_SINDHI;
+    }
+    private static final int LANG_SINHALESE = (int)91L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SINHALESE 91
+     * }
+     */
+    public static int LANG_SINHALESE() {
+        return LANG_SINHALESE;
+    }
+    private static final int LANG_SLOVAK = (int)27L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SLOVAK 27
+     * }
+     */
+    public static int LANG_SLOVAK() {
+        return LANG_SLOVAK;
+    }
+    private static final int LANG_SLOVENIAN = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SLOVENIAN 36
+     * }
+     */
+    public static int LANG_SLOVENIAN() {
+        return LANG_SLOVENIAN;
+    }
+    private static final int LANG_SOTHO = (int)108L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SOTHO 108
+     * }
+     */
+    public static int LANG_SOTHO() {
+        return LANG_SOTHO;
+    }
+    private static final int LANG_SPANISH = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SPANISH 10
+     * }
+     */
+    public static int LANG_SPANISH() {
+        return LANG_SPANISH;
+    }
+    private static final int LANG_SWAHILI = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SWAHILI 65
+     * }
+     */
+    public static int LANG_SWAHILI() {
+        return LANG_SWAHILI;
+    }
+    private static final int LANG_SWEDISH = (int)29L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SWEDISH 29
+     * }
+     */
+    public static int LANG_SWEDISH() {
+        return LANG_SWEDISH;
+    }
+    private static final int LANG_SYRIAC = (int)90L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_SYRIAC 90
+     * }
+     */
+    public static int LANG_SYRIAC() {
+        return LANG_SYRIAC;
+    }
+    private static final int LANG_TAJIK = (int)40L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TAJIK 40
+     * }
+     */
+    public static int LANG_TAJIK() {
+        return LANG_TAJIK;
+    }
+    private static final int LANG_TAMAZIGHT = (int)95L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TAMAZIGHT 95
+     * }
+     */
+    public static int LANG_TAMAZIGHT() {
+        return LANG_TAMAZIGHT;
+    }
+    private static final int LANG_TAMIL = (int)73L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TAMIL 73
+     * }
+     */
+    public static int LANG_TAMIL() {
+        return LANG_TAMIL;
+    }
+    private static final int LANG_TATAR = (int)68L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TATAR 68
+     * }
+     */
+    public static int LANG_TATAR() {
+        return LANG_TATAR;
+    }
+    private static final int LANG_TELUGU = (int)74L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TELUGU 74
+     * }
+     */
+    public static int LANG_TELUGU() {
+        return LANG_TELUGU;
+    }
+    private static final int LANG_THAI = (int)30L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_THAI 30
+     * }
+     */
+    public static int LANG_THAI() {
+        return LANG_THAI;
+    }
+    private static final int LANG_TIBETAN = (int)81L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TIBETAN 81
+     * }
+     */
+    public static int LANG_TIBETAN() {
+        return LANG_TIBETAN;
+    }
+    private static final int LANG_TIGRIGNA = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TIGRIGNA 115
+     * }
+     */
+    public static int LANG_TIGRIGNA() {
+        return LANG_TIGRIGNA;
+    }
+    private static final int LANG_TIGRINYA = (int)115L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TIGRINYA 115
+     * }
+     */
+    public static int LANG_TIGRINYA() {
+        return LANG_TIGRINYA;
+    }
+    private static final int LANG_TSWANA = (int)50L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TSWANA 50
+     * }
+     */
+    public static int LANG_TSWANA() {
+        return LANG_TSWANA;
+    }
+    private static final int LANG_TURKISH = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TURKISH 31
+     * }
+     */
+    public static int LANG_TURKISH() {
+        return LANG_TURKISH;
+    }
+    private static final int LANG_TURKMEN = (int)66L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_TURKMEN 66
+     * }
+     */
+    public static int LANG_TURKMEN() {
+        return LANG_TURKMEN;
+    }
+    private static final int LANG_UIGHUR = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_UIGHUR 128
+     * }
+     */
+    public static int LANG_UIGHUR() {
+        return LANG_UIGHUR;
+    }
+    private static final int LANG_UKRAINIAN = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_UKRAINIAN 34
+     * }
+     */
+    public static int LANG_UKRAINIAN() {
+        return LANG_UKRAINIAN;
+    }
+    private static final int LANG_UPPER_SORBIAN = (int)46L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_UPPER_SORBIAN 46
+     * }
+     */
+    public static int LANG_UPPER_SORBIAN() {
+        return LANG_UPPER_SORBIAN;
+    }
+    private static final int LANG_URDU = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_URDU 32
+     * }
+     */
+    public static int LANG_URDU() {
+        return LANG_URDU;
+    }
+    private static final int LANG_UZBEK = (int)67L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_UZBEK 67
+     * }
+     */
+    public static int LANG_UZBEK() {
+        return LANG_UZBEK;
+    }
+    private static final int LANG_VALENCIAN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_VALENCIAN 3
+     * }
+     */
+    public static int LANG_VALENCIAN() {
+        return LANG_VALENCIAN;
+    }
+    private static final int LANG_VIETNAMESE = (int)42L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_VIETNAMESE 42
+     * }
+     */
+    public static int LANG_VIETNAMESE() {
+        return LANG_VIETNAMESE;
+    }
+    private static final int LANG_WELSH = (int)82L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_WELSH 82
+     * }
+     */
+    public static int LANG_WELSH() {
+        return LANG_WELSH;
+    }
+    private static final int LANG_WOLOF = (int)136L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_WOLOF 136
+     * }
+     */
+    public static int LANG_WOLOF() {
+        return LANG_WOLOF;
+    }
+    private static final int LANG_XHOSA = (int)52L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_XHOSA 52
+     * }
+     */
+    public static int LANG_XHOSA() {
+        return LANG_XHOSA;
+    }
+    private static final int LANG_YAKUT = (int)133L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_YAKUT 133
+     * }
+     */
+    public static int LANG_YAKUT() {
+        return LANG_YAKUT;
+    }
+    private static final int LANG_YI = (int)120L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_YI 120
+     * }
+     */
+    public static int LANG_YI() {
+        return LANG_YI;
+    }
+    private static final int LANG_YORUBA = (int)106L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_YORUBA 106
+     * }
+     */
+    public static int LANG_YORUBA() {
+        return LANG_YORUBA;
+    }
+    private static final int LANG_ZULU = (int)53L;
+    /**
+     * {@snippet lang=c :
+     * #define LANG_ZULU 53
+     * }
+     */
+    public static int LANG_ZULU() {
+        return LANG_ZULU;
+    }
+    private static final int SUBLANG_NEUTRAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_NEUTRAL 0
+     * }
+     */
+    public static int SUBLANG_NEUTRAL() {
+        return SUBLANG_NEUTRAL;
+    }
+    private static final int SUBLANG_DEFAULT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DEFAULT 1
+     * }
+     */
+    public static int SUBLANG_DEFAULT() {
+        return SUBLANG_DEFAULT;
+    }
+    private static final int SUBLANG_SYS_DEFAULT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SYS_DEFAULT 2
+     * }
+     */
+    public static int SUBLANG_SYS_DEFAULT() {
+        return SUBLANG_SYS_DEFAULT;
+    }
+    private static final int SUBLANG_CUSTOM_DEFAULT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CUSTOM_DEFAULT 3
+     * }
+     */
+    public static int SUBLANG_CUSTOM_DEFAULT() {
+        return SUBLANG_CUSTOM_DEFAULT;
+    }
+    private static final int SUBLANG_CUSTOM_UNSPECIFIED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CUSTOM_UNSPECIFIED 4
+     * }
+     */
+    public static int SUBLANG_CUSTOM_UNSPECIFIED() {
+        return SUBLANG_CUSTOM_UNSPECIFIED;
+    }
+    private static final int SUBLANG_UI_CUSTOM_DEFAULT = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UI_CUSTOM_DEFAULT 5
+     * }
+     */
+    public static int SUBLANG_UI_CUSTOM_DEFAULT() {
+        return SUBLANG_UI_CUSTOM_DEFAULT;
+    }
+    private static final int SUBLANG_AFRIKAANS_SOUTH_AFRICA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AFRIKAANS_SOUTH_AFRICA 1
+     * }
+     */
+    public static int SUBLANG_AFRIKAANS_SOUTH_AFRICA() {
+        return SUBLANG_AFRIKAANS_SOUTH_AFRICA;
+    }
+    private static final int SUBLANG_ALBANIAN_ALBANIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ALBANIAN_ALBANIA 1
+     * }
+     */
+    public static int SUBLANG_ALBANIAN_ALBANIA() {
+        return SUBLANG_ALBANIAN_ALBANIA;
+    }
+    private static final int SUBLANG_ALSATIAN_FRANCE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ALSATIAN_FRANCE 1
+     * }
+     */
+    public static int SUBLANG_ALSATIAN_FRANCE() {
+        return SUBLANG_ALSATIAN_FRANCE;
+    }
+    private static final int SUBLANG_AMHARIC_ETHIOPIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AMHARIC_ETHIOPIA 1
+     * }
+     */
+    public static int SUBLANG_AMHARIC_ETHIOPIA() {
+        return SUBLANG_AMHARIC_ETHIOPIA;
+    }
+    private static final int SUBLANG_ARABIC_SAUDI_ARABIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_SAUDI_ARABIA 1
+     * }
+     */
+    public static int SUBLANG_ARABIC_SAUDI_ARABIA() {
+        return SUBLANG_ARABIC_SAUDI_ARABIA;
+    }
+    private static final int SUBLANG_ARABIC_IRAQ = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_IRAQ 2
+     * }
+     */
+    public static int SUBLANG_ARABIC_IRAQ() {
+        return SUBLANG_ARABIC_IRAQ;
+    }
+    private static final int SUBLANG_ARABIC_EGYPT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_EGYPT 3
+     * }
+     */
+    public static int SUBLANG_ARABIC_EGYPT() {
+        return SUBLANG_ARABIC_EGYPT;
+    }
+    private static final int SUBLANG_ARABIC_LIBYA = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_LIBYA 4
+     * }
+     */
+    public static int SUBLANG_ARABIC_LIBYA() {
+        return SUBLANG_ARABIC_LIBYA;
+    }
+    private static final int SUBLANG_ARABIC_ALGERIA = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_ALGERIA 5
+     * }
+     */
+    public static int SUBLANG_ARABIC_ALGERIA() {
+        return SUBLANG_ARABIC_ALGERIA;
+    }
+    private static final int SUBLANG_ARABIC_MOROCCO = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_MOROCCO 6
+     * }
+     */
+    public static int SUBLANG_ARABIC_MOROCCO() {
+        return SUBLANG_ARABIC_MOROCCO;
+    }
+    private static final int SUBLANG_ARABIC_TUNISIA = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_TUNISIA 7
+     * }
+     */
+    public static int SUBLANG_ARABIC_TUNISIA() {
+        return SUBLANG_ARABIC_TUNISIA;
+    }
+    private static final int SUBLANG_ARABIC_OMAN = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_OMAN 8
+     * }
+     */
+    public static int SUBLANG_ARABIC_OMAN() {
+        return SUBLANG_ARABIC_OMAN;
+    }
+    private static final int SUBLANG_ARABIC_YEMEN = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_YEMEN 9
+     * }
+     */
+    public static int SUBLANG_ARABIC_YEMEN() {
+        return SUBLANG_ARABIC_YEMEN;
+    }
+    private static final int SUBLANG_ARABIC_SYRIA = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_SYRIA 10
+     * }
+     */
+    public static int SUBLANG_ARABIC_SYRIA() {
+        return SUBLANG_ARABIC_SYRIA;
+    }
+    private static final int SUBLANG_ARABIC_JORDAN = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_JORDAN 11
+     * }
+     */
+    public static int SUBLANG_ARABIC_JORDAN() {
+        return SUBLANG_ARABIC_JORDAN;
+    }
+    private static final int SUBLANG_ARABIC_LEBANON = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_LEBANON 12
+     * }
+     */
+    public static int SUBLANG_ARABIC_LEBANON() {
+        return SUBLANG_ARABIC_LEBANON;
+    }
+    private static final int SUBLANG_ARABIC_KUWAIT = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_KUWAIT 13
+     * }
+     */
+    public static int SUBLANG_ARABIC_KUWAIT() {
+        return SUBLANG_ARABIC_KUWAIT;
+    }
+    private static final int SUBLANG_ARABIC_UAE = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_UAE 14
+     * }
+     */
+    public static int SUBLANG_ARABIC_UAE() {
+        return SUBLANG_ARABIC_UAE;
+    }
+    private static final int SUBLANG_ARABIC_BAHRAIN = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_BAHRAIN 15
+     * }
+     */
+    public static int SUBLANG_ARABIC_BAHRAIN() {
+        return SUBLANG_ARABIC_BAHRAIN;
+    }
+    private static final int SUBLANG_ARABIC_QATAR = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARABIC_QATAR 16
+     * }
+     */
+    public static int SUBLANG_ARABIC_QATAR() {
+        return SUBLANG_ARABIC_QATAR;
+    }
+    private static final int SUBLANG_ARMENIAN_ARMENIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ARMENIAN_ARMENIA 1
+     * }
+     */
+    public static int SUBLANG_ARMENIAN_ARMENIA() {
+        return SUBLANG_ARMENIAN_ARMENIA;
+    }
+    private static final int SUBLANG_ASSAMESE_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ASSAMESE_INDIA 1
+     * }
+     */
+    public static int SUBLANG_ASSAMESE_INDIA() {
+        return SUBLANG_ASSAMESE_INDIA;
+    }
+    private static final int SUBLANG_AZERI_LATIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AZERI_LATIN 1
+     * }
+     */
+    public static int SUBLANG_AZERI_LATIN() {
+        return SUBLANG_AZERI_LATIN;
+    }
+    private static final int SUBLANG_AZERI_CYRILLIC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AZERI_CYRILLIC 2
+     * }
+     */
+    public static int SUBLANG_AZERI_CYRILLIC() {
+        return SUBLANG_AZERI_CYRILLIC;
+    }
+    private static final int SUBLANG_AZERBAIJANI_AZERBAIJAN_LATIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AZERBAIJANI_AZERBAIJAN_LATIN 1
+     * }
+     */
+    public static int SUBLANG_AZERBAIJANI_AZERBAIJAN_LATIN() {
+        return SUBLANG_AZERBAIJANI_AZERBAIJAN_LATIN;
+    }
+    private static final int SUBLANG_AZERBAIJANI_AZERBAIJAN_CYRILLIC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_AZERBAIJANI_AZERBAIJAN_CYRILLIC 2
+     * }
+     */
+    public static int SUBLANG_AZERBAIJANI_AZERBAIJAN_CYRILLIC() {
+        return SUBLANG_AZERBAIJANI_AZERBAIJAN_CYRILLIC;
+    }
+    private static final int SUBLANG_BANGLA_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BANGLA_INDIA 1
+     * }
+     */
+    public static int SUBLANG_BANGLA_INDIA() {
+        return SUBLANG_BANGLA_INDIA;
+    }
+    private static final int SUBLANG_BANGLA_BANGLADESH = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BANGLA_BANGLADESH 2
+     * }
+     */
+    public static int SUBLANG_BANGLA_BANGLADESH() {
+        return SUBLANG_BANGLA_BANGLADESH;
+    }
+    private static final int SUBLANG_BASHKIR_RUSSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BASHKIR_RUSSIA 1
+     * }
+     */
+    public static int SUBLANG_BASHKIR_RUSSIA() {
+        return SUBLANG_BASHKIR_RUSSIA;
+    }
+    private static final int SUBLANG_BASQUE_BASQUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BASQUE_BASQUE 1
+     * }
+     */
+    public static int SUBLANG_BASQUE_BASQUE() {
+        return SUBLANG_BASQUE_BASQUE;
+    }
+    private static final int SUBLANG_BELARUSIAN_BELARUS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BELARUSIAN_BELARUS 1
+     * }
+     */
+    public static int SUBLANG_BELARUSIAN_BELARUS() {
+        return SUBLANG_BELARUSIAN_BELARUS;
+    }
+    private static final int SUBLANG_BENGALI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BENGALI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_BENGALI_INDIA() {
+        return SUBLANG_BENGALI_INDIA;
+    }
+    private static final int SUBLANG_BENGALI_BANGLADESH = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BENGALI_BANGLADESH 2
+     * }
+     */
+    public static int SUBLANG_BENGALI_BANGLADESH() {
+        return SUBLANG_BENGALI_BANGLADESH;
+    }
+    private static final int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN 5
+     * }
+     */
+    public static int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN() {
+        return SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN;
+    }
+    private static final int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC 8
+     * }
+     */
+    public static int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC() {
+        return SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC;
+    }
+    private static final int SUBLANG_BRETON_FRANCE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BRETON_FRANCE 1
+     * }
+     */
+    public static int SUBLANG_BRETON_FRANCE() {
+        return SUBLANG_BRETON_FRANCE;
+    }
+    private static final int SUBLANG_BULGARIAN_BULGARIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_BULGARIAN_BULGARIA 1
+     * }
+     */
+    public static int SUBLANG_BULGARIAN_BULGARIA() {
+        return SUBLANG_BULGARIAN_BULGARIA;
+    }
+    private static final int SUBLANG_CATALAN_CATALAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CATALAN_CATALAN 1
+     * }
+     */
+    public static int SUBLANG_CATALAN_CATALAN() {
+        return SUBLANG_CATALAN_CATALAN;
+    }
+    private static final int SUBLANG_CENTRAL_KURDISH_IRAQ = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CENTRAL_KURDISH_IRAQ 1
+     * }
+     */
+    public static int SUBLANG_CENTRAL_KURDISH_IRAQ() {
+        return SUBLANG_CENTRAL_KURDISH_IRAQ;
+    }
+    private static final int SUBLANG_CHEROKEE_CHEROKEE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHEROKEE_CHEROKEE 1
+     * }
+     */
+    public static int SUBLANG_CHEROKEE_CHEROKEE() {
+        return SUBLANG_CHEROKEE_CHEROKEE;
+    }
+    private static final int SUBLANG_CHINESE_TRADITIONAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHINESE_TRADITIONAL 1
+     * }
+     */
+    public static int SUBLANG_CHINESE_TRADITIONAL() {
+        return SUBLANG_CHINESE_TRADITIONAL;
+    }
+    private static final int SUBLANG_CHINESE_SIMPLIFIED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHINESE_SIMPLIFIED 2
+     * }
+     */
+    public static int SUBLANG_CHINESE_SIMPLIFIED() {
+        return SUBLANG_CHINESE_SIMPLIFIED;
+    }
+    private static final int SUBLANG_CHINESE_HONGKONG = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHINESE_HONGKONG 3
+     * }
+     */
+    public static int SUBLANG_CHINESE_HONGKONG() {
+        return SUBLANG_CHINESE_HONGKONG;
+    }
+    private static final int SUBLANG_CHINESE_SINGAPORE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHINESE_SINGAPORE 4
+     * }
+     */
+    public static int SUBLANG_CHINESE_SINGAPORE() {
+        return SUBLANG_CHINESE_SINGAPORE;
+    }
+    private static final int SUBLANG_CHINESE_MACAU = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CHINESE_MACAU 5
+     * }
+     */
+    public static int SUBLANG_CHINESE_MACAU() {
+        return SUBLANG_CHINESE_MACAU;
+    }
+    private static final int SUBLANG_CORSICAN_FRANCE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CORSICAN_FRANCE 1
+     * }
+     */
+    public static int SUBLANG_CORSICAN_FRANCE() {
+        return SUBLANG_CORSICAN_FRANCE;
+    }
+    private static final int SUBLANG_CZECH_CZECH_REPUBLIC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CZECH_CZECH_REPUBLIC 1
+     * }
+     */
+    public static int SUBLANG_CZECH_CZECH_REPUBLIC() {
+        return SUBLANG_CZECH_CZECH_REPUBLIC;
+    }
+    private static final int SUBLANG_CROATIAN_CROATIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CROATIAN_CROATIA 1
+     * }
+     */
+    public static int SUBLANG_CROATIAN_CROATIA() {
+        return SUBLANG_CROATIAN_CROATIA;
+    }
+    private static final int SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN 4
+     * }
+     */
+    public static int SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN() {
+        return SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN;
+    }
+    private static final int SUBLANG_DANISH_DENMARK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DANISH_DENMARK 1
+     * }
+     */
+    public static int SUBLANG_DANISH_DENMARK() {
+        return SUBLANG_DANISH_DENMARK;
+    }
+    private static final int SUBLANG_DARI_AFGHANISTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DARI_AFGHANISTAN 1
+     * }
+     */
+    public static int SUBLANG_DARI_AFGHANISTAN() {
+        return SUBLANG_DARI_AFGHANISTAN;
+    }
+    private static final int SUBLANG_DIVEHI_MALDIVES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DIVEHI_MALDIVES 1
+     * }
+     */
+    public static int SUBLANG_DIVEHI_MALDIVES() {
+        return SUBLANG_DIVEHI_MALDIVES;
+    }
+    private static final int SUBLANG_DUTCH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DUTCH 1
+     * }
+     */
+    public static int SUBLANG_DUTCH() {
+        return SUBLANG_DUTCH;
+    }
+    private static final int SUBLANG_DUTCH_BELGIAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_DUTCH_BELGIAN 2
+     * }
+     */
+    public static int SUBLANG_DUTCH_BELGIAN() {
+        return SUBLANG_DUTCH_BELGIAN;
+    }
+    private static final int SUBLANG_ENGLISH_US = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_US 1
+     * }
+     */
+    public static int SUBLANG_ENGLISH_US() {
+        return SUBLANG_ENGLISH_US;
+    }
+    private static final int SUBLANG_ENGLISH_UK = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_UK 2
+     * }
+     */
+    public static int SUBLANG_ENGLISH_UK() {
+        return SUBLANG_ENGLISH_UK;
+    }
+    private static final int SUBLANG_ENGLISH_AUS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_AUS 3
+     * }
+     */
+    public static int SUBLANG_ENGLISH_AUS() {
+        return SUBLANG_ENGLISH_AUS;
+    }
+    private static final int SUBLANG_ENGLISH_CAN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_CAN 4
+     * }
+     */
+    public static int SUBLANG_ENGLISH_CAN() {
+        return SUBLANG_ENGLISH_CAN;
+    }
+    private static final int SUBLANG_ENGLISH_NZ = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_NZ 5
+     * }
+     */
+    public static int SUBLANG_ENGLISH_NZ() {
+        return SUBLANG_ENGLISH_NZ;
+    }
+    private static final int SUBLANG_ENGLISH_EIRE = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_EIRE 6
+     * }
+     */
+    public static int SUBLANG_ENGLISH_EIRE() {
+        return SUBLANG_ENGLISH_EIRE;
+    }
+    private static final int SUBLANG_ENGLISH_SOUTH_AFRICA = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_SOUTH_AFRICA 7
+     * }
+     */
+    public static int SUBLANG_ENGLISH_SOUTH_AFRICA() {
+        return SUBLANG_ENGLISH_SOUTH_AFRICA;
+    }
+    private static final int SUBLANG_ENGLISH_JAMAICA = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_JAMAICA 8
+     * }
+     */
+    public static int SUBLANG_ENGLISH_JAMAICA() {
+        return SUBLANG_ENGLISH_JAMAICA;
+    }
+    private static final int SUBLANG_ENGLISH_CARIBBEAN = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_CARIBBEAN 9
+     * }
+     */
+    public static int SUBLANG_ENGLISH_CARIBBEAN() {
+        return SUBLANG_ENGLISH_CARIBBEAN;
+    }
+    private static final int SUBLANG_ENGLISH_BELIZE = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_BELIZE 10
+     * }
+     */
+    public static int SUBLANG_ENGLISH_BELIZE() {
+        return SUBLANG_ENGLISH_BELIZE;
+    }
+    private static final int SUBLANG_ENGLISH_TRINIDAD = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_TRINIDAD 11
+     * }
+     */
+    public static int SUBLANG_ENGLISH_TRINIDAD() {
+        return SUBLANG_ENGLISH_TRINIDAD;
+    }
+    private static final int SUBLANG_ENGLISH_ZIMBABWE = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_ZIMBABWE 12
+     * }
+     */
+    public static int SUBLANG_ENGLISH_ZIMBABWE() {
+        return SUBLANG_ENGLISH_ZIMBABWE;
+    }
+    private static final int SUBLANG_ENGLISH_PHILIPPINES = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_PHILIPPINES 13
+     * }
+     */
+    public static int SUBLANG_ENGLISH_PHILIPPINES() {
+        return SUBLANG_ENGLISH_PHILIPPINES;
+    }
+    private static final int SUBLANG_ENGLISH_INDIA = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_INDIA 16
+     * }
+     */
+    public static int SUBLANG_ENGLISH_INDIA() {
+        return SUBLANG_ENGLISH_INDIA;
+    }
+    private static final int SUBLANG_ENGLISH_MALAYSIA = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_MALAYSIA 17
+     * }
+     */
+    public static int SUBLANG_ENGLISH_MALAYSIA() {
+        return SUBLANG_ENGLISH_MALAYSIA;
+    }
+    private static final int SUBLANG_ENGLISH_SINGAPORE = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ENGLISH_SINGAPORE 18
+     * }
+     */
+    public static int SUBLANG_ENGLISH_SINGAPORE() {
+        return SUBLANG_ENGLISH_SINGAPORE;
+    }
+    private static final int SUBLANG_ESTONIAN_ESTONIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ESTONIAN_ESTONIA 1
+     * }
+     */
+    public static int SUBLANG_ESTONIAN_ESTONIA() {
+        return SUBLANG_ESTONIAN_ESTONIA;
+    }
+    private static final int SUBLANG_FAEROESE_FAROE_ISLANDS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FAEROESE_FAROE_ISLANDS 1
+     * }
+     */
+    public static int SUBLANG_FAEROESE_FAROE_ISLANDS() {
+        return SUBLANG_FAEROESE_FAROE_ISLANDS;
+    }
+    private static final int SUBLANG_FILIPINO_PHILIPPINES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FILIPINO_PHILIPPINES 1
+     * }
+     */
+    public static int SUBLANG_FILIPINO_PHILIPPINES() {
+        return SUBLANG_FILIPINO_PHILIPPINES;
+    }
+    private static final int SUBLANG_FINNISH_FINLAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FINNISH_FINLAND 1
+     * }
+     */
+    public static int SUBLANG_FINNISH_FINLAND() {
+        return SUBLANG_FINNISH_FINLAND;
+    }
+    private static final int SUBLANG_FRENCH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH 1
+     * }
+     */
+    public static int SUBLANG_FRENCH() {
+        return SUBLANG_FRENCH;
+    }
+    private static final int SUBLANG_FRENCH_BELGIAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH_BELGIAN 2
+     * }
+     */
+    public static int SUBLANG_FRENCH_BELGIAN() {
+        return SUBLANG_FRENCH_BELGIAN;
+    }
+    private static final int SUBLANG_FRENCH_CANADIAN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH_CANADIAN 3
+     * }
+     */
+    public static int SUBLANG_FRENCH_CANADIAN() {
+        return SUBLANG_FRENCH_CANADIAN;
+    }
+    private static final int SUBLANG_FRENCH_SWISS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH_SWISS 4
+     * }
+     */
+    public static int SUBLANG_FRENCH_SWISS() {
+        return SUBLANG_FRENCH_SWISS;
+    }
+    private static final int SUBLANG_FRENCH_LUXEMBOURG = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH_LUXEMBOURG 5
+     * }
+     */
+    public static int SUBLANG_FRENCH_LUXEMBOURG() {
+        return SUBLANG_FRENCH_LUXEMBOURG;
+    }
+    private static final int SUBLANG_FRENCH_MONACO = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRENCH_MONACO 6
+     * }
+     */
+    public static int SUBLANG_FRENCH_MONACO() {
+        return SUBLANG_FRENCH_MONACO;
+    }
+    private static final int SUBLANG_FRISIAN_NETHERLANDS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FRISIAN_NETHERLANDS 1
+     * }
+     */
+    public static int SUBLANG_FRISIAN_NETHERLANDS() {
+        return SUBLANG_FRISIAN_NETHERLANDS;
+    }
+    private static final int SUBLANG_FULAH_SENEGAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_FULAH_SENEGAL 2
+     * }
+     */
+    public static int SUBLANG_FULAH_SENEGAL() {
+        return SUBLANG_FULAH_SENEGAL;
+    }
+    private static final int SUBLANG_GALICIAN_GALICIAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GALICIAN_GALICIAN 1
+     * }
+     */
+    public static int SUBLANG_GALICIAN_GALICIAN() {
+        return SUBLANG_GALICIAN_GALICIAN;
+    }
+    private static final int SUBLANG_GEORGIAN_GEORGIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GEORGIAN_GEORGIA 1
+     * }
+     */
+    public static int SUBLANG_GEORGIAN_GEORGIA() {
+        return SUBLANG_GEORGIAN_GEORGIA;
+    }
+    private static final int SUBLANG_GERMAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GERMAN 1
+     * }
+     */
+    public static int SUBLANG_GERMAN() {
+        return SUBLANG_GERMAN;
+    }
+    private static final int SUBLANG_GERMAN_SWISS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GERMAN_SWISS 2
+     * }
+     */
+    public static int SUBLANG_GERMAN_SWISS() {
+        return SUBLANG_GERMAN_SWISS;
+    }
+    private static final int SUBLANG_GERMAN_AUSTRIAN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GERMAN_AUSTRIAN 3
+     * }
+     */
+    public static int SUBLANG_GERMAN_AUSTRIAN() {
+        return SUBLANG_GERMAN_AUSTRIAN;
+    }
+    private static final int SUBLANG_GERMAN_LUXEMBOURG = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GERMAN_LUXEMBOURG 4
+     * }
+     */
+    public static int SUBLANG_GERMAN_LUXEMBOURG() {
+        return SUBLANG_GERMAN_LUXEMBOURG;
+    }
+    private static final int SUBLANG_GERMAN_LIECHTENSTEIN = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GERMAN_LIECHTENSTEIN 5
+     * }
+     */
+    public static int SUBLANG_GERMAN_LIECHTENSTEIN() {
+        return SUBLANG_GERMAN_LIECHTENSTEIN;
+    }
+    private static final int SUBLANG_GREEK_GREECE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GREEK_GREECE 1
+     * }
+     */
+    public static int SUBLANG_GREEK_GREECE() {
+        return SUBLANG_GREEK_GREECE;
+    }
+    private static final int SUBLANG_GREENLANDIC_GREENLAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GREENLANDIC_GREENLAND 1
+     * }
+     */
+    public static int SUBLANG_GREENLANDIC_GREENLAND() {
+        return SUBLANG_GREENLANDIC_GREENLAND;
+    }
+    private static final int SUBLANG_GUJARATI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_GUJARATI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_GUJARATI_INDIA() {
+        return SUBLANG_GUJARATI_INDIA;
+    }
+    private static final int SUBLANG_HAUSA_NIGERIA_LATIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_HAUSA_NIGERIA_LATIN 1
+     * }
+     */
+    public static int SUBLANG_HAUSA_NIGERIA_LATIN() {
+        return SUBLANG_HAUSA_NIGERIA_LATIN;
+    }
+    private static final int SUBLANG_HAWAIIAN_US = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_HAWAIIAN_US 1
+     * }
+     */
+    public static int SUBLANG_HAWAIIAN_US() {
+        return SUBLANG_HAWAIIAN_US;
+    }
+    private static final int SUBLANG_HEBREW_ISRAEL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_HEBREW_ISRAEL 1
+     * }
+     */
+    public static int SUBLANG_HEBREW_ISRAEL() {
+        return SUBLANG_HEBREW_ISRAEL;
+    }
+    private static final int SUBLANG_HINDI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_HINDI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_HINDI_INDIA() {
+        return SUBLANG_HINDI_INDIA;
+    }
+    private static final int SUBLANG_HUNGARIAN_HUNGARY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_HUNGARIAN_HUNGARY 1
+     * }
+     */
+    public static int SUBLANG_HUNGARIAN_HUNGARY() {
+        return SUBLANG_HUNGARIAN_HUNGARY;
+    }
+    private static final int SUBLANG_ICELANDIC_ICELAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ICELANDIC_ICELAND 1
+     * }
+     */
+    public static int SUBLANG_ICELANDIC_ICELAND() {
+        return SUBLANG_ICELANDIC_ICELAND;
+    }
+    private static final int SUBLANG_IGBO_NIGERIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_IGBO_NIGERIA 1
+     * }
+     */
+    public static int SUBLANG_IGBO_NIGERIA() {
+        return SUBLANG_IGBO_NIGERIA;
+    }
+    private static final int SUBLANG_INDONESIAN_INDONESIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_INDONESIAN_INDONESIA 1
+     * }
+     */
+    public static int SUBLANG_INDONESIAN_INDONESIA() {
+        return SUBLANG_INDONESIAN_INDONESIA;
+    }
+    private static final int SUBLANG_INUKTITUT_CANADA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_INUKTITUT_CANADA 1
+     * }
+     */
+    public static int SUBLANG_INUKTITUT_CANADA() {
+        return SUBLANG_INUKTITUT_CANADA;
+    }
+    private static final int SUBLANG_INUKTITUT_CANADA_LATIN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_INUKTITUT_CANADA_LATIN 2
+     * }
+     */
+    public static int SUBLANG_INUKTITUT_CANADA_LATIN() {
+        return SUBLANG_INUKTITUT_CANADA_LATIN;
+    }
+    private static final int SUBLANG_IRISH_IRELAND = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_IRISH_IRELAND 2
+     * }
+     */
+    public static int SUBLANG_IRISH_IRELAND() {
+        return SUBLANG_IRISH_IRELAND;
+    }
+    private static final int SUBLANG_ITALIAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ITALIAN 1
+     * }
+     */
+    public static int SUBLANG_ITALIAN() {
+        return SUBLANG_ITALIAN;
+    }
+    private static final int SUBLANG_ITALIAN_SWISS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ITALIAN_SWISS 2
+     * }
+     */
+    public static int SUBLANG_ITALIAN_SWISS() {
+        return SUBLANG_ITALIAN_SWISS;
+    }
+    private static final int SUBLANG_JAPANESE_JAPAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_JAPANESE_JAPAN 1
+     * }
+     */
+    public static int SUBLANG_JAPANESE_JAPAN() {
+        return SUBLANG_JAPANESE_JAPAN;
+    }
+    private static final int SUBLANG_KANNADA_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KANNADA_INDIA 1
+     * }
+     */
+    public static int SUBLANG_KANNADA_INDIA() {
+        return SUBLANG_KANNADA_INDIA;
+    }
+    private static final int SUBLANG_KASHMIRI_SASIA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KASHMIRI_SASIA 2
+     * }
+     */
+    public static int SUBLANG_KASHMIRI_SASIA() {
+        return SUBLANG_KASHMIRI_SASIA;
+    }
+    private static final int SUBLANG_KASHMIRI_INDIA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KASHMIRI_INDIA 2
+     * }
+     */
+    public static int SUBLANG_KASHMIRI_INDIA() {
+        return SUBLANG_KASHMIRI_INDIA;
+    }
+    private static final int SUBLANG_KAZAK_KAZAKHSTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KAZAK_KAZAKHSTAN 1
+     * }
+     */
+    public static int SUBLANG_KAZAK_KAZAKHSTAN() {
+        return SUBLANG_KAZAK_KAZAKHSTAN;
+    }
+    private static final int SUBLANG_KHMER_CAMBODIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KHMER_CAMBODIA 1
+     * }
+     */
+    public static int SUBLANG_KHMER_CAMBODIA() {
+        return SUBLANG_KHMER_CAMBODIA;
+    }
+    private static final int SUBLANG_KICHE_GUATEMALA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KICHE_GUATEMALA 1
+     * }
+     */
+    public static int SUBLANG_KICHE_GUATEMALA() {
+        return SUBLANG_KICHE_GUATEMALA;
+    }
+    private static final int SUBLANG_KINYARWANDA_RWANDA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KINYARWANDA_RWANDA 1
+     * }
+     */
+    public static int SUBLANG_KINYARWANDA_RWANDA() {
+        return SUBLANG_KINYARWANDA_RWANDA;
+    }
+    private static final int SUBLANG_KONKANI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KONKANI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_KONKANI_INDIA() {
+        return SUBLANG_KONKANI_INDIA;
+    }
+    private static final int SUBLANG_KOREAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KOREAN 1
+     * }
+     */
+    public static int SUBLANG_KOREAN() {
+        return SUBLANG_KOREAN;
+    }
+    private static final int SUBLANG_KYRGYZ_KYRGYZSTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_KYRGYZ_KYRGYZSTAN 1
+     * }
+     */
+    public static int SUBLANG_KYRGYZ_KYRGYZSTAN() {
+        return SUBLANG_KYRGYZ_KYRGYZSTAN;
+    }
+    private static final int SUBLANG_LAO_LAO = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_LAO_LAO 1
+     * }
+     */
+    public static int SUBLANG_LAO_LAO() {
+        return SUBLANG_LAO_LAO;
+    }
+    private static final int SUBLANG_LATVIAN_LATVIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_LATVIAN_LATVIA 1
+     * }
+     */
+    public static int SUBLANG_LATVIAN_LATVIA() {
+        return SUBLANG_LATVIAN_LATVIA;
+    }
+    private static final int SUBLANG_LITHUANIAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_LITHUANIAN 1
+     * }
+     */
+    public static int SUBLANG_LITHUANIAN() {
+        return SUBLANG_LITHUANIAN;
+    }
+    private static final int SUBLANG_LOWER_SORBIAN_GERMANY = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_LOWER_SORBIAN_GERMANY 2
+     * }
+     */
+    public static int SUBLANG_LOWER_SORBIAN_GERMANY() {
+        return SUBLANG_LOWER_SORBIAN_GERMANY;
+    }
+    private static final int SUBLANG_LUXEMBOURGISH_LUXEMBOURG = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_LUXEMBOURGISH_LUXEMBOURG 1
+     * }
+     */
+    public static int SUBLANG_LUXEMBOURGISH_LUXEMBOURG() {
+        return SUBLANG_LUXEMBOURGISH_LUXEMBOURG;
+    }
+    private static final int SUBLANG_MACEDONIAN_MACEDONIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MACEDONIAN_MACEDONIA 1
+     * }
+     */
+    public static int SUBLANG_MACEDONIAN_MACEDONIA() {
+        return SUBLANG_MACEDONIAN_MACEDONIA;
+    }
+    private static final int SUBLANG_MALAY_MALAYSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MALAY_MALAYSIA 1
+     * }
+     */
+    public static int SUBLANG_MALAY_MALAYSIA() {
+        return SUBLANG_MALAY_MALAYSIA;
+    }
+    private static final int SUBLANG_MALAY_BRUNEI_DARUSSALAM = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MALAY_BRUNEI_DARUSSALAM 2
+     * }
+     */
+    public static int SUBLANG_MALAY_BRUNEI_DARUSSALAM() {
+        return SUBLANG_MALAY_BRUNEI_DARUSSALAM;
+    }
+    private static final int SUBLANG_MALAYALAM_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MALAYALAM_INDIA 1
+     * }
+     */
+    public static int SUBLANG_MALAYALAM_INDIA() {
+        return SUBLANG_MALAYALAM_INDIA;
+    }
+    private static final int SUBLANG_MALTESE_MALTA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MALTESE_MALTA 1
+     * }
+     */
+    public static int SUBLANG_MALTESE_MALTA() {
+        return SUBLANG_MALTESE_MALTA;
+    }
+    private static final int SUBLANG_MAORI_NEW_ZEALAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MAORI_NEW_ZEALAND 1
+     * }
+     */
+    public static int SUBLANG_MAORI_NEW_ZEALAND() {
+        return SUBLANG_MAORI_NEW_ZEALAND;
+    }
+    private static final int SUBLANG_MAPUDUNGUN_CHILE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MAPUDUNGUN_CHILE 1
+     * }
+     */
+    public static int SUBLANG_MAPUDUNGUN_CHILE() {
+        return SUBLANG_MAPUDUNGUN_CHILE;
+    }
+    private static final int SUBLANG_MARATHI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MARATHI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_MARATHI_INDIA() {
+        return SUBLANG_MARATHI_INDIA;
+    }
+    private static final int SUBLANG_MOHAWK_MOHAWK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MOHAWK_MOHAWK 1
+     * }
+     */
+    public static int SUBLANG_MOHAWK_MOHAWK() {
+        return SUBLANG_MOHAWK_MOHAWK;
+    }
+    private static final int SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA 1
+     * }
+     */
+    public static int SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA() {
+        return SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA;
+    }
+    private static final int SUBLANG_MONGOLIAN_PRC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_MONGOLIAN_PRC 2
+     * }
+     */
+    public static int SUBLANG_MONGOLIAN_PRC() {
+        return SUBLANG_MONGOLIAN_PRC;
+    }
+    private static final int SUBLANG_NEPALI_INDIA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_NEPALI_INDIA 2
+     * }
+     */
+    public static int SUBLANG_NEPALI_INDIA() {
+        return SUBLANG_NEPALI_INDIA;
+    }
+    private static final int SUBLANG_NEPALI_NEPAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_NEPALI_NEPAL 1
+     * }
+     */
+    public static int SUBLANG_NEPALI_NEPAL() {
+        return SUBLANG_NEPALI_NEPAL;
+    }
+    private static final int SUBLANG_NORWEGIAN_BOKMAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_NORWEGIAN_BOKMAL 1
+     * }
+     */
+    public static int SUBLANG_NORWEGIAN_BOKMAL() {
+        return SUBLANG_NORWEGIAN_BOKMAL;
+    }
+    private static final int SUBLANG_NORWEGIAN_NYNORSK = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_NORWEGIAN_NYNORSK 2
+     * }
+     */
+    public static int SUBLANG_NORWEGIAN_NYNORSK() {
+        return SUBLANG_NORWEGIAN_NYNORSK;
+    }
+    private static final int SUBLANG_OCCITAN_FRANCE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_OCCITAN_FRANCE 1
+     * }
+     */
+    public static int SUBLANG_OCCITAN_FRANCE() {
+        return SUBLANG_OCCITAN_FRANCE;
+    }
+    private static final int SUBLANG_ODIA_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ODIA_INDIA 1
+     * }
+     */
+    public static int SUBLANG_ODIA_INDIA() {
+        return SUBLANG_ODIA_INDIA;
+    }
+    private static final int SUBLANG_ORIYA_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ORIYA_INDIA 1
+     * }
+     */
+    public static int SUBLANG_ORIYA_INDIA() {
+        return SUBLANG_ORIYA_INDIA;
+    }
+    private static final int SUBLANG_PASHTO_AFGHANISTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PASHTO_AFGHANISTAN 1
+     * }
+     */
+    public static int SUBLANG_PASHTO_AFGHANISTAN() {
+        return SUBLANG_PASHTO_AFGHANISTAN;
+    }
+    private static final int SUBLANG_PERSIAN_IRAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PERSIAN_IRAN 1
+     * }
+     */
+    public static int SUBLANG_PERSIAN_IRAN() {
+        return SUBLANG_PERSIAN_IRAN;
+    }
+    private static final int SUBLANG_POLISH_POLAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_POLISH_POLAND 1
+     * }
+     */
+    public static int SUBLANG_POLISH_POLAND() {
+        return SUBLANG_POLISH_POLAND;
+    }
+    private static final int SUBLANG_PORTUGUESE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PORTUGUESE 2
+     * }
+     */
+    public static int SUBLANG_PORTUGUESE() {
+        return SUBLANG_PORTUGUESE;
+    }
+    private static final int SUBLANG_PORTUGUESE_BRAZILIAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PORTUGUESE_BRAZILIAN 1
+     * }
+     */
+    public static int SUBLANG_PORTUGUESE_BRAZILIAN() {
+        return SUBLANG_PORTUGUESE_BRAZILIAN;
+    }
+    private static final int SUBLANG_PULAR_SENEGAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PULAR_SENEGAL 2
+     * }
+     */
+    public static int SUBLANG_PULAR_SENEGAL() {
+        return SUBLANG_PULAR_SENEGAL;
+    }
+    private static final int SUBLANG_PUNJABI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PUNJABI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_PUNJABI_INDIA() {
+        return SUBLANG_PUNJABI_INDIA;
+    }
+    private static final int SUBLANG_PUNJABI_PAKISTAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_PUNJABI_PAKISTAN 2
+     * }
+     */
+    public static int SUBLANG_PUNJABI_PAKISTAN() {
+        return SUBLANG_PUNJABI_PAKISTAN;
+    }
+    private static final int SUBLANG_QUECHUA_BOLIVIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_QUECHUA_BOLIVIA 1
+     * }
+     */
+    public static int SUBLANG_QUECHUA_BOLIVIA() {
+        return SUBLANG_QUECHUA_BOLIVIA;
+    }
+    private static final int SUBLANG_QUECHUA_ECUADOR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_QUECHUA_ECUADOR 2
+     * }
+     */
+    public static int SUBLANG_QUECHUA_ECUADOR() {
+        return SUBLANG_QUECHUA_ECUADOR;
+    }
+    private static final int SUBLANG_QUECHUA_PERU = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_QUECHUA_PERU 3
+     * }
+     */
+    public static int SUBLANG_QUECHUA_PERU() {
+        return SUBLANG_QUECHUA_PERU;
+    }
+    private static final int SUBLANG_ROMANIAN_ROMANIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ROMANIAN_ROMANIA 1
+     * }
+     */
+    public static int SUBLANG_ROMANIAN_ROMANIA() {
+        return SUBLANG_ROMANIAN_ROMANIA;
+    }
+    private static final int SUBLANG_ROMANSH_SWITZERLAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ROMANSH_SWITZERLAND 1
+     * }
+     */
+    public static int SUBLANG_ROMANSH_SWITZERLAND() {
+        return SUBLANG_ROMANSH_SWITZERLAND;
+    }
+    private static final int SUBLANG_RUSSIAN_RUSSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_RUSSIAN_RUSSIA 1
+     * }
+     */
+    public static int SUBLANG_RUSSIAN_RUSSIA() {
+        return SUBLANG_RUSSIAN_RUSSIA;
+    }
+    private static final int SUBLANG_SAKHA_RUSSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAKHA_RUSSIA 1
+     * }
+     */
+    public static int SUBLANG_SAKHA_RUSSIA() {
+        return SUBLANG_SAKHA_RUSSIA;
+    }
+    private static final int SUBLANG_SAMI_NORTHERN_NORWAY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_NORTHERN_NORWAY 1
+     * }
+     */
+    public static int SUBLANG_SAMI_NORTHERN_NORWAY() {
+        return SUBLANG_SAMI_NORTHERN_NORWAY;
+    }
+    private static final int SUBLANG_SAMI_NORTHERN_SWEDEN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_NORTHERN_SWEDEN 2
+     * }
+     */
+    public static int SUBLANG_SAMI_NORTHERN_SWEDEN() {
+        return SUBLANG_SAMI_NORTHERN_SWEDEN;
+    }
+    private static final int SUBLANG_SAMI_NORTHERN_FINLAND = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_NORTHERN_FINLAND 3
+     * }
+     */
+    public static int SUBLANG_SAMI_NORTHERN_FINLAND() {
+        return SUBLANG_SAMI_NORTHERN_FINLAND;
+    }
+    private static final int SUBLANG_SAMI_LULE_NORWAY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_LULE_NORWAY 4
+     * }
+     */
+    public static int SUBLANG_SAMI_LULE_NORWAY() {
+        return SUBLANG_SAMI_LULE_NORWAY;
+    }
+    private static final int SUBLANG_SAMI_LULE_SWEDEN = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_LULE_SWEDEN 5
+     * }
+     */
+    public static int SUBLANG_SAMI_LULE_SWEDEN() {
+        return SUBLANG_SAMI_LULE_SWEDEN;
+    }
+    private static final int SUBLANG_SAMI_SOUTHERN_NORWAY = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_SOUTHERN_NORWAY 6
+     * }
+     */
+    public static int SUBLANG_SAMI_SOUTHERN_NORWAY() {
+        return SUBLANG_SAMI_SOUTHERN_NORWAY;
+    }
+    private static final int SUBLANG_SAMI_SOUTHERN_SWEDEN = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_SOUTHERN_SWEDEN 7
+     * }
+     */
+    public static int SUBLANG_SAMI_SOUTHERN_SWEDEN() {
+        return SUBLANG_SAMI_SOUTHERN_SWEDEN;
+    }
+    private static final int SUBLANG_SAMI_SKOLT_FINLAND = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_SKOLT_FINLAND 8
+     * }
+     */
+    public static int SUBLANG_SAMI_SKOLT_FINLAND() {
+        return SUBLANG_SAMI_SKOLT_FINLAND;
+    }
+    private static final int SUBLANG_SAMI_INARI_FINLAND = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SAMI_INARI_FINLAND 9
+     * }
+     */
+    public static int SUBLANG_SAMI_INARI_FINLAND() {
+        return SUBLANG_SAMI_INARI_FINLAND;
+    }
+    private static final int SUBLANG_SANSKRIT_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SANSKRIT_INDIA 1
+     * }
+     */
+    public static int SUBLANG_SANSKRIT_INDIA() {
+        return SUBLANG_SANSKRIT_INDIA;
+    }
+    private static final int SUBLANG_SCOTTISH_GAELIC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SCOTTISH_GAELIC 1
+     * }
+     */
+    public static int SUBLANG_SCOTTISH_GAELIC() {
+        return SUBLANG_SCOTTISH_GAELIC;
+    }
+    private static final int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN 6
+     * }
+     */
+    public static int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN() {
+        return SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN;
+    }
+    private static final int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC 7
+     * }
+     */
+    public static int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC() {
+        return SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC;
+    }
+    private static final int SUBLANG_SERBIAN_MONTENEGRO_LATIN = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_MONTENEGRO_LATIN 11
+     * }
+     */
+    public static int SUBLANG_SERBIAN_MONTENEGRO_LATIN() {
+        return SUBLANG_SERBIAN_MONTENEGRO_LATIN;
+    }
+    private static final int SUBLANG_SERBIAN_MONTENEGRO_CYRILLIC = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_MONTENEGRO_CYRILLIC 12
+     * }
+     */
+    public static int SUBLANG_SERBIAN_MONTENEGRO_CYRILLIC() {
+        return SUBLANG_SERBIAN_MONTENEGRO_CYRILLIC;
+    }
+    private static final int SUBLANG_SERBIAN_SERBIA_LATIN = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_SERBIA_LATIN 9
+     * }
+     */
+    public static int SUBLANG_SERBIAN_SERBIA_LATIN() {
+        return SUBLANG_SERBIAN_SERBIA_LATIN;
+    }
+    private static final int SUBLANG_SERBIAN_SERBIA_CYRILLIC = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_SERBIA_CYRILLIC 10
+     * }
+     */
+    public static int SUBLANG_SERBIAN_SERBIA_CYRILLIC() {
+        return SUBLANG_SERBIAN_SERBIA_CYRILLIC;
+    }
+    private static final int SUBLANG_SERBIAN_CROATIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_CROATIA 1
+     * }
+     */
+    public static int SUBLANG_SERBIAN_CROATIA() {
+        return SUBLANG_SERBIAN_CROATIA;
+    }
+    private static final int SUBLANG_SERBIAN_LATIN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_LATIN 2
+     * }
+     */
+    public static int SUBLANG_SERBIAN_LATIN() {
+        return SUBLANG_SERBIAN_LATIN;
+    }
+    private static final int SUBLANG_SERBIAN_CYRILLIC = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SERBIAN_CYRILLIC 3
+     * }
+     */
+    public static int SUBLANG_SERBIAN_CYRILLIC() {
+        return SUBLANG_SERBIAN_CYRILLIC;
+    }
+    private static final int SUBLANG_SINDHI_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SINDHI_INDIA 1
+     * }
+     */
+    public static int SUBLANG_SINDHI_INDIA() {
+        return SUBLANG_SINDHI_INDIA;
+    }
+    private static final int SUBLANG_SINDHI_PAKISTAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SINDHI_PAKISTAN 2
+     * }
+     */
+    public static int SUBLANG_SINDHI_PAKISTAN() {
+        return SUBLANG_SINDHI_PAKISTAN;
+    }
+    private static final int SUBLANG_SINDHI_AFGHANISTAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SINDHI_AFGHANISTAN 2
+     * }
+     */
+    public static int SUBLANG_SINDHI_AFGHANISTAN() {
+        return SUBLANG_SINDHI_AFGHANISTAN;
+    }
+    private static final int SUBLANG_SINHALESE_SRI_LANKA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SINHALESE_SRI_LANKA 1
+     * }
+     */
+    public static int SUBLANG_SINHALESE_SRI_LANKA() {
+        return SUBLANG_SINHALESE_SRI_LANKA;
+    }
+    private static final int SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA 1
+     * }
+     */
+    public static int SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA() {
+        return SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA;
+    }
+    private static final int SUBLANG_SLOVAK_SLOVAKIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SLOVAK_SLOVAKIA 1
+     * }
+     */
+    public static int SUBLANG_SLOVAK_SLOVAKIA() {
+        return SUBLANG_SLOVAK_SLOVAKIA;
+    }
+    private static final int SUBLANG_SLOVENIAN_SLOVENIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SLOVENIAN_SLOVENIA 1
+     * }
+     */
+    public static int SUBLANG_SLOVENIAN_SLOVENIA() {
+        return SUBLANG_SLOVENIAN_SLOVENIA;
+    }
+    private static final int SUBLANG_SPANISH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH 1
+     * }
+     */
+    public static int SUBLANG_SPANISH() {
+        return SUBLANG_SPANISH;
+    }
+    private static final int SUBLANG_SPANISH_MEXICAN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_MEXICAN 2
+     * }
+     */
+    public static int SUBLANG_SPANISH_MEXICAN() {
+        return SUBLANG_SPANISH_MEXICAN;
+    }
+    private static final int SUBLANG_SPANISH_MODERN = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_MODERN 3
+     * }
+     */
+    public static int SUBLANG_SPANISH_MODERN() {
+        return SUBLANG_SPANISH_MODERN;
+    }
+    private static final int SUBLANG_SPANISH_GUATEMALA = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_GUATEMALA 4
+     * }
+     */
+    public static int SUBLANG_SPANISH_GUATEMALA() {
+        return SUBLANG_SPANISH_GUATEMALA;
+    }
+    private static final int SUBLANG_SPANISH_COSTA_RICA = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_COSTA_RICA 5
+     * }
+     */
+    public static int SUBLANG_SPANISH_COSTA_RICA() {
+        return SUBLANG_SPANISH_COSTA_RICA;
+    }
+    private static final int SUBLANG_SPANISH_PANAMA = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_PANAMA 6
+     * }
+     */
+    public static int SUBLANG_SPANISH_PANAMA() {
+        return SUBLANG_SPANISH_PANAMA;
+    }
+    private static final int SUBLANG_SPANISH_DOMINICAN_REPUBLIC = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_DOMINICAN_REPUBLIC 7
+     * }
+     */
+    public static int SUBLANG_SPANISH_DOMINICAN_REPUBLIC() {
+        return SUBLANG_SPANISH_DOMINICAN_REPUBLIC;
+    }
+    private static final int SUBLANG_SPANISH_VENEZUELA = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_VENEZUELA 8
+     * }
+     */
+    public static int SUBLANG_SPANISH_VENEZUELA() {
+        return SUBLANG_SPANISH_VENEZUELA;
+    }
+    private static final int SUBLANG_SPANISH_COLOMBIA = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_COLOMBIA 9
+     * }
+     */
+    public static int SUBLANG_SPANISH_COLOMBIA() {
+        return SUBLANG_SPANISH_COLOMBIA;
+    }
+    private static final int SUBLANG_SPANISH_PERU = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_PERU 10
+     * }
+     */
+    public static int SUBLANG_SPANISH_PERU() {
+        return SUBLANG_SPANISH_PERU;
+    }
+    private static final int SUBLANG_SPANISH_ARGENTINA = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_ARGENTINA 11
+     * }
+     */
+    public static int SUBLANG_SPANISH_ARGENTINA() {
+        return SUBLANG_SPANISH_ARGENTINA;
+    }
+    private static final int SUBLANG_SPANISH_ECUADOR = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_ECUADOR 12
+     * }
+     */
+    public static int SUBLANG_SPANISH_ECUADOR() {
+        return SUBLANG_SPANISH_ECUADOR;
+    }
+    private static final int SUBLANG_SPANISH_CHILE = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_CHILE 13
+     * }
+     */
+    public static int SUBLANG_SPANISH_CHILE() {
+        return SUBLANG_SPANISH_CHILE;
+    }
+    private static final int SUBLANG_SPANISH_URUGUAY = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_URUGUAY 14
+     * }
+     */
+    public static int SUBLANG_SPANISH_URUGUAY() {
+        return SUBLANG_SPANISH_URUGUAY;
+    }
+    private static final int SUBLANG_SPANISH_PARAGUAY = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_PARAGUAY 15
+     * }
+     */
+    public static int SUBLANG_SPANISH_PARAGUAY() {
+        return SUBLANG_SPANISH_PARAGUAY;
+    }
+    private static final int SUBLANG_SPANISH_BOLIVIA = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_BOLIVIA 16
+     * }
+     */
+    public static int SUBLANG_SPANISH_BOLIVIA() {
+        return SUBLANG_SPANISH_BOLIVIA;
+    }
+    private static final int SUBLANG_SPANISH_EL_SALVADOR = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_EL_SALVADOR 17
+     * }
+     */
+    public static int SUBLANG_SPANISH_EL_SALVADOR() {
+        return SUBLANG_SPANISH_EL_SALVADOR;
+    }
+    private static final int SUBLANG_SPANISH_HONDURAS = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_HONDURAS 18
+     * }
+     */
+    public static int SUBLANG_SPANISH_HONDURAS() {
+        return SUBLANG_SPANISH_HONDURAS;
+    }
+    private static final int SUBLANG_SPANISH_NICARAGUA = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_NICARAGUA 19
+     * }
+     */
+    public static int SUBLANG_SPANISH_NICARAGUA() {
+        return SUBLANG_SPANISH_NICARAGUA;
+    }
+    private static final int SUBLANG_SPANISH_PUERTO_RICO = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_PUERTO_RICO 20
+     * }
+     */
+    public static int SUBLANG_SPANISH_PUERTO_RICO() {
+        return SUBLANG_SPANISH_PUERTO_RICO;
+    }
+    private static final int SUBLANG_SPANISH_US = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SPANISH_US 21
+     * }
+     */
+    public static int SUBLANG_SPANISH_US() {
+        return SUBLANG_SPANISH_US;
+    }
+    private static final int SUBLANG_SWAHILI_KENYA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SWAHILI_KENYA 1
+     * }
+     */
+    public static int SUBLANG_SWAHILI_KENYA() {
+        return SUBLANG_SWAHILI_KENYA;
+    }
+    private static final int SUBLANG_SWEDISH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SWEDISH 1
+     * }
+     */
+    public static int SUBLANG_SWEDISH() {
+        return SUBLANG_SWEDISH;
+    }
+    private static final int SUBLANG_SWEDISH_FINLAND = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SWEDISH_FINLAND 2
+     * }
+     */
+    public static int SUBLANG_SWEDISH_FINLAND() {
+        return SUBLANG_SWEDISH_FINLAND;
+    }
+    private static final int SUBLANG_SYRIAC_SYRIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_SYRIAC_SYRIA 1
+     * }
+     */
+    public static int SUBLANG_SYRIAC_SYRIA() {
+        return SUBLANG_SYRIAC_SYRIA;
+    }
+    private static final int SUBLANG_TAJIK_TAJIKISTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TAJIK_TAJIKISTAN 1
+     * }
+     */
+    public static int SUBLANG_TAJIK_TAJIKISTAN() {
+        return SUBLANG_TAJIK_TAJIKISTAN;
+    }
+    private static final int SUBLANG_TAMAZIGHT_ALGERIA_LATIN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TAMAZIGHT_ALGERIA_LATIN 2
+     * }
+     */
+    public static int SUBLANG_TAMAZIGHT_ALGERIA_LATIN() {
+        return SUBLANG_TAMAZIGHT_ALGERIA_LATIN;
+    }
+    private static final int SUBLANG_TAMAZIGHT_MOROCCO_TIFINAGH = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TAMAZIGHT_MOROCCO_TIFINAGH 4
+     * }
+     */
+    public static int SUBLANG_TAMAZIGHT_MOROCCO_TIFINAGH() {
+        return SUBLANG_TAMAZIGHT_MOROCCO_TIFINAGH;
+    }
+    private static final int SUBLANG_TAMIL_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TAMIL_INDIA 1
+     * }
+     */
+    public static int SUBLANG_TAMIL_INDIA() {
+        return SUBLANG_TAMIL_INDIA;
+    }
+    private static final int SUBLANG_TAMIL_SRI_LANKA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TAMIL_SRI_LANKA 2
+     * }
+     */
+    public static int SUBLANG_TAMIL_SRI_LANKA() {
+        return SUBLANG_TAMIL_SRI_LANKA;
+    }
+    private static final int SUBLANG_TATAR_RUSSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TATAR_RUSSIA 1
+     * }
+     */
+    public static int SUBLANG_TATAR_RUSSIA() {
+        return SUBLANG_TATAR_RUSSIA;
+    }
+    private static final int SUBLANG_TELUGU_INDIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TELUGU_INDIA 1
+     * }
+     */
+    public static int SUBLANG_TELUGU_INDIA() {
+        return SUBLANG_TELUGU_INDIA;
+    }
+    private static final int SUBLANG_THAI_THAILAND = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_THAI_THAILAND 1
+     * }
+     */
+    public static int SUBLANG_THAI_THAILAND() {
+        return SUBLANG_THAI_THAILAND;
+    }
+    private static final int SUBLANG_TIBETAN_PRC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TIBETAN_PRC 1
+     * }
+     */
+    public static int SUBLANG_TIBETAN_PRC() {
+        return SUBLANG_TIBETAN_PRC;
+    }
+    private static final int SUBLANG_TIGRIGNA_ERITREA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TIGRIGNA_ERITREA 2
+     * }
+     */
+    public static int SUBLANG_TIGRIGNA_ERITREA() {
+        return SUBLANG_TIGRIGNA_ERITREA;
+    }
+    private static final int SUBLANG_TIGRINYA_ERITREA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TIGRINYA_ERITREA 2
+     * }
+     */
+    public static int SUBLANG_TIGRINYA_ERITREA() {
+        return SUBLANG_TIGRINYA_ERITREA;
+    }
+    private static final int SUBLANG_TIGRINYA_ETHIOPIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TIGRINYA_ETHIOPIA 1
+     * }
+     */
+    public static int SUBLANG_TIGRINYA_ETHIOPIA() {
+        return SUBLANG_TIGRINYA_ETHIOPIA;
+    }
+    private static final int SUBLANG_TSWANA_BOTSWANA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TSWANA_BOTSWANA 2
+     * }
+     */
+    public static int SUBLANG_TSWANA_BOTSWANA() {
+        return SUBLANG_TSWANA_BOTSWANA;
+    }
+    private static final int SUBLANG_TSWANA_SOUTH_AFRICA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TSWANA_SOUTH_AFRICA 1
+     * }
+     */
+    public static int SUBLANG_TSWANA_SOUTH_AFRICA() {
+        return SUBLANG_TSWANA_SOUTH_AFRICA;
+    }
+    private static final int SUBLANG_TURKISH_TURKEY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TURKISH_TURKEY 1
+     * }
+     */
+    public static int SUBLANG_TURKISH_TURKEY() {
+        return SUBLANG_TURKISH_TURKEY;
+    }
+    private static final int SUBLANG_TURKMEN_TURKMENISTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_TURKMEN_TURKMENISTAN 1
+     * }
+     */
+    public static int SUBLANG_TURKMEN_TURKMENISTAN() {
+        return SUBLANG_TURKMEN_TURKMENISTAN;
+    }
+    private static final int SUBLANG_UIGHUR_PRC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UIGHUR_PRC 1
+     * }
+     */
+    public static int SUBLANG_UIGHUR_PRC() {
+        return SUBLANG_UIGHUR_PRC;
+    }
+    private static final int SUBLANG_UKRAINIAN_UKRAINE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UKRAINIAN_UKRAINE 1
+     * }
+     */
+    public static int SUBLANG_UKRAINIAN_UKRAINE() {
+        return SUBLANG_UKRAINIAN_UKRAINE;
+    }
+    private static final int SUBLANG_UPPER_SORBIAN_GERMANY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UPPER_SORBIAN_GERMANY 1
+     * }
+     */
+    public static int SUBLANG_UPPER_SORBIAN_GERMANY() {
+        return SUBLANG_UPPER_SORBIAN_GERMANY;
+    }
+    private static final int SUBLANG_URDU_PAKISTAN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_URDU_PAKISTAN 1
+     * }
+     */
+    public static int SUBLANG_URDU_PAKISTAN() {
+        return SUBLANG_URDU_PAKISTAN;
+    }
+    private static final int SUBLANG_URDU_INDIA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_URDU_INDIA 2
+     * }
+     */
+    public static int SUBLANG_URDU_INDIA() {
+        return SUBLANG_URDU_INDIA;
+    }
+    private static final int SUBLANG_UZBEK_LATIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UZBEK_LATIN 1
+     * }
+     */
+    public static int SUBLANG_UZBEK_LATIN() {
+        return SUBLANG_UZBEK_LATIN;
+    }
+    private static final int SUBLANG_UZBEK_CYRILLIC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_UZBEK_CYRILLIC 2
+     * }
+     */
+    public static int SUBLANG_UZBEK_CYRILLIC() {
+        return SUBLANG_UZBEK_CYRILLIC;
+    }
+    private static final int SUBLANG_VALENCIAN_VALENCIA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_VALENCIAN_VALENCIA 2
+     * }
+     */
+    public static int SUBLANG_VALENCIAN_VALENCIA() {
+        return SUBLANG_VALENCIAN_VALENCIA;
+    }
+    private static final int SUBLANG_VIETNAMESE_VIETNAM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_VIETNAMESE_VIETNAM 1
+     * }
+     */
+    public static int SUBLANG_VIETNAMESE_VIETNAM() {
+        return SUBLANG_VIETNAMESE_VIETNAM;
+    }
+    private static final int SUBLANG_WELSH_UNITED_KINGDOM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_WELSH_UNITED_KINGDOM 1
+     * }
+     */
+    public static int SUBLANG_WELSH_UNITED_KINGDOM() {
+        return SUBLANG_WELSH_UNITED_KINGDOM;
+    }
+    private static final int SUBLANG_WOLOF_SENEGAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_WOLOF_SENEGAL 1
+     * }
+     */
+    public static int SUBLANG_WOLOF_SENEGAL() {
+        return SUBLANG_WOLOF_SENEGAL;
+    }
+    private static final int SUBLANG_XHOSA_SOUTH_AFRICA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_XHOSA_SOUTH_AFRICA 1
+     * }
+     */
+    public static int SUBLANG_XHOSA_SOUTH_AFRICA() {
+        return SUBLANG_XHOSA_SOUTH_AFRICA;
+    }
+    private static final int SUBLANG_YAKUT_RUSSIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_YAKUT_RUSSIA 1
+     * }
+     */
+    public static int SUBLANG_YAKUT_RUSSIA() {
+        return SUBLANG_YAKUT_RUSSIA;
+    }
+    private static final int SUBLANG_YI_PRC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_YI_PRC 1
+     * }
+     */
+    public static int SUBLANG_YI_PRC() {
+        return SUBLANG_YI_PRC;
+    }
+    private static final int SUBLANG_YORUBA_NIGERIA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_YORUBA_NIGERIA 1
+     * }
+     */
+    public static int SUBLANG_YORUBA_NIGERIA() {
+        return SUBLANG_YORUBA_NIGERIA;
+    }
+    private static final int SUBLANG_ZULU_SOUTH_AFRICA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SUBLANG_ZULU_SOUTH_AFRICA 1
+     * }
+     */
+    public static int SUBLANG_ZULU_SOUTH_AFRICA() {
+        return SUBLANG_ZULU_SOUTH_AFRICA;
+    }
+    private static final int SORT_DEFAULT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_DEFAULT 0
+     * }
+     */
+    public static int SORT_DEFAULT() {
+        return SORT_DEFAULT;
+    }
+    private static final int SORT_INVARIANT_MATH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_INVARIANT_MATH 1
+     * }
+     */
+    public static int SORT_INVARIANT_MATH() {
+        return SORT_INVARIANT_MATH;
+    }
+    private static final int SORT_JAPANESE_XJIS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_JAPANESE_XJIS 0
+     * }
+     */
+    public static int SORT_JAPANESE_XJIS() {
+        return SORT_JAPANESE_XJIS;
+    }
+    private static final int SORT_JAPANESE_UNICODE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_JAPANESE_UNICODE 1
+     * }
+     */
+    public static int SORT_JAPANESE_UNICODE() {
+        return SORT_JAPANESE_UNICODE;
+    }
+    private static final int SORT_JAPANESE_RADICALSTROKE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_JAPANESE_RADICALSTROKE 4
+     * }
+     */
+    public static int SORT_JAPANESE_RADICALSTROKE() {
+        return SORT_JAPANESE_RADICALSTROKE;
+    }
+    private static final int SORT_CHINESE_BIG5 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_BIG5 0
+     * }
+     */
+    public static int SORT_CHINESE_BIG5() {
+        return SORT_CHINESE_BIG5;
+    }
+    private static final int SORT_CHINESE_PRCP = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_PRCP 0
+     * }
+     */
+    public static int SORT_CHINESE_PRCP() {
+        return SORT_CHINESE_PRCP;
+    }
+    private static final int SORT_CHINESE_UNICODE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_UNICODE 1
+     * }
+     */
+    public static int SORT_CHINESE_UNICODE() {
+        return SORT_CHINESE_UNICODE;
+    }
+    private static final int SORT_CHINESE_PRC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_PRC 2
+     * }
+     */
+    public static int SORT_CHINESE_PRC() {
+        return SORT_CHINESE_PRC;
+    }
+    private static final int SORT_CHINESE_BOPOMOFO = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_BOPOMOFO 3
+     * }
+     */
+    public static int SORT_CHINESE_BOPOMOFO() {
+        return SORT_CHINESE_BOPOMOFO;
+    }
+    private static final int SORT_CHINESE_RADICALSTROKE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_CHINESE_RADICALSTROKE 4
+     * }
+     */
+    public static int SORT_CHINESE_RADICALSTROKE() {
+        return SORT_CHINESE_RADICALSTROKE;
+    }
+    private static final int SORT_KOREAN_KSC = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_KOREAN_KSC 0
+     * }
+     */
+    public static int SORT_KOREAN_KSC() {
+        return SORT_KOREAN_KSC;
+    }
+    private static final int SORT_KOREAN_UNICODE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_KOREAN_UNICODE 1
+     * }
+     */
+    public static int SORT_KOREAN_UNICODE() {
+        return SORT_KOREAN_UNICODE;
+    }
+    private static final int SORT_GERMAN_PHONE_BOOK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_GERMAN_PHONE_BOOK 1
+     * }
+     */
+    public static int SORT_GERMAN_PHONE_BOOK() {
+        return SORT_GERMAN_PHONE_BOOK;
+    }
+    private static final int SORT_HUNGARIAN_DEFAULT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_HUNGARIAN_DEFAULT 0
+     * }
+     */
+    public static int SORT_HUNGARIAN_DEFAULT() {
+        return SORT_HUNGARIAN_DEFAULT;
+    }
+    private static final int SORT_HUNGARIAN_TECHNICAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_HUNGARIAN_TECHNICAL 1
+     * }
+     */
+    public static int SORT_HUNGARIAN_TECHNICAL() {
+        return SORT_HUNGARIAN_TECHNICAL;
+    }
+    private static final int SORT_GEORGIAN_TRADITIONAL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_GEORGIAN_TRADITIONAL 0
+     * }
+     */
+    public static int SORT_GEORGIAN_TRADITIONAL() {
+        return SORT_GEORGIAN_TRADITIONAL;
+    }
+    private static final int SORT_GEORGIAN_MODERN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SORT_GEORGIAN_MODERN 1
+     * }
+     */
+    public static int SORT_GEORGIAN_MODERN() {
+        return SORT_GEORGIAN_MODERN;
+    }
+    private static final int NLS_VALID_LOCALE_MASK = (int)1048575L;
+    /**
+     * {@snippet lang=c :
+     * #define NLS_VALID_LOCALE_MASK 1048575
+     * }
+     */
+    public static int NLS_VALID_LOCALE_MASK() {
+        return NLS_VALID_LOCALE_MASK;
+    }
+    private static final int LOCALE_NAME_MAX_LENGTH = (int)85L;
+    /**
+     * {@snippet lang=c :
+     * #define LOCALE_NAME_MAX_LENGTH 85
+     * }
+     */
+    public static int LOCALE_NAME_MAX_LENGTH() {
+        return LOCALE_NAME_MAX_LENGTH;
+    }
+    private static final int LOCALE_TRANSIENT_KEYBOARD1 = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define LOCALE_TRANSIENT_KEYBOARD1 8192
+     * }
+     */
+    public static int LOCALE_TRANSIENT_KEYBOARD1() {
+        return LOCALE_TRANSIENT_KEYBOARD1;
+    }
+    private static final int LOCALE_TRANSIENT_KEYBOARD2 = (int)9216L;
+    /**
+     * {@snippet lang=c :
+     * #define LOCALE_TRANSIENT_KEYBOARD2 9216
+     * }
+     */
+    public static int LOCALE_TRANSIENT_KEYBOARD2() {
+        return LOCALE_TRANSIENT_KEYBOARD2;
+    }
+    private static final int LOCALE_TRANSIENT_KEYBOARD3 = (int)10240L;
+    /**
+     * {@snippet lang=c :
+     * #define LOCALE_TRANSIENT_KEYBOARD3 10240
+     * }
+     */
+    public static int LOCALE_TRANSIENT_KEYBOARD3() {
+        return LOCALE_TRANSIENT_KEYBOARD3;
+    }
+    private static final int LOCALE_TRANSIENT_KEYBOARD4 = (int)11264L;
+    /**
+     * {@snippet lang=c :
+     * #define LOCALE_TRANSIENT_KEYBOARD4 11264
+     * }
+     */
+    public static int LOCALE_TRANSIENT_KEYBOARD4() {
+        return LOCALE_TRANSIENT_KEYBOARD4;
+    }
+    private static final int MAXIMUM_WAIT_OBJECTS = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXIMUM_WAIT_OBJECTS 64
+     * }
+     */
+    public static int MAXIMUM_WAIT_OBJECTS() {
+        return MAXIMUM_WAIT_OBJECTS;
+    }
+    private static final int _MM_HINT_T0 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define _MM_HINT_T0 1
+     * }
+     */
+    public static int _MM_HINT_T0() {
+        return _MM_HINT_T0;
+    }
+    private static final int _MM_HINT_T1 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define _MM_HINT_T1 2
+     * }
+     */
+    public static int _MM_HINT_T1() {
+        return _MM_HINT_T1;
+    }
+    private static final int _MM_HINT_T2 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define _MM_HINT_T2 3
+     * }
+     */
+    public static int _MM_HINT_T2() {
+        return _MM_HINT_T2;
+    }
+    private static final int _MM_HINT_NTA = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define _MM_HINT_NTA 0
+     * }
+     */
+    public static int _MM_HINT_NTA() {
+        return _MM_HINT_NTA;
+    }
+    private static final int EXCEPTION_READ_FAULT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_READ_FAULT 0
+     * }
+     */
+    public static int EXCEPTION_READ_FAULT() {
+        return EXCEPTION_READ_FAULT;
+    }
+    private static final int EXCEPTION_WRITE_FAULT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_WRITE_FAULT 1
+     * }
+     */
+    public static int EXCEPTION_WRITE_FAULT() {
+        return EXCEPTION_WRITE_FAULT;
+    }
+    private static final int EXCEPTION_EXECUTE_FAULT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_EXECUTE_FAULT 8
+     * }
+     */
+    public static int EXCEPTION_EXECUTE_FAULT() {
+        return EXCEPTION_EXECUTE_FAULT;
+    }
+    private static final int INITIAL_MXCSR = (int)8064L;
+    /**
+     * {@snippet lang=c :
+     * #define INITIAL_MXCSR 8064
+     * }
+     */
+    public static int INITIAL_MXCSR() {
+        return INITIAL_MXCSR;
+    }
+    private static final int INITIAL_FPCSR = (int)639L;
+    /**
+     * {@snippet lang=c :
+     * #define INITIAL_FPCSR 639
+     * }
+     */
+    public static int INITIAL_FPCSR() {
+        return INITIAL_FPCSR;
+    }
+    private static final int RUNTIME_FUNCTION_INDIRECT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define RUNTIME_FUNCTION_INDIRECT 1
+     * }
+     */
+    public static int RUNTIME_FUNCTION_INDIRECT() {
+        return RUNTIME_FUNCTION_INDIRECT;
+    }
+    private static final int UNW_FLAG_NHANDLER = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define UNW_FLAG_NHANDLER 0
+     * }
+     */
+    public static int UNW_FLAG_NHANDLER() {
+        return UNW_FLAG_NHANDLER;
+    }
+    private static final int UNW_FLAG_EHANDLER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define UNW_FLAG_EHANDLER 1
+     * }
+     */
+    public static int UNW_FLAG_EHANDLER() {
+        return UNW_FLAG_EHANDLER;
+    }
+    private static final int UNW_FLAG_UHANDLER = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define UNW_FLAG_UHANDLER 2
+     * }
+     */
+    public static int UNW_FLAG_UHANDLER() {
+        return UNW_FLAG_UHANDLER;
+    }
+    private static final int UNW_FLAG_CHAININFO = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define UNW_FLAG_CHAININFO 4
+     * }
+     */
+    public static int UNW_FLAG_CHAININFO() {
+        return UNW_FLAG_CHAININFO;
+    }
+    private static final int UNWIND_CHAIN_LIMIT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define UNWIND_CHAIN_LIMIT 32
+     * }
+     */
+    public static int UNWIND_CHAIN_LIMIT() {
+        return UNWIND_CHAIN_LIMIT;
+    }
+    private static final int UNWIND_HISTORY_TABLE_SIZE = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define UNWIND_HISTORY_TABLE_SIZE 12
+     * }
+     */
+    public static int UNWIND_HISTORY_TABLE_SIZE() {
+        return UNWIND_HISTORY_TABLE_SIZE;
+    }
+    private static final int WOW64_CONTEXT_i386 = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_CONTEXT_i386 65536
+     * }
+     */
+    public static int WOW64_CONTEXT_i386() {
+        return WOW64_CONTEXT_i386;
+    }
+    private static final int WOW64_CONTEXT_i486 = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_CONTEXT_i486 65536
+     * }
+     */
+    public static int WOW64_CONTEXT_i486() {
+        return WOW64_CONTEXT_i486;
+    }
+    private static final int WOW64_CONTEXT_EXCEPTION_ACTIVE = (int)134217728L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_CONTEXT_EXCEPTION_ACTIVE 134217728
+     * }
+     */
+    public static int WOW64_CONTEXT_EXCEPTION_ACTIVE() {
+        return WOW64_CONTEXT_EXCEPTION_ACTIVE;
+    }
+    private static final int WOW64_CONTEXT_SERVICE_ACTIVE = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_CONTEXT_SERVICE_ACTIVE 268435456
+     * }
+     */
+    public static int WOW64_CONTEXT_SERVICE_ACTIVE() {
+        return WOW64_CONTEXT_SERVICE_ACTIVE;
+    }
+    private static final int WOW64_CONTEXT_EXCEPTION_REQUEST = (int)1073741824L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_CONTEXT_EXCEPTION_REQUEST 1073741824
+     * }
+     */
+    public static int WOW64_CONTEXT_EXCEPTION_REQUEST() {
+        return WOW64_CONTEXT_EXCEPTION_REQUEST;
+    }
+    private static final int WOW64_SIZE_OF_80387_REGISTERS = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_SIZE_OF_80387_REGISTERS 80
+     * }
+     */
+    public static int WOW64_SIZE_OF_80387_REGISTERS() {
+        return WOW64_SIZE_OF_80387_REGISTERS;
+    }
+    private static final int WOW64_MAXIMUM_SUPPORTED_EXTENSION = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define WOW64_MAXIMUM_SUPPORTED_EXTENSION 512
+     * }
+     */
+    public static int WOW64_MAXIMUM_SUPPORTED_EXTENSION() {
+        return WOW64_MAXIMUM_SUPPORTED_EXTENSION;
+    }
+    private static final int EXCEPTION_NONCONTINUABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_NONCONTINUABLE 1
+     * }
+     */
+    public static int EXCEPTION_NONCONTINUABLE() {
+        return EXCEPTION_NONCONTINUABLE;
+    }
+    private static final int EXCEPTION_UNWINDING = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_UNWINDING 2
+     * }
+     */
+    public static int EXCEPTION_UNWINDING() {
+        return EXCEPTION_UNWINDING;
+    }
+    private static final int EXCEPTION_EXIT_UNWIND = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_EXIT_UNWIND 4
+     * }
+     */
+    public static int EXCEPTION_EXIT_UNWIND() {
+        return EXCEPTION_EXIT_UNWIND;
+    }
+    private static final int EXCEPTION_STACK_INVALID = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_STACK_INVALID 8
+     * }
+     */
+    public static int EXCEPTION_STACK_INVALID() {
+        return EXCEPTION_STACK_INVALID;
+    }
+    private static final int EXCEPTION_NESTED_CALL = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_NESTED_CALL 16
+     * }
+     */
+    public static int EXCEPTION_NESTED_CALL() {
+        return EXCEPTION_NESTED_CALL;
+    }
+    private static final int EXCEPTION_TARGET_UNWIND = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_TARGET_UNWIND 32
+     * }
+     */
+    public static int EXCEPTION_TARGET_UNWIND() {
+        return EXCEPTION_TARGET_UNWIND;
+    }
+    private static final int EXCEPTION_COLLIDED_UNWIND = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_COLLIDED_UNWIND 64
+     * }
+     */
+    public static int EXCEPTION_COLLIDED_UNWIND() {
+        return EXCEPTION_COLLIDED_UNWIND;
+    }
+    private static final int EXCEPTION_MAXIMUM_PARAMETERS = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_MAXIMUM_PARAMETERS 15
+     * }
+     */
+    public static int EXCEPTION_MAXIMUM_PARAMETERS() {
+        return EXCEPTION_MAXIMUM_PARAMETERS;
+    }
+    private static final int SID_HASH_SIZE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SID_HASH_SIZE 32
+     * }
+     */
+    public static int SID_HASH_SIZE() {
+        return SID_HASH_SIZE;
+    }
+    private static final int SECURITY_TRUSTED_INSTALLER_RID1 = (int)956008885L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TRUSTED_INSTALLER_RID1 956008885
+     * }
+     */
+    public static int SECURITY_TRUSTED_INSTALLER_RID1() {
+        return SECURITY_TRUSTED_INSTALLER_RID1;
+    }
+    private static final int SECURITY_TRUSTED_INSTALLER_RID3 = (int)1831038044L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TRUSTED_INSTALLER_RID3 1831038044
+     * }
+     */
+    public static int SECURITY_TRUSTED_INSTALLER_RID3() {
+        return SECURITY_TRUSTED_INSTALLER_RID3;
+    }
+    private static final int SECURITY_TRUSTED_INSTALLER_RID4 = (int)1853292631L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TRUSTED_INSTALLER_RID4 1853292631
+     * }
+     */
+    public static int SECURITY_TRUSTED_INSTALLER_RID4() {
+        return SECURITY_TRUSTED_INSTALLER_RID4;
+    }
+    private static final int SYSTEM_MANDATORY_LABEL_NO_WRITE_UP = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_MANDATORY_LABEL_NO_WRITE_UP 1
+     * }
+     */
+    public static int SYSTEM_MANDATORY_LABEL_NO_WRITE_UP() {
+        return SYSTEM_MANDATORY_LABEL_NO_WRITE_UP;
+    }
+    private static final int SYSTEM_MANDATORY_LABEL_NO_READ_UP = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_MANDATORY_LABEL_NO_READ_UP 2
+     * }
+     */
+    public static int SYSTEM_MANDATORY_LABEL_NO_READ_UP() {
+        return SYSTEM_MANDATORY_LABEL_NO_READ_UP;
+    }
+    private static final int SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP 4
+     * }
+     */
+    public static int SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP() {
+        return SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP;
+    }
+    private static final int SYSTEM_PROCESS_TRUST_LABEL_VALID_MASK = (int)16777215L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_PROCESS_TRUST_LABEL_VALID_MASK 16777215
+     * }
+     */
+    public static int SYSTEM_PROCESS_TRUST_LABEL_VALID_MASK() {
+        return SYSTEM_PROCESS_TRUST_LABEL_VALID_MASK;
+    }
+    private static final int SYSTEM_ACCESS_FILTER_VALID_MASK = (int)16777215L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ACCESS_FILTER_VALID_MASK 16777215
+     * }
+     */
+    public static int SYSTEM_ACCESS_FILTER_VALID_MASK() {
+        return SYSTEM_ACCESS_FILTER_VALID_MASK;
+    }
+    private static final int ACE_OBJECT_TYPE_PRESENT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACE_OBJECT_TYPE_PRESENT 1
+     * }
+     */
+    public static int ACE_OBJECT_TYPE_PRESENT() {
+        return ACE_OBJECT_TYPE_PRESENT;
+    }
+    private static final int ACE_INHERITED_OBJECT_TYPE_PRESENT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACE_INHERITED_OBJECT_TYPE_PRESENT 2
+     * }
+     */
+    public static int ACE_INHERITED_OBJECT_TYPE_PRESENT() {
+        return ACE_INHERITED_OBJECT_TYPE_PRESENT;
+    }
+    private static final int ACCESS_OBJECT_GUID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_OBJECT_GUID 0
+     * }
+     */
+    public static int ACCESS_OBJECT_GUID() {
+        return ACCESS_OBJECT_GUID;
+    }
+    private static final int ACCESS_PROPERTY_SET_GUID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_PROPERTY_SET_GUID 1
+     * }
+     */
+    public static int ACCESS_PROPERTY_SET_GUID() {
+        return ACCESS_PROPERTY_SET_GUID;
+    }
+    private static final int ACCESS_PROPERTY_GUID = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_PROPERTY_GUID 2
+     * }
+     */
+    public static int ACCESS_PROPERTY_GUID() {
+        return ACCESS_PROPERTY_GUID;
+    }
+    private static final int ACCESS_MAX_LEVEL = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_LEVEL 4
+     * }
+     */
+    public static int ACCESS_MAX_LEVEL() {
+        return ACCESS_MAX_LEVEL;
+    }
+    private static final int AUDIT_ALLOW_NO_PRIVILEGE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define AUDIT_ALLOW_NO_PRIVILEGE 1
+     * }
+     */
+    public static int AUDIT_ALLOW_NO_PRIVILEGE() {
+        return AUDIT_ALLOW_NO_PRIVILEGE;
+    }
+    private static final int ACCESS_REASON_TYPE_MASK = (int)16711680L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_REASON_TYPE_MASK 16711680
+     * }
+     */
+    public static int ACCESS_REASON_TYPE_MASK() {
+        return ACCESS_REASON_TYPE_MASK;
+    }
+    private static final int ACCESS_REASON_DATA_MASK = (int)65535L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_REASON_DATA_MASK 65535
+     * }
+     */
+    public static int ACCESS_REASON_DATA_MASK() {
+        return ACCESS_REASON_DATA_MASK;
+    }
+    private static final int ACCESS_REASON_EXDATA_MASK = (int)2130706432L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_REASON_EXDATA_MASK 2130706432
+     * }
+     */
+    public static int ACCESS_REASON_EXDATA_MASK() {
+        return ACCESS_REASON_EXDATA_MASK;
+    }
+    private static final int SE_SECURITY_DESCRIPTOR_FLAG_NO_OWNER_ACE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SECURITY_DESCRIPTOR_FLAG_NO_OWNER_ACE 1
+     * }
+     */
+    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_OWNER_ACE() {
+        return SE_SECURITY_DESCRIPTOR_FLAG_NO_OWNER_ACE;
+    }
+    private static final int SE_SECURITY_DESCRIPTOR_FLAG_NO_LABEL_ACE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SECURITY_DESCRIPTOR_FLAG_NO_LABEL_ACE 2
+     * }
+     */
+    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_LABEL_ACE() {
+        return SE_SECURITY_DESCRIPTOR_FLAG_NO_LABEL_ACE;
+    }
+    private static final int SE_SECURITY_DESCRIPTOR_FLAG_NO_ACCESS_FILTER_ACE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SECURITY_DESCRIPTOR_FLAG_NO_ACCESS_FILTER_ACE 4
+     * }
+     */
+    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_ACCESS_FILTER_ACE() {
+        return SE_SECURITY_DESCRIPTOR_FLAG_NO_ACCESS_FILTER_ACE;
+    }
+    private static final int SE_SECURITY_DESCRIPTOR_VALID_FLAGS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SECURITY_DESCRIPTOR_VALID_FLAGS 7
+     * }
+     */
+    public static int SE_SECURITY_DESCRIPTOR_VALID_FLAGS() {
+        return SE_SECURITY_DESCRIPTOR_VALID_FLAGS;
+    }
+    private static final int SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING 8
+     * }
+     */
+    public static int SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING() {
+        return SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING;
+    }
+    private static final int SE_ACCESS_CHECK_VALID_FLAGS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_ACCESS_CHECK_VALID_FLAGS 8
+     * }
+     */
+    public static int SE_ACCESS_CHECK_VALID_FLAGS() {
+        return SE_ACCESS_CHECK_VALID_FLAGS;
+    }
+    private static final int TOKEN_MANDATORY_POLICY_OFF = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_MANDATORY_POLICY_OFF 0
+     * }
+     */
+    public static int TOKEN_MANDATORY_POLICY_OFF() {
+        return TOKEN_MANDATORY_POLICY_OFF;
+    }
+    private static final int TOKEN_MANDATORY_POLICY_NO_WRITE_UP = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_MANDATORY_POLICY_NO_WRITE_UP 1
+     * }
+     */
+    public static int TOKEN_MANDATORY_POLICY_NO_WRITE_UP() {
+        return TOKEN_MANDATORY_POLICY_NO_WRITE_UP;
+    }
+    private static final int TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN 2
+     * }
+     */
+    public static int TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN() {
+        return TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN;
+    }
+    private static final int TOKEN_SOURCE_LENGTH = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_SOURCE_LENGTH 8
+     * }
+     */
+    public static int TOKEN_SOURCE_LENGTH() {
+        return TOKEN_SOURCE_LENGTH;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_INVALID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_INVALID 0
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_INVALID() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_INVALID;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64 1
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64 2
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING 3
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN 4
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_SID = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_SID 5
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_SID() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_SID;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN 6
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING 16
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING() {
+        return CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE 1
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE() {
+        return CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE 2
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE() {
+        return CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY 4
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY() {
+        return CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT 8
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT() {
+        return CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_DISABLED = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_DISABLED 16
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_DISABLED() {
+        return CLAIM_SECURITY_ATTRIBUTE_DISABLED;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_MANDATORY = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_MANDATORY 32
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_MANDATORY() {
+        return CLAIM_SECURITY_ATTRIBUTE_MANDATORY;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1 1
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1() {
+        return CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1;
+    }
+    private static final int DISABLE_MAX_PRIVILEGE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DISABLE_MAX_PRIVILEGE 1
+     * }
+     */
+    public static int DISABLE_MAX_PRIVILEGE() {
+        return DISABLE_MAX_PRIVILEGE;
+    }
+    private static final int SANDBOX_INERT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SANDBOX_INERT 2
+     * }
+     */
+    public static int SANDBOX_INERT() {
+        return SANDBOX_INERT;
+    }
+    private static final int LUA_TOKEN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define LUA_TOKEN 4
+     * }
+     */
+    public static int LUA_TOKEN() {
+        return LUA_TOKEN;
+    }
+    private static final int WRITE_RESTRICTED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define WRITE_RESTRICTED 8
+     * }
+     */
+    public static int WRITE_RESTRICTED() {
+        return WRITE_RESTRICTED;
+    }
+    private static final int SE_SIGNING_LEVEL_UNCHECKED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_UNCHECKED 0
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_UNCHECKED() {
+        return SE_SIGNING_LEVEL_UNCHECKED;
+    }
+    private static final int SE_SIGNING_LEVEL_UNSIGNED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_UNSIGNED 1
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_UNSIGNED() {
+        return SE_SIGNING_LEVEL_UNSIGNED;
+    }
+    private static final int SE_SIGNING_LEVEL_ENTERPRISE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_ENTERPRISE 2
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_ENTERPRISE() {
+        return SE_SIGNING_LEVEL_ENTERPRISE;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_1 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_1 3
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_1() {
+        return SE_SIGNING_LEVEL_CUSTOM_1;
+    }
+    private static final int SE_SIGNING_LEVEL_AUTHENTICODE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_AUTHENTICODE 4
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_AUTHENTICODE() {
+        return SE_SIGNING_LEVEL_AUTHENTICODE;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_2 = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_2 5
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_2() {
+        return SE_SIGNING_LEVEL_CUSTOM_2;
+    }
+    private static final int SE_SIGNING_LEVEL_STORE = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_STORE 6
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_STORE() {
+        return SE_SIGNING_LEVEL_STORE;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_3 = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_3 7
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_3() {
+        return SE_SIGNING_LEVEL_CUSTOM_3;
+    }
+    private static final int SE_SIGNING_LEVEL_MICROSOFT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_MICROSOFT 8
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_MICROSOFT() {
+        return SE_SIGNING_LEVEL_MICROSOFT;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_4 = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_4 9
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_4() {
+        return SE_SIGNING_LEVEL_CUSTOM_4;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_5 = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_5 10
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_5() {
+        return SE_SIGNING_LEVEL_CUSTOM_5;
+    }
+    private static final int SE_SIGNING_LEVEL_DYNAMIC_CODEGEN = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_DYNAMIC_CODEGEN 11
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_DYNAMIC_CODEGEN() {
+        return SE_SIGNING_LEVEL_DYNAMIC_CODEGEN;
+    }
+    private static final int SE_SIGNING_LEVEL_WINDOWS = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_WINDOWS 12
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_WINDOWS() {
+        return SE_SIGNING_LEVEL_WINDOWS;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_7 = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_7 13
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_7() {
+        return SE_SIGNING_LEVEL_CUSTOM_7;
+    }
+    private static final int SE_SIGNING_LEVEL_WINDOWS_TCB = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_WINDOWS_TCB 14
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_WINDOWS_TCB() {
+        return SE_SIGNING_LEVEL_WINDOWS_TCB;
+    }
+    private static final int SE_SIGNING_LEVEL_CUSTOM_6 = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_CUSTOM_6 15
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_CUSTOM_6() {
+        return SE_SIGNING_LEVEL_CUSTOM_6;
+    }
+    private static final int SE_LEARNING_MODE_FLAG_PERMISSIVE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_LEARNING_MODE_FLAG_PERMISSIVE 1
+     * }
+     */
+    public static int SE_LEARNING_MODE_FLAG_PERMISSIVE() {
+        return SE_LEARNING_MODE_FLAG_PERMISSIVE;
+    }
+    private static final int FLS_MAXIMUM_AVAILABLE = (int)4080L;
+    /**
+     * {@snippet lang=c :
+     * #define FLS_MAXIMUM_AVAILABLE 4080
+     * }
+     */
+    public static int FLS_MAXIMUM_AVAILABLE() {
+        return FLS_MAXIMUM_AVAILABLE;
+    }
+    private static final int TLS_MINIMUM_AVAILABLE = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define TLS_MINIMUM_AVAILABLE 64
+     * }
+     */
+    public static int TLS_MINIMUM_AVAILABLE() {
+        return TLS_MINIMUM_AVAILABLE;
+    }
+    private static final int THREAD_DYNAMIC_CODE_ALLOW = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_DYNAMIC_CODE_ALLOW 1
+     * }
+     */
+    public static int THREAD_DYNAMIC_CODE_ALLOW() {
+        return THREAD_DYNAMIC_CODE_ALLOW;
+    }
+    private static final int THREAD_BASE_PRIORITY_LOWRT = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_BASE_PRIORITY_LOWRT 15
+     * }
+     */
+    public static int THREAD_BASE_PRIORITY_LOWRT() {
+        return THREAD_BASE_PRIORITY_LOWRT;
+    }
+    private static final int THREAD_BASE_PRIORITY_MAX = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_BASE_PRIORITY_MAX 2
+     * }
+     */
+    public static int THREAD_BASE_PRIORITY_MAX() {
+        return THREAD_BASE_PRIORITY_MAX;
+    }
+    private static final int MEMORY_PRIORITY_LOWEST = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_LOWEST 0
+     * }
+     */
+    public static int MEMORY_PRIORITY_LOWEST() {
+        return MEMORY_PRIORITY_LOWEST;
+    }
+    private static final int MEMORY_PRIORITY_VERY_LOW = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_VERY_LOW 1
+     * }
+     */
+    public static int MEMORY_PRIORITY_VERY_LOW() {
+        return MEMORY_PRIORITY_VERY_LOW;
+    }
+    private static final int MEMORY_PRIORITY_LOW = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_LOW 2
+     * }
+     */
+    public static int MEMORY_PRIORITY_LOW() {
+        return MEMORY_PRIORITY_LOW;
+    }
+    private static final int MEMORY_PRIORITY_MEDIUM = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_MEDIUM 3
+     * }
+     */
+    public static int MEMORY_PRIORITY_MEDIUM() {
+        return MEMORY_PRIORITY_MEDIUM;
+    }
+    private static final int MEMORY_PRIORITY_BELOW_NORMAL = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_BELOW_NORMAL 4
+     * }
+     */
+    public static int MEMORY_PRIORITY_BELOW_NORMAL() {
+        return MEMORY_PRIORITY_BELOW_NORMAL;
+    }
+    private static final int MEMORY_PRIORITY_NORMAL = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define MEMORY_PRIORITY_NORMAL 5
+     * }
+     */
+    public static int MEMORY_PRIORITY_NORMAL() {
+        return MEMORY_PRIORITY_NORMAL;
+    }
+    private static final int QUOTA_LIMITS_HARDWS_MIN_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define QUOTA_LIMITS_HARDWS_MIN_ENABLE 1
+     * }
+     */
+    public static int QUOTA_LIMITS_HARDWS_MIN_ENABLE() {
+        return QUOTA_LIMITS_HARDWS_MIN_ENABLE;
+    }
+    private static final int QUOTA_LIMITS_HARDWS_MIN_DISABLE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define QUOTA_LIMITS_HARDWS_MIN_DISABLE 2
+     * }
+     */
+    public static int QUOTA_LIMITS_HARDWS_MIN_DISABLE() {
+        return QUOTA_LIMITS_HARDWS_MIN_DISABLE;
+    }
+    private static final int QUOTA_LIMITS_HARDWS_MAX_ENABLE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define QUOTA_LIMITS_HARDWS_MAX_ENABLE 4
+     * }
+     */
+    public static int QUOTA_LIMITS_HARDWS_MAX_ENABLE() {
+        return QUOTA_LIMITS_HARDWS_MAX_ENABLE;
+    }
+    private static final int QUOTA_LIMITS_HARDWS_MAX_DISABLE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define QUOTA_LIMITS_HARDWS_MAX_DISABLE 8
+     * }
+     */
+    public static int QUOTA_LIMITS_HARDWS_MAX_DISABLE() {
+        return QUOTA_LIMITS_HARDWS_MAX_DISABLE;
+    }
+    private static final int QUOTA_LIMITS_USE_DEFAULT_LIMITS = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define QUOTA_LIMITS_USE_DEFAULT_LIMITS 16
+     * }
+     */
+    public static int QUOTA_LIMITS_USE_DEFAULT_LIMITS() {
+        return QUOTA_LIMITS_USE_DEFAULT_LIMITS;
+    }
+    private static final int MAX_HW_COUNTERS = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define MAX_HW_COUNTERS 16
+     * }
+     */
+    public static int MAX_HW_COUNTERS() {
+        return MAX_HW_COUNTERS;
+    }
+    private static final int THREAD_PROFILING_FLAG_DISPATCH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PROFILING_FLAG_DISPATCH 1
+     * }
+     */
+    public static int THREAD_PROFILING_FLAG_DISPATCH() {
+        return THREAD_PROFILING_FLAG_DISPATCH;
+    }
+    private static final int JOB_OBJECT_NET_RATE_CONTROL_MAX_DSCP_TAG = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_NET_RATE_CONTROL_MAX_DSCP_TAG 64
+     * }
+     */
+    public static int JOB_OBJECT_NET_RATE_CONTROL_MAX_DSCP_TAG() {
+        return JOB_OBJECT_NET_RATE_CONTROL_MAX_DSCP_TAG;
+    }
+    private static final int JOB_OBJECT_TERMINATE_AT_END_OF_JOB = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_TERMINATE_AT_END_OF_JOB 0
+     * }
+     */
+    public static int JOB_OBJECT_TERMINATE_AT_END_OF_JOB() {
+        return JOB_OBJECT_TERMINATE_AT_END_OF_JOB;
+    }
+    private static final int JOB_OBJECT_POST_AT_END_OF_JOB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_POST_AT_END_OF_JOB 1
+     * }
+     */
+    public static int JOB_OBJECT_POST_AT_END_OF_JOB() {
+        return JOB_OBJECT_POST_AT_END_OF_JOB;
+    }
+    private static final int JOB_OBJECT_MSG_END_OF_JOB_TIME = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_END_OF_JOB_TIME 1
+     * }
+     */
+    public static int JOB_OBJECT_MSG_END_OF_JOB_TIME() {
+        return JOB_OBJECT_MSG_END_OF_JOB_TIME;
+    }
+    private static final int JOB_OBJECT_MSG_END_OF_PROCESS_TIME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_END_OF_PROCESS_TIME 2
+     * }
+     */
+    public static int JOB_OBJECT_MSG_END_OF_PROCESS_TIME() {
+        return JOB_OBJECT_MSG_END_OF_PROCESS_TIME;
+    }
+    private static final int JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT 3
+     * }
+     */
+    public static int JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT() {
+        return JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT;
+    }
+    private static final int JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO 4
+     * }
+     */
+    public static int JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO() {
+        return JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO;
+    }
+    private static final int JOB_OBJECT_MSG_NEW_PROCESS = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_NEW_PROCESS 6
+     * }
+     */
+    public static int JOB_OBJECT_MSG_NEW_PROCESS() {
+        return JOB_OBJECT_MSG_NEW_PROCESS;
+    }
+    private static final int JOB_OBJECT_MSG_EXIT_PROCESS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_EXIT_PROCESS 7
+     * }
+     */
+    public static int JOB_OBJECT_MSG_EXIT_PROCESS() {
+        return JOB_OBJECT_MSG_EXIT_PROCESS;
+    }
+    private static final int JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS 8
+     * }
+     */
+    public static int JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS() {
+        return JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS;
+    }
+    private static final int JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT 9
+     * }
+     */
+    public static int JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT() {
+        return JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT;
+    }
+    private static final int JOB_OBJECT_MSG_JOB_MEMORY_LIMIT = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_JOB_MEMORY_LIMIT 10
+     * }
+     */
+    public static int JOB_OBJECT_MSG_JOB_MEMORY_LIMIT() {
+        return JOB_OBJECT_MSG_JOB_MEMORY_LIMIT;
+    }
+    private static final int JOB_OBJECT_MSG_NOTIFICATION_LIMIT = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_NOTIFICATION_LIMIT 11
+     * }
+     */
+    public static int JOB_OBJECT_MSG_NOTIFICATION_LIMIT() {
+        return JOB_OBJECT_MSG_NOTIFICATION_LIMIT;
+    }
+    private static final int JOB_OBJECT_MSG_JOB_CYCLE_TIME_LIMIT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_JOB_CYCLE_TIME_LIMIT 12
+     * }
+     */
+    public static int JOB_OBJECT_MSG_JOB_CYCLE_TIME_LIMIT() {
+        return JOB_OBJECT_MSG_JOB_CYCLE_TIME_LIMIT;
+    }
+    private static final int JOB_OBJECT_MSG_SILO_TERMINATED = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_SILO_TERMINATED 13
+     * }
+     */
+    public static int JOB_OBJECT_MSG_SILO_TERMINATED() {
+        return JOB_OBJECT_MSG_SILO_TERMINATED;
+    }
+    private static final int JOB_OBJECT_MSG_MINIMUM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_MINIMUM 1
+     * }
+     */
+    public static int JOB_OBJECT_MSG_MINIMUM() {
+        return JOB_OBJECT_MSG_MINIMUM;
+    }
+    private static final int JOB_OBJECT_MSG_MAXIMUM = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_MSG_MAXIMUM 13
+     * }
+     */
+    public static int JOB_OBJECT_MSG_MAXIMUM() {
+        return JOB_OBJECT_MSG_MAXIMUM;
+    }
+    private static final int JOB_OBJECT_LIMIT_WORKINGSET = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_WORKINGSET 1
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_WORKINGSET() {
+        return JOB_OBJECT_LIMIT_WORKINGSET;
+    }
+    private static final int JOB_OBJECT_LIMIT_PROCESS_TIME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_PROCESS_TIME 2
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_PROCESS_TIME() {
+        return JOB_OBJECT_LIMIT_PROCESS_TIME;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_TIME = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_TIME 4
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_TIME() {
+        return JOB_OBJECT_LIMIT_JOB_TIME;
+    }
+    private static final int JOB_OBJECT_LIMIT_ACTIVE_PROCESS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_ACTIVE_PROCESS 8
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_ACTIVE_PROCESS() {
+        return JOB_OBJECT_LIMIT_ACTIVE_PROCESS;
+    }
+    private static final int JOB_OBJECT_LIMIT_AFFINITY = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_AFFINITY 16
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_AFFINITY() {
+        return JOB_OBJECT_LIMIT_AFFINITY;
+    }
+    private static final int JOB_OBJECT_LIMIT_PRIORITY_CLASS = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_PRIORITY_CLASS 32
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_PRIORITY_CLASS() {
+        return JOB_OBJECT_LIMIT_PRIORITY_CLASS;
+    }
+    private static final int JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME 64
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME() {
+        return JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME;
+    }
+    private static final int JOB_OBJECT_LIMIT_SCHEDULING_CLASS = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_SCHEDULING_CLASS 128
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_SCHEDULING_CLASS() {
+        return JOB_OBJECT_LIMIT_SCHEDULING_CLASS;
+    }
+    private static final int JOB_OBJECT_LIMIT_PROCESS_MEMORY = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_PROCESS_MEMORY 256
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_PROCESS_MEMORY() {
+        return JOB_OBJECT_LIMIT_PROCESS_MEMORY;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_MEMORY = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_MEMORY 512
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_MEMORY() {
+        return JOB_OBJECT_LIMIT_JOB_MEMORY;
+    }
+    private static final int JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION 1024
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION() {
+        return JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
+    }
+    private static final int JOB_OBJECT_LIMIT_BREAKAWAY_OK = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_BREAKAWAY_OK 2048
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_BREAKAWAY_OK() {
+        return JOB_OBJECT_LIMIT_BREAKAWAY_OK;
+    }
+    private static final int JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK 4096
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK() {
+        return JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK;
+    }
+    private static final int JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE 8192
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE() {
+        return JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+    }
+    private static final int JOB_OBJECT_LIMIT_SUBSET_AFFINITY = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_SUBSET_AFFINITY 16384
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_SUBSET_AFFINITY() {
+        return JOB_OBJECT_LIMIT_SUBSET_AFFINITY;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_MEMORY_LOW = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_MEMORY_LOW 32768
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_MEMORY_LOW() {
+        return JOB_OBJECT_LIMIT_JOB_MEMORY_LOW;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_READ_BYTES = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_READ_BYTES 65536
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_READ_BYTES() {
+        return JOB_OBJECT_LIMIT_JOB_READ_BYTES;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_WRITE_BYTES = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_WRITE_BYTES 131072
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_WRITE_BYTES() {
+        return JOB_OBJECT_LIMIT_JOB_WRITE_BYTES;
+    }
+    private static final int JOB_OBJECT_LIMIT_RATE_CONTROL = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_RATE_CONTROL 262144
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_RATE_CONTROL() {
+        return JOB_OBJECT_LIMIT_RATE_CONTROL;
+    }
+    private static final int JOB_OBJECT_LIMIT_IO_RATE_CONTROL = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_IO_RATE_CONTROL 524288
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_IO_RATE_CONTROL() {
+        return JOB_OBJECT_LIMIT_IO_RATE_CONTROL;
+    }
+    private static final int JOB_OBJECT_LIMIT_NET_RATE_CONTROL = (int)1048576L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_NET_RATE_CONTROL 1048576
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_NET_RATE_CONTROL() {
+        return JOB_OBJECT_LIMIT_NET_RATE_CONTROL;
+    }
+    private static final int JOB_OBJECT_LIMIT_VALID_FLAGS = (int)524287L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_VALID_FLAGS 524287
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_VALID_FLAGS() {
+        return JOB_OBJECT_LIMIT_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS 255
+     * }
+     */
+    public static int JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS() {
+        return JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = (int)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS 32767
+     * }
+     */
+    public static int JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS() {
+        return JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_UILIMIT_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_NONE 0
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_NONE() {
+        return JOB_OBJECT_UILIMIT_NONE;
+    }
+    private static final int JOB_OBJECT_UILIMIT_HANDLES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_HANDLES 1
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_HANDLES() {
+        return JOB_OBJECT_UILIMIT_HANDLES;
+    }
+    private static final int JOB_OBJECT_UILIMIT_READCLIPBOARD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_READCLIPBOARD 2
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_READCLIPBOARD() {
+        return JOB_OBJECT_UILIMIT_READCLIPBOARD;
+    }
+    private static final int JOB_OBJECT_UILIMIT_WRITECLIPBOARD = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_WRITECLIPBOARD 4
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_WRITECLIPBOARD() {
+        return JOB_OBJECT_UILIMIT_WRITECLIPBOARD;
+    }
+    private static final int JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS 8
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS() {
+        return JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS;
+    }
+    private static final int JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_DISPLAYSETTINGS 16
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_DISPLAYSETTINGS() {
+        return JOB_OBJECT_UILIMIT_DISPLAYSETTINGS;
+    }
+    private static final int JOB_OBJECT_UILIMIT_GLOBALATOMS = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_GLOBALATOMS 32
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_GLOBALATOMS() {
+        return JOB_OBJECT_UILIMIT_GLOBALATOMS;
+    }
+    private static final int JOB_OBJECT_UILIMIT_DESKTOP = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_DESKTOP 64
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_DESKTOP() {
+        return JOB_OBJECT_UILIMIT_DESKTOP;
+    }
+    private static final int JOB_OBJECT_UILIMIT_EXITWINDOWS = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_EXITWINDOWS 128
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_EXITWINDOWS() {
+        return JOB_OBJECT_UILIMIT_EXITWINDOWS;
+    }
+    private static final int JOB_OBJECT_UILIMIT_ALL = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UILIMIT_ALL 255
+     * }
+     */
+    public static int JOB_OBJECT_UILIMIT_ALL() {
+        return JOB_OBJECT_UILIMIT_ALL;
+    }
+    private static final int JOB_OBJECT_UI_VALID_FLAGS = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_UI_VALID_FLAGS 255
+     * }
+     */
+    public static int JOB_OBJECT_UI_VALID_FLAGS() {
+        return JOB_OBJECT_UI_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_SECURITY_NO_ADMIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SECURITY_NO_ADMIN 1
+     * }
+     */
+    public static int JOB_OBJECT_SECURITY_NO_ADMIN() {
+        return JOB_OBJECT_SECURITY_NO_ADMIN;
+    }
+    private static final int JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SECURITY_RESTRICTED_TOKEN 2
+     * }
+     */
+    public static int JOB_OBJECT_SECURITY_RESTRICTED_TOKEN() {
+        return JOB_OBJECT_SECURITY_RESTRICTED_TOKEN;
+    }
+    private static final int JOB_OBJECT_SECURITY_ONLY_TOKEN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SECURITY_ONLY_TOKEN 4
+     * }
+     */
+    public static int JOB_OBJECT_SECURITY_ONLY_TOKEN() {
+        return JOB_OBJECT_SECURITY_ONLY_TOKEN;
+    }
+    private static final int JOB_OBJECT_SECURITY_FILTER_TOKENS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SECURITY_FILTER_TOKENS 8
+     * }
+     */
+    public static int JOB_OBJECT_SECURITY_FILTER_TOKENS() {
+        return JOB_OBJECT_SECURITY_FILTER_TOKENS;
+    }
+    private static final int JOB_OBJECT_SECURITY_VALID_FLAGS = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SECURITY_VALID_FLAGS 15
+     * }
+     */
+    public static int JOB_OBJECT_SECURITY_VALID_FLAGS() {
+        return JOB_OBJECT_SECURITY_VALID_FLAGS;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_ENABLE 1
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_ENABLE() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_ENABLE;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED 2
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP 4
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY 8
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE 16
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE;
+    }
+    private static final int JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS 31
+     * }
+     */
+    public static int JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS() {
+        return JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS;
+    }
+    private static final int EVENT_MODIFY_STATE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define EVENT_MODIFY_STATE 2
+     * }
+     */
+    public static int EVENT_MODIFY_STATE() {
+        return EVENT_MODIFY_STATE;
+    }
+    private static final int MUTANT_QUERY_STATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define MUTANT_QUERY_STATE 1
+     * }
+     */
+    public static int MUTANT_QUERY_STATE() {
+        return MUTANT_QUERY_STATE;
+    }
+    private static final int SEMAPHORE_MODIFY_STATE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SEMAPHORE_MODIFY_STATE 2
+     * }
+     */
+    public static int SEMAPHORE_MODIFY_STATE() {
+        return SEMAPHORE_MODIFY_STATE;
+    }
+    private static final int TIMER_QUERY_STATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TIMER_QUERY_STATE 1
+     * }
+     */
+    public static int TIMER_QUERY_STATE() {
+        return TIMER_QUERY_STATE;
+    }
+    private static final int TIMER_MODIFY_STATE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TIMER_MODIFY_STATE 2
+     * }
+     */
+    public static int TIMER_MODIFY_STATE() {
+        return TIMER_MODIFY_STATE;
+    }
+    private static final int TIME_ZONE_ID_UNKNOWN = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TIME_ZONE_ID_UNKNOWN 0
+     * }
+     */
+    public static int TIME_ZONE_ID_UNKNOWN() {
+        return TIME_ZONE_ID_UNKNOWN;
+    }
+    private static final int TIME_ZONE_ID_STANDARD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TIME_ZONE_ID_STANDARD 1
+     * }
+     */
+    public static int TIME_ZONE_ID_STANDARD() {
+        return TIME_ZONE_ID_STANDARD;
+    }
+    private static final int TIME_ZONE_ID_DAYLIGHT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TIME_ZONE_ID_DAYLIGHT 2
+     * }
+     */
+    public static int TIME_ZONE_ID_DAYLIGHT() {
+        return TIME_ZONE_ID_DAYLIGHT;
+    }
+    private static final int LTP_PC_SMT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define LTP_PC_SMT 1
+     * }
+     */
+    public static int LTP_PC_SMT() {
+        return LTP_PC_SMT;
+    }
+    private static final int CACHE_FULLY_ASSOCIATIVE = (int)255L;
+    /**
+     * {@snippet lang=c :
+     * #define CACHE_FULLY_ASSOCIATIVE 255
+     * }
+     */
+    public static int CACHE_FULLY_ASSOCIATIVE() {
+        return CACHE_FULLY_ASSOCIATIVE;
+    }
+    private static final int SYSTEM_CPU_SET_INFORMATION_PARKED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_CPU_SET_INFORMATION_PARKED 1
+     * }
+     */
+    public static int SYSTEM_CPU_SET_INFORMATION_PARKED() {
+        return SYSTEM_CPU_SET_INFORMATION_PARKED;
+    }
+    private static final int SYSTEM_CPU_SET_INFORMATION_ALLOCATED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_CPU_SET_INFORMATION_ALLOCATED 2
+     * }
+     */
+    public static int SYSTEM_CPU_SET_INFORMATION_ALLOCATED() {
+        return SYSTEM_CPU_SET_INFORMATION_ALLOCATED;
+    }
+    private static final int SYSTEM_CPU_SET_INFORMATION_ALLOCATED_TO_TARGET_PROCESS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_CPU_SET_INFORMATION_ALLOCATED_TO_TARGET_PROCESS 4
+     * }
+     */
+    public static int SYSTEM_CPU_SET_INFORMATION_ALLOCATED_TO_TARGET_PROCESS() {
+        return SYSTEM_CPU_SET_INFORMATION_ALLOCATED_TO_TARGET_PROCESS;
     }
 }
-
 

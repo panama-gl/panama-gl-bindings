@@ -1,6 +1,6 @@
-sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-19/bin/
+sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/jextract-22/
 
-JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-19/bin/jextract
+JEXTRACT=/Library/Java/JavaVirtualMachines/jextract-22/jextract
 
 #SDK_DIR=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
 #-F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
@@ -13,13 +13,12 @@ SDK_DIR=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Dev
 $JEXTRACT \
   -I $SDK_DIR/usr/include \
   -I /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/ \
-  -lOpenGL.framework \
   -lGLUT.framework \
   --target-package opengl.macos.arm \
   --output ../../panama-gl-bindings-macos/src/generated/java/ \
-  --source \
   --header-class-name glut_h \
  include_opengl.h
+ # -lOpenGL.framework \
 
 
 

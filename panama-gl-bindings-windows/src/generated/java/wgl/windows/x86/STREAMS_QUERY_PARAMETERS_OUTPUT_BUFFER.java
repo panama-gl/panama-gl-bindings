@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER {
+ *     DWORD OptimalWriteSize;
+ *     DWORD StreamGranularitySize;
+ *     DWORD StreamIdMin;
+ *     DWORD StreamIdMax;
+ * } STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER
+ * }
+ */
 public class STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER extends _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER {
 
+    STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagPOINTER_DEVICE_CURSOR_INFO {
+ *     UINT32 cursorId;
+ *     POINTER_DEVICE_CURSOR_TYPE cursor;
+ * } POINTER_DEVICE_CURSOR_INFO
+ * }
+ */
 public class POINTER_DEVICE_CURSOR_INFO extends tagPOINTER_DEVICE_CURSOR_INFO {
 
+    POINTER_DEVICE_CURSOR_INFO() {
+        // Should not be called directly
+    }
 }
-
 

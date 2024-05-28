@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSOLE_AUTHENTICATION_SERVICE {
+ *     DWORD dwAuthnSvc;
+ *     DWORD dwAuthzSvc;
+ *     OLECHAR *pPrincipalName;
+ *     HRESULT hr;
+ * }
+ * }
+ */
 public class tagSOLE_AUTHENTICATION_SERVICE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwAuthnSvc"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAuthzSvc"),
-        Constants$root.C_POINTER$LAYOUT.withName("pPrincipalName"),
-        Constants$root.C_LONG$LAYOUT.withName("hr"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagSOLE_AUTHENTICATION_SERVICE");
-    public static MemoryLayout $LAYOUT() {
-        return tagSOLE_AUTHENTICATION_SERVICE.$struct$LAYOUT;
+    tagSOLE_AUTHENTICATION_SERVICE() {
+        // Should not be called directly
     }
-    static final VarHandle dwAuthnSvc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAuthnSvc"));
-    public static VarHandle dwAuthnSvc$VH() {
-        return tagSOLE_AUTHENTICATION_SERVICE.dwAuthnSvc$VH;
-    }
-    public static int dwAuthnSvc$get(MemorySegment seg) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.dwAuthnSvc$VH.get(seg);
-    }
-    public static void dwAuthnSvc$set( MemorySegment seg, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.dwAuthnSvc$VH.set(seg, x);
-    }
-    public static int dwAuthnSvc$get(MemorySegment seg, long index) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.dwAuthnSvc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAuthnSvc$set(MemorySegment seg, long index, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.dwAuthnSvc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAuthzSvc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAuthzSvc"));
-    public static VarHandle dwAuthzSvc$VH() {
-        return tagSOLE_AUTHENTICATION_SERVICE.dwAuthzSvc$VH;
-    }
-    public static int dwAuthzSvc$get(MemorySegment seg) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.dwAuthzSvc$VH.get(seg);
-    }
-    public static void dwAuthzSvc$set( MemorySegment seg, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.dwAuthzSvc$VH.set(seg, x);
-    }
-    public static int dwAuthzSvc$get(MemorySegment seg, long index) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.dwAuthzSvc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAuthzSvc$set(MemorySegment seg, long index, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.dwAuthzSvc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pPrincipalName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPrincipalName"));
-    public static VarHandle pPrincipalName$VH() {
-        return tagSOLE_AUTHENTICATION_SERVICE.pPrincipalName$VH;
-    }
-    public static MemoryAddress pPrincipalName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSOLE_AUTHENTICATION_SERVICE.pPrincipalName$VH.get(seg);
-    }
-    public static void pPrincipalName$set( MemorySegment seg, MemoryAddress x) {
-        tagSOLE_AUTHENTICATION_SERVICE.pPrincipalName$VH.set(seg, x);
-    }
-    public static MemoryAddress pPrincipalName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSOLE_AUTHENTICATION_SERVICE.pPrincipalName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPrincipalName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSOLE_AUTHENTICATION_SERVICE.pPrincipalName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hr"));
-    public static VarHandle hr$VH() {
-        return tagSOLE_AUTHENTICATION_SERVICE.hr$VH;
-    }
-    public static int hr$get(MemorySegment seg) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.hr$VH.get(seg);
-    }
-    public static void hr$set( MemorySegment seg, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.hr$VH.set(seg, x);
-    }
-    public static int hr$get(MemorySegment seg, long index) {
-        return (int)tagSOLE_AUTHENTICATION_SERVICE.hr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hr$set(MemorySegment seg, long index, int x) {
-        tagSOLE_AUTHENTICATION_SERVICE.hr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwAuthnSvc"),
+        wgl_h.C_LONG.withName("dwAuthzSvc"),
+        wgl_h.C_POINTER.withName("pPrincipalName"),
+        wgl_h.C_LONG.withName("hr"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagSOLE_AUTHENTICATION_SERVICE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwAuthnSvc$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAuthnSvc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthnSvc
+     * }
+     */
+    public static final OfInt dwAuthnSvc$layout() {
+        return dwAuthnSvc$LAYOUT;
+    }
+
+    private static final long dwAuthnSvc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthnSvc
+     * }
+     */
+    public static final long dwAuthnSvc$offset() {
+        return dwAuthnSvc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthnSvc
+     * }
+     */
+    public static int dwAuthnSvc(MemorySegment struct) {
+        return struct.get(dwAuthnSvc$LAYOUT, dwAuthnSvc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthnSvc
+     * }
+     */
+    public static void dwAuthnSvc(MemorySegment struct, int fieldValue) {
+        struct.set(dwAuthnSvc$LAYOUT, dwAuthnSvc$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAuthzSvc$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAuthzSvc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthzSvc
+     * }
+     */
+    public static final OfInt dwAuthzSvc$layout() {
+        return dwAuthzSvc$LAYOUT;
+    }
+
+    private static final long dwAuthzSvc$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthzSvc
+     * }
+     */
+    public static final long dwAuthzSvc$offset() {
+        return dwAuthzSvc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthzSvc
+     * }
+     */
+    public static int dwAuthzSvc(MemorySegment struct) {
+        return struct.get(dwAuthzSvc$LAYOUT, dwAuthzSvc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAuthzSvc
+     * }
+     */
+    public static void dwAuthzSvc(MemorySegment struct, int fieldValue) {
+        struct.set(dwAuthzSvc$LAYOUT, dwAuthzSvc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pPrincipalName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPrincipalName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * OLECHAR *pPrincipalName
+     * }
+     */
+    public static final AddressLayout pPrincipalName$layout() {
+        return pPrincipalName$LAYOUT;
+    }
+
+    private static final long pPrincipalName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * OLECHAR *pPrincipalName
+     * }
+     */
+    public static final long pPrincipalName$offset() {
+        return pPrincipalName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * OLECHAR *pPrincipalName
+     * }
+     */
+    public static MemorySegment pPrincipalName(MemorySegment struct) {
+        return struct.get(pPrincipalName$LAYOUT, pPrincipalName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * OLECHAR *pPrincipalName
+     * }
+     */
+    public static void pPrincipalName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPrincipalName$LAYOUT, pPrincipalName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt hr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("hr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static final OfInt hr$layout() {
+        return hr$LAYOUT;
+    }
+
+    private static final long hr$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static final long hr$offset() {
+        return hr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static int hr(MemorySegment struct) {
+        return struct.get(hr$LAYOUT, hr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT hr
+     * }
+     */
+    public static void hr(MemorySegment struct, int fieldValue) {
+        struct.set(hr$LAYOUT, hr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,71 +2,255 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagTTPOLYCURVE {
+ *     WORD wType;
+ *     WORD cpfx;
+ *     POINTFX apfx[1];
+ * }
+ * }
+ */
 public class tagTTPOLYCURVE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("wType"),
-        Constants$root.C_SHORT$LAYOUT.withName("cpfx"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("fract"),
-                Constants$root.C_SHORT$LAYOUT.withName("value")
-            ).withName("x"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("fract"),
-                Constants$root.C_SHORT$LAYOUT.withName("value")
-            ).withName("y")
-        ).withName("tagPOINTFX")).withName("apfx")
-    ).withName("tagTTPOLYCURVE");
-    public static MemoryLayout $LAYOUT() {
-        return tagTTPOLYCURVE.$struct$LAYOUT;
+    tagTTPOLYCURVE() {
+        // Should not be called directly
     }
-    static final VarHandle wType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wType"));
-    public static VarHandle wType$VH() {
-        return tagTTPOLYCURVE.wType$VH;
-    }
-    public static short wType$get(MemorySegment seg) {
-        return (short)tagTTPOLYCURVE.wType$VH.get(seg);
-    }
-    public static void wType$set( MemorySegment seg, short x) {
-        tagTTPOLYCURVE.wType$VH.set(seg, x);
-    }
-    public static short wType$get(MemorySegment seg, long index) {
-        return (short)tagTTPOLYCURVE.wType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wType$set(MemorySegment seg, long index, short x) {
-        tagTTPOLYCURVE.wType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cpfx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cpfx"));
-    public static VarHandle cpfx$VH() {
-        return tagTTPOLYCURVE.cpfx$VH;
-    }
-    public static short cpfx$get(MemorySegment seg) {
-        return (short)tagTTPOLYCURVE.cpfx$VH.get(seg);
-    }
-    public static void cpfx$set( MemorySegment seg, short x) {
-        tagTTPOLYCURVE.cpfx$VH.set(seg, x);
-    }
-    public static short cpfx$get(MemorySegment seg, long index) {
-        return (short)tagTTPOLYCURVE.cpfx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cpfx$set(MemorySegment seg, long index, short x) {
-        tagTTPOLYCURVE.cpfx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment apfx$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("wType"),
+        freeglut_h.C_SHORT.withName("cpfx"),
+        MemoryLayout.sequenceLayout(1, tagPOINTFX.layout()).withName("apfx")
+    ).withName("tagTTPOLYCURVE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort wType$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wType
+     * }
+     */
+    public static final OfShort wType$layout() {
+        return wType$LAYOUT;
+    }
+
+    private static final long wType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wType
+     * }
+     */
+    public static final long wType$offset() {
+        return wType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wType
+     * }
+     */
+    public static short wType(MemorySegment struct) {
+        return struct.get(wType$LAYOUT, wType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wType
+     * }
+     */
+    public static void wType(MemorySegment struct, short fieldValue) {
+        struct.set(wType$LAYOUT, wType$OFFSET, fieldValue);
+    }
+
+    private static final OfShort cpfx$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cpfx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD cpfx
+     * }
+     */
+    public static final OfShort cpfx$layout() {
+        return cpfx$LAYOUT;
+    }
+
+    private static final long cpfx$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD cpfx
+     * }
+     */
+    public static final long cpfx$offset() {
+        return cpfx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD cpfx
+     * }
+     */
+    public static short cpfx(MemorySegment struct) {
+        return struct.get(cpfx$LAYOUT, cpfx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD cpfx
+     * }
+     */
+    public static void cpfx(MemorySegment struct, short fieldValue) {
+        struct.set(cpfx$LAYOUT, cpfx$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout apfx$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("apfx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static final SequenceLayout apfx$layout() {
+        return apfx$LAYOUT;
+    }
+
+    private static final long apfx$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static final long apfx$offset() {
+        return apfx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static MemorySegment apfx(MemorySegment struct) {
+        return struct.asSlice(apfx$OFFSET, apfx$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static void apfx(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, apfx$OFFSET, apfx$LAYOUT.byteSize());
+    }
+
+    private static long[] apfx$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static long[] apfx$dimensions() {
+        return apfx$DIMS;
+    }
+    private static final MethodHandle apfx$ELEM_HANDLE = apfx$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static MemorySegment apfx(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)apfx$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * POINTFX apfx[1]
+     * }
+     */
+    public static void apfx(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, apfx(struct, index0), 0L, tagPOINTFX.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

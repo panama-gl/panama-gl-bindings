@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ADDJOB_INFO_1A {
+ *     LPSTR Path;
+ *     DWORD JobId;
+ * }
+ * }
+ */
 public class _ADDJOB_INFO_1A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Path"),
-        Constants$root.C_LONG$LAYOUT.withName("JobId"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_ADDJOB_INFO_1A");
-    public static MemoryLayout $LAYOUT() {
-        return _ADDJOB_INFO_1A.$struct$LAYOUT;
+    _ADDJOB_INFO_1A() {
+        // Should not be called directly
     }
-    static final VarHandle Path$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Path"));
-    public static VarHandle Path$VH() {
-        return _ADDJOB_INFO_1A.Path$VH;
-    }
-    public static MemoryAddress Path$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_ADDJOB_INFO_1A.Path$VH.get(seg);
-    }
-    public static void Path$set( MemorySegment seg, MemoryAddress x) {
-        _ADDJOB_INFO_1A.Path$VH.set(seg, x);
-    }
-    public static MemoryAddress Path$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_ADDJOB_INFO_1A.Path$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Path$set(MemorySegment seg, long index, MemoryAddress x) {
-        _ADDJOB_INFO_1A.Path$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle JobId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("JobId"));
-    public static VarHandle JobId$VH() {
-        return _ADDJOB_INFO_1A.JobId$VH;
-    }
-    public static int JobId$get(MemorySegment seg) {
-        return (int)_ADDJOB_INFO_1A.JobId$VH.get(seg);
-    }
-    public static void JobId$set( MemorySegment seg, int x) {
-        _ADDJOB_INFO_1A.JobId$VH.set(seg, x);
-    }
-    public static int JobId$get(MemorySegment seg, long index) {
-        return (int)_ADDJOB_INFO_1A.JobId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void JobId$set(MemorySegment seg, long index, int x) {
-        _ADDJOB_INFO_1A.JobId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("Path"),
+        wgl_h.C_LONG.withName("JobId"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_ADDJOB_INFO_1A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Path$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Path"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR Path
+     * }
+     */
+    public static final AddressLayout Path$layout() {
+        return Path$LAYOUT;
+    }
+
+    private static final long Path$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR Path
+     * }
+     */
+    public static final long Path$offset() {
+        return Path$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR Path
+     * }
+     */
+    public static MemorySegment Path(MemorySegment struct) {
+        return struct.get(Path$LAYOUT, Path$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR Path
+     * }
+     */
+    public static void Path(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Path$LAYOUT, Path$OFFSET, fieldValue);
+    }
+
+    private static final OfInt JobId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("JobId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD JobId
+     * }
+     */
+    public static final OfInt JobId$layout() {
+        return JobId$LAYOUT;
+    }
+
+    private static final long JobId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD JobId
+     * }
+     */
+    public static final long JobId$offset() {
+        return JobId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD JobId
+     * }
+     */
+    public static int JobId(MemorySegment struct) {
+        return struct.get(JobId$LAYOUT, JobId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD JobId
+     * }
+     */
+    public static void JobId(MemorySegment struct, int fieldValue) {
+        struct.set(JobId$LAYOUT, JobId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

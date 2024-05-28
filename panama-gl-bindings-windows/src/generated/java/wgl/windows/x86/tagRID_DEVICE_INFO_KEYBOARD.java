@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRID_DEVICE_INFO_KEYBOARD {
+ *     DWORD dwType;
+ *     DWORD dwSubType;
+ *     DWORD dwKeyboardMode;
+ *     DWORD dwNumberOfFunctionKeys;
+ *     DWORD dwNumberOfIndicators;
+ *     DWORD dwNumberOfKeysTotal;
+ * }
+ * }
+ */
 public class tagRID_DEVICE_INFO_KEYBOARD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSubType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeyboardMode"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNumberOfFunctionKeys"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNumberOfIndicators"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNumberOfKeysTotal")
-    ).withName("tagRID_DEVICE_INFO_KEYBOARD");
-    public static MemoryLayout $LAYOUT() {
-        return tagRID_DEVICE_INFO_KEYBOARD.$struct$LAYOUT;
+    tagRID_DEVICE_INFO_KEYBOARD() {
+        // Should not be called directly
     }
-    static final VarHandle dwType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwType"));
-    public static VarHandle dwType$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwType$VH;
-    }
-    public static int dwType$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwType$VH.get(seg);
-    }
-    public static void dwType$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwType$VH.set(seg, x);
-    }
-    public static int dwType$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwType$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSubType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSubType"));
-    public static VarHandle dwSubType$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwSubType$VH;
-    }
-    public static int dwSubType$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwSubType$VH.get(seg);
-    }
-    public static void dwSubType$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwSubType$VH.set(seg, x);
-    }
-    public static int dwSubType$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwSubType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSubType$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwSubType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeyboardMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeyboardMode"));
-    public static VarHandle dwKeyboardMode$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwKeyboardMode$VH;
-    }
-    public static int dwKeyboardMode$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwKeyboardMode$VH.get(seg);
-    }
-    public static void dwKeyboardMode$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwKeyboardMode$VH.set(seg, x);
-    }
-    public static int dwKeyboardMode$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwKeyboardMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeyboardMode$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwKeyboardMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNumberOfFunctionKeys$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNumberOfFunctionKeys"));
-    public static VarHandle dwNumberOfFunctionKeys$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfFunctionKeys$VH;
-    }
-    public static int dwNumberOfFunctionKeys$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfFunctionKeys$VH.get(seg);
-    }
-    public static void dwNumberOfFunctionKeys$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfFunctionKeys$VH.set(seg, x);
-    }
-    public static int dwNumberOfFunctionKeys$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfFunctionKeys$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNumberOfFunctionKeys$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfFunctionKeys$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNumberOfIndicators$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNumberOfIndicators"));
-    public static VarHandle dwNumberOfIndicators$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfIndicators$VH;
-    }
-    public static int dwNumberOfIndicators$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfIndicators$VH.get(seg);
-    }
-    public static void dwNumberOfIndicators$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfIndicators$VH.set(seg, x);
-    }
-    public static int dwNumberOfIndicators$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfIndicators$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNumberOfIndicators$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfIndicators$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNumberOfKeysTotal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNumberOfKeysTotal"));
-    public static VarHandle dwNumberOfKeysTotal$VH() {
-        return tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfKeysTotal$VH;
-    }
-    public static int dwNumberOfKeysTotal$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfKeysTotal$VH.get(seg);
-    }
-    public static void dwNumberOfKeysTotal$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfKeysTotal$VH.set(seg, x);
-    }
-    public static int dwNumberOfKeysTotal$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfKeysTotal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNumberOfKeysTotal$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO_KEYBOARD.dwNumberOfKeysTotal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwType"),
+        wgl_h.C_LONG.withName("dwSubType"),
+        wgl_h.C_LONG.withName("dwKeyboardMode"),
+        wgl_h.C_LONG.withName("dwNumberOfFunctionKeys"),
+        wgl_h.C_LONG.withName("dwNumberOfIndicators"),
+        wgl_h.C_LONG.withName("dwNumberOfKeysTotal")
+    ).withName("tagRID_DEVICE_INFO_KEYBOARD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static final OfInt dwType$layout() {
+        return dwType$LAYOUT;
+    }
+
+    private static final long dwType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static final long dwType$offset() {
+        return dwType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static int dwType(MemorySegment struct) {
+        return struct.get(dwType$LAYOUT, dwType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static void dwType(MemorySegment struct, int fieldValue) {
+        struct.set(dwType$LAYOUT, dwType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSubType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSubType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSubType
+     * }
+     */
+    public static final OfInt dwSubType$layout() {
+        return dwSubType$LAYOUT;
+    }
+
+    private static final long dwSubType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSubType
+     * }
+     */
+    public static final long dwSubType$offset() {
+        return dwSubType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSubType
+     * }
+     */
+    public static int dwSubType(MemorySegment struct) {
+        return struct.get(dwSubType$LAYOUT, dwSubType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSubType
+     * }
+     */
+    public static void dwSubType(MemorySegment struct, int fieldValue) {
+        struct.set(dwSubType$LAYOUT, dwSubType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeyboardMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeyboardMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyboardMode
+     * }
+     */
+    public static final OfInt dwKeyboardMode$layout() {
+        return dwKeyboardMode$LAYOUT;
+    }
+
+    private static final long dwKeyboardMode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyboardMode
+     * }
+     */
+    public static final long dwKeyboardMode$offset() {
+        return dwKeyboardMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyboardMode
+     * }
+     */
+    public static int dwKeyboardMode(MemorySegment struct) {
+        return struct.get(dwKeyboardMode$LAYOUT, dwKeyboardMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyboardMode
+     * }
+     */
+    public static void dwKeyboardMode(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeyboardMode$LAYOUT, dwKeyboardMode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNumberOfFunctionKeys$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNumberOfFunctionKeys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfFunctionKeys
+     * }
+     */
+    public static final OfInt dwNumberOfFunctionKeys$layout() {
+        return dwNumberOfFunctionKeys$LAYOUT;
+    }
+
+    private static final long dwNumberOfFunctionKeys$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfFunctionKeys
+     * }
+     */
+    public static final long dwNumberOfFunctionKeys$offset() {
+        return dwNumberOfFunctionKeys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfFunctionKeys
+     * }
+     */
+    public static int dwNumberOfFunctionKeys(MemorySegment struct) {
+        return struct.get(dwNumberOfFunctionKeys$LAYOUT, dwNumberOfFunctionKeys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfFunctionKeys
+     * }
+     */
+    public static void dwNumberOfFunctionKeys(MemorySegment struct, int fieldValue) {
+        struct.set(dwNumberOfFunctionKeys$LAYOUT, dwNumberOfFunctionKeys$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNumberOfIndicators$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNumberOfIndicators"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfIndicators
+     * }
+     */
+    public static final OfInt dwNumberOfIndicators$layout() {
+        return dwNumberOfIndicators$LAYOUT;
+    }
+
+    private static final long dwNumberOfIndicators$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfIndicators
+     * }
+     */
+    public static final long dwNumberOfIndicators$offset() {
+        return dwNumberOfIndicators$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfIndicators
+     * }
+     */
+    public static int dwNumberOfIndicators(MemorySegment struct) {
+        return struct.get(dwNumberOfIndicators$LAYOUT, dwNumberOfIndicators$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfIndicators
+     * }
+     */
+    public static void dwNumberOfIndicators(MemorySegment struct, int fieldValue) {
+        struct.set(dwNumberOfIndicators$LAYOUT, dwNumberOfIndicators$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNumberOfKeysTotal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNumberOfKeysTotal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfKeysTotal
+     * }
+     */
+    public static final OfInt dwNumberOfKeysTotal$layout() {
+        return dwNumberOfKeysTotal$LAYOUT;
+    }
+
+    private static final long dwNumberOfKeysTotal$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfKeysTotal
+     * }
+     */
+    public static final long dwNumberOfKeysTotal$offset() {
+        return dwNumberOfKeysTotal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfKeysTotal
+     * }
+     */
+    public static int dwNumberOfKeysTotal(MemorySegment struct) {
+        return struct.get(dwNumberOfKeysTotal$LAYOUT, dwNumberOfKeysTotal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfKeysTotal
+     * }
+     */
+    public static void dwNumberOfKeysTotal(MemorySegment struct, int fieldValue) {
+        struct.set(dwNumberOfKeysTotal$LAYOUT, dwNumberOfKeysTotal$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

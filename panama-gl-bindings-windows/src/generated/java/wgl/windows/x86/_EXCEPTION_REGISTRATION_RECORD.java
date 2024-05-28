@@ -2,61 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EXCEPTION_REGISTRATION_RECORD {
+ *     struct _EXCEPTION_REGISTRATION_RECORD *Next;
+ *     PEXCEPTION_ROUTINE Handler;
+ * }
+ * }
+ */
 public class _EXCEPTION_REGISTRATION_RECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Next"),
-        Constants$root.C_POINTER$LAYOUT.withName("Handler")
-    ).withName("_EXCEPTION_REGISTRATION_RECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _EXCEPTION_REGISTRATION_RECORD.$struct$LAYOUT;
+    _EXCEPTION_REGISTRATION_RECORD() {
+        // Should not be called directly
     }
-    static final VarHandle Next$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Next"));
-    public static VarHandle Next$VH() {
-        return _EXCEPTION_REGISTRATION_RECORD.Next$VH;
-    }
-    public static MemoryAddress Next$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_EXCEPTION_REGISTRATION_RECORD.Next$VH.get(seg);
-    }
-    public static void Next$set( MemorySegment seg, MemoryAddress x) {
-        _EXCEPTION_REGISTRATION_RECORD.Next$VH.set(seg, x);
-    }
-    public static MemoryAddress Next$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_EXCEPTION_REGISTRATION_RECORD.Next$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Next$set(MemorySegment seg, long index, MemoryAddress x) {
-        _EXCEPTION_REGISTRATION_RECORD.Next$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Handler$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Handler"));
-    public static VarHandle Handler$VH() {
-        return _EXCEPTION_REGISTRATION_RECORD.Handler$VH;
-    }
-    public static MemoryAddress Handler$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_EXCEPTION_REGISTRATION_RECORD.Handler$VH.get(seg);
-    }
-    public static void Handler$set( MemorySegment seg, MemoryAddress x) {
-        _EXCEPTION_REGISTRATION_RECORD.Handler$VH.set(seg, x);
-    }
-    public static MemoryAddress Handler$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_EXCEPTION_REGISTRATION_RECORD.Handler$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Handler$set(MemorySegment seg, long index, MemoryAddress x) {
-        _EXCEPTION_REGISTRATION_RECORD.Handler$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PEXCEPTION_ROUTINE Handler (MemorySegment segment, MemorySession session) {
-        return PEXCEPTION_ROUTINE.ofAddress(Handler$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("Next"),
+        wgl_h.C_POINTER.withName("Handler")
+    ).withName("_EXCEPTION_REGISTRATION_RECORD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Next$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Next"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct _EXCEPTION_REGISTRATION_RECORD *Next
+     * }
+     */
+    public static final AddressLayout Next$layout() {
+        return Next$LAYOUT;
+    }
+
+    private static final long Next$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct _EXCEPTION_REGISTRATION_RECORD *Next
+     * }
+     */
+    public static final long Next$offset() {
+        return Next$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct _EXCEPTION_REGISTRATION_RECORD *Next
+     * }
+     */
+    public static MemorySegment Next(MemorySegment struct) {
+        return struct.get(Next$LAYOUT, Next$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct _EXCEPTION_REGISTRATION_RECORD *Next
+     * }
+     */
+    public static void Next(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Next$LAYOUT, Next$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Handler$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Handler"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE Handler
+     * }
+     */
+    public static final AddressLayout Handler$layout() {
+        return Handler$LAYOUT;
+    }
+
+    private static final long Handler$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE Handler
+     * }
+     */
+    public static final long Handler$offset() {
+        return Handler$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE Handler
+     * }
+     */
+    public static MemorySegment Handler(MemorySegment struct) {
+        return struct.get(Handler$LAYOUT, Handler$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE Handler
+     * }
+     */
+    public static void Handler(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Handler$LAYOUT, Handler$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

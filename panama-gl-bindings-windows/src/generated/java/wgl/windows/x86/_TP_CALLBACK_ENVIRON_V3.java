@@ -2,260 +2,827 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TP_CALLBACK_ENVIRON_V3 {
+ *     TP_VERSION Version;
+ *     PTP_POOL Pool;
+ *     PTP_CLEANUP_GROUP CleanupGroup;
+ *     PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback;
+ *     PVOID RaceDll;
+ *     struct _ACTIVATION_CONTEXT *ActivationContext;
+ *     PTP_SIMPLE_CALLBACK FinalizationCallback;
+ *     union {
+ *         DWORD Flags;
+ *         struct {
+ *             DWORD LongFunction : 1;
+ *             DWORD Persistent : 1;
+ *             DWORD Private : 30;
+ *         } s;
+ *     } u;
+ *     TP_CALLBACK_PRIORITY CallbackPriority;
+ *     DWORD Size;
+ * }
+ * }
+ */
 public class _TP_CALLBACK_ENVIRON_V3 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Pool"),
-        Constants$root.C_POINTER$LAYOUT.withName("CleanupGroup"),
-        Constants$root.C_POINTER$LAYOUT.withName("CleanupGroupCancelCallback"),
-        Constants$root.C_POINTER$LAYOUT.withName("RaceDll"),
-        Constants$root.C_POINTER$LAYOUT.withName("ActivationContext"),
-        Constants$root.C_POINTER$LAYOUT.withName("FinalizationCallback"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("LongFunction"),
-                    MemoryLayout.paddingLayout(1).withName("Persistent"),
-                    MemoryLayout.paddingLayout(30).withName("Private")
-                )
-            ).withName("s")
-        ).withName("u"),
-        Constants$root.C_LONG$LAYOUT.withName("CallbackPriority"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.paddingLayout(32)
+    _TP_CALLBACK_ENVIRON_V3() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("Pool"),
+        wgl_h.C_POINTER.withName("CleanupGroup"),
+        wgl_h.C_POINTER.withName("CleanupGroupCancelCallback"),
+        wgl_h.C_POINTER.withName("RaceDll"),
+        wgl_h.C_POINTER.withName("ActivationContext"),
+        wgl_h.C_POINTER.withName("FinalizationCallback"),
+        _TP_CALLBACK_ENVIRON_V3.u.layout().withName("u"),
+        wgl_h.C_INT.withName("CallbackPriority"),
+        wgl_h.C_LONG.withName("Size"),
+        MemoryLayout.paddingLayout(4)
     ).withName("_TP_CALLBACK_ENVIRON_V3");
-    public static MemoryLayout $LAYOUT() {
-        return _TP_CALLBACK_ENVIRON_V3.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.Version$VH;
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TP_VERSION Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
     }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.Version$VH.get(seg);
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TP_VERSION Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
     }
-    public static void Version$set( MemorySegment seg, int x) {
-        _TP_CALLBACK_ENVIRON_V3.Version$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TP_VERSION Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
     }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.Version$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TP_VERSION Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
     }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _TP_CALLBACK_ENVIRON_V3.Version$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout Pool$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Pool"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTP_POOL Pool
+     * }
+     */
+    public static final AddressLayout Pool$layout() {
+        return Pool$LAYOUT;
     }
-    static final VarHandle Pool$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Pool"));
-    public static VarHandle Pool$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.Pool$VH;
+
+    private static final long Pool$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTP_POOL Pool
+     * }
+     */
+    public static final long Pool$offset() {
+        return Pool$OFFSET;
     }
-    public static MemoryAddress Pool$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.Pool$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTP_POOL Pool
+     * }
+     */
+    public static MemorySegment Pool(MemorySegment struct) {
+        return struct.get(Pool$LAYOUT, Pool$OFFSET);
     }
-    public static void Pool$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.Pool$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTP_POOL Pool
+     * }
+     */
+    public static void Pool(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Pool$LAYOUT, Pool$OFFSET, fieldValue);
     }
-    public static MemoryAddress Pool$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.Pool$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout CleanupGroup$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CleanupGroup"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP CleanupGroup
+     * }
+     */
+    public static final AddressLayout CleanupGroup$layout() {
+        return CleanupGroup$LAYOUT;
     }
-    public static void Pool$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.Pool$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long CleanupGroup$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP CleanupGroup
+     * }
+     */
+    public static final long CleanupGroup$offset() {
+        return CleanupGroup$OFFSET;
     }
-    static final VarHandle CleanupGroup$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CleanupGroup"));
-    public static VarHandle CleanupGroup$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.CleanupGroup$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP CleanupGroup
+     * }
+     */
+    public static MemorySegment CleanupGroup(MemorySegment struct) {
+        return struct.get(CleanupGroup$LAYOUT, CleanupGroup$OFFSET);
     }
-    public static MemoryAddress CleanupGroup$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.CleanupGroup$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP CleanupGroup
+     * }
+     */
+    public static void CleanupGroup(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CleanupGroup$LAYOUT, CleanupGroup$OFFSET, fieldValue);
     }
-    public static void CleanupGroup$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.CleanupGroup$VH.set(seg, x);
+
+    private static final AddressLayout CleanupGroupCancelCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CleanupGroupCancelCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback
+     * }
+     */
+    public static final AddressLayout CleanupGroupCancelCallback$layout() {
+        return CleanupGroupCancelCallback$LAYOUT;
     }
-    public static MemoryAddress CleanupGroup$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.CleanupGroup$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long CleanupGroupCancelCallback$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback
+     * }
+     */
+    public static final long CleanupGroupCancelCallback$offset() {
+        return CleanupGroupCancelCallback$OFFSET;
     }
-    public static void CleanupGroup$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.CleanupGroup$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback
+     * }
+     */
+    public static MemorySegment CleanupGroupCancelCallback(MemorySegment struct) {
+        return struct.get(CleanupGroupCancelCallback$LAYOUT, CleanupGroupCancelCallback$OFFSET);
     }
-    static final VarHandle CleanupGroupCancelCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CleanupGroupCancelCallback"));
-    public static VarHandle CleanupGroupCancelCallback$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.CleanupGroupCancelCallback$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback
+     * }
+     */
+    public static void CleanupGroupCancelCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CleanupGroupCancelCallback$LAYOUT, CleanupGroupCancelCallback$OFFSET, fieldValue);
     }
-    public static MemoryAddress CleanupGroupCancelCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.CleanupGroupCancelCallback$VH.get(seg);
+
+    private static final AddressLayout RaceDll$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RaceDll"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID RaceDll
+     * }
+     */
+    public static final AddressLayout RaceDll$layout() {
+        return RaceDll$LAYOUT;
     }
-    public static void CleanupGroupCancelCallback$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.CleanupGroupCancelCallback$VH.set(seg, x);
+
+    private static final long RaceDll$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID RaceDll
+     * }
+     */
+    public static final long RaceDll$offset() {
+        return RaceDll$OFFSET;
     }
-    public static MemoryAddress CleanupGroupCancelCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.CleanupGroupCancelCallback$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID RaceDll
+     * }
+     */
+    public static MemorySegment RaceDll(MemorySegment struct) {
+        return struct.get(RaceDll$LAYOUT, RaceDll$OFFSET);
     }
-    public static void CleanupGroupCancelCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.CleanupGroupCancelCallback$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID RaceDll
+     * }
+     */
+    public static void RaceDll(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RaceDll$LAYOUT, RaceDll$OFFSET, fieldValue);
     }
-    public static PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback (MemorySegment segment, MemorySession session) {
-        return PTP_CLEANUP_GROUP_CANCEL_CALLBACK.ofAddress(CleanupGroupCancelCallback$get(segment), session);
+
+    private static final AddressLayout ActivationContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ActivationContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct _ACTIVATION_CONTEXT *ActivationContext
+     * }
+     */
+    public static final AddressLayout ActivationContext$layout() {
+        return ActivationContext$LAYOUT;
     }
-    static final VarHandle RaceDll$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RaceDll"));
-    public static VarHandle RaceDll$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.RaceDll$VH;
+
+    private static final long ActivationContext$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct _ACTIVATION_CONTEXT *ActivationContext
+     * }
+     */
+    public static final long ActivationContext$offset() {
+        return ActivationContext$OFFSET;
     }
-    public static MemoryAddress RaceDll$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.RaceDll$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct _ACTIVATION_CONTEXT *ActivationContext
+     * }
+     */
+    public static MemorySegment ActivationContext(MemorySegment struct) {
+        return struct.get(ActivationContext$LAYOUT, ActivationContext$OFFSET);
     }
-    public static void RaceDll$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.RaceDll$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct _ACTIVATION_CONTEXT *ActivationContext
+     * }
+     */
+    public static void ActivationContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ActivationContext$LAYOUT, ActivationContext$OFFSET, fieldValue);
     }
-    public static MemoryAddress RaceDll$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.RaceDll$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout FinalizationCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FinalizationCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTP_SIMPLE_CALLBACK FinalizationCallback
+     * }
+     */
+    public static final AddressLayout FinalizationCallback$layout() {
+        return FinalizationCallback$LAYOUT;
     }
-    public static void RaceDll$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.RaceDll$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long FinalizationCallback$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTP_SIMPLE_CALLBACK FinalizationCallback
+     * }
+     */
+    public static final long FinalizationCallback$offset() {
+        return FinalizationCallback$OFFSET;
     }
-    static final VarHandle ActivationContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActivationContext"));
-    public static VarHandle ActivationContext$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.ActivationContext$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTP_SIMPLE_CALLBACK FinalizationCallback
+     * }
+     */
+    public static MemorySegment FinalizationCallback(MemorySegment struct) {
+        return struct.get(FinalizationCallback$LAYOUT, FinalizationCallback$OFFSET);
     }
-    public static MemoryAddress ActivationContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.ActivationContext$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTP_SIMPLE_CALLBACK FinalizationCallback
+     * }
+     */
+    public static void FinalizationCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FinalizationCallback$LAYOUT, FinalizationCallback$OFFSET, fieldValue);
     }
-    public static void ActivationContext$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.ActivationContext$VH.set(seg, x);
-    }
-    public static MemoryAddress ActivationContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.ActivationContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActivationContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.ActivationContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FinalizationCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FinalizationCallback"));
-    public static VarHandle FinalizationCallback$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.FinalizationCallback$VH;
-    }
-    public static MemoryAddress FinalizationCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.FinalizationCallback$VH.get(seg);
-    }
-    public static void FinalizationCallback$set( MemorySegment seg, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.FinalizationCallback$VH.set(seg, x);
-    }
-    public static MemoryAddress FinalizationCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TP_CALLBACK_ENVIRON_V3.FinalizationCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FinalizationCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TP_CALLBACK_ENVIRON_V3.FinalizationCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PTP_SIMPLE_CALLBACK FinalizationCallback (MemorySegment segment, MemorySession session) {
-        return PTP_SIMPLE_CALLBACK.ofAddress(FinalizationCallback$get(segment), session);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     DWORD Flags;
+     *     struct {
+     *         DWORD LongFunction : 1;
+     *         DWORD Persistent : 1;
+     *         DWORD Private : 30;
+     *     } s;
+     * }
+     * }
+     */
     public static class u {
 
-        static final  GroupLayout u$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("LongFunction"),
-                    MemoryLayout.paddingLayout(1).withName("Persistent"),
-                    MemoryLayout.paddingLayout(30).withName("Private")
-                )
-            ).withName("s")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return u.u$union$LAYOUT;
+        u() {
+            // Should not be called directly
         }
-        static final VarHandle Flags$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-        public static VarHandle Flags$VH() {
-            return u.Flags$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("Flags"),
+            _TP_CALLBACK_ENVIRON_V3.u.s.layout().withName("s")
+        ).withName("$anon$22686:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int Flags$get(MemorySegment seg) {
-            return (int)u.Flags$VH.get(seg);
+
+        private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Flags
+         * }
+         */
+        public static final OfInt Flags$layout() {
+            return Flags$LAYOUT;
         }
-        public static void Flags$set( MemorySegment seg, int x) {
-            u.Flags$VH.set(seg, x);
+
+        private static final long Flags$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Flags
+         * }
+         */
+        public static final long Flags$offset() {
+            return Flags$OFFSET;
         }
-        public static int Flags$get(MemorySegment seg, long index) {
-            return (int)u.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Flags
+         * }
+         */
+        public static int Flags(MemorySegment union) {
+            return union.get(Flags$LAYOUT, Flags$OFFSET);
         }
-        public static void Flags$set(MemorySegment seg, long index, int x) {
-            u.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Flags
+         * }
+         */
+        public static void Flags(MemorySegment union, int fieldValue) {
+            union.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
         }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD LongFunction : 1;
+         *     DWORD Persistent : 1;
+         *     DWORD Private : 30;
+         * }
+         * }
+         */
         public static class s {
 
-            static final  GroupLayout u$s$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("LongFunction"),
-                    MemoryLayout.paddingLayout(1).withName("Persistent"),
-                    MemoryLayout.paddingLayout(30).withName("Private")
-                )
-            );
-            public static MemoryLayout $LAYOUT() {
-                return s.u$s$struct$LAYOUT;
+            s() {
+                // Should not be called directly
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$22688:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment s$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout s$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("s"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD LongFunction : 1;
+         *     DWORD Persistent : 1;
+         *     DWORD Private : 30;
+         * } s
+         * }
+         */
+        public static final GroupLayout s$layout() {
+            return s$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long s$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD LongFunction : 1;
+         *     DWORD Persistent : 1;
+         *     DWORD Private : 30;
+         * } s
+         * }
+         */
+        public static final long s$offset() {
+            return s$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD LongFunction : 1;
+         *     DWORD Persistent : 1;
+         *     DWORD Private : 30;
+         * } s
+         * }
+         */
+        public static MemorySegment s(MemorySegment union) {
+            return union.asSlice(s$OFFSET, s$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD LongFunction : 1;
+         *     DWORD Persistent : 1;
+         *     DWORD Private : 30;
+         * } s
+         * }
+         */
+        public static void s(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, s$OFFSET, s$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(56, 4);
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD Flags;
+     *     struct {
+     *         DWORD LongFunction : 1;
+     *         DWORD Persistent : 1;
+     *         DWORD Private : 30;
+     *     } s;
+     * } u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
     }
-    static final VarHandle CallbackPriority$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CallbackPriority"));
-    public static VarHandle CallbackPriority$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.CallbackPriority$VH;
+
+    private static final long u$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD Flags;
+     *     struct {
+     *         DWORD LongFunction : 1;
+     *         DWORD Persistent : 1;
+     *         DWORD Private : 30;
+     *     } s;
+     * } u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
     }
-    public static int CallbackPriority$get(MemorySegment seg) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.CallbackPriority$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD Flags;
+     *     struct {
+     *         DWORD LongFunction : 1;
+     *         DWORD Persistent : 1;
+     *         DWORD Private : 30;
+     *     } s;
+     * } u
+     * }
+     */
+    public static MemorySegment u(MemorySegment struct) {
+        return struct.asSlice(u$OFFSET, u$LAYOUT.byteSize());
     }
-    public static void CallbackPriority$set( MemorySegment seg, int x) {
-        _TP_CALLBACK_ENVIRON_V3.CallbackPriority$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD Flags;
+     *     struct {
+     *         DWORD LongFunction : 1;
+     *         DWORD Persistent : 1;
+     *         DWORD Private : 30;
+     *     } s;
+     * } u
+     * }
+     */
+    public static void u(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, u$OFFSET, u$LAYOUT.byteSize());
     }
-    public static int CallbackPriority$get(MemorySegment seg, long index) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.CallbackPriority$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt CallbackPriority$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CallbackPriority"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TP_CALLBACK_PRIORITY CallbackPriority
+     * }
+     */
+    public static final OfInt CallbackPriority$layout() {
+        return CallbackPriority$LAYOUT;
     }
-    public static void CallbackPriority$set(MemorySegment seg, long index, int x) {
-        _TP_CALLBACK_ENVIRON_V3.CallbackPriority$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long CallbackPriority$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TP_CALLBACK_PRIORITY CallbackPriority
+     * }
+     */
+    public static final long CallbackPriority$offset() {
+        return CallbackPriority$OFFSET;
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _TP_CALLBACK_ENVIRON_V3.Size$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TP_CALLBACK_PRIORITY CallbackPriority
+     * }
+     */
+    public static int CallbackPriority(MemorySegment struct) {
+        return struct.get(CallbackPriority$LAYOUT, CallbackPriority$OFFSET);
     }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.Size$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TP_CALLBACK_PRIORITY CallbackPriority
+     * }
+     */
+    public static void CallbackPriority(MemorySegment struct, int fieldValue) {
+        struct.set(CallbackPriority$LAYOUT, CallbackPriority$OFFSET, fieldValue);
     }
-    public static void Size$set( MemorySegment seg, int x) {
-        _TP_CALLBACK_ENVIRON_V3.Size$VH.set(seg, x);
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
     }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_TP_CALLBACK_ENVIRON_V3.Size$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long Size$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
     }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _TP_CALLBACK_ENVIRON_V3.Size$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

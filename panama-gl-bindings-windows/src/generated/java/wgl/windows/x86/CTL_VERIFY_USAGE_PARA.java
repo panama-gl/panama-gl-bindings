@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CTL_VERIFY_USAGE_PARA {
+ *     DWORD cbSize;
+ *     CRYPT_DATA_BLOB ListIdentifier;
+ *     DWORD cCtlStore;
+ *     HCERTSTORE *rghCtlStore;
+ *     DWORD cSignerStore;
+ *     HCERTSTORE *rghSignerStore;
+ * } CTL_VERIFY_USAGE_PARA
+ * }
+ */
 public class CTL_VERIFY_USAGE_PARA extends _CTL_VERIFY_USAGE_PARA {
 
+    CTL_VERIFY_USAGE_PARA() {
+        // Should not be called directly
+    }
 }
-
 

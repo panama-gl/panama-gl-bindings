@@ -2,110 +2,311 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _HEAP_SUMMARY {
+ *     DWORD cb;
+ *     SIZE_T cbAllocated;
+ *     SIZE_T cbCommitted;
+ *     SIZE_T cbReserved;
+ *     SIZE_T cbMaxReserve;
+ * }
+ * }
+ */
 public class _HEAP_SUMMARY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cb"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("cbAllocated"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("cbCommitted"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("cbReserved"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("cbMaxReserve")
-    ).withName("_HEAP_SUMMARY");
-    public static MemoryLayout $LAYOUT() {
-        return _HEAP_SUMMARY.$struct$LAYOUT;
+    _HEAP_SUMMARY() {
+        // Should not be called directly
     }
-    static final VarHandle cb$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cb"));
-    public static VarHandle cb$VH() {
-        return _HEAP_SUMMARY.cb$VH;
-    }
-    public static int cb$get(MemorySegment seg) {
-        return (int)_HEAP_SUMMARY.cb$VH.get(seg);
-    }
-    public static void cb$set( MemorySegment seg, int x) {
-        _HEAP_SUMMARY.cb$VH.set(seg, x);
-    }
-    public static int cb$get(MemorySegment seg, long index) {
-        return (int)_HEAP_SUMMARY.cb$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cb$set(MemorySegment seg, long index, int x) {
-        _HEAP_SUMMARY.cb$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbAllocated$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbAllocated"));
-    public static VarHandle cbAllocated$VH() {
-        return _HEAP_SUMMARY.cbAllocated$VH;
-    }
-    public static long cbAllocated$get(MemorySegment seg) {
-        return (long)_HEAP_SUMMARY.cbAllocated$VH.get(seg);
-    }
-    public static void cbAllocated$set( MemorySegment seg, long x) {
-        _HEAP_SUMMARY.cbAllocated$VH.set(seg, x);
-    }
-    public static long cbAllocated$get(MemorySegment seg, long index) {
-        return (long)_HEAP_SUMMARY.cbAllocated$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbAllocated$set(MemorySegment seg, long index, long x) {
-        _HEAP_SUMMARY.cbAllocated$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCommitted$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCommitted"));
-    public static VarHandle cbCommitted$VH() {
-        return _HEAP_SUMMARY.cbCommitted$VH;
-    }
-    public static long cbCommitted$get(MemorySegment seg) {
-        return (long)_HEAP_SUMMARY.cbCommitted$VH.get(seg);
-    }
-    public static void cbCommitted$set( MemorySegment seg, long x) {
-        _HEAP_SUMMARY.cbCommitted$VH.set(seg, x);
-    }
-    public static long cbCommitted$get(MemorySegment seg, long index) {
-        return (long)_HEAP_SUMMARY.cbCommitted$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCommitted$set(MemorySegment seg, long index, long x) {
-        _HEAP_SUMMARY.cbCommitted$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbReserved"));
-    public static VarHandle cbReserved$VH() {
-        return _HEAP_SUMMARY.cbReserved$VH;
-    }
-    public static long cbReserved$get(MemorySegment seg) {
-        return (long)_HEAP_SUMMARY.cbReserved$VH.get(seg);
-    }
-    public static void cbReserved$set( MemorySegment seg, long x) {
-        _HEAP_SUMMARY.cbReserved$VH.set(seg, x);
-    }
-    public static long cbReserved$get(MemorySegment seg, long index) {
-        return (long)_HEAP_SUMMARY.cbReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbReserved$set(MemorySegment seg, long index, long x) {
-        _HEAP_SUMMARY.cbReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbMaxReserve$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbMaxReserve"));
-    public static VarHandle cbMaxReserve$VH() {
-        return _HEAP_SUMMARY.cbMaxReserve$VH;
-    }
-    public static long cbMaxReserve$get(MemorySegment seg) {
-        return (long)_HEAP_SUMMARY.cbMaxReserve$VH.get(seg);
-    }
-    public static void cbMaxReserve$set( MemorySegment seg, long x) {
-        _HEAP_SUMMARY.cbMaxReserve$VH.set(seg, x);
-    }
-    public static long cbMaxReserve$get(MemorySegment seg, long index) {
-        return (long)_HEAP_SUMMARY.cbMaxReserve$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbMaxReserve$set(MemorySegment seg, long index, long x) {
-        _HEAP_SUMMARY.cbMaxReserve$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("cb"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("cbAllocated"),
+        freeglut_h.C_LONG_LONG.withName("cbCommitted"),
+        freeglut_h.C_LONG_LONG.withName("cbReserved"),
+        freeglut_h.C_LONG_LONG.withName("cbMaxReserve")
+    ).withName("_HEAP_SUMMARY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cb$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static final OfInt cb$layout() {
+        return cb$LAYOUT;
+    }
+
+    private static final long cb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static final long cb$offset() {
+        return cb$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static int cb(MemorySegment struct) {
+        return struct.get(cb$LAYOUT, cb$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static void cb(MemorySegment struct, int fieldValue) {
+        struct.set(cb$LAYOUT, cb$OFFSET, fieldValue);
+    }
+
+    private static final OfLong cbAllocated$LAYOUT = (OfLong)$LAYOUT.select(groupElement("cbAllocated"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T cbAllocated
+     * }
+     */
+    public static final OfLong cbAllocated$layout() {
+        return cbAllocated$LAYOUT;
+    }
+
+    private static final long cbAllocated$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T cbAllocated
+     * }
+     */
+    public static final long cbAllocated$offset() {
+        return cbAllocated$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbAllocated
+     * }
+     */
+    public static long cbAllocated(MemorySegment struct) {
+        return struct.get(cbAllocated$LAYOUT, cbAllocated$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbAllocated
+     * }
+     */
+    public static void cbAllocated(MemorySegment struct, long fieldValue) {
+        struct.set(cbAllocated$LAYOUT, cbAllocated$OFFSET, fieldValue);
+    }
+
+    private static final OfLong cbCommitted$LAYOUT = (OfLong)$LAYOUT.select(groupElement("cbCommitted"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T cbCommitted
+     * }
+     */
+    public static final OfLong cbCommitted$layout() {
+        return cbCommitted$LAYOUT;
+    }
+
+    private static final long cbCommitted$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T cbCommitted
+     * }
+     */
+    public static final long cbCommitted$offset() {
+        return cbCommitted$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbCommitted
+     * }
+     */
+    public static long cbCommitted(MemorySegment struct) {
+        return struct.get(cbCommitted$LAYOUT, cbCommitted$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbCommitted
+     * }
+     */
+    public static void cbCommitted(MemorySegment struct, long fieldValue) {
+        struct.set(cbCommitted$LAYOUT, cbCommitted$OFFSET, fieldValue);
+    }
+
+    private static final OfLong cbReserved$LAYOUT = (OfLong)$LAYOUT.select(groupElement("cbReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T cbReserved
+     * }
+     */
+    public static final OfLong cbReserved$layout() {
+        return cbReserved$LAYOUT;
+    }
+
+    private static final long cbReserved$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T cbReserved
+     * }
+     */
+    public static final long cbReserved$offset() {
+        return cbReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbReserved
+     * }
+     */
+    public static long cbReserved(MemorySegment struct) {
+        return struct.get(cbReserved$LAYOUT, cbReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbReserved
+     * }
+     */
+    public static void cbReserved(MemorySegment struct, long fieldValue) {
+        struct.set(cbReserved$LAYOUT, cbReserved$OFFSET, fieldValue);
+    }
+
+    private static final OfLong cbMaxReserve$LAYOUT = (OfLong)$LAYOUT.select(groupElement("cbMaxReserve"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T cbMaxReserve
+     * }
+     */
+    public static final OfLong cbMaxReserve$layout() {
+        return cbMaxReserve$LAYOUT;
+    }
+
+    private static final long cbMaxReserve$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T cbMaxReserve
+     * }
+     */
+    public static final long cbMaxReserve$offset() {
+        return cbMaxReserve$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbMaxReserve
+     * }
+     */
+    public static long cbMaxReserve(MemorySegment struct) {
+        return struct.get(cbMaxReserve$LAYOUT, cbMaxReserve$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T cbMaxReserve
+     * }
+     */
+    public static void cbMaxReserve(MemorySegment struct, long fieldValue) {
+        struct.set(cbMaxReserve$LAYOUT, cbMaxReserve$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

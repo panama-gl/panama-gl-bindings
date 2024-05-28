@@ -2,58 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
+ *     PVOID CompletionKey;
+ *     HANDLE CompletionPort;
+ * }
+ * }
+ */
 public class _JOBOBJECT_ASSOCIATE_COMPLETION_PORT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("CompletionKey"),
-        Constants$root.C_POINTER$LAYOUT.withName("CompletionPort")
-    ).withName("_JOBOBJECT_ASSOCIATE_COMPLETION_PORT");
-    public static MemoryLayout $LAYOUT() {
-        return _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.$struct$LAYOUT;
+    _JOBOBJECT_ASSOCIATE_COMPLETION_PORT() {
+        // Should not be called directly
     }
-    static final VarHandle CompletionKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompletionKey"));
-    public static VarHandle CompletionKey$VH() {
-        return _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionKey$VH;
-    }
-    public static MemoryAddress CompletionKey$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionKey$VH.get(seg);
-    }
-    public static void CompletionKey$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionKey$VH.set(seg, x);
-    }
-    public static MemoryAddress CompletionKey$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompletionKey$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompletionPort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompletionPort"));
-    public static VarHandle CompletionPort$VH() {
-        return _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionPort$VH;
-    }
-    public static MemoryAddress CompletionPort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionPort$VH.get(seg);
-    }
-    public static void CompletionPort$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionPort$VH.set(seg, x);
-    }
-    public static MemoryAddress CompletionPort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionPort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompletionPort$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_ASSOCIATE_COMPLETION_PORT.CompletionPort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("CompletionKey"),
+        freeglut_h.C_POINTER.withName("CompletionPort")
+    ).withName("_JOBOBJECT_ASSOCIATE_COMPLETION_PORT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout CompletionKey$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CompletionKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID CompletionKey
+     * }
+     */
+    public static final AddressLayout CompletionKey$layout() {
+        return CompletionKey$LAYOUT;
+    }
+
+    private static final long CompletionKey$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID CompletionKey
+     * }
+     */
+    public static final long CompletionKey$offset() {
+        return CompletionKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID CompletionKey
+     * }
+     */
+    public static MemorySegment CompletionKey(MemorySegment struct) {
+        return struct.get(CompletionKey$LAYOUT, CompletionKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID CompletionKey
+     * }
+     */
+    public static void CompletionKey(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CompletionKey$LAYOUT, CompletionKey$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout CompletionPort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CompletionPort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE CompletionPort
+     * }
+     */
+    public static final AddressLayout CompletionPort$layout() {
+        return CompletionPort$LAYOUT;
+    }
+
+    private static final long CompletionPort$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE CompletionPort
+     * }
+     */
+    public static final long CompletionPort$offset() {
+        return CompletionPort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE CompletionPort
+     * }
+     */
+    public static MemorySegment CompletionPort(MemorySegment struct) {
+        return struct.get(CompletionPort$LAYOUT, CompletionPort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE CompletionPort
+     * }
+     */
+    public static void CompletionPort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CompletionPort$LAYOUT, CompletionPort$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

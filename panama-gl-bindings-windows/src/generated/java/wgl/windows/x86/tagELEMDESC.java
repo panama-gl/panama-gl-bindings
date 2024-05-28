@@ -2,54 +2,222 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagELEMDESC {
+ *     TYPEDESC tdesc;
+ *     union {
+ *         IDLDESC idldesc;
+ *         PARAMDESC paramdesc;
+ *     };
+ * }
+ * }
+ */
 public class tagELEMDESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("lptdesc"),
-                Constants$root.C_POINTER$LAYOUT.withName("lpadesc"),
-                Constants$root.C_LONG$LAYOUT.withName("hreftype")
-            ).withName("$anon$0"),
-            Constants$root.C_SHORT$LAYOUT.withName("vt"),
-            MemoryLayout.paddingLayout(48)
-        ).withName("tdesc"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("dwReserved"),
-                Constants$root.C_SHORT$LAYOUT.withName("wIDLFlags"),
-                MemoryLayout.paddingLayout(48)
-            ).withName("idldesc"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pparamdescex"),
-                Constants$root.C_SHORT$LAYOUT.withName("wParamFlags"),
-                MemoryLayout.paddingLayout(48)
-            ).withName("paramdesc")
-        ).withName("$anon$0")
-    ).withName("tagELEMDESC");
-    public static MemoryLayout $LAYOUT() {
-        return tagELEMDESC.$struct$LAYOUT;
+    tagELEMDESC() {
+        // Should not be called directly
     }
-    public static MemorySegment tdesc$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment idldesc$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static MemorySegment paramdesc$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagTYPEDESC.layout().withName("tdesc"),
+        MemoryLayout.unionLayout(
+            tagIDLDESC.layout().withName("idldesc"),
+            tagPARAMDESC.layout().withName("paramdesc")
+        ).withName("$anon$725:5")
+    ).withName("tagELEMDESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout tdesc$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("tdesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdesc
+     * }
+     */
+    public static final GroupLayout tdesc$layout() {
+        return tdesc$LAYOUT;
+    }
+
+    private static final long tdesc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdesc
+     * }
+     */
+    public static final long tdesc$offset() {
+        return tdesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdesc
+     * }
+     */
+    public static MemorySegment tdesc(MemorySegment struct) {
+        return struct.asSlice(tdesc$OFFSET, tdesc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TYPEDESC tdesc
+     * }
+     */
+    public static void tdesc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, tdesc$OFFSET, tdesc$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout idldesc$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$725:5"), groupElement("idldesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IDLDESC idldesc
+     * }
+     */
+    public static final GroupLayout idldesc$layout() {
+        return idldesc$LAYOUT;
+    }
+
+    private static final long idldesc$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IDLDESC idldesc
+     * }
+     */
+    public static final long idldesc$offset() {
+        return idldesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IDLDESC idldesc
+     * }
+     */
+    public static MemorySegment idldesc(MemorySegment struct) {
+        return struct.asSlice(idldesc$OFFSET, idldesc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IDLDESC idldesc
+     * }
+     */
+    public static void idldesc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, idldesc$OFFSET, idldesc$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout paramdesc$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$725:5"), groupElement("paramdesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PARAMDESC paramdesc
+     * }
+     */
+    public static final GroupLayout paramdesc$layout() {
+        return paramdesc$LAYOUT;
+    }
+
+    private static final long paramdesc$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PARAMDESC paramdesc
+     * }
+     */
+    public static final long paramdesc$offset() {
+        return paramdesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PARAMDESC paramdesc
+     * }
+     */
+    public static MemorySegment paramdesc(MemorySegment struct) {
+        return struct.asSlice(paramdesc$OFFSET, paramdesc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PARAMDESC paramdesc
+     * }
+     */
+    public static void paramdesc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, paramdesc$OFFSET, paramdesc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

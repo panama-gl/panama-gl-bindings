@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BCRYPT_ECCFULLKEY_BLOB {
+ *     ULONG dwMagic;
+ *     ULONG dwVersion;
+ *     ECC_CURVE_TYPE_ENUM dwCurveType;
+ *     ECC_CURVE_ALG_ID_ENUM dwCurveGenerationAlgId;
+ *     ULONG cbFieldLength;
+ *     ULONG cbSubgroupOrder;
+ *     ULONG cbCofactor;
+ *     ULONG cbSeed;
+ * }
+ * }
+ */
 public class _BCRYPT_ECCFULLKEY_BLOB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwMagic"),
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCurveType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCurveGenerationAlgId"),
-        Constants$root.C_LONG$LAYOUT.withName("cbFieldLength"),
-        Constants$root.C_LONG$LAYOUT.withName("cbSubgroupOrder"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCofactor"),
-        Constants$root.C_LONG$LAYOUT.withName("cbSeed")
-    ).withName("_BCRYPT_ECCFULLKEY_BLOB");
-    public static MemoryLayout $LAYOUT() {
-        return _BCRYPT_ECCFULLKEY_BLOB.$struct$LAYOUT;
+    _BCRYPT_ECCFULLKEY_BLOB() {
+        // Should not be called directly
     }
-    static final VarHandle dwMagic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMagic"));
-    public static VarHandle dwMagic$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.dwMagic$VH;
-    }
-    public static int dwMagic$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwMagic$VH.get(seg);
-    }
-    public static void dwMagic$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwMagic$VH.set(seg, x);
-    }
-    public static int dwMagic$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwMagic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMagic$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwMagic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCurveType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCurveType"));
-    public static VarHandle dwCurveType$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.dwCurveType$VH;
-    }
-    public static int dwCurveType$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwCurveType$VH.get(seg);
-    }
-    public static void dwCurveType$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwCurveType$VH.set(seg, x);
-    }
-    public static int dwCurveType$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwCurveType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCurveType$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwCurveType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCurveGenerationAlgId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCurveGenerationAlgId"));
-    public static VarHandle dwCurveGenerationAlgId$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.dwCurveGenerationAlgId$VH;
-    }
-    public static int dwCurveGenerationAlgId$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwCurveGenerationAlgId$VH.get(seg);
-    }
-    public static void dwCurveGenerationAlgId$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwCurveGenerationAlgId$VH.set(seg, x);
-    }
-    public static int dwCurveGenerationAlgId$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.dwCurveGenerationAlgId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCurveGenerationAlgId$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.dwCurveGenerationAlgId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbFieldLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbFieldLength"));
-    public static VarHandle cbFieldLength$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.cbFieldLength$VH;
-    }
-    public static int cbFieldLength$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbFieldLength$VH.get(seg);
-    }
-    public static void cbFieldLength$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbFieldLength$VH.set(seg, x);
-    }
-    public static int cbFieldLength$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbFieldLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbFieldLength$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbFieldLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbSubgroupOrder$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSubgroupOrder"));
-    public static VarHandle cbSubgroupOrder$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.cbSubgroupOrder$VH;
-    }
-    public static int cbSubgroupOrder$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbSubgroupOrder$VH.get(seg);
-    }
-    public static void cbSubgroupOrder$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbSubgroupOrder$VH.set(seg, x);
-    }
-    public static int cbSubgroupOrder$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbSubgroupOrder$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSubgroupOrder$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbSubgroupOrder$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCofactor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCofactor"));
-    public static VarHandle cbCofactor$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.cbCofactor$VH;
-    }
-    public static int cbCofactor$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbCofactor$VH.get(seg);
-    }
-    public static void cbCofactor$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbCofactor$VH.set(seg, x);
-    }
-    public static int cbCofactor$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbCofactor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCofactor$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbCofactor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbSeed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSeed"));
-    public static VarHandle cbSeed$VH() {
-        return _BCRYPT_ECCFULLKEY_BLOB.cbSeed$VH;
-    }
-    public static int cbSeed$get(MemorySegment seg) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbSeed$VH.get(seg);
-    }
-    public static void cbSeed$set( MemorySegment seg, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbSeed$VH.set(seg, x);
-    }
-    public static int cbSeed$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_ECCFULLKEY_BLOB.cbSeed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSeed$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_ECCFULLKEY_BLOB.cbSeed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwMagic"),
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_INT.withName("dwCurveType"),
+        wgl_h.C_INT.withName("dwCurveGenerationAlgId"),
+        wgl_h.C_LONG.withName("cbFieldLength"),
+        wgl_h.C_LONG.withName("cbSubgroupOrder"),
+        wgl_h.C_LONG.withName("cbCofactor"),
+        wgl_h.C_LONG.withName("cbSeed")
+    ).withName("_BCRYPT_ECCFULLKEY_BLOB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwMagic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMagic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static final OfInt dwMagic$layout() {
+        return dwMagic$LAYOUT;
+    }
+
+    private static final long dwMagic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static final long dwMagic$offset() {
+        return dwMagic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static int dwMagic(MemorySegment struct) {
+        return struct.get(dwMagic$LAYOUT, dwMagic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG dwMagic
+     * }
+     */
+    public static void dwMagic(MemorySegment struct, int fieldValue) {
+        struct.set(dwMagic$LAYOUT, dwMagic$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCurveType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCurveType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_TYPE_ENUM dwCurveType
+     * }
+     */
+    public static final OfInt dwCurveType$layout() {
+        return dwCurveType$LAYOUT;
+    }
+
+    private static final long dwCurveType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_TYPE_ENUM dwCurveType
+     * }
+     */
+    public static final long dwCurveType$offset() {
+        return dwCurveType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_TYPE_ENUM dwCurveType
+     * }
+     */
+    public static int dwCurveType(MemorySegment struct) {
+        return struct.get(dwCurveType$LAYOUT, dwCurveType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_TYPE_ENUM dwCurveType
+     * }
+     */
+    public static void dwCurveType(MemorySegment struct, int fieldValue) {
+        struct.set(dwCurveType$LAYOUT, dwCurveType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCurveGenerationAlgId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCurveGenerationAlgId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_ALG_ID_ENUM dwCurveGenerationAlgId
+     * }
+     */
+    public static final OfInt dwCurveGenerationAlgId$layout() {
+        return dwCurveGenerationAlgId$LAYOUT;
+    }
+
+    private static final long dwCurveGenerationAlgId$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_ALG_ID_ENUM dwCurveGenerationAlgId
+     * }
+     */
+    public static final long dwCurveGenerationAlgId$offset() {
+        return dwCurveGenerationAlgId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_ALG_ID_ENUM dwCurveGenerationAlgId
+     * }
+     */
+    public static int dwCurveGenerationAlgId(MemorySegment struct) {
+        return struct.get(dwCurveGenerationAlgId$LAYOUT, dwCurveGenerationAlgId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ECC_CURVE_ALG_ID_ENUM dwCurveGenerationAlgId
+     * }
+     */
+    public static void dwCurveGenerationAlgId(MemorySegment struct, int fieldValue) {
+        struct.set(dwCurveGenerationAlgId$LAYOUT, dwCurveGenerationAlgId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbFieldLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbFieldLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbFieldLength
+     * }
+     */
+    public static final OfInt cbFieldLength$layout() {
+        return cbFieldLength$LAYOUT;
+    }
+
+    private static final long cbFieldLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbFieldLength
+     * }
+     */
+    public static final long cbFieldLength$offset() {
+        return cbFieldLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbFieldLength
+     * }
+     */
+    public static int cbFieldLength(MemorySegment struct) {
+        return struct.get(cbFieldLength$LAYOUT, cbFieldLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbFieldLength
+     * }
+     */
+    public static void cbFieldLength(MemorySegment struct, int fieldValue) {
+        struct.set(cbFieldLength$LAYOUT, cbFieldLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbSubgroupOrder$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSubgroupOrder"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSubgroupOrder
+     * }
+     */
+    public static final OfInt cbSubgroupOrder$layout() {
+        return cbSubgroupOrder$LAYOUT;
+    }
+
+    private static final long cbSubgroupOrder$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSubgroupOrder
+     * }
+     */
+    public static final long cbSubgroupOrder$offset() {
+        return cbSubgroupOrder$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSubgroupOrder
+     * }
+     */
+    public static int cbSubgroupOrder(MemorySegment struct) {
+        return struct.get(cbSubgroupOrder$LAYOUT, cbSubgroupOrder$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSubgroupOrder
+     * }
+     */
+    public static void cbSubgroupOrder(MemorySegment struct, int fieldValue) {
+        struct.set(cbSubgroupOrder$LAYOUT, cbSubgroupOrder$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCofactor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCofactor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbCofactor
+     * }
+     */
+    public static final OfInt cbCofactor$layout() {
+        return cbCofactor$LAYOUT;
+    }
+
+    private static final long cbCofactor$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbCofactor
+     * }
+     */
+    public static final long cbCofactor$offset() {
+        return cbCofactor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbCofactor
+     * }
+     */
+    public static int cbCofactor(MemorySegment struct) {
+        return struct.get(cbCofactor$LAYOUT, cbCofactor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbCofactor
+     * }
+     */
+    public static void cbCofactor(MemorySegment struct, int fieldValue) {
+        struct.set(cbCofactor$LAYOUT, cbCofactor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbSeed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSeed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSeed
+     * }
+     */
+    public static final OfInt cbSeed$layout() {
+        return cbSeed$LAYOUT;
+    }
+
+    private static final long cbSeed$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSeed
+     * }
+     */
+    public static final long cbSeed$offset() {
+        return cbSeed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSeed
+     * }
+     */
+    public static int cbSeed(MemorySegment struct) {
+        return struct.get(cbSeed$LAYOUT, cbSeed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSeed
+     * }
+     */
+    public static void cbSeed(MemorySegment struct, int fieldValue) {
+        struct.set(cbSeed$LAYOUT, cbSeed$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

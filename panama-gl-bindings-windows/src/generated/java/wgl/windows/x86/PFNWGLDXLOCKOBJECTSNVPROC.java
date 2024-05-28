@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLDXLOCKOBJECTSNVPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hDevice, int count, java.lang.foreign.MemoryAddress hObjects);
-    static MemorySegment allocate(PFNWGLDXLOCKOBJECTSNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLDXLOCKOBJECTSNVPROC.class, fi, constants$1404.PFNWGLDXLOCKOBJECTSNVPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLDXLOCKOBJECTSNVPROC)(HANDLE, GLint, HANDLE *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLDXLOCKOBJECTSNVPROC {
+
+    PFNWGLDXLOCKOBJECTSNVPROC() {
+        // Should not be called directly
     }
-    static PFNWGLDXLOCKOBJECTSNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hDevice, int _count, java.lang.foreign.MemoryAddress _hObjects) -> {
-            try {
-                return (int)constants$1404.PFNWGLDXLOCKOBJECTSNVPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hDevice, _count, (java.lang.foreign.Addressable)_hObjects);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hDevice, int count, MemorySegment hObjects);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLDXLOCKOBJECTSNVPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLDXLOCKOBJECTSNVPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hDevice, int count, MemorySegment hObjects) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hDevice, count, hObjects);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

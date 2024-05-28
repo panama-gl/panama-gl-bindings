@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _BCRYPT_KEY_DATA_BLOB_HEADER {
+ *     ULONG dwMagic;
+ *     ULONG dwVersion;
+ *     ULONG cbKeyData;
+ * } BCRYPT_KEY_DATA_BLOB_HEADER
+ * }
+ */
 public class BCRYPT_KEY_DATA_BLOB_HEADER extends _BCRYPT_KEY_DATA_BLOB_HEADER {
 
+    BCRYPT_KEY_DATA_BLOB_HEADER() {
+        // Should not be called directly
+    }
 }
-
 

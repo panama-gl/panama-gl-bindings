@@ -2,97 +2,344 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRemHMETAFILEPICT {
+ *     LONG mm;
+ *     LONG xExt;
+ *     LONG yExt;
+ *     ULONG cbData;
+ *     byte data[1];
+ * }
+ * }
+ */
 public class tagRemHMETAFILEPICT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("mm"),
-        Constants$root.C_LONG$LAYOUT.withName("xExt"),
-        Constants$root.C_LONG$LAYOUT.withName("yExt"),
-        Constants$root.C_LONG$LAYOUT.withName("cbData"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("data"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("tagRemHMETAFILEPICT");
-    public static MemoryLayout $LAYOUT() {
-        return tagRemHMETAFILEPICT.$struct$LAYOUT;
+    tagRemHMETAFILEPICT() {
+        // Should not be called directly
     }
-    static final VarHandle mm$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mm"));
-    public static VarHandle mm$VH() {
-        return tagRemHMETAFILEPICT.mm$VH;
-    }
-    public static int mm$get(MemorySegment seg) {
-        return (int)tagRemHMETAFILEPICT.mm$VH.get(seg);
-    }
-    public static void mm$set( MemorySegment seg, int x) {
-        tagRemHMETAFILEPICT.mm$VH.set(seg, x);
-    }
-    public static int mm$get(MemorySegment seg, long index) {
-        return (int)tagRemHMETAFILEPICT.mm$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void mm$set(MemorySegment seg, long index, int x) {
-        tagRemHMETAFILEPICT.mm$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle xExt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("xExt"));
-    public static VarHandle xExt$VH() {
-        return tagRemHMETAFILEPICT.xExt$VH;
-    }
-    public static int xExt$get(MemorySegment seg) {
-        return (int)tagRemHMETAFILEPICT.xExt$VH.get(seg);
-    }
-    public static void xExt$set( MemorySegment seg, int x) {
-        tagRemHMETAFILEPICT.xExt$VH.set(seg, x);
-    }
-    public static int xExt$get(MemorySegment seg, long index) {
-        return (int)tagRemHMETAFILEPICT.xExt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void xExt$set(MemorySegment seg, long index, int x) {
-        tagRemHMETAFILEPICT.xExt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle yExt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("yExt"));
-    public static VarHandle yExt$VH() {
-        return tagRemHMETAFILEPICT.yExt$VH;
-    }
-    public static int yExt$get(MemorySegment seg) {
-        return (int)tagRemHMETAFILEPICT.yExt$VH.get(seg);
-    }
-    public static void yExt$set( MemorySegment seg, int x) {
-        tagRemHMETAFILEPICT.yExt$VH.set(seg, x);
-    }
-    public static int yExt$get(MemorySegment seg, long index) {
-        return (int)tagRemHMETAFILEPICT.yExt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void yExt$set(MemorySegment seg, long index, int x) {
-        tagRemHMETAFILEPICT.yExt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbData"));
-    public static VarHandle cbData$VH() {
-        return tagRemHMETAFILEPICT.cbData$VH;
-    }
-    public static int cbData$get(MemorySegment seg) {
-        return (int)tagRemHMETAFILEPICT.cbData$VH.get(seg);
-    }
-    public static void cbData$set( MemorySegment seg, int x) {
-        tagRemHMETAFILEPICT.cbData$VH.set(seg, x);
-    }
-    public static int cbData$get(MemorySegment seg, long index) {
-        return (int)tagRemHMETAFILEPICT.cbData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbData$set(MemorySegment seg, long index, int x) {
-        tagRemHMETAFILEPICT.cbData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment data$slice(MemorySegment seg) {
-        return seg.asSlice(16, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("mm"),
+        wgl_h.C_LONG.withName("xExt"),
+        wgl_h.C_LONG.withName("yExt"),
+        wgl_h.C_LONG.withName("cbData"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("data"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("tagRemHMETAFILEPICT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt mm$LAYOUT = (OfInt)$LAYOUT.select(groupElement("mm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG mm
+     * }
+     */
+    public static final OfInt mm$layout() {
+        return mm$LAYOUT;
+    }
+
+    private static final long mm$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG mm
+     * }
+     */
+    public static final long mm$offset() {
+        return mm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG mm
+     * }
+     */
+    public static int mm(MemorySegment struct) {
+        return struct.get(mm$LAYOUT, mm$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG mm
+     * }
+     */
+    public static void mm(MemorySegment struct, int fieldValue) {
+        struct.set(mm$LAYOUT, mm$OFFSET, fieldValue);
+    }
+
+    private static final OfInt xExt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("xExt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG xExt
+     * }
+     */
+    public static final OfInt xExt$layout() {
+        return xExt$LAYOUT;
+    }
+
+    private static final long xExt$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG xExt
+     * }
+     */
+    public static final long xExt$offset() {
+        return xExt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG xExt
+     * }
+     */
+    public static int xExt(MemorySegment struct) {
+        return struct.get(xExt$LAYOUT, xExt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG xExt
+     * }
+     */
+    public static void xExt(MemorySegment struct, int fieldValue) {
+        struct.set(xExt$LAYOUT, xExt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt yExt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("yExt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG yExt
+     * }
+     */
+    public static final OfInt yExt$layout() {
+        return yExt$LAYOUT;
+    }
+
+    private static final long yExt$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG yExt
+     * }
+     */
+    public static final long yExt$offset() {
+        return yExt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG yExt
+     * }
+     */
+    public static int yExt(MemorySegment struct) {
+        return struct.get(yExt$LAYOUT, yExt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG yExt
+     * }
+     */
+    public static void yExt(MemorySegment struct, int fieldValue) {
+        struct.set(yExt$LAYOUT, yExt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbData
+     * }
+     */
+    public static final OfInt cbData$layout() {
+        return cbData$LAYOUT;
+    }
+
+    private static final long cbData$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbData
+     * }
+     */
+    public static final long cbData$offset() {
+        return cbData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbData
+     * }
+     */
+    public static int cbData(MemorySegment struct) {
+        return struct.get(cbData$LAYOUT, cbData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbData
+     * }
+     */
+    public static void cbData(MemorySegment struct, int fieldValue) {
+        struct.set(cbData$LAYOUT, cbData$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout data$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("data"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static final SequenceLayout data$layout() {
+        return data$LAYOUT;
+    }
+
+    private static final long data$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static final long data$offset() {
+        return data$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static MemorySegment data(MemorySegment struct) {
+        return struct.asSlice(data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static void data(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    private static long[] data$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static long[] data$dimensions() {
+        return data$DIMS;
+    }
+    private static final VarHandle data$ELEM_HANDLE = data$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static byte data(MemorySegment struct, long index0) {
+        return (byte)data$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * byte data[1]
+     * }
+     */
+    public static void data(MemorySegment struct, long index0, byte fieldValue) {
+        data$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

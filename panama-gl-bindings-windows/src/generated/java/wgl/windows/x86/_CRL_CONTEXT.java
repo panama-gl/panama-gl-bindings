@@ -2,111 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRL_CONTEXT {
+ *     DWORD dwCertEncodingType;
+ *     BYTE *pbCrlEncoded;
+ *     DWORD cbCrlEncoded;
+ *     PCRL_INFO pCrlInfo;
+ *     HCERTSTORE hCertStore;
+ * }
+ * }
+ */
 public class _CRL_CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwCertEncodingType"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pbCrlEncoded"),
-        Constants$root.C_LONG$LAYOUT.withName("cbCrlEncoded"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pCrlInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("hCertStore")
-    ).withName("_CRL_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CRL_CONTEXT.$struct$LAYOUT;
+    _CRL_CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle dwCertEncodingType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCertEncodingType"));
-    public static VarHandle dwCertEncodingType$VH() {
-        return _CRL_CONTEXT.dwCertEncodingType$VH;
-    }
-    public static int dwCertEncodingType$get(MemorySegment seg) {
-        return (int)_CRL_CONTEXT.dwCertEncodingType$VH.get(seg);
-    }
-    public static void dwCertEncodingType$set( MemorySegment seg, int x) {
-        _CRL_CONTEXT.dwCertEncodingType$VH.set(seg, x);
-    }
-    public static int dwCertEncodingType$get(MemorySegment seg, long index) {
-        return (int)_CRL_CONTEXT.dwCertEncodingType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCertEncodingType$set(MemorySegment seg, long index, int x) {
-        _CRL_CONTEXT.dwCertEncodingType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbCrlEncoded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbCrlEncoded"));
-    public static VarHandle pbCrlEncoded$VH() {
-        return _CRL_CONTEXT.pbCrlEncoded$VH;
-    }
-    public static MemoryAddress pbCrlEncoded$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.pbCrlEncoded$VH.get(seg);
-    }
-    public static void pbCrlEncoded$set( MemorySegment seg, MemoryAddress x) {
-        _CRL_CONTEXT.pbCrlEncoded$VH.set(seg, x);
-    }
-    public static MemoryAddress pbCrlEncoded$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.pbCrlEncoded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbCrlEncoded$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRL_CONTEXT.pbCrlEncoded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbCrlEncoded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbCrlEncoded"));
-    public static VarHandle cbCrlEncoded$VH() {
-        return _CRL_CONTEXT.cbCrlEncoded$VH;
-    }
-    public static int cbCrlEncoded$get(MemorySegment seg) {
-        return (int)_CRL_CONTEXT.cbCrlEncoded$VH.get(seg);
-    }
-    public static void cbCrlEncoded$set( MemorySegment seg, int x) {
-        _CRL_CONTEXT.cbCrlEncoded$VH.set(seg, x);
-    }
-    public static int cbCrlEncoded$get(MemorySegment seg, long index) {
-        return (int)_CRL_CONTEXT.cbCrlEncoded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbCrlEncoded$set(MemorySegment seg, long index, int x) {
-        _CRL_CONTEXT.cbCrlEncoded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pCrlInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pCrlInfo"));
-    public static VarHandle pCrlInfo$VH() {
-        return _CRL_CONTEXT.pCrlInfo$VH;
-    }
-    public static MemoryAddress pCrlInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.pCrlInfo$VH.get(seg);
-    }
-    public static void pCrlInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CRL_CONTEXT.pCrlInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pCrlInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.pCrlInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pCrlInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRL_CONTEXT.pCrlInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCertStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCertStore"));
-    public static VarHandle hCertStore$VH() {
-        return _CRL_CONTEXT.hCertStore$VH;
-    }
-    public static MemoryAddress hCertStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.hCertStore$VH.get(seg);
-    }
-    public static void hCertStore$set( MemorySegment seg, MemoryAddress x) {
-        _CRL_CONTEXT.hCertStore$VH.set(seg, x);
-    }
-    public static MemoryAddress hCertStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRL_CONTEXT.hCertStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCertStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRL_CONTEXT.hCertStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwCertEncodingType"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pbCrlEncoded"),
+        wgl_h.C_LONG.withName("cbCrlEncoded"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pCrlInfo"),
+        wgl_h.C_POINTER.withName("hCertStore")
+    ).withName("_CRL_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwCertEncodingType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCertEncodingType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCertEncodingType
+     * }
+     */
+    public static final OfInt dwCertEncodingType$layout() {
+        return dwCertEncodingType$LAYOUT;
+    }
+
+    private static final long dwCertEncodingType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCertEncodingType
+     * }
+     */
+    public static final long dwCertEncodingType$offset() {
+        return dwCertEncodingType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCertEncodingType
+     * }
+     */
+    public static int dwCertEncodingType(MemorySegment struct) {
+        return struct.get(dwCertEncodingType$LAYOUT, dwCertEncodingType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCertEncodingType
+     * }
+     */
+    public static void dwCertEncodingType(MemorySegment struct, int fieldValue) {
+        struct.set(dwCertEncodingType$LAYOUT, dwCertEncodingType$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbCrlEncoded$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbCrlEncoded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE *pbCrlEncoded
+     * }
+     */
+    public static final AddressLayout pbCrlEncoded$layout() {
+        return pbCrlEncoded$LAYOUT;
+    }
+
+    private static final long pbCrlEncoded$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE *pbCrlEncoded
+     * }
+     */
+    public static final long pbCrlEncoded$offset() {
+        return pbCrlEncoded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCrlEncoded
+     * }
+     */
+    public static MemorySegment pbCrlEncoded(MemorySegment struct) {
+        return struct.get(pbCrlEncoded$LAYOUT, pbCrlEncoded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCrlEncoded
+     * }
+     */
+    public static void pbCrlEncoded(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbCrlEncoded$LAYOUT, pbCrlEncoded$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbCrlEncoded$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbCrlEncoded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbCrlEncoded
+     * }
+     */
+    public static final OfInt cbCrlEncoded$layout() {
+        return cbCrlEncoded$LAYOUT;
+    }
+
+    private static final long cbCrlEncoded$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbCrlEncoded
+     * }
+     */
+    public static final long cbCrlEncoded$offset() {
+        return cbCrlEncoded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbCrlEncoded
+     * }
+     */
+    public static int cbCrlEncoded(MemorySegment struct) {
+        return struct.get(cbCrlEncoded$LAYOUT, cbCrlEncoded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbCrlEncoded
+     * }
+     */
+    public static void cbCrlEncoded(MemorySegment struct, int fieldValue) {
+        struct.set(cbCrlEncoded$LAYOUT, cbCrlEncoded$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pCrlInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pCrlInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRL_INFO pCrlInfo
+     * }
+     */
+    public static final AddressLayout pCrlInfo$layout() {
+        return pCrlInfo$LAYOUT;
+    }
+
+    private static final long pCrlInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRL_INFO pCrlInfo
+     * }
+     */
+    public static final long pCrlInfo$offset() {
+        return pCrlInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRL_INFO pCrlInfo
+     * }
+     */
+    public static MemorySegment pCrlInfo(MemorySegment struct) {
+        return struct.get(pCrlInfo$LAYOUT, pCrlInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRL_INFO pCrlInfo
+     * }
+     */
+    public static void pCrlInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pCrlInfo$LAYOUT, pCrlInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hCertStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hCertStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static final AddressLayout hCertStore$layout() {
+        return hCertStore$LAYOUT;
+    }
+
+    private static final long hCertStore$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static final long hCertStore$offset() {
+        return hCertStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static MemorySegment hCertStore(MemorySegment struct) {
+        return struct.get(hCertStore$LAYOUT, hCertStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCERTSTORE hCertStore
+     * }
+     */
+    public static void hCertStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hCertStore$LAYOUT, hCertStore$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

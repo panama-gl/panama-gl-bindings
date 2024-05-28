@@ -2,59 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_MEDIA_SERIAL_NUMBER_DATA {
+ *     WORD Reserved;
+ *     WORD SerialNumberLength;
+ *     BYTE SerialNumber[0];
+ * }
+ * }
+ */
 public class _STORAGE_MEDIA_SERIAL_NUMBER_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        Constants$root.C_SHORT$LAYOUT.withName("SerialNumberLength"),
-        MemoryLayout.sequenceLayout(0, Constants$root.C_CHAR$LAYOUT).withName("SerialNumber")
-    ).withName("_STORAGE_MEDIA_SERIAL_NUMBER_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_MEDIA_SERIAL_NUMBER_DATA.$struct$LAYOUT;
+    _STORAGE_MEDIA_SERIAL_NUMBER_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _STORAGE_MEDIA_SERIAL_NUMBER_DATA.Reserved$VH;
-    }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)_STORAGE_MEDIA_SERIAL_NUMBER_DATA.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        _STORAGE_MEDIA_SERIAL_NUMBER_DATA.Reserved$VH.set(seg, x);
-    }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_MEDIA_SERIAL_NUMBER_DATA.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        _STORAGE_MEDIA_SERIAL_NUMBER_DATA.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SerialNumberLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SerialNumberLength"));
-    public static VarHandle SerialNumberLength$VH() {
-        return _STORAGE_MEDIA_SERIAL_NUMBER_DATA.SerialNumberLength$VH;
-    }
-    public static short SerialNumberLength$get(MemorySegment seg) {
-        return (short)_STORAGE_MEDIA_SERIAL_NUMBER_DATA.SerialNumberLength$VH.get(seg);
-    }
-    public static void SerialNumberLength$set( MemorySegment seg, short x) {
-        _STORAGE_MEDIA_SERIAL_NUMBER_DATA.SerialNumberLength$VH.set(seg, x);
-    }
-    public static short SerialNumberLength$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_MEDIA_SERIAL_NUMBER_DATA.SerialNumberLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SerialNumberLength$set(MemorySegment seg, long index, short x) {
-        _STORAGE_MEDIA_SERIAL_NUMBER_DATA.SerialNumberLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Reserved"),
+        wgl_h.C_SHORT.withName("SerialNumberLength"),
+        MemoryLayout.sequenceLayout(0, wgl_h.C_CHAR).withName("SerialNumber")
+    ).withName("_STORAGE_MEDIA_SERIAL_NUMBER_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SerialNumberLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SerialNumberLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SerialNumberLength
+     * }
+     */
+    public static final OfShort SerialNumberLength$layout() {
+        return SerialNumberLength$LAYOUT;
+    }
+
+    private static final long SerialNumberLength$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SerialNumberLength
+     * }
+     */
+    public static final long SerialNumberLength$offset() {
+        return SerialNumberLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SerialNumberLength
+     * }
+     */
+    public static short SerialNumberLength(MemorySegment struct) {
+        return struct.get(SerialNumberLength$LAYOUT, SerialNumberLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SerialNumberLength
+     * }
+     */
+    public static void SerialNumberLength(MemorySegment struct, short fieldValue) {
+        struct.set(SerialNumberLength$LAYOUT, SerialNumberLength$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout SerialNumber$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SerialNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static final SequenceLayout SerialNumber$layout() {
+        return SerialNumber$LAYOUT;
+    }
+
+    private static final long SerialNumber$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static final long SerialNumber$offset() {
+        return SerialNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static MemorySegment SerialNumber(MemorySegment struct) {
+        return struct.asSlice(SerialNumber$OFFSET, SerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static void SerialNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SerialNumber$OFFSET, SerialNumber$LAYOUT.byteSize());
+    }
+
+    private static long[] SerialNumber$DIMS = { 0 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static long[] SerialNumber$dimensions() {
+        return SerialNumber$DIMS;
+    }
+    private static final VarHandle SerialNumber$ELEM_HANDLE = SerialNumber$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static byte SerialNumber(MemorySegment struct, long index0) {
+        return (byte)SerialNumber$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE SerialNumber[0]
+     * }
+     */
+    public static void SerialNumber(MemorySegment struct, long index0, byte fieldValue) {
+        SerialNumber$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

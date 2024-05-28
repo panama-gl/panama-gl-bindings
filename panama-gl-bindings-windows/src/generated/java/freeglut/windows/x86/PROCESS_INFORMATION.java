@@ -2,13 +2,30 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROCESS_INFORMATION {
+ *     HANDLE hProcess;
+ *     HANDLE hThread;
+ *     DWORD dwProcessId;
+ *     DWORD dwThreadId;
+ * } PROCESS_INFORMATION
+ * }
+ */
 public class PROCESS_INFORMATION extends _PROCESS_INFORMATION {
 
+    PROCESS_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

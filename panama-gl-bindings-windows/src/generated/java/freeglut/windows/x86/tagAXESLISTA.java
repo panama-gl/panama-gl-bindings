@@ -2,66 +2,255 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagAXESLISTA {
+ *     DWORD axlReserved;
+ *     DWORD axlNumAxes;
+ *     AXISINFOA axlAxisInfo[16];
+ * }
+ * }
+ */
 public class tagAXESLISTA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("axlReserved"),
-        Constants$root.C_LONG$LAYOUT.withName("axlNumAxes"),
-        MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("axMinValue"),
-            Constants$root.C_LONG$LAYOUT.withName("axMaxValue"),
-            MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("axAxisName")
-        ).withName("tagAXISINFOA")).withName("axlAxisInfo")
-    ).withName("tagAXESLISTA");
-    public static MemoryLayout $LAYOUT() {
-        return tagAXESLISTA.$struct$LAYOUT;
+    tagAXESLISTA() {
+        // Should not be called directly
     }
-    static final VarHandle axlReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("axlReserved"));
-    public static VarHandle axlReserved$VH() {
-        return tagAXESLISTA.axlReserved$VH;
-    }
-    public static int axlReserved$get(MemorySegment seg) {
-        return (int)tagAXESLISTA.axlReserved$VH.get(seg);
-    }
-    public static void axlReserved$set( MemorySegment seg, int x) {
-        tagAXESLISTA.axlReserved$VH.set(seg, x);
-    }
-    public static int axlReserved$get(MemorySegment seg, long index) {
-        return (int)tagAXESLISTA.axlReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void axlReserved$set(MemorySegment seg, long index, int x) {
-        tagAXESLISTA.axlReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle axlNumAxes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("axlNumAxes"));
-    public static VarHandle axlNumAxes$VH() {
-        return tagAXESLISTA.axlNumAxes$VH;
-    }
-    public static int axlNumAxes$get(MemorySegment seg) {
-        return (int)tagAXESLISTA.axlNumAxes$VH.get(seg);
-    }
-    public static void axlNumAxes$set( MemorySegment seg, int x) {
-        tagAXESLISTA.axlNumAxes$VH.set(seg, x);
-    }
-    public static int axlNumAxes$get(MemorySegment seg, long index) {
-        return (int)tagAXESLISTA.axlNumAxes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void axlNumAxes$set(MemorySegment seg, long index, int x) {
-        tagAXESLISTA.axlNumAxes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment axlAxisInfo$slice(MemorySegment seg) {
-        return seg.asSlice(8, 384);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("axlReserved"),
+        freeglut_h.C_LONG.withName("axlNumAxes"),
+        MemoryLayout.sequenceLayout(16, tagAXISINFOA.layout()).withName("axlAxisInfo")
+    ).withName("tagAXESLISTA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt axlReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("axlReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD axlReserved
+     * }
+     */
+    public static final OfInt axlReserved$layout() {
+        return axlReserved$LAYOUT;
+    }
+
+    private static final long axlReserved$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD axlReserved
+     * }
+     */
+    public static final long axlReserved$offset() {
+        return axlReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD axlReserved
+     * }
+     */
+    public static int axlReserved(MemorySegment struct) {
+        return struct.get(axlReserved$LAYOUT, axlReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD axlReserved
+     * }
+     */
+    public static void axlReserved(MemorySegment struct, int fieldValue) {
+        struct.set(axlReserved$LAYOUT, axlReserved$OFFSET, fieldValue);
+    }
+
+    private static final OfInt axlNumAxes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("axlNumAxes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD axlNumAxes
+     * }
+     */
+    public static final OfInt axlNumAxes$layout() {
+        return axlNumAxes$LAYOUT;
+    }
+
+    private static final long axlNumAxes$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD axlNumAxes
+     * }
+     */
+    public static final long axlNumAxes$offset() {
+        return axlNumAxes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD axlNumAxes
+     * }
+     */
+    public static int axlNumAxes(MemorySegment struct) {
+        return struct.get(axlNumAxes$LAYOUT, axlNumAxes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD axlNumAxes
+     * }
+     */
+    public static void axlNumAxes(MemorySegment struct, int fieldValue) {
+        struct.set(axlNumAxes$LAYOUT, axlNumAxes$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout axlAxisInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("axlAxisInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static final SequenceLayout axlAxisInfo$layout() {
+        return axlAxisInfo$LAYOUT;
+    }
+
+    private static final long axlAxisInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static final long axlAxisInfo$offset() {
+        return axlAxisInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static MemorySegment axlAxisInfo(MemorySegment struct) {
+        return struct.asSlice(axlAxisInfo$OFFSET, axlAxisInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static void axlAxisInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, axlAxisInfo$OFFSET, axlAxisInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] axlAxisInfo$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static long[] axlAxisInfo$dimensions() {
+        return axlAxisInfo$DIMS;
+    }
+    private static final MethodHandle axlAxisInfo$ELEM_HANDLE = axlAxisInfo$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static MemorySegment axlAxisInfo(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)axlAxisInfo$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * AXISINFOA axlAxisInfo[16]
+     * }
+     */
+    public static void axlAxisInfo(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, axlAxisInfo(struct, index0), 0L, tagAXISINFOA.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

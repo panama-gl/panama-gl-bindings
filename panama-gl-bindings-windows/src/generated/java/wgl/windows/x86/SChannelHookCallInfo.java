@@ -2,111 +2,357 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct SChannelHookCallInfo {
+ *     IID iid;
+ *     DWORD cbSize;
+ *     GUID uCausality;
+ *     DWORD dwServerPid;
+ *     DWORD iMethod;
+ *     void *pObject;
+ * }
+ * }
+ */
 public class SChannelHookCallInfo {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("iid"),
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("uCausality"),
-        Constants$root.C_LONG$LAYOUT.withName("dwServerPid"),
-        Constants$root.C_LONG$LAYOUT.withName("iMethod"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pObject")
-    ).withName("SChannelHookCallInfo");
-    public static MemoryLayout $LAYOUT() {
-        return SChannelHookCallInfo.$struct$LAYOUT;
+    SChannelHookCallInfo() {
+        // Should not be called directly
     }
-    public static MemorySegment iid$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return SChannelHookCallInfo.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)SChannelHookCallInfo.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        SChannelHookCallInfo.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)SChannelHookCallInfo.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        SChannelHookCallInfo.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment uCausality$slice(MemorySegment seg) {
-        return seg.asSlice(20, 16);
-    }
-    static final VarHandle dwServerPid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwServerPid"));
-    public static VarHandle dwServerPid$VH() {
-        return SChannelHookCallInfo.dwServerPid$VH;
-    }
-    public static int dwServerPid$get(MemorySegment seg) {
-        return (int)SChannelHookCallInfo.dwServerPid$VH.get(seg);
-    }
-    public static void dwServerPid$set( MemorySegment seg, int x) {
-        SChannelHookCallInfo.dwServerPid$VH.set(seg, x);
-    }
-    public static int dwServerPid$get(MemorySegment seg, long index) {
-        return (int)SChannelHookCallInfo.dwServerPid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwServerPid$set(MemorySegment seg, long index, int x) {
-        SChannelHookCallInfo.dwServerPid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iMethod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMethod"));
-    public static VarHandle iMethod$VH() {
-        return SChannelHookCallInfo.iMethod$VH;
-    }
-    public static int iMethod$get(MemorySegment seg) {
-        return (int)SChannelHookCallInfo.iMethod$VH.get(seg);
-    }
-    public static void iMethod$set( MemorySegment seg, int x) {
-        SChannelHookCallInfo.iMethod$VH.set(seg, x);
-    }
-    public static int iMethod$get(MemorySegment seg, long index) {
-        return (int)SChannelHookCallInfo.iMethod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMethod$set(MemorySegment seg, long index, int x) {
-        SChannelHookCallInfo.iMethod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pObject"));
-    public static VarHandle pObject$VH() {
-        return SChannelHookCallInfo.pObject$VH;
-    }
-    public static MemoryAddress pObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)SChannelHookCallInfo.pObject$VH.get(seg);
-    }
-    public static void pObject$set( MemorySegment seg, MemoryAddress x) {
-        SChannelHookCallInfo.pObject$VH.set(seg, x);
-    }
-    public static MemoryAddress pObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)SChannelHookCallInfo.pObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        SChannelHookCallInfo.pObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("iid"),
+        wgl_h.C_LONG.withName("cbSize"),
+        _GUID.layout().withName("uCausality"),
+        wgl_h.C_LONG.withName("dwServerPid"),
+        wgl_h.C_LONG.withName("iMethod"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pObject")
+    ).withName("SChannelHookCallInfo");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout iid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("iid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IID iid
+     * }
+     */
+    public static final GroupLayout iid$layout() {
+        return iid$LAYOUT;
+    }
+
+    private static final long iid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IID iid
+     * }
+     */
+    public static final long iid$offset() {
+        return iid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IID iid
+     * }
+     */
+    public static MemorySegment iid(MemorySegment struct) {
+        return struct.asSlice(iid$OFFSET, iid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IID iid
+     * }
+     */
+    public static void iid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, iid$OFFSET, iid$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout uCausality$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("uCausality"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID uCausality
+     * }
+     */
+    public static final GroupLayout uCausality$layout() {
+        return uCausality$LAYOUT;
+    }
+
+    private static final long uCausality$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID uCausality
+     * }
+     */
+    public static final long uCausality$offset() {
+        return uCausality$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID uCausality
+     * }
+     */
+    public static MemorySegment uCausality(MemorySegment struct) {
+        return struct.asSlice(uCausality$OFFSET, uCausality$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID uCausality
+     * }
+     */
+    public static void uCausality(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, uCausality$OFFSET, uCausality$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwServerPid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwServerPid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static final OfInt dwServerPid$layout() {
+        return dwServerPid$LAYOUT;
+    }
+
+    private static final long dwServerPid$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static final long dwServerPid$offset() {
+        return dwServerPid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static int dwServerPid(MemorySegment struct) {
+        return struct.get(dwServerPid$LAYOUT, dwServerPid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static void dwServerPid(MemorySegment struct, int fieldValue) {
+        struct.set(dwServerPid$LAYOUT, dwServerPid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iMethod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMethod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iMethod
+     * }
+     */
+    public static final OfInt iMethod$layout() {
+        return iMethod$LAYOUT;
+    }
+
+    private static final long iMethod$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iMethod
+     * }
+     */
+    public static final long iMethod$offset() {
+        return iMethod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iMethod
+     * }
+     */
+    public static int iMethod(MemorySegment struct) {
+        return struct.get(iMethod$LAYOUT, iMethod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iMethod
+     * }
+     */
+    public static void iMethod(MemorySegment struct, int fieldValue) {
+        struct.set(iMethod$LAYOUT, iMethod$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pObject
+     * }
+     */
+    public static final AddressLayout pObject$layout() {
+        return pObject$LAYOUT;
+    }
+
+    private static final long pObject$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pObject
+     * }
+     */
+    public static final long pObject$offset() {
+        return pObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pObject
+     * }
+     */
+    public static MemorySegment pObject(MemorySegment struct) {
+        return struct.get(pObject$LAYOUT, pObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pObject
+     * }
+     */
+    public static void pObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pObject$LAYOUT, pObject$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

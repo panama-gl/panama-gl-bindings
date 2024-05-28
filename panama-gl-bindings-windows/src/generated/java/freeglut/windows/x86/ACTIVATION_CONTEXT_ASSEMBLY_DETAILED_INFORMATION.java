@@ -2,13 +2,45 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
+ *     DWORD ulFlags;
+ *     DWORD ulEncodedAssemblyIdentityLength;
+ *     DWORD ulManifestPathType;
+ *     DWORD ulManifestPathLength;
+ *     LARGE_INTEGER liManifestLastWriteTime;
+ *     DWORD ulPolicyPathType;
+ *     DWORD ulPolicyPathLength;
+ *     LARGE_INTEGER liPolicyLastWriteTime;
+ *     DWORD ulMetadataSatelliteRosterIndex;
+ *     DWORD ulManifestVersionMajor;
+ *     DWORD ulManifestVersionMinor;
+ *     DWORD ulPolicyVersionMajor;
+ *     DWORD ulPolicyVersionMinor;
+ *     DWORD ulAssemblyDirectoryNameLength;
+ *     PCWSTR lpAssemblyEncodedAssemblyIdentity;
+ *     PCWSTR lpAssemblyManifestPath;
+ *     PCWSTR lpAssemblyPolicyPath;
+ *     PCWSTR lpAssemblyDirectoryName;
+ *     DWORD ulFileCount;
+ * } ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION
+ * }
+ */
 public class ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION extends _ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION {
 
+    ACTIVATION_CONTEXT_ASSEMBLY_DETAILED_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

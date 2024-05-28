@@ -2,232 +2,724 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     LARGE_INTEGER VolumeSerialNumber;
+ *     LARGE_INTEGER NumberSectors;
+ *     LARGE_INTEGER TotalClusters;
+ *     LARGE_INTEGER FreeClusters;
+ *     LARGE_INTEGER TotalReserved;
+ *     DWORD BytesPerSector;
+ *     DWORD BytesPerCluster;
+ *     DWORD BytesPerFileRecordSegment;
+ *     DWORD ClustersPerFileRecordSegment;
+ *     LARGE_INTEGER MftValidDataLength;
+ *     LARGE_INTEGER MftStartLcn;
+ *     LARGE_INTEGER Mft2StartLcn;
+ *     LARGE_INTEGER MftZoneStart;
+ *     LARGE_INTEGER MftZoneEnd;
+ * }
+ * }
+ */
 public class NTFS_VOLUME_DATA_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("VolumeSerialNumber"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("NumberSectors"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("TotalClusters"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("FreeClusters"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("TotalReserved"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerCluster"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerFileRecordSegment"),
-        Constants$root.C_LONG$LAYOUT.withName("ClustersPerFileRecordSegment"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("MftValidDataLength"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("MftStartLcn"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Mft2StartLcn"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("MftZoneStart"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("MftZoneEnd")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return NTFS_VOLUME_DATA_BUFFER.$struct$LAYOUT;
+    NTFS_VOLUME_DATA_BUFFER() {
+        // Should not be called directly
     }
-    public static MemorySegment VolumeSerialNumber$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment NumberSectors$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment TotalClusters$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment FreeClusters$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment TotalReserved$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    static final VarHandle BytesPerSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-    public static VarHandle BytesPerSector$VH() {
-        return NTFS_VOLUME_DATA_BUFFER.BytesPerSector$VH;
-    }
-    public static int BytesPerSector$get(MemorySegment seg) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.get(seg);
-    }
-    public static void BytesPerSector$set( MemorySegment seg, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.set(seg, x);
-    }
-    public static int BytesPerSector$get(MemorySegment seg, long index) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerCluster$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerCluster"));
-    public static VarHandle BytesPerCluster$VH() {
-        return NTFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH;
-    }
-    public static int BytesPerCluster$get(MemorySegment seg) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.get(seg);
-    }
-    public static void BytesPerCluster$set( MemorySegment seg, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.set(seg, x);
-    }
-    public static int BytesPerCluster$get(MemorySegment seg, long index) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerCluster$set(MemorySegment seg, long index, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerCluster$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerFileRecordSegment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerFileRecordSegment"));
-    public static VarHandle BytesPerFileRecordSegment$VH() {
-        return NTFS_VOLUME_DATA_BUFFER.BytesPerFileRecordSegment$VH;
-    }
-    public static int BytesPerFileRecordSegment$get(MemorySegment seg) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerFileRecordSegment$VH.get(seg);
-    }
-    public static void BytesPerFileRecordSegment$set( MemorySegment seg, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerFileRecordSegment$VH.set(seg, x);
-    }
-    public static int BytesPerFileRecordSegment$get(MemorySegment seg, long index) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.BytesPerFileRecordSegment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerFileRecordSegment$set(MemorySegment seg, long index, int x) {
-        NTFS_VOLUME_DATA_BUFFER.BytesPerFileRecordSegment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ClustersPerFileRecordSegment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClustersPerFileRecordSegment"));
-    public static VarHandle ClustersPerFileRecordSegment$VH() {
-        return NTFS_VOLUME_DATA_BUFFER.ClustersPerFileRecordSegment$VH;
-    }
-    public static int ClustersPerFileRecordSegment$get(MemorySegment seg) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.ClustersPerFileRecordSegment$VH.get(seg);
-    }
-    public static void ClustersPerFileRecordSegment$set( MemorySegment seg, int x) {
-        NTFS_VOLUME_DATA_BUFFER.ClustersPerFileRecordSegment$VH.set(seg, x);
-    }
-    public static int ClustersPerFileRecordSegment$get(MemorySegment seg, long index) {
-        return (int)NTFS_VOLUME_DATA_BUFFER.ClustersPerFileRecordSegment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClustersPerFileRecordSegment$set(MemorySegment seg, long index, int x) {
-        NTFS_VOLUME_DATA_BUFFER.ClustersPerFileRecordSegment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment MftValidDataLength$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    public static MemorySegment MftStartLcn$slice(MemorySegment seg) {
-        return seg.asSlice(64, 8);
-    }
-    public static MemorySegment Mft2StartLcn$slice(MemorySegment seg) {
-        return seg.asSlice(72, 8);
-    }
-    public static MemorySegment MftZoneStart$slice(MemorySegment seg) {
-        return seg.asSlice(80, 8);
-    }
-    public static MemorySegment MftZoneEnd$slice(MemorySegment seg) {
-        return seg.asSlice(88, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("VolumeSerialNumber"),
+        _LARGE_INTEGER.layout().withName("NumberSectors"),
+        _LARGE_INTEGER.layout().withName("TotalClusters"),
+        _LARGE_INTEGER.layout().withName("FreeClusters"),
+        _LARGE_INTEGER.layout().withName("TotalReserved"),
+        wgl_h.C_LONG.withName("BytesPerSector"),
+        wgl_h.C_LONG.withName("BytesPerCluster"),
+        wgl_h.C_LONG.withName("BytesPerFileRecordSegment"),
+        wgl_h.C_LONG.withName("ClustersPerFileRecordSegment"),
+        _LARGE_INTEGER.layout().withName("MftValidDataLength"),
+        _LARGE_INTEGER.layout().withName("MftStartLcn"),
+        _LARGE_INTEGER.layout().withName("Mft2StartLcn"),
+        _LARGE_INTEGER.layout().withName("MftZoneStart"),
+        _LARGE_INTEGER.layout().withName("MftZoneEnd")
+    ).withName("$anon$10448:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout VolumeSerialNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("VolumeSerialNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static final GroupLayout VolumeSerialNumber$layout() {
+        return VolumeSerialNumber$LAYOUT;
+    }
+
+    private static final long VolumeSerialNumber$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static final long VolumeSerialNumber$offset() {
+        return VolumeSerialNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static MemorySegment VolumeSerialNumber(MemorySegment struct) {
+        return struct.asSlice(VolumeSerialNumber$OFFSET, VolumeSerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER VolumeSerialNumber
+     * }
+     */
+    public static void VolumeSerialNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VolumeSerialNumber$OFFSET, VolumeSerialNumber$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NumberSectors$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NumberSectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static final GroupLayout NumberSectors$layout() {
+        return NumberSectors$LAYOUT;
+    }
+
+    private static final long NumberSectors$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static final long NumberSectors$offset() {
+        return NumberSectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static MemorySegment NumberSectors(MemorySegment struct) {
+        return struct.asSlice(NumberSectors$OFFSET, NumberSectors$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER NumberSectors
+     * }
+     */
+    public static void NumberSectors(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NumberSectors$OFFSET, NumberSectors$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout TotalClusters$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TotalClusters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static final GroupLayout TotalClusters$layout() {
+        return TotalClusters$LAYOUT;
+    }
+
+    private static final long TotalClusters$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static final long TotalClusters$offset() {
+        return TotalClusters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static MemorySegment TotalClusters(MemorySegment struct) {
+        return struct.asSlice(TotalClusters$OFFSET, TotalClusters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalClusters
+     * }
+     */
+    public static void TotalClusters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TotalClusters$OFFSET, TotalClusters$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout FreeClusters$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("FreeClusters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static final GroupLayout FreeClusters$layout() {
+        return FreeClusters$LAYOUT;
+    }
+
+    private static final long FreeClusters$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static final long FreeClusters$offset() {
+        return FreeClusters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static MemorySegment FreeClusters(MemorySegment struct) {
+        return struct.asSlice(FreeClusters$OFFSET, FreeClusters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER FreeClusters
+     * }
+     */
+    public static void FreeClusters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FreeClusters$OFFSET, FreeClusters$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout TotalReserved$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TotalReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static final GroupLayout TotalReserved$layout() {
+        return TotalReserved$LAYOUT;
+    }
+
+    private static final long TotalReserved$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static final long TotalReserved$offset() {
+        return TotalReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static MemorySegment TotalReserved(MemorySegment struct) {
+        return struct.asSlice(TotalReserved$OFFSET, TotalReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER TotalReserved
+     * }
+     */
+    public static void TotalReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TotalReserved$OFFSET, TotalReserved$LAYOUT.byteSize());
+    }
+
+    private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final OfInt BytesPerSector$layout() {
+        return BytesPerSector$LAYOUT;
+    }
+
+    private static final long BytesPerSector$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final long BytesPerSector$offset() {
+        return BytesPerSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static int BytesPerSector(MemorySegment struct) {
+        return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerCluster$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerCluster"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static final OfInt BytesPerCluster$layout() {
+        return BytesPerCluster$LAYOUT;
+    }
+
+    private static final long BytesPerCluster$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static final long BytesPerCluster$offset() {
+        return BytesPerCluster$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static int BytesPerCluster(MemorySegment struct) {
+        return struct.get(BytesPerCluster$LAYOUT, BytesPerCluster$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerCluster
+     * }
+     */
+    public static void BytesPerCluster(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerCluster$LAYOUT, BytesPerCluster$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerFileRecordSegment$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerFileRecordSegment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerFileRecordSegment
+     * }
+     */
+    public static final OfInt BytesPerFileRecordSegment$layout() {
+        return BytesPerFileRecordSegment$LAYOUT;
+    }
+
+    private static final long BytesPerFileRecordSegment$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerFileRecordSegment
+     * }
+     */
+    public static final long BytesPerFileRecordSegment$offset() {
+        return BytesPerFileRecordSegment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerFileRecordSegment
+     * }
+     */
+    public static int BytesPerFileRecordSegment(MemorySegment struct) {
+        return struct.get(BytesPerFileRecordSegment$LAYOUT, BytesPerFileRecordSegment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerFileRecordSegment
+     * }
+     */
+    public static void BytesPerFileRecordSegment(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerFileRecordSegment$LAYOUT, BytesPerFileRecordSegment$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ClustersPerFileRecordSegment$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ClustersPerFileRecordSegment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ClustersPerFileRecordSegment
+     * }
+     */
+    public static final OfInt ClustersPerFileRecordSegment$layout() {
+        return ClustersPerFileRecordSegment$LAYOUT;
+    }
+
+    private static final long ClustersPerFileRecordSegment$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ClustersPerFileRecordSegment
+     * }
+     */
+    public static final long ClustersPerFileRecordSegment$offset() {
+        return ClustersPerFileRecordSegment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ClustersPerFileRecordSegment
+     * }
+     */
+    public static int ClustersPerFileRecordSegment(MemorySegment struct) {
+        return struct.get(ClustersPerFileRecordSegment$LAYOUT, ClustersPerFileRecordSegment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ClustersPerFileRecordSegment
+     * }
+     */
+    public static void ClustersPerFileRecordSegment(MemorySegment struct, int fieldValue) {
+        struct.set(ClustersPerFileRecordSegment$LAYOUT, ClustersPerFileRecordSegment$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout MftValidDataLength$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftValidDataLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftValidDataLength
+     * }
+     */
+    public static final GroupLayout MftValidDataLength$layout() {
+        return MftValidDataLength$LAYOUT;
+    }
+
+    private static final long MftValidDataLength$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftValidDataLength
+     * }
+     */
+    public static final long MftValidDataLength$offset() {
+        return MftValidDataLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftValidDataLength
+     * }
+     */
+    public static MemorySegment MftValidDataLength(MemorySegment struct) {
+        return struct.asSlice(MftValidDataLength$OFFSET, MftValidDataLength$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftValidDataLength
+     * }
+     */
+    public static void MftValidDataLength(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftValidDataLength$OFFSET, MftValidDataLength$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout MftStartLcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftStartLcn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftStartLcn
+     * }
+     */
+    public static final GroupLayout MftStartLcn$layout() {
+        return MftStartLcn$LAYOUT;
+    }
+
+    private static final long MftStartLcn$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftStartLcn
+     * }
+     */
+    public static final long MftStartLcn$offset() {
+        return MftStartLcn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftStartLcn
+     * }
+     */
+    public static MemorySegment MftStartLcn(MemorySegment struct) {
+        return struct.asSlice(MftStartLcn$OFFSET, MftStartLcn$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftStartLcn
+     * }
+     */
+    public static void MftStartLcn(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftStartLcn$OFFSET, MftStartLcn$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Mft2StartLcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Mft2StartLcn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Mft2StartLcn
+     * }
+     */
+    public static final GroupLayout Mft2StartLcn$layout() {
+        return Mft2StartLcn$LAYOUT;
+    }
+
+    private static final long Mft2StartLcn$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Mft2StartLcn
+     * }
+     */
+    public static final long Mft2StartLcn$offset() {
+        return Mft2StartLcn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Mft2StartLcn
+     * }
+     */
+    public static MemorySegment Mft2StartLcn(MemorySegment struct) {
+        return struct.asSlice(Mft2StartLcn$OFFSET, Mft2StartLcn$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Mft2StartLcn
+     * }
+     */
+    public static void Mft2StartLcn(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Mft2StartLcn$OFFSET, Mft2StartLcn$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout MftZoneStart$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftZoneStart"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneStart
+     * }
+     */
+    public static final GroupLayout MftZoneStart$layout() {
+        return MftZoneStart$LAYOUT;
+    }
+
+    private static final long MftZoneStart$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneStart
+     * }
+     */
+    public static final long MftZoneStart$offset() {
+        return MftZoneStart$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneStart
+     * }
+     */
+    public static MemorySegment MftZoneStart(MemorySegment struct) {
+        return struct.asSlice(MftZoneStart$OFFSET, MftZoneStart$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneStart
+     * }
+     */
+    public static void MftZoneStart(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftZoneStart$OFFSET, MftZoneStart$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout MftZoneEnd$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MftZoneEnd"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneEnd
+     * }
+     */
+    public static final GroupLayout MftZoneEnd$layout() {
+        return MftZoneEnd$LAYOUT;
+    }
+
+    private static final long MftZoneEnd$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneEnd
+     * }
+     */
+    public static final long MftZoneEnd$offset() {
+        return MftZoneEnd$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneEnd
+     * }
+     */
+    public static MemorySegment MftZoneEnd(MemorySegment struct) {
+        return struct.asSlice(MftZoneEnd$OFFSET, MftZoneEnd$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER MftZoneEnd
+     * }
+     */
+    public static void MftZoneEnd(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MftZoneEnd$OFFSET, MftZoneEnd$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

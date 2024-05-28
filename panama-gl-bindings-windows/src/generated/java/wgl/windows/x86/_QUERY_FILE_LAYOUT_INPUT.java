@@ -2,198 +2,692 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _QUERY_FILE_LAYOUT_INPUT {
+ *     union {
+ *         DWORD FilterEntryCount;
+ *         DWORD NumberOfPairs;
+ *     };
+ *     DWORD Flags;
+ *     QUERY_FILE_LAYOUT_FILTER_TYPE FilterType;
+ *     DWORD Reserved;
+ *     union {
+ *         CLUSTER_RANGE ClusterRanges[1];
+ *         FILE_REFERENCE_RANGE FileReferenceRanges[1];
+ *         STORAGE_RESERVE_ID StorageReserveIds[1];
+ *     } Filter;
+ * }
+ * }
+ */
 public class _QUERY_FILE_LAYOUT_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
+    _QUERY_FILE_LAYOUT_INPUT() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
         MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("FilterEntryCount"),
-            Constants$root.C_LONG$LAYOUT.withName("NumberOfPairs")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("FilterType"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("StartingCluster"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("ClusterCount")
-            ).withName("_CLUSTER_RANGE")).withName("ClusterRanges"),
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("StartingFileReferenceNumber"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("EndingFileReferenceNumber")
-            ).withName("_FILE_REFERENCE_RANGE")).withName("FileReferenceRanges"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("StorageReserveIds")
-        ).withName("Filter")
+            wgl_h.C_LONG.withName("FilterEntryCount"),
+            wgl_h.C_LONG.withName("NumberOfPairs")
+        ).withName("$anon$14347:5"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_INT.withName("FilterType"),
+        wgl_h.C_LONG.withName("Reserved"),
+        _QUERY_FILE_LAYOUT_INPUT.Filter.layout().withName("Filter")
     ).withName("_QUERY_FILE_LAYOUT_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _QUERY_FILE_LAYOUT_INPUT.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle FilterEntryCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("FilterEntryCount"));
-    public static VarHandle FilterEntryCount$VH() {
-        return _QUERY_FILE_LAYOUT_INPUT.FilterEntryCount$VH;
+
+    private static final OfInt FilterEntryCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$14347:5"), groupElement("FilterEntryCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FilterEntryCount
+     * }
+     */
+    public static final OfInt FilterEntryCount$layout() {
+        return FilterEntryCount$LAYOUT;
     }
-    public static int FilterEntryCount$get(MemorySegment seg) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.FilterEntryCount$VH.get(seg);
+
+    private static final long FilterEntryCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FilterEntryCount
+     * }
+     */
+    public static final long FilterEntryCount$offset() {
+        return FilterEntryCount$OFFSET;
     }
-    public static void FilterEntryCount$set( MemorySegment seg, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.FilterEntryCount$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FilterEntryCount
+     * }
+     */
+    public static int FilterEntryCount(MemorySegment struct) {
+        return struct.get(FilterEntryCount$LAYOUT, FilterEntryCount$OFFSET);
     }
-    public static int FilterEntryCount$get(MemorySegment seg, long index) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.FilterEntryCount$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FilterEntryCount
+     * }
+     */
+    public static void FilterEntryCount(MemorySegment struct, int fieldValue) {
+        struct.set(FilterEntryCount$LAYOUT, FilterEntryCount$OFFSET, fieldValue);
     }
-    public static void FilterEntryCount$set(MemorySegment seg, long index, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.FilterEntryCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt NumberOfPairs$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$14347:5"), groupElement("NumberOfPairs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPairs
+     * }
+     */
+    public static final OfInt NumberOfPairs$layout() {
+        return NumberOfPairs$LAYOUT;
     }
-    static final VarHandle NumberOfPairs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("NumberOfPairs"));
-    public static VarHandle NumberOfPairs$VH() {
-        return _QUERY_FILE_LAYOUT_INPUT.NumberOfPairs$VH;
+
+    private static final long NumberOfPairs$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPairs
+     * }
+     */
+    public static final long NumberOfPairs$offset() {
+        return NumberOfPairs$OFFSET;
     }
-    public static int NumberOfPairs$get(MemorySegment seg) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.NumberOfPairs$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPairs
+     * }
+     */
+    public static int NumberOfPairs(MemorySegment struct) {
+        return struct.get(NumberOfPairs$LAYOUT, NumberOfPairs$OFFSET);
     }
-    public static void NumberOfPairs$set( MemorySegment seg, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.NumberOfPairs$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPairs
+     * }
+     */
+    public static void NumberOfPairs(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfPairs$LAYOUT, NumberOfPairs$OFFSET, fieldValue);
     }
-    public static int NumberOfPairs$get(MemorySegment seg, long index) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.NumberOfPairs$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
     }
-    public static void NumberOfPairs$set(MemorySegment seg, long index, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.NumberOfPairs$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _QUERY_FILE_LAYOUT_INPUT.Flags$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
     }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.Flags$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
     }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.Flags$VH.set(seg, x);
+
+    private static final OfInt FilterType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FilterType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * QUERY_FILE_LAYOUT_FILTER_TYPE FilterType
+     * }
+     */
+    public static final OfInt FilterType$layout() {
+        return FilterType$LAYOUT;
     }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.Flags$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long FilterType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * QUERY_FILE_LAYOUT_FILTER_TYPE FilterType
+     * }
+     */
+    public static final long FilterType$offset() {
+        return FilterType$OFFSET;
     }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.Flags$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * QUERY_FILE_LAYOUT_FILTER_TYPE FilterType
+     * }
+     */
+    public static int FilterType(MemorySegment struct) {
+        return struct.get(FilterType$LAYOUT, FilterType$OFFSET);
     }
-    static final VarHandle FilterType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FilterType"));
-    public static VarHandle FilterType$VH() {
-        return _QUERY_FILE_LAYOUT_INPUT.FilterType$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * QUERY_FILE_LAYOUT_FILTER_TYPE FilterType
+     * }
+     */
+    public static void FilterType(MemorySegment struct, int fieldValue) {
+        struct.set(FilterType$LAYOUT, FilterType$OFFSET, fieldValue);
     }
-    public static int FilterType$get(MemorySegment seg) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.FilterType$VH.get(seg);
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
     }
-    public static void FilterType$set( MemorySegment seg, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.FilterType$VH.set(seg, x);
+
+    private static final long Reserved$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
     }
-    public static int FilterType$get(MemorySegment seg, long index) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.FilterType$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
     }
-    public static void FilterType$set(MemorySegment seg, long index, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.FilterType$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _QUERY_FILE_LAYOUT_INPUT.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_QUERY_FILE_LAYOUT_INPUT.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _QUERY_FILE_LAYOUT_INPUT.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     CLUSTER_RANGE ClusterRanges[1];
+     *     FILE_REFERENCE_RANGE FileReferenceRanges[1];
+     *     STORAGE_RESERVE_ID StorageReserveIds[1];
+     * }
+     * }
+     */
     public static class Filter {
 
-        static final  GroupLayout Filter$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("StartingCluster"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("ClusterCount")
-            ).withName("_CLUSTER_RANGE")).withName("ClusterRanges"),
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("StartingFileReferenceNumber"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("EndingFileReferenceNumber")
-            ).withName("_FILE_REFERENCE_RANGE")).withName("FileReferenceRanges"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("StorageReserveIds")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Filter.Filter$union$LAYOUT;
+        Filter() {
+            // Should not be called directly
         }
-        public static MemorySegment ClusterRanges$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            MemoryLayout.sequenceLayout(1, _CLUSTER_RANGE.layout()).withName("ClusterRanges"),
+            MemoryLayout.sequenceLayout(1, _FILE_REFERENCE_RANGE.layout()).withName("FileReferenceRanges"),
+            MemoryLayout.sequenceLayout(1, wgl_h.C_INT).withName("StorageReserveIds")
+        ).withName("$anon$14374:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemorySegment FileReferenceRanges$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final SequenceLayout ClusterRanges$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ClusterRanges"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static final SequenceLayout ClusterRanges$layout() {
+            return ClusterRanges$LAYOUT;
         }
-        public static MemorySegment StorageReserveIds$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+
+        private static final long ClusterRanges$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static final long ClusterRanges$offset() {
+            return ClusterRanges$OFFSET;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static MemorySegment ClusterRanges(MemorySegment union) {
+            return union.asSlice(ClusterRanges$OFFSET, ClusterRanges$LAYOUT.byteSize());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static void ClusterRanges(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, ClusterRanges$OFFSET, ClusterRanges$LAYOUT.byteSize());
+        }
+
+        private static long[] ClusterRanges$DIMS = { 1 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static long[] ClusterRanges$dimensions() {
+            return ClusterRanges$DIMS;
+        }
+        private static final MethodHandle ClusterRanges$ELEM_HANDLE = ClusterRanges$LAYOUT.sliceHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static MemorySegment ClusterRanges(MemorySegment union, long index0) {
+            try {
+                return (MemorySegment)ClusterRanges$ELEM_HANDLE.invokeExact(union, 0L, index0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * CLUSTER_RANGE ClusterRanges[1]
+         * }
+         */
+        public static void ClusterRanges(MemorySegment union, long index0, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, ClusterRanges(union, index0), 0L, _CLUSTER_RANGE.layout().byteSize());
+        }
+
+        private static final SequenceLayout FileReferenceRanges$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FileReferenceRanges"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static final SequenceLayout FileReferenceRanges$layout() {
+            return FileReferenceRanges$LAYOUT;
+        }
+
+        private static final long FileReferenceRanges$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static final long FileReferenceRanges$offset() {
+            return FileReferenceRanges$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static MemorySegment FileReferenceRanges(MemorySegment union) {
+            return union.asSlice(FileReferenceRanges$OFFSET, FileReferenceRanges$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static void FileReferenceRanges(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, FileReferenceRanges$OFFSET, FileReferenceRanges$LAYOUT.byteSize());
+        }
+
+        private static long[] FileReferenceRanges$DIMS = { 1 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static long[] FileReferenceRanges$dimensions() {
+            return FileReferenceRanges$DIMS;
+        }
+        private static final MethodHandle FileReferenceRanges$ELEM_HANDLE = FileReferenceRanges$LAYOUT.sliceHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static MemorySegment FileReferenceRanges(MemorySegment union, long index0) {
+            try {
+                return (MemorySegment)FileReferenceRanges$ELEM_HANDLE.invokeExact(union, 0L, index0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * FILE_REFERENCE_RANGE FileReferenceRanges[1]
+         * }
+         */
+        public static void FileReferenceRanges(MemorySegment union, long index0, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, FileReferenceRanges(union, index0), 0L, _FILE_REFERENCE_RANGE.layout().byteSize());
+        }
+
+        private static final SequenceLayout StorageReserveIds$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("StorageReserveIds"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static final SequenceLayout StorageReserveIds$layout() {
+            return StorageReserveIds$LAYOUT;
+        }
+
+        private static final long StorageReserveIds$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static final long StorageReserveIds$offset() {
+            return StorageReserveIds$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static MemorySegment StorageReserveIds(MemorySegment union) {
+            return union.asSlice(StorageReserveIds$OFFSET, StorageReserveIds$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static void StorageReserveIds(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, StorageReserveIds$OFFSET, StorageReserveIds$LAYOUT.byteSize());
+        }
+
+        private static long[] StorageReserveIds$DIMS = { 1 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static long[] StorageReserveIds$dimensions() {
+            return StorageReserveIds$DIMS;
+        }
+        private static final VarHandle StorageReserveIds$ELEM_HANDLE = StorageReserveIds$LAYOUT.varHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static int StorageReserveIds(MemorySegment union, long index0) {
+            return (int)StorageReserveIds$ELEM_HANDLE.get(union, 0L, index0);
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * STORAGE_RESERVE_ID StorageReserveIds[1]
+         * }
+         */
+        public static void StorageReserveIds(MemorySegment union, long index0, int fieldValue) {
+            StorageReserveIds$ELEM_HANDLE.set(union, 0L, index0, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Filter$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+    private static final GroupLayout Filter$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Filter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     CLUSTER_RANGE ClusterRanges[1];
+     *     FILE_REFERENCE_RANGE FileReferenceRanges[1];
+     *     STORAGE_RESERVE_ID StorageReserveIds[1];
+     * } Filter
+     * }
+     */
+    public static final GroupLayout Filter$layout() {
+        return Filter$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Filter$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     CLUSTER_RANGE ClusterRanges[1];
+     *     FILE_REFERENCE_RANGE FileReferenceRanges[1];
+     *     STORAGE_RESERVE_ID StorageReserveIds[1];
+     * } Filter
+     * }
+     */
+    public static final long Filter$offset() {
+        return Filter$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     CLUSTER_RANGE ClusterRanges[1];
+     *     FILE_REFERENCE_RANGE FileReferenceRanges[1];
+     *     STORAGE_RESERVE_ID StorageReserveIds[1];
+     * } Filter
+     * }
+     */
+    public static MemorySegment Filter(MemorySegment struct) {
+        return struct.asSlice(Filter$OFFSET, Filter$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     CLUSTER_RANGE ClusterRanges[1];
+     *     FILE_REFERENCE_RANGE FileReferenceRanges[1];
+     *     STORAGE_RESERVE_ID StorageReserveIds[1];
+     * } Filter
+     * }
+     */
+    public static void Filter(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Filter$OFFSET, Filter$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

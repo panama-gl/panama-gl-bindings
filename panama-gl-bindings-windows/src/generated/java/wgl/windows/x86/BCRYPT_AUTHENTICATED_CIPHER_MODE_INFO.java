@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO {
+ *     ULONG cbSize;
+ *     ULONG dwInfoVersion;
+ *     PUCHAR pbNonce;
+ *     ULONG cbNonce;
+ *     PUCHAR pbAuthData;
+ *     ULONG cbAuthData;
+ *     PUCHAR pbTag;
+ *     ULONG cbTag;
+ *     PUCHAR pbMacContext;
+ *     ULONG cbMacContext;
+ *     ULONG cbAAD;
+ *     ULONGLONG cbData;
+ *     ULONG dwFlags;
+ * } BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO
+ * }
+ */
 public class BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO extends _BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO {
 
+    BCRYPT_AUTHENTICATED_CIPHER_MODE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

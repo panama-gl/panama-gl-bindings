@@ -2,13 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_LOAD_CONFIG_DIRECTORY64 {
+ *     DWORD Size;
+ *     DWORD TimeDateStamp;
+ *     WORD MajorVersion;
+ *     WORD MinorVersion;
+ *     DWORD GlobalFlagsClear;
+ *     DWORD GlobalFlagsSet;
+ *     DWORD CriticalSectionDefaultTimeout;
+ *     ULONGLONG DeCommitFreeBlockThreshold;
+ *     ULONGLONG DeCommitTotalFreeThreshold;
+ *     ULONGLONG LockPrefixTable;
+ *     ULONGLONG MaximumAllocationSize;
+ *     ULONGLONG VirtualMemoryThreshold;
+ *     ULONGLONG ProcessAffinityMask;
+ *     DWORD ProcessHeapFlags;
+ *     WORD CSDVersion;
+ *     WORD DependentLoadFlags;
+ *     ULONGLONG EditList;
+ *     ULONGLONG SecurityCookie;
+ *     ULONGLONG SEHandlerTable;
+ *     ULONGLONG SEHandlerCount;
+ *     ULONGLONG GuardCFCheckFunctionPointer;
+ *     ULONGLONG GuardCFDispatchFunctionPointer;
+ *     ULONGLONG GuardCFFunctionTable;
+ *     ULONGLONG GuardCFFunctionCount;
+ *     DWORD GuardFlags;
+ *     IMAGE_LOAD_CONFIG_CODE_INTEGRITY CodeIntegrity;
+ *     ULONGLONG GuardAddressTakenIatEntryTable;
+ *     ULONGLONG GuardAddressTakenIatEntryCount;
+ *     ULONGLONG GuardLongJumpTargetTable;
+ *     ULONGLONG GuardLongJumpTargetCount;
+ *     ULONGLONG DynamicValueRelocTable;
+ *     ULONGLONG CHPEMetadataPointer;
+ *     ULONGLONG GuardRFFailureRoutine;
+ *     ULONGLONG GuardRFFailureRoutineFunctionPointer;
+ *     DWORD DynamicValueRelocTableOffset;
+ *     WORD DynamicValueRelocTableSection;
+ *     WORD Reserved2;
+ *     ULONGLONG GuardRFVerifyStackPointerFunctionPointer;
+ *     DWORD HotPatchTableOffset;
+ *     DWORD Reserved3;
+ *     ULONGLONG EnclaveConfigurationPointer;
+ *     ULONGLONG VolatileMetadataPointer;
+ *     ULONGLONG GuardEHContinuationTable;
+ *     ULONGLONG GuardEHContinuationCount;
+ * } IMAGE_LOAD_CONFIG_DIRECTORY64
+ * }
+ */
 public class IMAGE_LOAD_CONFIG_DIRECTORY64 extends _IMAGE_LOAD_CONFIG_DIRECTORY64 {
 
+    IMAGE_LOAD_CONFIG_DIRECTORY64() {
+        // Should not be called directly
+    }
 }
-
 

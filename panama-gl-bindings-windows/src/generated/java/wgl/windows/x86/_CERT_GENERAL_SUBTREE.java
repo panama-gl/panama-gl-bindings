@@ -2,100 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_GENERAL_SUBTREE {
+ *     CERT_ALT_NAME_ENTRY Base;
+ *     DWORD dwMinimum;
+ *     BOOL fMaximum;
+ *     DWORD dwMaximum;
+ * }
+ * }
+ */
 public class _CERT_GENERAL_SUBTREE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwAltNameChoice"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pOtherName"),
-                Constants$root.C_POINTER$LAYOUT.withName("pwszRfc822Name"),
-                Constants$root.C_POINTER$LAYOUT.withName("pwszDNSName"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("DirectoryName"),
-                Constants$root.C_POINTER$LAYOUT.withName("pwszURL"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("IPAddress"),
-                Constants$root.C_POINTER$LAYOUT.withName("pszRegisteredID")
-            ).withName("$anon$0")
-        ).withName("Base"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMinimum"),
-        Constants$root.C_LONG$LAYOUT.withName("fMaximum"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMaximum"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_GENERAL_SUBTREE");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_GENERAL_SUBTREE.$struct$LAYOUT;
+    _CERT_GENERAL_SUBTREE() {
+        // Should not be called directly
     }
-    public static MemorySegment Base$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    static final VarHandle dwMinimum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMinimum"));
-    public static VarHandle dwMinimum$VH() {
-        return _CERT_GENERAL_SUBTREE.dwMinimum$VH;
-    }
-    public static int dwMinimum$get(MemorySegment seg) {
-        return (int)_CERT_GENERAL_SUBTREE.dwMinimum$VH.get(seg);
-    }
-    public static void dwMinimum$set( MemorySegment seg, int x) {
-        _CERT_GENERAL_SUBTREE.dwMinimum$VH.set(seg, x);
-    }
-    public static int dwMinimum$get(MemorySegment seg, long index) {
-        return (int)_CERT_GENERAL_SUBTREE.dwMinimum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMinimum$set(MemorySegment seg, long index, int x) {
-        _CERT_GENERAL_SUBTREE.dwMinimum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fMaximum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fMaximum"));
-    public static VarHandle fMaximum$VH() {
-        return _CERT_GENERAL_SUBTREE.fMaximum$VH;
-    }
-    public static int fMaximum$get(MemorySegment seg) {
-        return (int)_CERT_GENERAL_SUBTREE.fMaximum$VH.get(seg);
-    }
-    public static void fMaximum$set( MemorySegment seg, int x) {
-        _CERT_GENERAL_SUBTREE.fMaximum$VH.set(seg, x);
-    }
-    public static int fMaximum$get(MemorySegment seg, long index) {
-        return (int)_CERT_GENERAL_SUBTREE.fMaximum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fMaximum$set(MemorySegment seg, long index, int x) {
-        _CERT_GENERAL_SUBTREE.fMaximum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMaximum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMaximum"));
-    public static VarHandle dwMaximum$VH() {
-        return _CERT_GENERAL_SUBTREE.dwMaximum$VH;
-    }
-    public static int dwMaximum$get(MemorySegment seg) {
-        return (int)_CERT_GENERAL_SUBTREE.dwMaximum$VH.get(seg);
-    }
-    public static void dwMaximum$set( MemorySegment seg, int x) {
-        _CERT_GENERAL_SUBTREE.dwMaximum$VH.set(seg, x);
-    }
-    public static int dwMaximum$get(MemorySegment seg, long index) {
-        return (int)_CERT_GENERAL_SUBTREE.dwMaximum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMaximum$set(MemorySegment seg, long index, int x) {
-        _CERT_GENERAL_SUBTREE.dwMaximum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CERT_ALT_NAME_ENTRY.layout().withName("Base"),
+        wgl_h.C_LONG.withName("dwMinimum"),
+        wgl_h.C_INT.withName("fMaximum"),
+        wgl_h.C_LONG.withName("dwMaximum"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_GENERAL_SUBTREE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Base$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Base"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_ENTRY Base
+     * }
+     */
+    public static final GroupLayout Base$layout() {
+        return Base$LAYOUT;
+    }
+
+    private static final long Base$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_ENTRY Base
+     * }
+     */
+    public static final long Base$offset() {
+        return Base$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_ENTRY Base
+     * }
+     */
+    public static MemorySegment Base(MemorySegment struct) {
+        return struct.asSlice(Base$OFFSET, Base$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_ALT_NAME_ENTRY Base
+     * }
+     */
+    public static void Base(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Base$OFFSET, Base$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwMinimum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMinimum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMinimum
+     * }
+     */
+    public static final OfInt dwMinimum$layout() {
+        return dwMinimum$LAYOUT;
+    }
+
+    private static final long dwMinimum$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMinimum
+     * }
+     */
+    public static final long dwMinimum$offset() {
+        return dwMinimum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinimum
+     * }
+     */
+    public static int dwMinimum(MemorySegment struct) {
+        return struct.get(dwMinimum$LAYOUT, dwMinimum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMinimum
+     * }
+     */
+    public static void dwMinimum(MemorySegment struct, int fieldValue) {
+        struct.set(dwMinimum$LAYOUT, dwMinimum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fMaximum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fMaximum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fMaximum
+     * }
+     */
+    public static final OfInt fMaximum$layout() {
+        return fMaximum$LAYOUT;
+    }
+
+    private static final long fMaximum$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fMaximum
+     * }
+     */
+    public static final long fMaximum$offset() {
+        return fMaximum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fMaximum
+     * }
+     */
+    public static int fMaximum(MemorySegment struct) {
+        return struct.get(fMaximum$LAYOUT, fMaximum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fMaximum
+     * }
+     */
+    public static void fMaximum(MemorySegment struct, int fieldValue) {
+        struct.set(fMaximum$LAYOUT, fMaximum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMaximum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMaximum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMaximum
+     * }
+     */
+    public static final OfInt dwMaximum$layout() {
+        return dwMaximum$LAYOUT;
+    }
+
+    private static final long dwMaximum$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMaximum
+     * }
+     */
+    public static final long dwMaximum$offset() {
+        return dwMaximum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaximum
+     * }
+     */
+    public static int dwMaximum(MemorySegment struct) {
+        return struct.get(dwMaximum$LAYOUT, dwMaximum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaximum
+     * }
+     */
+    public static void dwMaximum(MemorySegment struct, int fieldValue) {
+        struct.set(dwMaximum$LAYOUT, dwMaximum$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

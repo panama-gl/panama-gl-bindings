@@ -2,214 +2,586 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISPATCHER_CONTEXT {
+ *     DWORD64 ControlPc;
+ *     DWORD64 ImageBase;
+ *     PRUNTIME_FUNCTION FunctionEntry;
+ *     DWORD64 EstablisherFrame;
+ *     DWORD64 TargetIp;
+ *     PCONTEXT ContextRecord;
+ *     PEXCEPTION_ROUTINE LanguageHandler;
+ *     PVOID HandlerData;
+ *     PUNWIND_HISTORY_TABLE HistoryTable;
+ *     DWORD ScopeIndex;
+ *     DWORD Fill0;
+ * }
+ * }
+ */
 public class _DISPATCHER_CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ControlPc"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ImageBase"),
-        Constants$root.C_POINTER$LAYOUT.withName("FunctionEntry"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EstablisherFrame"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TargetIp"),
-        Constants$root.C_POINTER$LAYOUT.withName("ContextRecord"),
-        Constants$root.C_POINTER$LAYOUT.withName("LanguageHandler"),
-        Constants$root.C_POINTER$LAYOUT.withName("HandlerData"),
-        Constants$root.C_POINTER$LAYOUT.withName("HistoryTable"),
-        Constants$root.C_LONG$LAYOUT.withName("ScopeIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("Fill0")
-    ).withName("_DISPATCHER_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _DISPATCHER_CONTEXT.$struct$LAYOUT;
+    _DISPATCHER_CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle ControlPc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ControlPc"));
-    public static VarHandle ControlPc$VH() {
-        return _DISPATCHER_CONTEXT.ControlPc$VH;
-    }
-    public static long ControlPc$get(MemorySegment seg) {
-        return (long)_DISPATCHER_CONTEXT.ControlPc$VH.get(seg);
-    }
-    public static void ControlPc$set( MemorySegment seg, long x) {
-        _DISPATCHER_CONTEXT.ControlPc$VH.set(seg, x);
-    }
-    public static long ControlPc$get(MemorySegment seg, long index) {
-        return (long)_DISPATCHER_CONTEXT.ControlPc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControlPc$set(MemorySegment seg, long index, long x) {
-        _DISPATCHER_CONTEXT.ControlPc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ImageBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImageBase"));
-    public static VarHandle ImageBase$VH() {
-        return _DISPATCHER_CONTEXT.ImageBase$VH;
-    }
-    public static long ImageBase$get(MemorySegment seg) {
-        return (long)_DISPATCHER_CONTEXT.ImageBase$VH.get(seg);
-    }
-    public static void ImageBase$set( MemorySegment seg, long x) {
-        _DISPATCHER_CONTEXT.ImageBase$VH.set(seg, x);
-    }
-    public static long ImageBase$get(MemorySegment seg, long index) {
-        return (long)_DISPATCHER_CONTEXT.ImageBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ImageBase$set(MemorySegment seg, long index, long x) {
-        _DISPATCHER_CONTEXT.ImageBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FunctionEntry$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FunctionEntry"));
-    public static VarHandle FunctionEntry$VH() {
-        return _DISPATCHER_CONTEXT.FunctionEntry$VH;
-    }
-    public static MemoryAddress FunctionEntry$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.FunctionEntry$VH.get(seg);
-    }
-    public static void FunctionEntry$set( MemorySegment seg, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.FunctionEntry$VH.set(seg, x);
-    }
-    public static MemoryAddress FunctionEntry$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.FunctionEntry$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FunctionEntry$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.FunctionEntry$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EstablisherFrame$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EstablisherFrame"));
-    public static VarHandle EstablisherFrame$VH() {
-        return _DISPATCHER_CONTEXT.EstablisherFrame$VH;
-    }
-    public static long EstablisherFrame$get(MemorySegment seg) {
-        return (long)_DISPATCHER_CONTEXT.EstablisherFrame$VH.get(seg);
-    }
-    public static void EstablisherFrame$set( MemorySegment seg, long x) {
-        _DISPATCHER_CONTEXT.EstablisherFrame$VH.set(seg, x);
-    }
-    public static long EstablisherFrame$get(MemorySegment seg, long index) {
-        return (long)_DISPATCHER_CONTEXT.EstablisherFrame$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EstablisherFrame$set(MemorySegment seg, long index, long x) {
-        _DISPATCHER_CONTEXT.EstablisherFrame$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TargetIp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TargetIp"));
-    public static VarHandle TargetIp$VH() {
-        return _DISPATCHER_CONTEXT.TargetIp$VH;
-    }
-    public static long TargetIp$get(MemorySegment seg) {
-        return (long)_DISPATCHER_CONTEXT.TargetIp$VH.get(seg);
-    }
-    public static void TargetIp$set( MemorySegment seg, long x) {
-        _DISPATCHER_CONTEXT.TargetIp$VH.set(seg, x);
-    }
-    public static long TargetIp$get(MemorySegment seg, long index) {
-        return (long)_DISPATCHER_CONTEXT.TargetIp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TargetIp$set(MemorySegment seg, long index, long x) {
-        _DISPATCHER_CONTEXT.TargetIp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ContextRecord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContextRecord"));
-    public static VarHandle ContextRecord$VH() {
-        return _DISPATCHER_CONTEXT.ContextRecord$VH;
-    }
-    public static MemoryAddress ContextRecord$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.ContextRecord$VH.get(seg);
-    }
-    public static void ContextRecord$set( MemorySegment seg, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.ContextRecord$VH.set(seg, x);
-    }
-    public static MemoryAddress ContextRecord$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.ContextRecord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContextRecord$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.ContextRecord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LanguageHandler$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LanguageHandler"));
-    public static VarHandle LanguageHandler$VH() {
-        return _DISPATCHER_CONTEXT.LanguageHandler$VH;
-    }
-    public static MemoryAddress LanguageHandler$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.LanguageHandler$VH.get(seg);
-    }
-    public static void LanguageHandler$set( MemorySegment seg, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.LanguageHandler$VH.set(seg, x);
-    }
-    public static MemoryAddress LanguageHandler$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.LanguageHandler$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LanguageHandler$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.LanguageHandler$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PEXCEPTION_ROUTINE LanguageHandler (MemorySegment segment, MemorySession session) {
-        return PEXCEPTION_ROUTINE.ofAddress(LanguageHandler$get(segment), session);
-    }
-    static final VarHandle HandlerData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HandlerData"));
-    public static VarHandle HandlerData$VH() {
-        return _DISPATCHER_CONTEXT.HandlerData$VH;
-    }
-    public static MemoryAddress HandlerData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.HandlerData$VH.get(seg);
-    }
-    public static void HandlerData$set( MemorySegment seg, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.HandlerData$VH.set(seg, x);
-    }
-    public static MemoryAddress HandlerData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.HandlerData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HandlerData$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.HandlerData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HistoryTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HistoryTable"));
-    public static VarHandle HistoryTable$VH() {
-        return _DISPATCHER_CONTEXT.HistoryTable$VH;
-    }
-    public static MemoryAddress HistoryTable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.HistoryTable$VH.get(seg);
-    }
-    public static void HistoryTable$set( MemorySegment seg, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.HistoryTable$VH.set(seg, x);
-    }
-    public static MemoryAddress HistoryTable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DISPATCHER_CONTEXT.HistoryTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HistoryTable$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DISPATCHER_CONTEXT.HistoryTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ScopeIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ScopeIndex"));
-    public static VarHandle ScopeIndex$VH() {
-        return _DISPATCHER_CONTEXT.ScopeIndex$VH;
-    }
-    public static int ScopeIndex$get(MemorySegment seg) {
-        return (int)_DISPATCHER_CONTEXT.ScopeIndex$VH.get(seg);
-    }
-    public static void ScopeIndex$set( MemorySegment seg, int x) {
-        _DISPATCHER_CONTEXT.ScopeIndex$VH.set(seg, x);
-    }
-    public static int ScopeIndex$get(MemorySegment seg, long index) {
-        return (int)_DISPATCHER_CONTEXT.ScopeIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ScopeIndex$set(MemorySegment seg, long index, int x) {
-        _DISPATCHER_CONTEXT.ScopeIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Fill0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Fill0"));
-    public static VarHandle Fill0$VH() {
-        return _DISPATCHER_CONTEXT.Fill0$VH;
-    }
-    public static int Fill0$get(MemorySegment seg) {
-        return (int)_DISPATCHER_CONTEXT.Fill0$VH.get(seg);
-    }
-    public static void Fill0$set( MemorySegment seg, int x) {
-        _DISPATCHER_CONTEXT.Fill0$VH.set(seg, x);
-    }
-    public static int Fill0$get(MemorySegment seg, long index) {
-        return (int)_DISPATCHER_CONTEXT.Fill0$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Fill0$set(MemorySegment seg, long index, int x) {
-        _DISPATCHER_CONTEXT.Fill0$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("ControlPc"),
+        wgl_h.C_LONG_LONG.withName("ImageBase"),
+        wgl_h.C_POINTER.withName("FunctionEntry"),
+        wgl_h.C_LONG_LONG.withName("EstablisherFrame"),
+        wgl_h.C_LONG_LONG.withName("TargetIp"),
+        wgl_h.C_POINTER.withName("ContextRecord"),
+        wgl_h.C_POINTER.withName("LanguageHandler"),
+        wgl_h.C_POINTER.withName("HandlerData"),
+        wgl_h.C_POINTER.withName("HistoryTable"),
+        wgl_h.C_LONG.withName("ScopeIndex"),
+        wgl_h.C_LONG.withName("Fill0")
+    ).withName("_DISPATCHER_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong ControlPc$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ControlPc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 ControlPc
+     * }
+     */
+    public static final OfLong ControlPc$layout() {
+        return ControlPc$LAYOUT;
+    }
+
+    private static final long ControlPc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 ControlPc
+     * }
+     */
+    public static final long ControlPc$offset() {
+        return ControlPc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 ControlPc
+     * }
+     */
+    public static long ControlPc(MemorySegment struct) {
+        return struct.get(ControlPc$LAYOUT, ControlPc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 ControlPc
+     * }
+     */
+    public static void ControlPc(MemorySegment struct, long fieldValue) {
+        struct.set(ControlPc$LAYOUT, ControlPc$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ImageBase$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ImageBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 ImageBase
+     * }
+     */
+    public static final OfLong ImageBase$layout() {
+        return ImageBase$LAYOUT;
+    }
+
+    private static final long ImageBase$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 ImageBase
+     * }
+     */
+    public static final long ImageBase$offset() {
+        return ImageBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 ImageBase
+     * }
+     */
+    public static long ImageBase(MemorySegment struct) {
+        return struct.get(ImageBase$LAYOUT, ImageBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 ImageBase
+     * }
+     */
+    public static void ImageBase(MemorySegment struct, long fieldValue) {
+        struct.set(ImageBase$LAYOUT, ImageBase$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout FunctionEntry$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FunctionEntry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION FunctionEntry
+     * }
+     */
+    public static final AddressLayout FunctionEntry$layout() {
+        return FunctionEntry$LAYOUT;
+    }
+
+    private static final long FunctionEntry$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION FunctionEntry
+     * }
+     */
+    public static final long FunctionEntry$offset() {
+        return FunctionEntry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION FunctionEntry
+     * }
+     */
+    public static MemorySegment FunctionEntry(MemorySegment struct) {
+        return struct.get(FunctionEntry$LAYOUT, FunctionEntry$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PRUNTIME_FUNCTION FunctionEntry
+     * }
+     */
+    public static void FunctionEntry(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FunctionEntry$LAYOUT, FunctionEntry$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EstablisherFrame$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EstablisherFrame"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 EstablisherFrame
+     * }
+     */
+    public static final OfLong EstablisherFrame$layout() {
+        return EstablisherFrame$LAYOUT;
+    }
+
+    private static final long EstablisherFrame$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 EstablisherFrame
+     * }
+     */
+    public static final long EstablisherFrame$offset() {
+        return EstablisherFrame$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 EstablisherFrame
+     * }
+     */
+    public static long EstablisherFrame(MemorySegment struct) {
+        return struct.get(EstablisherFrame$LAYOUT, EstablisherFrame$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 EstablisherFrame
+     * }
+     */
+    public static void EstablisherFrame(MemorySegment struct, long fieldValue) {
+        struct.set(EstablisherFrame$LAYOUT, EstablisherFrame$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TargetIp$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TargetIp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetIp
+     * }
+     */
+    public static final OfLong TargetIp$layout() {
+        return TargetIp$LAYOUT;
+    }
+
+    private static final long TargetIp$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetIp
+     * }
+     */
+    public static final long TargetIp$offset() {
+        return TargetIp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetIp
+     * }
+     */
+    public static long TargetIp(MemorySegment struct) {
+        return struct.get(TargetIp$LAYOUT, TargetIp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 TargetIp
+     * }
+     */
+    public static void TargetIp(MemorySegment struct, long fieldValue) {
+        struct.set(TargetIp$LAYOUT, TargetIp$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ContextRecord$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ContextRecord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCONTEXT ContextRecord
+     * }
+     */
+    public static final AddressLayout ContextRecord$layout() {
+        return ContextRecord$LAYOUT;
+    }
+
+    private static final long ContextRecord$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCONTEXT ContextRecord
+     * }
+     */
+    public static final long ContextRecord$offset() {
+        return ContextRecord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCONTEXT ContextRecord
+     * }
+     */
+    public static MemorySegment ContextRecord(MemorySegment struct) {
+        return struct.get(ContextRecord$LAYOUT, ContextRecord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCONTEXT ContextRecord
+     * }
+     */
+    public static void ContextRecord(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ContextRecord$LAYOUT, ContextRecord$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout LanguageHandler$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LanguageHandler"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE LanguageHandler
+     * }
+     */
+    public static final AddressLayout LanguageHandler$layout() {
+        return LanguageHandler$LAYOUT;
+    }
+
+    private static final long LanguageHandler$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE LanguageHandler
+     * }
+     */
+    public static final long LanguageHandler$offset() {
+        return LanguageHandler$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE LanguageHandler
+     * }
+     */
+    public static MemorySegment LanguageHandler(MemorySegment struct) {
+        return struct.get(LanguageHandler$LAYOUT, LanguageHandler$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PEXCEPTION_ROUTINE LanguageHandler
+     * }
+     */
+    public static void LanguageHandler(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LanguageHandler$LAYOUT, LanguageHandler$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout HandlerData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("HandlerData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID HandlerData
+     * }
+     */
+    public static final AddressLayout HandlerData$layout() {
+        return HandlerData$LAYOUT;
+    }
+
+    private static final long HandlerData$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID HandlerData
+     * }
+     */
+    public static final long HandlerData$offset() {
+        return HandlerData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID HandlerData
+     * }
+     */
+    public static MemorySegment HandlerData(MemorySegment struct) {
+        return struct.get(HandlerData$LAYOUT, HandlerData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID HandlerData
+     * }
+     */
+    public static void HandlerData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(HandlerData$LAYOUT, HandlerData$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout HistoryTable$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("HistoryTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUNWIND_HISTORY_TABLE HistoryTable
+     * }
+     */
+    public static final AddressLayout HistoryTable$layout() {
+        return HistoryTable$LAYOUT;
+    }
+
+    private static final long HistoryTable$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUNWIND_HISTORY_TABLE HistoryTable
+     * }
+     */
+    public static final long HistoryTable$offset() {
+        return HistoryTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUNWIND_HISTORY_TABLE HistoryTable
+     * }
+     */
+    public static MemorySegment HistoryTable(MemorySegment struct) {
+        return struct.get(HistoryTable$LAYOUT, HistoryTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUNWIND_HISTORY_TABLE HistoryTable
+     * }
+     */
+    public static void HistoryTable(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(HistoryTable$LAYOUT, HistoryTable$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ScopeIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ScopeIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ScopeIndex
+     * }
+     */
+    public static final OfInt ScopeIndex$layout() {
+        return ScopeIndex$LAYOUT;
+    }
+
+    private static final long ScopeIndex$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ScopeIndex
+     * }
+     */
+    public static final long ScopeIndex$offset() {
+        return ScopeIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ScopeIndex
+     * }
+     */
+    public static int ScopeIndex(MemorySegment struct) {
+        return struct.get(ScopeIndex$LAYOUT, ScopeIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ScopeIndex
+     * }
+     */
+    public static void ScopeIndex(MemorySegment struct, int fieldValue) {
+        struct.set(ScopeIndex$LAYOUT, ScopeIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Fill0$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Fill0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Fill0
+     * }
+     */
+    public static final OfInt Fill0$layout() {
+        return Fill0$LAYOUT;
+    }
+
+    private static final long Fill0$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Fill0
+     * }
+     */
+    public static final long Fill0$offset() {
+        return Fill0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Fill0
+     * }
+     */
+    public static int Fill0(MemorySegment struct) {
+        return struct.get(Fill0$LAYOUT, Fill0$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Fill0
+     * }
+     */
+    public static void Fill0(MemorySegment struct, int fieldValue) {
+        struct.set(Fill0$LAYOUT, Fill0$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

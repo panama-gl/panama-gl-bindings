@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSAFEARRAYBOUND {
+ *     ULONG cElements;
+ *     LONG lLbound;
+ * }
+ * }
+ */
 public class tagSAFEARRAYBOUND {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cElements"),
-        Constants$root.C_LONG$LAYOUT.withName("lLbound")
-    ).withName("tagSAFEARRAYBOUND");
-    public static MemoryLayout $LAYOUT() {
-        return tagSAFEARRAYBOUND.$struct$LAYOUT;
+    tagSAFEARRAYBOUND() {
+        // Should not be called directly
     }
-    static final VarHandle cElements$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cElements"));
-    public static VarHandle cElements$VH() {
-        return tagSAFEARRAYBOUND.cElements$VH;
-    }
-    public static int cElements$get(MemorySegment seg) {
-        return (int)tagSAFEARRAYBOUND.cElements$VH.get(seg);
-    }
-    public static void cElements$set( MemorySegment seg, int x) {
-        tagSAFEARRAYBOUND.cElements$VH.set(seg, x);
-    }
-    public static int cElements$get(MemorySegment seg, long index) {
-        return (int)tagSAFEARRAYBOUND.cElements$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cElements$set(MemorySegment seg, long index, int x) {
-        tagSAFEARRAYBOUND.cElements$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lLbound$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lLbound"));
-    public static VarHandle lLbound$VH() {
-        return tagSAFEARRAYBOUND.lLbound$VH;
-    }
-    public static int lLbound$get(MemorySegment seg) {
-        return (int)tagSAFEARRAYBOUND.lLbound$VH.get(seg);
-    }
-    public static void lLbound$set( MemorySegment seg, int x) {
-        tagSAFEARRAYBOUND.lLbound$VH.set(seg, x);
-    }
-    public static int lLbound$get(MemorySegment seg, long index) {
-        return (int)tagSAFEARRAYBOUND.lLbound$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lLbound$set(MemorySegment seg, long index, int x) {
-        tagSAFEARRAYBOUND.lLbound$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cElements"),
+        wgl_h.C_LONG.withName("lLbound")
+    ).withName("tagSAFEARRAYBOUND");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cElements$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cElements"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cElements
+     * }
+     */
+    public static final OfInt cElements$layout() {
+        return cElements$LAYOUT;
+    }
+
+    private static final long cElements$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cElements
+     * }
+     */
+    public static final long cElements$offset() {
+        return cElements$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cElements
+     * }
+     */
+    public static int cElements(MemorySegment struct) {
+        return struct.get(cElements$LAYOUT, cElements$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cElements
+     * }
+     */
+    public static void cElements(MemorySegment struct, int fieldValue) {
+        struct.set(cElements$LAYOUT, cElements$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lLbound$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lLbound"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lLbound
+     * }
+     */
+    public static final OfInt lLbound$layout() {
+        return lLbound$LAYOUT;
+    }
+
+    private static final long lLbound$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lLbound
+     * }
+     */
+    public static final long lLbound$offset() {
+        return lLbound$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lLbound
+     * }
+     */
+    public static int lLbound(MemorySegment struct) {
+        return struct.get(lLbound$LAYOUT, lLbound$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lLbound
+     * }
+     */
+    public static void lLbound(MemorySegment struct, int fieldValue) {
+        struct.set(lLbound$LAYOUT, lLbound$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

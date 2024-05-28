@@ -2,102 +2,393 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRGRADIENTFILL {
+ *     EMR emr;
+ *     RECTL rclBounds;
+ *     DWORD nVer;
+ *     DWORD nTri;
+ *     ULONG ulMode;
+ *     TRIVERTEX Ver[1];
+ * }
+ * }
+ */
 public class tagEMRGRADIENTFILL {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rclBounds"),
-        Constants$root.C_LONG$LAYOUT.withName("nVer"),
-        Constants$root.C_LONG$LAYOUT.withName("nTri"),
-        Constants$root.C_LONG$LAYOUT.withName("ulMode"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y"),
-            Constants$root.C_SHORT$LAYOUT.withName("Red"),
-            Constants$root.C_SHORT$LAYOUT.withName("Green"),
-            Constants$root.C_SHORT$LAYOUT.withName("Blue"),
-            Constants$root.C_SHORT$LAYOUT.withName("Alpha")
-        ).withName("_TRIVERTEX")).withName("Ver")
-    ).withName("tagEMRGRADIENTFILL");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRGRADIENTFILL.$struct$LAYOUT;
+    tagEMRGRADIENTFILL() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment rclBounds$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle nVer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nVer"));
-    public static VarHandle nVer$VH() {
-        return tagEMRGRADIENTFILL.nVer$VH;
-    }
-    public static int nVer$get(MemorySegment seg) {
-        return (int)tagEMRGRADIENTFILL.nVer$VH.get(seg);
-    }
-    public static void nVer$set( MemorySegment seg, int x) {
-        tagEMRGRADIENTFILL.nVer$VH.set(seg, x);
-    }
-    public static int nVer$get(MemorySegment seg, long index) {
-        return (int)tagEMRGRADIENTFILL.nVer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nVer$set(MemorySegment seg, long index, int x) {
-        tagEMRGRADIENTFILL.nVer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nTri$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nTri"));
-    public static VarHandle nTri$VH() {
-        return tagEMRGRADIENTFILL.nTri$VH;
-    }
-    public static int nTri$get(MemorySegment seg) {
-        return (int)tagEMRGRADIENTFILL.nTri$VH.get(seg);
-    }
-    public static void nTri$set( MemorySegment seg, int x) {
-        tagEMRGRADIENTFILL.nTri$VH.set(seg, x);
-    }
-    public static int nTri$get(MemorySegment seg, long index) {
-        return (int)tagEMRGRADIENTFILL.nTri$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nTri$set(MemorySegment seg, long index, int x) {
-        tagEMRGRADIENTFILL.nTri$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulMode"));
-    public static VarHandle ulMode$VH() {
-        return tagEMRGRADIENTFILL.ulMode$VH;
-    }
-    public static int ulMode$get(MemorySegment seg) {
-        return (int)tagEMRGRADIENTFILL.ulMode$VH.get(seg);
-    }
-    public static void ulMode$set( MemorySegment seg, int x) {
-        tagEMRGRADIENTFILL.ulMode$VH.set(seg, x);
-    }
-    public static int ulMode$get(MemorySegment seg, long index) {
-        return (int)tagEMRGRADIENTFILL.ulMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulMode$set(MemorySegment seg, long index, int x) {
-        tagEMRGRADIENTFILL.ulMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Ver$slice(MemorySegment seg) {
-        return seg.asSlice(36, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        _RECTL.layout().withName("rclBounds"),
+        wgl_h.C_LONG.withName("nVer"),
+        wgl_h.C_LONG.withName("nTri"),
+        wgl_h.C_LONG.withName("ulMode"),
+        MemoryLayout.sequenceLayout(1, _TRIVERTEX.layout()).withName("Ver")
+    ).withName("tagEMRGRADIENTFILL");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout rclBounds$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rclBounds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final GroupLayout rclBounds$layout() {
+        return rclBounds$LAYOUT;
+    }
+
+    private static final long rclBounds$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final long rclBounds$offset() {
+        return rclBounds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static MemorySegment rclBounds(MemorySegment struct) {
+        return struct.asSlice(rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static void rclBounds(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    private static final OfInt nVer$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nVer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nVer
+     * }
+     */
+    public static final OfInt nVer$layout() {
+        return nVer$LAYOUT;
+    }
+
+    private static final long nVer$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nVer
+     * }
+     */
+    public static final long nVer$offset() {
+        return nVer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nVer
+     * }
+     */
+    public static int nVer(MemorySegment struct) {
+        return struct.get(nVer$LAYOUT, nVer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nVer
+     * }
+     */
+    public static void nVer(MemorySegment struct, int fieldValue) {
+        struct.set(nVer$LAYOUT, nVer$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nTri$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nTri"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nTri
+     * }
+     */
+    public static final OfInt nTri$layout() {
+        return nTri$LAYOUT;
+    }
+
+    private static final long nTri$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nTri
+     * }
+     */
+    public static final long nTri$offset() {
+        return nTri$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nTri
+     * }
+     */
+    public static int nTri(MemorySegment struct) {
+        return struct.get(nTri$LAYOUT, nTri$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nTri
+     * }
+     */
+    public static void nTri(MemorySegment struct, int fieldValue) {
+        struct.set(nTri$LAYOUT, nTri$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulMode
+     * }
+     */
+    public static final OfInt ulMode$layout() {
+        return ulMode$LAYOUT;
+    }
+
+    private static final long ulMode$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulMode
+     * }
+     */
+    public static final long ulMode$offset() {
+        return ulMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulMode
+     * }
+     */
+    public static int ulMode(MemorySegment struct) {
+        return struct.get(ulMode$LAYOUT, ulMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulMode
+     * }
+     */
+    public static void ulMode(MemorySegment struct, int fieldValue) {
+        struct.set(ulMode$LAYOUT, ulMode$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Ver$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Ver"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static final SequenceLayout Ver$layout() {
+        return Ver$LAYOUT;
+    }
+
+    private static final long Ver$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static final long Ver$offset() {
+        return Ver$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static MemorySegment Ver(MemorySegment struct) {
+        return struct.asSlice(Ver$OFFSET, Ver$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static void Ver(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Ver$OFFSET, Ver$LAYOUT.byteSize());
+    }
+
+    private static long[] Ver$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static long[] Ver$dimensions() {
+        return Ver$DIMS;
+    }
+    private static final MethodHandle Ver$ELEM_HANDLE = Ver$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static MemorySegment Ver(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Ver$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * TRIVERTEX Ver[1]
+     * }
+     */
+    public static void Ver(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Ver(struct, index0), 0L, _TRIVERTEX.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

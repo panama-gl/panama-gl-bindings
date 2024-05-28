@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
+ *     DWORD SecurityLimitFlags;
+ *     HANDLE JobToken;
+ *     PTOKEN_GROUPS SidsToDisable;
+ *     PTOKEN_PRIVILEGES PrivilegesToDelete;
+ *     PTOKEN_GROUPS RestrictedSids;
+ * }
+ * }
+ */
 public class _JOBOBJECT_SECURITY_LIMIT_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("SecurityLimitFlags"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("JobToken"),
-        Constants$root.C_POINTER$LAYOUT.withName("SidsToDisable"),
-        Constants$root.C_POINTER$LAYOUT.withName("PrivilegesToDelete"),
-        Constants$root.C_POINTER$LAYOUT.withName("RestrictedSids")
-    ).withName("_JOBOBJECT_SECURITY_LIMIT_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.$struct$LAYOUT;
+    _JOBOBJECT_SECURITY_LIMIT_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle SecurityLimitFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SecurityLimitFlags"));
-    public static VarHandle SecurityLimitFlags$VH() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags$VH;
-    }
-    public static int SecurityLimitFlags$get(MemorySegment seg) {
-        return (int)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags$VH.get(seg);
-    }
-    public static void SecurityLimitFlags$set( MemorySegment seg, int x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags$VH.set(seg, x);
-    }
-    public static int SecurityLimitFlags$get(MemorySegment seg, long index) {
-        return (int)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SecurityLimitFlags$set(MemorySegment seg, long index, int x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SecurityLimitFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle JobToken$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("JobToken"));
-    public static VarHandle JobToken$VH() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.JobToken$VH;
-    }
-    public static MemoryAddress JobToken$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.JobToken$VH.get(seg);
-    }
-    public static void JobToken$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.JobToken$VH.set(seg, x);
-    }
-    public static MemoryAddress JobToken$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.JobToken$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void JobToken$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.JobToken$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SidsToDisable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SidsToDisable"));
-    public static VarHandle SidsToDisable$VH() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SidsToDisable$VH;
-    }
-    public static MemoryAddress SidsToDisable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.SidsToDisable$VH.get(seg);
-    }
-    public static void SidsToDisable$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SidsToDisable$VH.set(seg, x);
-    }
-    public static MemoryAddress SidsToDisable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.SidsToDisable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SidsToDisable$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.SidsToDisable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PrivilegesToDelete$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrivilegesToDelete"));
-    public static VarHandle PrivilegesToDelete$VH() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.PrivilegesToDelete$VH;
-    }
-    public static MemoryAddress PrivilegesToDelete$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.PrivilegesToDelete$VH.get(seg);
-    }
-    public static void PrivilegesToDelete$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.PrivilegesToDelete$VH.set(seg, x);
-    }
-    public static MemoryAddress PrivilegesToDelete$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.PrivilegesToDelete$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrivilegesToDelete$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.PrivilegesToDelete$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RestrictedSids$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RestrictedSids"));
-    public static VarHandle RestrictedSids$VH() {
-        return _JOBOBJECT_SECURITY_LIMIT_INFORMATION.RestrictedSids$VH;
-    }
-    public static MemoryAddress RestrictedSids$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.RestrictedSids$VH.get(seg);
-    }
-    public static void RestrictedSids$set( MemorySegment seg, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.RestrictedSids$VH.set(seg, x);
-    }
-    public static MemoryAddress RestrictedSids$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_JOBOBJECT_SECURITY_LIMIT_INFORMATION.RestrictedSids$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RestrictedSids$set(MemorySegment seg, long index, MemoryAddress x) {
-        _JOBOBJECT_SECURITY_LIMIT_INFORMATION.RestrictedSids$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("SecurityLimitFlags"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("JobToken"),
+        wgl_h.C_POINTER.withName("SidsToDisable"),
+        wgl_h.C_POINTER.withName("PrivilegesToDelete"),
+        wgl_h.C_POINTER.withName("RestrictedSids")
+    ).withName("_JOBOBJECT_SECURITY_LIMIT_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt SecurityLimitFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SecurityLimitFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SecurityLimitFlags
+     * }
+     */
+    public static final OfInt SecurityLimitFlags$layout() {
+        return SecurityLimitFlags$LAYOUT;
+    }
+
+    private static final long SecurityLimitFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SecurityLimitFlags
+     * }
+     */
+    public static final long SecurityLimitFlags$offset() {
+        return SecurityLimitFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SecurityLimitFlags
+     * }
+     */
+    public static int SecurityLimitFlags(MemorySegment struct) {
+        return struct.get(SecurityLimitFlags$LAYOUT, SecurityLimitFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SecurityLimitFlags
+     * }
+     */
+    public static void SecurityLimitFlags(MemorySegment struct, int fieldValue) {
+        struct.set(SecurityLimitFlags$LAYOUT, SecurityLimitFlags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout JobToken$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("JobToken"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE JobToken
+     * }
+     */
+    public static final AddressLayout JobToken$layout() {
+        return JobToken$LAYOUT;
+    }
+
+    private static final long JobToken$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE JobToken
+     * }
+     */
+    public static final long JobToken$offset() {
+        return JobToken$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE JobToken
+     * }
+     */
+    public static MemorySegment JobToken(MemorySegment struct) {
+        return struct.get(JobToken$LAYOUT, JobToken$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE JobToken
+     * }
+     */
+    public static void JobToken(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(JobToken$LAYOUT, JobToken$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SidsToDisable$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SidsToDisable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS SidsToDisable
+     * }
+     */
+    public static final AddressLayout SidsToDisable$layout() {
+        return SidsToDisable$LAYOUT;
+    }
+
+    private static final long SidsToDisable$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS SidsToDisable
+     * }
+     */
+    public static final long SidsToDisable$offset() {
+        return SidsToDisable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS SidsToDisable
+     * }
+     */
+    public static MemorySegment SidsToDisable(MemorySegment struct) {
+        return struct.get(SidsToDisable$LAYOUT, SidsToDisable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS SidsToDisable
+     * }
+     */
+    public static void SidsToDisable(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SidsToDisable$LAYOUT, SidsToDisable$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout PrivilegesToDelete$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PrivilegesToDelete"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTOKEN_PRIVILEGES PrivilegesToDelete
+     * }
+     */
+    public static final AddressLayout PrivilegesToDelete$layout() {
+        return PrivilegesToDelete$LAYOUT;
+    }
+
+    private static final long PrivilegesToDelete$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTOKEN_PRIVILEGES PrivilegesToDelete
+     * }
+     */
+    public static final long PrivilegesToDelete$offset() {
+        return PrivilegesToDelete$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTOKEN_PRIVILEGES PrivilegesToDelete
+     * }
+     */
+    public static MemorySegment PrivilegesToDelete(MemorySegment struct) {
+        return struct.get(PrivilegesToDelete$LAYOUT, PrivilegesToDelete$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTOKEN_PRIVILEGES PrivilegesToDelete
+     * }
+     */
+    public static void PrivilegesToDelete(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PrivilegesToDelete$LAYOUT, PrivilegesToDelete$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RestrictedSids$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RestrictedSids"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS RestrictedSids
+     * }
+     */
+    public static final AddressLayout RestrictedSids$layout() {
+        return RestrictedSids$LAYOUT;
+    }
+
+    private static final long RestrictedSids$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS RestrictedSids
+     * }
+     */
+    public static final long RestrictedSids$offset() {
+        return RestrictedSids$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS RestrictedSids
+     * }
+     */
+    public static MemorySegment RestrictedSids(MemorySegment struct) {
+        return struct.get(RestrictedSids$LAYOUT, RestrictedSids$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PTOKEN_GROUPS RestrictedSids
+     * }
+     */
+    public static void RestrictedSids(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RestrictedSids$LAYOUT, RestrictedSids$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

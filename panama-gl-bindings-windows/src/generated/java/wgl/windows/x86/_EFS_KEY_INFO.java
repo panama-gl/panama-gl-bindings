@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EFS_KEY_INFO {
+ *     DWORD dwVersion;
+ *     ULONG Entropy;
+ *     ALG_ID Algorithm;
+ *     ULONG KeyLength;
+ * }
+ * }
+ */
 public class _EFS_KEY_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("Entropy"),
-        Constants$root.C_LONG$LAYOUT.withName("Algorithm"),
-        Constants$root.C_LONG$LAYOUT.withName("KeyLength")
-    ).withName("_EFS_KEY_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _EFS_KEY_INFO.$struct$LAYOUT;
+    _EFS_KEY_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _EFS_KEY_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_EFS_KEY_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _EFS_KEY_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_EFS_KEY_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _EFS_KEY_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Entropy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Entropy"));
-    public static VarHandle Entropy$VH() {
-        return _EFS_KEY_INFO.Entropy$VH;
-    }
-    public static int Entropy$get(MemorySegment seg) {
-        return (int)_EFS_KEY_INFO.Entropy$VH.get(seg);
-    }
-    public static void Entropy$set( MemorySegment seg, int x) {
-        _EFS_KEY_INFO.Entropy$VH.set(seg, x);
-    }
-    public static int Entropy$get(MemorySegment seg, long index) {
-        return (int)_EFS_KEY_INFO.Entropy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Entropy$set(MemorySegment seg, long index, int x) {
-        _EFS_KEY_INFO.Entropy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Algorithm$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Algorithm"));
-    public static VarHandle Algorithm$VH() {
-        return _EFS_KEY_INFO.Algorithm$VH;
-    }
-    public static int Algorithm$get(MemorySegment seg) {
-        return (int)_EFS_KEY_INFO.Algorithm$VH.get(seg);
-    }
-    public static void Algorithm$set( MemorySegment seg, int x) {
-        _EFS_KEY_INFO.Algorithm$VH.set(seg, x);
-    }
-    public static int Algorithm$get(MemorySegment seg, long index) {
-        return (int)_EFS_KEY_INFO.Algorithm$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Algorithm$set(MemorySegment seg, long index, int x) {
-        _EFS_KEY_INFO.Algorithm$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle KeyLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("KeyLength"));
-    public static VarHandle KeyLength$VH() {
-        return _EFS_KEY_INFO.KeyLength$VH;
-    }
-    public static int KeyLength$get(MemorySegment seg) {
-        return (int)_EFS_KEY_INFO.KeyLength$VH.get(seg);
-    }
-    public static void KeyLength$set( MemorySegment seg, int x) {
-        _EFS_KEY_INFO.KeyLength$VH.set(seg, x);
-    }
-    public static int KeyLength$get(MemorySegment seg, long index) {
-        return (int)_EFS_KEY_INFO.KeyLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void KeyLength$set(MemorySegment seg, long index, int x) {
-        _EFS_KEY_INFO.KeyLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_LONG.withName("Entropy"),
+        wgl_h.C_INT.withName("Algorithm"),
+        wgl_h.C_LONG.withName("KeyLength")
+    ).withName("_EFS_KEY_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Entropy$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Entropy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Entropy
+     * }
+     */
+    public static final OfInt Entropy$layout() {
+        return Entropy$LAYOUT;
+    }
+
+    private static final long Entropy$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Entropy
+     * }
+     */
+    public static final long Entropy$offset() {
+        return Entropy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Entropy
+     * }
+     */
+    public static int Entropy(MemorySegment struct) {
+        return struct.get(Entropy$LAYOUT, Entropy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Entropy
+     * }
+     */
+    public static void Entropy(MemorySegment struct, int fieldValue) {
+        struct.set(Entropy$LAYOUT, Entropy$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Algorithm$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Algorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ALG_ID Algorithm
+     * }
+     */
+    public static final OfInt Algorithm$layout() {
+        return Algorithm$LAYOUT;
+    }
+
+    private static final long Algorithm$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ALG_ID Algorithm
+     * }
+     */
+    public static final long Algorithm$offset() {
+        return Algorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ALG_ID Algorithm
+     * }
+     */
+    public static int Algorithm(MemorySegment struct) {
+        return struct.get(Algorithm$LAYOUT, Algorithm$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ALG_ID Algorithm
+     * }
+     */
+    public static void Algorithm(MemorySegment struct, int fieldValue) {
+        struct.set(Algorithm$LAYOUT, Algorithm$OFFSET, fieldValue);
+    }
+
+    private static final OfInt KeyLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("KeyLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG KeyLength
+     * }
+     */
+    public static final OfInt KeyLength$layout() {
+        return KeyLength$LAYOUT;
+    }
+
+    private static final long KeyLength$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG KeyLength
+     * }
+     */
+    public static final long KeyLength$offset() {
+        return KeyLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG KeyLength
+     * }
+     */
+    public static int KeyLength(MemorySegment struct) {
+        return struct.get(KeyLength$LAYOUT, KeyLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG KeyLength
+     * }
+     */
+    public static void KeyLength(MemorySegment struct, int fieldValue) {
+        struct.set(KeyLength$LAYOUT, KeyLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

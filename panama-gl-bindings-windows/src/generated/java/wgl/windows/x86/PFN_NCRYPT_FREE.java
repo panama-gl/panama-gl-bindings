@@ -2,27 +2,66 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_NCRYPT_FREE {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress pv);
-    static MemorySegment allocate(PFN_NCRYPT_FREE fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_NCRYPT_FREE.class, fi, constants$747.PFN_NCRYPT_FREE$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFN_NCRYPT_FREE)(LPVOID) __attribute__((stdcall))
+ * }
+ */
+public class PFN_NCRYPT_FREE {
+
+    PFN_NCRYPT_FREE() {
+        // Should not be called directly
     }
-    static PFN_NCRYPT_FREE ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pv) -> {
-            try {
-                constants$747.PFN_NCRYPT_FREE$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pv);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment pv);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_NCRYPT_FREE.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_NCRYPT_FREE.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment pv) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, pv);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

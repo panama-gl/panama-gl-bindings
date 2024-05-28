@@ -2,306 +2,816 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagNONCLIENTMETRICSW {
+ *     UINT cbSize;
+ *     int iBorderWidth;
+ *     int iScrollWidth;
+ *     int iScrollHeight;
+ *     int iCaptionWidth;
+ *     int iCaptionHeight;
+ *     LOGFONTW lfCaptionFont;
+ *     int iSmCaptionWidth;
+ *     int iSmCaptionHeight;
+ *     LOGFONTW lfSmCaptionFont;
+ *     int iMenuWidth;
+ *     int iMenuHeight;
+ *     LOGFONTW lfMenuFont;
+ *     LOGFONTW lfStatusFont;
+ *     LOGFONTW lfMessageFont;
+ *     int iPaddedBorderWidth;
+ * }
+ * }
+ */
 public class tagNONCLIENTMETRICSW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("iBorderWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iScrollWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iScrollHeight"),
-        Constants$root.C_LONG$LAYOUT.withName("iCaptionWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iCaptionHeight"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("lfFaceName")
-        ).withName("lfCaptionFont"),
-        Constants$root.C_LONG$LAYOUT.withName("iSmCaptionWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iSmCaptionHeight"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("lfFaceName")
-        ).withName("lfSmCaptionFont"),
-        Constants$root.C_LONG$LAYOUT.withName("iMenuWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("iMenuHeight"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("lfFaceName")
-        ).withName("lfMenuFont"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("lfFaceName")
-        ).withName("lfStatusFont"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("lfFaceName")
-        ).withName("lfMessageFont"),
-        Constants$root.C_LONG$LAYOUT.withName("iPaddedBorderWidth")
-    ).withName("tagNONCLIENTMETRICSW");
-    public static MemoryLayout $LAYOUT() {
-        return tagNONCLIENTMETRICSW.$struct$LAYOUT;
+    tagNONCLIENTMETRICSW() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagNONCLIENTMETRICSW.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iBorderWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iBorderWidth"));
-    public static VarHandle iBorderWidth$VH() {
-        return tagNONCLIENTMETRICSW.iBorderWidth$VH;
-    }
-    public static int iBorderWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iBorderWidth$VH.get(seg);
-    }
-    public static void iBorderWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iBorderWidth$VH.set(seg, x);
-    }
-    public static int iBorderWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iBorderWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iBorderWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iBorderWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iScrollWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iScrollWidth"));
-    public static VarHandle iScrollWidth$VH() {
-        return tagNONCLIENTMETRICSW.iScrollWidth$VH;
-    }
-    public static int iScrollWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iScrollWidth$VH.get(seg);
-    }
-    public static void iScrollWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iScrollWidth$VH.set(seg, x);
-    }
-    public static int iScrollWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iScrollWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iScrollWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iScrollWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iScrollHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iScrollHeight"));
-    public static VarHandle iScrollHeight$VH() {
-        return tagNONCLIENTMETRICSW.iScrollHeight$VH;
-    }
-    public static int iScrollHeight$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iScrollHeight$VH.get(seg);
-    }
-    public static void iScrollHeight$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iScrollHeight$VH.set(seg, x);
-    }
-    public static int iScrollHeight$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iScrollHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iScrollHeight$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iScrollHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iCaptionWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iCaptionWidth"));
-    public static VarHandle iCaptionWidth$VH() {
-        return tagNONCLIENTMETRICSW.iCaptionWidth$VH;
-    }
-    public static int iCaptionWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iCaptionWidth$VH.get(seg);
-    }
-    public static void iCaptionWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iCaptionWidth$VH.set(seg, x);
-    }
-    public static int iCaptionWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iCaptionWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iCaptionWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iCaptionWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iCaptionHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iCaptionHeight"));
-    public static VarHandle iCaptionHeight$VH() {
-        return tagNONCLIENTMETRICSW.iCaptionHeight$VH;
-    }
-    public static int iCaptionHeight$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iCaptionHeight$VH.get(seg);
-    }
-    public static void iCaptionHeight$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iCaptionHeight$VH.set(seg, x);
-    }
-    public static int iCaptionHeight$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iCaptionHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iCaptionHeight$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iCaptionHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lfCaptionFont$slice(MemorySegment seg) {
-        return seg.asSlice(24, 92);
-    }
-    static final VarHandle iSmCaptionWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iSmCaptionWidth"));
-    public static VarHandle iSmCaptionWidth$VH() {
-        return tagNONCLIENTMETRICSW.iSmCaptionWidth$VH;
-    }
-    public static int iSmCaptionWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iSmCaptionWidth$VH.get(seg);
-    }
-    public static void iSmCaptionWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iSmCaptionWidth$VH.set(seg, x);
-    }
-    public static int iSmCaptionWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iSmCaptionWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iSmCaptionWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iSmCaptionWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iSmCaptionHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iSmCaptionHeight"));
-    public static VarHandle iSmCaptionHeight$VH() {
-        return tagNONCLIENTMETRICSW.iSmCaptionHeight$VH;
-    }
-    public static int iSmCaptionHeight$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iSmCaptionHeight$VH.get(seg);
-    }
-    public static void iSmCaptionHeight$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iSmCaptionHeight$VH.set(seg, x);
-    }
-    public static int iSmCaptionHeight$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iSmCaptionHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iSmCaptionHeight$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iSmCaptionHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lfSmCaptionFont$slice(MemorySegment seg) {
-        return seg.asSlice(124, 92);
-    }
-    static final VarHandle iMenuWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMenuWidth"));
-    public static VarHandle iMenuWidth$VH() {
-        return tagNONCLIENTMETRICSW.iMenuWidth$VH;
-    }
-    public static int iMenuWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iMenuWidth$VH.get(seg);
-    }
-    public static void iMenuWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iMenuWidth$VH.set(seg, x);
-    }
-    public static int iMenuWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iMenuWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMenuWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iMenuWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iMenuHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMenuHeight"));
-    public static VarHandle iMenuHeight$VH() {
-        return tagNONCLIENTMETRICSW.iMenuHeight$VH;
-    }
-    public static int iMenuHeight$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iMenuHeight$VH.get(seg);
-    }
-    public static void iMenuHeight$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iMenuHeight$VH.set(seg, x);
-    }
-    public static int iMenuHeight$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iMenuHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMenuHeight$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iMenuHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lfMenuFont$slice(MemorySegment seg) {
-        return seg.asSlice(224, 92);
-    }
-    public static MemorySegment lfStatusFont$slice(MemorySegment seg) {
-        return seg.asSlice(316, 92);
-    }
-    public static MemorySegment lfMessageFont$slice(MemorySegment seg) {
-        return seg.asSlice(408, 92);
-    }
-    static final VarHandle iPaddedBorderWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iPaddedBorderWidth"));
-    public static VarHandle iPaddedBorderWidth$VH() {
-        return tagNONCLIENTMETRICSW.iPaddedBorderWidth$VH;
-    }
-    public static int iPaddedBorderWidth$get(MemorySegment seg) {
-        return (int)tagNONCLIENTMETRICSW.iPaddedBorderWidth$VH.get(seg);
-    }
-    public static void iPaddedBorderWidth$set( MemorySegment seg, int x) {
-        tagNONCLIENTMETRICSW.iPaddedBorderWidth$VH.set(seg, x);
-    }
-    public static int iPaddedBorderWidth$get(MemorySegment seg, long index) {
-        return (int)tagNONCLIENTMETRICSW.iPaddedBorderWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iPaddedBorderWidth$set(MemorySegment seg, long index, int x) {
-        tagNONCLIENTMETRICSW.iPaddedBorderWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("cbSize"),
+        freeglut_h.C_INT.withName("iBorderWidth"),
+        freeglut_h.C_INT.withName("iScrollWidth"),
+        freeglut_h.C_INT.withName("iScrollHeight"),
+        freeglut_h.C_INT.withName("iCaptionWidth"),
+        freeglut_h.C_INT.withName("iCaptionHeight"),
+        tagLOGFONTW.layout().withName("lfCaptionFont"),
+        freeglut_h.C_INT.withName("iSmCaptionWidth"),
+        freeglut_h.C_INT.withName("iSmCaptionHeight"),
+        tagLOGFONTW.layout().withName("lfSmCaptionFont"),
+        freeglut_h.C_INT.withName("iMenuWidth"),
+        freeglut_h.C_INT.withName("iMenuHeight"),
+        tagLOGFONTW.layout().withName("lfMenuFont"),
+        tagLOGFONTW.layout().withName("lfStatusFont"),
+        tagLOGFONTW.layout().withName("lfMessageFont"),
+        freeglut_h.C_INT.withName("iPaddedBorderWidth")
+    ).withName("tagNONCLIENTMETRICSW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iBorderWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iBorderWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iBorderWidth
+     * }
+     */
+    public static final OfInt iBorderWidth$layout() {
+        return iBorderWidth$LAYOUT;
+    }
+
+    private static final long iBorderWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iBorderWidth
+     * }
+     */
+    public static final long iBorderWidth$offset() {
+        return iBorderWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iBorderWidth
+     * }
+     */
+    public static int iBorderWidth(MemorySegment struct) {
+        return struct.get(iBorderWidth$LAYOUT, iBorderWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iBorderWidth
+     * }
+     */
+    public static void iBorderWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iBorderWidth$LAYOUT, iBorderWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iScrollWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iScrollWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iScrollWidth
+     * }
+     */
+    public static final OfInt iScrollWidth$layout() {
+        return iScrollWidth$LAYOUT;
+    }
+
+    private static final long iScrollWidth$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iScrollWidth
+     * }
+     */
+    public static final long iScrollWidth$offset() {
+        return iScrollWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iScrollWidth
+     * }
+     */
+    public static int iScrollWidth(MemorySegment struct) {
+        return struct.get(iScrollWidth$LAYOUT, iScrollWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iScrollWidth
+     * }
+     */
+    public static void iScrollWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iScrollWidth$LAYOUT, iScrollWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iScrollHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iScrollHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iScrollHeight
+     * }
+     */
+    public static final OfInt iScrollHeight$layout() {
+        return iScrollHeight$LAYOUT;
+    }
+
+    private static final long iScrollHeight$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iScrollHeight
+     * }
+     */
+    public static final long iScrollHeight$offset() {
+        return iScrollHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iScrollHeight
+     * }
+     */
+    public static int iScrollHeight(MemorySegment struct) {
+        return struct.get(iScrollHeight$LAYOUT, iScrollHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iScrollHeight
+     * }
+     */
+    public static void iScrollHeight(MemorySegment struct, int fieldValue) {
+        struct.set(iScrollHeight$LAYOUT, iScrollHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iCaptionWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iCaptionWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iCaptionWidth
+     * }
+     */
+    public static final OfInt iCaptionWidth$layout() {
+        return iCaptionWidth$LAYOUT;
+    }
+
+    private static final long iCaptionWidth$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iCaptionWidth
+     * }
+     */
+    public static final long iCaptionWidth$offset() {
+        return iCaptionWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iCaptionWidth
+     * }
+     */
+    public static int iCaptionWidth(MemorySegment struct) {
+        return struct.get(iCaptionWidth$LAYOUT, iCaptionWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iCaptionWidth
+     * }
+     */
+    public static void iCaptionWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iCaptionWidth$LAYOUT, iCaptionWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iCaptionHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iCaptionHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iCaptionHeight
+     * }
+     */
+    public static final OfInt iCaptionHeight$layout() {
+        return iCaptionHeight$LAYOUT;
+    }
+
+    private static final long iCaptionHeight$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iCaptionHeight
+     * }
+     */
+    public static final long iCaptionHeight$offset() {
+        return iCaptionHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iCaptionHeight
+     * }
+     */
+    public static int iCaptionHeight(MemorySegment struct) {
+        return struct.get(iCaptionHeight$LAYOUT, iCaptionHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iCaptionHeight
+     * }
+     */
+    public static void iCaptionHeight(MemorySegment struct, int fieldValue) {
+        struct.set(iCaptionHeight$LAYOUT, iCaptionHeight$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lfCaptionFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lfCaptionFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfCaptionFont
+     * }
+     */
+    public static final GroupLayout lfCaptionFont$layout() {
+        return lfCaptionFont$LAYOUT;
+    }
+
+    private static final long lfCaptionFont$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfCaptionFont
+     * }
+     */
+    public static final long lfCaptionFont$offset() {
+        return lfCaptionFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfCaptionFont
+     * }
+     */
+    public static MemorySegment lfCaptionFont(MemorySegment struct) {
+        return struct.asSlice(lfCaptionFont$OFFSET, lfCaptionFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfCaptionFont
+     * }
+     */
+    public static void lfCaptionFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfCaptionFont$OFFSET, lfCaptionFont$LAYOUT.byteSize());
+    }
+
+    private static final OfInt iSmCaptionWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iSmCaptionWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iSmCaptionWidth
+     * }
+     */
+    public static final OfInt iSmCaptionWidth$layout() {
+        return iSmCaptionWidth$LAYOUT;
+    }
+
+    private static final long iSmCaptionWidth$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iSmCaptionWidth
+     * }
+     */
+    public static final long iSmCaptionWidth$offset() {
+        return iSmCaptionWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iSmCaptionWidth
+     * }
+     */
+    public static int iSmCaptionWidth(MemorySegment struct) {
+        return struct.get(iSmCaptionWidth$LAYOUT, iSmCaptionWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iSmCaptionWidth
+     * }
+     */
+    public static void iSmCaptionWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iSmCaptionWidth$LAYOUT, iSmCaptionWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iSmCaptionHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iSmCaptionHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iSmCaptionHeight
+     * }
+     */
+    public static final OfInt iSmCaptionHeight$layout() {
+        return iSmCaptionHeight$LAYOUT;
+    }
+
+    private static final long iSmCaptionHeight$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iSmCaptionHeight
+     * }
+     */
+    public static final long iSmCaptionHeight$offset() {
+        return iSmCaptionHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iSmCaptionHeight
+     * }
+     */
+    public static int iSmCaptionHeight(MemorySegment struct) {
+        return struct.get(iSmCaptionHeight$LAYOUT, iSmCaptionHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iSmCaptionHeight
+     * }
+     */
+    public static void iSmCaptionHeight(MemorySegment struct, int fieldValue) {
+        struct.set(iSmCaptionHeight$LAYOUT, iSmCaptionHeight$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lfSmCaptionFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lfSmCaptionFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfSmCaptionFont
+     * }
+     */
+    public static final GroupLayout lfSmCaptionFont$layout() {
+        return lfSmCaptionFont$LAYOUT;
+    }
+
+    private static final long lfSmCaptionFont$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfSmCaptionFont
+     * }
+     */
+    public static final long lfSmCaptionFont$offset() {
+        return lfSmCaptionFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfSmCaptionFont
+     * }
+     */
+    public static MemorySegment lfSmCaptionFont(MemorySegment struct) {
+        return struct.asSlice(lfSmCaptionFont$OFFSET, lfSmCaptionFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfSmCaptionFont
+     * }
+     */
+    public static void lfSmCaptionFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfSmCaptionFont$OFFSET, lfSmCaptionFont$LAYOUT.byteSize());
+    }
+
+    private static final OfInt iMenuWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMenuWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iMenuWidth
+     * }
+     */
+    public static final OfInt iMenuWidth$layout() {
+        return iMenuWidth$LAYOUT;
+    }
+
+    private static final long iMenuWidth$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iMenuWidth
+     * }
+     */
+    public static final long iMenuWidth$offset() {
+        return iMenuWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iMenuWidth
+     * }
+     */
+    public static int iMenuWidth(MemorySegment struct) {
+        return struct.get(iMenuWidth$LAYOUT, iMenuWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iMenuWidth
+     * }
+     */
+    public static void iMenuWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iMenuWidth$LAYOUT, iMenuWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iMenuHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMenuHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iMenuHeight
+     * }
+     */
+    public static final OfInt iMenuHeight$layout() {
+        return iMenuHeight$LAYOUT;
+    }
+
+    private static final long iMenuHeight$OFFSET = 220;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iMenuHeight
+     * }
+     */
+    public static final long iMenuHeight$offset() {
+        return iMenuHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iMenuHeight
+     * }
+     */
+    public static int iMenuHeight(MemorySegment struct) {
+        return struct.get(iMenuHeight$LAYOUT, iMenuHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iMenuHeight
+     * }
+     */
+    public static void iMenuHeight(MemorySegment struct, int fieldValue) {
+        struct.set(iMenuHeight$LAYOUT, iMenuHeight$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lfMenuFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lfMenuFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMenuFont
+     * }
+     */
+    public static final GroupLayout lfMenuFont$layout() {
+        return lfMenuFont$LAYOUT;
+    }
+
+    private static final long lfMenuFont$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMenuFont
+     * }
+     */
+    public static final long lfMenuFont$offset() {
+        return lfMenuFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMenuFont
+     * }
+     */
+    public static MemorySegment lfMenuFont(MemorySegment struct) {
+        return struct.asSlice(lfMenuFont$OFFSET, lfMenuFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMenuFont
+     * }
+     */
+    public static void lfMenuFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfMenuFont$OFFSET, lfMenuFont$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout lfStatusFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lfStatusFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfStatusFont
+     * }
+     */
+    public static final GroupLayout lfStatusFont$layout() {
+        return lfStatusFont$LAYOUT;
+    }
+
+    private static final long lfStatusFont$OFFSET = 316;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfStatusFont
+     * }
+     */
+    public static final long lfStatusFont$offset() {
+        return lfStatusFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfStatusFont
+     * }
+     */
+    public static MemorySegment lfStatusFont(MemorySegment struct) {
+        return struct.asSlice(lfStatusFont$OFFSET, lfStatusFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfStatusFont
+     * }
+     */
+    public static void lfStatusFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfStatusFont$OFFSET, lfStatusFont$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout lfMessageFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lfMessageFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMessageFont
+     * }
+     */
+    public static final GroupLayout lfMessageFont$layout() {
+        return lfMessageFont$LAYOUT;
+    }
+
+    private static final long lfMessageFont$OFFSET = 408;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMessageFont
+     * }
+     */
+    public static final long lfMessageFont$offset() {
+        return lfMessageFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMessageFont
+     * }
+     */
+    public static MemorySegment lfMessageFont(MemorySegment struct) {
+        return struct.asSlice(lfMessageFont$OFFSET, lfMessageFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTW lfMessageFont
+     * }
+     */
+    public static void lfMessageFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfMessageFont$OFFSET, lfMessageFont$LAYOUT.byteSize());
+    }
+
+    private static final OfInt iPaddedBorderWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iPaddedBorderWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iPaddedBorderWidth
+     * }
+     */
+    public static final OfInt iPaddedBorderWidth$layout() {
+        return iPaddedBorderWidth$LAYOUT;
+    }
+
+    private static final long iPaddedBorderWidth$OFFSET = 500;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iPaddedBorderWidth
+     * }
+     */
+    public static final long iPaddedBorderWidth$offset() {
+        return iPaddedBorderWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iPaddedBorderWidth
+     * }
+     */
+    public static int iPaddedBorderWidth(MemorySegment struct) {
+        return struct.get(iPaddedBorderWidth$LAYOUT, iPaddedBorderWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iPaddedBorderWidth
+     * }
+     */
+    public static void iPaddedBorderWidth(MemorySegment struct, int fieldValue) {
+        struct.set(iPaddedBorderWidth$LAYOUT, iPaddedBorderWidth$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,126 +2,356 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ADMINISTRATOR_POWER_POLICY {
+ *     SYSTEM_POWER_STATE MinSleep;
+ *     SYSTEM_POWER_STATE MaxSleep;
+ *     DWORD MinVideoTimeout;
+ *     DWORD MaxVideoTimeout;
+ *     DWORD MinSpindownTimeout;
+ *     DWORD MaxSpindownTimeout;
+ * }
+ * }
+ */
 public class _ADMINISTRATOR_POWER_POLICY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("MinSleep"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxSleep"),
-        Constants$root.C_LONG$LAYOUT.withName("MinVideoTimeout"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxVideoTimeout"),
-        Constants$root.C_LONG$LAYOUT.withName("MinSpindownTimeout"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxSpindownTimeout")
-    ).withName("_ADMINISTRATOR_POWER_POLICY");
-    public static MemoryLayout $LAYOUT() {
-        return _ADMINISTRATOR_POWER_POLICY.$struct$LAYOUT;
+    _ADMINISTRATOR_POWER_POLICY() {
+        // Should not be called directly
     }
-    static final VarHandle MinSleep$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinSleep"));
-    public static VarHandle MinSleep$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MinSleep$VH;
-    }
-    public static int MinSleep$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinSleep$VH.get(seg);
-    }
-    public static void MinSleep$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinSleep$VH.set(seg, x);
-    }
-    public static int MinSleep$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinSleep$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinSleep$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinSleep$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxSleep$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxSleep"));
-    public static VarHandle MaxSleep$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MaxSleep$VH;
-    }
-    public static int MaxSleep$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxSleep$VH.get(seg);
-    }
-    public static void MaxSleep$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxSleep$VH.set(seg, x);
-    }
-    public static int MaxSleep$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxSleep$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxSleep$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxSleep$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinVideoTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinVideoTimeout"));
-    public static VarHandle MinVideoTimeout$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MinVideoTimeout$VH;
-    }
-    public static int MinVideoTimeout$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinVideoTimeout$VH.get(seg);
-    }
-    public static void MinVideoTimeout$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinVideoTimeout$VH.set(seg, x);
-    }
-    public static int MinVideoTimeout$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinVideoTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinVideoTimeout$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinVideoTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxVideoTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxVideoTimeout"));
-    public static VarHandle MaxVideoTimeout$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MaxVideoTimeout$VH;
-    }
-    public static int MaxVideoTimeout$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxVideoTimeout$VH.get(seg);
-    }
-    public static void MaxVideoTimeout$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxVideoTimeout$VH.set(seg, x);
-    }
-    public static int MaxVideoTimeout$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxVideoTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxVideoTimeout$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxVideoTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinSpindownTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinSpindownTimeout"));
-    public static VarHandle MinSpindownTimeout$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MinSpindownTimeout$VH;
-    }
-    public static int MinSpindownTimeout$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinSpindownTimeout$VH.get(seg);
-    }
-    public static void MinSpindownTimeout$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinSpindownTimeout$VH.set(seg, x);
-    }
-    public static int MinSpindownTimeout$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MinSpindownTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinSpindownTimeout$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MinSpindownTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxSpindownTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxSpindownTimeout"));
-    public static VarHandle MaxSpindownTimeout$VH() {
-        return _ADMINISTRATOR_POWER_POLICY.MaxSpindownTimeout$VH;
-    }
-    public static int MaxSpindownTimeout$get(MemorySegment seg) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxSpindownTimeout$VH.get(seg);
-    }
-    public static void MaxSpindownTimeout$set( MemorySegment seg, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxSpindownTimeout$VH.set(seg, x);
-    }
-    public static int MaxSpindownTimeout$get(MemorySegment seg, long index) {
-        return (int)_ADMINISTRATOR_POWER_POLICY.MaxSpindownTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxSpindownTimeout$set(MemorySegment seg, long index, int x) {
-        _ADMINISTRATOR_POWER_POLICY.MaxSpindownTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("MinSleep"),
+        freeglut_h.C_INT.withName("MaxSleep"),
+        freeglut_h.C_LONG.withName("MinVideoTimeout"),
+        freeglut_h.C_LONG.withName("MaxVideoTimeout"),
+        freeglut_h.C_LONG.withName("MinSpindownTimeout"),
+        freeglut_h.C_LONG.withName("MaxSpindownTimeout")
+    ).withName("_ADMINISTRATOR_POWER_POLICY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt MinSleep$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinSleep"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static final OfInt MinSleep$layout() {
+        return MinSleep$LAYOUT;
+    }
+
+    private static final long MinSleep$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static final long MinSleep$offset() {
+        return MinSleep$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static int MinSleep(MemorySegment struct) {
+        return struct.get(MinSleep$LAYOUT, MinSleep$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSleep
+     * }
+     */
+    public static void MinSleep(MemorySegment struct, int fieldValue) {
+        struct.set(MinSleep$LAYOUT, MinSleep$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxSleep$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxSleep"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static final OfInt MaxSleep$layout() {
+        return MaxSleep$LAYOUT;
+    }
+
+    private static final long MaxSleep$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static final long MaxSleep$offset() {
+        return MaxSleep$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static int MaxSleep(MemorySegment struct) {
+        return struct.get(MaxSleep$LAYOUT, MaxSleep$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MaxSleep
+     * }
+     */
+    public static void MaxSleep(MemorySegment struct, int fieldValue) {
+        struct.set(MaxSleep$LAYOUT, MaxSleep$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MinVideoTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinVideoTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MinVideoTimeout
+     * }
+     */
+    public static final OfInt MinVideoTimeout$layout() {
+        return MinVideoTimeout$LAYOUT;
+    }
+
+    private static final long MinVideoTimeout$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MinVideoTimeout
+     * }
+     */
+    public static final long MinVideoTimeout$offset() {
+        return MinVideoTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MinVideoTimeout
+     * }
+     */
+    public static int MinVideoTimeout(MemorySegment struct) {
+        return struct.get(MinVideoTimeout$LAYOUT, MinVideoTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MinVideoTimeout
+     * }
+     */
+    public static void MinVideoTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(MinVideoTimeout$LAYOUT, MinVideoTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxVideoTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxVideoTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxVideoTimeout
+     * }
+     */
+    public static final OfInt MaxVideoTimeout$layout() {
+        return MaxVideoTimeout$LAYOUT;
+    }
+
+    private static final long MaxVideoTimeout$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxVideoTimeout
+     * }
+     */
+    public static final long MaxVideoTimeout$offset() {
+        return MaxVideoTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVideoTimeout
+     * }
+     */
+    public static int MaxVideoTimeout(MemorySegment struct) {
+        return struct.get(MaxVideoTimeout$LAYOUT, MaxVideoTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxVideoTimeout
+     * }
+     */
+    public static void MaxVideoTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(MaxVideoTimeout$LAYOUT, MaxVideoTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MinSpindownTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinSpindownTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MinSpindownTimeout
+     * }
+     */
+    public static final OfInt MinSpindownTimeout$layout() {
+        return MinSpindownTimeout$LAYOUT;
+    }
+
+    private static final long MinSpindownTimeout$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MinSpindownTimeout
+     * }
+     */
+    public static final long MinSpindownTimeout$offset() {
+        return MinSpindownTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MinSpindownTimeout
+     * }
+     */
+    public static int MinSpindownTimeout(MemorySegment struct) {
+        return struct.get(MinSpindownTimeout$LAYOUT, MinSpindownTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MinSpindownTimeout
+     * }
+     */
+    public static void MinSpindownTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(MinSpindownTimeout$LAYOUT, MinSpindownTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaxSpindownTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxSpindownTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxSpindownTimeout
+     * }
+     */
+    public static final OfInt MaxSpindownTimeout$layout() {
+        return MaxSpindownTimeout$LAYOUT;
+    }
+
+    private static final long MaxSpindownTimeout$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxSpindownTimeout
+     * }
+     */
+    public static final long MaxSpindownTimeout$offset() {
+        return MaxSpindownTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxSpindownTimeout
+     * }
+     */
+    public static int MaxSpindownTimeout(MemorySegment struct) {
+        return struct.get(MaxSpindownTimeout$LAYOUT, MaxSpindownTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxSpindownTimeout
+     * }
+     */
+    public static void MaxSpindownTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(MaxSpindownTimeout$LAYOUT, MaxSpindownTimeout$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

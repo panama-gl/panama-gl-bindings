@@ -2,102 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PARTITION_INFORMATION_MBR {
+ *     BYTE PartitionType;
+ *     BOOLEAN BootIndicator;
+ *     BOOLEAN RecognizedPartition;
+ *     DWORD HiddenSectors;
+ *     GUID PartitionId;
+ * }
+ * }
+ */
 public class _PARTITION_INFORMATION_MBR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("PartitionType"),
-        Constants$root.C_CHAR$LAYOUT.withName("BootIndicator"),
-        Constants$root.C_CHAR$LAYOUT.withName("RecognizedPartition"),
-        MemoryLayout.paddingLayout(8),
-        Constants$root.C_LONG$LAYOUT.withName("HiddenSectors"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("PartitionId")
-    ).withName("_PARTITION_INFORMATION_MBR");
-    public static MemoryLayout $LAYOUT() {
-        return _PARTITION_INFORMATION_MBR.$struct$LAYOUT;
+    _PARTITION_INFORMATION_MBR() {
+        // Should not be called directly
     }
-    static final VarHandle PartitionType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PartitionType"));
-    public static VarHandle PartitionType$VH() {
-        return _PARTITION_INFORMATION_MBR.PartitionType$VH;
-    }
-    public static byte PartitionType$get(MemorySegment seg) {
-        return (byte)_PARTITION_INFORMATION_MBR.PartitionType$VH.get(seg);
-    }
-    public static void PartitionType$set( MemorySegment seg, byte x) {
-        _PARTITION_INFORMATION_MBR.PartitionType$VH.set(seg, x);
-    }
-    public static byte PartitionType$get(MemorySegment seg, long index) {
-        return (byte)_PARTITION_INFORMATION_MBR.PartitionType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PartitionType$set(MemorySegment seg, long index, byte x) {
-        _PARTITION_INFORMATION_MBR.PartitionType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BootIndicator$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BootIndicator"));
-    public static VarHandle BootIndicator$VH() {
-        return _PARTITION_INFORMATION_MBR.BootIndicator$VH;
-    }
-    public static byte BootIndicator$get(MemorySegment seg) {
-        return (byte)_PARTITION_INFORMATION_MBR.BootIndicator$VH.get(seg);
-    }
-    public static void BootIndicator$set( MemorySegment seg, byte x) {
-        _PARTITION_INFORMATION_MBR.BootIndicator$VH.set(seg, x);
-    }
-    public static byte BootIndicator$get(MemorySegment seg, long index) {
-        return (byte)_PARTITION_INFORMATION_MBR.BootIndicator$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BootIndicator$set(MemorySegment seg, long index, byte x) {
-        _PARTITION_INFORMATION_MBR.BootIndicator$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RecognizedPartition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RecognizedPartition"));
-    public static VarHandle RecognizedPartition$VH() {
-        return _PARTITION_INFORMATION_MBR.RecognizedPartition$VH;
-    }
-    public static byte RecognizedPartition$get(MemorySegment seg) {
-        return (byte)_PARTITION_INFORMATION_MBR.RecognizedPartition$VH.get(seg);
-    }
-    public static void RecognizedPartition$set( MemorySegment seg, byte x) {
-        _PARTITION_INFORMATION_MBR.RecognizedPartition$VH.set(seg, x);
-    }
-    public static byte RecognizedPartition$get(MemorySegment seg, long index) {
-        return (byte)_PARTITION_INFORMATION_MBR.RecognizedPartition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RecognizedPartition$set(MemorySegment seg, long index, byte x) {
-        _PARTITION_INFORMATION_MBR.RecognizedPartition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HiddenSectors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HiddenSectors"));
-    public static VarHandle HiddenSectors$VH() {
-        return _PARTITION_INFORMATION_MBR.HiddenSectors$VH;
-    }
-    public static int HiddenSectors$get(MemorySegment seg) {
-        return (int)_PARTITION_INFORMATION_MBR.HiddenSectors$VH.get(seg);
-    }
-    public static void HiddenSectors$set( MemorySegment seg, int x) {
-        _PARTITION_INFORMATION_MBR.HiddenSectors$VH.set(seg, x);
-    }
-    public static int HiddenSectors$get(MemorySegment seg, long index) {
-        return (int)_PARTITION_INFORMATION_MBR.HiddenSectors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HiddenSectors$set(MemorySegment seg, long index, int x) {
-        _PARTITION_INFORMATION_MBR.HiddenSectors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PartitionId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("PartitionType"),
+        wgl_h.C_CHAR.withName("BootIndicator"),
+        wgl_h.C_CHAR.withName("RecognizedPartition"),
+        MemoryLayout.paddingLayout(1),
+        wgl_h.C_LONG.withName("HiddenSectors"),
+        _GUID.layout().withName("PartitionId")
+    ).withName("_PARTITION_INFORMATION_MBR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte PartitionType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("PartitionType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PartitionType
+     * }
+     */
+    public static final OfByte PartitionType$layout() {
+        return PartitionType$LAYOUT;
+    }
+
+    private static final long PartitionType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PartitionType
+     * }
+     */
+    public static final long PartitionType$offset() {
+        return PartitionType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PartitionType
+     * }
+     */
+    public static byte PartitionType(MemorySegment struct) {
+        return struct.get(PartitionType$LAYOUT, PartitionType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PartitionType
+     * }
+     */
+    public static void PartitionType(MemorySegment struct, byte fieldValue) {
+        struct.set(PartitionType$LAYOUT, PartitionType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte BootIndicator$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BootIndicator"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN BootIndicator
+     * }
+     */
+    public static final OfByte BootIndicator$layout() {
+        return BootIndicator$LAYOUT;
+    }
+
+    private static final long BootIndicator$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN BootIndicator
+     * }
+     */
+    public static final long BootIndicator$offset() {
+        return BootIndicator$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN BootIndicator
+     * }
+     */
+    public static byte BootIndicator(MemorySegment struct) {
+        return struct.get(BootIndicator$LAYOUT, BootIndicator$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN BootIndicator
+     * }
+     */
+    public static void BootIndicator(MemorySegment struct, byte fieldValue) {
+        struct.set(BootIndicator$LAYOUT, BootIndicator$OFFSET, fieldValue);
+    }
+
+    private static final OfByte RecognizedPartition$LAYOUT = (OfByte)$LAYOUT.select(groupElement("RecognizedPartition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN RecognizedPartition
+     * }
+     */
+    public static final OfByte RecognizedPartition$layout() {
+        return RecognizedPartition$LAYOUT;
+    }
+
+    private static final long RecognizedPartition$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN RecognizedPartition
+     * }
+     */
+    public static final long RecognizedPartition$offset() {
+        return RecognizedPartition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RecognizedPartition
+     * }
+     */
+    public static byte RecognizedPartition(MemorySegment struct) {
+        return struct.get(RecognizedPartition$LAYOUT, RecognizedPartition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN RecognizedPartition
+     * }
+     */
+    public static void RecognizedPartition(MemorySegment struct, byte fieldValue) {
+        struct.set(RecognizedPartition$LAYOUT, RecognizedPartition$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HiddenSectors$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HiddenSectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HiddenSectors
+     * }
+     */
+    public static final OfInt HiddenSectors$layout() {
+        return HiddenSectors$LAYOUT;
+    }
+
+    private static final long HiddenSectors$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HiddenSectors
+     * }
+     */
+    public static final long HiddenSectors$offset() {
+        return HiddenSectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HiddenSectors
+     * }
+     */
+    public static int HiddenSectors(MemorySegment struct) {
+        return struct.get(HiddenSectors$LAYOUT, HiddenSectors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HiddenSectors
+     * }
+     */
+    public static void HiddenSectors(MemorySegment struct, int fieldValue) {
+        struct.set(HiddenSectors$LAYOUT, HiddenSectors$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PartitionId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PartitionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID PartitionId
+     * }
+     */
+    public static final GroupLayout PartitionId$layout() {
+        return PartitionId$LAYOUT;
+    }
+
+    private static final long PartitionId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID PartitionId
+     * }
+     */
+    public static final long PartitionId$offset() {
+        return PartitionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID PartitionId
+     * }
+     */
+    public static MemorySegment PartitionId(MemorySegment struct) {
+        return struct.asSlice(PartitionId$OFFSET, PartitionId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID PartitionId
+     * }
+     */
+    public static void PartitionId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PartitionId$OFFSET, PartitionId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

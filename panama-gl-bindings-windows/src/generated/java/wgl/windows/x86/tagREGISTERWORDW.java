@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagREGISTERWORDW {
+ *     LPWSTR lpReading;
+ *     LPWSTR lpWord;
+ * }
+ * }
+ */
 public class tagREGISTERWORDW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("lpReading"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpWord")
-    ).withName("tagREGISTERWORDW");
-    public static MemoryLayout $LAYOUT() {
-        return tagREGISTERWORDW.$struct$LAYOUT;
+    tagREGISTERWORDW() {
+        // Should not be called directly
     }
-    static final VarHandle lpReading$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpReading"));
-    public static VarHandle lpReading$VH() {
-        return tagREGISTERWORDW.lpReading$VH;
-    }
-    public static MemoryAddress lpReading$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagREGISTERWORDW.lpReading$VH.get(seg);
-    }
-    public static void lpReading$set( MemorySegment seg, MemoryAddress x) {
-        tagREGISTERWORDW.lpReading$VH.set(seg, x);
-    }
-    public static MemoryAddress lpReading$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagREGISTERWORDW.lpReading$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpReading$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagREGISTERWORDW.lpReading$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpWord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpWord"));
-    public static VarHandle lpWord$VH() {
-        return tagREGISTERWORDW.lpWord$VH;
-    }
-    public static MemoryAddress lpWord$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagREGISTERWORDW.lpWord$VH.get(seg);
-    }
-    public static void lpWord$set( MemorySegment seg, MemoryAddress x) {
-        tagREGISTERWORDW.lpWord$VH.set(seg, x);
-    }
-    public static MemoryAddress lpWord$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagREGISTERWORDW.lpWord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpWord$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagREGISTERWORDW.lpWord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("lpReading"),
+        wgl_h.C_POINTER.withName("lpWord")
+    ).withName("tagREGISTERWORDW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout lpReading$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpReading"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR lpReading
+     * }
+     */
+    public static final AddressLayout lpReading$layout() {
+        return lpReading$LAYOUT;
+    }
+
+    private static final long lpReading$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR lpReading
+     * }
+     */
+    public static final long lpReading$offset() {
+        return lpReading$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpReading
+     * }
+     */
+    public static MemorySegment lpReading(MemorySegment struct) {
+        return struct.get(lpReading$LAYOUT, lpReading$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpReading
+     * }
+     */
+    public static void lpReading(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpReading$LAYOUT, lpReading$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpWord$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpWord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR lpWord
+     * }
+     */
+    public static final AddressLayout lpWord$layout() {
+        return lpWord$LAYOUT;
+    }
+
+    private static final long lpWord$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR lpWord
+     * }
+     */
+    public static final long lpWord$offset() {
+        return lpWord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpWord
+     * }
+     */
+    public static MemorySegment lpWord(MemorySegment struct) {
+        return struct.get(lpWord$LAYOUT, lpWord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpWord
+     * }
+     */
+    public static void lpWord(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpWord$LAYOUT, lpWord$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

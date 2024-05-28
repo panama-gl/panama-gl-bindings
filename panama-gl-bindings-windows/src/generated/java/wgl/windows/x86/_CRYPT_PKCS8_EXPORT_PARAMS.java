@@ -2,113 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_PKCS8_EXPORT_PARAMS {
+ *     HCRYPTPROV hCryptProv;
+ *     DWORD dwKeySpec;
+ *     LPSTR pszPrivateKeyObjId;
+ *     PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc;
+ *     LPVOID pVoidEncryptFunc;
+ * }
+ * }
+ */
 public class _CRYPT_PKCS8_EXPORT_PARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("hCryptProv"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeySpec"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pszPrivateKeyObjId"),
-        Constants$root.C_POINTER$LAYOUT.withName("pEncryptPrivateKeyFunc"),
-        Constants$root.C_POINTER$LAYOUT.withName("pVoidEncryptFunc")
-    ).withName("_CRYPT_PKCS8_EXPORT_PARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.$struct$LAYOUT;
+    _CRYPT_PKCS8_EXPORT_PARAMS() {
+        // Should not be called directly
     }
-    static final VarHandle hCryptProv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCryptProv"));
-    public static VarHandle hCryptProv$VH() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.hCryptProv$VH;
-    }
-    public static long hCryptProv$get(MemorySegment seg) {
-        return (long)_CRYPT_PKCS8_EXPORT_PARAMS.hCryptProv$VH.get(seg);
-    }
-    public static void hCryptProv$set( MemorySegment seg, long x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.hCryptProv$VH.set(seg, x);
-    }
-    public static long hCryptProv$get(MemorySegment seg, long index) {
-        return (long)_CRYPT_PKCS8_EXPORT_PARAMS.hCryptProv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCryptProv$set(MemorySegment seg, long index, long x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.hCryptProv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeySpec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeySpec"));
-    public static VarHandle dwKeySpec$VH() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.dwKeySpec$VH;
-    }
-    public static int dwKeySpec$get(MemorySegment seg) {
-        return (int)_CRYPT_PKCS8_EXPORT_PARAMS.dwKeySpec$VH.get(seg);
-    }
-    public static void dwKeySpec$set( MemorySegment seg, int x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.dwKeySpec$VH.set(seg, x);
-    }
-    public static int dwKeySpec$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_PKCS8_EXPORT_PARAMS.dwKeySpec$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeySpec$set(MemorySegment seg, long index, int x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.dwKeySpec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszPrivateKeyObjId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszPrivateKeyObjId"));
-    public static VarHandle pszPrivateKeyObjId$VH() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.pszPrivateKeyObjId$VH;
-    }
-    public static MemoryAddress pszPrivateKeyObjId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pszPrivateKeyObjId$VH.get(seg);
-    }
-    public static void pszPrivateKeyObjId$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pszPrivateKeyObjId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszPrivateKeyObjId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pszPrivateKeyObjId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszPrivateKeyObjId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pszPrivateKeyObjId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEncryptPrivateKeyFunc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pEncryptPrivateKeyFunc"));
-    public static VarHandle pEncryptPrivateKeyFunc$VH() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.pEncryptPrivateKeyFunc$VH;
-    }
-    public static MemoryAddress pEncryptPrivateKeyFunc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pEncryptPrivateKeyFunc$VH.get(seg);
-    }
-    public static void pEncryptPrivateKeyFunc$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pEncryptPrivateKeyFunc$VH.set(seg, x);
-    }
-    public static MemoryAddress pEncryptPrivateKeyFunc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pEncryptPrivateKeyFunc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEncryptPrivateKeyFunc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pEncryptPrivateKeyFunc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc (MemorySegment segment, MemorySession session) {
-        return PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC.ofAddress(pEncryptPrivateKeyFunc$get(segment), session);
-    }
-    static final VarHandle pVoidEncryptFunc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pVoidEncryptFunc"));
-    public static VarHandle pVoidEncryptFunc$VH() {
-        return _CRYPT_PKCS8_EXPORT_PARAMS.pVoidEncryptFunc$VH;
-    }
-    public static MemoryAddress pVoidEncryptFunc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pVoidEncryptFunc$VH.get(seg);
-    }
-    public static void pVoidEncryptFunc$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pVoidEncryptFunc$VH.set(seg, x);
-    }
-    public static MemoryAddress pVoidEncryptFunc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PKCS8_EXPORT_PARAMS.pVoidEncryptFunc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pVoidEncryptFunc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PKCS8_EXPORT_PARAMS.pVoidEncryptFunc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("hCryptProv"),
+        wgl_h.C_LONG.withName("dwKeySpec"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pszPrivateKeyObjId"),
+        wgl_h.C_POINTER.withName("pEncryptPrivateKeyFunc"),
+        wgl_h.C_POINTER.withName("pVoidEncryptFunc")
+    ).withName("_CRYPT_PKCS8_EXPORT_PARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong hCryptProv$LAYOUT = (OfLong)$LAYOUT.select(groupElement("hCryptProv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV hCryptProv
+     * }
+     */
+    public static final OfLong hCryptProv$layout() {
+        return hCryptProv$LAYOUT;
+    }
+
+    private static final long hCryptProv$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV hCryptProv
+     * }
+     */
+    public static final long hCryptProv$offset() {
+        return hCryptProv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV hCryptProv
+     * }
+     */
+    public static long hCryptProv(MemorySegment struct) {
+        return struct.get(hCryptProv$LAYOUT, hCryptProv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV hCryptProv
+     * }
+     */
+    public static void hCryptProv(MemorySegment struct, long fieldValue) {
+        struct.set(hCryptProv$LAYOUT, hCryptProv$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeySpec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeySpec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final OfInt dwKeySpec$layout() {
+        return dwKeySpec$LAYOUT;
+    }
+
+    private static final long dwKeySpec$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static final long dwKeySpec$offset() {
+        return dwKeySpec$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static int dwKeySpec(MemorySegment struct) {
+        return struct.get(dwKeySpec$LAYOUT, dwKeySpec$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeySpec
+     * }
+     */
+    public static void dwKeySpec(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeySpec$LAYOUT, dwKeySpec$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszPrivateKeyObjId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszPrivateKeyObjId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszPrivateKeyObjId
+     * }
+     */
+    public static final AddressLayout pszPrivateKeyObjId$layout() {
+        return pszPrivateKeyObjId$LAYOUT;
+    }
+
+    private static final long pszPrivateKeyObjId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszPrivateKeyObjId
+     * }
+     */
+    public static final long pszPrivateKeyObjId$offset() {
+        return pszPrivateKeyObjId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszPrivateKeyObjId
+     * }
+     */
+    public static MemorySegment pszPrivateKeyObjId(MemorySegment struct) {
+        return struct.get(pszPrivateKeyObjId$LAYOUT, pszPrivateKeyObjId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszPrivateKeyObjId
+     * }
+     */
+    public static void pszPrivateKeyObjId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszPrivateKeyObjId$LAYOUT, pszPrivateKeyObjId$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEncryptPrivateKeyFunc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pEncryptPrivateKeyFunc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc
+     * }
+     */
+    public static final AddressLayout pEncryptPrivateKeyFunc$layout() {
+        return pEncryptPrivateKeyFunc$LAYOUT;
+    }
+
+    private static final long pEncryptPrivateKeyFunc$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc
+     * }
+     */
+    public static final long pEncryptPrivateKeyFunc$offset() {
+        return pEncryptPrivateKeyFunc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc
+     * }
+     */
+    public static MemorySegment pEncryptPrivateKeyFunc(MemorySegment struct) {
+        return struct.get(pEncryptPrivateKeyFunc$LAYOUT, pEncryptPrivateKeyFunc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc
+     * }
+     */
+    public static void pEncryptPrivateKeyFunc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEncryptPrivateKeyFunc$LAYOUT, pEncryptPrivateKeyFunc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pVoidEncryptFunc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pVoidEncryptFunc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID pVoidEncryptFunc
+     * }
+     */
+    public static final AddressLayout pVoidEncryptFunc$layout() {
+        return pVoidEncryptFunc$LAYOUT;
+    }
+
+    private static final long pVoidEncryptFunc$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID pVoidEncryptFunc
+     * }
+     */
+    public static final long pVoidEncryptFunc$offset() {
+        return pVoidEncryptFunc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID pVoidEncryptFunc
+     * }
+     */
+    public static MemorySegment pVoidEncryptFunc(MemorySegment struct) {
+        return struct.get(pVoidEncryptFunc$LAYOUT, pVoidEncryptFunc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID pVoidEncryptFunc
+     * }
+     */
+    public static void pVoidEncryptFunc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pVoidEncryptFunc$LAYOUT, pVoidEncryptFunc$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

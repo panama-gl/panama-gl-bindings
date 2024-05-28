@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagOIFI {
+ *     UINT cb;
+ *     BOOL fMDIApp;
+ *     HWND hwndFrame;
+ *     HACCEL haccel;
+ *     UINT cAccelEntries;
+ * }
+ * }
+ */
 public class tagOIFI {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cb"),
-        Constants$root.C_LONG$LAYOUT.withName("fMDIApp"),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndFrame"),
-        Constants$root.C_POINTER$LAYOUT.withName("haccel"),
-        Constants$root.C_LONG$LAYOUT.withName("cAccelEntries"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagOIFI");
-    public static MemoryLayout $LAYOUT() {
-        return tagOIFI.$struct$LAYOUT;
+    tagOIFI() {
+        // Should not be called directly
     }
-    static final VarHandle cb$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cb"));
-    public static VarHandle cb$VH() {
-        return tagOIFI.cb$VH;
-    }
-    public static int cb$get(MemorySegment seg) {
-        return (int)tagOIFI.cb$VH.get(seg);
-    }
-    public static void cb$set( MemorySegment seg, int x) {
-        tagOIFI.cb$VH.set(seg, x);
-    }
-    public static int cb$get(MemorySegment seg, long index) {
-        return (int)tagOIFI.cb$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cb$set(MemorySegment seg, long index, int x) {
-        tagOIFI.cb$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fMDIApp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fMDIApp"));
-    public static VarHandle fMDIApp$VH() {
-        return tagOIFI.fMDIApp$VH;
-    }
-    public static int fMDIApp$get(MemorySegment seg) {
-        return (int)tagOIFI.fMDIApp$VH.get(seg);
-    }
-    public static void fMDIApp$set( MemorySegment seg, int x) {
-        tagOIFI.fMDIApp$VH.set(seg, x);
-    }
-    public static int fMDIApp$get(MemorySegment seg, long index) {
-        return (int)tagOIFI.fMDIApp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fMDIApp$set(MemorySegment seg, long index, int x) {
-        tagOIFI.fMDIApp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndFrame$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndFrame"));
-    public static VarHandle hwndFrame$VH() {
-        return tagOIFI.hwndFrame$VH;
-    }
-    public static MemoryAddress hwndFrame$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagOIFI.hwndFrame$VH.get(seg);
-    }
-    public static void hwndFrame$set( MemorySegment seg, MemoryAddress x) {
-        tagOIFI.hwndFrame$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndFrame$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagOIFI.hwndFrame$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndFrame$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagOIFI.hwndFrame$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle haccel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("haccel"));
-    public static VarHandle haccel$VH() {
-        return tagOIFI.haccel$VH;
-    }
-    public static MemoryAddress haccel$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagOIFI.haccel$VH.get(seg);
-    }
-    public static void haccel$set( MemorySegment seg, MemoryAddress x) {
-        tagOIFI.haccel$VH.set(seg, x);
-    }
-    public static MemoryAddress haccel$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagOIFI.haccel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void haccel$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagOIFI.haccel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cAccelEntries$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cAccelEntries"));
-    public static VarHandle cAccelEntries$VH() {
-        return tagOIFI.cAccelEntries$VH;
-    }
-    public static int cAccelEntries$get(MemorySegment seg) {
-        return (int)tagOIFI.cAccelEntries$VH.get(seg);
-    }
-    public static void cAccelEntries$set( MemorySegment seg, int x) {
-        tagOIFI.cAccelEntries$VH.set(seg, x);
-    }
-    public static int cAccelEntries$get(MemorySegment seg, long index) {
-        return (int)tagOIFI.cAccelEntries$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cAccelEntries$set(MemorySegment seg, long index, int x) {
-        tagOIFI.cAccelEntries$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cb"),
+        wgl_h.C_INT.withName("fMDIApp"),
+        wgl_h.C_POINTER.withName("hwndFrame"),
+        wgl_h.C_POINTER.withName("haccel"),
+        wgl_h.C_INT.withName("cAccelEntries"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagOIFI");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cb$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final OfInt cb$layout() {
+        return cb$LAYOUT;
+    }
+
+    private static final long cb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final long cb$offset() {
+        return cb$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static int cb(MemorySegment struct) {
+        return struct.get(cb$LAYOUT, cb$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static void cb(MemorySegment struct, int fieldValue) {
+        struct.set(cb$LAYOUT, cb$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fMDIApp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fMDIApp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fMDIApp
+     * }
+     */
+    public static final OfInt fMDIApp$layout() {
+        return fMDIApp$LAYOUT;
+    }
+
+    private static final long fMDIApp$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fMDIApp
+     * }
+     */
+    public static final long fMDIApp$offset() {
+        return fMDIApp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fMDIApp
+     * }
+     */
+    public static int fMDIApp(MemorySegment struct) {
+        return struct.get(fMDIApp$LAYOUT, fMDIApp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fMDIApp
+     * }
+     */
+    public static void fMDIApp(MemorySegment struct, int fieldValue) {
+        struct.set(fMDIApp$LAYOUT, fMDIApp$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndFrame$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndFrame"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndFrame
+     * }
+     */
+    public static final AddressLayout hwndFrame$layout() {
+        return hwndFrame$LAYOUT;
+    }
+
+    private static final long hwndFrame$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndFrame
+     * }
+     */
+    public static final long hwndFrame$offset() {
+        return hwndFrame$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndFrame
+     * }
+     */
+    public static MemorySegment hwndFrame(MemorySegment struct) {
+        return struct.get(hwndFrame$LAYOUT, hwndFrame$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndFrame
+     * }
+     */
+    public static void hwndFrame(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndFrame$LAYOUT, hwndFrame$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout haccel$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("haccel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HACCEL haccel
+     * }
+     */
+    public static final AddressLayout haccel$layout() {
+        return haccel$LAYOUT;
+    }
+
+    private static final long haccel$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HACCEL haccel
+     * }
+     */
+    public static final long haccel$offset() {
+        return haccel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HACCEL haccel
+     * }
+     */
+    public static MemorySegment haccel(MemorySegment struct) {
+        return struct.get(haccel$LAYOUT, haccel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HACCEL haccel
+     * }
+     */
+    public static void haccel(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(haccel$LAYOUT, haccel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cAccelEntries$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cAccelEntries"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cAccelEntries
+     * }
+     */
+    public static final OfInt cAccelEntries$layout() {
+        return cAccelEntries$LAYOUT;
+    }
+
+    private static final long cAccelEntries$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cAccelEntries
+     * }
+     */
+    public static final long cAccelEntries$offset() {
+        return cAccelEntries$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cAccelEntries
+     * }
+     */
+    public static int cAccelEntries(MemorySegment struct) {
+        return struct.get(cAccelEntries$LAYOUT, cAccelEntries$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cAccelEntries
+     * }
+     */
+    public static void cAccelEntries(MemorySegment struct, int fieldValue) {
+        struct.set(cAccelEntries$LAYOUT, cAccelEntries$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

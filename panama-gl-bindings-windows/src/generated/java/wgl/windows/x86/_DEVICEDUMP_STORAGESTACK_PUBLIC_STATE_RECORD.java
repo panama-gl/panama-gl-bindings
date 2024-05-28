@@ -2,243 +2,1092 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD {
+ *     BYTE Cdb[16];
+ *     BYTE Command[16];
+ *     DWORDLONG StartTime;
+ *     DWORDLONG EndTime;
+ *     DWORD OperationStatus;
+ *     DWORD OperationError;
+ *     union {
+ *         struct {
+ *             DWORD dwReserved;
+ *         } ExternalStack;
+ *         struct {
+ *             DWORD dwAtaPortSpecific;
+ *         } AtaPort;
+ *         struct {
+ *             DWORD SrbTag;
+ *         } StorPort;
+ *     } StackSpecific;
+ * }
+ * }
+ */
 public class _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Cdb"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Command"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("StartTime"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EndTime"),
-        Constants$root.C_LONG$LAYOUT.withName("OperationStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("OperationError"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwReserved")
-            ).withName("ExternalStack"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwAtaPortSpecific")
-            ).withName("AtaPort"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("SrbTag")
-            ).withName("StorPort")
-        ).withName("StackSpecific")
+    _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("Cdb"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("Command"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("StartTime"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("EndTime"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("OperationStatus"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("OperationError"),
+        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StackSpecific.layout().withName("StackSpecific")
     ).withName("_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    public static MemorySegment Cdb$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+
+    private static final SequenceLayout Cdb$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Cdb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static final SequenceLayout Cdb$layout() {
+        return Cdb$LAYOUT;
     }
-    public static MemorySegment Command$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+
+    private static final long Cdb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static final long Cdb$offset() {
+        return Cdb$OFFSET;
     }
-    static final VarHandle StartTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartTime"));
-    public static VarHandle StartTime$VH() {
-        return _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StartTime$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static MemorySegment Cdb(MemorySegment struct) {
+        return struct.asSlice(Cdb$OFFSET, Cdb$LAYOUT.byteSize());
     }
-    public static long StartTime$get(MemorySegment seg) {
-        return (long)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StartTime$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static void Cdb(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Cdb$OFFSET, Cdb$LAYOUT.byteSize());
     }
-    public static void StartTime$set( MemorySegment seg, long x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StartTime$VH.set(seg, x);
+
+    private static long[] Cdb$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static long[] Cdb$dimensions() {
+        return Cdb$DIMS;
     }
-    public static long StartTime$get(MemorySegment seg, long index) {
-        return (long)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StartTime$VH.get(seg.asSlice(index*sizeof()));
+    private static final VarHandle Cdb$ELEM_HANDLE = Cdb$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static byte Cdb(MemorySegment struct, long index0) {
+        return (byte)Cdb$ELEM_HANDLE.get(struct, 0L, index0);
     }
-    public static void StartTime$set(MemorySegment seg, long index, long x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StartTime$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Cdb[16]
+     * }
+     */
+    public static void Cdb(MemorySegment struct, long index0, byte fieldValue) {
+        Cdb$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
     }
-    static final VarHandle EndTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndTime"));
-    public static VarHandle EndTime$VH() {
-        return _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.EndTime$VH;
+
+    private static final SequenceLayout Command$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Command"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static final SequenceLayout Command$layout() {
+        return Command$LAYOUT;
     }
-    public static long EndTime$get(MemorySegment seg) {
-        return (long)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.EndTime$VH.get(seg);
+
+    private static final long Command$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static final long Command$offset() {
+        return Command$OFFSET;
     }
-    public static void EndTime$set( MemorySegment seg, long x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.EndTime$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static MemorySegment Command(MemorySegment struct) {
+        return struct.asSlice(Command$OFFSET, Command$LAYOUT.byteSize());
     }
-    public static long EndTime$get(MemorySegment seg, long index) {
-        return (long)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.EndTime$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static void Command(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Command$OFFSET, Command$LAYOUT.byteSize());
     }
-    public static void EndTime$set(MemorySegment seg, long index, long x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.EndTime$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static long[] Command$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static long[] Command$dimensions() {
+        return Command$DIMS;
     }
-    static final VarHandle OperationStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OperationStatus"));
-    public static VarHandle OperationStatus$VH() {
-        return _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationStatus$VH;
+    private static final VarHandle Command$ELEM_HANDLE = Command$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static byte Command(MemorySegment struct, long index0) {
+        return (byte)Command$ELEM_HANDLE.get(struct, 0L, index0);
     }
-    public static int OperationStatus$get(MemorySegment seg) {
-        return (int)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationStatus$VH.get(seg);
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Command[16]
+     * }
+     */
+    public static void Command(MemorySegment struct, long index0, byte fieldValue) {
+        Command$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
     }
-    public static void OperationStatus$set( MemorySegment seg, int x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationStatus$VH.set(seg, x);
+
+    private static final OfLong StartTime$LAYOUT = (OfLong)$LAYOUT.select(groupElement("StartTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartTime
+     * }
+     */
+    public static final OfLong StartTime$layout() {
+        return StartTime$LAYOUT;
     }
-    public static int OperationStatus$get(MemorySegment seg, long index) {
-        return (int)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationStatus$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long StartTime$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartTime
+     * }
+     */
+    public static final long StartTime$offset() {
+        return StartTime$OFFSET;
     }
-    public static void OperationStatus$set(MemorySegment seg, long index, int x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationStatus$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartTime
+     * }
+     */
+    public static long StartTime(MemorySegment struct) {
+        return struct.get(StartTime$LAYOUT, StartTime$OFFSET);
     }
-    static final VarHandle OperationError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OperationError"));
-    public static VarHandle OperationError$VH() {
-        return _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationError$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartTime
+     * }
+     */
+    public static void StartTime(MemorySegment struct, long fieldValue) {
+        struct.set(StartTime$LAYOUT, StartTime$OFFSET, fieldValue);
     }
-    public static int OperationError$get(MemorySegment seg) {
-        return (int)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationError$VH.get(seg);
+
+    private static final OfLong EndTime$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EndTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG EndTime
+     * }
+     */
+    public static final OfLong EndTime$layout() {
+        return EndTime$LAYOUT;
     }
-    public static void OperationError$set( MemorySegment seg, int x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationError$VH.set(seg, x);
+
+    private static final long EndTime$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG EndTime
+     * }
+     */
+    public static final long EndTime$offset() {
+        return EndTime$OFFSET;
     }
-    public static int OperationError$get(MemorySegment seg, long index) {
-        return (int)_DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationError$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG EndTime
+     * }
+     */
+    public static long EndTime(MemorySegment struct) {
+        return struct.get(EndTime$LAYOUT, EndTime$OFFSET);
     }
-    public static void OperationError$set(MemorySegment seg, long index, int x) {
-        _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.OperationError$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG EndTime
+     * }
+     */
+    public static void EndTime(MemorySegment struct, long fieldValue) {
+        struct.set(EndTime$LAYOUT, EndTime$OFFSET, fieldValue);
     }
+
+    private static final OfInt OperationStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OperationStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OperationStatus
+     * }
+     */
+    public static final OfInt OperationStatus$layout() {
+        return OperationStatus$LAYOUT;
+    }
+
+    private static final long OperationStatus$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OperationStatus
+     * }
+     */
+    public static final long OperationStatus$offset() {
+        return OperationStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OperationStatus
+     * }
+     */
+    public static int OperationStatus(MemorySegment struct) {
+        return struct.get(OperationStatus$LAYOUT, OperationStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OperationStatus
+     * }
+     */
+    public static void OperationStatus(MemorySegment struct, int fieldValue) {
+        struct.set(OperationStatus$LAYOUT, OperationStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OperationError$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OperationError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OperationError
+     * }
+     */
+    public static final OfInt OperationError$layout() {
+        return OperationError$LAYOUT;
+    }
+
+    private static final long OperationError$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OperationError
+     * }
+     */
+    public static final long OperationError$offset() {
+        return OperationError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OperationError
+     * }
+     */
+    public static int OperationError(MemorySegment struct) {
+        return struct.get(OperationError$LAYOUT, OperationError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OperationError
+     * }
+     */
+    public static void OperationError(MemorySegment struct, int fieldValue) {
+        struct.set(OperationError$LAYOUT, OperationError$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         DWORD dwReserved;
+     *     } ExternalStack;
+     *     struct {
+     *         DWORD dwAtaPortSpecific;
+     *     } AtaPort;
+     *     struct {
+     *         DWORD SrbTag;
+     *     } StorPort;
+     * }
+     * }
+     */
     public static class StackSpecific {
 
-        static final  GroupLayout StackSpecific$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwReserved")
-            ).withName("ExternalStack"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwAtaPortSpecific")
-            ).withName("AtaPort"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("SrbTag")
-            ).withName("StorPort")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return StackSpecific.StackSpecific$union$LAYOUT;
+        StackSpecific() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StackSpecific.ExternalStack.layout().withName("ExternalStack"),
+            _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StackSpecific.AtaPort.layout().withName("AtaPort"),
+            _DEVICEDUMP_STORAGESTACK_PUBLIC_STATE_RECORD.StackSpecific.StorPort.layout().withName("StorPort")
+        ).withName("$anon$5954:9");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwReserved;
+         * }
+         * }
+         */
         public static class ExternalStack {
 
-            static final  GroupLayout StackSpecific$ExternalStack$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwReserved")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return ExternalStack.StackSpecific$ExternalStack$struct$LAYOUT;
+            ExternalStack() {
+                // Should not be called directly
             }
-            static final VarHandle dwReserved$VH = StackSpecific$ExternalStack$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved"));
-            public static VarHandle dwReserved$VH() {
-                return ExternalStack.dwReserved$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.align(wgl_h.C_LONG, 1).withName("dwReserved")
+            ).withName("$anon$5955:10");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static int dwReserved$get(MemorySegment seg) {
-                return (int)ExternalStack.dwReserved$VH.get(seg);
+
+            private static final OfInt dwReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD dwReserved
+             * }
+             */
+            public static final OfInt dwReserved$layout() {
+                return dwReserved$LAYOUT;
             }
-            public static void dwReserved$set( MemorySegment seg, int x) {
-                ExternalStack.dwReserved$VH.set(seg, x);
+
+            private static final long dwReserved$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD dwReserved
+             * }
+             */
+            public static final long dwReserved$offset() {
+                return dwReserved$OFFSET;
             }
-            public static int dwReserved$get(MemorySegment seg, long index) {
-                return (int)ExternalStack.dwReserved$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD dwReserved
+             * }
+             */
+            public static int dwReserved(MemorySegment struct) {
+                return struct.get(dwReserved$LAYOUT, dwReserved$OFFSET);
             }
-            public static void dwReserved$set(MemorySegment seg, long index, int x) {
-                ExternalStack.dwReserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD dwReserved
+             * }
+             */
+            public static void dwReserved(MemorySegment struct, int fieldValue) {
+                struct.set(dwReserved$LAYOUT, dwReserved$OFFSET, fieldValue);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment ExternalStack$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout ExternalStack$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ExternalStack"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwReserved;
+         * } ExternalStack
+         * }
+         */
+        public static final GroupLayout ExternalStack$layout() {
+            return ExternalStack$LAYOUT;
         }
+
+        private static final long ExternalStack$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwReserved;
+         * } ExternalStack
+         * }
+         */
+        public static final long ExternalStack$offset() {
+            return ExternalStack$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwReserved;
+         * } ExternalStack
+         * }
+         */
+        public static MemorySegment ExternalStack(MemorySegment union) {
+            return union.asSlice(ExternalStack$OFFSET, ExternalStack$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwReserved;
+         * } ExternalStack
+         * }
+         */
+        public static void ExternalStack(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, ExternalStack$OFFSET, ExternalStack$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwAtaPortSpecific;
+         * }
+         * }
+         */
         public static class AtaPort {
 
-            static final  GroupLayout StackSpecific$AtaPort$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwAtaPortSpecific")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return AtaPort.StackSpecific$AtaPort$struct$LAYOUT;
+            AtaPort() {
+                // Should not be called directly
             }
-            static final VarHandle dwAtaPortSpecific$VH = StackSpecific$AtaPort$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAtaPortSpecific"));
-            public static VarHandle dwAtaPortSpecific$VH() {
-                return AtaPort.dwAtaPortSpecific$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.align(wgl_h.C_LONG, 1).withName("dwAtaPortSpecific")
+            ).withName("$anon$5959:10");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static int dwAtaPortSpecific$get(MemorySegment seg) {
-                return (int)AtaPort.dwAtaPortSpecific$VH.get(seg);
+
+            private static final OfInt dwAtaPortSpecific$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAtaPortSpecific"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD dwAtaPortSpecific
+             * }
+             */
+            public static final OfInt dwAtaPortSpecific$layout() {
+                return dwAtaPortSpecific$LAYOUT;
             }
-            public static void dwAtaPortSpecific$set( MemorySegment seg, int x) {
-                AtaPort.dwAtaPortSpecific$VH.set(seg, x);
+
+            private static final long dwAtaPortSpecific$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD dwAtaPortSpecific
+             * }
+             */
+            public static final long dwAtaPortSpecific$offset() {
+                return dwAtaPortSpecific$OFFSET;
             }
-            public static int dwAtaPortSpecific$get(MemorySegment seg, long index) {
-                return (int)AtaPort.dwAtaPortSpecific$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD dwAtaPortSpecific
+             * }
+             */
+            public static int dwAtaPortSpecific(MemorySegment struct) {
+                return struct.get(dwAtaPortSpecific$LAYOUT, dwAtaPortSpecific$OFFSET);
             }
-            public static void dwAtaPortSpecific$set(MemorySegment seg, long index, int x) {
-                AtaPort.dwAtaPortSpecific$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD dwAtaPortSpecific
+             * }
+             */
+            public static void dwAtaPortSpecific(MemorySegment struct, int fieldValue) {
+                struct.set(dwAtaPortSpecific$LAYOUT, dwAtaPortSpecific$OFFSET, fieldValue);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment AtaPort$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout AtaPort$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("AtaPort"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwAtaPortSpecific;
+         * } AtaPort
+         * }
+         */
+        public static final GroupLayout AtaPort$layout() {
+            return AtaPort$LAYOUT;
         }
+
+        private static final long AtaPort$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwAtaPortSpecific;
+         * } AtaPort
+         * }
+         */
+        public static final long AtaPort$offset() {
+            return AtaPort$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwAtaPortSpecific;
+         * } AtaPort
+         * }
+         */
+        public static MemorySegment AtaPort(MemorySegment union) {
+            return union.asSlice(AtaPort$OFFSET, AtaPort$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD dwAtaPortSpecific;
+         * } AtaPort
+         * }
+         */
+        public static void AtaPort(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, AtaPort$OFFSET, AtaPort$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD SrbTag;
+         * }
+         * }
+         */
         public static class StorPort {
 
-            static final  GroupLayout StackSpecific$StorPort$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("SrbTag")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return StorPort.StackSpecific$StorPort$struct$LAYOUT;
+            StorPort() {
+                // Should not be called directly
             }
-            static final VarHandle SrbTag$VH = StackSpecific$StorPort$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SrbTag"));
-            public static VarHandle SrbTag$VH() {
-                return StorPort.SrbTag$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.align(wgl_h.C_LONG, 1).withName("SrbTag")
+            ).withName("$anon$5963:10");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static int SrbTag$get(MemorySegment seg) {
-                return (int)StorPort.SrbTag$VH.get(seg);
+
+            private static final OfInt SrbTag$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SrbTag"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD SrbTag
+             * }
+             */
+            public static final OfInt SrbTag$layout() {
+                return SrbTag$LAYOUT;
             }
-            public static void SrbTag$set( MemorySegment seg, int x) {
-                StorPort.SrbTag$VH.set(seg, x);
+
+            private static final long SrbTag$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD SrbTag
+             * }
+             */
+            public static final long SrbTag$offset() {
+                return SrbTag$OFFSET;
             }
-            public static int SrbTag$get(MemorySegment seg, long index) {
-                return (int)StorPort.SrbTag$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD SrbTag
+             * }
+             */
+            public static int SrbTag(MemorySegment struct) {
+                return struct.get(SrbTag$LAYOUT, SrbTag$OFFSET);
             }
-            public static void SrbTag$set(MemorySegment seg, long index, int x) {
-                StorPort.SrbTag$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD SrbTag
+             * }
+             */
+            public static void SrbTag(MemorySegment struct, int fieldValue) {
+                struct.set(SrbTag$LAYOUT, SrbTag$OFFSET, fieldValue);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment StorPort$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout StorPort$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StorPort"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD SrbTag;
+         * } StorPort
+         * }
+         */
+        public static final GroupLayout StorPort$layout() {
+            return StorPort$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long StorPort$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD SrbTag;
+         * } StorPort
+         * }
+         */
+        public static final long StorPort$offset() {
+            return StorPort$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD SrbTag;
+         * } StorPort
+         * }
+         */
+        public static MemorySegment StorPort(MemorySegment union) {
+            return union.asSlice(StorPort$OFFSET, StorPort$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     DWORD SrbTag;
+         * } StorPort
+         * }
+         */
+        public static void StorPort(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, StorPort$OFFSET, StorPort$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment StackSpecific$slice(MemorySegment seg) {
-        return seg.asSlice(56, 4);
+    private static final GroupLayout StackSpecific$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StackSpecific"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         DWORD dwReserved;
+     *     } ExternalStack;
+     *     struct {
+     *         DWORD dwAtaPortSpecific;
+     *     } AtaPort;
+     *     struct {
+     *         DWORD SrbTag;
+     *     } StorPort;
+     * } StackSpecific
+     * }
+     */
+    public static final GroupLayout StackSpecific$layout() {
+        return StackSpecific$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long StackSpecific$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         DWORD dwReserved;
+     *     } ExternalStack;
+     *     struct {
+     *         DWORD dwAtaPortSpecific;
+     *     } AtaPort;
+     *     struct {
+     *         DWORD SrbTag;
+     *     } StorPort;
+     * } StackSpecific
+     * }
+     */
+    public static final long StackSpecific$offset() {
+        return StackSpecific$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         DWORD dwReserved;
+     *     } ExternalStack;
+     *     struct {
+     *         DWORD dwAtaPortSpecific;
+     *     } AtaPort;
+     *     struct {
+     *         DWORD SrbTag;
+     *     } StorPort;
+     * } StackSpecific
+     * }
+     */
+    public static MemorySegment StackSpecific(MemorySegment struct) {
+        return struct.asSlice(StackSpecific$OFFSET, StackSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         DWORD dwReserved;
+     *     } ExternalStack;
+     *     struct {
+     *         DWORD dwAtaPortSpecific;
+     *     } AtaPort;
+     *     struct {
+     *         DWORD SrbTag;
+     *     } StorPort;
+     * } StackSpecific
+     * }
+     */
+    public static void StackSpecific(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StackSpecific$OFFSET, StackSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

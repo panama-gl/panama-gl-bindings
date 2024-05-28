@@ -2,53 +2,212 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     unsigned short unused : 12;
+ *     unsigned short fResponse : 1;
+ *     unsigned short fRelease : 1;
+ *     unsigned short reserved : 1;
+ *     unsigned short fAckReq : 1;
+ *     short cfFormat;
+ *     BYTE Value[1];
+ * }
+ * }
+ */
 public class DDEDATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.paddingLayout(12).withName("unused"),
-            MemoryLayout.paddingLayout(1).withName("fResponse"),
-            MemoryLayout.paddingLayout(1).withName("fRelease"),
-            MemoryLayout.paddingLayout(1).withName("reserved"),
-            MemoryLayout.paddingLayout(1).withName("fAckReq")
-        ),
-        Constants$root.C_SHORT$LAYOUT.withName("cfFormat"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("Value"),
-        MemoryLayout.paddingLayout(8)
-    );
-    public static MemoryLayout $LAYOUT() {
-        return DDEDATA.$struct$LAYOUT;
+    DDEDATA() {
+        // Should not be called directly
     }
-    static final VarHandle cfFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cfFormat"));
-    public static VarHandle cfFormat$VH() {
-        return DDEDATA.cfFormat$VH;
-    }
-    public static short cfFormat$get(MemorySegment seg) {
-        return (short)DDEDATA.cfFormat$VH.get(seg);
-    }
-    public static void cfFormat$set( MemorySegment seg, short x) {
-        DDEDATA.cfFormat$VH.set(seg, x);
-    }
-    public static short cfFormat$get(MemorySegment seg, long index) {
-        return (short)DDEDATA.cfFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cfFormat$set(MemorySegment seg, long index, short x) {
-        DDEDATA.cfFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Value$slice(MemorySegment seg) {
-        return seg.asSlice(4, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.paddingLayout(2),
+        wgl_h.C_SHORT.withName("cfFormat"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("Value"),
+        MemoryLayout.paddingLayout(1)
+    ).withName("$anon$100:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort cfFormat$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cfFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short cfFormat
+     * }
+     */
+    public static final OfShort cfFormat$layout() {
+        return cfFormat$LAYOUT;
+    }
+
+    private static final long cfFormat$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short cfFormat
+     * }
+     */
+    public static final long cfFormat$offset() {
+        return cfFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short cfFormat
+     * }
+     */
+    public static short cfFormat(MemorySegment struct) {
+        return struct.get(cfFormat$LAYOUT, cfFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short cfFormat
+     * }
+     */
+    public static void cfFormat(MemorySegment struct, short fieldValue) {
+        struct.set(cfFormat$LAYOUT, cfFormat$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Value$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Value"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static final SequenceLayout Value$layout() {
+        return Value$LAYOUT;
+    }
+
+    private static final long Value$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static final long Value$offset() {
+        return Value$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static MemorySegment Value(MemorySegment struct) {
+        return struct.asSlice(Value$OFFSET, Value$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static void Value(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Value$OFFSET, Value$LAYOUT.byteSize());
+    }
+
+    private static long[] Value$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static long[] Value$dimensions() {
+        return Value$DIMS;
+    }
+    private static final VarHandle Value$ELEM_HANDLE = Value$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static byte Value(MemorySegment struct, long index0) {
+        return (byte)Value$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Value[1]
+     * }
+     */
+    public static void Value(MemorySegment struct, long index0, byte fieldValue) {
+        Value$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

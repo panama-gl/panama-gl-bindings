@@ -2,13 +2,48 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SCM_PD_DEVICE_INFO {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     GUID DeviceGuid;
+ *     DWORD UnsafeShutdownCount;
+ *     DWORD64 PersistentMemorySizeInBytes;
+ *     DWORD64 VolatileMemorySizeInBytes;
+ *     DWORD64 TotalMemorySizeInBytes;
+ *     DWORD SlotNumber;
+ *     DWORD DeviceHandle;
+ *     WORD PhysicalId;
+ *     BYTE NumberOfFormatInterfaceCodes;
+ *     WORD FormatInterfaceCodes[8];
+ *     DWORD VendorId;
+ *     DWORD ProductId;
+ *     DWORD SubsystemDeviceId;
+ *     DWORD SubsystemVendorId;
+ *     BYTE ManufacturingLocation;
+ *     BYTE ManufacturingWeek;
+ *     BYTE ManufacturingYear;
+ *     DWORD SerialNumber4Byte;
+ *     DWORD SerialNumberLengthInChars;
+ *     CHAR SerialNumber[1];
+ * } SCM_PD_DEVICE_INFO
+ * }
+ */
 public class SCM_PD_DEVICE_INFO extends _SCM_PD_DEVICE_INFO {
 
+    SCM_PD_DEVICE_INFO() {
+        // Should not be called directly
+    }
 }
-
 

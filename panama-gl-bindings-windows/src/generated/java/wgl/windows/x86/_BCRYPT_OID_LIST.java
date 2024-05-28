@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BCRYPT_OID_LIST {
+ *     ULONG dwOIDCount;
+ *     BCRYPT_OID *pOIDs;
+ * }
+ * }
+ */
 public class _BCRYPT_OID_LIST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwOIDCount"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pOIDs")
-    ).withName("_BCRYPT_OID_LIST");
-    public static MemoryLayout $LAYOUT() {
-        return _BCRYPT_OID_LIST.$struct$LAYOUT;
+    _BCRYPT_OID_LIST() {
+        // Should not be called directly
     }
-    static final VarHandle dwOIDCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwOIDCount"));
-    public static VarHandle dwOIDCount$VH() {
-        return _BCRYPT_OID_LIST.dwOIDCount$VH;
-    }
-    public static int dwOIDCount$get(MemorySegment seg) {
-        return (int)_BCRYPT_OID_LIST.dwOIDCount$VH.get(seg);
-    }
-    public static void dwOIDCount$set( MemorySegment seg, int x) {
-        _BCRYPT_OID_LIST.dwOIDCount$VH.set(seg, x);
-    }
-    public static int dwOIDCount$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_OID_LIST.dwOIDCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwOIDCount$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_OID_LIST.dwOIDCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pOIDs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pOIDs"));
-    public static VarHandle pOIDs$VH() {
-        return _BCRYPT_OID_LIST.pOIDs$VH;
-    }
-    public static MemoryAddress pOIDs$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_BCRYPT_OID_LIST.pOIDs$VH.get(seg);
-    }
-    public static void pOIDs$set( MemorySegment seg, MemoryAddress x) {
-        _BCRYPT_OID_LIST.pOIDs$VH.set(seg, x);
-    }
-    public static MemoryAddress pOIDs$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_BCRYPT_OID_LIST.pOIDs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pOIDs$set(MemorySegment seg, long index, MemoryAddress x) {
-        _BCRYPT_OID_LIST.pOIDs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwOIDCount"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pOIDs")
+    ).withName("_BCRYPT_OID_LIST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwOIDCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwOIDCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG dwOIDCount
+     * }
+     */
+    public static final OfInt dwOIDCount$layout() {
+        return dwOIDCount$LAYOUT;
+    }
+
+    private static final long dwOIDCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG dwOIDCount
+     * }
+     */
+    public static final long dwOIDCount$offset() {
+        return dwOIDCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG dwOIDCount
+     * }
+     */
+    public static int dwOIDCount(MemorySegment struct) {
+        return struct.get(dwOIDCount$LAYOUT, dwOIDCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG dwOIDCount
+     * }
+     */
+    public static void dwOIDCount(MemorySegment struct, int fieldValue) {
+        struct.set(dwOIDCount$LAYOUT, dwOIDCount$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pOIDs$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pOIDs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BCRYPT_OID *pOIDs
+     * }
+     */
+    public static final AddressLayout pOIDs$layout() {
+        return pOIDs$LAYOUT;
+    }
+
+    private static final long pOIDs$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BCRYPT_OID *pOIDs
+     * }
+     */
+    public static final long pOIDs$offset() {
+        return pOIDs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BCRYPT_OID *pOIDs
+     * }
+     */
+    public static MemorySegment pOIDs(MemorySegment struct) {
+        return struct.get(pOIDs$LAYOUT, pOIDs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BCRYPT_OID *pOIDs
+     * }
+     */
+    public static void pOIDs(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pOIDs$LAYOUT, pOIDs$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

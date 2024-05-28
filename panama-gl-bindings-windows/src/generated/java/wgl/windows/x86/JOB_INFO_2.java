@@ -2,13 +2,25 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef JOB_INFO_2A JOB_INFO_2
+ * }
+ */
 public class JOB_INFO_2 extends _JOB_INFO_2A {
 
+    JOB_INFO_2() {
+        // Should not be called directly
+    }
 }
-
 

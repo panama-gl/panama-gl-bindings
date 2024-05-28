@@ -2,55 +2,252 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     GUID PowerSetting;
+ *     DWORD DataLength;
+ *     UCHAR Data[1];
+ * }
+ * }
+ */
 public class POWERBROADCAST_SETTING {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("PowerSetting"),
-        Constants$root.C_LONG$LAYOUT.withName("DataLength"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("Data"),
-        MemoryLayout.paddingLayout(24)
-    );
-    public static MemoryLayout $LAYOUT() {
-        return POWERBROADCAST_SETTING.$struct$LAYOUT;
+    POWERBROADCAST_SETTING() {
+        // Should not be called directly
     }
-    public static MemorySegment PowerSetting$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle DataLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataLength"));
-    public static VarHandle DataLength$VH() {
-        return POWERBROADCAST_SETTING.DataLength$VH;
-    }
-    public static int DataLength$get(MemorySegment seg) {
-        return (int)POWERBROADCAST_SETTING.DataLength$VH.get(seg);
-    }
-    public static void DataLength$set( MemorySegment seg, int x) {
-        POWERBROADCAST_SETTING.DataLength$VH.set(seg, x);
-    }
-    public static int DataLength$get(MemorySegment seg, long index) {
-        return (int)POWERBROADCAST_SETTING.DataLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataLength$set(MemorySegment seg, long index, int x) {
-        POWERBROADCAST_SETTING.DataLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Data$slice(MemorySegment seg) {
-        return seg.asSlice(20, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("PowerSetting"),
+        freeglut_h.C_LONG.withName("DataLength"),
+        MemoryLayout.sequenceLayout(1, freeglut_h.C_CHAR).withName("Data"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("$anon$2351:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout PowerSetting$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PowerSetting"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID PowerSetting
+     * }
+     */
+    public static final GroupLayout PowerSetting$layout() {
+        return PowerSetting$LAYOUT;
+    }
+
+    private static final long PowerSetting$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID PowerSetting
+     * }
+     */
+    public static final long PowerSetting$offset() {
+        return PowerSetting$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID PowerSetting
+     * }
+     */
+    public static MemorySegment PowerSetting(MemorySegment struct) {
+        return struct.asSlice(PowerSetting$OFFSET, PowerSetting$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID PowerSetting
+     * }
+     */
+    public static void PowerSetting(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PowerSetting$OFFSET, PowerSetting$LAYOUT.byteSize());
+    }
+
+    private static final OfInt DataLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DataLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DataLength
+     * }
+     */
+    public static final OfInt DataLength$layout() {
+        return DataLength$LAYOUT;
+    }
+
+    private static final long DataLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DataLength
+     * }
+     */
+    public static final long DataLength$offset() {
+        return DataLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DataLength
+     * }
+     */
+    public static int DataLength(MemorySegment struct) {
+        return struct.get(DataLength$LAYOUT, DataLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DataLength
+     * }
+     */
+    public static void DataLength(MemorySegment struct, int fieldValue) {
+        struct.set(DataLength$LAYOUT, DataLength$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Data$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Data"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static final SequenceLayout Data$layout() {
+        return Data$LAYOUT;
+    }
+
+    private static final long Data$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static final long Data$offset() {
+        return Data$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static MemorySegment Data(MemorySegment struct) {
+        return struct.asSlice(Data$OFFSET, Data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static void Data(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Data$OFFSET, Data$LAYOUT.byteSize());
+    }
+
+    private static long[] Data$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static long[] Data$dimensions() {
+        return Data$DIMS;
+    }
+    private static final VarHandle Data$ELEM_HANDLE = Data$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static byte Data(MemorySegment struct, long index0) {
+        return (byte)Data$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR Data[1]
+     * }
+     */
+    public static void Data(MemorySegment struct, long index0, byte fieldValue) {
+        Data$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

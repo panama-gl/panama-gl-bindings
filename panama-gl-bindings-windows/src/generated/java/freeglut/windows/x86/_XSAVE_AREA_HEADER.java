@@ -2,62 +2,251 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XSAVE_AREA_HEADER {
+ *     DWORD64 Mask;
+ *     DWORD64 CompactionMask;
+ *     DWORD64 Reserved2[6];
+ * }
+ * }
+ */
 public class _XSAVE_AREA_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Mask"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CompactionMask"),
-        MemoryLayout.sequenceLayout(6, Constants$root.C_LONG_LONG$LAYOUT).withName("Reserved2")
-    ).withName("_XSAVE_AREA_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _XSAVE_AREA_HEADER.$struct$LAYOUT;
+    _XSAVE_AREA_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle Mask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mask"));
-    public static VarHandle Mask$VH() {
-        return _XSAVE_AREA_HEADER.Mask$VH;
-    }
-    public static long Mask$get(MemorySegment seg) {
-        return (long)_XSAVE_AREA_HEADER.Mask$VH.get(seg);
-    }
-    public static void Mask$set( MemorySegment seg, long x) {
-        _XSAVE_AREA_HEADER.Mask$VH.set(seg, x);
-    }
-    public static long Mask$get(MemorySegment seg, long index) {
-        return (long)_XSAVE_AREA_HEADER.Mask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mask$set(MemorySegment seg, long index, long x) {
-        _XSAVE_AREA_HEADER.Mask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompactionMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompactionMask"));
-    public static VarHandle CompactionMask$VH() {
-        return _XSAVE_AREA_HEADER.CompactionMask$VH;
-    }
-    public static long CompactionMask$get(MemorySegment seg) {
-        return (long)_XSAVE_AREA_HEADER.CompactionMask$VH.get(seg);
-    }
-    public static void CompactionMask$set( MemorySegment seg, long x) {
-        _XSAVE_AREA_HEADER.CompactionMask$VH.set(seg, x);
-    }
-    public static long CompactionMask$get(MemorySegment seg, long index) {
-        return (long)_XSAVE_AREA_HEADER.CompactionMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompactionMask$set(MemorySegment seg, long index, long x) {
-        _XSAVE_AREA_HEADER.CompactionMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved2$slice(MemorySegment seg) {
-        return seg.asSlice(16, 48);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("Mask"),
+        freeglut_h.C_LONG_LONG.withName("CompactionMask"),
+        MemoryLayout.sequenceLayout(6, freeglut_h.C_LONG_LONG).withName("Reserved2")
+    ).withName("_XSAVE_AREA_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Mask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Mask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Mask
+     * }
+     */
+    public static final OfLong Mask$layout() {
+        return Mask$LAYOUT;
+    }
+
+    private static final long Mask$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Mask
+     * }
+     */
+    public static final long Mask$offset() {
+        return Mask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Mask
+     * }
+     */
+    public static long Mask(MemorySegment struct) {
+        return struct.get(Mask$LAYOUT, Mask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Mask
+     * }
+     */
+    public static void Mask(MemorySegment struct, long fieldValue) {
+        struct.set(Mask$LAYOUT, Mask$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CompactionMask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CompactionMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 CompactionMask
+     * }
+     */
+    public static final OfLong CompactionMask$layout() {
+        return CompactionMask$LAYOUT;
+    }
+
+    private static final long CompactionMask$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 CompactionMask
+     * }
+     */
+    public static final long CompactionMask$offset() {
+        return CompactionMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 CompactionMask
+     * }
+     */
+    public static long CompactionMask(MemorySegment struct) {
+        return struct.get(CompactionMask$LAYOUT, CompactionMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 CompactionMask
+     * }
+     */
+    public static void CompactionMask(MemorySegment struct, long fieldValue) {
+        struct.set(CompactionMask$LAYOUT, CompactionMask$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static final SequenceLayout Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static MemorySegment Reserved2(MemorySegment struct) {
+        return struct.asSlice(Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved2$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static long[] Reserved2$dimensions() {
+        return Reserved2$DIMS;
+    }
+    private static final VarHandle Reserved2$ELEM_HANDLE = Reserved2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static long Reserved2(MemorySegment struct, long index0) {
+        return (long)Reserved2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Reserved2[6]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, long index0, long fieldValue) {
+        Reserved2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

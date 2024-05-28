@@ -2,71 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONSOLE_SCREEN_BUFFER_INFO {
+ *     COORD dwSize;
+ *     COORD dwCursorPosition;
+ *     WORD wAttributes;
+ *     SMALL_RECT srWindow;
+ *     COORD dwMaximumWindowSize;
+ * }
+ * }
+ */
 public class _CONSOLE_SCREEN_BUFFER_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwCursorPosition"),
-        Constants$root.C_SHORT$LAYOUT.withName("wAttributes"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("Left"),
-            Constants$root.C_SHORT$LAYOUT.withName("Top"),
-            Constants$root.C_SHORT$LAYOUT.withName("Right"),
-            Constants$root.C_SHORT$LAYOUT.withName("Bottom")
-        ).withName("srWindow"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwMaximumWindowSize")
-    ).withName("_CONSOLE_SCREEN_BUFFER_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CONSOLE_SCREEN_BUFFER_INFO.$struct$LAYOUT;
+    _CONSOLE_SCREEN_BUFFER_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment dwSize$slice(MemorySegment seg) {
-        return seg.asSlice(0, 4);
-    }
-    public static MemorySegment dwCursorPosition$slice(MemorySegment seg) {
-        return seg.asSlice(4, 4);
-    }
-    static final VarHandle wAttributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wAttributes"));
-    public static VarHandle wAttributes$VH() {
-        return _CONSOLE_SCREEN_BUFFER_INFO.wAttributes$VH;
-    }
-    public static short wAttributes$get(MemorySegment seg) {
-        return (short)_CONSOLE_SCREEN_BUFFER_INFO.wAttributes$VH.get(seg);
-    }
-    public static void wAttributes$set( MemorySegment seg, short x) {
-        _CONSOLE_SCREEN_BUFFER_INFO.wAttributes$VH.set(seg, x);
-    }
-    public static short wAttributes$get(MemorySegment seg, long index) {
-        return (short)_CONSOLE_SCREEN_BUFFER_INFO.wAttributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wAttributes$set(MemorySegment seg, long index, short x) {
-        _CONSOLE_SCREEN_BUFFER_INFO.wAttributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment srWindow$slice(MemorySegment seg) {
-        return seg.asSlice(10, 8);
-    }
-    public static MemorySegment dwMaximumWindowSize$slice(MemorySegment seg) {
-        return seg.asSlice(18, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _COORD.layout().withName("dwSize"),
+        _COORD.layout().withName("dwCursorPosition"),
+        wgl_h.C_SHORT.withName("wAttributes"),
+        _SMALL_RECT.layout().withName("srWindow"),
+        _COORD.layout().withName("dwMaximumWindowSize")
+    ).withName("_CONSOLE_SCREEN_BUFFER_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout dwSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwSize
+     * }
+     */
+    public static final GroupLayout dwSize$layout() {
+        return dwSize$LAYOUT;
+    }
+
+    private static final long dwSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwSize
+     * }
+     */
+    public static final long dwSize$offset() {
+        return dwSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwSize
+     * }
+     */
+    public static MemorySegment dwSize(MemorySegment struct) {
+        return struct.asSlice(dwSize$OFFSET, dwSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwSize
+     * }
+     */
+    public static void dwSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwSize$OFFSET, dwSize$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout dwCursorPosition$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwCursorPosition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwCursorPosition
+     * }
+     */
+    public static final GroupLayout dwCursorPosition$layout() {
+        return dwCursorPosition$LAYOUT;
+    }
+
+    private static final long dwCursorPosition$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwCursorPosition
+     * }
+     */
+    public static final long dwCursorPosition$offset() {
+        return dwCursorPosition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwCursorPosition
+     * }
+     */
+    public static MemorySegment dwCursorPosition(MemorySegment struct) {
+        return struct.asSlice(dwCursorPosition$OFFSET, dwCursorPosition$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwCursorPosition
+     * }
+     */
+    public static void dwCursorPosition(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwCursorPosition$OFFSET, dwCursorPosition$LAYOUT.byteSize());
+    }
+
+    private static final OfShort wAttributes$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wAttributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wAttributes
+     * }
+     */
+    public static final OfShort wAttributes$layout() {
+        return wAttributes$LAYOUT;
+    }
+
+    private static final long wAttributes$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wAttributes
+     * }
+     */
+    public static final long wAttributes$offset() {
+        return wAttributes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wAttributes
+     * }
+     */
+    public static short wAttributes(MemorySegment struct) {
+        return struct.get(wAttributes$LAYOUT, wAttributes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wAttributes
+     * }
+     */
+    public static void wAttributes(MemorySegment struct, short fieldValue) {
+        struct.set(wAttributes$LAYOUT, wAttributes$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout srWindow$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("srWindow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SMALL_RECT srWindow
+     * }
+     */
+    public static final GroupLayout srWindow$layout() {
+        return srWindow$LAYOUT;
+    }
+
+    private static final long srWindow$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SMALL_RECT srWindow
+     * }
+     */
+    public static final long srWindow$offset() {
+        return srWindow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SMALL_RECT srWindow
+     * }
+     */
+    public static MemorySegment srWindow(MemorySegment struct) {
+        return struct.asSlice(srWindow$OFFSET, srWindow$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SMALL_RECT srWindow
+     * }
+     */
+    public static void srWindow(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, srWindow$OFFSET, srWindow$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout dwMaximumWindowSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwMaximumWindowSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwMaximumWindowSize
+     * }
+     */
+    public static final GroupLayout dwMaximumWindowSize$layout() {
+        return dwMaximumWindowSize$LAYOUT;
+    }
+
+    private static final long dwMaximumWindowSize$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwMaximumWindowSize
+     * }
+     */
+    public static final long dwMaximumWindowSize$offset() {
+        return dwMaximumWindowSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwMaximumWindowSize
+     * }
+     */
+    public static MemorySegment dwMaximumWindowSize(MemorySegment struct) {
+        return struct.asSlice(dwMaximumWindowSize$OFFSET, dwMaximumWindowSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwMaximumWindowSize
+     * }
+     */
+    public static void dwMaximumWindowSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwMaximumWindowSize$OFFSET, dwMaximumWindowSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

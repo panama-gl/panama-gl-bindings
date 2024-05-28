@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagCOPYDATASTRUCT {
+ *     ULONG_PTR dwData;
+ *     DWORD cbData;
+ *     PVOID lpData;
+ * }
+ * }
+ */
 public class tagCOPYDATASTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwData"),
-        Constants$root.C_LONG$LAYOUT.withName("cbData"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpData")
-    ).withName("tagCOPYDATASTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return tagCOPYDATASTRUCT.$struct$LAYOUT;
+    tagCOPYDATASTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle dwData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwData"));
-    public static VarHandle dwData$VH() {
-        return tagCOPYDATASTRUCT.dwData$VH;
-    }
-    public static long dwData$get(MemorySegment seg) {
-        return (long)tagCOPYDATASTRUCT.dwData$VH.get(seg);
-    }
-    public static void dwData$set( MemorySegment seg, long x) {
-        tagCOPYDATASTRUCT.dwData$VH.set(seg, x);
-    }
-    public static long dwData$get(MemorySegment seg, long index) {
-        return (long)tagCOPYDATASTRUCT.dwData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwData$set(MemorySegment seg, long index, long x) {
-        tagCOPYDATASTRUCT.dwData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbData"));
-    public static VarHandle cbData$VH() {
-        return tagCOPYDATASTRUCT.cbData$VH;
-    }
-    public static int cbData$get(MemorySegment seg) {
-        return (int)tagCOPYDATASTRUCT.cbData$VH.get(seg);
-    }
-    public static void cbData$set( MemorySegment seg, int x) {
-        tagCOPYDATASTRUCT.cbData$VH.set(seg, x);
-    }
-    public static int cbData$get(MemorySegment seg, long index) {
-        return (int)tagCOPYDATASTRUCT.cbData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbData$set(MemorySegment seg, long index, int x) {
-        tagCOPYDATASTRUCT.cbData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpData"));
-    public static VarHandle lpData$VH() {
-        return tagCOPYDATASTRUCT.lpData$VH;
-    }
-    public static MemoryAddress lpData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagCOPYDATASTRUCT.lpData$VH.get(seg);
-    }
-    public static void lpData$set( MemorySegment seg, MemoryAddress x) {
-        tagCOPYDATASTRUCT.lpData$VH.set(seg, x);
-    }
-    public static MemoryAddress lpData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagCOPYDATASTRUCT.lpData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpData$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagCOPYDATASTRUCT.lpData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("dwData"),
+        wgl_h.C_LONG.withName("cbData"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpData")
+    ).withName("tagCOPYDATASTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong dwData$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwData
+     * }
+     */
+    public static final OfLong dwData$layout() {
+        return dwData$LAYOUT;
+    }
+
+    private static final long dwData$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwData
+     * }
+     */
+    public static final long dwData$offset() {
+        return dwData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwData
+     * }
+     */
+    public static long dwData(MemorySegment struct) {
+        return struct.get(dwData$LAYOUT, dwData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwData
+     * }
+     */
+    public static void dwData(MemorySegment struct, long fieldValue) {
+        struct.set(dwData$LAYOUT, dwData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static final OfInt cbData$layout() {
+        return cbData$LAYOUT;
+    }
+
+    private static final long cbData$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static final long cbData$offset() {
+        return cbData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static int cbData(MemorySegment struct) {
+        return struct.get(cbData$LAYOUT, cbData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static void cbData(MemorySegment struct, int fieldValue) {
+        struct.set(cbData$LAYOUT, cbData$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID lpData
+     * }
+     */
+    public static final AddressLayout lpData$layout() {
+        return lpData$LAYOUT;
+    }
+
+    private static final long lpData$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID lpData
+     * }
+     */
+    public static final long lpData$offset() {
+        return lpData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID lpData
+     * }
+     */
+    public static MemorySegment lpData(MemorySegment struct) {
+        return struct.get(lpData$LAYOUT, lpData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID lpData
+     * }
+     */
+    public static void lpData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpData$LAYOUT, lpData$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagWTSSESSION_NOTIFICATION {
+ *     DWORD cbSize;
+ *     DWORD dwSessionId;
+ * }
+ * }
+ */
 public class tagWTSSESSION_NOTIFICATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSessionId")
-    ).withName("tagWTSSESSION_NOTIFICATION");
-    public static MemoryLayout $LAYOUT() {
-        return tagWTSSESSION_NOTIFICATION.$struct$LAYOUT;
+    tagWTSSESSION_NOTIFICATION() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagWTSSESSION_NOTIFICATION.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagWTSSESSION_NOTIFICATION.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagWTSSESSION_NOTIFICATION.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagWTSSESSION_NOTIFICATION.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagWTSSESSION_NOTIFICATION.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSessionId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSessionId"));
-    public static VarHandle dwSessionId$VH() {
-        return tagWTSSESSION_NOTIFICATION.dwSessionId$VH;
-    }
-    public static int dwSessionId$get(MemorySegment seg) {
-        return (int)tagWTSSESSION_NOTIFICATION.dwSessionId$VH.get(seg);
-    }
-    public static void dwSessionId$set( MemorySegment seg, int x) {
-        tagWTSSESSION_NOTIFICATION.dwSessionId$VH.set(seg, x);
-    }
-    public static int dwSessionId$get(MemorySegment seg, long index) {
-        return (int)tagWTSSESSION_NOTIFICATION.dwSessionId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSessionId$set(MemorySegment seg, long index, int x) {
-        tagWTSSESSION_NOTIFICATION.dwSessionId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwSessionId")
+    ).withName("tagWTSSESSION_NOTIFICATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSessionId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSessionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSessionId
+     * }
+     */
+    public static final OfInt dwSessionId$layout() {
+        return dwSessionId$LAYOUT;
+    }
+
+    private static final long dwSessionId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSessionId
+     * }
+     */
+    public static final long dwSessionId$offset() {
+        return dwSessionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSessionId
+     * }
+     */
+    public static int dwSessionId(MemorySegment struct) {
+        return struct.get(dwSessionId$LAYOUT, dwSessionId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSessionId
+     * }
+     */
+    public static void dwSessionId(MemorySegment struct, int fieldValue) {
+        struct.set(dwSessionId$LAYOUT, dwSessionId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

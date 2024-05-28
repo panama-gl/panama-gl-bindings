@@ -2,159 +2,449 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MIDL_SYNTAX_INFO {
+ *     RPC_SYNTAX_IDENTIFIER TransferSyntax;
+ *     RPC_DISPATCH_TABLE *DispatchTable;
+ *     PFORMAT_STRING ProcString;
+ *     const unsigned short *FmtStringOffset;
+ *     PFORMAT_STRING TypeString;
+ *     const void *aUserMarshalQuadruple;
+ *     const MIDL_INTERFACE_METHOD_PROPERTIES *pMethodProperties;
+ *     ULONG_PTR pReserved2;
+ * }
+ * }
+ */
 public class _MIDL_SYNTAX_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("SyntaxGUID"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-                Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-            ).withName("SyntaxVersion")
-        ).withName("TransferSyntax"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("DispatchTable"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProcString"),
-        Constants$root.C_POINTER$LAYOUT.withName("FmtStringOffset"),
-        Constants$root.C_POINTER$LAYOUT.withName("TypeString"),
-        Constants$root.C_POINTER$LAYOUT.withName("aUserMarshalQuadruple"),
-        Constants$root.C_POINTER$LAYOUT.withName("pMethodProperties"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("pReserved2")
-    ).withName("_MIDL_SYNTAX_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _MIDL_SYNTAX_INFO.$struct$LAYOUT;
+    _MIDL_SYNTAX_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment TransferSyntax$slice(MemorySegment seg) {
-        return seg.asSlice(0, 20);
-    }
-    static final VarHandle DispatchTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DispatchTable"));
-    public static VarHandle DispatchTable$VH() {
-        return _MIDL_SYNTAX_INFO.DispatchTable$VH;
-    }
-    public static MemoryAddress DispatchTable$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.DispatchTable$VH.get(seg);
-    }
-    public static void DispatchTable$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.DispatchTable$VH.set(seg, x);
-    }
-    public static MemoryAddress DispatchTable$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.DispatchTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DispatchTable$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.DispatchTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProcString$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcString"));
-    public static VarHandle ProcString$VH() {
-        return _MIDL_SYNTAX_INFO.ProcString$VH;
-    }
-    public static MemoryAddress ProcString$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.ProcString$VH.get(seg);
-    }
-    public static void ProcString$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.ProcString$VH.set(seg, x);
-    }
-    public static MemoryAddress ProcString$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.ProcString$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcString$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.ProcString$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FmtStringOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FmtStringOffset"));
-    public static VarHandle FmtStringOffset$VH() {
-        return _MIDL_SYNTAX_INFO.FmtStringOffset$VH;
-    }
-    public static MemoryAddress FmtStringOffset$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.FmtStringOffset$VH.get(seg);
-    }
-    public static void FmtStringOffset$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.FmtStringOffset$VH.set(seg, x);
-    }
-    public static MemoryAddress FmtStringOffset$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.FmtStringOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FmtStringOffset$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.FmtStringOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TypeString$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TypeString"));
-    public static VarHandle TypeString$VH() {
-        return _MIDL_SYNTAX_INFO.TypeString$VH;
-    }
-    public static MemoryAddress TypeString$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.TypeString$VH.get(seg);
-    }
-    public static void TypeString$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.TypeString$VH.set(seg, x);
-    }
-    public static MemoryAddress TypeString$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.TypeString$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TypeString$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.TypeString$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle aUserMarshalQuadruple$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("aUserMarshalQuadruple"));
-    public static VarHandle aUserMarshalQuadruple$VH() {
-        return _MIDL_SYNTAX_INFO.aUserMarshalQuadruple$VH;
-    }
-    public static MemoryAddress aUserMarshalQuadruple$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.aUserMarshalQuadruple$VH.get(seg);
-    }
-    public static void aUserMarshalQuadruple$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.aUserMarshalQuadruple$VH.set(seg, x);
-    }
-    public static MemoryAddress aUserMarshalQuadruple$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.aUserMarshalQuadruple$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void aUserMarshalQuadruple$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.aUserMarshalQuadruple$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pMethodProperties$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pMethodProperties"));
-    public static VarHandle pMethodProperties$VH() {
-        return _MIDL_SYNTAX_INFO.pMethodProperties$VH;
-    }
-    public static MemoryAddress pMethodProperties$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.pMethodProperties$VH.get(seg);
-    }
-    public static void pMethodProperties$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.pMethodProperties$VH.set(seg, x);
-    }
-    public static MemoryAddress pMethodProperties$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_SYNTAX_INFO.pMethodProperties$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pMethodProperties$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_SYNTAX_INFO.pMethodProperties$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pReserved2"));
-    public static VarHandle pReserved2$VH() {
-        return _MIDL_SYNTAX_INFO.pReserved2$VH;
-    }
-    public static long pReserved2$get(MemorySegment seg) {
-        return (long)_MIDL_SYNTAX_INFO.pReserved2$VH.get(seg);
-    }
-    public static void pReserved2$set( MemorySegment seg, long x) {
-        _MIDL_SYNTAX_INFO.pReserved2$VH.set(seg, x);
-    }
-    public static long pReserved2$get(MemorySegment seg, long index) {
-        return (long)_MIDL_SYNTAX_INFO.pReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pReserved2$set(MemorySegment seg, long index, long x) {
-        _MIDL_SYNTAX_INFO.pReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _RPC_SYNTAX_IDENTIFIER.layout().withName("TransferSyntax"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("DispatchTable"),
+        wgl_h.C_POINTER.withName("ProcString"),
+        wgl_h.C_POINTER.withName("FmtStringOffset"),
+        wgl_h.C_POINTER.withName("TypeString"),
+        wgl_h.C_POINTER.withName("aUserMarshalQuadruple"),
+        wgl_h.C_POINTER.withName("pMethodProperties"),
+        wgl_h.C_LONG_LONG.withName("pReserved2")
+    ).withName("_MIDL_SYNTAX_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout TransferSyntax$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TransferSyntax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static final GroupLayout TransferSyntax$layout() {
+        return TransferSyntax$LAYOUT;
+    }
+
+    private static final long TransferSyntax$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static final long TransferSyntax$offset() {
+        return TransferSyntax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static MemorySegment TransferSyntax(MemorySegment struct) {
+        return struct.asSlice(TransferSyntax$OFFSET, TransferSyntax$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER TransferSyntax
+     * }
+     */
+    public static void TransferSyntax(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TransferSyntax$OFFSET, TransferSyntax$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout DispatchTable$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DispatchTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_DISPATCH_TABLE *DispatchTable
+     * }
+     */
+    public static final AddressLayout DispatchTable$layout() {
+        return DispatchTable$LAYOUT;
+    }
+
+    private static final long DispatchTable$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_DISPATCH_TABLE *DispatchTable
+     * }
+     */
+    public static final long DispatchTable$offset() {
+        return DispatchTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_DISPATCH_TABLE *DispatchTable
+     * }
+     */
+    public static MemorySegment DispatchTable(MemorySegment struct) {
+        return struct.get(DispatchTable$LAYOUT, DispatchTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_DISPATCH_TABLE *DispatchTable
+     * }
+     */
+    public static void DispatchTable(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DispatchTable$LAYOUT, DispatchTable$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ProcString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProcString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING ProcString
+     * }
+     */
+    public static final AddressLayout ProcString$layout() {
+        return ProcString$LAYOUT;
+    }
+
+    private static final long ProcString$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING ProcString
+     * }
+     */
+    public static final long ProcString$offset() {
+        return ProcString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING ProcString
+     * }
+     */
+    public static MemorySegment ProcString(MemorySegment struct) {
+        return struct.get(ProcString$LAYOUT, ProcString$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING ProcString
+     * }
+     */
+    public static void ProcString(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProcString$LAYOUT, ProcString$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout FmtStringOffset$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FmtStringOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const unsigned short *FmtStringOffset
+     * }
+     */
+    public static final AddressLayout FmtStringOffset$layout() {
+        return FmtStringOffset$LAYOUT;
+    }
+
+    private static final long FmtStringOffset$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const unsigned short *FmtStringOffset
+     * }
+     */
+    public static final long FmtStringOffset$offset() {
+        return FmtStringOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const unsigned short *FmtStringOffset
+     * }
+     */
+    public static MemorySegment FmtStringOffset(MemorySegment struct) {
+        return struct.get(FmtStringOffset$LAYOUT, FmtStringOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const unsigned short *FmtStringOffset
+     * }
+     */
+    public static void FmtStringOffset(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FmtStringOffset$LAYOUT, FmtStringOffset$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TypeString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TypeString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeString
+     * }
+     */
+    public static final AddressLayout TypeString$layout() {
+        return TypeString$LAYOUT;
+    }
+
+    private static final long TypeString$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeString
+     * }
+     */
+    public static final long TypeString$offset() {
+        return TypeString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeString
+     * }
+     */
+    public static MemorySegment TypeString(MemorySegment struct) {
+        return struct.get(TypeString$LAYOUT, TypeString$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING TypeString
+     * }
+     */
+    public static void TypeString(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TypeString$LAYOUT, TypeString$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout aUserMarshalQuadruple$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("aUserMarshalQuadruple"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const void *aUserMarshalQuadruple
+     * }
+     */
+    public static final AddressLayout aUserMarshalQuadruple$layout() {
+        return aUserMarshalQuadruple$LAYOUT;
+    }
+
+    private static final long aUserMarshalQuadruple$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const void *aUserMarshalQuadruple
+     * }
+     */
+    public static final long aUserMarshalQuadruple$offset() {
+        return aUserMarshalQuadruple$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const void *aUserMarshalQuadruple
+     * }
+     */
+    public static MemorySegment aUserMarshalQuadruple(MemorySegment struct) {
+        return struct.get(aUserMarshalQuadruple$LAYOUT, aUserMarshalQuadruple$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const void *aUserMarshalQuadruple
+     * }
+     */
+    public static void aUserMarshalQuadruple(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(aUserMarshalQuadruple$LAYOUT, aUserMarshalQuadruple$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pMethodProperties$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pMethodProperties"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const MIDL_INTERFACE_METHOD_PROPERTIES *pMethodProperties
+     * }
+     */
+    public static final AddressLayout pMethodProperties$layout() {
+        return pMethodProperties$LAYOUT;
+    }
+
+    private static final long pMethodProperties$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const MIDL_INTERFACE_METHOD_PROPERTIES *pMethodProperties
+     * }
+     */
+    public static final long pMethodProperties$offset() {
+        return pMethodProperties$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const MIDL_INTERFACE_METHOD_PROPERTIES *pMethodProperties
+     * }
+     */
+    public static MemorySegment pMethodProperties(MemorySegment struct) {
+        return struct.get(pMethodProperties$LAYOUT, pMethodProperties$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const MIDL_INTERFACE_METHOD_PROPERTIES *pMethodProperties
+     * }
+     */
+    public static void pMethodProperties(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pMethodProperties$LAYOUT, pMethodProperties$OFFSET, fieldValue);
+    }
+
+    private static final OfLong pReserved2$LAYOUT = (OfLong)$LAYOUT.select(groupElement("pReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR pReserved2
+     * }
+     */
+    public static final OfLong pReserved2$layout() {
+        return pReserved2$LAYOUT;
+    }
+
+    private static final long pReserved2$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR pReserved2
+     * }
+     */
+    public static final long pReserved2$offset() {
+        return pReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR pReserved2
+     * }
+     */
+    public static long pReserved2(MemorySegment struct) {
+        return struct.get(pReserved2$LAYOUT, pReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR pReserved2
+     * }
+     */
+    public static void pReserved2(MemorySegment struct, long fieldValue) {
+        struct.set(pReserved2$LAYOUT, pReserved2$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

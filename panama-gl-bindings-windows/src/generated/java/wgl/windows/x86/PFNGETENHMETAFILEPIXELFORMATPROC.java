@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNGETENHMETAFILEPIXELFORMATPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hemf, java.lang.foreign.MemoryAddress ppfd);
-    static MemorySegment allocate(PFNGETENHMETAFILEPIXELFORMATPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGETENHMETAFILEPIXELFORMATPROC.class, fi, constants$1369.PFNGETENHMETAFILEPIXELFORMATPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef UINT (*PFNGETENHMETAFILEPIXELFORMATPROC)(HENHMETAFILE, const PIXELFORMATDESCRIPTOR *) __attribute__((stdcall))
+ * }
+ */
+public class PFNGETENHMETAFILEPIXELFORMATPROC {
+
+    PFNGETENHMETAFILEPIXELFORMATPROC() {
+        // Should not be called directly
     }
-    static PFNGETENHMETAFILEPIXELFORMATPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hemf, java.lang.foreign.MemoryAddress _ppfd) -> {
-            try {
-                return (int)constants$1369.PFNGETENHMETAFILEPIXELFORMATPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hemf, (java.lang.foreign.Addressable)_ppfd);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hemf, MemorySegment ppfd);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNGETENHMETAFILEPIXELFORMATPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNGETENHMETAFILEPIXELFORMATPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hemf, MemorySegment ppfd) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hemf, ppfd);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

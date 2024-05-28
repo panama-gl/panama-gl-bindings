@@ -2,13 +2,54 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SYSTEM_POWER_POLICY {
+ *     DWORD Revision;
+ *     POWER_ACTION_POLICY PowerButton;
+ *     POWER_ACTION_POLICY SleepButton;
+ *     POWER_ACTION_POLICY LidClose;
+ *     SYSTEM_POWER_STATE LidOpenWake;
+ *     DWORD Reserved;
+ *     POWER_ACTION_POLICY Idle;
+ *     DWORD IdleTimeout;
+ *     BYTE IdleSensitivity;
+ *     BYTE DynamicThrottle;
+ *     BYTE Spare2[2];
+ *     SYSTEM_POWER_STATE MinSleep;
+ *     SYSTEM_POWER_STATE MaxSleep;
+ *     SYSTEM_POWER_STATE ReducedLatencySleep;
+ *     DWORD WinLogonFlags;
+ *     DWORD Spare3;
+ *     DWORD DozeS4Timeout;
+ *     DWORD BroadcastCapacityResolution;
+ *     SYSTEM_POWER_LEVEL DischargePolicy[4];
+ *     DWORD VideoTimeout;
+ *     BOOLEAN VideoDimDisplay;
+ *     DWORD VideoReserved[3];
+ *     DWORD SpindownTimeout;
+ *     BOOLEAN OptimizeForPower;
+ *     BYTE FanThrottleTolerance;
+ *     BYTE ForcedThrottle;
+ *     BYTE MinThrottle;
+ *     POWER_ACTION_POLICY OverThrottled;
+ * } SYSTEM_POWER_POLICY
+ * }
+ */
 public class SYSTEM_POWER_POLICY extends _SYSTEM_POWER_POLICY {
 
+    SYSTEM_POWER_POLICY() {
+        // Should not be called directly
+    }
 }
-
 

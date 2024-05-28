@@ -2,46 +2,206 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
+ *     DWORD LogPathLength;
+ *     WCHAR LogPath[1];
+ * }
+ * }
+ */
 public class _TRANSACTIONMANAGER_LOGPATH_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("LogPathLength"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("LogPath"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("_TRANSACTIONMANAGER_LOGPATH_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _TRANSACTIONMANAGER_LOGPATH_INFORMATION.$struct$LAYOUT;
+    _TRANSACTIONMANAGER_LOGPATH_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle LogPathLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogPathLength"));
-    public static VarHandle LogPathLength$VH() {
-        return _TRANSACTIONMANAGER_LOGPATH_INFORMATION.LogPathLength$VH;
-    }
-    public static int LogPathLength$get(MemorySegment seg) {
-        return (int)_TRANSACTIONMANAGER_LOGPATH_INFORMATION.LogPathLength$VH.get(seg);
-    }
-    public static void LogPathLength$set( MemorySegment seg, int x) {
-        _TRANSACTIONMANAGER_LOGPATH_INFORMATION.LogPathLength$VH.set(seg, x);
-    }
-    public static int LogPathLength$get(MemorySegment seg, long index) {
-        return (int)_TRANSACTIONMANAGER_LOGPATH_INFORMATION.LogPathLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogPathLength$set(MemorySegment seg, long index, int x) {
-        _TRANSACTIONMANAGER_LOGPATH_INFORMATION.LogPathLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment LogPath$slice(MemorySegment seg) {
-        return seg.asSlice(4, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("LogPathLength"),
+        MemoryLayout.sequenceLayout(1, freeglut_h.C_SHORT).withName("LogPath"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("_TRANSACTIONMANAGER_LOGPATH_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt LogPathLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogPathLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogPathLength
+     * }
+     */
+    public static final OfInt LogPathLength$layout() {
+        return LogPathLength$LAYOUT;
+    }
+
+    private static final long LogPathLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogPathLength
+     * }
+     */
+    public static final long LogPathLength$offset() {
+        return LogPathLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogPathLength
+     * }
+     */
+    public static int LogPathLength(MemorySegment struct) {
+        return struct.get(LogPathLength$LAYOUT, LogPathLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogPathLength
+     * }
+     */
+    public static void LogPathLength(MemorySegment struct, int fieldValue) {
+        struct.set(LogPathLength$LAYOUT, LogPathLength$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout LogPath$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("LogPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static final SequenceLayout LogPath$layout() {
+        return LogPath$LAYOUT;
+    }
+
+    private static final long LogPath$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static final long LogPath$offset() {
+        return LogPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static MemorySegment LogPath(MemorySegment struct) {
+        return struct.asSlice(LogPath$OFFSET, LogPath$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static void LogPath(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LogPath$OFFSET, LogPath$LAYOUT.byteSize());
+    }
+
+    private static long[] LogPath$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static long[] LogPath$dimensions() {
+        return LogPath$DIMS;
+    }
+    private static final VarHandle LogPath$ELEM_HANDLE = LogPath$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static short LogPath(MemorySegment struct, long index0) {
+        return (short)LogPath$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR LogPath[1]
+     * }
+     */
+    public static void LogPath(MemorySegment struct, long index0, short fieldValue) {
+        LogPath$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

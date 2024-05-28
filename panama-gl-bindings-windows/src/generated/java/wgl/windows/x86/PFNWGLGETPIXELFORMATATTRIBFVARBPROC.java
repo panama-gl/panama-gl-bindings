@@ -2,27 +2,72 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLGETPIXELFORMATATTRIBFVARBPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, int iPixelFormat, int iLayerPlane, int nAttributes, java.lang.foreign.MemoryAddress piAttributes, java.lang.foreign.MemoryAddress pfValues);
-    static MemorySegment allocate(PFNWGLGETPIXELFORMATATTRIBFVARBPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLGETPIXELFORMATATTRIBFVARBPROC.class, fi, constants$1381.PFNWGLGETPIXELFORMATATTRIBFVARBPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFNWGLGETPIXELFORMATATTRIBFVARBPROC)(HDC, int, int, UINT, const int *, FLOAT *) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLGETPIXELFORMATATTRIBFVARBPROC {
+
+    PFNWGLGETPIXELFORMATATTRIBFVARBPROC() {
+        // Should not be called directly
     }
-    static PFNWGLGETPIXELFORMATATTRIBFVARBPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, int _iPixelFormat, int _iLayerPlane, int _nAttributes, java.lang.foreign.MemoryAddress _piAttributes, java.lang.foreign.MemoryAddress _pfValues) -> {
-            try {
-                return (int)constants$1381.PFNWGLGETPIXELFORMATATTRIBFVARBPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, _iPixelFormat, _iLayerPlane, _nAttributes, (java.lang.foreign.Addressable)_piAttributes, (java.lang.foreign.Addressable)_pfValues);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, int iPixelFormat, int iLayerPlane, int nAttributes, MemorySegment piAttributes, MemorySegment pfValues);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLGETPIXELFORMATATTRIBFVARBPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLGETPIXELFORMATATTRIBFVARBPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, int iPixelFormat, int iLayerPlane, int nAttributes, MemorySegment piAttributes, MemorySegment pfValues) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, iPixelFormat, iLayerPlane, nAttributes, piAttributes, pfValues);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

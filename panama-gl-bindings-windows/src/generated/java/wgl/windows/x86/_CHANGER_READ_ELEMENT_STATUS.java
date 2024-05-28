@@ -2,52 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CHANGER_READ_ELEMENT_STATUS {
+ *     CHANGER_ELEMENT_LIST ElementList;
+ *     BOOLEAN VolumeTagInfo;
+ * }
+ * }
+ */
 public class _CHANGER_READ_ELEMENT_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ElementType"),
-                Constants$root.C_LONG$LAYOUT.withName("ElementAddress")
-            ).withName("Element"),
-            Constants$root.C_LONG$LAYOUT.withName("NumberOfElements")
-        ).withName("ElementList"),
-        Constants$root.C_CHAR$LAYOUT.withName("VolumeTagInfo"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("_CHANGER_READ_ELEMENT_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _CHANGER_READ_ELEMENT_STATUS.$struct$LAYOUT;
+    _CHANGER_READ_ELEMENT_STATUS() {
+        // Should not be called directly
     }
-    public static MemorySegment ElementList$slice(MemorySegment seg) {
-        return seg.asSlice(0, 12);
-    }
-    static final VarHandle VolumeTagInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeTagInfo"));
-    public static VarHandle VolumeTagInfo$VH() {
-        return _CHANGER_READ_ELEMENT_STATUS.VolumeTagInfo$VH;
-    }
-    public static byte VolumeTagInfo$get(MemorySegment seg) {
-        return (byte)_CHANGER_READ_ELEMENT_STATUS.VolumeTagInfo$VH.get(seg);
-    }
-    public static void VolumeTagInfo$set( MemorySegment seg, byte x) {
-        _CHANGER_READ_ELEMENT_STATUS.VolumeTagInfo$VH.set(seg, x);
-    }
-    public static byte VolumeTagInfo$get(MemorySegment seg, long index) {
-        return (byte)_CHANGER_READ_ELEMENT_STATUS.VolumeTagInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeTagInfo$set(MemorySegment seg, long index, byte x) {
-        _CHANGER_READ_ELEMENT_STATUS.VolumeTagInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CHANGER_ELEMENT_LIST.layout().withName("ElementList"),
+        wgl_h.C_CHAR.withName("VolumeTagInfo"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("_CHANGER_READ_ELEMENT_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout ElementList$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ElementList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT_LIST ElementList
+     * }
+     */
+    public static final GroupLayout ElementList$layout() {
+        return ElementList$LAYOUT;
+    }
+
+    private static final long ElementList$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT_LIST ElementList
+     * }
+     */
+    public static final long ElementList$offset() {
+        return ElementList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT_LIST ElementList
+     * }
+     */
+    public static MemorySegment ElementList(MemorySegment struct) {
+        return struct.asSlice(ElementList$OFFSET, ElementList$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT_LIST ElementList
+     * }
+     */
+    public static void ElementList(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ElementList$OFFSET, ElementList$LAYOUT.byteSize());
+    }
+
+    private static final OfByte VolumeTagInfo$LAYOUT = (OfByte)$LAYOUT.select(groupElement("VolumeTagInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN VolumeTagInfo
+     * }
+     */
+    public static final OfByte VolumeTagInfo$layout() {
+        return VolumeTagInfo$LAYOUT;
+    }
+
+    private static final long VolumeTagInfo$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN VolumeTagInfo
+     * }
+     */
+    public static final long VolumeTagInfo$offset() {
+        return VolumeTagInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN VolumeTagInfo
+     * }
+     */
+    public static byte VolumeTagInfo(MemorySegment struct) {
+        return struct.get(VolumeTagInfo$LAYOUT, VolumeTagInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN VolumeTagInfo
+     * }
+     */
+    public static void VolumeTagInfo(MemorySegment struct, byte fieldValue) {
+        struct.set(VolumeTagInfo$LAYOUT, VolumeTagInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

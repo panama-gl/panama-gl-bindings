@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_AUTHORITY_KEY_ID2_INFO {
+ *     CRYPT_DATA_BLOB KeyId;
+ *     CERT_ALT_NAME_INFO AuthorityCertIssuer;
+ *     CRYPT_INTEGER_BLOB AuthorityCertSerialNumber;
+ * } CERT_AUTHORITY_KEY_ID2_INFO
+ * }
+ */
 public class CERT_AUTHORITY_KEY_ID2_INFO extends _CERT_AUTHORITY_KEY_ID2_INFO {
 
+    CERT_AUTHORITY_KEY_ID2_INFO() {
+        // Should not be called directly
+    }
 }
-
 

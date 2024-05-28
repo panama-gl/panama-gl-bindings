@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_CRYPTO_CAPABILITY {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD CryptoCapabilityIndex;
+ *     STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId;
+ *     STORAGE_CRYPTO_KEY_SIZE KeySize;
+ *     DWORD DataUnitSizeBitmask;
+ * }
+ * }
+ */
 public class _STORAGE_CRYPTO_CAPABILITY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("CryptoCapabilityIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("AlgorithmId"),
-        Constants$root.C_LONG$LAYOUT.withName("KeySize"),
-        Constants$root.C_LONG$LAYOUT.withName("DataUnitSizeBitmask")
-    ).withName("_STORAGE_CRYPTO_CAPABILITY");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_CRYPTO_CAPABILITY.$struct$LAYOUT;
+    _STORAGE_CRYPTO_CAPABILITY() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CryptoCapabilityIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CryptoCapabilityIndex"));
-    public static VarHandle CryptoCapabilityIndex$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.CryptoCapabilityIndex$VH;
-    }
-    public static int CryptoCapabilityIndex$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.CryptoCapabilityIndex$VH.get(seg);
-    }
-    public static void CryptoCapabilityIndex$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.CryptoCapabilityIndex$VH.set(seg, x);
-    }
-    public static int CryptoCapabilityIndex$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.CryptoCapabilityIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CryptoCapabilityIndex$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.CryptoCapabilityIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AlgorithmId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AlgorithmId"));
-    public static VarHandle AlgorithmId$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.AlgorithmId$VH;
-    }
-    public static int AlgorithmId$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.AlgorithmId$VH.get(seg);
-    }
-    public static void AlgorithmId$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.AlgorithmId$VH.set(seg, x);
-    }
-    public static int AlgorithmId$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.AlgorithmId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AlgorithmId$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.AlgorithmId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle KeySize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("KeySize"));
-    public static VarHandle KeySize$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.KeySize$VH;
-    }
-    public static int KeySize$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.KeySize$VH.get(seg);
-    }
-    public static void KeySize$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.KeySize$VH.set(seg, x);
-    }
-    public static int KeySize$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.KeySize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void KeySize$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.KeySize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataUnitSizeBitmask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataUnitSizeBitmask"));
-    public static VarHandle DataUnitSizeBitmask$VH() {
-        return _STORAGE_CRYPTO_CAPABILITY.DataUnitSizeBitmask$VH;
-    }
-    public static int DataUnitSizeBitmask$get(MemorySegment seg) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.DataUnitSizeBitmask$VH.get(seg);
-    }
-    public static void DataUnitSizeBitmask$set( MemorySegment seg, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.DataUnitSizeBitmask$VH.set(seg, x);
-    }
-    public static int DataUnitSizeBitmask$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_CRYPTO_CAPABILITY.DataUnitSizeBitmask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataUnitSizeBitmask$set(MemorySegment seg, long index, int x) {
-        _STORAGE_CRYPTO_CAPABILITY.DataUnitSizeBitmask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("CryptoCapabilityIndex"),
+        wgl_h.C_INT.withName("AlgorithmId"),
+        wgl_h.C_INT.withName("KeySize"),
+        wgl_h.C_LONG.withName("DataUnitSizeBitmask")
+    ).withName("_STORAGE_CRYPTO_CAPABILITY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CryptoCapabilityIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CryptoCapabilityIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CryptoCapabilityIndex
+     * }
+     */
+    public static final OfInt CryptoCapabilityIndex$layout() {
+        return CryptoCapabilityIndex$LAYOUT;
+    }
+
+    private static final long CryptoCapabilityIndex$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CryptoCapabilityIndex
+     * }
+     */
+    public static final long CryptoCapabilityIndex$offset() {
+        return CryptoCapabilityIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CryptoCapabilityIndex
+     * }
+     */
+    public static int CryptoCapabilityIndex(MemorySegment struct) {
+        return struct.get(CryptoCapabilityIndex$LAYOUT, CryptoCapabilityIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CryptoCapabilityIndex
+     * }
+     */
+    public static void CryptoCapabilityIndex(MemorySegment struct, int fieldValue) {
+        struct.set(CryptoCapabilityIndex$LAYOUT, CryptoCapabilityIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AlgorithmId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AlgorithmId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId
+     * }
+     */
+    public static final OfInt AlgorithmId$layout() {
+        return AlgorithmId$LAYOUT;
+    }
+
+    private static final long AlgorithmId$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId
+     * }
+     */
+    public static final long AlgorithmId$offset() {
+        return AlgorithmId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId
+     * }
+     */
+    public static int AlgorithmId(MemorySegment struct) {
+        return struct.get(AlgorithmId$LAYOUT, AlgorithmId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_ALGORITHM_ID AlgorithmId
+     * }
+     */
+    public static void AlgorithmId(MemorySegment struct, int fieldValue) {
+        struct.set(AlgorithmId$LAYOUT, AlgorithmId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt KeySize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("KeySize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_KEY_SIZE KeySize
+     * }
+     */
+    public static final OfInt KeySize$layout() {
+        return KeySize$LAYOUT;
+    }
+
+    private static final long KeySize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_KEY_SIZE KeySize
+     * }
+     */
+    public static final long KeySize$offset() {
+        return KeySize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_KEY_SIZE KeySize
+     * }
+     */
+    public static int KeySize(MemorySegment struct) {
+        return struct.get(KeySize$LAYOUT, KeySize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_CRYPTO_KEY_SIZE KeySize
+     * }
+     */
+    public static void KeySize(MemorySegment struct, int fieldValue) {
+        struct.set(KeySize$LAYOUT, KeySize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DataUnitSizeBitmask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DataUnitSizeBitmask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DataUnitSizeBitmask
+     * }
+     */
+    public static final OfInt DataUnitSizeBitmask$layout() {
+        return DataUnitSizeBitmask$LAYOUT;
+    }
+
+    private static final long DataUnitSizeBitmask$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DataUnitSizeBitmask
+     * }
+     */
+    public static final long DataUnitSizeBitmask$offset() {
+        return DataUnitSizeBitmask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DataUnitSizeBitmask
+     * }
+     */
+    public static int DataUnitSizeBitmask(MemorySegment struct) {
+        return struct.get(DataUnitSizeBitmask$LAYOUT, DataUnitSizeBitmask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DataUnitSizeBitmask
+     * }
+     */
+    public static void DataUnitSizeBitmask(MemorySegment struct, int fieldValue) {
+        struct.set(DataUnitSizeBitmask$LAYOUT, DataUnitSizeBitmask$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

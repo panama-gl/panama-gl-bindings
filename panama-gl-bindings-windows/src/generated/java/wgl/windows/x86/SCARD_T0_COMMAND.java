@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SCARD_T0_COMMAND {
+ *     BYTE bCla;
+ *     BYTE bIns;
+ *     BYTE bP1;
+ *     BYTE bP2;
+ *     BYTE bP3;
+ * } SCARD_T0_COMMAND
+ * }
+ */
 public class SCARD_T0_COMMAND extends _SCARD_T0_COMMAND {
 
+    SCARD_T0_COMMAND() {
+        // Should not be called directly
+    }
 }
-
 

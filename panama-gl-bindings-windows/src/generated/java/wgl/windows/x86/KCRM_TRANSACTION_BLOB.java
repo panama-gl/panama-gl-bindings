@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _KCRM_TRANSACTION_BLOB {
+ *     UOW UOW;
+ *     GUID TmIdentity;
+ *     ULONG IsolationLevel;
+ *     ULONG IsolationFlags;
+ *     ULONG Timeout;
+ *     WCHAR Description[64];
+ * } KCRM_TRANSACTION_BLOB
+ * }
+ */
 public class KCRM_TRANSACTION_BLOB extends _KCRM_TRANSACTION_BLOB {
 
+    KCRM_TRANSACTION_BLOB() {
+        // Should not be called directly
+    }
 }
-
 

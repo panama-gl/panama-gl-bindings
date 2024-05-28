@@ -2,13 +2,57 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_OPTIONAL_HEADER {
+ *     WORD Magic;
+ *     BYTE MajorLinkerVersion;
+ *     BYTE MinorLinkerVersion;
+ *     DWORD SizeOfCode;
+ *     DWORD SizeOfInitializedData;
+ *     DWORD SizeOfUninitializedData;
+ *     DWORD AddressOfEntryPoint;
+ *     DWORD BaseOfCode;
+ *     DWORD BaseOfData;
+ *     DWORD ImageBase;
+ *     DWORD SectionAlignment;
+ *     DWORD FileAlignment;
+ *     WORD MajorOperatingSystemVersion;
+ *     WORD MinorOperatingSystemVersion;
+ *     WORD MajorImageVersion;
+ *     WORD MinorImageVersion;
+ *     WORD MajorSubsystemVersion;
+ *     WORD MinorSubsystemVersion;
+ *     DWORD Win32VersionValue;
+ *     DWORD SizeOfImage;
+ *     DWORD SizeOfHeaders;
+ *     DWORD CheckSum;
+ *     WORD Subsystem;
+ *     WORD DllCharacteristics;
+ *     DWORD SizeOfStackReserve;
+ *     DWORD SizeOfStackCommit;
+ *     DWORD SizeOfHeapReserve;
+ *     DWORD SizeOfHeapCommit;
+ *     DWORD LoaderFlags;
+ *     DWORD NumberOfRvaAndSizes;
+ *     IMAGE_DATA_DIRECTORY DataDirectory[16];
+ * } IMAGE_OPTIONAL_HEADER32
+ * }
+ */
 public class IMAGE_OPTIONAL_HEADER32 extends _IMAGE_OPTIONAL_HEADER {
 
+    IMAGE_OPTIONAL_HEADER32() {
+        // Should not be called directly
+    }
 }
-
 

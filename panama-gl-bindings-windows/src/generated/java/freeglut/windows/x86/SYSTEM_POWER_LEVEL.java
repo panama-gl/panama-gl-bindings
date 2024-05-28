@@ -2,87 +2,343 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     BOOLEAN Enable;
+ *     BYTE Spare[3];
+ *     DWORD BatteryLevel;
+ *     POWER_ACTION_POLICY PowerPolicy;
+ *     SYSTEM_POWER_STATE MinSystemState;
+ * }
+ * }
+ */
 public class SYSTEM_POWER_LEVEL {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Enable"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_CHAR$LAYOUT).withName("Spare"),
-        Constants$root.C_LONG$LAYOUT.withName("BatteryLevel"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Action"),
-            Constants$root.C_LONG$LAYOUT.withName("Flags"),
-            Constants$root.C_LONG$LAYOUT.withName("EventCode")
-        ).withName("PowerPolicy"),
-        Constants$root.C_LONG$LAYOUT.withName("MinSystemState")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return SYSTEM_POWER_LEVEL.$struct$LAYOUT;
+    SYSTEM_POWER_LEVEL() {
+        // Should not be called directly
     }
-    static final VarHandle Enable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Enable"));
-    public static VarHandle Enable$VH() {
-        return SYSTEM_POWER_LEVEL.Enable$VH;
-    }
-    public static byte Enable$get(MemorySegment seg) {
-        return (byte)SYSTEM_POWER_LEVEL.Enable$VH.get(seg);
-    }
-    public static void Enable$set( MemorySegment seg, byte x) {
-        SYSTEM_POWER_LEVEL.Enable$VH.set(seg, x);
-    }
-    public static byte Enable$get(MemorySegment seg, long index) {
-        return (byte)SYSTEM_POWER_LEVEL.Enable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Enable$set(MemorySegment seg, long index, byte x) {
-        SYSTEM_POWER_LEVEL.Enable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Spare$slice(MemorySegment seg) {
-        return seg.asSlice(1, 3);
-    }
-    static final VarHandle BatteryLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BatteryLevel"));
-    public static VarHandle BatteryLevel$VH() {
-        return SYSTEM_POWER_LEVEL.BatteryLevel$VH;
-    }
-    public static int BatteryLevel$get(MemorySegment seg) {
-        return (int)SYSTEM_POWER_LEVEL.BatteryLevel$VH.get(seg);
-    }
-    public static void BatteryLevel$set( MemorySegment seg, int x) {
-        SYSTEM_POWER_LEVEL.BatteryLevel$VH.set(seg, x);
-    }
-    public static int BatteryLevel$get(MemorySegment seg, long index) {
-        return (int)SYSTEM_POWER_LEVEL.BatteryLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BatteryLevel$set(MemorySegment seg, long index, int x) {
-        SYSTEM_POWER_LEVEL.BatteryLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PowerPolicy$slice(MemorySegment seg) {
-        return seg.asSlice(8, 12);
-    }
-    static final VarHandle MinSystemState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinSystemState"));
-    public static VarHandle MinSystemState$VH() {
-        return SYSTEM_POWER_LEVEL.MinSystemState$VH;
-    }
-    public static int MinSystemState$get(MemorySegment seg) {
-        return (int)SYSTEM_POWER_LEVEL.MinSystemState$VH.get(seg);
-    }
-    public static void MinSystemState$set( MemorySegment seg, int x) {
-        SYSTEM_POWER_LEVEL.MinSystemState$VH.set(seg, x);
-    }
-    public static int MinSystemState$get(MemorySegment seg, long index) {
-        return (int)SYSTEM_POWER_LEVEL.MinSystemState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinSystemState$set(MemorySegment seg, long index, int x) {
-        SYSTEM_POWER_LEVEL.MinSystemState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_CHAR.withName("Enable"),
+        MemoryLayout.sequenceLayout(3, freeglut_h.C_CHAR).withName("Spare"),
+        freeglut_h.C_LONG.withName("BatteryLevel"),
+        POWER_ACTION_POLICY.layout().withName("PowerPolicy"),
+        freeglut_h.C_INT.withName("MinSystemState")
+    ).withName("$anon$16553:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Enable$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Enable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Enable
+     * }
+     */
+    public static final OfByte Enable$layout() {
+        return Enable$LAYOUT;
+    }
+
+    private static final long Enable$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Enable
+     * }
+     */
+    public static final long Enable$offset() {
+        return Enable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Enable
+     * }
+     */
+    public static byte Enable(MemorySegment struct) {
+        return struct.get(Enable$LAYOUT, Enable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Enable
+     * }
+     */
+    public static void Enable(MemorySegment struct, byte fieldValue) {
+        struct.set(Enable$LAYOUT, Enable$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Spare$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Spare"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static final SequenceLayout Spare$layout() {
+        return Spare$LAYOUT;
+    }
+
+    private static final long Spare$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static final long Spare$offset() {
+        return Spare$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static MemorySegment Spare(MemorySegment struct) {
+        return struct.asSlice(Spare$OFFSET, Spare$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static void Spare(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Spare$OFFSET, Spare$LAYOUT.byteSize());
+    }
+
+    private static long[] Spare$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static long[] Spare$dimensions() {
+        return Spare$DIMS;
+    }
+    private static final VarHandle Spare$ELEM_HANDLE = Spare$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static byte Spare(MemorySegment struct, long index0) {
+        return (byte)Spare$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Spare[3]
+     * }
+     */
+    public static void Spare(MemorySegment struct, long index0, byte fieldValue) {
+        Spare$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt BatteryLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BatteryLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLevel
+     * }
+     */
+    public static final OfInt BatteryLevel$layout() {
+        return BatteryLevel$LAYOUT;
+    }
+
+    private static final long BatteryLevel$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLevel
+     * }
+     */
+    public static final long BatteryLevel$offset() {
+        return BatteryLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLevel
+     * }
+     */
+    public static int BatteryLevel(MemorySegment struct) {
+        return struct.get(BatteryLevel$LAYOUT, BatteryLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLevel
+     * }
+     */
+    public static void BatteryLevel(MemorySegment struct, int fieldValue) {
+        struct.set(BatteryLevel$LAYOUT, BatteryLevel$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PowerPolicy$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PowerPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerPolicy
+     * }
+     */
+    public static final GroupLayout PowerPolicy$layout() {
+        return PowerPolicy$LAYOUT;
+    }
+
+    private static final long PowerPolicy$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerPolicy
+     * }
+     */
+    public static final long PowerPolicy$offset() {
+        return PowerPolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerPolicy
+     * }
+     */
+    public static MemorySegment PowerPolicy(MemorySegment struct) {
+        return struct.asSlice(PowerPolicy$OFFSET, PowerPolicy$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION_POLICY PowerPolicy
+     * }
+     */
+    public static void PowerPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PowerPolicy$OFFSET, PowerPolicy$LAYOUT.byteSize());
+    }
+
+    private static final OfInt MinSystemState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinSystemState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSystemState
+     * }
+     */
+    public static final OfInt MinSystemState$layout() {
+        return MinSystemState$LAYOUT;
+    }
+
+    private static final long MinSystemState$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSystemState
+     * }
+     */
+    public static final long MinSystemState$offset() {
+        return MinSystemState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSystemState
+     * }
+     */
+    public static int MinSystemState(MemorySegment struct) {
+        return struct.get(MinSystemState$LAYOUT, MinSystemState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE MinSystemState
+     * }
+     */
+    public static void MinSystemState(MemorySegment struct, int fieldValue) {
+        struct.set(MinSystemState$LAYOUT, MinSystemState$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

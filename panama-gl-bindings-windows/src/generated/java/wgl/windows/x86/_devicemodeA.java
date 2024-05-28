@@ -2,642 +2,1910 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _devicemodeA {
+ *     BYTE dmDeviceName[32];
+ *     WORD dmSpecVersion;
+ *     WORD dmDriverVersion;
+ *     WORD dmSize;
+ *     WORD dmDriverExtra;
+ *     DWORD dmFields;
+ *     union {
+ *         struct {
+ *             short dmOrientation;
+ *             short dmPaperSize;
+ *             short dmPaperLength;
+ *             short dmPaperWidth;
+ *             short dmScale;
+ *             short dmCopies;
+ *             short dmDefaultSource;
+ *             short dmPrintQuality;
+ *         };
+ *         struct {
+ *             POINTL dmPosition;
+ *             DWORD dmDisplayOrientation;
+ *             DWORD dmDisplayFixedOutput;
+ *         };
+ *     };
+ *     short dmColor;
+ *     short dmDuplex;
+ *     short dmYResolution;
+ *     short dmTTOption;
+ *     short dmCollate;
+ *     BYTE dmFormName[32];
+ *     WORD dmLogPixels;
+ *     DWORD dmBitsPerPel;
+ *     DWORD dmPelsWidth;
+ *     DWORD dmPelsHeight;
+ *     union {
+ *         DWORD dmDisplayFlags;
+ *         DWORD dmNup;
+ *     };
+ *     DWORD dmDisplayFrequency;
+ *     DWORD dmICMMethod;
+ *     DWORD dmICMIntent;
+ *     DWORD dmMediaType;
+ *     DWORD dmDitherType;
+ *     DWORD dmReserved1;
+ *     DWORD dmReserved2;
+ *     DWORD dmPanningWidth;
+ *     DWORD dmPanningHeight;
+ * }
+ * }
+ */
 public class _devicemodeA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("dmDeviceName"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmSpecVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmDriverVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmDriverExtra"),
-        Constants$root.C_LONG$LAYOUT.withName("dmFields"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("dmOrientation"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmPaperSize"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmPaperLength"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmPaperWidth"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmScale"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmCopies"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmDefaultSource"),
-                Constants$root.C_SHORT$LAYOUT.withName("dmPrintQuality")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("x"),
-                    Constants$root.C_LONG$LAYOUT.withName("y")
-                ).withName("dmPosition"),
-                Constants$root.C_LONG$LAYOUT.withName("dmDisplayOrientation"),
-                Constants$root.C_LONG$LAYOUT.withName("dmDisplayFixedOutput")
-            ).withName("$anon$1")
-        ).withName("$anon$0"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmColor"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmDuplex"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmYResolution"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmTTOption"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmCollate"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("dmFormName"),
-        Constants$root.C_SHORT$LAYOUT.withName("dmLogPixels"),
-        Constants$root.C_LONG$LAYOUT.withName("dmBitsPerPel"),
-        Constants$root.C_LONG$LAYOUT.withName("dmPelsWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("dmPelsHeight"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dmDisplayFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("dmNup")
-        ).withName("$anon$1"),
-        Constants$root.C_LONG$LAYOUT.withName("dmDisplayFrequency"),
-        Constants$root.C_LONG$LAYOUT.withName("dmICMMethod"),
-        Constants$root.C_LONG$LAYOUT.withName("dmICMIntent"),
-        Constants$root.C_LONG$LAYOUT.withName("dmMediaType"),
-        Constants$root.C_LONG$LAYOUT.withName("dmDitherType"),
-        Constants$root.C_LONG$LAYOUT.withName("dmReserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("dmReserved2"),
-        Constants$root.C_LONG$LAYOUT.withName("dmPanningWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("dmPanningHeight")
-    ).withName("_devicemodeA");
-    public static MemoryLayout $LAYOUT() {
-        return _devicemodeA.$struct$LAYOUT;
+    _devicemodeA() {
+        // Should not be called directly
     }
-    public static MemorySegment dmDeviceName$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
-    }
-    static final VarHandle dmSpecVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmSpecVersion"));
-    public static VarHandle dmSpecVersion$VH() {
-        return _devicemodeA.dmSpecVersion$VH;
-    }
-    public static short dmSpecVersion$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmSpecVersion$VH.get(seg);
-    }
-    public static void dmSpecVersion$set( MemorySegment seg, short x) {
-        _devicemodeA.dmSpecVersion$VH.set(seg, x);
-    }
-    public static short dmSpecVersion$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmSpecVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmSpecVersion$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmSpecVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDriverVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmDriverVersion"));
-    public static VarHandle dmDriverVersion$VH() {
-        return _devicemodeA.dmDriverVersion$VH;
-    }
-    public static short dmDriverVersion$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmDriverVersion$VH.get(seg);
-    }
-    public static void dmDriverVersion$set( MemorySegment seg, short x) {
-        _devicemodeA.dmDriverVersion$VH.set(seg, x);
-    }
-    public static short dmDriverVersion$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmDriverVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDriverVersion$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmDriverVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmSize"));
-    public static VarHandle dmSize$VH() {
-        return _devicemodeA.dmSize$VH;
-    }
-    public static short dmSize$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmSize$VH.get(seg);
-    }
-    public static void dmSize$set( MemorySegment seg, short x) {
-        _devicemodeA.dmSize$VH.set(seg, x);
-    }
-    public static short dmSize$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmSize$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDriverExtra$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmDriverExtra"));
-    public static VarHandle dmDriverExtra$VH() {
-        return _devicemodeA.dmDriverExtra$VH;
-    }
-    public static short dmDriverExtra$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmDriverExtra$VH.get(seg);
-    }
-    public static void dmDriverExtra$set( MemorySegment seg, short x) {
-        _devicemodeA.dmDriverExtra$VH.set(seg, x);
-    }
-    public static short dmDriverExtra$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmDriverExtra$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDriverExtra$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmDriverExtra$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmFields$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmFields"));
-    public static VarHandle dmFields$VH() {
-        return _devicemodeA.dmFields$VH;
-    }
-    public static int dmFields$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmFields$VH.get(seg);
-    }
-    public static void dmFields$set( MemorySegment seg, int x) {
-        _devicemodeA.dmFields$VH.set(seg, x);
-    }
-    public static int dmFields$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmFields$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmFields$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmFields$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmOrientation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmOrientation"));
-    public static VarHandle dmOrientation$VH() {
-        return _devicemodeA.dmOrientation$VH;
-    }
-    public static short dmOrientation$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmOrientation$VH.get(seg);
-    }
-    public static void dmOrientation$set( MemorySegment seg, short x) {
-        _devicemodeA.dmOrientation$VH.set(seg, x);
-    }
-    public static short dmOrientation$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmOrientation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmOrientation$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmOrientation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPaperSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmPaperSize"));
-    public static VarHandle dmPaperSize$VH() {
-        return _devicemodeA.dmPaperSize$VH;
-    }
-    public static short dmPaperSize$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmPaperSize$VH.get(seg);
-    }
-    public static void dmPaperSize$set( MemorySegment seg, short x) {
-        _devicemodeA.dmPaperSize$VH.set(seg, x);
-    }
-    public static short dmPaperSize$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmPaperSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPaperSize$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmPaperSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPaperLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmPaperLength"));
-    public static VarHandle dmPaperLength$VH() {
-        return _devicemodeA.dmPaperLength$VH;
-    }
-    public static short dmPaperLength$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmPaperLength$VH.get(seg);
-    }
-    public static void dmPaperLength$set( MemorySegment seg, short x) {
-        _devicemodeA.dmPaperLength$VH.set(seg, x);
-    }
-    public static short dmPaperLength$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmPaperLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPaperLength$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmPaperLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPaperWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmPaperWidth"));
-    public static VarHandle dmPaperWidth$VH() {
-        return _devicemodeA.dmPaperWidth$VH;
-    }
-    public static short dmPaperWidth$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmPaperWidth$VH.get(seg);
-    }
-    public static void dmPaperWidth$set( MemorySegment seg, short x) {
-        _devicemodeA.dmPaperWidth$VH.set(seg, x);
-    }
-    public static short dmPaperWidth$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmPaperWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPaperWidth$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmPaperWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmScale$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmScale"));
-    public static VarHandle dmScale$VH() {
-        return _devicemodeA.dmScale$VH;
-    }
-    public static short dmScale$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmScale$VH.get(seg);
-    }
-    public static void dmScale$set( MemorySegment seg, short x) {
-        _devicemodeA.dmScale$VH.set(seg, x);
-    }
-    public static short dmScale$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmScale$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmScale$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmScale$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmCopies"));
-    public static VarHandle dmCopies$VH() {
-        return _devicemodeA.dmCopies$VH;
-    }
-    public static short dmCopies$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmCopies$VH.get(seg);
-    }
-    public static void dmCopies$set( MemorySegment seg, short x) {
-        _devicemodeA.dmCopies$VH.set(seg, x);
-    }
-    public static short dmCopies$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmCopies$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDefaultSource$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmDefaultSource"));
-    public static VarHandle dmDefaultSource$VH() {
-        return _devicemodeA.dmDefaultSource$VH;
-    }
-    public static short dmDefaultSource$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmDefaultSource$VH.get(seg);
-    }
-    public static void dmDefaultSource$set( MemorySegment seg, short x) {
-        _devicemodeA.dmDefaultSource$VH.set(seg, x);
-    }
-    public static short dmDefaultSource$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmDefaultSource$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDefaultSource$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmDefaultSource$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPrintQuality$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dmPrintQuality"));
-    public static VarHandle dmPrintQuality$VH() {
-        return _devicemodeA.dmPrintQuality$VH;
-    }
-    public static short dmPrintQuality$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmPrintQuality$VH.get(seg);
-    }
-    public static void dmPrintQuality$set( MemorySegment seg, short x) {
-        _devicemodeA.dmPrintQuality$VH.set(seg, x);
-    }
-    public static short dmPrintQuality$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmPrintQuality$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPrintQuality$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmPrintQuality$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment dmPosition$slice(MemorySegment seg) {
-        return seg.asSlice(44, 8);
-    }
-    static final VarHandle dmDisplayOrientation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("dmDisplayOrientation"));
-    public static VarHandle dmDisplayOrientation$VH() {
-        return _devicemodeA.dmDisplayOrientation$VH;
-    }
-    public static int dmDisplayOrientation$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmDisplayOrientation$VH.get(seg);
-    }
-    public static void dmDisplayOrientation$set( MemorySegment seg, int x) {
-        _devicemodeA.dmDisplayOrientation$VH.set(seg, x);
-    }
-    public static int dmDisplayOrientation$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmDisplayOrientation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDisplayOrientation$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmDisplayOrientation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDisplayFixedOutput$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("dmDisplayFixedOutput"));
-    public static VarHandle dmDisplayFixedOutput$VH() {
-        return _devicemodeA.dmDisplayFixedOutput$VH;
-    }
-    public static int dmDisplayFixedOutput$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmDisplayFixedOutput$VH.get(seg);
-    }
-    public static void dmDisplayFixedOutput$set( MemorySegment seg, int x) {
-        _devicemodeA.dmDisplayFixedOutput$VH.set(seg, x);
-    }
-    public static int dmDisplayFixedOutput$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmDisplayFixedOutput$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDisplayFixedOutput$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmDisplayFixedOutput$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmColor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmColor"));
-    public static VarHandle dmColor$VH() {
-        return _devicemodeA.dmColor$VH;
-    }
-    public static short dmColor$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmColor$VH.get(seg);
-    }
-    public static void dmColor$set( MemorySegment seg, short x) {
-        _devicemodeA.dmColor$VH.set(seg, x);
-    }
-    public static short dmColor$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmColor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmColor$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmColor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDuplex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmDuplex"));
-    public static VarHandle dmDuplex$VH() {
-        return _devicemodeA.dmDuplex$VH;
-    }
-    public static short dmDuplex$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmDuplex$VH.get(seg);
-    }
-    public static void dmDuplex$set( MemorySegment seg, short x) {
-        _devicemodeA.dmDuplex$VH.set(seg, x);
-    }
-    public static short dmDuplex$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmDuplex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDuplex$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmDuplex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmYResolution$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmYResolution"));
-    public static VarHandle dmYResolution$VH() {
-        return _devicemodeA.dmYResolution$VH;
-    }
-    public static short dmYResolution$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmYResolution$VH.get(seg);
-    }
-    public static void dmYResolution$set( MemorySegment seg, short x) {
-        _devicemodeA.dmYResolution$VH.set(seg, x);
-    }
-    public static short dmYResolution$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmYResolution$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmYResolution$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmYResolution$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmTTOption$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmTTOption"));
-    public static VarHandle dmTTOption$VH() {
-        return _devicemodeA.dmTTOption$VH;
-    }
-    public static short dmTTOption$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmTTOption$VH.get(seg);
-    }
-    public static void dmTTOption$set( MemorySegment seg, short x) {
-        _devicemodeA.dmTTOption$VH.set(seg, x);
-    }
-    public static short dmTTOption$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmTTOption$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmTTOption$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmTTOption$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmCollate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmCollate"));
-    public static VarHandle dmCollate$VH() {
-        return _devicemodeA.dmCollate$VH;
-    }
-    public static short dmCollate$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmCollate$VH.get(seg);
-    }
-    public static void dmCollate$set( MemorySegment seg, short x) {
-        _devicemodeA.dmCollate$VH.set(seg, x);
-    }
-    public static short dmCollate$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmCollate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmCollate$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmCollate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment dmFormName$slice(MemorySegment seg) {
-        return seg.asSlice(70, 32);
-    }
-    static final VarHandle dmLogPixels$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmLogPixels"));
-    public static VarHandle dmLogPixels$VH() {
-        return _devicemodeA.dmLogPixels$VH;
-    }
-    public static short dmLogPixels$get(MemorySegment seg) {
-        return (short)_devicemodeA.dmLogPixels$VH.get(seg);
-    }
-    public static void dmLogPixels$set( MemorySegment seg, short x) {
-        _devicemodeA.dmLogPixels$VH.set(seg, x);
-    }
-    public static short dmLogPixels$get(MemorySegment seg, long index) {
-        return (short)_devicemodeA.dmLogPixels$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmLogPixels$set(MemorySegment seg, long index, short x) {
-        _devicemodeA.dmLogPixels$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmBitsPerPel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmBitsPerPel"));
-    public static VarHandle dmBitsPerPel$VH() {
-        return _devicemodeA.dmBitsPerPel$VH;
-    }
-    public static int dmBitsPerPel$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmBitsPerPel$VH.get(seg);
-    }
-    public static void dmBitsPerPel$set( MemorySegment seg, int x) {
-        _devicemodeA.dmBitsPerPel$VH.set(seg, x);
-    }
-    public static int dmBitsPerPel$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmBitsPerPel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmBitsPerPel$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmBitsPerPel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPelsWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmPelsWidth"));
-    public static VarHandle dmPelsWidth$VH() {
-        return _devicemodeA.dmPelsWidth$VH;
-    }
-    public static int dmPelsWidth$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmPelsWidth$VH.get(seg);
-    }
-    public static void dmPelsWidth$set( MemorySegment seg, int x) {
-        _devicemodeA.dmPelsWidth$VH.set(seg, x);
-    }
-    public static int dmPelsWidth$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmPelsWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPelsWidth$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmPelsWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPelsHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmPelsHeight"));
-    public static VarHandle dmPelsHeight$VH() {
-        return _devicemodeA.dmPelsHeight$VH;
-    }
-    public static int dmPelsHeight$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmPelsHeight$VH.get(seg);
-    }
-    public static void dmPelsHeight$set( MemorySegment seg, int x) {
-        _devicemodeA.dmPelsHeight$VH.set(seg, x);
-    }
-    public static int dmPelsHeight$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmPelsHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPelsHeight$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmPelsHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDisplayFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("dmDisplayFlags"));
-    public static VarHandle dmDisplayFlags$VH() {
-        return _devicemodeA.dmDisplayFlags$VH;
-    }
-    public static int dmDisplayFlags$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmDisplayFlags$VH.get(seg);
-    }
-    public static void dmDisplayFlags$set( MemorySegment seg, int x) {
-        _devicemodeA.dmDisplayFlags$VH.set(seg, x);
-    }
-    public static int dmDisplayFlags$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmDisplayFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDisplayFlags$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmDisplayFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmNup$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("dmNup"));
-    public static VarHandle dmNup$VH() {
-        return _devicemodeA.dmNup$VH;
-    }
-    public static int dmNup$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmNup$VH.get(seg);
-    }
-    public static void dmNup$set( MemorySegment seg, int x) {
-        _devicemodeA.dmNup$VH.set(seg, x);
-    }
-    public static int dmNup$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmNup$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmNup$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmNup$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDisplayFrequency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmDisplayFrequency"));
-    public static VarHandle dmDisplayFrequency$VH() {
-        return _devicemodeA.dmDisplayFrequency$VH;
-    }
-    public static int dmDisplayFrequency$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmDisplayFrequency$VH.get(seg);
-    }
-    public static void dmDisplayFrequency$set( MemorySegment seg, int x) {
-        _devicemodeA.dmDisplayFrequency$VH.set(seg, x);
-    }
-    public static int dmDisplayFrequency$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmDisplayFrequency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDisplayFrequency$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmDisplayFrequency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmICMMethod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmICMMethod"));
-    public static VarHandle dmICMMethod$VH() {
-        return _devicemodeA.dmICMMethod$VH;
-    }
-    public static int dmICMMethod$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmICMMethod$VH.get(seg);
-    }
-    public static void dmICMMethod$set( MemorySegment seg, int x) {
-        _devicemodeA.dmICMMethod$VH.set(seg, x);
-    }
-    public static int dmICMMethod$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmICMMethod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmICMMethod$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmICMMethod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmICMIntent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmICMIntent"));
-    public static VarHandle dmICMIntent$VH() {
-        return _devicemodeA.dmICMIntent$VH;
-    }
-    public static int dmICMIntent$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmICMIntent$VH.get(seg);
-    }
-    public static void dmICMIntent$set( MemorySegment seg, int x) {
-        _devicemodeA.dmICMIntent$VH.set(seg, x);
-    }
-    public static int dmICMIntent$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmICMIntent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmICMIntent$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmICMIntent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmMediaType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmMediaType"));
-    public static VarHandle dmMediaType$VH() {
-        return _devicemodeA.dmMediaType$VH;
-    }
-    public static int dmMediaType$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmMediaType$VH.get(seg);
-    }
-    public static void dmMediaType$set( MemorySegment seg, int x) {
-        _devicemodeA.dmMediaType$VH.set(seg, x);
-    }
-    public static int dmMediaType$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmMediaType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmMediaType$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmMediaType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmDitherType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmDitherType"));
-    public static VarHandle dmDitherType$VH() {
-        return _devicemodeA.dmDitherType$VH;
-    }
-    public static int dmDitherType$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmDitherType$VH.get(seg);
-    }
-    public static void dmDitherType$set( MemorySegment seg, int x) {
-        _devicemodeA.dmDitherType$VH.set(seg, x);
-    }
-    public static int dmDitherType$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmDitherType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmDitherType$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmDitherType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmReserved1"));
-    public static VarHandle dmReserved1$VH() {
-        return _devicemodeA.dmReserved1$VH;
-    }
-    public static int dmReserved1$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmReserved1$VH.get(seg);
-    }
-    public static void dmReserved1$set( MemorySegment seg, int x) {
-        _devicemodeA.dmReserved1$VH.set(seg, x);
-    }
-    public static int dmReserved1$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmReserved1$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmReserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmReserved2"));
-    public static VarHandle dmReserved2$VH() {
-        return _devicemodeA.dmReserved2$VH;
-    }
-    public static int dmReserved2$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmReserved2$VH.get(seg);
-    }
-    public static void dmReserved2$set( MemorySegment seg, int x) {
-        _devicemodeA.dmReserved2$VH.set(seg, x);
-    }
-    public static int dmReserved2$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmReserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmReserved2$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmReserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPanningWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmPanningWidth"));
-    public static VarHandle dmPanningWidth$VH() {
-        return _devicemodeA.dmPanningWidth$VH;
-    }
-    public static int dmPanningWidth$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmPanningWidth$VH.get(seg);
-    }
-    public static void dmPanningWidth$set( MemorySegment seg, int x) {
-        _devicemodeA.dmPanningWidth$VH.set(seg, x);
-    }
-    public static int dmPanningWidth$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmPanningWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPanningWidth$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmPanningWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dmPanningHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dmPanningHeight"));
-    public static VarHandle dmPanningHeight$VH() {
-        return _devicemodeA.dmPanningHeight$VH;
-    }
-    public static int dmPanningHeight$get(MemorySegment seg) {
-        return (int)_devicemodeA.dmPanningHeight$VH.get(seg);
-    }
-    public static void dmPanningHeight$set( MemorySegment seg, int x) {
-        _devicemodeA.dmPanningHeight$VH.set(seg, x);
-    }
-    public static int dmPanningHeight$get(MemorySegment seg, long index) {
-        return (int)_devicemodeA.dmPanningHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dmPanningHeight$set(MemorySegment seg, long index, int x) {
-        _devicemodeA.dmPanningHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("dmDeviceName"),
+        wgl_h.C_SHORT.withName("dmSpecVersion"),
+        wgl_h.C_SHORT.withName("dmDriverVersion"),
+        wgl_h.C_SHORT.withName("dmSize"),
+        wgl_h.C_SHORT.withName("dmDriverExtra"),
+        wgl_h.C_LONG.withName("dmFields"),
+        MemoryLayout.unionLayout(
+            MemoryLayout.structLayout(
+                wgl_h.C_SHORT.withName("dmOrientation"),
+                wgl_h.C_SHORT.withName("dmPaperSize"),
+                wgl_h.C_SHORT.withName("dmPaperLength"),
+                wgl_h.C_SHORT.withName("dmPaperWidth"),
+                wgl_h.C_SHORT.withName("dmScale"),
+                wgl_h.C_SHORT.withName("dmCopies"),
+                wgl_h.C_SHORT.withName("dmDefaultSource"),
+                wgl_h.C_SHORT.withName("dmPrintQuality")
+            ).withName("$anon$2204:7"),
+            MemoryLayout.structLayout(
+                _POINTL.layout().withName("dmPosition"),
+                wgl_h.C_LONG.withName("dmDisplayOrientation"),
+                wgl_h.C_LONG.withName("dmDisplayFixedOutput")
+            ).withName("$anon$2215:7")
+        ).withName("$anon$2202:5"),
+        wgl_h.C_SHORT.withName("dmColor"),
+        wgl_h.C_SHORT.withName("dmDuplex"),
+        wgl_h.C_SHORT.withName("dmYResolution"),
+        wgl_h.C_SHORT.withName("dmTTOption"),
+        wgl_h.C_SHORT.withName("dmCollate"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("dmFormName"),
+        wgl_h.C_SHORT.withName("dmLogPixels"),
+        wgl_h.C_LONG.withName("dmBitsPerPel"),
+        wgl_h.C_LONG.withName("dmPelsWidth"),
+        wgl_h.C_LONG.withName("dmPelsHeight"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("dmDisplayFlags"),
+            wgl_h.C_LONG.withName("dmNup")
+        ).withName("$anon$2231:5"),
+        wgl_h.C_LONG.withName("dmDisplayFrequency"),
+        wgl_h.C_LONG.withName("dmICMMethod"),
+        wgl_h.C_LONG.withName("dmICMIntent"),
+        wgl_h.C_LONG.withName("dmMediaType"),
+        wgl_h.C_LONG.withName("dmDitherType"),
+        wgl_h.C_LONG.withName("dmReserved1"),
+        wgl_h.C_LONG.withName("dmReserved2"),
+        wgl_h.C_LONG.withName("dmPanningWidth"),
+        wgl_h.C_LONG.withName("dmPanningHeight")
+    ).withName("_devicemodeA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout dmDeviceName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("dmDeviceName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static final SequenceLayout dmDeviceName$layout() {
+        return dmDeviceName$LAYOUT;
+    }
+
+    private static final long dmDeviceName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static final long dmDeviceName$offset() {
+        return dmDeviceName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static MemorySegment dmDeviceName(MemorySegment struct) {
+        return struct.asSlice(dmDeviceName$OFFSET, dmDeviceName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static void dmDeviceName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dmDeviceName$OFFSET, dmDeviceName$LAYOUT.byteSize());
+    }
+
+    private static long[] dmDeviceName$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static long[] dmDeviceName$dimensions() {
+        return dmDeviceName$DIMS;
+    }
+    private static final VarHandle dmDeviceName$ELEM_HANDLE = dmDeviceName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static byte dmDeviceName(MemorySegment struct, long index0) {
+        return (byte)dmDeviceName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE dmDeviceName[32]
+     * }
+     */
+    public static void dmDeviceName(MemorySegment struct, long index0, byte fieldValue) {
+        dmDeviceName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfShort dmSpecVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmSpecVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD dmSpecVersion
+     * }
+     */
+    public static final OfShort dmSpecVersion$layout() {
+        return dmSpecVersion$LAYOUT;
+    }
+
+    private static final long dmSpecVersion$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD dmSpecVersion
+     * }
+     */
+    public static final long dmSpecVersion$offset() {
+        return dmSpecVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD dmSpecVersion
+     * }
+     */
+    public static short dmSpecVersion(MemorySegment struct) {
+        return struct.get(dmSpecVersion$LAYOUT, dmSpecVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD dmSpecVersion
+     * }
+     */
+    public static void dmSpecVersion(MemorySegment struct, short fieldValue) {
+        struct.set(dmSpecVersion$LAYOUT, dmSpecVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmDriverVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmDriverVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD dmDriverVersion
+     * }
+     */
+    public static final OfShort dmDriverVersion$layout() {
+        return dmDriverVersion$LAYOUT;
+    }
+
+    private static final long dmDriverVersion$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD dmDriverVersion
+     * }
+     */
+    public static final long dmDriverVersion$offset() {
+        return dmDriverVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD dmDriverVersion
+     * }
+     */
+    public static short dmDriverVersion(MemorySegment struct) {
+        return struct.get(dmDriverVersion$LAYOUT, dmDriverVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD dmDriverVersion
+     * }
+     */
+    public static void dmDriverVersion(MemorySegment struct, short fieldValue) {
+        struct.set(dmDriverVersion$LAYOUT, dmDriverVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD dmSize
+     * }
+     */
+    public static final OfShort dmSize$layout() {
+        return dmSize$LAYOUT;
+    }
+
+    private static final long dmSize$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD dmSize
+     * }
+     */
+    public static final long dmSize$offset() {
+        return dmSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD dmSize
+     * }
+     */
+    public static short dmSize(MemorySegment struct) {
+        return struct.get(dmSize$LAYOUT, dmSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD dmSize
+     * }
+     */
+    public static void dmSize(MemorySegment struct, short fieldValue) {
+        struct.set(dmSize$LAYOUT, dmSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmDriverExtra$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmDriverExtra"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD dmDriverExtra
+     * }
+     */
+    public static final OfShort dmDriverExtra$layout() {
+        return dmDriverExtra$LAYOUT;
+    }
+
+    private static final long dmDriverExtra$OFFSET = 38;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD dmDriverExtra
+     * }
+     */
+    public static final long dmDriverExtra$offset() {
+        return dmDriverExtra$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD dmDriverExtra
+     * }
+     */
+    public static short dmDriverExtra(MemorySegment struct) {
+        return struct.get(dmDriverExtra$LAYOUT, dmDriverExtra$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD dmDriverExtra
+     * }
+     */
+    public static void dmDriverExtra(MemorySegment struct, short fieldValue) {
+        struct.set(dmDriverExtra$LAYOUT, dmDriverExtra$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmFields$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmFields"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmFields
+     * }
+     */
+    public static final OfInt dmFields$layout() {
+        return dmFields$LAYOUT;
+    }
+
+    private static final long dmFields$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmFields
+     * }
+     */
+    public static final long dmFields$offset() {
+        return dmFields$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmFields
+     * }
+     */
+    public static int dmFields(MemorySegment struct) {
+        return struct.get(dmFields$LAYOUT, dmFields$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmFields
+     * }
+     */
+    public static void dmFields(MemorySegment struct, int fieldValue) {
+        struct.set(dmFields$LAYOUT, dmFields$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmOrientation$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmOrientation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmOrientation
+     * }
+     */
+    public static final OfShort dmOrientation$layout() {
+        return dmOrientation$LAYOUT;
+    }
+
+    private static final long dmOrientation$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmOrientation
+     * }
+     */
+    public static final long dmOrientation$offset() {
+        return dmOrientation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmOrientation
+     * }
+     */
+    public static short dmOrientation(MemorySegment struct) {
+        return struct.get(dmOrientation$LAYOUT, dmOrientation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmOrientation
+     * }
+     */
+    public static void dmOrientation(MemorySegment struct, short fieldValue) {
+        struct.set(dmOrientation$LAYOUT, dmOrientation$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmPaperSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmPaperSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmPaperSize
+     * }
+     */
+    public static final OfShort dmPaperSize$layout() {
+        return dmPaperSize$LAYOUT;
+    }
+
+    private static final long dmPaperSize$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmPaperSize
+     * }
+     */
+    public static final long dmPaperSize$offset() {
+        return dmPaperSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmPaperSize
+     * }
+     */
+    public static short dmPaperSize(MemorySegment struct) {
+        return struct.get(dmPaperSize$LAYOUT, dmPaperSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmPaperSize
+     * }
+     */
+    public static void dmPaperSize(MemorySegment struct, short fieldValue) {
+        struct.set(dmPaperSize$LAYOUT, dmPaperSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmPaperLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmPaperLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmPaperLength
+     * }
+     */
+    public static final OfShort dmPaperLength$layout() {
+        return dmPaperLength$LAYOUT;
+    }
+
+    private static final long dmPaperLength$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmPaperLength
+     * }
+     */
+    public static final long dmPaperLength$offset() {
+        return dmPaperLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmPaperLength
+     * }
+     */
+    public static short dmPaperLength(MemorySegment struct) {
+        return struct.get(dmPaperLength$LAYOUT, dmPaperLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmPaperLength
+     * }
+     */
+    public static void dmPaperLength(MemorySegment struct, short fieldValue) {
+        struct.set(dmPaperLength$LAYOUT, dmPaperLength$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmPaperWidth$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmPaperWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmPaperWidth
+     * }
+     */
+    public static final OfShort dmPaperWidth$layout() {
+        return dmPaperWidth$LAYOUT;
+    }
+
+    private static final long dmPaperWidth$OFFSET = 50;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmPaperWidth
+     * }
+     */
+    public static final long dmPaperWidth$offset() {
+        return dmPaperWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmPaperWidth
+     * }
+     */
+    public static short dmPaperWidth(MemorySegment struct) {
+        return struct.get(dmPaperWidth$LAYOUT, dmPaperWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmPaperWidth
+     * }
+     */
+    public static void dmPaperWidth(MemorySegment struct, short fieldValue) {
+        struct.set(dmPaperWidth$LAYOUT, dmPaperWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmScale$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmScale"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmScale
+     * }
+     */
+    public static final OfShort dmScale$layout() {
+        return dmScale$LAYOUT;
+    }
+
+    private static final long dmScale$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmScale
+     * }
+     */
+    public static final long dmScale$offset() {
+        return dmScale$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmScale
+     * }
+     */
+    public static short dmScale(MemorySegment struct) {
+        return struct.get(dmScale$LAYOUT, dmScale$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmScale
+     * }
+     */
+    public static void dmScale(MemorySegment struct, short fieldValue) {
+        struct.set(dmScale$LAYOUT, dmScale$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmCopies$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmCopies
+     * }
+     */
+    public static final OfShort dmCopies$layout() {
+        return dmCopies$LAYOUT;
+    }
+
+    private static final long dmCopies$OFFSET = 54;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmCopies
+     * }
+     */
+    public static final long dmCopies$offset() {
+        return dmCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmCopies
+     * }
+     */
+    public static short dmCopies(MemorySegment struct) {
+        return struct.get(dmCopies$LAYOUT, dmCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmCopies
+     * }
+     */
+    public static void dmCopies(MemorySegment struct, short fieldValue) {
+        struct.set(dmCopies$LAYOUT, dmCopies$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmDefaultSource$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmDefaultSource"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmDefaultSource
+     * }
+     */
+    public static final OfShort dmDefaultSource$layout() {
+        return dmDefaultSource$LAYOUT;
+    }
+
+    private static final long dmDefaultSource$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmDefaultSource
+     * }
+     */
+    public static final long dmDefaultSource$offset() {
+        return dmDefaultSource$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmDefaultSource
+     * }
+     */
+    public static short dmDefaultSource(MemorySegment struct) {
+        return struct.get(dmDefaultSource$LAYOUT, dmDefaultSource$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmDefaultSource
+     * }
+     */
+    public static void dmDefaultSource(MemorySegment struct, short fieldValue) {
+        struct.set(dmDefaultSource$LAYOUT, dmDefaultSource$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmPrintQuality$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2204:7"), groupElement("dmPrintQuality"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmPrintQuality
+     * }
+     */
+    public static final OfShort dmPrintQuality$layout() {
+        return dmPrintQuality$LAYOUT;
+    }
+
+    private static final long dmPrintQuality$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmPrintQuality
+     * }
+     */
+    public static final long dmPrintQuality$offset() {
+        return dmPrintQuality$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmPrintQuality
+     * }
+     */
+    public static short dmPrintQuality(MemorySegment struct) {
+        return struct.get(dmPrintQuality$LAYOUT, dmPrintQuality$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmPrintQuality
+     * }
+     */
+    public static void dmPrintQuality(MemorySegment struct, short fieldValue) {
+        struct.set(dmPrintQuality$LAYOUT, dmPrintQuality$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout dmPosition$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2215:7"), groupElement("dmPosition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTL dmPosition
+     * }
+     */
+    public static final GroupLayout dmPosition$layout() {
+        return dmPosition$LAYOUT;
+    }
+
+    private static final long dmPosition$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTL dmPosition
+     * }
+     */
+    public static final long dmPosition$offset() {
+        return dmPosition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTL dmPosition
+     * }
+     */
+    public static MemorySegment dmPosition(MemorySegment struct) {
+        return struct.asSlice(dmPosition$OFFSET, dmPosition$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTL dmPosition
+     * }
+     */
+    public static void dmPosition(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dmPosition$OFFSET, dmPosition$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dmDisplayOrientation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2215:7"), groupElement("dmDisplayOrientation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayOrientation
+     * }
+     */
+    public static final OfInt dmDisplayOrientation$layout() {
+        return dmDisplayOrientation$LAYOUT;
+    }
+
+    private static final long dmDisplayOrientation$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayOrientation
+     * }
+     */
+    public static final long dmDisplayOrientation$offset() {
+        return dmDisplayOrientation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayOrientation
+     * }
+     */
+    public static int dmDisplayOrientation(MemorySegment struct) {
+        return struct.get(dmDisplayOrientation$LAYOUT, dmDisplayOrientation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayOrientation
+     * }
+     */
+    public static void dmDisplayOrientation(MemorySegment struct, int fieldValue) {
+        struct.set(dmDisplayOrientation$LAYOUT, dmDisplayOrientation$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmDisplayFixedOutput$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2202:5"), groupElement("$anon$2215:7"), groupElement("dmDisplayFixedOutput"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFixedOutput
+     * }
+     */
+    public static final OfInt dmDisplayFixedOutput$layout() {
+        return dmDisplayFixedOutput$LAYOUT;
+    }
+
+    private static final long dmDisplayFixedOutput$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFixedOutput
+     * }
+     */
+    public static final long dmDisplayFixedOutput$offset() {
+        return dmDisplayFixedOutput$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFixedOutput
+     * }
+     */
+    public static int dmDisplayFixedOutput(MemorySegment struct) {
+        return struct.get(dmDisplayFixedOutput$LAYOUT, dmDisplayFixedOutput$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFixedOutput
+     * }
+     */
+    public static void dmDisplayFixedOutput(MemorySegment struct, int fieldValue) {
+        struct.set(dmDisplayFixedOutput$LAYOUT, dmDisplayFixedOutput$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmColor$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmColor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmColor
+     * }
+     */
+    public static final OfShort dmColor$layout() {
+        return dmColor$LAYOUT;
+    }
+
+    private static final long dmColor$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmColor
+     * }
+     */
+    public static final long dmColor$offset() {
+        return dmColor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmColor
+     * }
+     */
+    public static short dmColor(MemorySegment struct) {
+        return struct.get(dmColor$LAYOUT, dmColor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmColor
+     * }
+     */
+    public static void dmColor(MemorySegment struct, short fieldValue) {
+        struct.set(dmColor$LAYOUT, dmColor$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmDuplex$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmDuplex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmDuplex
+     * }
+     */
+    public static final OfShort dmDuplex$layout() {
+        return dmDuplex$LAYOUT;
+    }
+
+    private static final long dmDuplex$OFFSET = 62;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmDuplex
+     * }
+     */
+    public static final long dmDuplex$offset() {
+        return dmDuplex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmDuplex
+     * }
+     */
+    public static short dmDuplex(MemorySegment struct) {
+        return struct.get(dmDuplex$LAYOUT, dmDuplex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmDuplex
+     * }
+     */
+    public static void dmDuplex(MemorySegment struct, short fieldValue) {
+        struct.set(dmDuplex$LAYOUT, dmDuplex$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmYResolution$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmYResolution"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmYResolution
+     * }
+     */
+    public static final OfShort dmYResolution$layout() {
+        return dmYResolution$LAYOUT;
+    }
+
+    private static final long dmYResolution$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmYResolution
+     * }
+     */
+    public static final long dmYResolution$offset() {
+        return dmYResolution$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmYResolution
+     * }
+     */
+    public static short dmYResolution(MemorySegment struct) {
+        return struct.get(dmYResolution$LAYOUT, dmYResolution$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmYResolution
+     * }
+     */
+    public static void dmYResolution(MemorySegment struct, short fieldValue) {
+        struct.set(dmYResolution$LAYOUT, dmYResolution$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmTTOption$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmTTOption"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmTTOption
+     * }
+     */
+    public static final OfShort dmTTOption$layout() {
+        return dmTTOption$LAYOUT;
+    }
+
+    private static final long dmTTOption$OFFSET = 66;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmTTOption
+     * }
+     */
+    public static final long dmTTOption$offset() {
+        return dmTTOption$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmTTOption
+     * }
+     */
+    public static short dmTTOption(MemorySegment struct) {
+        return struct.get(dmTTOption$LAYOUT, dmTTOption$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmTTOption
+     * }
+     */
+    public static void dmTTOption(MemorySegment struct, short fieldValue) {
+        struct.set(dmTTOption$LAYOUT, dmTTOption$OFFSET, fieldValue);
+    }
+
+    private static final OfShort dmCollate$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmCollate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short dmCollate
+     * }
+     */
+    public static final OfShort dmCollate$layout() {
+        return dmCollate$LAYOUT;
+    }
+
+    private static final long dmCollate$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short dmCollate
+     * }
+     */
+    public static final long dmCollate$offset() {
+        return dmCollate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short dmCollate
+     * }
+     */
+    public static short dmCollate(MemorySegment struct) {
+        return struct.get(dmCollate$LAYOUT, dmCollate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short dmCollate
+     * }
+     */
+    public static void dmCollate(MemorySegment struct, short fieldValue) {
+        struct.set(dmCollate$LAYOUT, dmCollate$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout dmFormName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("dmFormName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static final SequenceLayout dmFormName$layout() {
+        return dmFormName$LAYOUT;
+    }
+
+    private static final long dmFormName$OFFSET = 70;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static final long dmFormName$offset() {
+        return dmFormName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static MemorySegment dmFormName(MemorySegment struct) {
+        return struct.asSlice(dmFormName$OFFSET, dmFormName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static void dmFormName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dmFormName$OFFSET, dmFormName$LAYOUT.byteSize());
+    }
+
+    private static long[] dmFormName$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static long[] dmFormName$dimensions() {
+        return dmFormName$DIMS;
+    }
+    private static final VarHandle dmFormName$ELEM_HANDLE = dmFormName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static byte dmFormName(MemorySegment struct, long index0) {
+        return (byte)dmFormName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE dmFormName[32]
+     * }
+     */
+    public static void dmFormName(MemorySegment struct, long index0, byte fieldValue) {
+        dmFormName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfShort dmLogPixels$LAYOUT = (OfShort)$LAYOUT.select(groupElement("dmLogPixels"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD dmLogPixels
+     * }
+     */
+    public static final OfShort dmLogPixels$layout() {
+        return dmLogPixels$LAYOUT;
+    }
+
+    private static final long dmLogPixels$OFFSET = 102;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD dmLogPixels
+     * }
+     */
+    public static final long dmLogPixels$offset() {
+        return dmLogPixels$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD dmLogPixels
+     * }
+     */
+    public static short dmLogPixels(MemorySegment struct) {
+        return struct.get(dmLogPixels$LAYOUT, dmLogPixels$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD dmLogPixels
+     * }
+     */
+    public static void dmLogPixels(MemorySegment struct, short fieldValue) {
+        struct.set(dmLogPixels$LAYOUT, dmLogPixels$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmBitsPerPel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmBitsPerPel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmBitsPerPel
+     * }
+     */
+    public static final OfInt dmBitsPerPel$layout() {
+        return dmBitsPerPel$LAYOUT;
+    }
+
+    private static final long dmBitsPerPel$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmBitsPerPel
+     * }
+     */
+    public static final long dmBitsPerPel$offset() {
+        return dmBitsPerPel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmBitsPerPel
+     * }
+     */
+    public static int dmBitsPerPel(MemorySegment struct) {
+        return struct.get(dmBitsPerPel$LAYOUT, dmBitsPerPel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmBitsPerPel
+     * }
+     */
+    public static void dmBitsPerPel(MemorySegment struct, int fieldValue) {
+        struct.set(dmBitsPerPel$LAYOUT, dmBitsPerPel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmPelsWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmPelsWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsWidth
+     * }
+     */
+    public static final OfInt dmPelsWidth$layout() {
+        return dmPelsWidth$LAYOUT;
+    }
+
+    private static final long dmPelsWidth$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsWidth
+     * }
+     */
+    public static final long dmPelsWidth$offset() {
+        return dmPelsWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsWidth
+     * }
+     */
+    public static int dmPelsWidth(MemorySegment struct) {
+        return struct.get(dmPelsWidth$LAYOUT, dmPelsWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsWidth
+     * }
+     */
+    public static void dmPelsWidth(MemorySegment struct, int fieldValue) {
+        struct.set(dmPelsWidth$LAYOUT, dmPelsWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmPelsHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmPelsHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsHeight
+     * }
+     */
+    public static final OfInt dmPelsHeight$layout() {
+        return dmPelsHeight$LAYOUT;
+    }
+
+    private static final long dmPelsHeight$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsHeight
+     * }
+     */
+    public static final long dmPelsHeight$offset() {
+        return dmPelsHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsHeight
+     * }
+     */
+    public static int dmPelsHeight(MemorySegment struct) {
+        return struct.get(dmPelsHeight$LAYOUT, dmPelsHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmPelsHeight
+     * }
+     */
+    public static void dmPelsHeight(MemorySegment struct, int fieldValue) {
+        struct.set(dmPelsHeight$LAYOUT, dmPelsHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmDisplayFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2231:5"), groupElement("dmDisplayFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFlags
+     * }
+     */
+    public static final OfInt dmDisplayFlags$layout() {
+        return dmDisplayFlags$LAYOUT;
+    }
+
+    private static final long dmDisplayFlags$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFlags
+     * }
+     */
+    public static final long dmDisplayFlags$offset() {
+        return dmDisplayFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFlags
+     * }
+     */
+    public static int dmDisplayFlags(MemorySegment struct) {
+        return struct.get(dmDisplayFlags$LAYOUT, dmDisplayFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFlags
+     * }
+     */
+    public static void dmDisplayFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dmDisplayFlags$LAYOUT, dmDisplayFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmNup$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$2231:5"), groupElement("dmNup"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmNup
+     * }
+     */
+    public static final OfInt dmNup$layout() {
+        return dmNup$LAYOUT;
+    }
+
+    private static final long dmNup$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmNup
+     * }
+     */
+    public static final long dmNup$offset() {
+        return dmNup$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmNup
+     * }
+     */
+    public static int dmNup(MemorySegment struct) {
+        return struct.get(dmNup$LAYOUT, dmNup$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmNup
+     * }
+     */
+    public static void dmNup(MemorySegment struct, int fieldValue) {
+        struct.set(dmNup$LAYOUT, dmNup$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmDisplayFrequency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmDisplayFrequency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFrequency
+     * }
+     */
+    public static final OfInt dmDisplayFrequency$layout() {
+        return dmDisplayFrequency$LAYOUT;
+    }
+
+    private static final long dmDisplayFrequency$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFrequency
+     * }
+     */
+    public static final long dmDisplayFrequency$offset() {
+        return dmDisplayFrequency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFrequency
+     * }
+     */
+    public static int dmDisplayFrequency(MemorySegment struct) {
+        return struct.get(dmDisplayFrequency$LAYOUT, dmDisplayFrequency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmDisplayFrequency
+     * }
+     */
+    public static void dmDisplayFrequency(MemorySegment struct, int fieldValue) {
+        struct.set(dmDisplayFrequency$LAYOUT, dmDisplayFrequency$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmICMMethod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmICMMethod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmICMMethod
+     * }
+     */
+    public static final OfInt dmICMMethod$layout() {
+        return dmICMMethod$LAYOUT;
+    }
+
+    private static final long dmICMMethod$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmICMMethod
+     * }
+     */
+    public static final long dmICMMethod$offset() {
+        return dmICMMethod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmICMMethod
+     * }
+     */
+    public static int dmICMMethod(MemorySegment struct) {
+        return struct.get(dmICMMethod$LAYOUT, dmICMMethod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmICMMethod
+     * }
+     */
+    public static void dmICMMethod(MemorySegment struct, int fieldValue) {
+        struct.set(dmICMMethod$LAYOUT, dmICMMethod$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmICMIntent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmICMIntent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmICMIntent
+     * }
+     */
+    public static final OfInt dmICMIntent$layout() {
+        return dmICMIntent$LAYOUT;
+    }
+
+    private static final long dmICMIntent$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmICMIntent
+     * }
+     */
+    public static final long dmICMIntent$offset() {
+        return dmICMIntent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmICMIntent
+     * }
+     */
+    public static int dmICMIntent(MemorySegment struct) {
+        return struct.get(dmICMIntent$LAYOUT, dmICMIntent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmICMIntent
+     * }
+     */
+    public static void dmICMIntent(MemorySegment struct, int fieldValue) {
+        struct.set(dmICMIntent$LAYOUT, dmICMIntent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmMediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmMediaType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmMediaType
+     * }
+     */
+    public static final OfInt dmMediaType$layout() {
+        return dmMediaType$LAYOUT;
+    }
+
+    private static final long dmMediaType$OFFSET = 132;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmMediaType
+     * }
+     */
+    public static final long dmMediaType$offset() {
+        return dmMediaType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmMediaType
+     * }
+     */
+    public static int dmMediaType(MemorySegment struct) {
+        return struct.get(dmMediaType$LAYOUT, dmMediaType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmMediaType
+     * }
+     */
+    public static void dmMediaType(MemorySegment struct, int fieldValue) {
+        struct.set(dmMediaType$LAYOUT, dmMediaType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmDitherType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmDitherType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmDitherType
+     * }
+     */
+    public static final OfInt dmDitherType$layout() {
+        return dmDitherType$LAYOUT;
+    }
+
+    private static final long dmDitherType$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmDitherType
+     * }
+     */
+    public static final long dmDitherType$offset() {
+        return dmDitherType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmDitherType
+     * }
+     */
+    public static int dmDitherType(MemorySegment struct) {
+        return struct.get(dmDitherType$LAYOUT, dmDitherType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmDitherType
+     * }
+     */
+    public static void dmDitherType(MemorySegment struct, int fieldValue) {
+        struct.set(dmDitherType$LAYOUT, dmDitherType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmReserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved1
+     * }
+     */
+    public static final OfInt dmReserved1$layout() {
+        return dmReserved1$LAYOUT;
+    }
+
+    private static final long dmReserved1$OFFSET = 140;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved1
+     * }
+     */
+    public static final long dmReserved1$offset() {
+        return dmReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved1
+     * }
+     */
+    public static int dmReserved1(MemorySegment struct) {
+        return struct.get(dmReserved1$LAYOUT, dmReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved1
+     * }
+     */
+    public static void dmReserved1(MemorySegment struct, int fieldValue) {
+        struct.set(dmReserved1$LAYOUT, dmReserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmReserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmReserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved2
+     * }
+     */
+    public static final OfInt dmReserved2$layout() {
+        return dmReserved2$LAYOUT;
+    }
+
+    private static final long dmReserved2$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved2
+     * }
+     */
+    public static final long dmReserved2$offset() {
+        return dmReserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved2
+     * }
+     */
+    public static int dmReserved2(MemorySegment struct) {
+        return struct.get(dmReserved2$LAYOUT, dmReserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmReserved2
+     * }
+     */
+    public static void dmReserved2(MemorySegment struct, int fieldValue) {
+        struct.set(dmReserved2$LAYOUT, dmReserved2$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmPanningWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmPanningWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningWidth
+     * }
+     */
+    public static final OfInt dmPanningWidth$layout() {
+        return dmPanningWidth$LAYOUT;
+    }
+
+    private static final long dmPanningWidth$OFFSET = 148;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningWidth
+     * }
+     */
+    public static final long dmPanningWidth$offset() {
+        return dmPanningWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningWidth
+     * }
+     */
+    public static int dmPanningWidth(MemorySegment struct) {
+        return struct.get(dmPanningWidth$LAYOUT, dmPanningWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningWidth
+     * }
+     */
+    public static void dmPanningWidth(MemorySegment struct, int fieldValue) {
+        struct.set(dmPanningWidth$LAYOUT, dmPanningWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dmPanningHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dmPanningHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningHeight
+     * }
+     */
+    public static final OfInt dmPanningHeight$layout() {
+        return dmPanningHeight$LAYOUT;
+    }
+
+    private static final long dmPanningHeight$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningHeight
+     * }
+     */
+    public static final long dmPanningHeight$offset() {
+        return dmPanningHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningHeight
+     * }
+     */
+    public static int dmPanningHeight(MemorySegment struct) {
+        return struct.get(dmPanningHeight$LAYOUT, dmPanningHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dmPanningHeight
+     * }
+     */
+    public static void dmPanningHeight(MemorySegment struct, int fieldValue) {
+        struct.set(dmPanningHeight$LAYOUT, dmPanningHeight$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

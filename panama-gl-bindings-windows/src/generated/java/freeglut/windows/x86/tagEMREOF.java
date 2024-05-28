@@ -2,82 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMREOF {
+ *     EMR emr;
+ *     DWORD nPalEntries;
+ *     DWORD offPalEntries;
+ *     DWORD nSizeLast;
+ * }
+ * }
+ */
 public class tagEMREOF {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        Constants$root.C_LONG$LAYOUT.withName("nPalEntries"),
-        Constants$root.C_LONG$LAYOUT.withName("offPalEntries"),
-        Constants$root.C_LONG$LAYOUT.withName("nSizeLast")
-    ).withName("tagEMREOF");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMREOF.$struct$LAYOUT;
+    tagEMREOF() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle nPalEntries$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nPalEntries"));
-    public static VarHandle nPalEntries$VH() {
-        return tagEMREOF.nPalEntries$VH;
-    }
-    public static int nPalEntries$get(MemorySegment seg) {
-        return (int)tagEMREOF.nPalEntries$VH.get(seg);
-    }
-    public static void nPalEntries$set( MemorySegment seg, int x) {
-        tagEMREOF.nPalEntries$VH.set(seg, x);
-    }
-    public static int nPalEntries$get(MemorySegment seg, long index) {
-        return (int)tagEMREOF.nPalEntries$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nPalEntries$set(MemorySegment seg, long index, int x) {
-        tagEMREOF.nPalEntries$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle offPalEntries$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("offPalEntries"));
-    public static VarHandle offPalEntries$VH() {
-        return tagEMREOF.offPalEntries$VH;
-    }
-    public static int offPalEntries$get(MemorySegment seg) {
-        return (int)tagEMREOF.offPalEntries$VH.get(seg);
-    }
-    public static void offPalEntries$set( MemorySegment seg, int x) {
-        tagEMREOF.offPalEntries$VH.set(seg, x);
-    }
-    public static int offPalEntries$get(MemorySegment seg, long index) {
-        return (int)tagEMREOF.offPalEntries$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void offPalEntries$set(MemorySegment seg, long index, int x) {
-        tagEMREOF.offPalEntries$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nSizeLast$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nSizeLast"));
-    public static VarHandle nSizeLast$VH() {
-        return tagEMREOF.nSizeLast$VH;
-    }
-    public static int nSizeLast$get(MemorySegment seg) {
-        return (int)tagEMREOF.nSizeLast$VH.get(seg);
-    }
-    public static void nSizeLast$set( MemorySegment seg, int x) {
-        tagEMREOF.nSizeLast$VH.set(seg, x);
-    }
-    public static int nSizeLast$get(MemorySegment seg, long index) {
-        return (int)tagEMREOF.nSizeLast$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nSizeLast$set(MemorySegment seg, long index, int x) {
-        tagEMREOF.nSizeLast$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        freeglut_h.C_LONG.withName("nPalEntries"),
+        freeglut_h.C_LONG.withName("offPalEntries"),
+        freeglut_h.C_LONG.withName("nSizeLast")
+    ).withName("tagEMREOF");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final OfInt nPalEntries$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nPalEntries"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nPalEntries
+     * }
+     */
+    public static final OfInt nPalEntries$layout() {
+        return nPalEntries$LAYOUT;
+    }
+
+    private static final long nPalEntries$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nPalEntries
+     * }
+     */
+    public static final long nPalEntries$offset() {
+        return nPalEntries$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nPalEntries
+     * }
+     */
+    public static int nPalEntries(MemorySegment struct) {
+        return struct.get(nPalEntries$LAYOUT, nPalEntries$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nPalEntries
+     * }
+     */
+    public static void nPalEntries(MemorySegment struct, int fieldValue) {
+        struct.set(nPalEntries$LAYOUT, nPalEntries$OFFSET, fieldValue);
+    }
+
+    private static final OfInt offPalEntries$LAYOUT = (OfInt)$LAYOUT.select(groupElement("offPalEntries"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD offPalEntries
+     * }
+     */
+    public static final OfInt offPalEntries$layout() {
+        return offPalEntries$LAYOUT;
+    }
+
+    private static final long offPalEntries$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD offPalEntries
+     * }
+     */
+    public static final long offPalEntries$offset() {
+        return offPalEntries$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD offPalEntries
+     * }
+     */
+    public static int offPalEntries(MemorySegment struct) {
+        return struct.get(offPalEntries$LAYOUT, offPalEntries$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD offPalEntries
+     * }
+     */
+    public static void offPalEntries(MemorySegment struct, int fieldValue) {
+        struct.set(offPalEntries$LAYOUT, offPalEntries$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nSizeLast$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nSizeLast"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nSizeLast
+     * }
+     */
+    public static final OfInt nSizeLast$layout() {
+        return nSizeLast$LAYOUT;
+    }
+
+    private static final long nSizeLast$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nSizeLast
+     * }
+     */
+    public static final long nSizeLast$offset() {
+        return nSizeLast$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nSizeLast
+     * }
+     */
+    public static int nSizeLast(MemorySegment struct) {
+        return struct.get(nSizeLast$LAYOUT, nSizeLast$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nSizeLast
+     * }
+     */
+    public static void nSizeLast(MemorySegment struct, int fieldValue) {
+        struct.set(nSizeLast$LAYOUT, nSizeLast$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

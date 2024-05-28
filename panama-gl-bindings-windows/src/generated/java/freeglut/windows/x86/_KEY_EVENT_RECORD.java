@@ -2,165 +2,530 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _KEY_EVENT_RECORD {
+ *     BOOL bKeyDown;
+ *     WORD wRepeatCount;
+ *     WORD wVirtualKeyCode;
+ *     WORD wVirtualScanCode;
+ *     union {
+ *         WCHAR UnicodeChar;
+ *         CHAR AsciiChar;
+ *     } uChar;
+ *     DWORD dwControlKeyState;
+ * }
+ * }
+ */
 public class _KEY_EVENT_RECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("bKeyDown"),
-        Constants$root.C_SHORT$LAYOUT.withName("wRepeatCount"),
-        Constants$root.C_SHORT$LAYOUT.withName("wVirtualKeyCode"),
-        Constants$root.C_SHORT$LAYOUT.withName("wVirtualScanCode"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-            Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-        ).withName("uChar"),
-        Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState")
+    _KEY_EVENT_RECORD() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("bKeyDown"),
+        freeglut_h.C_SHORT.withName("wRepeatCount"),
+        freeglut_h.C_SHORT.withName("wVirtualKeyCode"),
+        freeglut_h.C_SHORT.withName("wVirtualScanCode"),
+        _KEY_EVENT_RECORD.uChar.layout().withName("uChar"),
+        freeglut_h.C_LONG.withName("dwControlKeyState")
     ).withName("_KEY_EVENT_RECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _KEY_EVENT_RECORD.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle bKeyDown$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bKeyDown"));
-    public static VarHandle bKeyDown$VH() {
-        return _KEY_EVENT_RECORD.bKeyDown$VH;
+
+    private static final OfInt bKeyDown$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bKeyDown"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL bKeyDown
+     * }
+     */
+    public static final OfInt bKeyDown$layout() {
+        return bKeyDown$LAYOUT;
     }
-    public static int bKeyDown$get(MemorySegment seg) {
-        return (int)_KEY_EVENT_RECORD.bKeyDown$VH.get(seg);
+
+    private static final long bKeyDown$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL bKeyDown
+     * }
+     */
+    public static final long bKeyDown$offset() {
+        return bKeyDown$OFFSET;
     }
-    public static void bKeyDown$set( MemorySegment seg, int x) {
-        _KEY_EVENT_RECORD.bKeyDown$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL bKeyDown
+     * }
+     */
+    public static int bKeyDown(MemorySegment struct) {
+        return struct.get(bKeyDown$LAYOUT, bKeyDown$OFFSET);
     }
-    public static int bKeyDown$get(MemorySegment seg, long index) {
-        return (int)_KEY_EVENT_RECORD.bKeyDown$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL bKeyDown
+     * }
+     */
+    public static void bKeyDown(MemorySegment struct, int fieldValue) {
+        struct.set(bKeyDown$LAYOUT, bKeyDown$OFFSET, fieldValue);
     }
-    public static void bKeyDown$set(MemorySegment seg, long index, int x) {
-        _KEY_EVENT_RECORD.bKeyDown$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort wRepeatCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wRepeatCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wRepeatCount
+     * }
+     */
+    public static final OfShort wRepeatCount$layout() {
+        return wRepeatCount$LAYOUT;
     }
-    static final VarHandle wRepeatCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wRepeatCount"));
-    public static VarHandle wRepeatCount$VH() {
-        return _KEY_EVENT_RECORD.wRepeatCount$VH;
+
+    private static final long wRepeatCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wRepeatCount
+     * }
+     */
+    public static final long wRepeatCount$offset() {
+        return wRepeatCount$OFFSET;
     }
-    public static short wRepeatCount$get(MemorySegment seg) {
-        return (short)_KEY_EVENT_RECORD.wRepeatCount$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wRepeatCount
+     * }
+     */
+    public static short wRepeatCount(MemorySegment struct) {
+        return struct.get(wRepeatCount$LAYOUT, wRepeatCount$OFFSET);
     }
-    public static void wRepeatCount$set( MemorySegment seg, short x) {
-        _KEY_EVENT_RECORD.wRepeatCount$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wRepeatCount
+     * }
+     */
+    public static void wRepeatCount(MemorySegment struct, short fieldValue) {
+        struct.set(wRepeatCount$LAYOUT, wRepeatCount$OFFSET, fieldValue);
     }
-    public static short wRepeatCount$get(MemorySegment seg, long index) {
-        return (short)_KEY_EVENT_RECORD.wRepeatCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort wVirtualKeyCode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wVirtualKeyCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wVirtualKeyCode
+     * }
+     */
+    public static final OfShort wVirtualKeyCode$layout() {
+        return wVirtualKeyCode$LAYOUT;
     }
-    public static void wRepeatCount$set(MemorySegment seg, long index, short x) {
-        _KEY_EVENT_RECORD.wRepeatCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long wVirtualKeyCode$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wVirtualKeyCode
+     * }
+     */
+    public static final long wVirtualKeyCode$offset() {
+        return wVirtualKeyCode$OFFSET;
     }
-    static final VarHandle wVirtualKeyCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wVirtualKeyCode"));
-    public static VarHandle wVirtualKeyCode$VH() {
-        return _KEY_EVENT_RECORD.wVirtualKeyCode$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wVirtualKeyCode
+     * }
+     */
+    public static short wVirtualKeyCode(MemorySegment struct) {
+        return struct.get(wVirtualKeyCode$LAYOUT, wVirtualKeyCode$OFFSET);
     }
-    public static short wVirtualKeyCode$get(MemorySegment seg) {
-        return (short)_KEY_EVENT_RECORD.wVirtualKeyCode$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wVirtualKeyCode
+     * }
+     */
+    public static void wVirtualKeyCode(MemorySegment struct, short fieldValue) {
+        struct.set(wVirtualKeyCode$LAYOUT, wVirtualKeyCode$OFFSET, fieldValue);
     }
-    public static void wVirtualKeyCode$set( MemorySegment seg, short x) {
-        _KEY_EVENT_RECORD.wVirtualKeyCode$VH.set(seg, x);
+
+    private static final OfShort wVirtualScanCode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wVirtualScanCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wVirtualScanCode
+     * }
+     */
+    public static final OfShort wVirtualScanCode$layout() {
+        return wVirtualScanCode$LAYOUT;
     }
-    public static short wVirtualKeyCode$get(MemorySegment seg, long index) {
-        return (short)_KEY_EVENT_RECORD.wVirtualKeyCode$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long wVirtualScanCode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wVirtualScanCode
+     * }
+     */
+    public static final long wVirtualScanCode$offset() {
+        return wVirtualScanCode$OFFSET;
     }
-    public static void wVirtualKeyCode$set(MemorySegment seg, long index, short x) {
-        _KEY_EVENT_RECORD.wVirtualKeyCode$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wVirtualScanCode
+     * }
+     */
+    public static short wVirtualScanCode(MemorySegment struct) {
+        return struct.get(wVirtualScanCode$LAYOUT, wVirtualScanCode$OFFSET);
     }
-    static final VarHandle wVirtualScanCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wVirtualScanCode"));
-    public static VarHandle wVirtualScanCode$VH() {
-        return _KEY_EVENT_RECORD.wVirtualScanCode$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wVirtualScanCode
+     * }
+     */
+    public static void wVirtualScanCode(MemorySegment struct, short fieldValue) {
+        struct.set(wVirtualScanCode$LAYOUT, wVirtualScanCode$OFFSET, fieldValue);
     }
-    public static short wVirtualScanCode$get(MemorySegment seg) {
-        return (short)_KEY_EVENT_RECORD.wVirtualScanCode$VH.get(seg);
-    }
-    public static void wVirtualScanCode$set( MemorySegment seg, short x) {
-        _KEY_EVENT_RECORD.wVirtualScanCode$VH.set(seg, x);
-    }
-    public static short wVirtualScanCode$get(MemorySegment seg, long index) {
-        return (short)_KEY_EVENT_RECORD.wVirtualScanCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wVirtualScanCode$set(MemorySegment seg, long index, short x) {
-        _KEY_EVENT_RECORD.wVirtualScanCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * }
+     * }
+     */
     public static class uChar {
 
-        static final  GroupLayout uChar$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-            Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return uChar.uChar$union$LAYOUT;
+        uChar() {
+            // Should not be called directly
         }
-        static final VarHandle UnicodeChar$VH = uChar$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnicodeChar"));
-        public static VarHandle UnicodeChar$VH() {
-            return uChar.UnicodeChar$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            freeglut_h.C_SHORT.withName("UnicodeChar"),
+            freeglut_h.C_CHAR.withName("AsciiChar")
+        ).withName("$anon$53:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static short UnicodeChar$get(MemorySegment seg) {
-            return (short)uChar.UnicodeChar$VH.get(seg);
+
+        private static final OfShort UnicodeChar$LAYOUT = (OfShort)$LAYOUT.select(groupElement("UnicodeChar"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static final OfShort UnicodeChar$layout() {
+            return UnicodeChar$LAYOUT;
         }
-        public static void UnicodeChar$set( MemorySegment seg, short x) {
-            uChar.UnicodeChar$VH.set(seg, x);
+
+        private static final long UnicodeChar$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static final long UnicodeChar$offset() {
+            return UnicodeChar$OFFSET;
         }
-        public static short UnicodeChar$get(MemorySegment seg, long index) {
-            return (short)uChar.UnicodeChar$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static short UnicodeChar(MemorySegment union) {
+            return union.get(UnicodeChar$LAYOUT, UnicodeChar$OFFSET);
         }
-        public static void UnicodeChar$set(MemorySegment seg, long index, short x) {
-            uChar.UnicodeChar$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static void UnicodeChar(MemorySegment union, short fieldValue) {
+            union.set(UnicodeChar$LAYOUT, UnicodeChar$OFFSET, fieldValue);
         }
-        static final VarHandle AsciiChar$VH = uChar$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsciiChar"));
-        public static VarHandle AsciiChar$VH() {
-            return uChar.AsciiChar$VH;
+
+        private static final OfByte AsciiChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AsciiChar"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static final OfByte AsciiChar$layout() {
+            return AsciiChar$LAYOUT;
         }
-        public static byte AsciiChar$get(MemorySegment seg) {
-            return (byte)uChar.AsciiChar$VH.get(seg);
+
+        private static final long AsciiChar$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static final long AsciiChar$offset() {
+            return AsciiChar$OFFSET;
         }
-        public static void AsciiChar$set( MemorySegment seg, byte x) {
-            uChar.AsciiChar$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static byte AsciiChar(MemorySegment union) {
+            return union.get(AsciiChar$LAYOUT, AsciiChar$OFFSET);
         }
-        public static byte AsciiChar$get(MemorySegment seg, long index) {
-            return (byte)uChar.AsciiChar$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static void AsciiChar(MemorySegment union, byte fieldValue) {
+            union.set(AsciiChar$LAYOUT, AsciiChar$OFFSET, fieldValue);
         }
-        public static void AsciiChar$set(MemorySegment seg, long index, byte x) {
-            uChar.AsciiChar$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment uChar$slice(MemorySegment seg) {
-        return seg.asSlice(10, 2);
+    private static final GroupLayout uChar$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("uChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } uChar
+     * }
+     */
+    public static final GroupLayout uChar$layout() {
+        return uChar$LAYOUT;
     }
-    static final VarHandle dwControlKeyState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwControlKeyState"));
-    public static VarHandle dwControlKeyState$VH() {
-        return _KEY_EVENT_RECORD.dwControlKeyState$VH;
+
+    private static final long uChar$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } uChar
+     * }
+     */
+    public static final long uChar$offset() {
+        return uChar$OFFSET;
     }
-    public static int dwControlKeyState$get(MemorySegment seg) {
-        return (int)_KEY_EVENT_RECORD.dwControlKeyState$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } uChar
+     * }
+     */
+    public static MemorySegment uChar(MemorySegment struct) {
+        return struct.asSlice(uChar$OFFSET, uChar$LAYOUT.byteSize());
     }
-    public static void dwControlKeyState$set( MemorySegment seg, int x) {
-        _KEY_EVENT_RECORD.dwControlKeyState$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } uChar
+     * }
+     */
+    public static void uChar(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, uChar$OFFSET, uChar$LAYOUT.byteSize());
     }
-    public static int dwControlKeyState$get(MemorySegment seg, long index) {
-        return (int)_KEY_EVENT_RECORD.dwControlKeyState$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt dwControlKeyState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwControlKeyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static final OfInt dwControlKeyState$layout() {
+        return dwControlKeyState$LAYOUT;
     }
-    public static void dwControlKeyState$set(MemorySegment seg, long index, int x) {
-        _KEY_EVENT_RECORD.dwControlKeyState$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long dwControlKeyState$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static final long dwControlKeyState$offset() {
+        return dwControlKeyState$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static int dwControlKeyState(MemorySegment struct) {
+        return struct.get(dwControlKeyState$LAYOUT, dwControlKeyState$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static void dwControlKeyState(MemorySegment struct, int fieldValue) {
+        struct.set(dwControlKeyState$LAYOUT, dwControlKeyState$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

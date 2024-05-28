@@ -2,13 +2,47 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagPDEXA {
+ *     DWORD lStructSize;
+ *     HWND hwndOwner;
+ *     HGLOBAL hDevMode;
+ *     HGLOBAL hDevNames;
+ *     HDC hDC;
+ *     DWORD Flags;
+ *     DWORD Flags2;
+ *     DWORD ExclusionFlags;
+ *     DWORD nPageRanges;
+ *     DWORD nMaxPageRanges;
+ *     LPPRINTPAGERANGE lpPageRanges;
+ *     DWORD nMinPage;
+ *     DWORD nMaxPage;
+ *     DWORD nCopies;
+ *     HINSTANCE hInstance;
+ *     LPCSTR lpPrintTemplateName;
+ *     LPUNKNOWN lpCallback;
+ *     DWORD nPropertyPages;
+ *     HPROPSHEETPAGE *lphPropertyPages;
+ *     DWORD nStartPage;
+ *     DWORD dwResultAction;
+ * } PRINTDLGEXA
+ * }
+ */
 public class PRINTDLGEXA extends tagPDEXA {
 
+    PRINTDLGEXA() {
+        // Should not be called directly
+    }
 }
-
 

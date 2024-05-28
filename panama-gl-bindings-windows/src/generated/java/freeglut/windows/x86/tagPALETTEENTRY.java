@@ -2,92 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPALETTEENTRY {
+ *     BYTE peRed;
+ *     BYTE peGreen;
+ *     BYTE peBlue;
+ *     BYTE peFlags;
+ * }
+ * }
+ */
 public class tagPALETTEENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("peRed"),
-        Constants$root.C_CHAR$LAYOUT.withName("peGreen"),
-        Constants$root.C_CHAR$LAYOUT.withName("peBlue"),
-        Constants$root.C_CHAR$LAYOUT.withName("peFlags")
-    ).withName("tagPALETTEENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return tagPALETTEENTRY.$struct$LAYOUT;
+    tagPALETTEENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle peRed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("peRed"));
-    public static VarHandle peRed$VH() {
-        return tagPALETTEENTRY.peRed$VH;
-    }
-    public static byte peRed$get(MemorySegment seg) {
-        return (byte)tagPALETTEENTRY.peRed$VH.get(seg);
-    }
-    public static void peRed$set( MemorySegment seg, byte x) {
-        tagPALETTEENTRY.peRed$VH.set(seg, x);
-    }
-    public static byte peRed$get(MemorySegment seg, long index) {
-        return (byte)tagPALETTEENTRY.peRed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void peRed$set(MemorySegment seg, long index, byte x) {
-        tagPALETTEENTRY.peRed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle peGreen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("peGreen"));
-    public static VarHandle peGreen$VH() {
-        return tagPALETTEENTRY.peGreen$VH;
-    }
-    public static byte peGreen$get(MemorySegment seg) {
-        return (byte)tagPALETTEENTRY.peGreen$VH.get(seg);
-    }
-    public static void peGreen$set( MemorySegment seg, byte x) {
-        tagPALETTEENTRY.peGreen$VH.set(seg, x);
-    }
-    public static byte peGreen$get(MemorySegment seg, long index) {
-        return (byte)tagPALETTEENTRY.peGreen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void peGreen$set(MemorySegment seg, long index, byte x) {
-        tagPALETTEENTRY.peGreen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle peBlue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("peBlue"));
-    public static VarHandle peBlue$VH() {
-        return tagPALETTEENTRY.peBlue$VH;
-    }
-    public static byte peBlue$get(MemorySegment seg) {
-        return (byte)tagPALETTEENTRY.peBlue$VH.get(seg);
-    }
-    public static void peBlue$set( MemorySegment seg, byte x) {
-        tagPALETTEENTRY.peBlue$VH.set(seg, x);
-    }
-    public static byte peBlue$get(MemorySegment seg, long index) {
-        return (byte)tagPALETTEENTRY.peBlue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void peBlue$set(MemorySegment seg, long index, byte x) {
-        tagPALETTEENTRY.peBlue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle peFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("peFlags"));
-    public static VarHandle peFlags$VH() {
-        return tagPALETTEENTRY.peFlags$VH;
-    }
-    public static byte peFlags$get(MemorySegment seg) {
-        return (byte)tagPALETTEENTRY.peFlags$VH.get(seg);
-    }
-    public static void peFlags$set( MemorySegment seg, byte x) {
-        tagPALETTEENTRY.peFlags$VH.set(seg, x);
-    }
-    public static byte peFlags$get(MemorySegment seg, long index) {
-        return (byte)tagPALETTEENTRY.peFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void peFlags$set(MemorySegment seg, long index, byte x) {
-        tagPALETTEENTRY.peFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_CHAR.withName("peRed"),
+        freeglut_h.C_CHAR.withName("peGreen"),
+        freeglut_h.C_CHAR.withName("peBlue"),
+        freeglut_h.C_CHAR.withName("peFlags")
+    ).withName("tagPALETTEENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte peRed$LAYOUT = (OfByte)$LAYOUT.select(groupElement("peRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE peRed
+     * }
+     */
+    public static final OfByte peRed$layout() {
+        return peRed$LAYOUT;
+    }
+
+    private static final long peRed$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE peRed
+     * }
+     */
+    public static final long peRed$offset() {
+        return peRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE peRed
+     * }
+     */
+    public static byte peRed(MemorySegment struct) {
+        return struct.get(peRed$LAYOUT, peRed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE peRed
+     * }
+     */
+    public static void peRed(MemorySegment struct, byte fieldValue) {
+        struct.set(peRed$LAYOUT, peRed$OFFSET, fieldValue);
+    }
+
+    private static final OfByte peGreen$LAYOUT = (OfByte)$LAYOUT.select(groupElement("peGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE peGreen
+     * }
+     */
+    public static final OfByte peGreen$layout() {
+        return peGreen$LAYOUT;
+    }
+
+    private static final long peGreen$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE peGreen
+     * }
+     */
+    public static final long peGreen$offset() {
+        return peGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE peGreen
+     * }
+     */
+    public static byte peGreen(MemorySegment struct) {
+        return struct.get(peGreen$LAYOUT, peGreen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE peGreen
+     * }
+     */
+    public static void peGreen(MemorySegment struct, byte fieldValue) {
+        struct.set(peGreen$LAYOUT, peGreen$OFFSET, fieldValue);
+    }
+
+    private static final OfByte peBlue$LAYOUT = (OfByte)$LAYOUT.select(groupElement("peBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE peBlue
+     * }
+     */
+    public static final OfByte peBlue$layout() {
+        return peBlue$LAYOUT;
+    }
+
+    private static final long peBlue$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE peBlue
+     * }
+     */
+    public static final long peBlue$offset() {
+        return peBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE peBlue
+     * }
+     */
+    public static byte peBlue(MemorySegment struct) {
+        return struct.get(peBlue$LAYOUT, peBlue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE peBlue
+     * }
+     */
+    public static void peBlue(MemorySegment struct, byte fieldValue) {
+        struct.set(peBlue$LAYOUT, peBlue$OFFSET, fieldValue);
+    }
+
+    private static final OfByte peFlags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("peFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE peFlags
+     * }
+     */
+    public static final OfByte peFlags$layout() {
+        return peFlags$LAYOUT;
+    }
+
+    private static final long peFlags$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE peFlags
+     * }
+     */
+    public static final long peFlags$offset() {
+        return peFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE peFlags
+     * }
+     */
+    public static byte peFlags(MemorySegment struct) {
+        return struct.get(peFlags$LAYOUT, peFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE peFlags
+     * }
+     */
+    public static void peFlags(MemorySegment struct, byte fieldValue) {
+        struct.set(peFlags$LAYOUT, peFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

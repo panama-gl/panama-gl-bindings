@@ -2,272 +2,936 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union _RPC_ASYNC_NOTIFICATION_INFO {
+ *     struct {
+ *         PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+ *         HANDLE hThread;
+ *     } APC;
+ *     struct {
+ *         HANDLE hIOPort;
+ *         DWORD dwNumberOfBytesTransferred;
+ *         DWORD_PTR dwCompletionKey;
+ *         LPOVERLAPPED lpOverlapped;
+ *     } IOC;
+ *     struct {
+ *         HWND hWnd;
+ *         UINT Msg;
+ *     } HWND;
+ *     HANDLE hEvent;
+ *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+ * }
+ * }
+ */
 public class _RPC_ASYNC_NOTIFICATION_INFO {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("NotificationRoutine"),
-            Constants$root.C_POINTER$LAYOUT.withName("hThread")
-        ).withName("APC"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hIOPort"),
-            Constants$root.C_LONG$LAYOUT.withName("dwNumberOfBytesTransferred"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("dwCompletionKey"),
-            Constants$root.C_POINTER$LAYOUT.withName("lpOverlapped")
-        ).withName("IOC"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hWnd"),
-            Constants$root.C_LONG$LAYOUT.withName("Msg"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("HWND"),
-        Constants$root.C_POINTER$LAYOUT.withName("hEvent"),
-        Constants$root.C_POINTER$LAYOUT.withName("NotificationRoutine")
-    ).withName("_RPC_ASYNC_NOTIFICATION_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_ASYNC_NOTIFICATION_INFO.$union$LAYOUT;
+    _RPC_ASYNC_NOTIFICATION_INFO() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+        _RPC_ASYNC_NOTIFICATION_INFO.APC.layout().withName("APC"),
+        _RPC_ASYNC_NOTIFICATION_INFO.IOC.layout().withName("IOC"),
+        _RPC_ASYNC_NOTIFICATION_INFO.HWND.layout().withName("HWND"),
+        wgl_h.C_POINTER.withName("hEvent"),
+        wgl_h.C_POINTER.withName("NotificationRoutine")
+    ).withName("_RPC_ASYNC_NOTIFICATION_INFO");
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+     *     HANDLE hThread;
+     * }
+     * }
+     */
     public static class APC {
 
-        static final  GroupLayout APC$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("NotificationRoutine"),
-            Constants$root.C_POINTER$LAYOUT.withName("hThread")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return APC.APC$struct$LAYOUT;
+        APC() {
+            // Should not be called directly
         }
-        static final VarHandle NotificationRoutine$VH = APC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotificationRoutine"));
-        public static VarHandle NotificationRoutine$VH() {
-            return APC.NotificationRoutine$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_POINTER.withName("NotificationRoutine"),
+            wgl_h.C_POINTER.withName("hThread")
+        ).withName("$anon$106:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress NotificationRoutine$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)APC.NotificationRoutine$VH.get(seg);
+
+        private static final AddressLayout NotificationRoutine$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("NotificationRoutine"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+         * }
+         */
+        public static final AddressLayout NotificationRoutine$layout() {
+            return NotificationRoutine$LAYOUT;
         }
-        public static void NotificationRoutine$set( MemorySegment seg, MemoryAddress x) {
-            APC.NotificationRoutine$VH.set(seg, x);
+
+        private static final long NotificationRoutine$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+         * }
+         */
+        public static final long NotificationRoutine$offset() {
+            return NotificationRoutine$OFFSET;
         }
-        public static MemoryAddress NotificationRoutine$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)APC.NotificationRoutine$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+         * }
+         */
+        public static MemorySegment NotificationRoutine(MemorySegment struct) {
+            return struct.get(NotificationRoutine$LAYOUT, NotificationRoutine$OFFSET);
         }
-        public static void NotificationRoutine$set(MemorySegment seg, long index, MemoryAddress x) {
-            APC.NotificationRoutine$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+         * }
+         */
+        public static void NotificationRoutine(MemorySegment struct, MemorySegment fieldValue) {
+            struct.set(NotificationRoutine$LAYOUT, NotificationRoutine$OFFSET, fieldValue);
         }
-        public static PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine (MemorySegment segment, MemorySession session) {
-            return PFN_RPCNOTIFICATION_ROUTINE.ofAddress(NotificationRoutine$get(segment), session);
+
+        private static final AddressLayout hThread$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hThread"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * HANDLE hThread
+         * }
+         */
+        public static final AddressLayout hThread$layout() {
+            return hThread$LAYOUT;
         }
-        static final VarHandle hThread$VH = APC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hThread"));
-        public static VarHandle hThread$VH() {
-            return APC.hThread$VH;
+
+        private static final long hThread$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * HANDLE hThread
+         * }
+         */
+        public static final long hThread$offset() {
+            return hThread$OFFSET;
         }
-        public static MemoryAddress hThread$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)APC.hThread$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * HANDLE hThread
+         * }
+         */
+        public static MemorySegment hThread(MemorySegment struct) {
+            return struct.get(hThread$LAYOUT, hThread$OFFSET);
         }
-        public static void hThread$set( MemorySegment seg, MemoryAddress x) {
-            APC.hThread$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * HANDLE hThread
+         * }
+         */
+        public static void hThread(MemorySegment struct, MemorySegment fieldValue) {
+            struct.set(hThread$LAYOUT, hThread$OFFSET, fieldValue);
         }
-        public static MemoryAddress hThread$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)APC.hThread$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static void hThread$set(MemorySegment seg, long index, MemoryAddress x) {
-            APC.hThread$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment APC$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+    private static final GroupLayout APC$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("APC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+     *     HANDLE hThread;
+     * } APC
+     * }
+     */
+    public static final GroupLayout APC$layout() {
+        return APC$LAYOUT;
     }
+
+    private static final long APC$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+     *     HANDLE hThread;
+     * } APC
+     * }
+     */
+    public static final long APC$offset() {
+        return APC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+     *     HANDLE hThread;
+     * } APC
+     * }
+     */
+    public static MemorySegment APC(MemorySegment union) {
+        return union.asSlice(APC$OFFSET, APC$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+     *     HANDLE hThread;
+     * } APC
+     * }
+     */
+    public static void APC(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, APC$OFFSET, APC$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     HANDLE hIOPort;
+     *     DWORD dwNumberOfBytesTransferred;
+     *     DWORD_PTR dwCompletionKey;
+     *     LPOVERLAPPED lpOverlapped;
+     * }
+     * }
+     */
     public static class IOC {
 
-        static final  GroupLayout IOC$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hIOPort"),
-            Constants$root.C_LONG$LAYOUT.withName("dwNumberOfBytesTransferred"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("dwCompletionKey"),
-            Constants$root.C_POINTER$LAYOUT.withName("lpOverlapped")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return IOC.IOC$struct$LAYOUT;
+        IOC() {
+            // Should not be called directly
         }
-        static final VarHandle hIOPort$VH = IOC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hIOPort"));
-        public static VarHandle hIOPort$VH() {
-            return IOC.hIOPort$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_POINTER.withName("hIOPort"),
+            wgl_h.C_LONG.withName("dwNumberOfBytesTransferred"),
+            MemoryLayout.paddingLayout(4),
+            wgl_h.C_LONG_LONG.withName("dwCompletionKey"),
+            wgl_h.C_POINTER.withName("lpOverlapped")
+        ).withName("$anon$117:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress hIOPort$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)IOC.hIOPort$VH.get(seg);
+
+        private static final AddressLayout hIOPort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hIOPort"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * HANDLE hIOPort
+         * }
+         */
+        public static final AddressLayout hIOPort$layout() {
+            return hIOPort$LAYOUT;
         }
-        public static void hIOPort$set( MemorySegment seg, MemoryAddress x) {
-            IOC.hIOPort$VH.set(seg, x);
+
+        private static final long hIOPort$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * HANDLE hIOPort
+         * }
+         */
+        public static final long hIOPort$offset() {
+            return hIOPort$OFFSET;
         }
-        public static MemoryAddress hIOPort$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)IOC.hIOPort$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * HANDLE hIOPort
+         * }
+         */
+        public static MemorySegment hIOPort(MemorySegment struct) {
+            return struct.get(hIOPort$LAYOUT, hIOPort$OFFSET);
         }
-        public static void hIOPort$set(MemorySegment seg, long index, MemoryAddress x) {
-            IOC.hIOPort$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * HANDLE hIOPort
+         * }
+         */
+        public static void hIOPort(MemorySegment struct, MemorySegment fieldValue) {
+            struct.set(hIOPort$LAYOUT, hIOPort$OFFSET, fieldValue);
         }
-        static final VarHandle dwNumberOfBytesTransferred$VH = IOC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNumberOfBytesTransferred"));
-        public static VarHandle dwNumberOfBytesTransferred$VH() {
-            return IOC.dwNumberOfBytesTransferred$VH;
+
+        private static final OfInt dwNumberOfBytesTransferred$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNumberOfBytesTransferred"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD dwNumberOfBytesTransferred
+         * }
+         */
+        public static final OfInt dwNumberOfBytesTransferred$layout() {
+            return dwNumberOfBytesTransferred$LAYOUT;
         }
-        public static int dwNumberOfBytesTransferred$get(MemorySegment seg) {
-            return (int)IOC.dwNumberOfBytesTransferred$VH.get(seg);
+
+        private static final long dwNumberOfBytesTransferred$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD dwNumberOfBytesTransferred
+         * }
+         */
+        public static final long dwNumberOfBytesTransferred$offset() {
+            return dwNumberOfBytesTransferred$OFFSET;
         }
-        public static void dwNumberOfBytesTransferred$set( MemorySegment seg, int x) {
-            IOC.dwNumberOfBytesTransferred$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD dwNumberOfBytesTransferred
+         * }
+         */
+        public static int dwNumberOfBytesTransferred(MemorySegment struct) {
+            return struct.get(dwNumberOfBytesTransferred$LAYOUT, dwNumberOfBytesTransferred$OFFSET);
         }
-        public static int dwNumberOfBytesTransferred$get(MemorySegment seg, long index) {
-            return (int)IOC.dwNumberOfBytesTransferred$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD dwNumberOfBytesTransferred
+         * }
+         */
+        public static void dwNumberOfBytesTransferred(MemorySegment struct, int fieldValue) {
+            struct.set(dwNumberOfBytesTransferred$LAYOUT, dwNumberOfBytesTransferred$OFFSET, fieldValue);
         }
-        public static void dwNumberOfBytesTransferred$set(MemorySegment seg, long index, int x) {
-            IOC.dwNumberOfBytesTransferred$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfLong dwCompletionKey$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwCompletionKey"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD_PTR dwCompletionKey
+         * }
+         */
+        public static final OfLong dwCompletionKey$layout() {
+            return dwCompletionKey$LAYOUT;
         }
-        static final VarHandle dwCompletionKey$VH = IOC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCompletionKey"));
-        public static VarHandle dwCompletionKey$VH() {
-            return IOC.dwCompletionKey$VH;
+
+        private static final long dwCompletionKey$OFFSET = 16;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD_PTR dwCompletionKey
+         * }
+         */
+        public static final long dwCompletionKey$offset() {
+            return dwCompletionKey$OFFSET;
         }
-        public static long dwCompletionKey$get(MemorySegment seg) {
-            return (long)IOC.dwCompletionKey$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD_PTR dwCompletionKey
+         * }
+         */
+        public static long dwCompletionKey(MemorySegment struct) {
+            return struct.get(dwCompletionKey$LAYOUT, dwCompletionKey$OFFSET);
         }
-        public static void dwCompletionKey$set( MemorySegment seg, long x) {
-            IOC.dwCompletionKey$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD_PTR dwCompletionKey
+         * }
+         */
+        public static void dwCompletionKey(MemorySegment struct, long fieldValue) {
+            struct.set(dwCompletionKey$LAYOUT, dwCompletionKey$OFFSET, fieldValue);
         }
-        public static long dwCompletionKey$get(MemorySegment seg, long index) {
-            return (long)IOC.dwCompletionKey$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final AddressLayout lpOverlapped$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpOverlapped"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPOVERLAPPED lpOverlapped
+         * }
+         */
+        public static final AddressLayout lpOverlapped$layout() {
+            return lpOverlapped$LAYOUT;
         }
-        public static void dwCompletionKey$set(MemorySegment seg, long index, long x) {
-            IOC.dwCompletionKey$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long lpOverlapped$OFFSET = 24;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPOVERLAPPED lpOverlapped
+         * }
+         */
+        public static final long lpOverlapped$offset() {
+            return lpOverlapped$OFFSET;
         }
-        static final VarHandle lpOverlapped$VH = IOC$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpOverlapped"));
-        public static VarHandle lpOverlapped$VH() {
-            return IOC.lpOverlapped$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPOVERLAPPED lpOverlapped
+         * }
+         */
+        public static MemorySegment lpOverlapped(MemorySegment struct) {
+            return struct.get(lpOverlapped$LAYOUT, lpOverlapped$OFFSET);
         }
-        public static MemoryAddress lpOverlapped$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)IOC.lpOverlapped$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPOVERLAPPED lpOverlapped
+         * }
+         */
+        public static void lpOverlapped(MemorySegment struct, MemorySegment fieldValue) {
+            struct.set(lpOverlapped$LAYOUT, lpOverlapped$OFFSET, fieldValue);
         }
-        public static void lpOverlapped$set( MemorySegment seg, MemoryAddress x) {
-            IOC.lpOverlapped$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemoryAddress lpOverlapped$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)IOC.lpOverlapped$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void lpOverlapped$set(MemorySegment seg, long index, MemoryAddress x) {
-            IOC.lpOverlapped$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment IOC$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
+    private static final GroupLayout IOC$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("IOC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HANDLE hIOPort;
+     *     DWORD dwNumberOfBytesTransferred;
+     *     DWORD_PTR dwCompletionKey;
+     *     LPOVERLAPPED lpOverlapped;
+     * } IOC
+     * }
+     */
+    public static final GroupLayout IOC$layout() {
+        return IOC$LAYOUT;
     }
+
+    private static final long IOC$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HANDLE hIOPort;
+     *     DWORD dwNumberOfBytesTransferred;
+     *     DWORD_PTR dwCompletionKey;
+     *     LPOVERLAPPED lpOverlapped;
+     * } IOC
+     * }
+     */
+    public static final long IOC$offset() {
+        return IOC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HANDLE hIOPort;
+     *     DWORD dwNumberOfBytesTransferred;
+     *     DWORD_PTR dwCompletionKey;
+     *     LPOVERLAPPED lpOverlapped;
+     * } IOC
+     * }
+     */
+    public static MemorySegment IOC(MemorySegment union) {
+        return union.asSlice(IOC$OFFSET, IOC$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HANDLE hIOPort;
+     *     DWORD dwNumberOfBytesTransferred;
+     *     DWORD_PTR dwCompletionKey;
+     *     LPOVERLAPPED lpOverlapped;
+     * } IOC
+     * }
+     */
+    public static void IOC(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, IOC$OFFSET, IOC$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     HWND hWnd;
+     *     UINT Msg;
+     * }
+     * }
+     */
     public static class HWND {
 
-        static final  GroupLayout HWND$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hWnd"),
-            Constants$root.C_LONG$LAYOUT.withName("Msg"),
-            MemoryLayout.paddingLayout(32)
-        );
-        public static MemoryLayout $LAYOUT() {
-            return HWND.HWND$struct$LAYOUT;
+        HWND() {
+            // Should not be called directly
         }
-        static final VarHandle hWnd$VH = HWND$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hWnd"));
-        public static VarHandle hWnd$VH() {
-            return HWND.hWnd$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_POINTER.withName("hWnd"),
+            wgl_h.C_INT.withName("Msg"),
+            MemoryLayout.paddingLayout(4)
+        ).withName("$anon$129:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress hWnd$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)HWND.hWnd$VH.get(seg);
+
+        private static final AddressLayout hWnd$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hWnd"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * HWND hWnd
+         * }
+         */
+        public static final AddressLayout hWnd$layout() {
+            return hWnd$LAYOUT;
         }
-        public static void hWnd$set( MemorySegment seg, MemoryAddress x) {
-            HWND.hWnd$VH.set(seg, x);
+
+        private static final long hWnd$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * HWND hWnd
+         * }
+         */
+        public static final long hWnd$offset() {
+            return hWnd$OFFSET;
         }
-        public static MemoryAddress hWnd$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)HWND.hWnd$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * HWND hWnd
+         * }
+         */
+        public static MemorySegment hWnd(MemorySegment struct) {
+            return struct.get(hWnd$LAYOUT, hWnd$OFFSET);
         }
-        public static void hWnd$set(MemorySegment seg, long index, MemoryAddress x) {
-            HWND.hWnd$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * HWND hWnd
+         * }
+         */
+        public static void hWnd(MemorySegment struct, MemorySegment fieldValue) {
+            struct.set(hWnd$LAYOUT, hWnd$OFFSET, fieldValue);
         }
-        static final VarHandle Msg$VH = HWND$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Msg"));
-        public static VarHandle Msg$VH() {
-            return HWND.Msg$VH;
+
+        private static final OfInt Msg$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Msg"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * UINT Msg
+         * }
+         */
+        public static final OfInt Msg$layout() {
+            return Msg$LAYOUT;
         }
-        public static int Msg$get(MemorySegment seg) {
-            return (int)HWND.Msg$VH.get(seg);
+
+        private static final long Msg$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * UINT Msg
+         * }
+         */
+        public static final long Msg$offset() {
+            return Msg$OFFSET;
         }
-        public static void Msg$set( MemorySegment seg, int x) {
-            HWND.Msg$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * UINT Msg
+         * }
+         */
+        public static int Msg(MemorySegment struct) {
+            return struct.get(Msg$LAYOUT, Msg$OFFSET);
         }
-        public static int Msg$get(MemorySegment seg, long index) {
-            return (int)HWND.Msg$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * UINT Msg
+         * }
+         */
+        public static void Msg(MemorySegment struct, int fieldValue) {
+            struct.set(Msg$LAYOUT, Msg$OFFSET, fieldValue);
         }
-        public static void Msg$set(MemorySegment seg, long index, int x) {
-            HWND.Msg$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment HWND$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+    private static final GroupLayout HWND$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("HWND"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HWND hWnd;
+     *     UINT Msg;
+     * } HWND
+     * }
+     */
+    public static final GroupLayout HWND$layout() {
+        return HWND$LAYOUT;
     }
-    static final VarHandle hEvent$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hEvent"));
-    public static VarHandle hEvent$VH() {
-        return _RPC_ASYNC_NOTIFICATION_INFO.hEvent$VH;
+
+    private static final long HWND$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HWND hWnd;
+     *     UINT Msg;
+     * } HWND
+     * }
+     */
+    public static final long HWND$offset() {
+        return HWND$OFFSET;
     }
-    public static MemoryAddress hEvent$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_NOTIFICATION_INFO.hEvent$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HWND hWnd;
+     *     UINT Msg;
+     * } HWND
+     * }
+     */
+    public static MemorySegment HWND(MemorySegment union) {
+        return union.asSlice(HWND$OFFSET, HWND$LAYOUT.byteSize());
     }
-    public static void hEvent$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_ASYNC_NOTIFICATION_INFO.hEvent$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     HWND hWnd;
+     *     UINT Msg;
+     * } HWND
+     * }
+     */
+    public static void HWND(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, HWND$OFFSET, HWND$LAYOUT.byteSize());
     }
-    public static MemoryAddress hEvent$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_NOTIFICATION_INFO.hEvent$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout hEvent$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hEvent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hEvent
+     * }
+     */
+    public static final AddressLayout hEvent$layout() {
+        return hEvent$LAYOUT;
     }
-    public static void hEvent$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_ASYNC_NOTIFICATION_INFO.hEvent$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long hEvent$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hEvent
+     * }
+     */
+    public static final long hEvent$offset() {
+        return hEvent$OFFSET;
     }
-    static final VarHandle NotificationRoutine$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NotificationRoutine"));
-    public static VarHandle NotificationRoutine$VH() {
-        return _RPC_ASYNC_NOTIFICATION_INFO.NotificationRoutine$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hEvent
+     * }
+     */
+    public static MemorySegment hEvent(MemorySegment union) {
+        return union.get(hEvent$LAYOUT, hEvent$OFFSET);
     }
-    public static MemoryAddress NotificationRoutine$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_NOTIFICATION_INFO.NotificationRoutine$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hEvent
+     * }
+     */
+    public static void hEvent(MemorySegment union, MemorySegment fieldValue) {
+        union.set(hEvent$LAYOUT, hEvent$OFFSET, fieldValue);
     }
-    public static void NotificationRoutine$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_ASYNC_NOTIFICATION_INFO.NotificationRoutine$VH.set(seg, x);
+
+    private static final AddressLayout NotificationRoutine$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("NotificationRoutine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+     * }
+     */
+    public static final AddressLayout NotificationRoutine$layout() {
+        return NotificationRoutine$LAYOUT;
     }
-    public static MemoryAddress NotificationRoutine$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_ASYNC_NOTIFICATION_INFO.NotificationRoutine$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long NotificationRoutine$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+     * }
+     */
+    public static final long NotificationRoutine$offset() {
+        return NotificationRoutine$OFFSET;
     }
-    public static void NotificationRoutine$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_ASYNC_NOTIFICATION_INFO.NotificationRoutine$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+     * }
+     */
+    public static MemorySegment NotificationRoutine(MemorySegment union) {
+        return union.get(NotificationRoutine$LAYOUT, NotificationRoutine$OFFSET);
     }
-    public static PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine (MemorySegment segment, MemorySession session) {
-        return PFN_RPCNOTIFICATION_ROUTINE.ofAddress(NotificationRoutine$get(segment), session);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine
+     * }
+     */
+    public static void NotificationRoutine(MemorySegment union, MemorySegment fieldValue) {
+        union.set(NotificationRoutine$LAYOUT, NotificationRoutine$OFFSET, fieldValue);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

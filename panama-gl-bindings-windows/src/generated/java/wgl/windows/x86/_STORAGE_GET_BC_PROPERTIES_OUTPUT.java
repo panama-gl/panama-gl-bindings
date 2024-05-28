@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_GET_BC_PROPERTIES_OUTPUT {
+ *     DWORD MaximumRequestsPerPeriod;
+ *     DWORD MinimumPeriod;
+ *     DWORDLONG MaximumRequestSize;
+ *     DWORD EstimatedTimePerRequest;
+ *     DWORD NumOutStandingRequests;
+ *     DWORDLONG RequestSize;
+ * }
+ * }
+ */
 public class _STORAGE_GET_BC_PROPERTIES_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("MaximumRequestsPerPeriod"),
-        Constants$root.C_LONG$LAYOUT.withName("MinimumPeriod"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaximumRequestSize"),
-        Constants$root.C_LONG$LAYOUT.withName("EstimatedTimePerRequest"),
-        Constants$root.C_LONG$LAYOUT.withName("NumOutStandingRequests"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RequestSize")
-    ).withName("_STORAGE_GET_BC_PROPERTIES_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.$struct$LAYOUT;
+    _STORAGE_GET_BC_PROPERTIES_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle MaximumRequestsPerPeriod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumRequestsPerPeriod"));
-    public static VarHandle MaximumRequestsPerPeriod$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestsPerPeriod$VH;
-    }
-    public static int MaximumRequestsPerPeriod$get(MemorySegment seg) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestsPerPeriod$VH.get(seg);
-    }
-    public static void MaximumRequestsPerPeriod$set( MemorySegment seg, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestsPerPeriod$VH.set(seg, x);
-    }
-    public static int MaximumRequestsPerPeriod$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestsPerPeriod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumRequestsPerPeriod$set(MemorySegment seg, long index, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestsPerPeriod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinimumPeriod$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinimumPeriod"));
-    public static VarHandle MinimumPeriod$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.MinimumPeriod$VH;
-    }
-    public static int MinimumPeriod$get(MemorySegment seg) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MinimumPeriod$VH.get(seg);
-    }
-    public static void MinimumPeriod$set( MemorySegment seg, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MinimumPeriod$VH.set(seg, x);
-    }
-    public static int MinimumPeriod$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MinimumPeriod$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinimumPeriod$set(MemorySegment seg, long index, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MinimumPeriod$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumRequestSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumRequestSize"));
-    public static VarHandle MaximumRequestSize$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestSize$VH;
-    }
-    public static long MaximumRequestSize$get(MemorySegment seg) {
-        return (long)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestSize$VH.get(seg);
-    }
-    public static void MaximumRequestSize$set( MemorySegment seg, long x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestSize$VH.set(seg, x);
-    }
-    public static long MaximumRequestSize$get(MemorySegment seg, long index) {
-        return (long)_STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumRequestSize$set(MemorySegment seg, long index, long x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.MaximumRequestSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EstimatedTimePerRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EstimatedTimePerRequest"));
-    public static VarHandle EstimatedTimePerRequest$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.EstimatedTimePerRequest$VH;
-    }
-    public static int EstimatedTimePerRequest$get(MemorySegment seg) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.EstimatedTimePerRequest$VH.get(seg);
-    }
-    public static void EstimatedTimePerRequest$set( MemorySegment seg, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.EstimatedTimePerRequest$VH.set(seg, x);
-    }
-    public static int EstimatedTimePerRequest$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.EstimatedTimePerRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EstimatedTimePerRequest$set(MemorySegment seg, long index, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.EstimatedTimePerRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumOutStandingRequests$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumOutStandingRequests"));
-    public static VarHandle NumOutStandingRequests$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.NumOutStandingRequests$VH;
-    }
-    public static int NumOutStandingRequests$get(MemorySegment seg) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.NumOutStandingRequests$VH.get(seg);
-    }
-    public static void NumOutStandingRequests$set( MemorySegment seg, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.NumOutStandingRequests$VH.set(seg, x);
-    }
-    public static int NumOutStandingRequests$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_GET_BC_PROPERTIES_OUTPUT.NumOutStandingRequests$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumOutStandingRequests$set(MemorySegment seg, long index, int x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.NumOutStandingRequests$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RequestSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RequestSize"));
-    public static VarHandle RequestSize$VH() {
-        return _STORAGE_GET_BC_PROPERTIES_OUTPUT.RequestSize$VH;
-    }
-    public static long RequestSize$get(MemorySegment seg) {
-        return (long)_STORAGE_GET_BC_PROPERTIES_OUTPUT.RequestSize$VH.get(seg);
-    }
-    public static void RequestSize$set( MemorySegment seg, long x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.RequestSize$VH.set(seg, x);
-    }
-    public static long RequestSize$get(MemorySegment seg, long index) {
-        return (long)_STORAGE_GET_BC_PROPERTIES_OUTPUT.RequestSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RequestSize$set(MemorySegment seg, long index, long x) {
-        _STORAGE_GET_BC_PROPERTIES_OUTPUT.RequestSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("MaximumRequestsPerPeriod"),
+        wgl_h.C_LONG.withName("MinimumPeriod"),
+        wgl_h.C_LONG_LONG.withName("MaximumRequestSize"),
+        wgl_h.C_LONG.withName("EstimatedTimePerRequest"),
+        wgl_h.C_LONG.withName("NumOutStandingRequests"),
+        wgl_h.C_LONG_LONG.withName("RequestSize")
+    ).withName("_STORAGE_GET_BC_PROPERTIES_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt MaximumRequestsPerPeriod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumRequestsPerPeriod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumRequestsPerPeriod
+     * }
+     */
+    public static final OfInt MaximumRequestsPerPeriod$layout() {
+        return MaximumRequestsPerPeriod$LAYOUT;
+    }
+
+    private static final long MaximumRequestsPerPeriod$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumRequestsPerPeriod
+     * }
+     */
+    public static final long MaximumRequestsPerPeriod$offset() {
+        return MaximumRequestsPerPeriod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumRequestsPerPeriod
+     * }
+     */
+    public static int MaximumRequestsPerPeriod(MemorySegment struct) {
+        return struct.get(MaximumRequestsPerPeriod$LAYOUT, MaximumRequestsPerPeriod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumRequestsPerPeriod
+     * }
+     */
+    public static void MaximumRequestsPerPeriod(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumRequestsPerPeriod$LAYOUT, MaximumRequestsPerPeriod$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MinimumPeriod$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MinimumPeriod"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MinimumPeriod
+     * }
+     */
+    public static final OfInt MinimumPeriod$layout() {
+        return MinimumPeriod$LAYOUT;
+    }
+
+    private static final long MinimumPeriod$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MinimumPeriod
+     * }
+     */
+    public static final long MinimumPeriod$offset() {
+        return MinimumPeriod$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MinimumPeriod
+     * }
+     */
+    public static int MinimumPeriod(MemorySegment struct) {
+        return struct.get(MinimumPeriod$LAYOUT, MinimumPeriod$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MinimumPeriod
+     * }
+     */
+    public static void MinimumPeriod(MemorySegment struct, int fieldValue) {
+        struct.set(MinimumPeriod$LAYOUT, MinimumPeriod$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MaximumRequestSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaximumRequestSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG MaximumRequestSize
+     * }
+     */
+    public static final OfLong MaximumRequestSize$layout() {
+        return MaximumRequestSize$LAYOUT;
+    }
+
+    private static final long MaximumRequestSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG MaximumRequestSize
+     * }
+     */
+    public static final long MaximumRequestSize$offset() {
+        return MaximumRequestSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MaximumRequestSize
+     * }
+     */
+    public static long MaximumRequestSize(MemorySegment struct) {
+        return struct.get(MaximumRequestSize$LAYOUT, MaximumRequestSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG MaximumRequestSize
+     * }
+     */
+    public static void MaximumRequestSize(MemorySegment struct, long fieldValue) {
+        struct.set(MaximumRequestSize$LAYOUT, MaximumRequestSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EstimatedTimePerRequest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EstimatedTimePerRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EstimatedTimePerRequest
+     * }
+     */
+    public static final OfInt EstimatedTimePerRequest$layout() {
+        return EstimatedTimePerRequest$LAYOUT;
+    }
+
+    private static final long EstimatedTimePerRequest$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EstimatedTimePerRequest
+     * }
+     */
+    public static final long EstimatedTimePerRequest$offset() {
+        return EstimatedTimePerRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EstimatedTimePerRequest
+     * }
+     */
+    public static int EstimatedTimePerRequest(MemorySegment struct) {
+        return struct.get(EstimatedTimePerRequest$LAYOUT, EstimatedTimePerRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EstimatedTimePerRequest
+     * }
+     */
+    public static void EstimatedTimePerRequest(MemorySegment struct, int fieldValue) {
+        struct.set(EstimatedTimePerRequest$LAYOUT, EstimatedTimePerRequest$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumOutStandingRequests$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumOutStandingRequests"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumOutStandingRequests
+     * }
+     */
+    public static final OfInt NumOutStandingRequests$layout() {
+        return NumOutStandingRequests$LAYOUT;
+    }
+
+    private static final long NumOutStandingRequests$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumOutStandingRequests
+     * }
+     */
+    public static final long NumOutStandingRequests$offset() {
+        return NumOutStandingRequests$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumOutStandingRequests
+     * }
+     */
+    public static int NumOutStandingRequests(MemorySegment struct) {
+        return struct.get(NumOutStandingRequests$LAYOUT, NumOutStandingRequests$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumOutStandingRequests
+     * }
+     */
+    public static void NumOutStandingRequests(MemorySegment struct, int fieldValue) {
+        struct.set(NumOutStandingRequests$LAYOUT, NumOutStandingRequests$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RequestSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RequestSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG RequestSize
+     * }
+     */
+    public static final OfLong RequestSize$layout() {
+        return RequestSize$LAYOUT;
+    }
+
+    private static final long RequestSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG RequestSize
+     * }
+     */
+    public static final long RequestSize$offset() {
+        return RequestSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RequestSize
+     * }
+     */
+    public static long RequestSize(MemorySegment struct) {
+        return struct.get(RequestSize$LAYOUT, RequestSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG RequestSize
+     * }
+     */
+    public static void RequestSize(MemorySegment struct, long fieldValue) {
+        struct.set(RequestSize$LAYOUT, RequestSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

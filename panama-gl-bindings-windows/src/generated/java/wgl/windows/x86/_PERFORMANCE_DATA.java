@@ -2,168 +2,531 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PERFORMANCE_DATA {
+ *     WORD Size;
+ *     BYTE Version;
+ *     BYTE HwCountersCount;
+ *     DWORD ContextSwitchCount;
+ *     DWORD64 WaitReasonBitMap;
+ *     DWORD64 CycleTime;
+ *     DWORD RetryCount;
+ *     DWORD Reserved;
+ *     HARDWARE_COUNTER_DATA HwCounters[16];
+ * }
+ * }
+ */
 public class _PERFORMANCE_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Size"),
-        Constants$root.C_CHAR$LAYOUT.withName("Version"),
-        Constants$root.C_CHAR$LAYOUT.withName("HwCountersCount"),
-        Constants$root.C_LONG$LAYOUT.withName("ContextSwitchCount"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("WaitReasonBitMap"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CycleTime"),
-        Constants$root.C_LONG$LAYOUT.withName("RetryCount"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-        MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Type"),
-            Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Value")
-        ).withName("_HARDWARE_COUNTER_DATA")).withName("HwCounters")
-    ).withName("_PERFORMANCE_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _PERFORMANCE_DATA.$struct$LAYOUT;
+    _PERFORMANCE_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _PERFORMANCE_DATA.Size$VH;
-    }
-    public static short Size$get(MemorySegment seg) {
-        return (short)_PERFORMANCE_DATA.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, short x) {
-        _PERFORMANCE_DATA.Size$VH.set(seg, x);
-    }
-    public static short Size$get(MemorySegment seg, long index) {
-        return (short)_PERFORMANCE_DATA.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, short x) {
-        _PERFORMANCE_DATA.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _PERFORMANCE_DATA.Version$VH;
-    }
-    public static byte Version$get(MemorySegment seg) {
-        return (byte)_PERFORMANCE_DATA.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, byte x) {
-        _PERFORMANCE_DATA.Version$VH.set(seg, x);
-    }
-    public static byte Version$get(MemorySegment seg, long index) {
-        return (byte)_PERFORMANCE_DATA.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, byte x) {
-        _PERFORMANCE_DATA.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HwCountersCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HwCountersCount"));
-    public static VarHandle HwCountersCount$VH() {
-        return _PERFORMANCE_DATA.HwCountersCount$VH;
-    }
-    public static byte HwCountersCount$get(MemorySegment seg) {
-        return (byte)_PERFORMANCE_DATA.HwCountersCount$VH.get(seg);
-    }
-    public static void HwCountersCount$set( MemorySegment seg, byte x) {
-        _PERFORMANCE_DATA.HwCountersCount$VH.set(seg, x);
-    }
-    public static byte HwCountersCount$get(MemorySegment seg, long index) {
-        return (byte)_PERFORMANCE_DATA.HwCountersCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HwCountersCount$set(MemorySegment seg, long index, byte x) {
-        _PERFORMANCE_DATA.HwCountersCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ContextSwitchCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContextSwitchCount"));
-    public static VarHandle ContextSwitchCount$VH() {
-        return _PERFORMANCE_DATA.ContextSwitchCount$VH;
-    }
-    public static int ContextSwitchCount$get(MemorySegment seg) {
-        return (int)_PERFORMANCE_DATA.ContextSwitchCount$VH.get(seg);
-    }
-    public static void ContextSwitchCount$set( MemorySegment seg, int x) {
-        _PERFORMANCE_DATA.ContextSwitchCount$VH.set(seg, x);
-    }
-    public static int ContextSwitchCount$get(MemorySegment seg, long index) {
-        return (int)_PERFORMANCE_DATA.ContextSwitchCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContextSwitchCount$set(MemorySegment seg, long index, int x) {
-        _PERFORMANCE_DATA.ContextSwitchCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WaitReasonBitMap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WaitReasonBitMap"));
-    public static VarHandle WaitReasonBitMap$VH() {
-        return _PERFORMANCE_DATA.WaitReasonBitMap$VH;
-    }
-    public static long WaitReasonBitMap$get(MemorySegment seg) {
-        return (long)_PERFORMANCE_DATA.WaitReasonBitMap$VH.get(seg);
-    }
-    public static void WaitReasonBitMap$set( MemorySegment seg, long x) {
-        _PERFORMANCE_DATA.WaitReasonBitMap$VH.set(seg, x);
-    }
-    public static long WaitReasonBitMap$get(MemorySegment seg, long index) {
-        return (long)_PERFORMANCE_DATA.WaitReasonBitMap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WaitReasonBitMap$set(MemorySegment seg, long index, long x) {
-        _PERFORMANCE_DATA.WaitReasonBitMap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CycleTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CycleTime"));
-    public static VarHandle CycleTime$VH() {
-        return _PERFORMANCE_DATA.CycleTime$VH;
-    }
-    public static long CycleTime$get(MemorySegment seg) {
-        return (long)_PERFORMANCE_DATA.CycleTime$VH.get(seg);
-    }
-    public static void CycleTime$set( MemorySegment seg, long x) {
-        _PERFORMANCE_DATA.CycleTime$VH.set(seg, x);
-    }
-    public static long CycleTime$get(MemorySegment seg, long index) {
-        return (long)_PERFORMANCE_DATA.CycleTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CycleTime$set(MemorySegment seg, long index, long x) {
-        _PERFORMANCE_DATA.CycleTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RetryCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RetryCount"));
-    public static VarHandle RetryCount$VH() {
-        return _PERFORMANCE_DATA.RetryCount$VH;
-    }
-    public static int RetryCount$get(MemorySegment seg) {
-        return (int)_PERFORMANCE_DATA.RetryCount$VH.get(seg);
-    }
-    public static void RetryCount$set( MemorySegment seg, int x) {
-        _PERFORMANCE_DATA.RetryCount$VH.set(seg, x);
-    }
-    public static int RetryCount$get(MemorySegment seg, long index) {
-        return (int)_PERFORMANCE_DATA.RetryCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RetryCount$set(MemorySegment seg, long index, int x) {
-        _PERFORMANCE_DATA.RetryCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _PERFORMANCE_DATA.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_PERFORMANCE_DATA.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _PERFORMANCE_DATA.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_PERFORMANCE_DATA.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _PERFORMANCE_DATA.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment HwCounters$slice(MemorySegment seg) {
-        return seg.asSlice(32, 256);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Size"),
+        wgl_h.C_CHAR.withName("Version"),
+        wgl_h.C_CHAR.withName("HwCountersCount"),
+        wgl_h.C_LONG.withName("ContextSwitchCount"),
+        wgl_h.C_LONG_LONG.withName("WaitReasonBitMap"),
+        wgl_h.C_LONG_LONG.withName("CycleTime"),
+        wgl_h.C_LONG.withName("RetryCount"),
+        wgl_h.C_LONG.withName("Reserved"),
+        MemoryLayout.sequenceLayout(16, _HARDWARE_COUNTER_DATA.layout()).withName("HwCounters")
+    ).withName("_PERFORMANCE_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Size$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static final OfShort Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static short Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, short fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Version$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static final OfByte Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static byte Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static void Version(MemorySegment struct, byte fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfByte HwCountersCount$LAYOUT = (OfByte)$LAYOUT.select(groupElement("HwCountersCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE HwCountersCount
+     * }
+     */
+    public static final OfByte HwCountersCount$layout() {
+        return HwCountersCount$LAYOUT;
+    }
+
+    private static final long HwCountersCount$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE HwCountersCount
+     * }
+     */
+    public static final long HwCountersCount$offset() {
+        return HwCountersCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE HwCountersCount
+     * }
+     */
+    public static byte HwCountersCount(MemorySegment struct) {
+        return struct.get(HwCountersCount$LAYOUT, HwCountersCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE HwCountersCount
+     * }
+     */
+    public static void HwCountersCount(MemorySegment struct, byte fieldValue) {
+        struct.set(HwCountersCount$LAYOUT, HwCountersCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ContextSwitchCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ContextSwitchCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ContextSwitchCount
+     * }
+     */
+    public static final OfInt ContextSwitchCount$layout() {
+        return ContextSwitchCount$LAYOUT;
+    }
+
+    private static final long ContextSwitchCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ContextSwitchCount
+     * }
+     */
+    public static final long ContextSwitchCount$offset() {
+        return ContextSwitchCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ContextSwitchCount
+     * }
+     */
+    public static int ContextSwitchCount(MemorySegment struct) {
+        return struct.get(ContextSwitchCount$LAYOUT, ContextSwitchCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ContextSwitchCount
+     * }
+     */
+    public static void ContextSwitchCount(MemorySegment struct, int fieldValue) {
+        struct.set(ContextSwitchCount$LAYOUT, ContextSwitchCount$OFFSET, fieldValue);
+    }
+
+    private static final OfLong WaitReasonBitMap$LAYOUT = (OfLong)$LAYOUT.select(groupElement("WaitReasonBitMap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 WaitReasonBitMap
+     * }
+     */
+    public static final OfLong WaitReasonBitMap$layout() {
+        return WaitReasonBitMap$LAYOUT;
+    }
+
+    private static final long WaitReasonBitMap$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 WaitReasonBitMap
+     * }
+     */
+    public static final long WaitReasonBitMap$offset() {
+        return WaitReasonBitMap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 WaitReasonBitMap
+     * }
+     */
+    public static long WaitReasonBitMap(MemorySegment struct) {
+        return struct.get(WaitReasonBitMap$LAYOUT, WaitReasonBitMap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 WaitReasonBitMap
+     * }
+     */
+    public static void WaitReasonBitMap(MemorySegment struct, long fieldValue) {
+        struct.set(WaitReasonBitMap$LAYOUT, WaitReasonBitMap$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CycleTime$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CycleTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 CycleTime
+     * }
+     */
+    public static final OfLong CycleTime$layout() {
+        return CycleTime$LAYOUT;
+    }
+
+    private static final long CycleTime$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 CycleTime
+     * }
+     */
+    public static final long CycleTime$offset() {
+        return CycleTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 CycleTime
+     * }
+     */
+    public static long CycleTime(MemorySegment struct) {
+        return struct.get(CycleTime$LAYOUT, CycleTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 CycleTime
+     * }
+     */
+    public static void CycleTime(MemorySegment struct, long fieldValue) {
+        struct.set(CycleTime$LAYOUT, CycleTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RetryCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RetryCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RetryCount
+     * }
+     */
+    public static final OfInt RetryCount$layout() {
+        return RetryCount$LAYOUT;
+    }
+
+    private static final long RetryCount$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RetryCount
+     * }
+     */
+    public static final long RetryCount$offset() {
+        return RetryCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RetryCount
+     * }
+     */
+    public static int RetryCount(MemorySegment struct) {
+        return struct.get(RetryCount$LAYOUT, RetryCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RetryCount
+     * }
+     */
+    public static void RetryCount(MemorySegment struct, int fieldValue) {
+        struct.set(RetryCount$LAYOUT, RetryCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout HwCounters$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("HwCounters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static final SequenceLayout HwCounters$layout() {
+        return HwCounters$LAYOUT;
+    }
+
+    private static final long HwCounters$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static final long HwCounters$offset() {
+        return HwCounters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static MemorySegment HwCounters(MemorySegment struct) {
+        return struct.asSlice(HwCounters$OFFSET, HwCounters$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static void HwCounters(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, HwCounters$OFFSET, HwCounters$LAYOUT.byteSize());
+    }
+
+    private static long[] HwCounters$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static long[] HwCounters$dimensions() {
+        return HwCounters$DIMS;
+    }
+    private static final MethodHandle HwCounters$ELEM_HANDLE = HwCounters$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static MemorySegment HwCounters(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)HwCounters$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * HARDWARE_COUNTER_DATA HwCounters[16]
+     * }
+     */
+    public static void HwCounters(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, HwCounters(struct, index0), 0L, _HARDWARE_COUNTER_DATA.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

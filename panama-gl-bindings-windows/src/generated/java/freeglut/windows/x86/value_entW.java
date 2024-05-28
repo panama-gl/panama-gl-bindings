@@ -2,94 +2,266 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct value_entW {
+ *     LPWSTR ve_valuename;
+ *     DWORD ve_valuelen;
+ *     DWORD_PTR ve_valueptr;
+ *     DWORD ve_type;
+ * }
+ * }
+ */
 public class value_entW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("ve_valuename"),
-        Constants$root.C_LONG$LAYOUT.withName("ve_valuelen"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ve_valueptr"),
-        Constants$root.C_LONG$LAYOUT.withName("ve_type"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("value_entW");
-    public static MemoryLayout $LAYOUT() {
-        return value_entW.$struct$LAYOUT;
+    value_entW() {
+        // Should not be called directly
     }
-    static final VarHandle ve_valuename$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ve_valuename"));
-    public static VarHandle ve_valuename$VH() {
-        return value_entW.ve_valuename$VH;
-    }
-    public static MemoryAddress ve_valuename$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)value_entW.ve_valuename$VH.get(seg);
-    }
-    public static void ve_valuename$set( MemorySegment seg, MemoryAddress x) {
-        value_entW.ve_valuename$VH.set(seg, x);
-    }
-    public static MemoryAddress ve_valuename$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)value_entW.ve_valuename$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ve_valuename$set(MemorySegment seg, long index, MemoryAddress x) {
-        value_entW.ve_valuename$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ve_valuelen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ve_valuelen"));
-    public static VarHandle ve_valuelen$VH() {
-        return value_entW.ve_valuelen$VH;
-    }
-    public static int ve_valuelen$get(MemorySegment seg) {
-        return (int)value_entW.ve_valuelen$VH.get(seg);
-    }
-    public static void ve_valuelen$set( MemorySegment seg, int x) {
-        value_entW.ve_valuelen$VH.set(seg, x);
-    }
-    public static int ve_valuelen$get(MemorySegment seg, long index) {
-        return (int)value_entW.ve_valuelen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ve_valuelen$set(MemorySegment seg, long index, int x) {
-        value_entW.ve_valuelen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ve_valueptr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ve_valueptr"));
-    public static VarHandle ve_valueptr$VH() {
-        return value_entW.ve_valueptr$VH;
-    }
-    public static long ve_valueptr$get(MemorySegment seg) {
-        return (long)value_entW.ve_valueptr$VH.get(seg);
-    }
-    public static void ve_valueptr$set( MemorySegment seg, long x) {
-        value_entW.ve_valueptr$VH.set(seg, x);
-    }
-    public static long ve_valueptr$get(MemorySegment seg, long index) {
-        return (long)value_entW.ve_valueptr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ve_valueptr$set(MemorySegment seg, long index, long x) {
-        value_entW.ve_valueptr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ve_type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ve_type"));
-    public static VarHandle ve_type$VH() {
-        return value_entW.ve_type$VH;
-    }
-    public static int ve_type$get(MemorySegment seg) {
-        return (int)value_entW.ve_type$VH.get(seg);
-    }
-    public static void ve_type$set( MemorySegment seg, int x) {
-        value_entW.ve_type$VH.set(seg, x);
-    }
-    public static int ve_type$get(MemorySegment seg, long index) {
-        return (int)value_entW.ve_type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ve_type$set(MemorySegment seg, long index, int x) {
-        value_entW.ve_type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("ve_valuename"),
+        freeglut_h.C_LONG.withName("ve_valuelen"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("ve_valueptr"),
+        freeglut_h.C_LONG.withName("ve_type"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("value_entW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout ve_valuename$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ve_valuename"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR ve_valuename
+     * }
+     */
+    public static final AddressLayout ve_valuename$layout() {
+        return ve_valuename$LAYOUT;
+    }
+
+    private static final long ve_valuename$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR ve_valuename
+     * }
+     */
+    public static final long ve_valuename$offset() {
+        return ve_valuename$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR ve_valuename
+     * }
+     */
+    public static MemorySegment ve_valuename(MemorySegment struct) {
+        return struct.get(ve_valuename$LAYOUT, ve_valuename$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR ve_valuename
+     * }
+     */
+    public static void ve_valuename(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ve_valuename$LAYOUT, ve_valuename$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ve_valuelen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ve_valuelen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ve_valuelen
+     * }
+     */
+    public static final OfInt ve_valuelen$layout() {
+        return ve_valuelen$LAYOUT;
+    }
+
+    private static final long ve_valuelen$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ve_valuelen
+     * }
+     */
+    public static final long ve_valuelen$offset() {
+        return ve_valuelen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ve_valuelen
+     * }
+     */
+    public static int ve_valuelen(MemorySegment struct) {
+        return struct.get(ve_valuelen$LAYOUT, ve_valuelen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ve_valuelen
+     * }
+     */
+    public static void ve_valuelen(MemorySegment struct, int fieldValue) {
+        struct.set(ve_valuelen$LAYOUT, ve_valuelen$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ve_valueptr$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ve_valueptr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR ve_valueptr
+     * }
+     */
+    public static final OfLong ve_valueptr$layout() {
+        return ve_valueptr$LAYOUT;
+    }
+
+    private static final long ve_valueptr$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR ve_valueptr
+     * }
+     */
+    public static final long ve_valueptr$offset() {
+        return ve_valueptr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR ve_valueptr
+     * }
+     */
+    public static long ve_valueptr(MemorySegment struct) {
+        return struct.get(ve_valueptr$LAYOUT, ve_valueptr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR ve_valueptr
+     * }
+     */
+    public static void ve_valueptr(MemorySegment struct, long fieldValue) {
+        struct.set(ve_valueptr$LAYOUT, ve_valueptr$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ve_type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ve_type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ve_type
+     * }
+     */
+    public static final OfInt ve_type$layout() {
+        return ve_type$LAYOUT;
+    }
+
+    private static final long ve_type$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ve_type
+     * }
+     */
+    public static final long ve_type$offset() {
+        return ve_type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ve_type
+     * }
+     */
+    public static int ve_type(MemorySegment struct) {
+        return struct.get(ve_type$LAYOUT, ve_type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ve_type
+     * }
+     */
+    public static void ve_type(MemorySegment struct, int fieldValue) {
+        struct.set(ve_type$LAYOUT, ve_type$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

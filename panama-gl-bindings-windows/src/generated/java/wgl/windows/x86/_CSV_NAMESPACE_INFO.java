@@ -2,90 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CSV_NAMESPACE_INFO {
+ *     DWORD Version;
+ *     DWORD DeviceNumber;
+ *     LARGE_INTEGER StartingOffset;
+ *     DWORD SectorSize;
+ * }
+ * }
+ */
 public class _CSV_NAMESPACE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("DeviceNumber"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("StartingOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("SectorSize"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CSV_NAMESPACE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CSV_NAMESPACE_INFO.$struct$LAYOUT;
+    _CSV_NAMESPACE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _CSV_NAMESPACE_INFO.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_CSV_NAMESPACE_INFO.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _CSV_NAMESPACE_INFO.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_CSV_NAMESPACE_INFO.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _CSV_NAMESPACE_INFO.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DeviceNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeviceNumber"));
-    public static VarHandle DeviceNumber$VH() {
-        return _CSV_NAMESPACE_INFO.DeviceNumber$VH;
-    }
-    public static int DeviceNumber$get(MemorySegment seg) {
-        return (int)_CSV_NAMESPACE_INFO.DeviceNumber$VH.get(seg);
-    }
-    public static void DeviceNumber$set( MemorySegment seg, int x) {
-        _CSV_NAMESPACE_INFO.DeviceNumber$VH.set(seg, x);
-    }
-    public static int DeviceNumber$get(MemorySegment seg, long index) {
-        return (int)_CSV_NAMESPACE_INFO.DeviceNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeviceNumber$set(MemorySegment seg, long index, int x) {
-        _CSV_NAMESPACE_INFO.DeviceNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StartingOffset$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle SectorSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorSize"));
-    public static VarHandle SectorSize$VH() {
-        return _CSV_NAMESPACE_INFO.SectorSize$VH;
-    }
-    public static int SectorSize$get(MemorySegment seg) {
-        return (int)_CSV_NAMESPACE_INFO.SectorSize$VH.get(seg);
-    }
-    public static void SectorSize$set( MemorySegment seg, int x) {
-        _CSV_NAMESPACE_INFO.SectorSize$VH.set(seg, x);
-    }
-    public static int SectorSize$get(MemorySegment seg, long index) {
-        return (int)_CSV_NAMESPACE_INFO.SectorSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SectorSize$set(MemorySegment seg, long index, int x) {
-        _CSV_NAMESPACE_INFO.SectorSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("DeviceNumber"),
+        _LARGE_INTEGER.layout().withName("StartingOffset"),
+        wgl_h.C_LONG.withName("SectorSize"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CSV_NAMESPACE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DeviceNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DeviceNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DeviceNumber
+     * }
+     */
+    public static final OfInt DeviceNumber$layout() {
+        return DeviceNumber$LAYOUT;
+    }
+
+    private static final long DeviceNumber$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DeviceNumber
+     * }
+     */
+    public static final long DeviceNumber$offset() {
+        return DeviceNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DeviceNumber
+     * }
+     */
+    public static int DeviceNumber(MemorySegment struct) {
+        return struct.get(DeviceNumber$LAYOUT, DeviceNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DeviceNumber
+     * }
+     */
+    public static void DeviceNumber(MemorySegment struct, int fieldValue) {
+        struct.set(DeviceNumber$LAYOUT, DeviceNumber$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout StartingOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final GroupLayout StartingOffset$layout() {
+        return StartingOffset$LAYOUT;
+    }
+
+    private static final long StartingOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static final long StartingOffset$offset() {
+        return StartingOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static MemorySegment StartingOffset(MemorySegment struct) {
+        return struct.asSlice(StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingOffset
+     * }
+     */
+    public static void StartingOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingOffset$OFFSET, StartingOffset$LAYOUT.byteSize());
+    }
+
+    private static final OfInt SectorSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SectorSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SectorSize
+     * }
+     */
+    public static final OfInt SectorSize$layout() {
+        return SectorSize$LAYOUT;
+    }
+
+    private static final long SectorSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SectorSize
+     * }
+     */
+    public static final long SectorSize$offset() {
+        return SectorSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SectorSize
+     * }
+     */
+    public static int SectorSize(MemorySegment struct) {
+        return struct.get(SectorSize$LAYOUT, SectorSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SectorSize
+     * }
+     */
+    public static void SectorSize(MemorySegment struct, int fieldValue) {
+        struct.set(SectorSize$LAYOUT, SectorSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

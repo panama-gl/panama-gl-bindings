@@ -2,86 +2,301 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SD_ENUM_SDS_OUTPUT {
+ *     DWORDLONG NextOffset;
+ *     DWORDLONG NumSDEntriesReturned;
+ *     DWORDLONG NumSDBytesReturned;
+ *     SD_ENUM_SDS_ENTRY SDEntry[1];
+ * }
+ * }
+ */
 public class _SD_ENUM_SDS_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NextOffset"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NumSDEntriesReturned"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("NumSDBytesReturned"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Hash"),
-            Constants$root.C_LONG$LAYOUT.withName("SecurityId"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-            Constants$root.C_LONG$LAYOUT.withName("Length"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("Descriptor"),
-            MemoryLayout.paddingLayout(24)
-        ).withName("_SD_ENUM_SDS_ENTRY")).withName("SDEntry")
-    ).withName("_SD_ENUM_SDS_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _SD_ENUM_SDS_OUTPUT.$struct$LAYOUT;
+    _SD_ENUM_SDS_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle NextOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NextOffset"));
-    public static VarHandle NextOffset$VH() {
-        return _SD_ENUM_SDS_OUTPUT.NextOffset$VH;
-    }
-    public static long NextOffset$get(MemorySegment seg) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NextOffset$VH.get(seg);
-    }
-    public static void NextOffset$set( MemorySegment seg, long x) {
-        _SD_ENUM_SDS_OUTPUT.NextOffset$VH.set(seg, x);
-    }
-    public static long NextOffset$get(MemorySegment seg, long index) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NextOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NextOffset$set(MemorySegment seg, long index, long x) {
-        _SD_ENUM_SDS_OUTPUT.NextOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumSDEntriesReturned$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumSDEntriesReturned"));
-    public static VarHandle NumSDEntriesReturned$VH() {
-        return _SD_ENUM_SDS_OUTPUT.NumSDEntriesReturned$VH;
-    }
-    public static long NumSDEntriesReturned$get(MemorySegment seg) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NumSDEntriesReturned$VH.get(seg);
-    }
-    public static void NumSDEntriesReturned$set( MemorySegment seg, long x) {
-        _SD_ENUM_SDS_OUTPUT.NumSDEntriesReturned$VH.set(seg, x);
-    }
-    public static long NumSDEntriesReturned$get(MemorySegment seg, long index) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NumSDEntriesReturned$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumSDEntriesReturned$set(MemorySegment seg, long index, long x) {
-        _SD_ENUM_SDS_OUTPUT.NumSDEntriesReturned$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumSDBytesReturned$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumSDBytesReturned"));
-    public static VarHandle NumSDBytesReturned$VH() {
-        return _SD_ENUM_SDS_OUTPUT.NumSDBytesReturned$VH;
-    }
-    public static long NumSDBytesReturned$get(MemorySegment seg) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NumSDBytesReturned$VH.get(seg);
-    }
-    public static void NumSDBytesReturned$set( MemorySegment seg, long x) {
-        _SD_ENUM_SDS_OUTPUT.NumSDBytesReturned$VH.set(seg, x);
-    }
-    public static long NumSDBytesReturned$get(MemorySegment seg, long index) {
-        return (long)_SD_ENUM_SDS_OUTPUT.NumSDBytesReturned$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumSDBytesReturned$set(MemorySegment seg, long index, long x) {
-        _SD_ENUM_SDS_OUTPUT.NumSDBytesReturned$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SDEntry$slice(MemorySegment seg) {
-        return seg.asSlice(24, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("NextOffset"),
+        wgl_h.C_LONG_LONG.withName("NumSDEntriesReturned"),
+        wgl_h.C_LONG_LONG.withName("NumSDBytesReturned"),
+        MemoryLayout.sequenceLayout(1, _SD_ENUM_SDS_ENTRY.layout()).withName("SDEntry")
+    ).withName("_SD_ENUM_SDS_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong NextOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NextOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NextOffset
+     * }
+     */
+    public static final OfLong NextOffset$layout() {
+        return NextOffset$LAYOUT;
+    }
+
+    private static final long NextOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NextOffset
+     * }
+     */
+    public static final long NextOffset$offset() {
+        return NextOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NextOffset
+     * }
+     */
+    public static long NextOffset(MemorySegment struct) {
+        return struct.get(NextOffset$LAYOUT, NextOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NextOffset
+     * }
+     */
+    public static void NextOffset(MemorySegment struct, long fieldValue) {
+        struct.set(NextOffset$LAYOUT, NextOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfLong NumSDEntriesReturned$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NumSDEntriesReturned"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDEntriesReturned
+     * }
+     */
+    public static final OfLong NumSDEntriesReturned$layout() {
+        return NumSDEntriesReturned$LAYOUT;
+    }
+
+    private static final long NumSDEntriesReturned$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDEntriesReturned
+     * }
+     */
+    public static final long NumSDEntriesReturned$offset() {
+        return NumSDEntriesReturned$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDEntriesReturned
+     * }
+     */
+    public static long NumSDEntriesReturned(MemorySegment struct) {
+        return struct.get(NumSDEntriesReturned$LAYOUT, NumSDEntriesReturned$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDEntriesReturned
+     * }
+     */
+    public static void NumSDEntriesReturned(MemorySegment struct, long fieldValue) {
+        struct.set(NumSDEntriesReturned$LAYOUT, NumSDEntriesReturned$OFFSET, fieldValue);
+    }
+
+    private static final OfLong NumSDBytesReturned$LAYOUT = (OfLong)$LAYOUT.select(groupElement("NumSDBytesReturned"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDBytesReturned
+     * }
+     */
+    public static final OfLong NumSDBytesReturned$layout() {
+        return NumSDBytesReturned$LAYOUT;
+    }
+
+    private static final long NumSDBytesReturned$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDBytesReturned
+     * }
+     */
+    public static final long NumSDBytesReturned$offset() {
+        return NumSDBytesReturned$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDBytesReturned
+     * }
+     */
+    public static long NumSDBytesReturned(MemorySegment struct) {
+        return struct.get(NumSDBytesReturned$LAYOUT, NumSDBytesReturned$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG NumSDBytesReturned
+     * }
+     */
+    public static void NumSDBytesReturned(MemorySegment struct, long fieldValue) {
+        struct.set(NumSDBytesReturned$LAYOUT, NumSDBytesReturned$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout SDEntry$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SDEntry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static final SequenceLayout SDEntry$layout() {
+        return SDEntry$LAYOUT;
+    }
+
+    private static final long SDEntry$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static final long SDEntry$offset() {
+        return SDEntry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static MemorySegment SDEntry(MemorySegment struct) {
+        return struct.asSlice(SDEntry$OFFSET, SDEntry$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static void SDEntry(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SDEntry$OFFSET, SDEntry$LAYOUT.byteSize());
+    }
+
+    private static long[] SDEntry$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static long[] SDEntry$dimensions() {
+        return SDEntry$DIMS;
+    }
+    private static final MethodHandle SDEntry$ELEM_HANDLE = SDEntry$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static MemorySegment SDEntry(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)SDEntry$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SD_ENUM_SDS_ENTRY SDEntry[1]
+     * }
+     */
+    public static void SDEntry(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, SDEntry(struct, index0), 0L, _SD_ENUM_SDS_ENTRY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

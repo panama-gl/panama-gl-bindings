@@ -2,528 +2,1553 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _OUTLINETEXTMETRICW {
+ *     UINT otmSize;
+ *     TEXTMETRICW otmTextMetrics;
+ *     BYTE otmFiller;
+ *     PANOSE otmPanoseNumber;
+ *     UINT otmfsSelection;
+ *     UINT otmfsType;
+ *     int otmsCharSlopeRise;
+ *     int otmsCharSlopeRun;
+ *     int otmItalicAngle;
+ *     UINT otmEMSquare;
+ *     int otmAscent;
+ *     int otmDescent;
+ *     UINT otmLineGap;
+ *     UINT otmsCapEmHeight;
+ *     UINT otmsXHeight;
+ *     RECT otmrcFontBox;
+ *     int otmMacAscent;
+ *     int otmMacDescent;
+ *     UINT otmMacLineGap;
+ *     UINT otmusMinimumPPEM;
+ *     POINT otmptSubscriptSize;
+ *     POINT otmptSubscriptOffset;
+ *     POINT otmptSuperscriptSize;
+ *     POINT otmptSuperscriptOffset;
+ *     UINT otmsStrikeoutSize;
+ *     int otmsStrikeoutPosition;
+ *     int otmsUnderscoreSize;
+ *     int otmsUnderscorePosition;
+ *     PSTR otmpFamilyName;
+ *     PSTR otmpFaceName;
+ *     PSTR otmpStyleName;
+ *     PSTR otmpFullName;
+ * }
+ * }
+ */
 public class _OUTLINETEXTMETRICW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("otmSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("tmHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("tmAscent"),
-            Constants$root.C_LONG$LAYOUT.withName("tmDescent"),
-            Constants$root.C_LONG$LAYOUT.withName("tmInternalLeading"),
-            Constants$root.C_LONG$LAYOUT.withName("tmExternalLeading"),
-            Constants$root.C_LONG$LAYOUT.withName("tmAveCharWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("tmMaxCharWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("tmWeight"),
-            Constants$root.C_LONG$LAYOUT.withName("tmOverhang"),
-            Constants$root.C_LONG$LAYOUT.withName("tmDigitizedAspectX"),
-            Constants$root.C_LONG$LAYOUT.withName("tmDigitizedAspectY"),
-            Constants$root.C_SHORT$LAYOUT.withName("tmFirstChar"),
-            Constants$root.C_SHORT$LAYOUT.withName("tmLastChar"),
-            Constants$root.C_SHORT$LAYOUT.withName("tmDefaultChar"),
-            Constants$root.C_SHORT$LAYOUT.withName("tmBreakChar"),
-            Constants$root.C_CHAR$LAYOUT.withName("tmItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("tmUnderlined"),
-            Constants$root.C_CHAR$LAYOUT.withName("tmStruckOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("tmPitchAndFamily"),
-            Constants$root.C_CHAR$LAYOUT.withName("tmCharSet"),
-            MemoryLayout.paddingLayout(24)
-        ).withName("otmTextMetrics"),
-        Constants$root.C_CHAR$LAYOUT.withName("otmFiller"),
-        MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("bFamilyType"),
-            Constants$root.C_CHAR$LAYOUT.withName("bSerifStyle"),
-            Constants$root.C_CHAR$LAYOUT.withName("bWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("bProportion"),
-            Constants$root.C_CHAR$LAYOUT.withName("bContrast"),
-            Constants$root.C_CHAR$LAYOUT.withName("bStrokeVariation"),
-            Constants$root.C_CHAR$LAYOUT.withName("bArmStyle"),
-            Constants$root.C_CHAR$LAYOUT.withName("bLetterform"),
-            Constants$root.C_CHAR$LAYOUT.withName("bMidline"),
-            Constants$root.C_CHAR$LAYOUT.withName("bXHeight")
-        ).withName("otmPanoseNumber"),
-        MemoryLayout.paddingLayout(8),
-        Constants$root.C_LONG$LAYOUT.withName("otmfsSelection"),
-        Constants$root.C_LONG$LAYOUT.withName("otmfsType"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsCharSlopeRise"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsCharSlopeRun"),
-        Constants$root.C_LONG$LAYOUT.withName("otmItalicAngle"),
-        Constants$root.C_LONG$LAYOUT.withName("otmEMSquare"),
-        Constants$root.C_LONG$LAYOUT.withName("otmAscent"),
-        Constants$root.C_LONG$LAYOUT.withName("otmDescent"),
-        Constants$root.C_LONG$LAYOUT.withName("otmLineGap"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsCapEmHeight"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsXHeight"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("otmrcFontBox"),
-        Constants$root.C_LONG$LAYOUT.withName("otmMacAscent"),
-        Constants$root.C_LONG$LAYOUT.withName("otmMacDescent"),
-        Constants$root.C_LONG$LAYOUT.withName("otmMacLineGap"),
-        Constants$root.C_LONG$LAYOUT.withName("otmusMinimumPPEM"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("otmptSubscriptSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("otmptSubscriptOffset"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("otmptSuperscriptSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("otmptSuperscriptOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsStrikeoutSize"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsStrikeoutPosition"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsUnderscoreSize"),
-        Constants$root.C_LONG$LAYOUT.withName("otmsUnderscorePosition"),
-        Constants$root.C_POINTER$LAYOUT.withName("otmpFamilyName"),
-        Constants$root.C_POINTER$LAYOUT.withName("otmpFaceName"),
-        Constants$root.C_POINTER$LAYOUT.withName("otmpStyleName"),
-        Constants$root.C_POINTER$LAYOUT.withName("otmpFullName")
-    ).withName("_OUTLINETEXTMETRICW");
-    public static MemoryLayout $LAYOUT() {
-        return _OUTLINETEXTMETRICW.$struct$LAYOUT;
+    _OUTLINETEXTMETRICW() {
+        // Should not be called directly
     }
-    static final VarHandle otmSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmSize"));
-    public static VarHandle otmSize$VH() {
-        return _OUTLINETEXTMETRICW.otmSize$VH;
-    }
-    public static int otmSize$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmSize$VH.get(seg);
-    }
-    public static void otmSize$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmSize$VH.set(seg, x);
-    }
-    public static int otmSize$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmSize$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment otmTextMetrics$slice(MemorySegment seg) {
-        return seg.asSlice(4, 60);
-    }
-    static final VarHandle otmFiller$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmFiller"));
-    public static VarHandle otmFiller$VH() {
-        return _OUTLINETEXTMETRICW.otmFiller$VH;
-    }
-    public static byte otmFiller$get(MemorySegment seg) {
-        return (byte)_OUTLINETEXTMETRICW.otmFiller$VH.get(seg);
-    }
-    public static void otmFiller$set( MemorySegment seg, byte x) {
-        _OUTLINETEXTMETRICW.otmFiller$VH.set(seg, x);
-    }
-    public static byte otmFiller$get(MemorySegment seg, long index) {
-        return (byte)_OUTLINETEXTMETRICW.otmFiller$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmFiller$set(MemorySegment seg, long index, byte x) {
-        _OUTLINETEXTMETRICW.otmFiller$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment otmPanoseNumber$slice(MemorySegment seg) {
-        return seg.asSlice(65, 10);
-    }
-    static final VarHandle otmfsSelection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmfsSelection"));
-    public static VarHandle otmfsSelection$VH() {
-        return _OUTLINETEXTMETRICW.otmfsSelection$VH;
-    }
-    public static int otmfsSelection$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmfsSelection$VH.get(seg);
-    }
-    public static void otmfsSelection$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmfsSelection$VH.set(seg, x);
-    }
-    public static int otmfsSelection$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmfsSelection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmfsSelection$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmfsSelection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmfsType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmfsType"));
-    public static VarHandle otmfsType$VH() {
-        return _OUTLINETEXTMETRICW.otmfsType$VH;
-    }
-    public static int otmfsType$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmfsType$VH.get(seg);
-    }
-    public static void otmfsType$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmfsType$VH.set(seg, x);
-    }
-    public static int otmfsType$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmfsType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmfsType$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmfsType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsCharSlopeRise$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsCharSlopeRise"));
-    public static VarHandle otmsCharSlopeRise$VH() {
-        return _OUTLINETEXTMETRICW.otmsCharSlopeRise$VH;
-    }
-    public static int otmsCharSlopeRise$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsCharSlopeRise$VH.get(seg);
-    }
-    public static void otmsCharSlopeRise$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsCharSlopeRise$VH.set(seg, x);
-    }
-    public static int otmsCharSlopeRise$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsCharSlopeRise$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsCharSlopeRise$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsCharSlopeRise$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsCharSlopeRun$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsCharSlopeRun"));
-    public static VarHandle otmsCharSlopeRun$VH() {
-        return _OUTLINETEXTMETRICW.otmsCharSlopeRun$VH;
-    }
-    public static int otmsCharSlopeRun$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsCharSlopeRun$VH.get(seg);
-    }
-    public static void otmsCharSlopeRun$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsCharSlopeRun$VH.set(seg, x);
-    }
-    public static int otmsCharSlopeRun$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsCharSlopeRun$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsCharSlopeRun$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsCharSlopeRun$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmItalicAngle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmItalicAngle"));
-    public static VarHandle otmItalicAngle$VH() {
-        return _OUTLINETEXTMETRICW.otmItalicAngle$VH;
-    }
-    public static int otmItalicAngle$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmItalicAngle$VH.get(seg);
-    }
-    public static void otmItalicAngle$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmItalicAngle$VH.set(seg, x);
-    }
-    public static int otmItalicAngle$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmItalicAngle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmItalicAngle$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmItalicAngle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmEMSquare$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmEMSquare"));
-    public static VarHandle otmEMSquare$VH() {
-        return _OUTLINETEXTMETRICW.otmEMSquare$VH;
-    }
-    public static int otmEMSquare$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmEMSquare$VH.get(seg);
-    }
-    public static void otmEMSquare$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmEMSquare$VH.set(seg, x);
-    }
-    public static int otmEMSquare$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmEMSquare$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmEMSquare$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmEMSquare$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmAscent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmAscent"));
-    public static VarHandle otmAscent$VH() {
-        return _OUTLINETEXTMETRICW.otmAscent$VH;
-    }
-    public static int otmAscent$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmAscent$VH.get(seg);
-    }
-    public static void otmAscent$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmAscent$VH.set(seg, x);
-    }
-    public static int otmAscent$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmAscent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmAscent$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmAscent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmDescent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmDescent"));
-    public static VarHandle otmDescent$VH() {
-        return _OUTLINETEXTMETRICW.otmDescent$VH;
-    }
-    public static int otmDescent$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmDescent$VH.get(seg);
-    }
-    public static void otmDescent$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmDescent$VH.set(seg, x);
-    }
-    public static int otmDescent$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmDescent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmDescent$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmDescent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmLineGap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmLineGap"));
-    public static VarHandle otmLineGap$VH() {
-        return _OUTLINETEXTMETRICW.otmLineGap$VH;
-    }
-    public static int otmLineGap$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmLineGap$VH.get(seg);
-    }
-    public static void otmLineGap$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmLineGap$VH.set(seg, x);
-    }
-    public static int otmLineGap$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmLineGap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmLineGap$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmLineGap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsCapEmHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsCapEmHeight"));
-    public static VarHandle otmsCapEmHeight$VH() {
-        return _OUTLINETEXTMETRICW.otmsCapEmHeight$VH;
-    }
-    public static int otmsCapEmHeight$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsCapEmHeight$VH.get(seg);
-    }
-    public static void otmsCapEmHeight$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsCapEmHeight$VH.set(seg, x);
-    }
-    public static int otmsCapEmHeight$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsCapEmHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsCapEmHeight$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsCapEmHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsXHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsXHeight"));
-    public static VarHandle otmsXHeight$VH() {
-        return _OUTLINETEXTMETRICW.otmsXHeight$VH;
-    }
-    public static int otmsXHeight$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsXHeight$VH.get(seg);
-    }
-    public static void otmsXHeight$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsXHeight$VH.set(seg, x);
-    }
-    public static int otmsXHeight$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsXHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsXHeight$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsXHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment otmrcFontBox$slice(MemorySegment seg) {
-        return seg.asSlice(120, 16);
-    }
-    static final VarHandle otmMacAscent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmMacAscent"));
-    public static VarHandle otmMacAscent$VH() {
-        return _OUTLINETEXTMETRICW.otmMacAscent$VH;
-    }
-    public static int otmMacAscent$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmMacAscent$VH.get(seg);
-    }
-    public static void otmMacAscent$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmMacAscent$VH.set(seg, x);
-    }
-    public static int otmMacAscent$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmMacAscent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmMacAscent$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmMacAscent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmMacDescent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmMacDescent"));
-    public static VarHandle otmMacDescent$VH() {
-        return _OUTLINETEXTMETRICW.otmMacDescent$VH;
-    }
-    public static int otmMacDescent$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmMacDescent$VH.get(seg);
-    }
-    public static void otmMacDescent$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmMacDescent$VH.set(seg, x);
-    }
-    public static int otmMacDescent$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmMacDescent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmMacDescent$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmMacDescent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmMacLineGap$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmMacLineGap"));
-    public static VarHandle otmMacLineGap$VH() {
-        return _OUTLINETEXTMETRICW.otmMacLineGap$VH;
-    }
-    public static int otmMacLineGap$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmMacLineGap$VH.get(seg);
-    }
-    public static void otmMacLineGap$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmMacLineGap$VH.set(seg, x);
-    }
-    public static int otmMacLineGap$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmMacLineGap$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmMacLineGap$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmMacLineGap$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmusMinimumPPEM$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmusMinimumPPEM"));
-    public static VarHandle otmusMinimumPPEM$VH() {
-        return _OUTLINETEXTMETRICW.otmusMinimumPPEM$VH;
-    }
-    public static int otmusMinimumPPEM$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmusMinimumPPEM$VH.get(seg);
-    }
-    public static void otmusMinimumPPEM$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmusMinimumPPEM$VH.set(seg, x);
-    }
-    public static int otmusMinimumPPEM$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmusMinimumPPEM$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmusMinimumPPEM$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmusMinimumPPEM$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment otmptSubscriptSize$slice(MemorySegment seg) {
-        return seg.asSlice(152, 8);
-    }
-    public static MemorySegment otmptSubscriptOffset$slice(MemorySegment seg) {
-        return seg.asSlice(160, 8);
-    }
-    public static MemorySegment otmptSuperscriptSize$slice(MemorySegment seg) {
-        return seg.asSlice(168, 8);
-    }
-    public static MemorySegment otmptSuperscriptOffset$slice(MemorySegment seg) {
-        return seg.asSlice(176, 8);
-    }
-    static final VarHandle otmsStrikeoutSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsStrikeoutSize"));
-    public static VarHandle otmsStrikeoutSize$VH() {
-        return _OUTLINETEXTMETRICW.otmsStrikeoutSize$VH;
-    }
-    public static int otmsStrikeoutSize$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsStrikeoutSize$VH.get(seg);
-    }
-    public static void otmsStrikeoutSize$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsStrikeoutSize$VH.set(seg, x);
-    }
-    public static int otmsStrikeoutSize$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsStrikeoutSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsStrikeoutSize$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsStrikeoutSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsStrikeoutPosition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsStrikeoutPosition"));
-    public static VarHandle otmsStrikeoutPosition$VH() {
-        return _OUTLINETEXTMETRICW.otmsStrikeoutPosition$VH;
-    }
-    public static int otmsStrikeoutPosition$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsStrikeoutPosition$VH.get(seg);
-    }
-    public static void otmsStrikeoutPosition$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsStrikeoutPosition$VH.set(seg, x);
-    }
-    public static int otmsStrikeoutPosition$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsStrikeoutPosition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsStrikeoutPosition$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsStrikeoutPosition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsUnderscoreSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsUnderscoreSize"));
-    public static VarHandle otmsUnderscoreSize$VH() {
-        return _OUTLINETEXTMETRICW.otmsUnderscoreSize$VH;
-    }
-    public static int otmsUnderscoreSize$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsUnderscoreSize$VH.get(seg);
-    }
-    public static void otmsUnderscoreSize$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsUnderscoreSize$VH.set(seg, x);
-    }
-    public static int otmsUnderscoreSize$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsUnderscoreSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsUnderscoreSize$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsUnderscoreSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmsUnderscorePosition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmsUnderscorePosition"));
-    public static VarHandle otmsUnderscorePosition$VH() {
-        return _OUTLINETEXTMETRICW.otmsUnderscorePosition$VH;
-    }
-    public static int otmsUnderscorePosition$get(MemorySegment seg) {
-        return (int)_OUTLINETEXTMETRICW.otmsUnderscorePosition$VH.get(seg);
-    }
-    public static void otmsUnderscorePosition$set( MemorySegment seg, int x) {
-        _OUTLINETEXTMETRICW.otmsUnderscorePosition$VH.set(seg, x);
-    }
-    public static int otmsUnderscorePosition$get(MemorySegment seg, long index) {
-        return (int)_OUTLINETEXTMETRICW.otmsUnderscorePosition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmsUnderscorePosition$set(MemorySegment seg, long index, int x) {
-        _OUTLINETEXTMETRICW.otmsUnderscorePosition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmpFamilyName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmpFamilyName"));
-    public static VarHandle otmpFamilyName$VH() {
-        return _OUTLINETEXTMETRICW.otmpFamilyName$VH;
-    }
-    public static MemoryAddress otmpFamilyName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFamilyName$VH.get(seg);
-    }
-    public static void otmpFamilyName$set( MemorySegment seg, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFamilyName$VH.set(seg, x);
-    }
-    public static MemoryAddress otmpFamilyName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFamilyName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmpFamilyName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFamilyName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmpFaceName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmpFaceName"));
-    public static VarHandle otmpFaceName$VH() {
-        return _OUTLINETEXTMETRICW.otmpFaceName$VH;
-    }
-    public static MemoryAddress otmpFaceName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFaceName$VH.get(seg);
-    }
-    public static void otmpFaceName$set( MemorySegment seg, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFaceName$VH.set(seg, x);
-    }
-    public static MemoryAddress otmpFaceName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFaceName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmpFaceName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFaceName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmpStyleName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmpStyleName"));
-    public static VarHandle otmpStyleName$VH() {
-        return _OUTLINETEXTMETRICW.otmpStyleName$VH;
-    }
-    public static MemoryAddress otmpStyleName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpStyleName$VH.get(seg);
-    }
-    public static void otmpStyleName$set( MemorySegment seg, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpStyleName$VH.set(seg, x);
-    }
-    public static MemoryAddress otmpStyleName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpStyleName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmpStyleName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpStyleName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle otmpFullName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("otmpFullName"));
-    public static VarHandle otmpFullName$VH() {
-        return _OUTLINETEXTMETRICW.otmpFullName$VH;
-    }
-    public static MemoryAddress otmpFullName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFullName$VH.get(seg);
-    }
-    public static void otmpFullName$set( MemorySegment seg, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFullName$VH.set(seg, x);
-    }
-    public static MemoryAddress otmpFullName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OUTLINETEXTMETRICW.otmpFullName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void otmpFullName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OUTLINETEXTMETRICW.otmpFullName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("otmSize"),
+        tagTEXTMETRICW.layout().withName("otmTextMetrics"),
+        wgl_h.C_CHAR.withName("otmFiller"),
+        tagPANOSE.layout().withName("otmPanoseNumber"),
+        MemoryLayout.paddingLayout(1),
+        wgl_h.C_INT.withName("otmfsSelection"),
+        wgl_h.C_INT.withName("otmfsType"),
+        wgl_h.C_INT.withName("otmsCharSlopeRise"),
+        wgl_h.C_INT.withName("otmsCharSlopeRun"),
+        wgl_h.C_INT.withName("otmItalicAngle"),
+        wgl_h.C_INT.withName("otmEMSquare"),
+        wgl_h.C_INT.withName("otmAscent"),
+        wgl_h.C_INT.withName("otmDescent"),
+        wgl_h.C_INT.withName("otmLineGap"),
+        wgl_h.C_INT.withName("otmsCapEmHeight"),
+        wgl_h.C_INT.withName("otmsXHeight"),
+        tagRECT.layout().withName("otmrcFontBox"),
+        wgl_h.C_INT.withName("otmMacAscent"),
+        wgl_h.C_INT.withName("otmMacDescent"),
+        wgl_h.C_INT.withName("otmMacLineGap"),
+        wgl_h.C_INT.withName("otmusMinimumPPEM"),
+        tagPOINT.layout().withName("otmptSubscriptSize"),
+        tagPOINT.layout().withName("otmptSubscriptOffset"),
+        tagPOINT.layout().withName("otmptSuperscriptSize"),
+        tagPOINT.layout().withName("otmptSuperscriptOffset"),
+        wgl_h.C_INT.withName("otmsStrikeoutSize"),
+        wgl_h.C_INT.withName("otmsStrikeoutPosition"),
+        wgl_h.C_INT.withName("otmsUnderscoreSize"),
+        wgl_h.C_INT.withName("otmsUnderscorePosition"),
+        wgl_h.C_POINTER.withName("otmpFamilyName"),
+        wgl_h.C_POINTER.withName("otmpFaceName"),
+        wgl_h.C_POINTER.withName("otmpStyleName"),
+        wgl_h.C_POINTER.withName("otmpFullName")
+    ).withName("_OUTLINETEXTMETRICW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt otmSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmSize
+     * }
+     */
+    public static final OfInt otmSize$layout() {
+        return otmSize$LAYOUT;
+    }
+
+    private static final long otmSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmSize
+     * }
+     */
+    public static final long otmSize$offset() {
+        return otmSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmSize
+     * }
+     */
+    public static int otmSize(MemorySegment struct) {
+        return struct.get(otmSize$LAYOUT, otmSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmSize
+     * }
+     */
+    public static void otmSize(MemorySegment struct, int fieldValue) {
+        struct.set(otmSize$LAYOUT, otmSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout otmTextMetrics$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmTextMetrics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TEXTMETRICW otmTextMetrics
+     * }
+     */
+    public static final GroupLayout otmTextMetrics$layout() {
+        return otmTextMetrics$LAYOUT;
+    }
+
+    private static final long otmTextMetrics$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TEXTMETRICW otmTextMetrics
+     * }
+     */
+    public static final long otmTextMetrics$offset() {
+        return otmTextMetrics$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TEXTMETRICW otmTextMetrics
+     * }
+     */
+    public static MemorySegment otmTextMetrics(MemorySegment struct) {
+        return struct.asSlice(otmTextMetrics$OFFSET, otmTextMetrics$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TEXTMETRICW otmTextMetrics
+     * }
+     */
+    public static void otmTextMetrics(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmTextMetrics$OFFSET, otmTextMetrics$LAYOUT.byteSize());
+    }
+
+    private static final OfByte otmFiller$LAYOUT = (OfByte)$LAYOUT.select(groupElement("otmFiller"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE otmFiller
+     * }
+     */
+    public static final OfByte otmFiller$layout() {
+        return otmFiller$LAYOUT;
+    }
+
+    private static final long otmFiller$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE otmFiller
+     * }
+     */
+    public static final long otmFiller$offset() {
+        return otmFiller$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE otmFiller
+     * }
+     */
+    public static byte otmFiller(MemorySegment struct) {
+        return struct.get(otmFiller$LAYOUT, otmFiller$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE otmFiller
+     * }
+     */
+    public static void otmFiller(MemorySegment struct, byte fieldValue) {
+        struct.set(otmFiller$LAYOUT, otmFiller$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout otmPanoseNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmPanoseNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PANOSE otmPanoseNumber
+     * }
+     */
+    public static final GroupLayout otmPanoseNumber$layout() {
+        return otmPanoseNumber$LAYOUT;
+    }
+
+    private static final long otmPanoseNumber$OFFSET = 65;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PANOSE otmPanoseNumber
+     * }
+     */
+    public static final long otmPanoseNumber$offset() {
+        return otmPanoseNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PANOSE otmPanoseNumber
+     * }
+     */
+    public static MemorySegment otmPanoseNumber(MemorySegment struct) {
+        return struct.asSlice(otmPanoseNumber$OFFSET, otmPanoseNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PANOSE otmPanoseNumber
+     * }
+     */
+    public static void otmPanoseNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmPanoseNumber$OFFSET, otmPanoseNumber$LAYOUT.byteSize());
+    }
+
+    private static final OfInt otmfsSelection$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmfsSelection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmfsSelection
+     * }
+     */
+    public static final OfInt otmfsSelection$layout() {
+        return otmfsSelection$LAYOUT;
+    }
+
+    private static final long otmfsSelection$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmfsSelection
+     * }
+     */
+    public static final long otmfsSelection$offset() {
+        return otmfsSelection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmfsSelection
+     * }
+     */
+    public static int otmfsSelection(MemorySegment struct) {
+        return struct.get(otmfsSelection$LAYOUT, otmfsSelection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmfsSelection
+     * }
+     */
+    public static void otmfsSelection(MemorySegment struct, int fieldValue) {
+        struct.set(otmfsSelection$LAYOUT, otmfsSelection$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmfsType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmfsType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmfsType
+     * }
+     */
+    public static final OfInt otmfsType$layout() {
+        return otmfsType$LAYOUT;
+    }
+
+    private static final long otmfsType$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmfsType
+     * }
+     */
+    public static final long otmfsType$offset() {
+        return otmfsType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmfsType
+     * }
+     */
+    public static int otmfsType(MemorySegment struct) {
+        return struct.get(otmfsType$LAYOUT, otmfsType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmfsType
+     * }
+     */
+    public static void otmfsType(MemorySegment struct, int fieldValue) {
+        struct.set(otmfsType$LAYOUT, otmfsType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsCharSlopeRise$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsCharSlopeRise"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRise
+     * }
+     */
+    public static final OfInt otmsCharSlopeRise$layout() {
+        return otmsCharSlopeRise$LAYOUT;
+    }
+
+    private static final long otmsCharSlopeRise$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRise
+     * }
+     */
+    public static final long otmsCharSlopeRise$offset() {
+        return otmsCharSlopeRise$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRise
+     * }
+     */
+    public static int otmsCharSlopeRise(MemorySegment struct) {
+        return struct.get(otmsCharSlopeRise$LAYOUT, otmsCharSlopeRise$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRise
+     * }
+     */
+    public static void otmsCharSlopeRise(MemorySegment struct, int fieldValue) {
+        struct.set(otmsCharSlopeRise$LAYOUT, otmsCharSlopeRise$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsCharSlopeRun$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsCharSlopeRun"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRun
+     * }
+     */
+    public static final OfInt otmsCharSlopeRun$layout() {
+        return otmsCharSlopeRun$LAYOUT;
+    }
+
+    private static final long otmsCharSlopeRun$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRun
+     * }
+     */
+    public static final long otmsCharSlopeRun$offset() {
+        return otmsCharSlopeRun$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRun
+     * }
+     */
+    public static int otmsCharSlopeRun(MemorySegment struct) {
+        return struct.get(otmsCharSlopeRun$LAYOUT, otmsCharSlopeRun$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmsCharSlopeRun
+     * }
+     */
+    public static void otmsCharSlopeRun(MemorySegment struct, int fieldValue) {
+        struct.set(otmsCharSlopeRun$LAYOUT, otmsCharSlopeRun$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmItalicAngle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmItalicAngle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmItalicAngle
+     * }
+     */
+    public static final OfInt otmItalicAngle$layout() {
+        return otmItalicAngle$LAYOUT;
+    }
+
+    private static final long otmItalicAngle$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmItalicAngle
+     * }
+     */
+    public static final long otmItalicAngle$offset() {
+        return otmItalicAngle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmItalicAngle
+     * }
+     */
+    public static int otmItalicAngle(MemorySegment struct) {
+        return struct.get(otmItalicAngle$LAYOUT, otmItalicAngle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmItalicAngle
+     * }
+     */
+    public static void otmItalicAngle(MemorySegment struct, int fieldValue) {
+        struct.set(otmItalicAngle$LAYOUT, otmItalicAngle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmEMSquare$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmEMSquare"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmEMSquare
+     * }
+     */
+    public static final OfInt otmEMSquare$layout() {
+        return otmEMSquare$LAYOUT;
+    }
+
+    private static final long otmEMSquare$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmEMSquare
+     * }
+     */
+    public static final long otmEMSquare$offset() {
+        return otmEMSquare$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmEMSquare
+     * }
+     */
+    public static int otmEMSquare(MemorySegment struct) {
+        return struct.get(otmEMSquare$LAYOUT, otmEMSquare$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmEMSquare
+     * }
+     */
+    public static void otmEMSquare(MemorySegment struct, int fieldValue) {
+        struct.set(otmEMSquare$LAYOUT, otmEMSquare$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmAscent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmAscent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmAscent
+     * }
+     */
+    public static final OfInt otmAscent$layout() {
+        return otmAscent$LAYOUT;
+    }
+
+    private static final long otmAscent$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmAscent
+     * }
+     */
+    public static final long otmAscent$offset() {
+        return otmAscent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmAscent
+     * }
+     */
+    public static int otmAscent(MemorySegment struct) {
+        return struct.get(otmAscent$LAYOUT, otmAscent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmAscent
+     * }
+     */
+    public static void otmAscent(MemorySegment struct, int fieldValue) {
+        struct.set(otmAscent$LAYOUT, otmAscent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmDescent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmDescent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmDescent
+     * }
+     */
+    public static final OfInt otmDescent$layout() {
+        return otmDescent$LAYOUT;
+    }
+
+    private static final long otmDescent$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmDescent
+     * }
+     */
+    public static final long otmDescent$offset() {
+        return otmDescent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmDescent
+     * }
+     */
+    public static int otmDescent(MemorySegment struct) {
+        return struct.get(otmDescent$LAYOUT, otmDescent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmDescent
+     * }
+     */
+    public static void otmDescent(MemorySegment struct, int fieldValue) {
+        struct.set(otmDescent$LAYOUT, otmDescent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmLineGap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmLineGap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmLineGap
+     * }
+     */
+    public static final OfInt otmLineGap$layout() {
+        return otmLineGap$LAYOUT;
+    }
+
+    private static final long otmLineGap$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmLineGap
+     * }
+     */
+    public static final long otmLineGap$offset() {
+        return otmLineGap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmLineGap
+     * }
+     */
+    public static int otmLineGap(MemorySegment struct) {
+        return struct.get(otmLineGap$LAYOUT, otmLineGap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmLineGap
+     * }
+     */
+    public static void otmLineGap(MemorySegment struct, int fieldValue) {
+        struct.set(otmLineGap$LAYOUT, otmLineGap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsCapEmHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsCapEmHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmsCapEmHeight
+     * }
+     */
+    public static final OfInt otmsCapEmHeight$layout() {
+        return otmsCapEmHeight$LAYOUT;
+    }
+
+    private static final long otmsCapEmHeight$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmsCapEmHeight
+     * }
+     */
+    public static final long otmsCapEmHeight$offset() {
+        return otmsCapEmHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmsCapEmHeight
+     * }
+     */
+    public static int otmsCapEmHeight(MemorySegment struct) {
+        return struct.get(otmsCapEmHeight$LAYOUT, otmsCapEmHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmsCapEmHeight
+     * }
+     */
+    public static void otmsCapEmHeight(MemorySegment struct, int fieldValue) {
+        struct.set(otmsCapEmHeight$LAYOUT, otmsCapEmHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsXHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsXHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmsXHeight
+     * }
+     */
+    public static final OfInt otmsXHeight$layout() {
+        return otmsXHeight$LAYOUT;
+    }
+
+    private static final long otmsXHeight$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmsXHeight
+     * }
+     */
+    public static final long otmsXHeight$offset() {
+        return otmsXHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmsXHeight
+     * }
+     */
+    public static int otmsXHeight(MemorySegment struct) {
+        return struct.get(otmsXHeight$LAYOUT, otmsXHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmsXHeight
+     * }
+     */
+    public static void otmsXHeight(MemorySegment struct, int fieldValue) {
+        struct.set(otmsXHeight$LAYOUT, otmsXHeight$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout otmrcFontBox$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmrcFontBox"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT otmrcFontBox
+     * }
+     */
+    public static final GroupLayout otmrcFontBox$layout() {
+        return otmrcFontBox$LAYOUT;
+    }
+
+    private static final long otmrcFontBox$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT otmrcFontBox
+     * }
+     */
+    public static final long otmrcFontBox$offset() {
+        return otmrcFontBox$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT otmrcFontBox
+     * }
+     */
+    public static MemorySegment otmrcFontBox(MemorySegment struct) {
+        return struct.asSlice(otmrcFontBox$OFFSET, otmrcFontBox$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT otmrcFontBox
+     * }
+     */
+    public static void otmrcFontBox(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmrcFontBox$OFFSET, otmrcFontBox$LAYOUT.byteSize());
+    }
+
+    private static final OfInt otmMacAscent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmMacAscent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmMacAscent
+     * }
+     */
+    public static final OfInt otmMacAscent$layout() {
+        return otmMacAscent$LAYOUT;
+    }
+
+    private static final long otmMacAscent$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmMacAscent
+     * }
+     */
+    public static final long otmMacAscent$offset() {
+        return otmMacAscent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmMacAscent
+     * }
+     */
+    public static int otmMacAscent(MemorySegment struct) {
+        return struct.get(otmMacAscent$LAYOUT, otmMacAscent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmMacAscent
+     * }
+     */
+    public static void otmMacAscent(MemorySegment struct, int fieldValue) {
+        struct.set(otmMacAscent$LAYOUT, otmMacAscent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmMacDescent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmMacDescent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmMacDescent
+     * }
+     */
+    public static final OfInt otmMacDescent$layout() {
+        return otmMacDescent$LAYOUT;
+    }
+
+    private static final long otmMacDescent$OFFSET = 140;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmMacDescent
+     * }
+     */
+    public static final long otmMacDescent$offset() {
+        return otmMacDescent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmMacDescent
+     * }
+     */
+    public static int otmMacDescent(MemorySegment struct) {
+        return struct.get(otmMacDescent$LAYOUT, otmMacDescent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmMacDescent
+     * }
+     */
+    public static void otmMacDescent(MemorySegment struct, int fieldValue) {
+        struct.set(otmMacDescent$LAYOUT, otmMacDescent$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmMacLineGap$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmMacLineGap"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmMacLineGap
+     * }
+     */
+    public static final OfInt otmMacLineGap$layout() {
+        return otmMacLineGap$LAYOUT;
+    }
+
+    private static final long otmMacLineGap$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmMacLineGap
+     * }
+     */
+    public static final long otmMacLineGap$offset() {
+        return otmMacLineGap$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmMacLineGap
+     * }
+     */
+    public static int otmMacLineGap(MemorySegment struct) {
+        return struct.get(otmMacLineGap$LAYOUT, otmMacLineGap$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmMacLineGap
+     * }
+     */
+    public static void otmMacLineGap(MemorySegment struct, int fieldValue) {
+        struct.set(otmMacLineGap$LAYOUT, otmMacLineGap$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmusMinimumPPEM$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmusMinimumPPEM"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmusMinimumPPEM
+     * }
+     */
+    public static final OfInt otmusMinimumPPEM$layout() {
+        return otmusMinimumPPEM$LAYOUT;
+    }
+
+    private static final long otmusMinimumPPEM$OFFSET = 148;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmusMinimumPPEM
+     * }
+     */
+    public static final long otmusMinimumPPEM$offset() {
+        return otmusMinimumPPEM$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmusMinimumPPEM
+     * }
+     */
+    public static int otmusMinimumPPEM(MemorySegment struct) {
+        return struct.get(otmusMinimumPPEM$LAYOUT, otmusMinimumPPEM$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmusMinimumPPEM
+     * }
+     */
+    public static void otmusMinimumPPEM(MemorySegment struct, int fieldValue) {
+        struct.set(otmusMinimumPPEM$LAYOUT, otmusMinimumPPEM$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout otmptSubscriptSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmptSubscriptSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptSize
+     * }
+     */
+    public static final GroupLayout otmptSubscriptSize$layout() {
+        return otmptSubscriptSize$LAYOUT;
+    }
+
+    private static final long otmptSubscriptSize$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptSize
+     * }
+     */
+    public static final long otmptSubscriptSize$offset() {
+        return otmptSubscriptSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptSize
+     * }
+     */
+    public static MemorySegment otmptSubscriptSize(MemorySegment struct) {
+        return struct.asSlice(otmptSubscriptSize$OFFSET, otmptSubscriptSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptSize
+     * }
+     */
+    public static void otmptSubscriptSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmptSubscriptSize$OFFSET, otmptSubscriptSize$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout otmptSubscriptOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmptSubscriptOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptOffset
+     * }
+     */
+    public static final GroupLayout otmptSubscriptOffset$layout() {
+        return otmptSubscriptOffset$LAYOUT;
+    }
+
+    private static final long otmptSubscriptOffset$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptOffset
+     * }
+     */
+    public static final long otmptSubscriptOffset$offset() {
+        return otmptSubscriptOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptOffset
+     * }
+     */
+    public static MemorySegment otmptSubscriptOffset(MemorySegment struct) {
+        return struct.asSlice(otmptSubscriptOffset$OFFSET, otmptSubscriptOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT otmptSubscriptOffset
+     * }
+     */
+    public static void otmptSubscriptOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmptSubscriptOffset$OFFSET, otmptSubscriptOffset$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout otmptSuperscriptSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmptSuperscriptSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptSize
+     * }
+     */
+    public static final GroupLayout otmptSuperscriptSize$layout() {
+        return otmptSuperscriptSize$LAYOUT;
+    }
+
+    private static final long otmptSuperscriptSize$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptSize
+     * }
+     */
+    public static final long otmptSuperscriptSize$offset() {
+        return otmptSuperscriptSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptSize
+     * }
+     */
+    public static MemorySegment otmptSuperscriptSize(MemorySegment struct) {
+        return struct.asSlice(otmptSuperscriptSize$OFFSET, otmptSuperscriptSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptSize
+     * }
+     */
+    public static void otmptSuperscriptSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmptSuperscriptSize$OFFSET, otmptSuperscriptSize$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout otmptSuperscriptOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("otmptSuperscriptOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptOffset
+     * }
+     */
+    public static final GroupLayout otmptSuperscriptOffset$layout() {
+        return otmptSuperscriptOffset$LAYOUT;
+    }
+
+    private static final long otmptSuperscriptOffset$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptOffset
+     * }
+     */
+    public static final long otmptSuperscriptOffset$offset() {
+        return otmptSuperscriptOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptOffset
+     * }
+     */
+    public static MemorySegment otmptSuperscriptOffset(MemorySegment struct) {
+        return struct.asSlice(otmptSuperscriptOffset$OFFSET, otmptSuperscriptOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT otmptSuperscriptOffset
+     * }
+     */
+    public static void otmptSuperscriptOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, otmptSuperscriptOffset$OFFSET, otmptSuperscriptOffset$LAYOUT.byteSize());
+    }
+
+    private static final OfInt otmsStrikeoutSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsStrikeoutSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT otmsStrikeoutSize
+     * }
+     */
+    public static final OfInt otmsStrikeoutSize$layout() {
+        return otmsStrikeoutSize$LAYOUT;
+    }
+
+    private static final long otmsStrikeoutSize$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT otmsStrikeoutSize
+     * }
+     */
+    public static final long otmsStrikeoutSize$offset() {
+        return otmsStrikeoutSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT otmsStrikeoutSize
+     * }
+     */
+    public static int otmsStrikeoutSize(MemorySegment struct) {
+        return struct.get(otmsStrikeoutSize$LAYOUT, otmsStrikeoutSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT otmsStrikeoutSize
+     * }
+     */
+    public static void otmsStrikeoutSize(MemorySegment struct, int fieldValue) {
+        struct.set(otmsStrikeoutSize$LAYOUT, otmsStrikeoutSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsStrikeoutPosition$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsStrikeoutPosition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmsStrikeoutPosition
+     * }
+     */
+    public static final OfInt otmsStrikeoutPosition$layout() {
+        return otmsStrikeoutPosition$LAYOUT;
+    }
+
+    private static final long otmsStrikeoutPosition$OFFSET = 188;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmsStrikeoutPosition
+     * }
+     */
+    public static final long otmsStrikeoutPosition$offset() {
+        return otmsStrikeoutPosition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmsStrikeoutPosition
+     * }
+     */
+    public static int otmsStrikeoutPosition(MemorySegment struct) {
+        return struct.get(otmsStrikeoutPosition$LAYOUT, otmsStrikeoutPosition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmsStrikeoutPosition
+     * }
+     */
+    public static void otmsStrikeoutPosition(MemorySegment struct, int fieldValue) {
+        struct.set(otmsStrikeoutPosition$LAYOUT, otmsStrikeoutPosition$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsUnderscoreSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsUnderscoreSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmsUnderscoreSize
+     * }
+     */
+    public static final OfInt otmsUnderscoreSize$layout() {
+        return otmsUnderscoreSize$LAYOUT;
+    }
+
+    private static final long otmsUnderscoreSize$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmsUnderscoreSize
+     * }
+     */
+    public static final long otmsUnderscoreSize$offset() {
+        return otmsUnderscoreSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmsUnderscoreSize
+     * }
+     */
+    public static int otmsUnderscoreSize(MemorySegment struct) {
+        return struct.get(otmsUnderscoreSize$LAYOUT, otmsUnderscoreSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmsUnderscoreSize
+     * }
+     */
+    public static void otmsUnderscoreSize(MemorySegment struct, int fieldValue) {
+        struct.set(otmsUnderscoreSize$LAYOUT, otmsUnderscoreSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt otmsUnderscorePosition$LAYOUT = (OfInt)$LAYOUT.select(groupElement("otmsUnderscorePosition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int otmsUnderscorePosition
+     * }
+     */
+    public static final OfInt otmsUnderscorePosition$layout() {
+        return otmsUnderscorePosition$LAYOUT;
+    }
+
+    private static final long otmsUnderscorePosition$OFFSET = 196;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int otmsUnderscorePosition
+     * }
+     */
+    public static final long otmsUnderscorePosition$offset() {
+        return otmsUnderscorePosition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int otmsUnderscorePosition
+     * }
+     */
+    public static int otmsUnderscorePosition(MemorySegment struct) {
+        return struct.get(otmsUnderscorePosition$LAYOUT, otmsUnderscorePosition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int otmsUnderscorePosition
+     * }
+     */
+    public static void otmsUnderscorePosition(MemorySegment struct, int fieldValue) {
+        struct.set(otmsUnderscorePosition$LAYOUT, otmsUnderscorePosition$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout otmpFamilyName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("otmpFamilyName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSTR otmpFamilyName
+     * }
+     */
+    public static final AddressLayout otmpFamilyName$layout() {
+        return otmpFamilyName$LAYOUT;
+    }
+
+    private static final long otmpFamilyName$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSTR otmpFamilyName
+     * }
+     */
+    public static final long otmpFamilyName$offset() {
+        return otmpFamilyName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFamilyName
+     * }
+     */
+    public static MemorySegment otmpFamilyName(MemorySegment struct) {
+        return struct.get(otmpFamilyName$LAYOUT, otmpFamilyName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFamilyName
+     * }
+     */
+    public static void otmpFamilyName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(otmpFamilyName$LAYOUT, otmpFamilyName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout otmpFaceName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("otmpFaceName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSTR otmpFaceName
+     * }
+     */
+    public static final AddressLayout otmpFaceName$layout() {
+        return otmpFaceName$LAYOUT;
+    }
+
+    private static final long otmpFaceName$OFFSET = 208;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSTR otmpFaceName
+     * }
+     */
+    public static final long otmpFaceName$offset() {
+        return otmpFaceName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFaceName
+     * }
+     */
+    public static MemorySegment otmpFaceName(MemorySegment struct) {
+        return struct.get(otmpFaceName$LAYOUT, otmpFaceName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFaceName
+     * }
+     */
+    public static void otmpFaceName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(otmpFaceName$LAYOUT, otmpFaceName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout otmpStyleName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("otmpStyleName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSTR otmpStyleName
+     * }
+     */
+    public static final AddressLayout otmpStyleName$layout() {
+        return otmpStyleName$LAYOUT;
+    }
+
+    private static final long otmpStyleName$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSTR otmpStyleName
+     * }
+     */
+    public static final long otmpStyleName$offset() {
+        return otmpStyleName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSTR otmpStyleName
+     * }
+     */
+    public static MemorySegment otmpStyleName(MemorySegment struct) {
+        return struct.get(otmpStyleName$LAYOUT, otmpStyleName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSTR otmpStyleName
+     * }
+     */
+    public static void otmpStyleName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(otmpStyleName$LAYOUT, otmpStyleName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout otmpFullName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("otmpFullName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSTR otmpFullName
+     * }
+     */
+    public static final AddressLayout otmpFullName$layout() {
+        return otmpFullName$LAYOUT;
+    }
+
+    private static final long otmpFullName$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSTR otmpFullName
+     * }
+     */
+    public static final long otmpFullName$offset() {
+        return otmpFullName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFullName
+     * }
+     */
+    public static MemorySegment otmpFullName(MemorySegment struct) {
+        return struct.get(otmpFullName$LAYOUT, otmpFullName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSTR otmpFullName
+     * }
+     */
+    public static void otmpFullName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(otmpFullName$LAYOUT, otmpFullName$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

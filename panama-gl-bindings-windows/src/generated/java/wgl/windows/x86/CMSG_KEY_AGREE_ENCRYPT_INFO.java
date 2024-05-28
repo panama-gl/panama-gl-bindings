@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CMSG_KEY_AGREE_ENCRYPT_INFO {
+ *     DWORD cbSize;
+ *     DWORD dwRecipientIndex;
+ *     CRYPT_ALGORITHM_IDENTIFIER KeyEncryptionAlgorithm;
+ *     CRYPT_DATA_BLOB UserKeyingMaterial;
+ *     DWORD dwOriginatorChoice;
+ *     union {
+ *         CERT_ID OriginatorCertId;
+ *         CERT_PUBLIC_KEY_INFO OriginatorPublicKeyInfo;
+ *     };
+ *     DWORD cKeyAgreeKeyEncryptInfo;
+ *     PCMSG_KEY_AGREE_KEY_ENCRYPT_INFO *rgpKeyAgreeKeyEncryptInfo;
+ *     DWORD dwFlags;
+ * } CMSG_KEY_AGREE_ENCRYPT_INFO
+ * }
+ */
 public class CMSG_KEY_AGREE_ENCRYPT_INFO extends _CMSG_KEY_AGREE_ENCRYPT_INFO {
 
+    CMSG_KEY_AGREE_ENCRYPT_INFO() {
+        // Should not be called directly
+    }
 }
-
 

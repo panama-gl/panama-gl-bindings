@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface RPC_BLOCKING_FN {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hWnd, java.lang.foreign.MemoryAddress Context, java.lang.foreign.MemoryAddress hSyncEvent);
-    static MemorySegment allocate(RPC_BLOCKING_FN fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(RPC_BLOCKING_FN.class, fi, constants$688.RPC_BLOCKING_FN$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef RPC_STATUS (*RPC_BLOCKING_FN)(void *, void *, void *)
+ * }
+ */
+public class RPC_BLOCKING_FN {
+
+    RPC_BLOCKING_FN() {
+        // Should not be called directly
     }
-    static RPC_BLOCKING_FN ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hWnd, java.lang.foreign.MemoryAddress _Context, java.lang.foreign.MemoryAddress _hSyncEvent) -> {
-            try {
-                return (int)constants$688.RPC_BLOCKING_FN$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hWnd, (java.lang.foreign.Addressable)_Context, (java.lang.foreign.Addressable)_hSyncEvent);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hWnd, MemorySegment Context, MemorySegment hSyncEvent);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(RPC_BLOCKING_FN.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(RPC_BLOCKING_FN.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hWnd, MemorySegment Context, MemorySegment hSyncEvent) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hWnd, Context, hSyncEvent);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CMSG_EXPORT_KEY_TRANS {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress pContentEncryptInfo, java.lang.foreign.MemoryAddress pKeyTransEncodeInfo, java.lang.foreign.MemoryAddress pKeyTransEncryptInfo, int dwFlags, java.lang.foreign.MemoryAddress pvReserved);
-    static MemorySegment allocate(PFN_CMSG_EXPORT_KEY_TRANS fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CMSG_EXPORT_KEY_TRANS.class, fi, constants$763.PFN_CMSG_EXPORT_KEY_TRANS$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CMSG_EXPORT_KEY_TRANS)(PCMSG_CONTENT_ENCRYPT_INFO, PCMSG_KEY_TRANS_RECIPIENT_ENCODE_INFO, PCMSG_KEY_TRANS_ENCRYPT_INFO, DWORD, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CMSG_EXPORT_KEY_TRANS {
+
+    PFN_CMSG_EXPORT_KEY_TRANS() {
+        // Should not be called directly
     }
-    static PFN_CMSG_EXPORT_KEY_TRANS ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pContentEncryptInfo, java.lang.foreign.MemoryAddress _pKeyTransEncodeInfo, java.lang.foreign.MemoryAddress _pKeyTransEncryptInfo, int _dwFlags, java.lang.foreign.MemoryAddress _pvReserved) -> {
-            try {
-                return (int)constants$763.PFN_CMSG_EXPORT_KEY_TRANS$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pContentEncryptInfo, (java.lang.foreign.Addressable)_pKeyTransEncodeInfo, (java.lang.foreign.Addressable)_pKeyTransEncryptInfo, _dwFlags, (java.lang.foreign.Addressable)_pvReserved);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment pContentEncryptInfo, MemorySegment pKeyTransEncodeInfo, MemorySegment pKeyTransEncryptInfo, int dwFlags, MemorySegment pvReserved);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CMSG_EXPORT_KEY_TRANS.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CMSG_EXPORT_KEY_TRANS.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment pContentEncryptInfo, MemorySegment pKeyTransEncodeInfo, MemorySegment pKeyTransEncryptInfo, int dwFlags, MemorySegment pvReserved) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, pContentEncryptInfo, pKeyTransEncodeInfo, pKeyTransEncryptInfo, dwFlags, pvReserved);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

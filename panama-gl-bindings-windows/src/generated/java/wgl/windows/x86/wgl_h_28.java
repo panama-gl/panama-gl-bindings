@@ -2,3013 +2,9020 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class wgl_h_28 extends wgl_h_27 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static int PST_MODEM() {
-        return (int)6L;
-    }
-    public static int PST_FAX() {
-        return (int)33L;
-    }
-    public static int PST_SCANNER() {
-        return (int)34L;
-    }
-    public static int PST_NETWORK_BRIDGE() {
-        return (int)256L;
-    }
-    public static int PST_LAT() {
-        return (int)257L;
-    }
-    public static int PST_TCPIP_TELNET() {
-        return (int)258L;
-    }
-    public static int PST_X25() {
-        return (int)259L;
-    }
-    public static int PCF_DTRDSR() {
-        return (int)1L;
-    }
-    public static int PCF_RTSCTS() {
-        return (int)2L;
-    }
-    public static int PCF_RLSD() {
-        return (int)4L;
-    }
-    public static int PCF_PARITY_CHECK() {
-        return (int)8L;
-    }
-    public static int PCF_XONXOFF() {
-        return (int)16L;
-    }
-    public static int PCF_SETXCHAR() {
-        return (int)32L;
-    }
-    public static int PCF_TOTALTIMEOUTS() {
-        return (int)64L;
-    }
-    public static int PCF_INTTIMEOUTS() {
-        return (int)128L;
-    }
-    public static int PCF_SPECIALCHARS() {
-        return (int)256L;
-    }
-    public static int PCF_16BITMODE() {
-        return (int)512L;
-    }
-    public static int SP_PARITY() {
-        return (int)1L;
-    }
-    public static int SP_BAUD() {
-        return (int)2L;
-    }
-    public static int SP_DATABITS() {
-        return (int)4L;
-    }
-    public static int SP_STOPBITS() {
-        return (int)8L;
-    }
-    public static int SP_HANDSHAKING() {
-        return (int)16L;
-    }
-    public static int SP_PARITY_CHECK() {
-        return (int)32L;
-    }
-    public static int SP_RLSD() {
-        return (int)64L;
-    }
-    public static int BAUD_075() {
-        return (int)1L;
-    }
-    public static int BAUD_110() {
-        return (int)2L;
-    }
-    public static int BAUD_134_5() {
-        return (int)4L;
-    }
-    public static int BAUD_150() {
-        return (int)8L;
-    }
-    public static int BAUD_300() {
-        return (int)16L;
-    }
-    public static int BAUD_600() {
-        return (int)32L;
-    }
-    public static int BAUD_1200() {
-        return (int)64L;
-    }
-    public static int BAUD_1800() {
-        return (int)128L;
-    }
-    public static int BAUD_2400() {
-        return (int)256L;
-    }
-    public static int BAUD_4800() {
-        return (int)512L;
-    }
-    public static int BAUD_7200() {
-        return (int)1024L;
-    }
-    public static int BAUD_9600() {
-        return (int)2048L;
-    }
-    public static int BAUD_14400() {
-        return (int)4096L;
-    }
-    public static int BAUD_19200() {
-        return (int)8192L;
-    }
-    public static int BAUD_38400() {
-        return (int)16384L;
-    }
-    public static int BAUD_56K() {
-        return (int)32768L;
-    }
-    public static int BAUD_128K() {
-        return (int)65536L;
-    }
-    public static int BAUD_115200() {
-        return (int)131072L;
-    }
-    public static int BAUD_57600() {
-        return (int)262144L;
-    }
-    public static int BAUD_USER() {
-        return (int)268435456L;
-    }
-    public static short DATABITS_5() {
-        return (short)1L;
-    }
-    public static short DATABITS_6() {
-        return (short)2L;
-    }
-    public static short DATABITS_7() {
-        return (short)4L;
-    }
-    public static short DATABITS_8() {
-        return (short)8L;
-    }
-    public static short DATABITS_16() {
-        return (short)16L;
-    }
-    public static short DATABITS_16X() {
-        return (short)32L;
-    }
-    public static short STOPBITS_10() {
-        return (short)1L;
-    }
-    public static short STOPBITS_15() {
-        return (short)2L;
-    }
-    public static short STOPBITS_20() {
-        return (short)4L;
-    }
-    public static short PARITY_NONE() {
-        return (short)256L;
-    }
-    public static short PARITY_ODD() {
-        return (short)512L;
-    }
-    public static short PARITY_EVEN() {
-        return (short)1024L;
-    }
-    public static short PARITY_MARK() {
-        return (short)2048L;
-    }
-    public static short PARITY_SPACE() {
-        return (short)4096L;
-    }
-    public static int COMMPROP_INITIALIZED() {
-        return (int)3879531822L;
-    }
-    public static int GMEM_LOWER() {
-        return (int)4096L;
-    }
-    public static int GHND() {
-        return (int)66L;
-    }
-    public static int GPTR() {
-        return (int)64L;
-    }
-    public static int CREATE_IGNORE_SYSTEM_DEFAULT() {
-        return (int)2147483648L;
-    }
-    public static int THREAD_PRIORITY_LOWEST() {
-        return (int)-2L;
-    }
-    public static int THREAD_PRIORITY_BELOW_NORMAL() {
-        return (int)-1L;
-    }
-    public static int THREAD_PRIORITY_HIGHEST() {
-        return (int)2L;
-    }
-    public static int THREAD_PRIORITY_ABOVE_NORMAL() {
-        return (int)1L;
-    }
-    public static int THREAD_PRIORITY_ERROR_RETURN() {
-        return (int)2147483647L;
-    }
-    public static int THREAD_PRIORITY_TIME_CRITICAL() {
-        return (int)15L;
-    }
-    public static int THREAD_PRIORITY_IDLE() {
-        return (int)-15L;
-    }
-    public static int STD_INPUT_HANDLE() {
-        return (int)4294967286L;
-    }
-    public static int STD_OUTPUT_HANDLE() {
-        return (int)4294967285L;
-    }
-    public static int STD_ERROR_HANDLE() {
-        return (int)4294967284L;
-    }
-    public static int INFINITE() {
-        return (int)4294967295L;
-    }
-    public static int IE_BADID() {
-        return (int)-1L;
-    }
-    public static int IE_OPEN() {
-        return (int)-2L;
-    }
-    public static int IE_NOPEN() {
-        return (int)-3L;
-    }
-    public static int IE_MEMORY() {
-        return (int)-4L;
-    }
-    public static int IE_DEFAULT() {
-        return (int)-5L;
-    }
-    public static int IE_HARDWARE() {
-        return (int)-10L;
-    }
-    public static int IE_BYTESIZE() {
-        return (int)-11L;
-    }
-    public static int IE_BAUDRATE() {
-        return (int)-12L;
-    }
-    public static int MS_CTS_ON() {
-        return (int)16L;
-    }
-    public static int MS_DSR_ON() {
-        return (int)32L;
-    }
-    public static int MS_RING_ON() {
-        return (int)64L;
-    }
-    public static int MS_RLSD_ON() {
-        return (int)128L;
-    }
-    public static int S_SERDVNA() {
-        return (int)-1L;
-    }
-    public static int S_SEROFM() {
-        return (int)-2L;
-    }
-    public static int S_SERMACT() {
-        return (int)-3L;
-    }
-    public static int S_SERQFUL() {
-        return (int)-4L;
-    }
-    public static int S_SERBDNT() {
-        return (int)-5L;
-    }
-    public static int S_SERDLN() {
-        return (int)-6L;
-    }
-    public static int S_SERDCC() {
-        return (int)-7L;
-    }
-    public static int S_SERDTP() {
-        return (int)-8L;
-    }
-    public static int S_SERDVL() {
-        return (int)-9L;
-    }
-    public static int S_SERDMD() {
-        return (int)-10L;
-    }
-    public static int S_SERDSH() {
-        return (int)-11L;
-    }
-    public static int S_SERDPT() {
-        return (int)-12L;
-    }
-    public static int S_SERDFQ() {
-        return (int)-13L;
-    }
-    public static int S_SERDDR() {
-        return (int)-14L;
-    }
-    public static int S_SERDSR() {
-        return (int)-15L;
-    }
-    public static int S_SERDST() {
-        return (int)-16L;
-    }
-    public static int NMPWAIT_WAIT_FOREVER() {
-        return (int)4294967295L;
-    }
-    public static int FS_CASE_IS_PRESERVED() {
-        return (int)2L;
-    }
-    public static int FS_CASE_SENSITIVE() {
-        return (int)1L;
-    }
-    public static int FS_UNICODE_STORED_ON_DISK() {
-        return (int)4L;
-    }
-    public static int FS_PERSISTENT_ACLS() {
-        return (int)8L;
-    }
-    public static int FS_VOL_IS_COMPRESSED() {
-        return (int)32768L;
-    }
-    public static int FS_FILE_COMPRESSION() {
-        return (int)16L;
-    }
-    public static int FS_FILE_ENCRYPTION() {
-        return (int)131072L;
-    }
-    public static short INVALID_ATOM() {
-        return (short)0L;
-    }
-    public static int SCS_THIS_PLATFORM_BINARY() {
-        return (int)6L;
-    }
-    public static int UMS_VERSION() {
-        return (int)256L;
-    }
-    public static int CRITICAL_SECTION_NO_DEBUG_INFO() {
-        return (int)16777216L;
-    }
-    public static int EFS_USE_RECOVERY_KEYS() {
-        return (int)1L;
-    }
-    public static int CREATE_FOR_IMPORT() {
-        return (int)1L;
-    }
-    public static int CREATE_FOR_DIR() {
-        return (int)2L;
-    }
-    public static int OVERWRITE_HIDDEN() {
-        return (int)4L;
-    }
-    public static int EFSRPC_SECURE_ONLY() {
-        return (int)8L;
-    }
-    public static int EFS_DROP_ALTERNATE_STREAMS() {
-        return (int)16L;
-    }
-    public static int PROTECTION_LEVEL_SAME() {
-        return (int)4294967295L;
-    }
-    public static int PROTECTION_LEVEL_NONE() {
-        return (int)4294967294L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PARENT_PROCESS() {
-        return (int)131072L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_HANDLE_LIST() {
-        return (int)131074L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY() {
-        return (int)196611L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PREFERRED_NODE() {
-        return (int)131076L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR() {
-        return (int)196613L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_UMS_THREAD() {
-        return (int)196614L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY() {
-        return (int)131079L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_SECURITY_CAPABILITIES() {
-        return (int)131081L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PROTECTION_LEVEL() {
-        return (int)131083L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_PSEUDOCONSOLE() {
-        return (int)131094L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_MASK() {
-        return (int)768L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_ON() {
-        return (int)256L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_OFF() {
-        return (int)512L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_FORCE_RELOCATE_IMAGES_ALWAYS_ON_REQ_RELOCS() {
-        return (int)768L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_MASK() {
-        return (int)12288L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_ALWAYS_ON() {
-        return (int)4096L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_ALWAYS_OFF() {
-        return (int)8192L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HEAP_TERMINATE_RESERVED() {
-        return (int)12288L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_MASK() {
-        return (int)196608L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_ALWAYS_ON() {
-        return (int)65536L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_ALWAYS_OFF() {
-        return (int)131072L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_BOTTOM_UP_ASLR_RESERVED() {
-        return (int)196608L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_MASK() {
-        return (int)3145728L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_ALWAYS_ON() {
-        return (int)1048576L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_ALWAYS_OFF() {
-        return (int)2097152L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_HIGH_ENTROPY_ASLR_RESERVED() {
-        return (int)3145728L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_MASK() {
-        return (int)50331648L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_ALWAYS_ON() {
-        return (int)16777216L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_ALWAYS_OFF() {
-        return (int)33554432L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_STRICT_HANDLE_CHECKS_RESERVED() {
-        return (int)50331648L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_MASK() {
-        return (int)805306368L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_DEFER() {
-        return (int)0L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_ALWAYS_ON() {
-        return (int)268435456L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_ALWAYS_OFF() {
-        return (int)536870912L;
-    }
-    public static int PROCESS_CREATION_MITIGATION_POLICY_WIN32K_SYSTEM_CALL_DISABLE_RESERVED() {
-        return (int)805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_EXTENSION_POINT_DISABLE_RESERVED() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_PROHIBIT_DYNAMIC_CODE_ALWAYS_ON_ALLOW_OPT_OUT() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_MASK() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 1099511627776L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 2199023255552L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_CONTROL_FLOW_GUARD_EXPORT_SUPPRESSION() {
-        return 3298534883328L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_MASK() {
-        return 52776558133248L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALWAYS_ON() {
-        return 17592186044416L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALWAYS_OFF() {
-        return 35184372088832L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_BLOCK_NON_MICROSOFT_BINARIES_ALLOW_STORE() {
-        return 52776558133248L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_MASK() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_ALWAYS_ON() {
-        return 281474976710656L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_FONT_DISABLE_ALWAYS_OFF() {
-        return 562949953421312L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_AUDIT_NONSYSTEM_FONTS() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_MASK() {
-        return 13510798882111488L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_ALWAYS_ON() {
-        return 4503599627370496L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_ALWAYS_OFF() {
-        return 9007199254740992L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_REMOTE_RESERVED() {
-        return 13510798882111488L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_MASK() {
-        return 216172782113783808L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_ALWAYS_ON() {
-        return 72057594037927936L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_ALWAYS_OFF() {
-        return 144115188075855872L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_NO_LOW_LABEL_RESERVED() {
-        return 216172782113783808L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_MASK() {
-        return 3458764513820540928L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_ALWAYS_ON() {
-        return 1152921504606846976L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_ALWAYS_OFF() {
-        return 2305843009213693952L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY_IMAGE_LOAD_PREFER_SYSTEM32_RESERVED() {
-        return 3458764513820540928L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_MASK() {
-        return 48L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_ALWAYS_ON() {
-        return 16L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_ALWAYS_OFF() {
-        return 32L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_LOADER_INTEGRITY_CONTINUITY_AUDIT() {
-        return 48L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_MASK() {
-        return 768L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_ALWAYS_ON() {
-        return 256L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_ALWAYS_OFF() {
-        return 512L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_STRICT_CONTROL_FLOW_GUARD_RESERVED() {
-        return 768L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_MASK() {
-        return 12288L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_ALWAYS_ON() {
-        return 4096L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_ALWAYS_OFF() {
-        return 8192L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_MODULE_TAMPERING_PROTECTION_NOINHERIT() {
-        return 12288L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_MASK() {
-        return 196608L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_ALWAYS_ON() {
-        return 65536L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_ALWAYS_OFF() {
-        return 131072L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_RESTRICT_INDIRECT_BRANCH_PREDICTION_RESERVED() {
-        return 196608L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_MASK() {
-        return 3145728L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_ALWAYS_ON() {
-        return 1048576L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_ALWAYS_OFF() {
-        return 2097152L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_ALLOW_DOWNGRADE_DYNAMIC_CODE_POLICY_RESERVED() {
-        return 3145728L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_MASK() {
-        return 50331648L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_ALWAYS_ON() {
-        return 16777216L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_ALWAYS_OFF() {
-        return 33554432L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_SPECULATIVE_STORE_BYPASS_DISABLE_RESERVED() {
-        return 50331648L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_MASK() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON() {
-        return 268435456L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF() {
-        return 536870912L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_USER_SHADOW_STACKS_STRICT_MODE() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_RELAXED_MODE() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_BLOCK_NON_CET_BINARIES_NON_EHCONT() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_MASK() {
-        return 844424930131968L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_ALWAYS_ON() {
-        return 281474976710656L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_ALWAYS_OFF() {
-        return 562949953421312L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_POLICY2_CET_DYNAMIC_APIS_OUT_OF_PROC_ONLY_RESERVED() {
-        return 844424930131968L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_JOB_LIST() {
-        return (int)131085L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_CHILD_PROCESS_POLICY() {
-        return (int)131086L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_ALL_APPLICATION_PACKAGES_POLICY() {
-        return (int)131087L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_WIN32K_FILTER() {
-        return (int)131088L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_DESKTOP_APP_POLICY() {
-        return (int)131090L;
-    }
-    public static int PROC_THREAD_ATTRIBUTE_MITIGATION_AUDIT_POLICY() {
-        return (int)131096L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_MASK() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_ON() {
-        return 268435456L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_ALWAYS_OFF() {
-        return 536870912L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_CET_USER_SHADOW_STACKS_RESERVED() {
-        return 805306368L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_MASK() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_ON() {
-        return 4294967296L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_ALWAYS_OFF() {
-        return 8589934592L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_USER_CET_SET_CONTEXT_IP_VALIDATION_RESERVED() {
-        return 12884901888L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_MASK() {
-        return 206158430208L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_DEFER() {
-        return 0L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_ON() {
-        return 68719476736L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_ALWAYS_OFF() {
-        return 137438953472L;
-    }
-    public static long PROCESS_CREATION_MITIGATION_AUDIT_POLICY2_BLOCK_NON_CET_BINARIES_RESERVED() {
-        return 206158430208L;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_A() {
-        return constants$1428.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_W() {
-        return constants$1428.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T() {
-        return constants$1428.GET_SYSTEM_WOW64_DIRECTORY_NAME_A_T$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A() {
-        return constants$1428.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W() {
-        return constants$1429.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T() {
-        return constants$1429.GET_SYSTEM_WOW64_DIRECTORY_NAME_W_T$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A() {
-        return constants$1429.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_A$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W() {
-        return constants$1429.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_W$SEGMENT;
-    }
-    public static MemorySegment GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T() {
-        return constants$1429.GET_SYSTEM_WOW64_DIRECTORY_NAME_T_T$SEGMENT;
-    }
-    public static int BASE_SEARCH_PATH_INVALID_FLAGS() {
-        return (int)-98306L;
-    }
-    public static int COPYFILE2_MESSAGE_COPY_OFFLOAD() {
-        return (int)1L;
-    }
-    public static int LOGON_ZERO_PASSWORD_BUFFER() {
-        return (int)2147483648L;
-    }
-    public static int DOCKINFO_UNDOCKED() {
-        return (int)1L;
-    }
-    public static int DOCKINFO_DOCKED() {
-        return (int)2L;
-    }
-    public static int DOCKINFO_USER_SUPPLIED() {
-        return (int)4L;
-    }
-    public static int DOCKINFO_USER_UNDOCKED() {
-        return (int)5L;
-    }
-    public static int DOCKINFO_USER_DOCKED() {
-        return (int)6L;
-    }
-    public static int ERROR_SUCCESS() {
-        return (int)0L;
-    }
-    public static int NO_ERROR() {
-        return (int)0L;
-    }
-    public static int SEC_E_OK() {
-        return (int)0L;
-    }
-    public static int ERROR_INVALID_FUNCTION() {
-        return (int)1L;
-    }
-    public static int ERROR_FILE_NOT_FOUND() {
-        return (int)2L;
-    }
-    public static int ERROR_PATH_NOT_FOUND() {
-        return (int)3L;
-    }
-    public static int ERROR_TOO_MANY_OPEN_FILES() {
-        return (int)4L;
-    }
-    public static int ERROR_ACCESS_DENIED() {
-        return (int)5L;
-    }
-    public static int ERROR_INVALID_HANDLE() {
-        return (int)6L;
-    }
-    public static int ERROR_ARENA_TRASHED() {
-        return (int)7L;
-    }
-    public static int ERROR_NOT_ENOUGH_MEMORY() {
-        return (int)8L;
-    }
-    public static int ERROR_INVALID_BLOCK() {
-        return (int)9L;
-    }
-    public static int ERROR_BAD_ENVIRONMENT() {
-        return (int)10L;
-    }
-    public static int ERROR_BAD_FORMAT() {
-        return (int)11L;
-    }
-    public static int ERROR_INVALID_ACCESS() {
-        return (int)12L;
-    }
-    public static int ERROR_INVALID_DATA() {
-        return (int)13L;
-    }
-    public static int ERROR_OUTOFMEMORY() {
-        return (int)14L;
-    }
-    public static int ERROR_INVALID_DRIVE() {
-        return (int)15L;
-    }
-    public static int ERROR_CURRENT_DIRECTORY() {
-        return (int)16L;
-    }
-    public static int ERROR_NOT_SAME_DEVICE() {
-        return (int)17L;
-    }
-    public static int ERROR_NO_MORE_FILES() {
-        return (int)18L;
-    }
-    public static int ERROR_WRITE_PROTECT() {
-        return (int)19L;
-    }
-    public static int ERROR_BAD_UNIT() {
-        return (int)20L;
-    }
-    public static int ERROR_NOT_READY() {
-        return (int)21L;
-    }
-    public static int ERROR_BAD_COMMAND() {
-        return (int)22L;
-    }
-    public static int ERROR_CRC() {
-        return (int)23L;
-    }
-    public static int ERROR_BAD_LENGTH() {
-        return (int)24L;
-    }
-    public static int ERROR_SEEK() {
-        return (int)25L;
-    }
-    public static int ERROR_NOT_DOS_DISK() {
-        return (int)26L;
-    }
-    public static int ERROR_SECTOR_NOT_FOUND() {
-        return (int)27L;
-    }
-    public static int ERROR_OUT_OF_PAPER() {
-        return (int)28L;
-    }
-    public static int ERROR_WRITE_FAULT() {
-        return (int)29L;
-    }
-    public static int ERROR_READ_FAULT() {
-        return (int)30L;
-    }
-    public static int ERROR_GEN_FAILURE() {
-        return (int)31L;
-    }
-    public static int ERROR_SHARING_VIOLATION() {
-        return (int)32L;
-    }
-    public static int ERROR_LOCK_VIOLATION() {
-        return (int)33L;
-    }
-    public static int ERROR_WRONG_DISK() {
-        return (int)34L;
-    }
-    public static int ERROR_SHARING_BUFFER_EXCEEDED() {
-        return (int)36L;
-    }
-    public static int ERROR_HANDLE_EOF() {
-        return (int)38L;
-    }
-    public static int ERROR_HANDLE_DISK_FULL() {
-        return (int)39L;
-    }
-    public static int ERROR_NOT_SUPPORTED() {
-        return (int)50L;
-    }
-    public static int ERROR_REM_NOT_LIST() {
-        return (int)51L;
-    }
-    public static int ERROR_DUP_NAME() {
-        return (int)52L;
-    }
-    public static int ERROR_BAD_NETPATH() {
-        return (int)53L;
-    }
-    public static int ERROR_NETWORK_BUSY() {
-        return (int)54L;
-    }
-    public static int ERROR_DEV_NOT_EXIST() {
-        return (int)55L;
-    }
-    public static int ERROR_TOO_MANY_CMDS() {
-        return (int)56L;
-    }
-    public static int ERROR_ADAP_HDW_ERR() {
-        return (int)57L;
-    }
-    public static int ERROR_BAD_NET_RESP() {
-        return (int)58L;
-    }
-    public static int ERROR_UNEXP_NET_ERR() {
-        return (int)59L;
-    }
-    public static int ERROR_BAD_REM_ADAP() {
-        return (int)60L;
-    }
-    public static int ERROR_PRINTQ_FULL() {
-        return (int)61L;
-    }
-    public static int ERROR_NO_SPOOL_SPACE() {
-        return (int)62L;
-    }
-    public static int ERROR_PRINT_CANCELLED() {
-        return (int)63L;
-    }
-    public static int ERROR_NETNAME_DELETED() {
-        return (int)64L;
-    }
-    public static int ERROR_NETWORK_ACCESS_DENIED() {
-        return (int)65L;
-    }
-    public static int ERROR_BAD_DEV_TYPE() {
-        return (int)66L;
-    }
-    public static int ERROR_BAD_NET_NAME() {
-        return (int)67L;
-    }
-    public static int ERROR_TOO_MANY_NAMES() {
-        return (int)68L;
-    }
-    public static int ERROR_TOO_MANY_SESS() {
-        return (int)69L;
-    }
-    public static int ERROR_SHARING_PAUSED() {
-        return (int)70L;
-    }
-    public static int ERROR_REQ_NOT_ACCEP() {
-        return (int)71L;
-    }
-    public static int ERROR_REDIR_PAUSED() {
-        return (int)72L;
-    }
-    public static int ERROR_FILE_EXISTS() {
-        return (int)80L;
-    }
-    public static int ERROR_CANNOT_MAKE() {
-        return (int)82L;
-    }
-    public static int ERROR_FAIL_I24() {
-        return (int)83L;
-    }
-    public static int ERROR_OUT_OF_STRUCTURES() {
-        return (int)84L;
-    }
-    public static int ERROR_ALREADY_ASSIGNED() {
-        return (int)85L;
-    }
-    public static int ERROR_INVALID_PASSWORD() {
-        return (int)86L;
-    }
-    public static int ERROR_INVALID_PARAMETER() {
-        return (int)87L;
-    }
-    public static int ERROR_NET_WRITE_FAULT() {
-        return (int)88L;
-    }
-    public static int ERROR_NO_PROC_SLOTS() {
-        return (int)89L;
-    }
-    public static int ERROR_TOO_MANY_SEMAPHORES() {
-        return (int)100L;
-    }
-    public static int ERROR_EXCL_SEM_ALREADY_OWNED() {
-        return (int)101L;
-    }
-    public static int ERROR_SEM_IS_SET() {
-        return (int)102L;
-    }
-    public static int ERROR_TOO_MANY_SEM_REQUESTS() {
-        return (int)103L;
-    }
-    public static int ERROR_INVALID_AT_INTERRUPT_TIME() {
-        return (int)104L;
-    }
-    public static int ERROR_SEM_OWNER_DIED() {
-        return (int)105L;
-    }
-    public static int ERROR_SEM_USER_LIMIT() {
-        return (int)106L;
-    }
-    public static int ERROR_DISK_CHANGE() {
-        return (int)107L;
-    }
-    public static int ERROR_DRIVE_LOCKED() {
-        return (int)108L;
-    }
-    public static int ERROR_BROKEN_PIPE() {
-        return (int)109L;
-    }
-    public static int ERROR_OPEN_FAILED() {
-        return (int)110L;
-    }
-    public static int ERROR_BUFFER_OVERFLOW() {
-        return (int)111L;
-    }
-    public static int ERROR_DISK_FULL() {
-        return (int)112L;
-    }
-    public static int ERROR_NO_MORE_SEARCH_HANDLES() {
-        return (int)113L;
-    }
-    public static int ERROR_INVALID_TARGET_HANDLE() {
-        return (int)114L;
-    }
-    public static int ERROR_INVALID_CATEGORY() {
-        return (int)117L;
-    }
-    public static int ERROR_INVALID_VERIFY_SWITCH() {
-        return (int)118L;
-    }
-    public static int ERROR_BAD_DRIVER_LEVEL() {
-        return (int)119L;
-    }
-    public static int ERROR_CALL_NOT_IMPLEMENTED() {
-        return (int)120L;
-    }
-    public static int ERROR_SEM_TIMEOUT() {
-        return (int)121L;
-    }
-    public static int ERROR_INSUFFICIENT_BUFFER() {
-        return (int)122L;
-    }
-    public static int ERROR_INVALID_NAME() {
-        return (int)123L;
-    }
-    public static int ERROR_INVALID_LEVEL() {
-        return (int)124L;
-    }
-    public static int ERROR_NO_VOLUME_LABEL() {
-        return (int)125L;
-    }
-    public static int ERROR_MOD_NOT_FOUND() {
-        return (int)126L;
-    }
-    public static int ERROR_PROC_NOT_FOUND() {
-        return (int)127L;
-    }
-    public static int ERROR_WAIT_NO_CHILDREN() {
-        return (int)128L;
-    }
-    public static int ERROR_CHILD_NOT_COMPLETE() {
-        return (int)129L;
-    }
-    public static int ERROR_DIRECT_ACCESS_HANDLE() {
-        return (int)130L;
-    }
-    public static int ERROR_NEGATIVE_SEEK() {
-        return (int)131L;
-    }
-    public static int ERROR_SEEK_ON_DEVICE() {
-        return (int)132L;
-    }
-    public static int ERROR_IS_JOIN_TARGET() {
-        return (int)133L;
-    }
-    public static int ERROR_IS_JOINED() {
-        return (int)134L;
-    }
-    public static int ERROR_IS_SUBSTED() {
-        return (int)135L;
-    }
-    public static int ERROR_NOT_JOINED() {
-        return (int)136L;
-    }
-    public static int ERROR_NOT_SUBSTED() {
-        return (int)137L;
-    }
-    public static int ERROR_JOIN_TO_JOIN() {
-        return (int)138L;
-    }
-    public static int ERROR_SUBST_TO_SUBST() {
-        return (int)139L;
-    }
-    public static int ERROR_JOIN_TO_SUBST() {
-        return (int)140L;
-    }
-    public static int ERROR_SUBST_TO_JOIN() {
-        return (int)141L;
-    }
-    public static int ERROR_BUSY_DRIVE() {
-        return (int)142L;
-    }
-    public static int ERROR_SAME_DRIVE() {
-        return (int)143L;
-    }
-    public static int ERROR_DIR_NOT_ROOT() {
-        return (int)144L;
-    }
-    public static int ERROR_DIR_NOT_EMPTY() {
-        return (int)145L;
-    }
-    public static int ERROR_IS_SUBST_PATH() {
-        return (int)146L;
-    }
-    public static int ERROR_IS_JOIN_PATH() {
-        return (int)147L;
-    }
-    public static int ERROR_PATH_BUSY() {
-        return (int)148L;
-    }
-    public static int ERROR_IS_SUBST_TARGET() {
-        return (int)149L;
-    }
-    public static int ERROR_SYSTEM_TRACE() {
-        return (int)150L;
-    }
-    public static int ERROR_INVALID_EVENT_COUNT() {
-        return (int)151L;
-    }
-    public static int ERROR_TOO_MANY_MUXWAITERS() {
-        return (int)152L;
-    }
-    public static int ERROR_INVALID_LIST_FORMAT() {
-        return (int)153L;
-    }
-    public static int ERROR_LABEL_TOO_LONG() {
-        return (int)154L;
-    }
-    public static int ERROR_TOO_MANY_TCBS() {
-        return (int)155L;
-    }
-    public static int ERROR_SIGNAL_REFUSED() {
-        return (int)156L;
-    }
-    public static int ERROR_DISCARDED() {
-        return (int)157L;
-    }
-    public static int ERROR_NOT_LOCKED() {
-        return (int)158L;
-    }
-    public static int ERROR_BAD_THREADID_ADDR() {
-        return (int)159L;
-    }
-    public static int ERROR_BAD_ARGUMENTS() {
-        return (int)160L;
-    }
-    public static int ERROR_BAD_PATHNAME() {
-        return (int)161L;
-    }
-    public static int ERROR_SIGNAL_PENDING() {
-        return (int)162L;
-    }
-    public static int ERROR_MAX_THRDS_REACHED() {
-        return (int)164L;
-    }
-    public static int ERROR_LOCK_FAILED() {
-        return (int)167L;
-    }
-    public static int ERROR_BUSY() {
-        return (int)170L;
-    }
-    public static int ERROR_DEVICE_SUPPORT_IN_PROGRESS() {
-        return (int)171L;
-    }
-    public static int ERROR_CANCEL_VIOLATION() {
-        return (int)173L;
-    }
-    public static int ERROR_ATOMIC_LOCKS_NOT_SUPPORTED() {
-        return (int)174L;
-    }
-    public static int ERROR_INVALID_SEGMENT_NUMBER() {
-        return (int)180L;
-    }
-    public static int ERROR_INVALID_ORDINAL() {
-        return (int)182L;
-    }
-    public static int ERROR_ALREADY_EXISTS() {
-        return (int)183L;
-    }
-    public static int ERROR_INVALID_FLAG_NUMBER() {
-        return (int)186L;
-    }
-    public static int ERROR_SEM_NOT_FOUND() {
-        return (int)187L;
-    }
-    public static int ERROR_INVALID_STARTING_CODESEG() {
-        return (int)188L;
-    }
-    public static int ERROR_INVALID_STACKSEG() {
-        return (int)189L;
-    }
-    public static int ERROR_INVALID_MODULETYPE() {
-        return (int)190L;
-    }
-    public static int ERROR_INVALID_EXE_SIGNATURE() {
-        return (int)191L;
-    }
-    public static int ERROR_EXE_MARKED_INVALID() {
-        return (int)192L;
-    }
-    public static int ERROR_BAD_EXE_FORMAT() {
-        return (int)193L;
-    }
-    public static int ERROR_ITERATED_DATA_EXCEEDS_64k() {
-        return (int)194L;
-    }
-    public static int ERROR_INVALID_MINALLOCSIZE() {
-        return (int)195L;
-    }
-    public static int ERROR_DYNLINK_FROM_INVALID_RING() {
-        return (int)196L;
-    }
-    public static int ERROR_IOPL_NOT_ENABLED() {
-        return (int)197L;
-    }
-    public static int ERROR_INVALID_SEGDPL() {
-        return (int)198L;
-    }
-    public static int ERROR_AUTODATASEG_EXCEEDS_64k() {
-        return (int)199L;
-    }
-    public static int ERROR_RING2SEG_MUST_BE_MOVABLE() {
-        return (int)200L;
-    }
-    public static int ERROR_RELOC_CHAIN_XEEDS_SEGLIM() {
-        return (int)201L;
-    }
-    public static int ERROR_INFLOOP_IN_RELOC_CHAIN() {
-        return (int)202L;
-    }
-    public static int ERROR_ENVVAR_NOT_FOUND() {
-        return (int)203L;
-    }
-    public static int ERROR_NO_SIGNAL_SENT() {
-        return (int)205L;
-    }
-    public static int ERROR_FILENAME_EXCED_RANGE() {
-        return (int)206L;
-    }
-    public static int ERROR_RING2_STACK_IN_USE() {
-        return (int)207L;
-    }
-    public static int ERROR_META_EXPANSION_TOO_LONG() {
-        return (int)208L;
-    }
-    public static int ERROR_INVALID_SIGNAL_NUMBER() {
-        return (int)209L;
-    }
-    public static int ERROR_THREAD_1_INACTIVE() {
-        return (int)210L;
-    }
-    public static int ERROR_LOCKED() {
-        return (int)212L;
-    }
-    public static int ERROR_TOO_MANY_MODULES() {
-        return (int)214L;
-    }
-    public static int ERROR_NESTING_NOT_ALLOWED() {
-        return (int)215L;
-    }
-    public static int ERROR_EXE_MACHINE_TYPE_MISMATCH() {
-        return (int)216L;
-    }
-    public static int ERROR_EXE_CANNOT_MODIFY_SIGNED_BINARY() {
-        return (int)217L;
-    }
-    public static int ERROR_EXE_CANNOT_MODIFY_STRONG_SIGNED_BINARY() {
-        return (int)218L;
-    }
-    public static int ERROR_FILE_CHECKED_OUT() {
-        return (int)220L;
-    }
-    public static int ERROR_CHECKOUT_REQUIRED() {
-        return (int)221L;
-    }
-    public static int ERROR_BAD_FILE_TYPE() {
-        return (int)222L;
-    }
-    public static int ERROR_FILE_TOO_LARGE() {
-        return (int)223L;
-    }
-    public static int ERROR_FORMS_AUTH_REQUIRED() {
-        return (int)224L;
-    }
-    public static int ERROR_VIRUS_INFECTED() {
-        return (int)225L;
-    }
-    public static int ERROR_VIRUS_DELETED() {
-        return (int)226L;
-    }
-    public static int ERROR_PIPE_LOCAL() {
-        return (int)229L;
-    }
-    public static int ERROR_BAD_PIPE() {
-        return (int)230L;
-    }
-    public static int ERROR_PIPE_BUSY() {
-        return (int)231L;
-    }
-    public static int ERROR_NO_DATA() {
-        return (int)232L;
-    }
-    public static int ERROR_PIPE_NOT_CONNECTED() {
-        return (int)233L;
-    }
-    public static int ERROR_MORE_DATA() {
-        return (int)234L;
-    }
-    public static int ERROR_NO_WORK_DONE() {
-        return (int)235L;
-    }
-    public static int ERROR_VC_DISCONNECTED() {
-        return (int)240L;
-    }
-    public static int ERROR_INVALID_EA_NAME() {
-        return (int)254L;
-    }
-    public static int ERROR_EA_LIST_INCONSISTENT() {
-        return (int)255L;
-    }
-    public static int WAIT_TIMEOUT() {
-        return (int)258L;
-    }
-    public static int ERROR_NO_MORE_ITEMS() {
-        return (int)259L;
-    }
-    public static int ERROR_CANNOT_COPY() {
-        return (int)266L;
-    }
-    public static int ERROR_DIRECTORY() {
-        return (int)267L;
-    }
-    public static int ERROR_EAS_DIDNT_FIT() {
-        return (int)275L;
-    }
-    public static int ERROR_EA_FILE_CORRUPT() {
-        return (int)276L;
-    }
-    public static int ERROR_EA_TABLE_FULL() {
-        return (int)277L;
-    }
-    public static int ERROR_INVALID_EA_HANDLE() {
-        return (int)278L;
-    }
-    public static int ERROR_EAS_NOT_SUPPORTED() {
-        return (int)282L;
-    }
-    public static int ERROR_NOT_OWNER() {
-        return (int)288L;
-    }
-    public static int ERROR_TOO_MANY_POSTS() {
-        return (int)298L;
-    }
-    public static int ERROR_PARTIAL_COPY() {
-        return (int)299L;
-    }
-    public static int ERROR_OPLOCK_NOT_GRANTED() {
-        return (int)300L;
-    }
-    public static int ERROR_INVALID_OPLOCK_PROTOCOL() {
-        return (int)301L;
-    }
-    public static int ERROR_DISK_TOO_FRAGMENTED() {
-        return (int)302L;
-    }
-    public static int ERROR_DELETE_PENDING() {
-        return (int)303L;
-    }
-    public static int ERROR_INCOMPATIBLE_WITH_GLOBAL_SHORT_NAME_REGISTRY_SETTING() {
-        return (int)304L;
-    }
-    public static int ERROR_SHORT_NAMES_NOT_ENABLED_ON_VOLUME() {
-        return (int)305L;
-    }
-    public static int ERROR_SECURITY_STREAM_IS_INCONSISTENT() {
-        return (int)306L;
-    }
-    public static int ERROR_INVALID_LOCK_RANGE() {
-        return (int)307L;
-    }
-    public static int ERROR_IMAGE_SUBSYSTEM_NOT_PRESENT() {
-        return (int)308L;
-    }
-    public static int ERROR_NOTIFICATION_GUID_ALREADY_DEFINED() {
-        return (int)309L;
-    }
-    public static int ERROR_INVALID_EXCEPTION_HANDLER() {
-        return (int)310L;
-    }
-    public static int ERROR_DUPLICATE_PRIVILEGES() {
-        return (int)311L;
-    }
-    public static int ERROR_NO_RANGES_PROCESSED() {
-        return (int)312L;
-    }
-    public static int ERROR_NOT_ALLOWED_ON_SYSTEM_FILE() {
-        return (int)313L;
-    }
-    public static int ERROR_DISK_RESOURCES_EXHAUSTED() {
-        return (int)314L;
-    }
-    public static int ERROR_INVALID_TOKEN() {
-        return (int)315L;
-    }
-    public static int ERROR_DEVICE_FEATURE_NOT_SUPPORTED() {
-        return (int)316L;
-    }
-    public static int ERROR_MR_MID_NOT_FOUND() {
-        return (int)317L;
-    }
-    public static int ERROR_SCOPE_NOT_FOUND() {
-        return (int)318L;
-    }
-    public static int ERROR_UNDEFINED_SCOPE() {
-        return (int)319L;
-    }
-    public static int ERROR_INVALID_CAP() {
-        return (int)320L;
-    }
-    public static int ERROR_DEVICE_UNREACHABLE() {
-        return (int)321L;
-    }
-    public static int ERROR_DEVICE_NO_RESOURCES() {
-        return (int)322L;
-    }
-    public static int ERROR_DATA_CHECKSUM_ERROR() {
-        return (int)323L;
-    }
-    public static int ERROR_INTERMIXED_KERNEL_EA_OPERATION() {
-        return (int)324L;
-    }
-    public static int ERROR_FILE_LEVEL_TRIM_NOT_SUPPORTED() {
-        return (int)326L;
-    }
-    public static int ERROR_OFFSET_ALIGNMENT_VIOLATION() {
-        return (int)327L;
-    }
-    public static int ERROR_INVALID_FIELD_IN_PARAMETER_LIST() {
-        return (int)328L;
-    }
-    public static int ERROR_OPERATION_IN_PROGRESS() {
-        return (int)329L;
-    }
-    public static int ERROR_BAD_DEVICE_PATH() {
-        return (int)330L;
-    }
-    public static int ERROR_TOO_MANY_DESCRIPTORS() {
-        return (int)331L;
-    }
-    public static int ERROR_SCRUB_DATA_DISABLED() {
-        return (int)332L;
-    }
-    public static int ERROR_NOT_REDUNDANT_STORAGE() {
-        return (int)333L;
-    }
-    public static int ERROR_RESIDENT_FILE_NOT_SUPPORTED() {
-        return (int)334L;
-    }
-    public static int ERROR_COMPRESSED_FILE_NOT_SUPPORTED() {
-        return (int)335L;
-    }
-    public static int ERROR_DIRECTORY_NOT_SUPPORTED() {
-        return (int)336L;
-    }
-    public static int ERROR_NOT_READ_FROM_COPY() {
-        return (int)337L;
-    }
-    public static int ERROR_FT_WRITE_FAILURE() {
-        return (int)338L;
-    }
-    public static int ERROR_FT_DI_SCAN_REQUIRED() {
-        return (int)339L;
-    }
-    public static int ERROR_INVALID_KERNEL_INFO_VERSION() {
-        return (int)340L;
-    }
-    public static int ERROR_INVALID_PEP_INFO_VERSION() {
-        return (int)341L;
-    }
-    public static int ERROR_OBJECT_NOT_EXTERNALLY_BACKED() {
-        return (int)342L;
-    }
-    public static int ERROR_EXTERNAL_BACKING_PROVIDER_UNKNOWN() {
-        return (int)343L;
-    }
-    public static int ERROR_COMPRESSION_NOT_BENEFICIAL() {
-        return (int)344L;
-    }
-    public static int ERROR_STORAGE_TOPOLOGY_ID_MISMATCH() {
-        return (int)345L;
-    }
-    public static int ERROR_BLOCKED_BY_PARENTAL_CONTROLS() {
-        return (int)346L;
-    }
-    public static int ERROR_BLOCK_TOO_MANY_REFERENCES() {
-        return (int)347L;
-    }
-    public static int ERROR_MARKED_TO_DISALLOW_WRITES() {
-        return (int)348L;
-    }
-    public static int ERROR_ENCLAVE_FAILURE() {
-        return (int)349L;
-    }
-    public static int ERROR_FAIL_NOACTION_REBOOT() {
-        return (int)350L;
-    }
-    public static int ERROR_FAIL_SHUTDOWN() {
-        return (int)351L;
-    }
-    public static int ERROR_FAIL_RESTART() {
-        return (int)352L;
-    }
-    public static int ERROR_MAX_SESSIONS_REACHED() {
-        return (int)353L;
-    }
-    public static int ERROR_NETWORK_ACCESS_DENIED_EDP() {
-        return (int)354L;
-    }
-    public static int ERROR_DEVICE_HINT_NAME_BUFFER_TOO_SMALL() {
-        return (int)355L;
-    }
-    public static int ERROR_EDP_POLICY_DENIES_OPERATION() {
-        return (int)356L;
-    }
-    public static int ERROR_EDP_DPL_POLICY_CANT_BE_SATISFIED() {
-        return (int)357L;
-    }
-    public static int ERROR_CLOUD_FILE_SYNC_ROOT_METADATA_CORRUPT() {
-        return (int)358L;
-    }
-    public static int ERROR_DEVICE_IN_MAINTENANCE() {
-        return (int)359L;
-    }
-    public static int ERROR_NOT_SUPPORTED_ON_DAX() {
-        return (int)360L;
-    }
-    public static int ERROR_DAX_MAPPING_EXISTS() {
-        return (int)361L;
-    }
-    public static int ERROR_CLOUD_FILE_PROVIDER_NOT_RUNNING() {
-        return (int)362L;
-    }
-    public static int ERROR_CLOUD_FILE_METADATA_CORRUPT() {
-        return (int)363L;
-    }
-    public static int ERROR_CLOUD_FILE_METADATA_TOO_LARGE() {
-        return (int)364L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_BLOB_TOO_LARGE() {
-        return (int)365L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_BLOB_CHECKSUM_MISMATCH() {
-        return (int)366L;
-    }
-    public static int ERROR_CHILD_PROCESS_BLOCKED() {
-        return (int)367L;
-    }
-    public static int ERROR_STORAGE_LOST_DATA_PERSISTENCE() {
-        return (int)368L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_UNAVAILABLE() {
-        return (int)369L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_METADATA_CORRUPT() {
-        return (int)370L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_BUSY() {
-        return (int)371L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_PROVIDER_UNKNOWN() {
-        return (int)372L;
-    }
-    public static int ERROR_GDI_HANDLE_LEAK() {
-        return (int)373L;
-    }
-    public static int ERROR_CLOUD_FILE_TOO_MANY_PROPERTY_BLOBS() {
-        return (int)374L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_VERSION_NOT_SUPPORTED() {
-        return (int)375L;
-    }
-    public static int ERROR_NOT_A_CLOUD_FILE() {
-        return (int)376L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_IN_SYNC() {
-        return (int)377L;
-    }
-    public static int ERROR_CLOUD_FILE_ALREADY_CONNECTED() {
-        return (int)378L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_SUPPORTED() {
-        return (int)379L;
-    }
-    public static int ERROR_CLOUD_FILE_INVALID_REQUEST() {
-        return (int)380L;
-    }
-    public static int ERROR_CLOUD_FILE_READ_ONLY_VOLUME() {
-        return (int)381L;
-    }
-    public static int ERROR_CLOUD_FILE_CONNECTED_PROVIDER_ONLY() {
-        return (int)382L;
-    }
-    public static int ERROR_CLOUD_FILE_VALIDATION_FAILED() {
-        return (int)383L;
-    }
-    public static int ERROR_SMB1_NOT_AVAILABLE() {
-        return (int)384L;
-    }
-    public static int ERROR_FILE_SYSTEM_VIRTUALIZATION_INVALID_OPERATION() {
-        return (int)385L;
-    }
-    public static int ERROR_CLOUD_FILE_AUTHENTICATION_FAILED() {
-        return (int)386L;
-    }
-    public static int ERROR_CLOUD_FILE_INSUFFICIENT_RESOURCES() {
-        return (int)387L;
-    }
-    public static int ERROR_CLOUD_FILE_NETWORK_UNAVAILABLE() {
-        return (int)388L;
-    }
-    public static int ERROR_CLOUD_FILE_UNSUCCESSFUL() {
-        return (int)389L;
-    }
-    public static int ERROR_CLOUD_FILE_NOT_UNDER_SYNC_ROOT() {
-        return (int)390L;
-    }
-    public static int ERROR_CLOUD_FILE_IN_USE() {
-        return (int)391L;
-    }
-    public static int ERROR_CLOUD_FILE_PINNED() {
-        return (int)392L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_ABORTED() {
-        return (int)393L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_CORRUPT() {
-        return (int)394L;
-    }
-    public static int ERROR_CLOUD_FILE_ACCESS_DENIED() {
-        return (int)395L;
-    }
-    public static int ERROR_CLOUD_FILE_INCOMPATIBLE_HARDLINKS() {
-        return (int)396L;
-    }
-    public static int ERROR_CLOUD_FILE_PROPERTY_LOCK_CONFLICT() {
-        return (int)397L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_CANCELED() {
-        return (int)398L;
-    }
-    public static int ERROR_EXTERNAL_SYSKEY_NOT_SUPPORTED() {
-        return (int)399L;
-    }
-    public static int ERROR_THREAD_MODE_ALREADY_BACKGROUND() {
-        return (int)400L;
-    }
-    public static int ERROR_THREAD_MODE_NOT_BACKGROUND() {
-        return (int)401L;
-    }
-    public static int ERROR_PROCESS_MODE_ALREADY_BACKGROUND() {
-        return (int)402L;
-    }
-    public static int ERROR_PROCESS_MODE_NOT_BACKGROUND() {
-        return (int)403L;
-    }
-    public static int ERROR_CLOUD_FILE_PROVIDER_TERMINATED() {
-        return (int)404L;
-    }
-    public static int ERROR_NOT_A_CLOUD_SYNC_ROOT() {
-        return (int)405L;
-    }
-    public static int ERROR_FILE_PROTECTED_UNDER_DPL() {
-        return (int)406L;
-    }
-    public static int ERROR_VOLUME_NOT_CLUSTER_ALIGNED() {
-        return (int)407L;
-    }
-    public static int ERROR_NO_PHYSICALLY_ALIGNED_FREE_SPACE_FOUND() {
-        return (int)408L;
-    }
-    public static int ERROR_APPX_FILE_NOT_ENCRYPTED() {
-        return (int)409L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_FILE_NOT_ENCRYPTED() {
-        return (int)410L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_FILEOFFSET() {
-        return (int)411L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_FILERANGE() {
-        return (int)412L;
-    }
-    public static int ERROR_RWRAW_ENCRYPTED_INVALID_EDATAINFO_PARAMETER() {
-        return (int)413L;
-    }
-    public static int ERROR_LINUX_SUBSYSTEM_NOT_PRESENT() {
-        return (int)414L;
-    }
-    public static int ERROR_FT_READ_FAILURE() {
-        return (int)415L;
-    }
-    public static int ERROR_STORAGE_RESERVE_ID_INVALID() {
-        return (int)416L;
-    }
-    public static int ERROR_STORAGE_RESERVE_DOES_NOT_EXIST() {
-        return (int)417L;
-    }
-    public static int ERROR_STORAGE_RESERVE_ALREADY_EXISTS() {
-        return (int)418L;
-    }
-    public static int ERROR_STORAGE_RESERVE_NOT_EMPTY() {
-        return (int)419L;
-    }
-    public static int ERROR_NOT_A_DAX_VOLUME() {
-        return (int)420L;
-    }
-    public static int ERROR_NOT_DAX_MAPPABLE() {
-        return (int)421L;
-    }
-    public static int ERROR_TIME_SENSITIVE_THREAD() {
-        return (int)422L;
-    }
-    public static int ERROR_DPL_NOT_SUPPORTED_FOR_USER() {
-        return (int)423L;
-    }
-    public static int ERROR_CASE_DIFFERING_NAMES_IN_DIR() {
-        return (int)424L;
-    }
-    public static int ERROR_FILE_NOT_SUPPORTED() {
-        return (int)425L;
-    }
-    public static int ERROR_CLOUD_FILE_REQUEST_TIMEOUT() {
-        return (int)426L;
-    }
-    public static int ERROR_NO_TASK_QUEUE() {
-        return (int)427L;
-    }
-    public static int ERROR_SRC_SRV_DLL_LOAD_FAILED() {
-        return (int)428L;
-    }
-    public static int ERROR_NOT_SUPPORTED_WITH_BTT() {
-        return (int)429L;
-    }
-    public static int ERROR_ENCRYPTION_DISABLED() {
-        return (int)430L;
-    }
-    public static int ERROR_ENCRYPTING_METADATA_DISALLOWED() {
-        return (int)431L;
-    }
-    public static int ERROR_CANT_CLEAR_ENCRYPTION_FLAG() {
-        return (int)432L;
-    }
-    public static int ERROR_NO_SUCH_DEVICE() {
-        return (int)433L;
-    }
-    public static int ERROR_CLOUD_FILE_DEHYDRATION_DISALLOWED() {
-        return (int)434L;
-    }
-    public static int ERROR_FILE_SNAP_IN_PROGRESS() {
-        return (int)435L;
-    }
-    public static int ERROR_FILE_SNAP_USER_SECTION_NOT_SUPPORTED() {
-        return (int)436L;
-    }
-    public static int ERROR_FILE_SNAP_MODIFY_NOT_SUPPORTED() {
-        return (int)437L;
-    }
-    public static int ERROR_FILE_SNAP_IO_NOT_COORDINATED() {
-        return (int)438L;
-    }
-    public static int ERROR_FILE_SNAP_UNEXPECTED_ERROR() {
-        return (int)439L;
-    }
-    public static int ERROR_FILE_SNAP_INVALID_PARAMETER() {
-        return (int)440L;
-    }
-    public static int ERROR_UNSATISFIED_DEPENDENCIES() {
-        return (int)441L;
-    }
-    public static int ERROR_CASE_SENSITIVE_PATH() {
-        return (int)442L;
-    }
-    public static int ERROR_UNEXPECTED_NTCACHEMANAGER_ERROR() {
-        return (int)443L;
-    }
-    public static int ERROR_LINUX_SUBSYSTEM_UPDATE_REQUIRED() {
-        return (int)444L;
-    }
-    public static int ERROR_DLP_POLICY_WARNS_AGAINST_OPERATION() {
-        return (int)445L;
-    }
-    public static int ERROR_DLP_POLICY_DENIES_OPERATION() {
-        return (int)446L;
-    }
-    public static int ERROR_DLP_POLICY_SILENTLY_FAIL() {
-        return (int)449L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_DEVUNLOCKED() {
-        return (int)450L;
-    }
-    public static int ERROR_CAPAUTHZ_CHANGE_TYPE() {
-        return (int)451L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_PROVISIONED() {
-        return (int)452L;
-    }
-    public static int ERROR_CAPAUTHZ_NOT_AUTHORIZED() {
-        return (int)453L;
-    }
-    public static int ERROR_CAPAUTHZ_NO_POLICY() {
-        return (int)454L;
-    }
-    public static int ERROR_CAPAUTHZ_DB_CORRUPTED() {
-        return (int)455L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_INVALID_CATALOG() {
-        return (int)456L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_NO_AUTH_ENTITY() {
-        return (int)457L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_PARSE_ERROR() {
-        return (int)458L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_DEV_MODE_REQUIRED() {
-        return (int)459L;
-    }
-    public static int ERROR_CAPAUTHZ_SCCD_NO_CAPABILITY_MATCH() {
-        return (int)460L;
-    }
-    public static int ERROR_CIMFS_IMAGE_CORRUPT() {
-        return (int)470L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_DEVICE_TIMEOUT() {
-        return (int)480L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_RELATED_DEVICE_TIMEOUT() {
-        return (int)481L;
-    }
-    public static int ERROR_PNP_QUERY_REMOVE_UNRELATED_DEVICE_TIMEOUT() {
-        return (int)482L;
-    }
-    public static int ERROR_DEVICE_HARDWARE_ERROR() {
-        return (int)483L;
-    }
-    public static int ERROR_INVALID_ADDRESS() {
-        return (int)487L;
-    }
-    public static int ERROR_HAS_SYSTEM_CRITICAL_FILES() {
-        return (int)488L;
-    }
-    public static int ERROR_VRF_CFG_AND_IO_ENABLED() {
-        return (int)1183L;
-    }
-    public static int ERROR_PARTITION_TERMINATING() {
-        return (int)1184L;
-    }
-    public static int ERROR_USER_PROFILE_LOAD() {
-        return (int)500L;
-    }
-    public static int ERROR_ARITHMETIC_OVERFLOW() {
-        return (int)534L;
-    }
-    public static int ERROR_PIPE_CONNECTED() {
-        return (int)535L;
-    }
-    public static int ERROR_PIPE_LISTENING() {
-        return (int)536L;
-    }
-    public static int ERROR_VERIFIER_STOP() {
-        return (int)537L;
-    }
-    public static int ERROR_ABIOS_ERROR() {
-        return (int)538L;
-    }
-    public static int ERROR_WX86_WARNING() {
-        return (int)539L;
-    }
-    public static int ERROR_WX86_ERROR() {
-        return (int)540L;
-    }
-    public static int ERROR_TIMER_NOT_CANCELED() {
-        return (int)541L;
-    }
-    public static int ERROR_UNWIND() {
-        return (int)542L;
-    }
-    public static int ERROR_BAD_STACK() {
-        return (int)543L;
-    }
-    public static int ERROR_INVALID_UNWIND_TARGET() {
-        return (int)544L;
-    }
-    public static int ERROR_INVALID_PORT_ATTRIBUTES() {
-        return (int)545L;
-    }
-    public static int ERROR_PORT_MESSAGE_TOO_LONG() {
-        return (int)546L;
-    }
-    public static int ERROR_INVALID_QUOTA_LOWER() {
-        return (int)547L;
-    }
-    public static int ERROR_DEVICE_ALREADY_ATTACHED() {
-        return (int)548L;
-    }
-    public static int ERROR_INSTRUCTION_MISALIGNMENT() {
-        return (int)549L;
-    }
-    public static int ERROR_PROFILING_NOT_STARTED() {
-        return (int)550L;
-    }
-    public static int ERROR_PROFILING_NOT_STOPPED() {
-        return (int)551L;
-    }
-    public static int ERROR_COULD_NOT_INTERPRET() {
-        return (int)552L;
-    }
-    public static int ERROR_PROFILING_AT_LIMIT() {
-        return (int)553L;
-    }
-    public static int ERROR_CANT_WAIT() {
-        return (int)554L;
-    }
-    public static int ERROR_CANT_TERMINATE_SELF() {
-        return (int)555L;
-    }
-    public static int ERROR_UNEXPECTED_MM_CREATE_ERR() {
-        return (int)556L;
-    }
-    public static int ERROR_UNEXPECTED_MM_MAP_ERROR() {
-        return (int)557L;
-    }
-    public static int ERROR_UNEXPECTED_MM_EXTEND_ERR() {
-        return (int)558L;
-    }
-    public static int ERROR_BAD_FUNCTION_TABLE() {
-        return (int)559L;
-    }
-    public static int ERROR_NO_GUID_TRANSLATION() {
-        return (int)560L;
-    }
-    public static int ERROR_INVALID_LDT_SIZE() {
-        return (int)561L;
-    }
-    public static int ERROR_INVALID_LDT_OFFSET() {
-        return (int)563L;
-    }
-    public static int ERROR_INVALID_LDT_DESCRIPTOR() {
-        return (int)564L;
-    }
-    public static int ERROR_TOO_MANY_THREADS() {
-        return (int)565L;
-    }
-    public static int ERROR_THREAD_NOT_IN_PROCESS() {
-        return (int)566L;
-    }
-    public static int ERROR_PAGEFILE_QUOTA_EXCEEDED() {
-        return (int)567L;
-    }
-    public static int ERROR_LOGON_SERVER_CONFLICT() {
-        return (int)568L;
-    }
-    public static int ERROR_SYNCHRONIZATION_REQUIRED() {
-        return (int)569L;
-    }
-    public static int ERROR_NET_OPEN_FAILED() {
-        return (int)570L;
-    }
-    public static int ERROR_IO_PRIVILEGE_FAILED() {
-        return (int)571L;
-    }
-    public static int ERROR_CONTROL_C_EXIT() {
-        return (int)572L;
-    }
-    public static int ERROR_MISSING_SYSTEMFILE() {
-        return (int)573L;
-    }
-    public static int ERROR_UNHANDLED_EXCEPTION() {
-        return (int)574L;
-    }
-    public static int ERROR_APP_INIT_FAILURE() {
-        return (int)575L;
-    }
-    public static int ERROR_PAGEFILE_CREATE_FAILED() {
-        return (int)576L;
-    }
-    public static int ERROR_INVALID_IMAGE_HASH() {
-        return (int)577L;
-    }
-    public static int ERROR_NO_PAGEFILE() {
-        return (int)578L;
-    }
-    public static int ERROR_ILLEGAL_FLOAT_CONTEXT() {
-        return (int)579L;
-    }
-    public static int ERROR_NO_EVENT_PAIR() {
-        return (int)580L;
-    }
-    public static int ERROR_DOMAIN_CTRLR_CONFIG_ERROR() {
-        return (int)581L;
-    }
-    public static int ERROR_ILLEGAL_CHARACTER() {
-        return (int)582L;
-    }
-    public static int ERROR_UNDEFINED_CHARACTER() {
-        return (int)583L;
-    }
-    public static int ERROR_FLOPPY_VOLUME() {
-        return (int)584L;
-    }
-    public static int ERROR_BIOS_FAILED_TO_CONNECT_INTERRUPT() {
-        return (int)585L;
-    }
-    public static int ERROR_BACKUP_CONTROLLER() {
-        return (int)586L;
-    }
-    public static int ERROR_MUTANT_LIMIT_EXCEEDED() {
-        return (int)587L;
-    }
-    public static int ERROR_FS_DRIVER_REQUIRED() {
-        return (int)588L;
-    }
-    public static int ERROR_CANNOT_LOAD_REGISTRY_FILE() {
-        return (int)589L;
-    }
-    public static int ERROR_DEBUG_ATTACH_FAILED() {
-        return (int)590L;
-    }
-    public static int ERROR_SYSTEM_PROCESS_TERMINATED() {
-        return (int)591L;
-    }
-    public static int ERROR_DATA_NOT_ACCEPTED() {
-        return (int)592L;
-    }
-    public static int ERROR_VDM_HARD_ERROR() {
-        return (int)593L;
-    }
-    public static int ERROR_DRIVER_CANCEL_TIMEOUT() {
-        return (int)594L;
-    }
-    public static int ERROR_REPLY_MESSAGE_MISMATCH() {
-        return (int)595L;
-    }
-    public static int ERROR_LOST_WRITEBEHIND_DATA() {
-        return (int)596L;
-    }
-    public static int ERROR_CLIENT_SERVER_PARAMETERS_INVALID() {
-        return (int)597L;
-    }
-    public static int ERROR_NOT_TINY_STREAM() {
-        return (int)598L;
-    }
-    public static int ERROR_STACK_OVERFLOW_READ() {
-        return (int)599L;
-    }
-    public static int ERROR_CONVERT_TO_LARGE() {
-        return (int)600L;
-    }
-    public static int ERROR_FOUND_OUT_OF_SCOPE() {
-        return (int)601L;
-    }
-    public static int ERROR_ALLOCATE_BUCKET() {
-        return (int)602L;
-    }
-    public static int ERROR_MARSHALL_OVERFLOW() {
-        return (int)603L;
-    }
-    public static int ERROR_INVALID_VARIANT() {
-        return (int)604L;
-    }
-    public static int ERROR_BAD_COMPRESSION_BUFFER() {
-        return (int)605L;
-    }
-    public static int ERROR_AUDIT_FAILED() {
-        return (int)606L;
-    }
-    public static int ERROR_TIMER_RESOLUTION_NOT_SET() {
-        return (int)607L;
-    }
-    public static int ERROR_INSUFFICIENT_LOGON_INFO() {
-        return (int)608L;
-    }
-    public static int ERROR_BAD_DLL_ENTRYPOINT() {
-        return (int)609L;
-    }
-    public static int ERROR_BAD_SERVICE_ENTRYPOINT() {
-        return (int)610L;
-    }
-    public static int ERROR_IP_ADDRESS_CONFLICT1() {
-        return (int)611L;
-    }
-    public static int ERROR_IP_ADDRESS_CONFLICT2() {
-        return (int)612L;
-    }
-    public static int ERROR_REGISTRY_QUOTA_LIMIT() {
-        return (int)613L;
-    }
-    public static int ERROR_NO_CALLBACK_ACTIVE() {
-        return (int)614L;
-    }
-    public static int ERROR_PWD_TOO_SHORT() {
-        return (int)615L;
-    }
-    public static int ERROR_PWD_TOO_RECENT() {
-        return (int)616L;
-    }
-    public static int ERROR_PWD_HISTORY_CONFLICT() {
-        return (int)617L;
-    }
-    public static int ERROR_UNSUPPORTED_COMPRESSION() {
-        return (int)618L;
-    }
-    public static int ERROR_INVALID_HW_PROFILE() {
-        return (int)619L;
-    }
-    public static int ERROR_INVALID_PLUGPLAY_DEVICE_PATH() {
-        return (int)620L;
-    }
-    public static int ERROR_QUOTA_LIST_INCONSISTENT() {
-        return (int)621L;
-    }
-    public static int ERROR_EVALUATION_EXPIRATION() {
-        return (int)622L;
-    }
-    public static int ERROR_ILLEGAL_DLL_RELOCATION() {
-        return (int)623L;
-    }
-    public static int ERROR_DLL_INIT_FAILED_LOGOFF() {
-        return (int)624L;
-    }
-    public static int ERROR_VALIDATE_CONTINUE() {
-        return (int)625L;
-    }
-    public static int ERROR_NO_MORE_MATCHES() {
-        return (int)626L;
-    }
-    public static int ERROR_RANGE_LIST_CONFLICT() {
-        return (int)627L;
-    }
-    public static int ERROR_SERVER_SID_MISMATCH() {
-        return (int)628L;
-    }
-    public static int ERROR_CANT_ENABLE_DENY_ONLY() {
-        return (int)629L;
-    }
-    public static int ERROR_FLOAT_MULTIPLE_FAULTS() {
-        return (int)630L;
-    }
-    public static int ERROR_FLOAT_MULTIPLE_TRAPS() {
-        return (int)631L;
-    }
-    public static int ERROR_NOINTERFACE() {
-        return (int)632L;
-    }
-    public static int ERROR_DRIVER_FAILED_SLEEP() {
-        return (int)633L;
-    }
-    public static int ERROR_CORRUPT_SYSTEM_FILE() {
-        return (int)634L;
-    }
-    public static int ERROR_COMMITMENT_MINIMUM() {
-        return (int)635L;
-    }
-    public static int ERROR_PNP_RESTART_ENUMERATION() {
-        return (int)636L;
-    }
-    public static int ERROR_SYSTEM_IMAGE_BAD_SIGNATURE() {
-        return (int)637L;
-    }
-    public static int ERROR_PNP_REBOOT_REQUIRED() {
-        return (int)638L;
-    }
-    public static int ERROR_INSUFFICIENT_POWER() {
-        return (int)639L;
-    }
-    public static int ERROR_MULTIPLE_FAULT_VIOLATION() {
-        return (int)640L;
-    }
-    public static int ERROR_SYSTEM_SHUTDOWN() {
-        return (int)641L;
-    }
-    public static int ERROR_PORT_NOT_SET() {
-        return (int)642L;
-    }
-    public static int ERROR_DS_VERSION_CHECK_FAILURE() {
-        return (int)643L;
-    }
-    public static int ERROR_RANGE_NOT_FOUND() {
-        return (int)644L;
-    }
-    public static int ERROR_NOT_SAFE_MODE_DRIVER() {
-        return (int)646L;
-    }
-    public static int ERROR_FAILED_DRIVER_ENTRY() {
-        return (int)647L;
-    }
-    public static int ERROR_DEVICE_ENUMERATION_ERROR() {
-        return (int)648L;
-    }
-    public static int ERROR_MOUNT_POINT_NOT_RESOLVED() {
-        return (int)649L;
-    }
-    public static int ERROR_INVALID_DEVICE_OBJECT_PARAMETER() {
-        return (int)650L;
-    }
-    public static int ERROR_MCA_OCCURED() {
-        return (int)651L;
-    }
-    public static int ERROR_DRIVER_DATABASE_ERROR() {
-        return (int)652L;
-    }
-    public static int ERROR_SYSTEM_HIVE_TOO_LARGE() {
-        return (int)653L;
-    }
-    public static int ERROR_DRIVER_FAILED_PRIOR_UNLOAD() {
-        return (int)654L;
-    }
-    public static int ERROR_VOLSNAP_PREPARE_HIBERNATE() {
-        return (int)655L;
-    }
-    public static int ERROR_HIBERNATION_FAILURE() {
-        return (int)656L;
-    }
-    public static int ERROR_PWD_TOO_LONG() {
-        return (int)657L;
-    }
-    public static int ERROR_FILE_SYSTEM_LIMITATION() {
-        return (int)665L;
-    }
-    public static int ERROR_ASSERTION_FAILURE() {
-        return (int)668L;
-    }
-    public static int ERROR_ACPI_ERROR() {
-        return (int)669L;
-    }
-    public static int ERROR_WOW_ASSERTION() {
-        return (int)670L;
-    }
-    public static int ERROR_PNP_BAD_MPS_TABLE() {
-        return (int)671L;
-    }
-    public static int ERROR_PNP_TRANSLATION_FAILED() {
-        return (int)672L;
-    }
-    public static int ERROR_PNP_IRQ_TRANSLATION_FAILED() {
-        return (int)673L;
-    }
-    public static int ERROR_PNP_INVALID_ID() {
-        return (int)674L;
-    }
-    public static int ERROR_WAKE_SYSTEM_DEBUGGER() {
-        return (int)675L;
-    }
-    public static int ERROR_HANDLES_CLOSED() {
-        return (int)676L;
-    }
-    public static int ERROR_EXTRANEOUS_INFORMATION() {
-        return (int)677L;
-    }
-    public static int ERROR_RXACT_COMMIT_NECESSARY() {
-        return (int)678L;
-    }
-    public static int ERROR_MEDIA_CHECK() {
-        return (int)679L;
-    }
-    public static int ERROR_GUID_SUBSTITUTION_MADE() {
-        return (int)680L;
-    }
-    public static int ERROR_STOPPED_ON_SYMLINK() {
-        return (int)681L;
-    }
-    public static int ERROR_LONGJUMP() {
-        return (int)682L;
-    }
-    public static int ERROR_PLUGPLAY_QUERY_VETOED() {
-        return (int)683L;
-    }
-    public static int ERROR_UNWIND_CONSOLIDATE() {
-        return (int)684L;
-    }
-    public static int ERROR_REGISTRY_HIVE_RECOVERED() {
-        return (int)685L;
-    }
-    public static int ERROR_DLL_MIGHT_BE_INSECURE() {
-        return (int)686L;
-    }
-    public static int ERROR_DLL_MIGHT_BE_INCOMPATIBLE() {
-        return (int)687L;
-    }
-    public static int ERROR_DBG_EXCEPTION_NOT_HANDLED() {
-        return (int)688L;
-    }
-    public static int ERROR_DBG_REPLY_LATER() {
-        return (int)689L;
-    }
-    public static int ERROR_DBG_UNABLE_TO_PROVIDE_HANDLE() {
-        return (int)690L;
-    }
-    public static int ERROR_DBG_TERMINATE_THREAD() {
-        return (int)691L;
-    }
-    public static int ERROR_DBG_TERMINATE_PROCESS() {
-        return (int)692L;
-    }
-    public static int ERROR_DBG_CONTROL_C() {
-        return (int)693L;
-    }
-    public static int ERROR_DBG_PRINTEXCEPTION_C() {
-        return (int)694L;
-    }
-    public static int ERROR_DBG_RIPEXCEPTION() {
-        return (int)695L;
-    }
-    public static int ERROR_DBG_CONTROL_BREAK() {
-        return (int)696L;
-    }
-    public static int ERROR_DBG_COMMAND_EXCEPTION() {
-        return (int)697L;
-    }
-    public static int ERROR_OBJECT_NAME_EXISTS() {
-        return (int)698L;
-    }
-    public static int ERROR_THREAD_WAS_SUSPENDED() {
-        return (int)699L;
-    }
-    public static int ERROR_IMAGE_NOT_AT_BASE() {
-        return (int)700L;
-    }
-    public static int ERROR_RXACT_STATE_CREATED() {
-        return (int)701L;
-    }
-    public static int ERROR_SEGMENT_NOTIFICATION() {
-        return (int)702L;
-    }
-    public static int ERROR_BAD_CURRENT_DIRECTORY() {
-        return (int)703L;
-    }
-    public static int ERROR_FT_READ_RECOVERY_FROM_BACKUP() {
-        return (int)704L;
-    }
-    public static int ERROR_FT_WRITE_RECOVERY() {
-        return (int)705L;
-    }
-    public static int ERROR_IMAGE_MACHINE_TYPE_MISMATCH() {
-        return (int)706L;
-    }
-    public static int ERROR_RECEIVE_PARTIAL() {
-        return (int)707L;
-    }
-    public static int ERROR_RECEIVE_EXPEDITED() {
-        return (int)708L;
-    }
-    public static int ERROR_RECEIVE_PARTIAL_EXPEDITED() {
-        return (int)709L;
-    }
-    public static int ERROR_EVENT_DONE() {
-        return (int)710L;
-    }
-    public static int ERROR_EVENT_PENDING() {
-        return (int)711L;
-    }
-    public static int ERROR_CHECKING_FILE_SYSTEM() {
-        return (int)712L;
-    }
-    public static int ERROR_FATAL_APP_EXIT() {
-        return (int)713L;
-    }
-    public static int ERROR_PREDEFINED_HANDLE() {
-        return (int)714L;
-    }
-    public static int ERROR_WAS_UNLOCKED() {
-        return (int)715L;
-    }
-    public static int ERROR_SERVICE_NOTIFICATION() {
-        return (int)716L;
-    }
-    public static int ERROR_WAS_LOCKED() {
-        return (int)717L;
-    }
-    public static int ERROR_LOG_HARD_ERROR() {
-        return (int)718L;
-    }
-    public static int ERROR_ALREADY_WIN32() {
-        return (int)719L;
-    }
-    public static int ERROR_IMAGE_MACHINE_TYPE_MISMATCH_EXE() {
-        return (int)720L;
-    }
-    public static int ERROR_NO_YIELD_PERFORMED() {
-        return (int)721L;
-    }
-    public static int ERROR_TIMER_RESUME_IGNORED() {
-        return (int)722L;
-    }
-    public static int ERROR_ARBITRATION_UNHANDLED() {
-        return (int)723L;
-    }
-    public static int ERROR_CARDBUS_NOT_SUPPORTED() {
-        return (int)724L;
-    }
-    public static int ERROR_MP_PROCESSOR_MISMATCH() {
-        return (int)725L;
-    }
-    public static int ERROR_HIBERNATED() {
-        return (int)726L;
-    }
-    public static int ERROR_RESUME_HIBERNATION() {
-        return (int)727L;
-    }
-    public static int ERROR_FIRMWARE_UPDATED() {
-        return (int)728L;
-    }
-    public static int ERROR_DRIVERS_LEAKING_LOCKED_PAGES() {
-        return (int)729L;
-    }
-    public static int ERROR_WAKE_SYSTEM() {
-        return (int)730L;
-    }
-    public static int ERROR_WAIT_1() {
-        return (int)731L;
-    }
-    public static int ERROR_WAIT_2() {
-        return (int)732L;
-    }
-    public static int ERROR_WAIT_3() {
-        return (int)733L;
-    }
-    public static int ERROR_WAIT_63() {
-        return (int)734L;
-    }
-    public static int ERROR_ABANDONED_WAIT_0() {
-        return (int)735L;
-    }
-    public static int ERROR_ABANDONED_WAIT_63() {
-        return (int)736L;
-    }
-    public static int ERROR_USER_APC() {
-        return (int)737L;
-    }
-    public static int ERROR_KERNEL_APC() {
-        return (int)738L;
-    }
-    public static int ERROR_ALERTED() {
-        return (int)739L;
-    }
-    public static int ERROR_ELEVATION_REQUIRED() {
-        return (int)740L;
-    }
-    public static int ERROR_REPARSE() {
-        return (int)741L;
-    }
-    public static int ERROR_OPLOCK_BREAK_IN_PROGRESS() {
-        return (int)742L;
-    }
-    public static int ERROR_VOLUME_MOUNTED() {
-        return (int)743L;
-    }
-    public static int ERROR_RXACT_COMMITTED() {
-        return (int)744L;
-    }
-    public static int ERROR_NOTIFY_CLEANUP() {
-        return (int)745L;
-    }
-    public static int ERROR_PRIMARY_TRANSPORT_CONNECT_FAILED() {
-        return (int)746L;
-    }
-    public static int ERROR_PAGE_FAULT_TRANSITION() {
-        return (int)747L;
-    }
-    public static int ERROR_PAGE_FAULT_DEMAND_ZERO() {
-        return (int)748L;
-    }
-    public static int ERROR_PAGE_FAULT_COPY_ON_WRITE() {
-        return (int)749L;
-    }
-    public static int ERROR_PAGE_FAULT_GUARD_PAGE() {
-        return (int)750L;
-    }
-    public static int ERROR_PAGE_FAULT_PAGING_FILE() {
-        return (int)751L;
-    }
-    public static int ERROR_CACHE_PAGE_LOCKED() {
-        return (int)752L;
-    }
-    public static int ERROR_CRASH_DUMP() {
-        return (int)753L;
-    }
-    public static int ERROR_BUFFER_ALL_ZEROS() {
-        return (int)754L;
-    }
-    public static int ERROR_REPARSE_OBJECT() {
-        return (int)755L;
-    }
-    public static int ERROR_RESOURCE_REQUIREMENTS_CHANGED() {
-        return (int)756L;
-    }
-    public static int ERROR_TRANSLATION_COMPLETE() {
-        return (int)757L;
-    }
-    public static int ERROR_NOTHING_TO_TERMINATE() {
-        return (int)758L;
-    }
-    public static int ERROR_PROCESS_NOT_IN_JOB() {
-        return (int)759L;
-    }
-    public static int ERROR_PROCESS_IN_JOB() {
-        return (int)760L;
-    }
-    public static int ERROR_VOLSNAP_HIBERNATE_READY() {
-        return (int)761L;
-    }
-    public static int ERROR_FSFILTER_OP_COMPLETED_SUCCESSFULLY() {
-        return (int)762L;
-    }
-    public static int ERROR_INTERRUPT_VECTOR_ALREADY_CONNECTED() {
-        return (int)763L;
-    }
-    public static int ERROR_INTERRUPT_STILL_CONNECTED() {
-        return (int)764L;
-    }
-    public static int ERROR_WAIT_FOR_OPLOCK() {
-        return (int)765L;
-    }
-    public static int ERROR_DBG_EXCEPTION_HANDLED() {
-        return (int)766L;
-    }
-    public static int ERROR_DBG_CONTINUE() {
-        return (int)767L;
-    }
-    public static int ERROR_CALLBACK_POP_STACK() {
-        return (int)768L;
-    }
-    public static int ERROR_COMPRESSION_DISABLED() {
-        return (int)769L;
-    }
-    public static int ERROR_CANTFETCHBACKWARDS() {
-        return (int)770L;
-    }
-    public static int ERROR_CANTSCROLLBACKWARDS() {
-        return (int)771L;
-    }
-    public static int ERROR_ROWSNOTRELEASED() {
-        return (int)772L;
-    }
-    public static int ERROR_BAD_ACCESSOR_FLAGS() {
-        return (int)773L;
-    }
-    public static int ERROR_ERRORS_ENCOUNTERED() {
-        return (int)774L;
-    }
-    public static int ERROR_NOT_CAPABLE() {
-        return (int)775L;
-    }
-    public static int ERROR_REQUEST_OUT_OF_SEQUENCE() {
-        return (int)776L;
-    }
-    public static int ERROR_VERSION_PARSE_ERROR() {
-        return (int)777L;
-    }
-    public static int ERROR_BADSTARTPOSITION() {
-        return (int)778L;
-    }
-    public static int ERROR_MEMORY_HARDWARE() {
-        return (int)779L;
-    }
-    public static int ERROR_DISK_REPAIR_DISABLED() {
-        return (int)780L;
-    }
-    public static int ERROR_INSUFFICIENT_RESOURCE_FOR_SPECIFIED_SHARED_SECTION_SIZE() {
-        return (int)781L;
-    }
-    public static int ERROR_SYSTEM_POWERSTATE_TRANSITION() {
-        return (int)782L;
-    }
-    public static int ERROR_SYSTEM_POWERSTATE_COMPLEX_TRANSITION() {
-        return (int)783L;
-    }
-    public static int ERROR_MCA_EXCEPTION() {
-        return (int)784L;
-    }
-    public static int ERROR_ACCESS_AUDIT_BY_POLICY() {
-        return (int)785L;
-    }
-    public static int ERROR_ACCESS_DISABLED_NO_SAFER_UI_BY_POLICY() {
-        return (int)786L;
-    }
-    public static int ERROR_ABANDON_HIBERFILE() {
-        return (int)787L;
-    }
-    public static int ERROR_LOST_WRITEBEHIND_DATA_NETWORK_DISCONNECTED() {
-        return (int)788L;
-    }
-    public static int ERROR_LOST_WRITEBEHIND_DATA_NETWORK_SERVER_ERROR() {
-        return (int)789L;
-    }
-    public static int ERROR_LOST_WRITEBEHIND_DATA_LOCAL_DISK_ERROR() {
-        return (int)790L;
-    }
-    public static int ERROR_BAD_MCFG_TABLE() {
-        return (int)791L;
-    }
-    public static int ERROR_DISK_REPAIR_REDIRECTED() {
-        return (int)792L;
-    }
-    public static int ERROR_DISK_REPAIR_UNSUCCESSFUL() {
-        return (int)793L;
-    }
-    public static int ERROR_CORRUPT_LOG_OVERFULL() {
-        return (int)794L;
-    }
-    public static int ERROR_CORRUPT_LOG_CORRUPTED() {
-        return (int)795L;
-    }
-    public static int ERROR_CORRUPT_LOG_UNAVAILABLE() {
-        return (int)796L;
-    }
-    public static int ERROR_CORRUPT_LOG_DELETED_FULL() {
-        return (int)797L;
-    }
-    public static int ERROR_CORRUPT_LOG_CLEARED() {
-        return (int)798L;
-    }
-    public static int ERROR_ORPHAN_NAME_EXHAUSTED() {
-        return (int)799L;
-    }
-    public static int ERROR_OPLOCK_SWITCHED_TO_NEW_HANDLE() {
-        return (int)800L;
-    }
-    public static int ERROR_CANNOT_GRANT_REQUESTED_OPLOCK() {
-        return (int)801L;
-    }
-    public static int ERROR_CANNOT_BREAK_OPLOCK() {
-        return (int)802L;
-    }
-    public static int ERROR_OPLOCK_HANDLE_CLOSED() {
-        return (int)803L;
-    }
-    public static int ERROR_NO_ACE_CONDITION() {
-        return (int)804L;
-    }
-    public static int ERROR_INVALID_ACE_CONDITION() {
-        return (int)805L;
-    }
-    public static int ERROR_FILE_HANDLE_REVOKED() {
-        return (int)806L;
-    }
-    public static int ERROR_IMAGE_AT_DIFFERENT_BASE() {
-        return (int)807L;
-    }
-    public static int ERROR_ENCRYPTED_IO_NOT_POSSIBLE() {
-        return (int)808L;
-    }
-    public static int ERROR_FILE_METADATA_OPTIMIZATION_IN_PROGRESS() {
-        return (int)809L;
-    }
-    public static int ERROR_QUOTA_ACTIVITY() {
-        return (int)810L;
-    }
-    public static int ERROR_HANDLE_REVOKED() {
-        return (int)811L;
-    }
-    public static int ERROR_CALLBACK_INVOKE_INLINE() {
-        return (int)812L;
-    }
-    public static int ERROR_CPU_SET_INVALID() {
-        return (int)813L;
-    }
-    public static int ERROR_ENCLAVE_NOT_TERMINATED() {
-        return (int)814L;
-    }
-    public static int ERROR_ENCLAVE_VIOLATION() {
-        return (int)815L;
-    }
-    public static int ERROR_EA_ACCESS_DENIED() {
-        return (int)994L;
-    }
-    public static int ERROR_OPERATION_ABORTED() {
-        return (int)995L;
-    }
-    public static int ERROR_IO_INCOMPLETE() {
-        return (int)996L;
-    }
-    public static int ERROR_IO_PENDING() {
-        return (int)997L;
-    }
-    public static int ERROR_NOACCESS() {
-        return (int)998L;
-    }
-    public static int ERROR_SWAPERROR() {
-        return (int)999L;
-    }
-    public static int ERROR_STACK_OVERFLOW() {
-        return (int)1001L;
-    }
-    public static int ERROR_INVALID_MESSAGE() {
-        return (int)1002L;
-    }
-    public static int ERROR_CAN_NOT_COMPLETE() {
-        return (int)1003L;
-    }
-    public static int ERROR_INVALID_FLAGS() {
-        return (int)1004L;
-    }
-    public static int ERROR_UNRECOGNIZED_VOLUME() {
-        return (int)1005L;
-    }
-    public static int ERROR_FILE_INVALID() {
-        return (int)1006L;
-    }
-    public static int ERROR_FULLSCREEN_MODE() {
-        return (int)1007L;
-    }
-    public static int ERROR_NO_TOKEN() {
-        return (int)1008L;
-    }
-    public static int ERROR_BADDB() {
-        return (int)1009L;
-    }
-    public static int ERROR_BADKEY() {
-        return (int)1010L;
-    }
-    public static int ERROR_CANTOPEN() {
-        return (int)1011L;
-    }
-    public static int ERROR_CANTREAD() {
-        return (int)1012L;
-    }
-    public static int ERROR_CANTWRITE() {
-        return (int)1013L;
-    }
-    public static int ERROR_REGISTRY_RECOVERED() {
-        return (int)1014L;
-    }
-    public static int ERROR_REGISTRY_CORRUPT() {
-        return (int)1015L;
-    }
-    public static int ERROR_REGISTRY_IO_FAILED() {
-        return (int)1016L;
-    }
-    public static int ERROR_NOT_REGISTRY_FILE() {
-        return (int)1017L;
-    }
-    public static int ERROR_KEY_DELETED() {
-        return (int)1018L;
-    }
-    public static int ERROR_NO_LOG_SPACE() {
-        return (int)1019L;
-    }
-    public static int ERROR_KEY_HAS_CHILDREN() {
-        return (int)1020L;
-    }
-    public static int ERROR_CHILD_MUST_BE_VOLATILE() {
-        return (int)1021L;
-    }
-    public static int ERROR_NOTIFY_ENUM_DIR() {
-        return (int)1022L;
-    }
-    public static int ERROR_DEPENDENT_SERVICES_RUNNING() {
-        return (int)1051L;
-    }
-    public static int ERROR_INVALID_SERVICE_CONTROL() {
-        return (int)1052L;
-    }
-    public static int ERROR_SERVICE_REQUEST_TIMEOUT() {
-        return (int)1053L;
-    }
-    public static int ERROR_SERVICE_NO_THREAD() {
-        return (int)1054L;
-    }
-    public static int ERROR_SERVICE_DATABASE_LOCKED() {
-        return (int)1055L;
-    }
-    public static int ERROR_SERVICE_ALREADY_RUNNING() {
-        return (int)1056L;
-    }
-    public static int ERROR_INVALID_SERVICE_ACCOUNT() {
-        return (int)1057L;
-    }
-    public static int ERROR_SERVICE_DISABLED() {
-        return (int)1058L;
-    }
-    public static int ERROR_CIRCULAR_DEPENDENCY() {
-        return (int)1059L;
-    }
-    public static int ERROR_SERVICE_DOES_NOT_EXIST() {
-        return (int)1060L;
-    }
-    public static int ERROR_SERVICE_CANNOT_ACCEPT_CTRL() {
-        return (int)1061L;
-    }
-    public static int ERROR_SERVICE_NOT_ACTIVE() {
-        return (int)1062L;
-    }
-    public static int ERROR_FAILED_SERVICE_CONTROLLER_CONNECT() {
-        return (int)1063L;
-    }
-    public static int ERROR_EXCEPTION_IN_SERVICE() {
-        return (int)1064L;
-    }
-    public static int ERROR_DATABASE_DOES_NOT_EXIST() {
-        return (int)1065L;
-    }
-    public static int ERROR_SERVICE_SPECIFIC_ERROR() {
-        return (int)1066L;
-    }
-    public static int ERROR_PROCESS_ABORTED() {
-        return (int)1067L;
-    }
-    public static int ERROR_SERVICE_DEPENDENCY_FAIL() {
-        return (int)1068L;
-    }
-    public static int ERROR_SERVICE_LOGON_FAILED() {
-        return (int)1069L;
-    }
-    public static int ERROR_SERVICE_START_HANG() {
-        return (int)1070L;
-    }
-    public static int ERROR_INVALID_SERVICE_LOCK() {
-        return (int)1071L;
-    }
-    public static int ERROR_SERVICE_MARKED_FOR_DELETE() {
-        return (int)1072L;
-    }
-    public static int ERROR_SERVICE_EXISTS() {
-        return (int)1073L;
-    }
-    public static int ERROR_ALREADY_RUNNING_LKG() {
-        return (int)1074L;
-    }
-    public static int ERROR_SERVICE_DEPENDENCY_DELETED() {
-        return (int)1075L;
-    }
-    public static int ERROR_BOOT_ALREADY_ACCEPTED() {
-        return (int)1076L;
-    }
-    public static int ERROR_SERVICE_NEVER_STARTED() {
-        return (int)1077L;
-    }
-    public static int ERROR_DUPLICATE_SERVICE_NAME() {
-        return (int)1078L;
-    }
-    public static int ERROR_DIFFERENT_SERVICE_ACCOUNT() {
-        return (int)1079L;
-    }
-    public static int ERROR_CANNOT_DETECT_DRIVER_FAILURE() {
-        return (int)1080L;
-    }
-    public static int ERROR_CANNOT_DETECT_PROCESS_ABORT() {
-        return (int)1081L;
-    }
-    public static int ERROR_NO_RECOVERY_PROGRAM() {
-        return (int)1082L;
-    }
-    public static int ERROR_SERVICE_NOT_IN_EXE() {
-        return (int)1083L;
-    }
-    public static int ERROR_NOT_SAFEBOOT_SERVICE() {
-        return (int)1084L;
-    }
-    public static int ERROR_END_OF_MEDIA() {
-        return (int)1100L;
-    }
-    public static int ERROR_FILEMARK_DETECTED() {
-        return (int)1101L;
-    }
-    public static int ERROR_BEGINNING_OF_MEDIA() {
-        return (int)1102L;
-    }
-    public static int ERROR_SETMARK_DETECTED() {
-        return (int)1103L;
-    }
-    public static int ERROR_NO_DATA_DETECTED() {
-        return (int)1104L;
-    }
-    public static int ERROR_PARTITION_FAILURE() {
-        return (int)1105L;
-    }
-    public static int ERROR_INVALID_BLOCK_LENGTH() {
-        return (int)1106L;
-    }
-    public static int ERROR_DEVICE_NOT_PARTITIONED() {
-        return (int)1107L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class wgl_h_28 extends wgl_h_29 {
+
+    wgl_h_28() {
+        // Should not be called directly
+    }
+    private static final int IMR_CANDIDATEWINDOW = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_CANDIDATEWINDOW 2
+     * }
+     */
+    public static int IMR_CANDIDATEWINDOW() {
+        return IMR_CANDIDATEWINDOW;
+    }
+    private static final int IMR_COMPOSITIONFONT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_COMPOSITIONFONT 3
+     * }
+     */
+    public static int IMR_COMPOSITIONFONT() {
+        return IMR_COMPOSITIONFONT;
+    }
+    private static final int IMR_RECONVERTSTRING = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_RECONVERTSTRING 4
+     * }
+     */
+    public static int IMR_RECONVERTSTRING() {
+        return IMR_RECONVERTSTRING;
+    }
+    private static final int IMR_CONFIRMRECONVERTSTRING = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_CONFIRMRECONVERTSTRING 5
+     * }
+     */
+    public static int IMR_CONFIRMRECONVERTSTRING() {
+        return IMR_CONFIRMRECONVERTSTRING;
+    }
+    private static final int IMR_QUERYCHARPOSITION = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_QUERYCHARPOSITION 6
+     * }
+     */
+    public static int IMR_QUERYCHARPOSITION() {
+        return IMR_QUERYCHARPOSITION;
+    }
+    private static final int IMR_DOCUMENTFEED = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define IMR_DOCUMENTFEED 7
+     * }
+     */
+    public static int IMR_DOCUMENTFEED() {
+        return IMR_DOCUMENTFEED;
+    }
+    private static final int IME_CONFIG_GENERAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CONFIG_GENERAL 1
+     * }
+     */
+    public static int IME_CONFIG_GENERAL() {
+        return IME_CONFIG_GENERAL;
+    }
+    private static final int IME_CONFIG_REGISTERWORD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CONFIG_REGISTERWORD 2
+     * }
+     */
+    public static int IME_CONFIG_REGISTERWORD() {
+        return IME_CONFIG_REGISTERWORD;
+    }
+    private static final int IME_CONFIG_SELECTDICTIONARY = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CONFIG_SELECTDICTIONARY 3
+     * }
+     */
+    public static int IME_CONFIG_SELECTDICTIONARY() {
+        return IME_CONFIG_SELECTDICTIONARY;
+    }
+    private static final int IME_ESC_QUERY_SUPPORT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_QUERY_SUPPORT 3
+     * }
+     */
+    public static int IME_ESC_QUERY_SUPPORT() {
+        return IME_ESC_QUERY_SUPPORT;
+    }
+    private static final int IME_ESC_RESERVED_FIRST = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_RESERVED_FIRST 4
+     * }
+     */
+    public static int IME_ESC_RESERVED_FIRST() {
+        return IME_ESC_RESERVED_FIRST;
+    }
+    private static final int IME_ESC_RESERVED_LAST = (int)2047L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_RESERVED_LAST 2047
+     * }
+     */
+    public static int IME_ESC_RESERVED_LAST() {
+        return IME_ESC_RESERVED_LAST;
+    }
+    private static final int IME_ESC_PRIVATE_FIRST = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_PRIVATE_FIRST 2048
+     * }
+     */
+    public static int IME_ESC_PRIVATE_FIRST() {
+        return IME_ESC_PRIVATE_FIRST;
+    }
+    private static final int IME_ESC_PRIVATE_LAST = (int)4095L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_PRIVATE_LAST 4095
+     * }
+     */
+    public static int IME_ESC_PRIVATE_LAST() {
+        return IME_ESC_PRIVATE_LAST;
+    }
+    private static final int IME_ESC_SEQUENCE_TO_INTERNAL = (int)4097L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_SEQUENCE_TO_INTERNAL 4097
+     * }
+     */
+    public static int IME_ESC_SEQUENCE_TO_INTERNAL() {
+        return IME_ESC_SEQUENCE_TO_INTERNAL;
+    }
+    private static final int IME_ESC_GET_EUDC_DICTIONARY = (int)4099L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_GET_EUDC_DICTIONARY 4099
+     * }
+     */
+    public static int IME_ESC_GET_EUDC_DICTIONARY() {
+        return IME_ESC_GET_EUDC_DICTIONARY;
+    }
+    private static final int IME_ESC_SET_EUDC_DICTIONARY = (int)4100L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_SET_EUDC_DICTIONARY 4100
+     * }
+     */
+    public static int IME_ESC_SET_EUDC_DICTIONARY() {
+        return IME_ESC_SET_EUDC_DICTIONARY;
+    }
+    private static final int IME_ESC_MAX_KEY = (int)4101L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_MAX_KEY 4101
+     * }
+     */
+    public static int IME_ESC_MAX_KEY() {
+        return IME_ESC_MAX_KEY;
+    }
+    private static final int IME_ESC_IME_NAME = (int)4102L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_IME_NAME 4102
+     * }
+     */
+    public static int IME_ESC_IME_NAME() {
+        return IME_ESC_IME_NAME;
+    }
+    private static final int IME_ESC_SYNC_HOTKEY = (int)4103L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_SYNC_HOTKEY 4103
+     * }
+     */
+    public static int IME_ESC_SYNC_HOTKEY() {
+        return IME_ESC_SYNC_HOTKEY;
+    }
+    private static final int IME_ESC_HANJA_MODE = (int)4104L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_HANJA_MODE 4104
+     * }
+     */
+    public static int IME_ESC_HANJA_MODE() {
+        return IME_ESC_HANJA_MODE;
+    }
+    private static final int IME_ESC_AUTOMATA = (int)4105L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_AUTOMATA 4105
+     * }
+     */
+    public static int IME_ESC_AUTOMATA() {
+        return IME_ESC_AUTOMATA;
+    }
+    private static final int IME_ESC_PRIVATE_HOTKEY = (int)4106L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_PRIVATE_HOTKEY 4106
+     * }
+     */
+    public static int IME_ESC_PRIVATE_HOTKEY() {
+        return IME_ESC_PRIVATE_HOTKEY;
+    }
+    private static final int IME_ESC_GETHELPFILENAME = (int)4107L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_ESC_GETHELPFILENAME 4107
+     * }
+     */
+    public static int IME_ESC_GETHELPFILENAME() {
+        return IME_ESC_GETHELPFILENAME;
+    }
+    private static final int IME_REGWORD_STYLE_EUDC = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_REGWORD_STYLE_EUDC 1
+     * }
+     */
+    public static int IME_REGWORD_STYLE_EUDC() {
+        return IME_REGWORD_STYLE_EUDC;
+    }
+    private static final int IACE_CHILDREN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IACE_CHILDREN 1
+     * }
+     */
+    public static int IACE_CHILDREN() {
+        return IACE_CHILDREN;
+    }
+    private static final int IACE_DEFAULT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define IACE_DEFAULT 16
+     * }
+     */
+    public static int IACE_DEFAULT() {
+        return IACE_DEFAULT;
+    }
+    private static final int IACE_IGNORENOCONTEXT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define IACE_IGNORENOCONTEXT 32
+     * }
+     */
+    public static int IACE_IGNORENOCONTEXT() {
+        return IACE_IGNORENOCONTEXT;
+    }
+    private static final int IGIMIF_RIGHTMENU = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMIF_RIGHTMENU 1
+     * }
+     */
+    public static int IGIMIF_RIGHTMENU() {
+        return IGIMIF_RIGHTMENU;
+    }
+    private static final int IGIMII_CMODE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_CMODE 1
+     * }
+     */
+    public static int IGIMII_CMODE() {
+        return IGIMII_CMODE;
+    }
+    private static final int IGIMII_SMODE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_SMODE 2
+     * }
+     */
+    public static int IGIMII_SMODE() {
+        return IGIMII_SMODE;
+    }
+    private static final int IGIMII_CONFIGURE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_CONFIGURE 4
+     * }
+     */
+    public static int IGIMII_CONFIGURE() {
+        return IGIMII_CONFIGURE;
+    }
+    private static final int IGIMII_TOOLS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_TOOLS 8
+     * }
+     */
+    public static int IGIMII_TOOLS() {
+        return IGIMII_TOOLS;
+    }
+    private static final int IGIMII_HELP = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_HELP 16
+     * }
+     */
+    public static int IGIMII_HELP() {
+        return IGIMII_HELP;
+    }
+    private static final int IGIMII_OTHER = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_OTHER 32
+     * }
+     */
+    public static int IGIMII_OTHER() {
+        return IGIMII_OTHER;
+    }
+    private static final int IGIMII_INPUTTOOLS = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define IGIMII_INPUTTOOLS 64
+     * }
+     */
+    public static int IGIMII_INPUTTOOLS() {
+        return IGIMII_INPUTTOOLS;
+    }
+    private static final int IMFT_RADIOCHECK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFT_RADIOCHECK 1
+     * }
+     */
+    public static int IMFT_RADIOCHECK() {
+        return IMFT_RADIOCHECK;
+    }
+    private static final int IMFT_SEPARATOR = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFT_SEPARATOR 2
+     * }
+     */
+    public static int IMFT_SEPARATOR() {
+        return IMFT_SEPARATOR;
+    }
+    private static final int IMFT_SUBMENU = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFT_SUBMENU 4
+     * }
+     */
+    public static int IMFT_SUBMENU() {
+        return IMFT_SUBMENU;
+    }
+    private static final int SOFTKEYBOARD_TYPE_T1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SOFTKEYBOARD_TYPE_T1 1
+     * }
+     */
+    public static int SOFTKEYBOARD_TYPE_T1() {
+        return SOFTKEYBOARD_TYPE_T1;
+    }
+    private static final int SOFTKEYBOARD_TYPE_C1 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SOFTKEYBOARD_TYPE_C1 2
+     * }
+     */
+    public static int SOFTKEYBOARD_TYPE_C1() {
+        return SOFTKEYBOARD_TYPE_C1;
+    }
+    private static final int GL_VERSION_1_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_1 1
+     * }
+     */
+    public static int GL_VERSION_1_1() {
+        return GL_VERSION_1_1;
+    }
+    private static final int GL_ACCUM = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM 256
+     * }
+     */
+    public static int GL_ACCUM() {
+        return GL_ACCUM;
+    }
+    private static final int GL_LOAD = (int)257L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOAD 257
+     * }
+     */
+    public static int GL_LOAD() {
+        return GL_LOAD;
+    }
+    private static final int GL_RETURN = (int)258L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RETURN 258
+     * }
+     */
+    public static int GL_RETURN() {
+        return GL_RETURN;
+    }
+    private static final int GL_MULT = (int)259L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MULT 259
+     * }
+     */
+    public static int GL_MULT() {
+        return GL_MULT;
+    }
+    private static final int GL_ADD = (int)260L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ADD 260
+     * }
+     */
+    public static int GL_ADD() {
+        return GL_ADD;
+    }
+    private static final int GL_NEVER = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEVER 512
+     * }
+     */
+    public static int GL_NEVER() {
+        return GL_NEVER;
+    }
+    private static final int GL_LESS = (int)513L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LESS 513
+     * }
+     */
+    public static int GL_LESS() {
+        return GL_LESS;
+    }
+    private static final int GL_EQUAL = (int)514L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EQUAL 514
+     * }
+     */
+    public static int GL_EQUAL() {
+        return GL_EQUAL;
+    }
+    private static final int GL_LEQUAL = (int)515L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LEQUAL 515
+     * }
+     */
+    public static int GL_LEQUAL() {
+        return GL_LEQUAL;
+    }
+    private static final int GL_GREATER = (int)516L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREATER 516
+     * }
+     */
+    public static int GL_GREATER() {
+        return GL_GREATER;
+    }
+    private static final int GL_NOTEQUAL = (int)517L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOTEQUAL 517
+     * }
+     */
+    public static int GL_NOTEQUAL() {
+        return GL_NOTEQUAL;
+    }
+    private static final int GL_GEQUAL = (int)518L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GEQUAL 518
+     * }
+     */
+    public static int GL_GEQUAL() {
+        return GL_GEQUAL;
+    }
+    private static final int GL_ALWAYS = (int)519L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALWAYS 519
+     * }
+     */
+    public static int GL_ALWAYS() {
+        return GL_ALWAYS;
+    }
+    private static final int GL_CURRENT_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_BIT 1
+     * }
+     */
+    public static int GL_CURRENT_BIT() {
+        return GL_CURRENT_BIT;
+    }
+    private static final int GL_POINT_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_BIT 2
+     * }
+     */
+    public static int GL_POINT_BIT() {
+        return GL_POINT_BIT;
+    }
+    private static final int GL_LINE_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_BIT 4
+     * }
+     */
+    public static int GL_LINE_BIT() {
+        return GL_LINE_BIT;
+    }
+    private static final int GL_POLYGON_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_BIT 8
+     * }
+     */
+    public static int GL_POLYGON_BIT() {
+        return GL_POLYGON_BIT;
+    }
+    private static final int GL_POLYGON_STIPPLE_BIT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_STIPPLE_BIT 16
+     * }
+     */
+    public static int GL_POLYGON_STIPPLE_BIT() {
+        return GL_POLYGON_STIPPLE_BIT;
+    }
+    private static final int GL_PIXEL_MODE_BIT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MODE_BIT 32
+     * }
+     */
+    public static int GL_PIXEL_MODE_BIT() {
+        return GL_PIXEL_MODE_BIT;
+    }
+    private static final int GL_LIGHTING_BIT = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHTING_BIT 64
+     * }
+     */
+    public static int GL_LIGHTING_BIT() {
+        return GL_LIGHTING_BIT;
+    }
+    private static final int GL_FOG_BIT = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_BIT 128
+     * }
+     */
+    public static int GL_FOG_BIT() {
+        return GL_FOG_BIT;
+    }
+    private static final int GL_DEPTH_BUFFER_BIT = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BUFFER_BIT 256
+     * }
+     */
+    public static int GL_DEPTH_BUFFER_BIT() {
+        return GL_DEPTH_BUFFER_BIT;
+    }
+    private static final int GL_ACCUM_BUFFER_BIT = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_BUFFER_BIT 512
+     * }
+     */
+    public static int GL_ACCUM_BUFFER_BIT() {
+        return GL_ACCUM_BUFFER_BIT;
+    }
+    private static final int GL_STENCIL_BUFFER_BIT = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BUFFER_BIT 1024
+     * }
+     */
+    public static int GL_STENCIL_BUFFER_BIT() {
+        return GL_STENCIL_BUFFER_BIT;
+    }
+    private static final int GL_VIEWPORT_BIT = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VIEWPORT_BIT 2048
+     * }
+     */
+    public static int GL_VIEWPORT_BIT() {
+        return GL_VIEWPORT_BIT;
+    }
+    private static final int GL_TRANSFORM_BIT = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSFORM_BIT 4096
+     * }
+     */
+    public static int GL_TRANSFORM_BIT() {
+        return GL_TRANSFORM_BIT;
+    }
+    private static final int GL_ENABLE_BIT = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ENABLE_BIT 8192
+     * }
+     */
+    public static int GL_ENABLE_BIT() {
+        return GL_ENABLE_BIT;
+    }
+    private static final int GL_COLOR_BUFFER_BIT = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_BUFFER_BIT 16384
+     * }
+     */
+    public static int GL_COLOR_BUFFER_BIT() {
+        return GL_COLOR_BUFFER_BIT;
+    }
+    private static final int GL_HINT_BIT = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HINT_BIT 32768
+     * }
+     */
+    public static int GL_HINT_BIT() {
+        return GL_HINT_BIT;
+    }
+    private static final int GL_EVAL_BIT = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EVAL_BIT 65536
+     * }
+     */
+    public static int GL_EVAL_BIT() {
+        return GL_EVAL_BIT;
+    }
+    private static final int GL_LIST_BIT = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_BIT 131072
+     * }
+     */
+    public static int GL_LIST_BIT() {
+        return GL_LIST_BIT;
+    }
+    private static final int GL_TEXTURE_BIT = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BIT 262144
+     * }
+     */
+    public static int GL_TEXTURE_BIT() {
+        return GL_TEXTURE_BIT;
+    }
+    private static final int GL_SCISSOR_BIT = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_BIT 524288
+     * }
+     */
+    public static int GL_SCISSOR_BIT() {
+        return GL_SCISSOR_BIT;
+    }
+    private static final int GL_ALL_ATTRIB_BITS = (int)1048575L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALL_ATTRIB_BITS 1048575
+     * }
+     */
+    public static int GL_ALL_ATTRIB_BITS() {
+        return GL_ALL_ATTRIB_BITS;
+    }
+    private static final int GL_POINTS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINTS 0
+     * }
+     */
+    public static int GL_POINTS() {
+        return GL_POINTS;
+    }
+    private static final int GL_LINES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINES 1
+     * }
+     */
+    public static int GL_LINES() {
+        return GL_LINES;
+    }
+    private static final int GL_LINE_LOOP = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_LOOP 2
+     * }
+     */
+    public static int GL_LINE_LOOP() {
+        return GL_LINE_LOOP;
+    }
+    private static final int GL_LINE_STRIP = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STRIP 3
+     * }
+     */
+    public static int GL_LINE_STRIP() {
+        return GL_LINE_STRIP;
+    }
+    private static final int GL_TRIANGLES = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLES 4
+     * }
+     */
+    public static int GL_TRIANGLES() {
+        return GL_TRIANGLES;
+    }
+    private static final int GL_TRIANGLE_STRIP = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLE_STRIP 5
+     * }
+     */
+    public static int GL_TRIANGLE_STRIP() {
+        return GL_TRIANGLE_STRIP;
+    }
+    private static final int GL_TRIANGLE_FAN = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLE_FAN 6
+     * }
+     */
+    public static int GL_TRIANGLE_FAN() {
+        return GL_TRIANGLE_FAN;
+    }
+    private static final int GL_QUADS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUADS 7
+     * }
+     */
+    public static int GL_QUADS() {
+        return GL_QUADS;
+    }
+    private static final int GL_QUAD_STRIP = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUAD_STRIP 8
+     * }
+     */
+    public static int GL_QUAD_STRIP() {
+        return GL_QUAD_STRIP;
+    }
+    private static final int GL_POLYGON = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON 9
+     * }
+     */
+    public static int GL_POLYGON() {
+        return GL_POLYGON;
+    }
+    private static final int GL_ZERO = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZERO 0
+     * }
+     */
+    public static int GL_ZERO() {
+        return GL_ZERO;
+    }
+    private static final int GL_ONE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE 1
+     * }
+     */
+    public static int GL_ONE() {
+        return GL_ONE;
+    }
+    private static final int GL_SRC_COLOR = (int)768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_COLOR 768
+     * }
+     */
+    public static int GL_SRC_COLOR() {
+        return GL_SRC_COLOR;
+    }
+    private static final int GL_ONE_MINUS_SRC_COLOR = (int)769L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_SRC_COLOR 769
+     * }
+     */
+    public static int GL_ONE_MINUS_SRC_COLOR() {
+        return GL_ONE_MINUS_SRC_COLOR;
+    }
+    private static final int GL_SRC_ALPHA = (int)770L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_ALPHA 770
+     * }
+     */
+    public static int GL_SRC_ALPHA() {
+        return GL_SRC_ALPHA;
+    }
+    private static final int GL_ONE_MINUS_SRC_ALPHA = (int)771L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_SRC_ALPHA 771
+     * }
+     */
+    public static int GL_ONE_MINUS_SRC_ALPHA() {
+        return GL_ONE_MINUS_SRC_ALPHA;
+    }
+    private static final int GL_DST_ALPHA = (int)772L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DST_ALPHA 772
+     * }
+     */
+    public static int GL_DST_ALPHA() {
+        return GL_DST_ALPHA;
+    }
+    private static final int GL_ONE_MINUS_DST_ALPHA = (int)773L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_DST_ALPHA 773
+     * }
+     */
+    public static int GL_ONE_MINUS_DST_ALPHA() {
+        return GL_ONE_MINUS_DST_ALPHA;
+    }
+    private static final int GL_DST_COLOR = (int)774L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DST_COLOR 774
+     * }
+     */
+    public static int GL_DST_COLOR() {
+        return GL_DST_COLOR;
+    }
+    private static final int GL_ONE_MINUS_DST_COLOR = (int)775L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_DST_COLOR 775
+     * }
+     */
+    public static int GL_ONE_MINUS_DST_COLOR() {
+        return GL_ONE_MINUS_DST_COLOR;
+    }
+    private static final int GL_SRC_ALPHA_SATURATE = (int)776L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_ALPHA_SATURATE 776
+     * }
+     */
+    public static int GL_SRC_ALPHA_SATURATE() {
+        return GL_SRC_ALPHA_SATURATE;
+    }
+    private static final int GL_TRUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRUE 1
+     * }
+     */
+    public static int GL_TRUE() {
+        return GL_TRUE;
+    }
+    private static final int GL_FALSE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FALSE 0
+     * }
+     */
+    public static int GL_FALSE() {
+        return GL_FALSE;
+    }
+    private static final int GL_CLIP_PLANE0 = (int)12288L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE0 12288
+     * }
+     */
+    public static int GL_CLIP_PLANE0() {
+        return GL_CLIP_PLANE0;
+    }
+    private static final int GL_CLIP_PLANE1 = (int)12289L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE1 12289
+     * }
+     */
+    public static int GL_CLIP_PLANE1() {
+        return GL_CLIP_PLANE1;
+    }
+    private static final int GL_CLIP_PLANE2 = (int)12290L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE2 12290
+     * }
+     */
+    public static int GL_CLIP_PLANE2() {
+        return GL_CLIP_PLANE2;
+    }
+    private static final int GL_CLIP_PLANE3 = (int)12291L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE3 12291
+     * }
+     */
+    public static int GL_CLIP_PLANE3() {
+        return GL_CLIP_PLANE3;
+    }
+    private static final int GL_CLIP_PLANE4 = (int)12292L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE4 12292
+     * }
+     */
+    public static int GL_CLIP_PLANE4() {
+        return GL_CLIP_PLANE4;
+    }
+    private static final int GL_CLIP_PLANE5 = (int)12293L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE5 12293
+     * }
+     */
+    public static int GL_CLIP_PLANE5() {
+        return GL_CLIP_PLANE5;
+    }
+    private static final int GL_BYTE = (int)5120L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BYTE 5120
+     * }
+     */
+    public static int GL_BYTE() {
+        return GL_BYTE;
+    }
+    private static final int GL_UNSIGNED_BYTE = (int)5121L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_BYTE 5121
+     * }
+     */
+    public static int GL_UNSIGNED_BYTE() {
+        return GL_UNSIGNED_BYTE;
+    }
+    private static final int GL_SHORT = (int)5122L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHORT 5122
+     * }
+     */
+    public static int GL_SHORT() {
+        return GL_SHORT;
+    }
+    private static final int GL_UNSIGNED_SHORT = (int)5123L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT 5123
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT() {
+        return GL_UNSIGNED_SHORT;
+    }
+    private static final int GL_INT = (int)5124L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INT 5124
+     * }
+     */
+    public static int GL_INT() {
+        return GL_INT;
+    }
+    private static final int GL_UNSIGNED_INT = (int)5125L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT 5125
+     * }
+     */
+    public static int GL_UNSIGNED_INT() {
+        return GL_UNSIGNED_INT;
+    }
+    private static final int GL_FLOAT = (int)5126L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT 5126
+     * }
+     */
+    public static int GL_FLOAT() {
+        return GL_FLOAT;
+    }
+    private static final int GL_2_BYTES = (int)5127L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_2_BYTES 5127
+     * }
+     */
+    public static int GL_2_BYTES() {
+        return GL_2_BYTES;
+    }
+    private static final int GL_3_BYTES = (int)5128L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3_BYTES 5128
+     * }
+     */
+    public static int GL_3_BYTES() {
+        return GL_3_BYTES;
+    }
+    private static final int GL_4_BYTES = (int)5129L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_4_BYTES 5129
+     * }
+     */
+    public static int GL_4_BYTES() {
+        return GL_4_BYTES;
+    }
+    private static final int GL_DOUBLE = (int)5130L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLE 5130
+     * }
+     */
+    public static int GL_DOUBLE() {
+        return GL_DOUBLE;
+    }
+    private static final int GL_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NONE 0
+     * }
+     */
+    public static int GL_NONE() {
+        return GL_NONE;
+    }
+    private static final int GL_FRONT_LEFT = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_LEFT 1024
+     * }
+     */
+    public static int GL_FRONT_LEFT() {
+        return GL_FRONT_LEFT;
+    }
+    private static final int GL_FRONT_RIGHT = (int)1025L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_RIGHT 1025
+     * }
+     */
+    public static int GL_FRONT_RIGHT() {
+        return GL_FRONT_RIGHT;
+    }
+    private static final int GL_BACK_LEFT = (int)1026L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK_LEFT 1026
+     * }
+     */
+    public static int GL_BACK_LEFT() {
+        return GL_BACK_LEFT;
+    }
+    private static final int GL_BACK_RIGHT = (int)1027L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK_RIGHT 1027
+     * }
+     */
+    public static int GL_BACK_RIGHT() {
+        return GL_BACK_RIGHT;
+    }
+    private static final int GL_FRONT = (int)1028L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT 1028
+     * }
+     */
+    public static int GL_FRONT() {
+        return GL_FRONT;
+    }
+    private static final int GL_BACK = (int)1029L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK 1029
+     * }
+     */
+    public static int GL_BACK() {
+        return GL_BACK;
+    }
+    private static final int GL_LEFT = (int)1030L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LEFT 1030
+     * }
+     */
+    public static int GL_LEFT() {
+        return GL_LEFT;
+    }
+    private static final int GL_RIGHT = (int)1031L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RIGHT 1031
+     * }
+     */
+    public static int GL_RIGHT() {
+        return GL_RIGHT;
+    }
+    private static final int GL_FRONT_AND_BACK = (int)1032L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_AND_BACK 1032
+     * }
+     */
+    public static int GL_FRONT_AND_BACK() {
+        return GL_FRONT_AND_BACK;
+    }
+    private static final int GL_AUX0 = (int)1033L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX0 1033
+     * }
+     */
+    public static int GL_AUX0() {
+        return GL_AUX0;
+    }
+    private static final int GL_AUX1 = (int)1034L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX1 1034
+     * }
+     */
+    public static int GL_AUX1() {
+        return GL_AUX1;
+    }
+    private static final int GL_AUX2 = (int)1035L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX2 1035
+     * }
+     */
+    public static int GL_AUX2() {
+        return GL_AUX2;
+    }
+    private static final int GL_AUX3 = (int)1036L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX3 1036
+     * }
+     */
+    public static int GL_AUX3() {
+        return GL_AUX3;
+    }
+    private static final int GL_NO_ERROR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NO_ERROR 0
+     * }
+     */
+    public static int GL_NO_ERROR() {
+        return GL_NO_ERROR;
+    }
+    private static final int GL_INVALID_ENUM = (int)1280L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_ENUM 1280
+     * }
+     */
+    public static int GL_INVALID_ENUM() {
+        return GL_INVALID_ENUM;
+    }
+    private static final int GL_INVALID_VALUE = (int)1281L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_VALUE 1281
+     * }
+     */
+    public static int GL_INVALID_VALUE() {
+        return GL_INVALID_VALUE;
+    }
+    private static final int GL_INVALID_OPERATION = (int)1282L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_OPERATION 1282
+     * }
+     */
+    public static int GL_INVALID_OPERATION() {
+        return GL_INVALID_OPERATION;
+    }
+    private static final int GL_STACK_OVERFLOW = (int)1283L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STACK_OVERFLOW 1283
+     * }
+     */
+    public static int GL_STACK_OVERFLOW() {
+        return GL_STACK_OVERFLOW;
+    }
+    private static final int GL_STACK_UNDERFLOW = (int)1284L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STACK_UNDERFLOW 1284
+     * }
+     */
+    public static int GL_STACK_UNDERFLOW() {
+        return GL_STACK_UNDERFLOW;
+    }
+    private static final int GL_OUT_OF_MEMORY = (int)1285L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OUT_OF_MEMORY 1285
+     * }
+     */
+    public static int GL_OUT_OF_MEMORY() {
+        return GL_OUT_OF_MEMORY;
+    }
+    private static final int GL_2D = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_2D 1536
+     * }
+     */
+    public static int GL_2D() {
+        return GL_2D;
+    }
+    private static final int GL_3D = (int)1537L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D 1537
+     * }
+     */
+    public static int GL_3D() {
+        return GL_3D;
+    }
+    private static final int GL_3D_COLOR = (int)1538L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D_COLOR 1538
+     * }
+     */
+    public static int GL_3D_COLOR() {
+        return GL_3D_COLOR;
+    }
+    private static final int GL_3D_COLOR_TEXTURE = (int)1539L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D_COLOR_TEXTURE 1539
+     * }
+     */
+    public static int GL_3D_COLOR_TEXTURE() {
+        return GL_3D_COLOR_TEXTURE;
+    }
+    private static final int GL_4D_COLOR_TEXTURE = (int)1540L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_4D_COLOR_TEXTURE 1540
+     * }
+     */
+    public static int GL_4D_COLOR_TEXTURE() {
+        return GL_4D_COLOR_TEXTURE;
+    }
+    private static final int GL_PASS_THROUGH_TOKEN = (int)1792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PASS_THROUGH_TOKEN 1792
+     * }
+     */
+    public static int GL_PASS_THROUGH_TOKEN() {
+        return GL_PASS_THROUGH_TOKEN;
+    }
+    private static final int GL_POINT_TOKEN = (int)1793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_TOKEN 1793
+     * }
+     */
+    public static int GL_POINT_TOKEN() {
+        return GL_POINT_TOKEN;
+    }
+    private static final int GL_LINE_TOKEN = (int)1794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_TOKEN 1794
+     * }
+     */
+    public static int GL_LINE_TOKEN() {
+        return GL_LINE_TOKEN;
+    }
+    private static final int GL_POLYGON_TOKEN = (int)1795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_TOKEN 1795
+     * }
+     */
+    public static int GL_POLYGON_TOKEN() {
+        return GL_POLYGON_TOKEN;
+    }
+    private static final int GL_BITMAP_TOKEN = (int)1796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BITMAP_TOKEN 1796
+     * }
+     */
+    public static int GL_BITMAP_TOKEN() {
+        return GL_BITMAP_TOKEN;
+    }
+    private static final int GL_DRAW_PIXEL_TOKEN = (int)1797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DRAW_PIXEL_TOKEN 1797
+     * }
+     */
+    public static int GL_DRAW_PIXEL_TOKEN() {
+        return GL_DRAW_PIXEL_TOKEN;
+    }
+    private static final int GL_COPY_PIXEL_TOKEN = (int)1798L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY_PIXEL_TOKEN 1798
+     * }
+     */
+    public static int GL_COPY_PIXEL_TOKEN() {
+        return GL_COPY_PIXEL_TOKEN;
+    }
+    private static final int GL_LINE_RESET_TOKEN = (int)1799L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_RESET_TOKEN 1799
+     * }
+     */
+    public static int GL_LINE_RESET_TOKEN() {
+        return GL_LINE_RESET_TOKEN;
+    }
+    private static final int GL_EXP = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXP 2048
+     * }
+     */
+    public static int GL_EXP() {
+        return GL_EXP;
+    }
+    private static final int GL_EXP2 = (int)2049L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXP2 2049
+     * }
+     */
+    public static int GL_EXP2() {
+        return GL_EXP2;
+    }
+    private static final int GL_CW = (int)2304L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CW 2304
+     * }
+     */
+    public static int GL_CW() {
+        return GL_CW;
+    }
+    private static final int GL_CCW = (int)2305L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CCW 2305
+     * }
+     */
+    public static int GL_CCW() {
+        return GL_CCW;
+    }
+    private static final int GL_COEFF = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COEFF 2560
+     * }
+     */
+    public static int GL_COEFF() {
+        return GL_COEFF;
+    }
+    private static final int GL_ORDER = (int)2561L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ORDER 2561
+     * }
+     */
+    public static int GL_ORDER() {
+        return GL_ORDER;
+    }
+    private static final int GL_DOMAIN = (int)2562L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOMAIN 2562
+     * }
+     */
+    public static int GL_DOMAIN() {
+        return GL_DOMAIN;
+    }
+    private static final int GL_CURRENT_COLOR = (int)2816L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_COLOR 2816
+     * }
+     */
+    public static int GL_CURRENT_COLOR() {
+        return GL_CURRENT_COLOR;
+    }
+    private static final int GL_CURRENT_INDEX = (int)2817L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_INDEX 2817
+     * }
+     */
+    public static int GL_CURRENT_INDEX() {
+        return GL_CURRENT_INDEX;
+    }
+    private static final int GL_CURRENT_NORMAL = (int)2818L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_NORMAL 2818
+     * }
+     */
+    public static int GL_CURRENT_NORMAL() {
+        return GL_CURRENT_NORMAL;
+    }
+    private static final int GL_CURRENT_TEXTURE_COORDS = (int)2819L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_TEXTURE_COORDS 2819
+     * }
+     */
+    public static int GL_CURRENT_TEXTURE_COORDS() {
+        return GL_CURRENT_TEXTURE_COORDS;
+    }
+    private static final int GL_CURRENT_RASTER_COLOR = (int)2820L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_COLOR 2820
+     * }
+     */
+    public static int GL_CURRENT_RASTER_COLOR() {
+        return GL_CURRENT_RASTER_COLOR;
+    }
+    private static final int GL_CURRENT_RASTER_INDEX = (int)2821L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_INDEX 2821
+     * }
+     */
+    public static int GL_CURRENT_RASTER_INDEX() {
+        return GL_CURRENT_RASTER_INDEX;
+    }
+    private static final int GL_CURRENT_RASTER_TEXTURE_COORDS = (int)2822L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_TEXTURE_COORDS 2822
+     * }
+     */
+    public static int GL_CURRENT_RASTER_TEXTURE_COORDS() {
+        return GL_CURRENT_RASTER_TEXTURE_COORDS;
+    }
+    private static final int GL_CURRENT_RASTER_POSITION = (int)2823L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_POSITION 2823
+     * }
+     */
+    public static int GL_CURRENT_RASTER_POSITION() {
+        return GL_CURRENT_RASTER_POSITION;
+    }
+    private static final int GL_CURRENT_RASTER_POSITION_VALID = (int)2824L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_POSITION_VALID 2824
+     * }
+     */
+    public static int GL_CURRENT_RASTER_POSITION_VALID() {
+        return GL_CURRENT_RASTER_POSITION_VALID;
+    }
+    private static final int GL_CURRENT_RASTER_DISTANCE = (int)2825L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_DISTANCE 2825
+     * }
+     */
+    public static int GL_CURRENT_RASTER_DISTANCE() {
+        return GL_CURRENT_RASTER_DISTANCE;
+    }
+    private static final int GL_POINT_SMOOTH = (int)2832L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SMOOTH 2832
+     * }
+     */
+    public static int GL_POINT_SMOOTH() {
+        return GL_POINT_SMOOTH;
+    }
+    private static final int GL_POINT_SIZE = (int)2833L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE 2833
+     * }
+     */
+    public static int GL_POINT_SIZE() {
+        return GL_POINT_SIZE;
+    }
+    private static final int GL_POINT_SIZE_RANGE = (int)2834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_RANGE 2834
+     * }
+     */
+    public static int GL_POINT_SIZE_RANGE() {
+        return GL_POINT_SIZE_RANGE;
+    }
+    private static final int GL_POINT_SIZE_GRANULARITY = (int)2835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_GRANULARITY 2835
+     * }
+     */
+    public static int GL_POINT_SIZE_GRANULARITY() {
+        return GL_POINT_SIZE_GRANULARITY;
+    }
+    private static final int GL_LINE_SMOOTH = (int)2848L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_SMOOTH 2848
+     * }
+     */
+    public static int GL_LINE_SMOOTH() {
+        return GL_LINE_SMOOTH;
+    }
+    private static final int GL_LINE_WIDTH = (int)2849L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH 2849
+     * }
+     */
+    public static int GL_LINE_WIDTH() {
+        return GL_LINE_WIDTH;
+    }
+    private static final int GL_LINE_WIDTH_RANGE = (int)2850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH_RANGE 2850
+     * }
+     */
+    public static int GL_LINE_WIDTH_RANGE() {
+        return GL_LINE_WIDTH_RANGE;
+    }
+    private static final int GL_LINE_WIDTH_GRANULARITY = (int)2851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH_GRANULARITY 2851
+     * }
+     */
+    public static int GL_LINE_WIDTH_GRANULARITY() {
+        return GL_LINE_WIDTH_GRANULARITY;
+    }
+    private static final int GL_LINE_STIPPLE = (int)2852L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE 2852
+     * }
+     */
+    public static int GL_LINE_STIPPLE() {
+        return GL_LINE_STIPPLE;
+    }
+    private static final int GL_LINE_STIPPLE_PATTERN = (int)2853L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE_PATTERN 2853
+     * }
+     */
+    public static int GL_LINE_STIPPLE_PATTERN() {
+        return GL_LINE_STIPPLE_PATTERN;
+    }
+    private static final int GL_LINE_STIPPLE_REPEAT = (int)2854L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE_REPEAT 2854
+     * }
+     */
+    public static int GL_LINE_STIPPLE_REPEAT() {
+        return GL_LINE_STIPPLE_REPEAT;
+    }
+    private static final int GL_LIST_MODE = (int)2864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_MODE 2864
+     * }
+     */
+    public static int GL_LIST_MODE() {
+        return GL_LIST_MODE;
+    }
+    private static final int GL_MAX_LIST_NESTING = (int)2865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_LIST_NESTING 2865
+     * }
+     */
+    public static int GL_MAX_LIST_NESTING() {
+        return GL_MAX_LIST_NESTING;
+    }
+    private static final int GL_LIST_BASE = (int)2866L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_BASE 2866
+     * }
+     */
+    public static int GL_LIST_BASE() {
+        return GL_LIST_BASE;
+    }
+    private static final int GL_LIST_INDEX = (int)2867L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_INDEX 2867
+     * }
+     */
+    public static int GL_LIST_INDEX() {
+        return GL_LIST_INDEX;
+    }
+    private static final int GL_POLYGON_MODE = (int)2880L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_MODE 2880
+     * }
+     */
+    public static int GL_POLYGON_MODE() {
+        return GL_POLYGON_MODE;
+    }
+    private static final int GL_POLYGON_SMOOTH = (int)2881L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_SMOOTH 2881
+     * }
+     */
+    public static int GL_POLYGON_SMOOTH() {
+        return GL_POLYGON_SMOOTH;
+    }
+    private static final int GL_POLYGON_STIPPLE = (int)2882L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_STIPPLE 2882
+     * }
+     */
+    public static int GL_POLYGON_STIPPLE() {
+        return GL_POLYGON_STIPPLE;
+    }
+    private static final int GL_EDGE_FLAG = (int)2883L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG 2883
+     * }
+     */
+    public static int GL_EDGE_FLAG() {
+        return GL_EDGE_FLAG;
+    }
+    private static final int GL_CULL_FACE = (int)2884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CULL_FACE 2884
+     * }
+     */
+    public static int GL_CULL_FACE() {
+        return GL_CULL_FACE;
+    }
+    private static final int GL_CULL_FACE_MODE = (int)2885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CULL_FACE_MODE 2885
+     * }
+     */
+    public static int GL_CULL_FACE_MODE() {
+        return GL_CULL_FACE_MODE;
+    }
+    private static final int GL_FRONT_FACE = (int)2886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_FACE 2886
+     * }
+     */
+    public static int GL_FRONT_FACE() {
+        return GL_FRONT_FACE;
+    }
+    private static final int GL_LIGHTING = (int)2896L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHTING 2896
+     * }
+     */
+    public static int GL_LIGHTING() {
+        return GL_LIGHTING;
+    }
+    private static final int GL_LIGHT_MODEL_LOCAL_VIEWER = (int)2897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_LOCAL_VIEWER 2897
+     * }
+     */
+    public static int GL_LIGHT_MODEL_LOCAL_VIEWER() {
+        return GL_LIGHT_MODEL_LOCAL_VIEWER;
+    }
+    private static final int GL_LIGHT_MODEL_TWO_SIDE = (int)2898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_TWO_SIDE 2898
+     * }
+     */
+    public static int GL_LIGHT_MODEL_TWO_SIDE() {
+        return GL_LIGHT_MODEL_TWO_SIDE;
+    }
+    private static final int GL_LIGHT_MODEL_AMBIENT = (int)2899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_AMBIENT 2899
+     * }
+     */
+    public static int GL_LIGHT_MODEL_AMBIENT() {
+        return GL_LIGHT_MODEL_AMBIENT;
+    }
+    private static final int GL_SHADE_MODEL = (int)2900L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHADE_MODEL 2900
+     * }
+     */
+    public static int GL_SHADE_MODEL() {
+        return GL_SHADE_MODEL;
+    }
+    private static final int GL_COLOR_MATERIAL_FACE = (int)2901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL_FACE 2901
+     * }
+     */
+    public static int GL_COLOR_MATERIAL_FACE() {
+        return GL_COLOR_MATERIAL_FACE;
+    }
+    private static final int GL_COLOR_MATERIAL_PARAMETER = (int)2902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL_PARAMETER 2902
+     * }
+     */
+    public static int GL_COLOR_MATERIAL_PARAMETER() {
+        return GL_COLOR_MATERIAL_PARAMETER;
+    }
+    private static final int GL_COLOR_MATERIAL = (int)2903L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL 2903
+     * }
+     */
+    public static int GL_COLOR_MATERIAL() {
+        return GL_COLOR_MATERIAL;
+    }
+    private static final int GL_FOG = (int)2912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG 2912
+     * }
+     */
+    public static int GL_FOG() {
+        return GL_FOG;
+    }
+    private static final int GL_FOG_INDEX = (int)2913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_INDEX 2913
+     * }
+     */
+    public static int GL_FOG_INDEX() {
+        return GL_FOG_INDEX;
+    }
+    private static final int GL_FOG_DENSITY = (int)2914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_DENSITY 2914
+     * }
+     */
+    public static int GL_FOG_DENSITY() {
+        return GL_FOG_DENSITY;
+    }
+    private static final int GL_FOG_START = (int)2915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_START 2915
+     * }
+     */
+    public static int GL_FOG_START() {
+        return GL_FOG_START;
+    }
+    private static final int GL_FOG_END = (int)2916L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_END 2916
+     * }
+     */
+    public static int GL_FOG_END() {
+        return GL_FOG_END;
+    }
+    private static final int GL_FOG_MODE = (int)2917L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_MODE 2917
+     * }
+     */
+    public static int GL_FOG_MODE() {
+        return GL_FOG_MODE;
+    }
+    private static final int GL_FOG_COLOR = (int)2918L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COLOR 2918
+     * }
+     */
+    public static int GL_FOG_COLOR() {
+        return GL_FOG_COLOR;
+    }
+    private static final int GL_DEPTH_RANGE = (int)2928L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_RANGE 2928
+     * }
+     */
+    public static int GL_DEPTH_RANGE() {
+        return GL_DEPTH_RANGE;
+    }
+    private static final int GL_DEPTH_TEST = (int)2929L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_TEST 2929
+     * }
+     */
+    public static int GL_DEPTH_TEST() {
+        return GL_DEPTH_TEST;
+    }
+    private static final int GL_DEPTH_WRITEMASK = (int)2930L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_WRITEMASK 2930
+     * }
+     */
+    public static int GL_DEPTH_WRITEMASK() {
+        return GL_DEPTH_WRITEMASK;
+    }
+    private static final int GL_DEPTH_CLEAR_VALUE = (int)2931L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_CLEAR_VALUE 2931
+     * }
+     */
+    public static int GL_DEPTH_CLEAR_VALUE() {
+        return GL_DEPTH_CLEAR_VALUE;
+    }
+    private static final int GL_DEPTH_FUNC = (int)2932L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_FUNC 2932
+     * }
+     */
+    public static int GL_DEPTH_FUNC() {
+        return GL_DEPTH_FUNC;
+    }
+    private static final int GL_ACCUM_CLEAR_VALUE = (int)2944L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_CLEAR_VALUE 2944
+     * }
+     */
+    public static int GL_ACCUM_CLEAR_VALUE() {
+        return GL_ACCUM_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_TEST = (int)2960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_TEST 2960
+     * }
+     */
+    public static int GL_STENCIL_TEST() {
+        return GL_STENCIL_TEST;
+    }
+    private static final int GL_STENCIL_CLEAR_VALUE = (int)2961L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_CLEAR_VALUE 2961
+     * }
+     */
+    public static int GL_STENCIL_CLEAR_VALUE() {
+        return GL_STENCIL_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_FUNC = (int)2962L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FUNC 2962
+     * }
+     */
+    public static int GL_STENCIL_FUNC() {
+        return GL_STENCIL_FUNC;
+    }
+    private static final int GL_STENCIL_VALUE_MASK = (int)2963L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_VALUE_MASK 2963
+     * }
+     */
+    public static int GL_STENCIL_VALUE_MASK() {
+        return GL_STENCIL_VALUE_MASK;
+    }
+    private static final int GL_STENCIL_FAIL = (int)2964L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FAIL 2964
+     * }
+     */
+    public static int GL_STENCIL_FAIL() {
+        return GL_STENCIL_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_FAIL = (int)2965L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_FAIL 2965
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_FAIL() {
+        return GL_STENCIL_PASS_DEPTH_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_PASS = (int)2966L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_PASS 2966
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_PASS() {
+        return GL_STENCIL_PASS_DEPTH_PASS;
+    }
+    private static final int GL_STENCIL_REF = (int)2967L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_REF 2967
+     * }
+     */
+    public static int GL_STENCIL_REF() {
+        return GL_STENCIL_REF;
+    }
+    private static final int GL_STENCIL_WRITEMASK = (int)2968L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_WRITEMASK 2968
+     * }
+     */
+    public static int GL_STENCIL_WRITEMASK() {
+        return GL_STENCIL_WRITEMASK;
+    }
+    private static final int GL_MATRIX_MODE = (int)2976L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MATRIX_MODE 2976
+     * }
+     */
+    public static int GL_MATRIX_MODE() {
+        return GL_MATRIX_MODE;
+    }
+    private static final int GL_NORMALIZE = (int)2977L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMALIZE 2977
+     * }
+     */
+    public static int GL_NORMALIZE() {
+        return GL_NORMALIZE;
+    }
+    private static final int GL_VIEWPORT = (int)2978L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VIEWPORT 2978
+     * }
+     */
+    public static int GL_VIEWPORT() {
+        return GL_VIEWPORT;
+    }
+    private static final int GL_MODELVIEW_STACK_DEPTH = (int)2979L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_STACK_DEPTH 2979
+     * }
+     */
+    public static int GL_MODELVIEW_STACK_DEPTH() {
+        return GL_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_PROJECTION_STACK_DEPTH = (int)2980L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_STACK_DEPTH 2980
+     * }
+     */
+    public static int GL_PROJECTION_STACK_DEPTH() {
+        return GL_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_TEXTURE_STACK_DEPTH = (int)2981L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_STACK_DEPTH 2981
+     * }
+     */
+    public static int GL_TEXTURE_STACK_DEPTH() {
+        return GL_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MODELVIEW_MATRIX = (int)2982L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_MATRIX 2982
+     * }
+     */
+    public static int GL_MODELVIEW_MATRIX() {
+        return GL_MODELVIEW_MATRIX;
+    }
+    private static final int GL_PROJECTION_MATRIX = (int)2983L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_MATRIX 2983
+     * }
+     */
+    public static int GL_PROJECTION_MATRIX() {
+        return GL_PROJECTION_MATRIX;
+    }
+    private static final int GL_TEXTURE_MATRIX = (int)2984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MATRIX 2984
+     * }
+     */
+    public static int GL_TEXTURE_MATRIX() {
+        return GL_TEXTURE_MATRIX;
+    }
+    private static final int GL_ATTRIB_STACK_DEPTH = (int)2992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ATTRIB_STACK_DEPTH 2992
+     * }
+     */
+    public static int GL_ATTRIB_STACK_DEPTH() {
+        return GL_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_CLIENT_ATTRIB_STACK_DEPTH = (int)2993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_ATTRIB_STACK_DEPTH 2993
+     * }
+     */
+    public static int GL_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_ALPHA_TEST = (int)3008L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST 3008
+     * }
+     */
+    public static int GL_ALPHA_TEST() {
+        return GL_ALPHA_TEST;
+    }
+    private static final int GL_ALPHA_TEST_FUNC = (int)3009L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_FUNC 3009
+     * }
+     */
+    public static int GL_ALPHA_TEST_FUNC() {
+        return GL_ALPHA_TEST_FUNC;
+    }
+    private static final int GL_ALPHA_TEST_REF = (int)3010L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_REF 3010
+     * }
+     */
+    public static int GL_ALPHA_TEST_REF() {
+        return GL_ALPHA_TEST_REF;
+    }
+    private static final int GL_DITHER = (int)3024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DITHER 3024
+     * }
+     */
+    public static int GL_DITHER() {
+        return GL_DITHER;
+    }
+    private static final int GL_BLEND_DST = (int)3040L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_DST 3040
+     * }
+     */
+    public static int GL_BLEND_DST() {
+        return GL_BLEND_DST;
+    }
+    private static final int GL_BLEND_SRC = (int)3041L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_SRC 3041
+     * }
+     */
+    public static int GL_BLEND_SRC() {
+        return GL_BLEND_SRC;
+    }
+    private static final int GL_BLEND = (int)3042L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND 3042
+     * }
+     */
+    public static int GL_BLEND() {
+        return GL_BLEND;
+    }
+    private static final int GL_LOGIC_OP_MODE = (int)3056L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOGIC_OP_MODE 3056
+     * }
+     */
+    public static int GL_LOGIC_OP_MODE() {
+        return GL_LOGIC_OP_MODE;
+    }
+    private static final int GL_INDEX_LOGIC_OP = (int)3057L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_LOGIC_OP 3057
+     * }
+     */
+    public static int GL_INDEX_LOGIC_OP() {
+        return GL_INDEX_LOGIC_OP;
+    }
+    private static final int GL_COLOR_LOGIC_OP = (int)3058L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_LOGIC_OP 3058
+     * }
+     */
+    public static int GL_COLOR_LOGIC_OP() {
+        return GL_COLOR_LOGIC_OP;
+    }
+    private static final int GL_AUX_BUFFERS = (int)3072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX_BUFFERS 3072
+     * }
+     */
+    public static int GL_AUX_BUFFERS() {
+        return GL_AUX_BUFFERS;
+    }
+    private static final int GL_DRAW_BUFFER = (int)3073L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DRAW_BUFFER 3073
+     * }
+     */
+    public static int GL_DRAW_BUFFER() {
+        return GL_DRAW_BUFFER;
+    }
+    private static final int GL_READ_BUFFER = (int)3074L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_READ_BUFFER 3074
+     * }
+     */
+    public static int GL_READ_BUFFER() {
+        return GL_READ_BUFFER;
+    }
+    private static final int GL_SCISSOR_BOX = (int)3088L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_BOX 3088
+     * }
+     */
+    public static int GL_SCISSOR_BOX() {
+        return GL_SCISSOR_BOX;
+    }
+    private static final int GL_SCISSOR_TEST = (int)3089L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_TEST 3089
+     * }
+     */
+    public static int GL_SCISSOR_TEST() {
+        return GL_SCISSOR_TEST;
+    }
+    private static final int GL_INDEX_CLEAR_VALUE = (int)3104L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_CLEAR_VALUE 3104
+     * }
+     */
+    public static int GL_INDEX_CLEAR_VALUE() {
+        return GL_INDEX_CLEAR_VALUE;
+    }
+    private static final int GL_INDEX_WRITEMASK = (int)3105L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_WRITEMASK 3105
+     * }
+     */
+    public static int GL_INDEX_WRITEMASK() {
+        return GL_INDEX_WRITEMASK;
+    }
+    private static final int GL_COLOR_CLEAR_VALUE = (int)3106L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_CLEAR_VALUE 3106
+     * }
+     */
+    public static int GL_COLOR_CLEAR_VALUE() {
+        return GL_COLOR_CLEAR_VALUE;
+    }
+    private static final int GL_COLOR_WRITEMASK = (int)3107L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_WRITEMASK 3107
+     * }
+     */
+    public static int GL_COLOR_WRITEMASK() {
+        return GL_COLOR_WRITEMASK;
+    }
+    private static final int GL_INDEX_MODE = (int)3120L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_MODE 3120
+     * }
+     */
+    public static int GL_INDEX_MODE() {
+        return GL_INDEX_MODE;
+    }
+    private static final int GL_RGBA_MODE = (int)3121L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_MODE 3121
+     * }
+     */
+    public static int GL_RGBA_MODE() {
+        return GL_RGBA_MODE;
+    }
+    private static final int GL_DOUBLEBUFFER = (int)3122L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLEBUFFER 3122
+     * }
+     */
+    public static int GL_DOUBLEBUFFER() {
+        return GL_DOUBLEBUFFER;
+    }
+    private static final int GL_STEREO = (int)3123L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STEREO 3123
+     * }
+     */
+    public static int GL_STEREO() {
+        return GL_STEREO;
+    }
+    private static final int GL_RENDER_MODE = (int)3136L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER_MODE 3136
+     * }
+     */
+    public static int GL_RENDER_MODE() {
+        return GL_RENDER_MODE;
+    }
+    private static final int GL_PERSPECTIVE_CORRECTION_HINT = (int)3152L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PERSPECTIVE_CORRECTION_HINT 3152
+     * }
+     */
+    public static int GL_PERSPECTIVE_CORRECTION_HINT() {
+        return GL_PERSPECTIVE_CORRECTION_HINT;
+    }
+    private static final int GL_POINT_SMOOTH_HINT = (int)3153L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SMOOTH_HINT 3153
+     * }
+     */
+    public static int GL_POINT_SMOOTH_HINT() {
+        return GL_POINT_SMOOTH_HINT;
+    }
+    private static final int GL_LINE_SMOOTH_HINT = (int)3154L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_SMOOTH_HINT 3154
+     * }
+     */
+    public static int GL_LINE_SMOOTH_HINT() {
+        return GL_LINE_SMOOTH_HINT;
+    }
+    private static final int GL_POLYGON_SMOOTH_HINT = (int)3155L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_SMOOTH_HINT 3155
+     * }
+     */
+    public static int GL_POLYGON_SMOOTH_HINT() {
+        return GL_POLYGON_SMOOTH_HINT;
+    }
+    private static final int GL_FOG_HINT = (int)3156L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_HINT 3156
+     * }
+     */
+    public static int GL_FOG_HINT() {
+        return GL_FOG_HINT;
+    }
+    private static final int GL_TEXTURE_GEN_S = (int)3168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_S 3168
+     * }
+     */
+    public static int GL_TEXTURE_GEN_S() {
+        return GL_TEXTURE_GEN_S;
+    }
+    private static final int GL_TEXTURE_GEN_T = (int)3169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_T 3169
+     * }
+     */
+    public static int GL_TEXTURE_GEN_T() {
+        return GL_TEXTURE_GEN_T;
+    }
+    private static final int GL_TEXTURE_GEN_R = (int)3170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_R 3170
+     * }
+     */
+    public static int GL_TEXTURE_GEN_R() {
+        return GL_TEXTURE_GEN_R;
+    }
+    private static final int GL_TEXTURE_GEN_Q = (int)3171L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_Q 3171
+     * }
+     */
+    public static int GL_TEXTURE_GEN_Q() {
+        return GL_TEXTURE_GEN_Q;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I = (int)3184L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I 3184
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I() {
+        return GL_PIXEL_MAP_I_TO_I;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S = (int)3185L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S 3185
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S() {
+        return GL_PIXEL_MAP_S_TO_S;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R = (int)3186L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R 3186
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R() {
+        return GL_PIXEL_MAP_I_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G = (int)3187L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G 3187
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G() {
+        return GL_PIXEL_MAP_I_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B = (int)3188L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B 3188
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B() {
+        return GL_PIXEL_MAP_I_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A = (int)3189L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A 3189
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A() {
+        return GL_PIXEL_MAP_I_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R = (int)3190L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R 3190
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R() {
+        return GL_PIXEL_MAP_R_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G = (int)3191L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G 3191
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G() {
+        return GL_PIXEL_MAP_G_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B = (int)3192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B 3192
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B() {
+        return GL_PIXEL_MAP_B_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A = (int)3193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A 3193
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A() {
+        return GL_PIXEL_MAP_A_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I_SIZE = (int)3248L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I_SIZE 3248
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I_SIZE() {
+        return GL_PIXEL_MAP_I_TO_I_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S_SIZE = (int)3249L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S_SIZE 3249
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S_SIZE() {
+        return GL_PIXEL_MAP_S_TO_S_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R_SIZE = (int)3250L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R_SIZE 3250
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R_SIZE() {
+        return GL_PIXEL_MAP_I_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G_SIZE = (int)3251L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G_SIZE 3251
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G_SIZE() {
+        return GL_PIXEL_MAP_I_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B_SIZE = (int)3252L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B_SIZE 3252
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B_SIZE() {
+        return GL_PIXEL_MAP_I_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A_SIZE = (int)3253L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A_SIZE 3253
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A_SIZE() {
+        return GL_PIXEL_MAP_I_TO_A_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R_SIZE = (int)3254L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R_SIZE 3254
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R_SIZE() {
+        return GL_PIXEL_MAP_R_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G_SIZE = (int)3255L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G_SIZE 3255
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G_SIZE() {
+        return GL_PIXEL_MAP_G_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B_SIZE = (int)3256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B_SIZE 3256
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B_SIZE() {
+        return GL_PIXEL_MAP_B_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A_SIZE = (int)3257L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A_SIZE 3257
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A_SIZE() {
+        return GL_PIXEL_MAP_A_TO_A_SIZE;
+    }
+    private static final int GL_UNPACK_SWAP_BYTES = (int)3312L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SWAP_BYTES 3312
+     * }
+     */
+    public static int GL_UNPACK_SWAP_BYTES() {
+        return GL_UNPACK_SWAP_BYTES;
+    }
+    private static final int GL_UNPACK_LSB_FIRST = (int)3313L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_LSB_FIRST 3313
+     * }
+     */
+    public static int GL_UNPACK_LSB_FIRST() {
+        return GL_UNPACK_LSB_FIRST;
+    }
+    private static final int GL_UNPACK_ROW_LENGTH = (int)3314L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ROW_LENGTH 3314
+     * }
+     */
+    public static int GL_UNPACK_ROW_LENGTH() {
+        return GL_UNPACK_ROW_LENGTH;
+    }
+    private static final int GL_UNPACK_SKIP_ROWS = (int)3315L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_ROWS 3315
+     * }
+     */
+    public static int GL_UNPACK_SKIP_ROWS() {
+        return GL_UNPACK_SKIP_ROWS;
+    }
+    private static final int GL_UNPACK_SKIP_PIXELS = (int)3316L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_PIXELS 3316
+     * }
+     */
+    public static int GL_UNPACK_SKIP_PIXELS() {
+        return GL_UNPACK_SKIP_PIXELS;
+    }
+    private static final int GL_UNPACK_ALIGNMENT = (int)3317L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ALIGNMENT 3317
+     * }
+     */
+    public static int GL_UNPACK_ALIGNMENT() {
+        return GL_UNPACK_ALIGNMENT;
+    }
+    private static final int GL_PACK_SWAP_BYTES = (int)3328L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SWAP_BYTES 3328
+     * }
+     */
+    public static int GL_PACK_SWAP_BYTES() {
+        return GL_PACK_SWAP_BYTES;
+    }
+    private static final int GL_PACK_LSB_FIRST = (int)3329L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_LSB_FIRST 3329
+     * }
+     */
+    public static int GL_PACK_LSB_FIRST() {
+        return GL_PACK_LSB_FIRST;
+    }
+    private static final int GL_PACK_ROW_LENGTH = (int)3330L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ROW_LENGTH 3330
+     * }
+     */
+    public static int GL_PACK_ROW_LENGTH() {
+        return GL_PACK_ROW_LENGTH;
+    }
+    private static final int GL_PACK_SKIP_ROWS = (int)3331L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_ROWS 3331
+     * }
+     */
+    public static int GL_PACK_SKIP_ROWS() {
+        return GL_PACK_SKIP_ROWS;
+    }
+    private static final int GL_PACK_SKIP_PIXELS = (int)3332L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_PIXELS 3332
+     * }
+     */
+    public static int GL_PACK_SKIP_PIXELS() {
+        return GL_PACK_SKIP_PIXELS;
+    }
+    private static final int GL_PACK_ALIGNMENT = (int)3333L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ALIGNMENT 3333
+     * }
+     */
+    public static int GL_PACK_ALIGNMENT() {
+        return GL_PACK_ALIGNMENT;
+    }
+    private static final int GL_MAP_COLOR = (int)3344L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_COLOR 3344
+     * }
+     */
+    public static int GL_MAP_COLOR() {
+        return GL_MAP_COLOR;
+    }
+    private static final int GL_MAP_STENCIL = (int)3345L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_STENCIL 3345
+     * }
+     */
+    public static int GL_MAP_STENCIL() {
+        return GL_MAP_STENCIL;
+    }
+    private static final int GL_INDEX_SHIFT = (int)3346L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_SHIFT 3346
+     * }
+     */
+    public static int GL_INDEX_SHIFT() {
+        return GL_INDEX_SHIFT;
+    }
+    private static final int GL_INDEX_OFFSET = (int)3347L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_OFFSET 3347
+     * }
+     */
+    public static int GL_INDEX_OFFSET() {
+        return GL_INDEX_OFFSET;
+    }
+    private static final int GL_RED_SCALE = (int)3348L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_SCALE 3348
+     * }
+     */
+    public static int GL_RED_SCALE() {
+        return GL_RED_SCALE;
+    }
+    private static final int GL_RED_BIAS = (int)3349L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BIAS 3349
+     * }
+     */
+    public static int GL_RED_BIAS() {
+        return GL_RED_BIAS;
+    }
+    private static final int GL_ZOOM_X = (int)3350L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_X 3350
+     * }
+     */
+    public static int GL_ZOOM_X() {
+        return GL_ZOOM_X;
+    }
+    private static final int GL_ZOOM_Y = (int)3351L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_Y 3351
+     * }
+     */
+    public static int GL_ZOOM_Y() {
+        return GL_ZOOM_Y;
+    }
+    private static final int GL_GREEN_SCALE = (int)3352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_SCALE 3352
+     * }
+     */
+    public static int GL_GREEN_SCALE() {
+        return GL_GREEN_SCALE;
+    }
+    private static final int GL_GREEN_BIAS = (int)3353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BIAS 3353
+     * }
+     */
+    public static int GL_GREEN_BIAS() {
+        return GL_GREEN_BIAS;
+    }
+    private static final int GL_BLUE_SCALE = (int)3354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_SCALE 3354
+     * }
+     */
+    public static int GL_BLUE_SCALE() {
+        return GL_BLUE_SCALE;
+    }
+    private static final int GL_BLUE_BIAS = (int)3355L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BIAS 3355
+     * }
+     */
+    public static int GL_BLUE_BIAS() {
+        return GL_BLUE_BIAS;
+    }
+    private static final int GL_ALPHA_SCALE = (int)3356L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_SCALE 3356
+     * }
+     */
+    public static int GL_ALPHA_SCALE() {
+        return GL_ALPHA_SCALE;
+    }
+    private static final int GL_ALPHA_BIAS = (int)3357L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BIAS 3357
+     * }
+     */
+    public static int GL_ALPHA_BIAS() {
+        return GL_ALPHA_BIAS;
+    }
+    private static final int GL_DEPTH_SCALE = (int)3358L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_SCALE 3358
+     * }
+     */
+    public static int GL_DEPTH_SCALE() {
+        return GL_DEPTH_SCALE;
+    }
+    private static final int GL_DEPTH_BIAS = (int)3359L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BIAS 3359
+     * }
+     */
+    public static int GL_DEPTH_BIAS() {
+        return GL_DEPTH_BIAS;
+    }
+    private static final int GL_MAX_EVAL_ORDER = (int)3376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_EVAL_ORDER 3376
+     * }
+     */
+    public static int GL_MAX_EVAL_ORDER() {
+        return GL_MAX_EVAL_ORDER;
+    }
+    private static final int GL_MAX_LIGHTS = (int)3377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_LIGHTS 3377
+     * }
+     */
+    public static int GL_MAX_LIGHTS() {
+        return GL_MAX_LIGHTS;
+    }
+    private static final int GL_MAX_CLIP_PLANES = (int)3378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIP_PLANES 3378
+     * }
+     */
+    public static int GL_MAX_CLIP_PLANES() {
+        return GL_MAX_CLIP_PLANES;
+    }
+    private static final int GL_MAX_TEXTURE_SIZE = (int)3379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_SIZE 3379
+     * }
+     */
+    public static int GL_MAX_TEXTURE_SIZE() {
+        return GL_MAX_TEXTURE_SIZE;
+    }
+    private static final int GL_MAX_PIXEL_MAP_TABLE = (int)3380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PIXEL_MAP_TABLE 3380
+     * }
+     */
+    public static int GL_MAX_PIXEL_MAP_TABLE() {
+        return GL_MAX_PIXEL_MAP_TABLE;
+    }
+    private static final int GL_MAX_ATTRIB_STACK_DEPTH = (int)3381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ATTRIB_STACK_DEPTH 3381
+     * }
+     */
+    public static int GL_MAX_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_MAX_MODELVIEW_STACK_DEPTH = (int)3382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_MODELVIEW_STACK_DEPTH 3382
+     * }
+     */
+    public static int GL_MAX_MODELVIEW_STACK_DEPTH() {
+        return GL_MAX_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_MAX_NAME_STACK_DEPTH = (int)3383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_NAME_STACK_DEPTH 3383
+     * }
+     */
+    public static int GL_MAX_NAME_STACK_DEPTH() {
+        return GL_MAX_NAME_STACK_DEPTH;
+    }
+    private static final int GL_MAX_PROJECTION_STACK_DEPTH = (int)3384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROJECTION_STACK_DEPTH 3384
+     * }
+     */
+    public static int GL_MAX_PROJECTION_STACK_DEPTH() {
+        return GL_MAX_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_MAX_TEXTURE_STACK_DEPTH = (int)3385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_STACK_DEPTH 3385
+     * }
+     */
+    public static int GL_MAX_TEXTURE_STACK_DEPTH() {
+        return GL_MAX_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MAX_VIEWPORT_DIMS = (int)3386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VIEWPORT_DIMS 3386
+     * }
+     */
+    public static int GL_MAX_VIEWPORT_DIMS() {
+        return GL_MAX_VIEWPORT_DIMS;
+    }
+    private static final int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH = (int)3387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIENT_ATTRIB_STACK_DEPTH 3387
+     * }
+     */
+    public static int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_SUBPIXEL_BITS = (int)3408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SUBPIXEL_BITS 3408
+     * }
+     */
+    public static int GL_SUBPIXEL_BITS() {
+        return GL_SUBPIXEL_BITS;
+    }
+    private static final int GL_INDEX_BITS = (int)3409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_BITS 3409
+     * }
+     */
+    public static int GL_INDEX_BITS() {
+        return GL_INDEX_BITS;
+    }
+    private static final int GL_RED_BITS = (int)3410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BITS 3410
+     * }
+     */
+    public static int GL_RED_BITS() {
+        return GL_RED_BITS;
+    }
+    private static final int GL_GREEN_BITS = (int)3411L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BITS 3411
+     * }
+     */
+    public static int GL_GREEN_BITS() {
+        return GL_GREEN_BITS;
+    }
+    private static final int GL_BLUE_BITS = (int)3412L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BITS 3412
+     * }
+     */
+    public static int GL_BLUE_BITS() {
+        return GL_BLUE_BITS;
+    }
+    private static final int GL_ALPHA_BITS = (int)3413L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BITS 3413
+     * }
+     */
+    public static int GL_ALPHA_BITS() {
+        return GL_ALPHA_BITS;
+    }
+    private static final int GL_DEPTH_BITS = (int)3414L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BITS 3414
+     * }
+     */
+    public static int GL_DEPTH_BITS() {
+        return GL_DEPTH_BITS;
+    }
+    private static final int GL_STENCIL_BITS = (int)3415L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BITS 3415
+     * }
+     */
+    public static int GL_STENCIL_BITS() {
+        return GL_STENCIL_BITS;
+    }
+    private static final int GL_ACCUM_RED_BITS = (int)3416L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_RED_BITS 3416
+     * }
+     */
+    public static int GL_ACCUM_RED_BITS() {
+        return GL_ACCUM_RED_BITS;
+    }
+    private static final int GL_ACCUM_GREEN_BITS = (int)3417L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_GREEN_BITS 3417
+     * }
+     */
+    public static int GL_ACCUM_GREEN_BITS() {
+        return GL_ACCUM_GREEN_BITS;
+    }
+    private static final int GL_ACCUM_BLUE_BITS = (int)3418L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_BLUE_BITS 3418
+     * }
+     */
+    public static int GL_ACCUM_BLUE_BITS() {
+        return GL_ACCUM_BLUE_BITS;
+    }
+    private static final int GL_ACCUM_ALPHA_BITS = (int)3419L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_ALPHA_BITS 3419
+     * }
+     */
+    public static int GL_ACCUM_ALPHA_BITS() {
+        return GL_ACCUM_ALPHA_BITS;
+    }
+    private static final int GL_NAME_STACK_DEPTH = (int)3440L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAME_STACK_DEPTH 3440
+     * }
+     */
+    public static int GL_NAME_STACK_DEPTH() {
+        return GL_NAME_STACK_DEPTH;
+    }
+    private static final int GL_AUTO_NORMAL = (int)3456L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUTO_NORMAL 3456
+     * }
+     */
+    public static int GL_AUTO_NORMAL() {
+        return GL_AUTO_NORMAL;
+    }
+    private static final int GL_MAP1_COLOR_4 = (int)3472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_COLOR_4 3472
+     * }
+     */
+    public static int GL_MAP1_COLOR_4() {
+        return GL_MAP1_COLOR_4;
+    }
+    private static final int GL_MAP1_INDEX = (int)3473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_INDEX 3473
+     * }
+     */
+    public static int GL_MAP1_INDEX() {
+        return GL_MAP1_INDEX;
+    }
+    private static final int GL_MAP1_NORMAL = (int)3474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_NORMAL 3474
+     * }
+     */
+    public static int GL_MAP1_NORMAL() {
+        return GL_MAP1_NORMAL;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_1 = (int)3475L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_1 3475
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_1() {
+        return GL_MAP1_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_2 = (int)3476L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_2 3476
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_2() {
+        return GL_MAP1_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_3 = (int)3477L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_3 3477
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_3() {
+        return GL_MAP1_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_4 = (int)3478L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_4 3478
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_4() {
+        return GL_MAP1_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP1_VERTEX_3 = (int)3479L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_3 3479
+     * }
+     */
+    public static int GL_MAP1_VERTEX_3() {
+        return GL_MAP1_VERTEX_3;
+    }
+    private static final int GL_MAP1_VERTEX_4 = (int)3480L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_4 3480
+     * }
+     */
+    public static int GL_MAP1_VERTEX_4() {
+        return GL_MAP1_VERTEX_4;
+    }
+    private static final int GL_MAP2_COLOR_4 = (int)3504L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_COLOR_4 3504
+     * }
+     */
+    public static int GL_MAP2_COLOR_4() {
+        return GL_MAP2_COLOR_4;
+    }
+    private static final int GL_MAP2_INDEX = (int)3505L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_INDEX 3505
+     * }
+     */
+    public static int GL_MAP2_INDEX() {
+        return GL_MAP2_INDEX;
+    }
+    private static final int GL_MAP2_NORMAL = (int)3506L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_NORMAL 3506
+     * }
+     */
+    public static int GL_MAP2_NORMAL() {
+        return GL_MAP2_NORMAL;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_1 = (int)3507L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_1 3507
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_1() {
+        return GL_MAP2_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_2 = (int)3508L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_2 3508
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_2() {
+        return GL_MAP2_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_3 = (int)3509L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_3 3509
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_3() {
+        return GL_MAP2_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_4 = (int)3510L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_4 3510
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_4() {
+        return GL_MAP2_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP2_VERTEX_3 = (int)3511L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_3 3511
+     * }
+     */
+    public static int GL_MAP2_VERTEX_3() {
+        return GL_MAP2_VERTEX_3;
+    }
+    private static final int GL_MAP2_VERTEX_4 = (int)3512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_4 3512
+     * }
+     */
+    public static int GL_MAP2_VERTEX_4() {
+        return GL_MAP2_VERTEX_4;
+    }
+    private static final int GL_MAP1_GRID_DOMAIN = (int)3536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_DOMAIN 3536
+     * }
+     */
+    public static int GL_MAP1_GRID_DOMAIN() {
+        return GL_MAP1_GRID_DOMAIN;
+    }
+    private static final int GL_MAP1_GRID_SEGMENTS = (int)3537L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_SEGMENTS 3537
+     * }
+     */
+    public static int GL_MAP1_GRID_SEGMENTS() {
+        return GL_MAP1_GRID_SEGMENTS;
+    }
+    private static final int GL_MAP2_GRID_DOMAIN = (int)3538L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_DOMAIN 3538
+     * }
+     */
+    public static int GL_MAP2_GRID_DOMAIN() {
+        return GL_MAP2_GRID_DOMAIN;
+    }
+    private static final int GL_MAP2_GRID_SEGMENTS = (int)3539L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_SEGMENTS 3539
+     * }
+     */
+    public static int GL_MAP2_GRID_SEGMENTS() {
+        return GL_MAP2_GRID_SEGMENTS;
+    }
+    private static final int GL_TEXTURE_1D = (int)3552L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_1D 3552
+     * }
+     */
+    public static int GL_TEXTURE_1D() {
+        return GL_TEXTURE_1D;
+    }
+    private static final int GL_TEXTURE_2D = (int)3553L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_2D 3553
+     * }
+     */
+    public static int GL_TEXTURE_2D() {
+        return GL_TEXTURE_2D;
+    }
+    private static final int GL_FEEDBACK_BUFFER_POINTER = (int)3568L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_POINTER 3568
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_POINTER() {
+        return GL_FEEDBACK_BUFFER_POINTER;
+    }
+    private static final int GL_FEEDBACK_BUFFER_SIZE = (int)3569L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_SIZE 3569
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_SIZE() {
+        return GL_FEEDBACK_BUFFER_SIZE;
+    }
+    private static final int GL_FEEDBACK_BUFFER_TYPE = (int)3570L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_TYPE 3570
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_TYPE() {
+        return GL_FEEDBACK_BUFFER_TYPE;
+    }
+    private static final int GL_SELECTION_BUFFER_POINTER = (int)3571L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_POINTER 3571
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_POINTER() {
+        return GL_SELECTION_BUFFER_POINTER;
+    }
+    private static final int GL_SELECTION_BUFFER_SIZE = (int)3572L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_SIZE 3572
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_SIZE() {
+        return GL_SELECTION_BUFFER_SIZE;
+    }
+    private static final int GL_TEXTURE_WIDTH = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WIDTH 4096
+     * }
+     */
+    public static int GL_TEXTURE_WIDTH() {
+        return GL_TEXTURE_WIDTH;
+    }
+    private static final int GL_TEXTURE_HEIGHT = (int)4097L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_HEIGHT 4097
+     * }
+     */
+    public static int GL_TEXTURE_HEIGHT() {
+        return GL_TEXTURE_HEIGHT;
+    }
+    private static final int GL_TEXTURE_INTERNAL_FORMAT = (int)4099L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTERNAL_FORMAT 4099
+     * }
+     */
+    public static int GL_TEXTURE_INTERNAL_FORMAT() {
+        return GL_TEXTURE_INTERNAL_FORMAT;
+    }
+    private static final int GL_TEXTURE_BORDER_COLOR = (int)4100L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER_COLOR 4100
+     * }
+     */
+    public static int GL_TEXTURE_BORDER_COLOR() {
+        return GL_TEXTURE_BORDER_COLOR;
+    }
+    private static final int GL_TEXTURE_BORDER = (int)4101L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER 4101
+     * }
+     */
+    public static int GL_TEXTURE_BORDER() {
+        return GL_TEXTURE_BORDER;
+    }
+    private static final int GL_DONT_CARE = (int)4352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DONT_CARE 4352
+     * }
+     */
+    public static int GL_DONT_CARE() {
+        return GL_DONT_CARE;
+    }
+    private static final int GL_FASTEST = (int)4353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FASTEST 4353
+     * }
+     */
+    public static int GL_FASTEST() {
+        return GL_FASTEST;
+    }
+    private static final int GL_NICEST = (int)4354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NICEST 4354
+     * }
+     */
+    public static int GL_NICEST() {
+        return GL_NICEST;
+    }
+    private static final int GL_LIGHT0 = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT0 16384
+     * }
+     */
+    public static int GL_LIGHT0() {
+        return GL_LIGHT0;
+    }
+    private static final int GL_LIGHT1 = (int)16385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT1 16385
+     * }
+     */
+    public static int GL_LIGHT1() {
+        return GL_LIGHT1;
+    }
+    private static final int GL_LIGHT2 = (int)16386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT2 16386
+     * }
+     */
+    public static int GL_LIGHT2() {
+        return GL_LIGHT2;
+    }
+    private static final int GL_LIGHT3 = (int)16387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT3 16387
+     * }
+     */
+    public static int GL_LIGHT3() {
+        return GL_LIGHT3;
+    }
+    private static final int GL_LIGHT4 = (int)16388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT4 16388
+     * }
+     */
+    public static int GL_LIGHT4() {
+        return GL_LIGHT4;
+    }
+    private static final int GL_LIGHT5 = (int)16389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT5 16389
+     * }
+     */
+    public static int GL_LIGHT5() {
+        return GL_LIGHT5;
+    }
+    private static final int GL_LIGHT6 = (int)16390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT6 16390
+     * }
+     */
+    public static int GL_LIGHT6() {
+        return GL_LIGHT6;
+    }
+    private static final int GL_LIGHT7 = (int)16391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT7 16391
+     * }
+     */
+    public static int GL_LIGHT7() {
+        return GL_LIGHT7;
+    }
+    private static final int GL_AMBIENT = (int)4608L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT 4608
+     * }
+     */
+    public static int GL_AMBIENT() {
+        return GL_AMBIENT;
+    }
+    private static final int GL_DIFFUSE = (int)4609L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DIFFUSE 4609
+     * }
+     */
+    public static int GL_DIFFUSE() {
+        return GL_DIFFUSE;
+    }
+    private static final int GL_SPECULAR = (int)4610L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPECULAR 4610
+     * }
+     */
+    public static int GL_SPECULAR() {
+        return GL_SPECULAR;
+    }
+    private static final int GL_POSITION = (int)4611L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POSITION 4611
+     * }
+     */
+    public static int GL_POSITION() {
+        return GL_POSITION;
+    }
+    private static final int GL_SPOT_DIRECTION = (int)4612L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_DIRECTION 4612
+     * }
+     */
+    public static int GL_SPOT_DIRECTION() {
+        return GL_SPOT_DIRECTION;
+    }
+    private static final int GL_SPOT_EXPONENT = (int)4613L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_EXPONENT 4613
+     * }
+     */
+    public static int GL_SPOT_EXPONENT() {
+        return GL_SPOT_EXPONENT;
+    }
+    private static final int GL_SPOT_CUTOFF = (int)4614L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_CUTOFF 4614
+     * }
+     */
+    public static int GL_SPOT_CUTOFF() {
+        return GL_SPOT_CUTOFF;
+    }
+    private static final int GL_CONSTANT_ATTENUATION = (int)4615L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_ATTENUATION 4615
+     * }
+     */
+    public static int GL_CONSTANT_ATTENUATION() {
+        return GL_CONSTANT_ATTENUATION;
+    }
+    private static final int GL_LINEAR_ATTENUATION = (int)4616L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_ATTENUATION 4616
+     * }
+     */
+    public static int GL_LINEAR_ATTENUATION() {
+        return GL_LINEAR_ATTENUATION;
+    }
+    private static final int GL_QUADRATIC_ATTENUATION = (int)4617L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUADRATIC_ATTENUATION 4617
+     * }
+     */
+    public static int GL_QUADRATIC_ATTENUATION() {
+        return GL_QUADRATIC_ATTENUATION;
+    }
+    private static final int GL_COMPILE = (int)4864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE 4864
+     * }
+     */
+    public static int GL_COMPILE() {
+        return GL_COMPILE;
+    }
+    private static final int GL_COMPILE_AND_EXECUTE = (int)4865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE_AND_EXECUTE 4865
+     * }
+     */
+    public static int GL_COMPILE_AND_EXECUTE() {
+        return GL_COMPILE_AND_EXECUTE;
+    }
+    private static final int GL_CLEAR = (int)5376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLEAR 5376
+     * }
+     */
+    public static int GL_CLEAR() {
+        return GL_CLEAR;
+    }
+    private static final int GL_AND = (int)5377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND 5377
+     * }
+     */
+    public static int GL_AND() {
+        return GL_AND;
+    }
+    private static final int GL_AND_REVERSE = (int)5378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_REVERSE 5378
+     * }
+     */
+    public static int GL_AND_REVERSE() {
+        return GL_AND_REVERSE;
+    }
+    private static final int GL_COPY = (int)5379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY 5379
+     * }
+     */
+    public static int GL_COPY() {
+        return GL_COPY;
+    }
+    private static final int GL_AND_INVERTED = (int)5380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_INVERTED 5380
+     * }
+     */
+    public static int GL_AND_INVERTED() {
+        return GL_AND_INVERTED;
+    }
+    private static final int GL_NOOP = (int)5381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOOP 5381
+     * }
+     */
+    public static int GL_NOOP() {
+        return GL_NOOP;
+    }
+    private static final int GL_XOR = (int)5382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_XOR 5382
+     * }
+     */
+    public static int GL_XOR() {
+        return GL_XOR;
+    }
+    private static final int GL_OR = (int)5383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR 5383
+     * }
+     */
+    public static int GL_OR() {
+        return GL_OR;
+    }
+    private static final int GL_NOR = (int)5384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOR 5384
+     * }
+     */
+    public static int GL_NOR() {
+        return GL_NOR;
+    }
+    private static final int GL_EQUIV = (int)5385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EQUIV 5385
+     * }
+     */
+    public static int GL_EQUIV() {
+        return GL_EQUIV;
+    }
+    private static final int GL_INVERT = (int)5386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVERT 5386
+     * }
+     */
+    public static int GL_INVERT() {
+        return GL_INVERT;
+    }
+    private static final int GL_OR_REVERSE = (int)5387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_REVERSE 5387
+     * }
+     */
+    public static int GL_OR_REVERSE() {
+        return GL_OR_REVERSE;
+    }
+    private static final int GL_COPY_INVERTED = (int)5388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY_INVERTED 5388
+     * }
+     */
+    public static int GL_COPY_INVERTED() {
+        return GL_COPY_INVERTED;
+    }
+    private static final int GL_OR_INVERTED = (int)5389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_INVERTED 5389
+     * }
+     */
+    public static int GL_OR_INVERTED() {
+        return GL_OR_INVERTED;
+    }
+    private static final int GL_NAND = (int)5390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAND 5390
+     * }
+     */
+    public static int GL_NAND() {
+        return GL_NAND;
+    }
+    private static final int GL_SET = (int)5391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SET 5391
+     * }
+     */
+    public static int GL_SET() {
+        return GL_SET;
+    }
+    private static final int GL_EMISSION = (int)5632L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EMISSION 5632
+     * }
+     */
+    public static int GL_EMISSION() {
+        return GL_EMISSION;
+    }
+    private static final int GL_SHININESS = (int)5633L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHININESS 5633
+     * }
+     */
+    public static int GL_SHININESS() {
+        return GL_SHININESS;
+    }
+    private static final int GL_AMBIENT_AND_DIFFUSE = (int)5634L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT_AND_DIFFUSE 5634
+     * }
+     */
+    public static int GL_AMBIENT_AND_DIFFUSE() {
+        return GL_AMBIENT_AND_DIFFUSE;
+    }
+    private static final int GL_COLOR_INDEXES = (int)5635L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEXES 5635
+     * }
+     */
+    public static int GL_COLOR_INDEXES() {
+        return GL_COLOR_INDEXES;
+    }
+    private static final int GL_MODELVIEW = (int)5888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW 5888
+     * }
+     */
+    public static int GL_MODELVIEW() {
+        return GL_MODELVIEW;
+    }
+    private static final int GL_PROJECTION = (int)5889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION 5889
+     * }
+     */
+    public static int GL_PROJECTION() {
+        return GL_PROJECTION;
+    }
+    private static final int GL_TEXTURE = (int)5890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE 5890
+     * }
+     */
+    public static int GL_TEXTURE() {
+        return GL_TEXTURE;
+    }
+    private static final int GL_COLOR = (int)6144L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR 6144
+     * }
+     */
+    public static int GL_COLOR() {
+        return GL_COLOR;
+    }
+    private static final int GL_DEPTH = (int)6145L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH 6145
+     * }
+     */
+    public static int GL_DEPTH() {
+        return GL_DEPTH;
+    }
+    private static final int GL_STENCIL = (int)6146L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL 6146
+     * }
+     */
+    public static int GL_STENCIL() {
+        return GL_STENCIL;
+    }
+    private static final int GL_COLOR_INDEX = (int)6400L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX 6400
+     * }
+     */
+    public static int GL_COLOR_INDEX() {
+        return GL_COLOR_INDEX;
+    }
+    private static final int GL_STENCIL_INDEX = (int)6401L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_INDEX 6401
+     * }
+     */
+    public static int GL_STENCIL_INDEX() {
+        return GL_STENCIL_INDEX;
+    }
+    private static final int GL_DEPTH_COMPONENT = (int)6402L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT 6402
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT() {
+        return GL_DEPTH_COMPONENT;
+    }
+    private static final int GL_RED = (int)6403L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED 6403
+     * }
+     */
+    public static int GL_RED() {
+        return GL_RED;
+    }
+    private static final int GL_GREEN = (int)6404L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN 6404
+     * }
+     */
+    public static int GL_GREEN() {
+        return GL_GREEN;
+    }
+    private static final int GL_BLUE = (int)6405L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE 6405
+     * }
+     */
+    public static int GL_BLUE() {
+        return GL_BLUE;
+    }
+    private static final int GL_ALPHA = (int)6406L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA 6406
+     * }
+     */
+    public static int GL_ALPHA() {
+        return GL_ALPHA;
+    }
+    private static final int GL_RGB = (int)6407L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB 6407
+     * }
+     */
+    public static int GL_RGB() {
+        return GL_RGB;
+    }
+    private static final int GL_RGBA = (int)6408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA 6408
+     * }
+     */
+    public static int GL_RGBA() {
+        return GL_RGBA;
+    }
+    private static final int GL_LUMINANCE = (int)6409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE 6409
+     * }
+     */
+    public static int GL_LUMINANCE() {
+        return GL_LUMINANCE;
+    }
+    private static final int GL_LUMINANCE_ALPHA = (int)6410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA 6410
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA() {
+        return GL_LUMINANCE_ALPHA;
+    }
+    private static final int GL_BITMAP = (int)6656L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BITMAP 6656
+     * }
+     */
+    public static int GL_BITMAP() {
+        return GL_BITMAP;
+    }
+    private static final int GL_POINT = (int)6912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT 6912
+     * }
+     */
+    public static int GL_POINT() {
+        return GL_POINT;
+    }
+    private static final int GL_LINE = (int)6913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE 6913
+     * }
+     */
+    public static int GL_LINE() {
+        return GL_LINE;
+    }
+    private static final int GL_FILL = (int)6914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FILL 6914
+     * }
+     */
+    public static int GL_FILL() {
+        return GL_FILL;
+    }
+    private static final int GL_RENDER = (int)7168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER 7168
+     * }
+     */
+    public static int GL_RENDER() {
+        return GL_RENDER;
+    }
+    private static final int GL_FEEDBACK = (int)7169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK 7169
+     * }
+     */
+    public static int GL_FEEDBACK() {
+        return GL_FEEDBACK;
+    }
+    private static final int GL_SELECT = (int)7170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECT 7170
+     * }
+     */
+    public static int GL_SELECT() {
+        return GL_SELECT;
+    }
+    private static final int GL_FLAT = (int)7424L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLAT 7424
+     * }
+     */
+    public static int GL_FLAT() {
+        return GL_FLAT;
+    }
+    private static final int GL_SMOOTH = (int)7425L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH 7425
+     * }
+     */
+    public static int GL_SMOOTH() {
+        return GL_SMOOTH;
+    }
+    private static final int GL_KEEP = (int)7680L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_KEEP 7680
+     * }
+     */
+    public static int GL_KEEP() {
+        return GL_KEEP;
+    }
+    private static final int GL_REPLACE = (int)7681L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPLACE 7681
+     * }
+     */
+    public static int GL_REPLACE() {
+        return GL_REPLACE;
+    }
+    private static final int GL_INCR = (int)7682L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INCR 7682
+     * }
+     */
+    public static int GL_INCR() {
+        return GL_INCR;
+    }
+    private static final int GL_DECR = (int)7683L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECR 7683
+     * }
+     */
+    public static int GL_DECR() {
+        return GL_DECR;
+    }
+    private static final int GL_VENDOR = (int)7936L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VENDOR 7936
+     * }
+     */
+    public static int GL_VENDOR() {
+        return GL_VENDOR;
+    }
+    private static final int GL_RENDERER = (int)7937L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDERER 7937
+     * }
+     */
+    public static int GL_RENDERER() {
+        return GL_RENDERER;
+    }
+    private static final int GL_VERSION = (int)7938L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION 7938
+     * }
+     */
+    public static int GL_VERSION() {
+        return GL_VERSION;
+    }
+    private static final int GL_EXTENSIONS = (int)7939L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXTENSIONS 7939
+     * }
+     */
+    public static int GL_EXTENSIONS() {
+        return GL_EXTENSIONS;
+    }
+    private static final int GL_S = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_S 8192
+     * }
+     */
+    public static int GL_S() {
+        return GL_S;
+    }
+    private static final int GL_T = (int)8193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T 8193
+     * }
+     */
+    public static int GL_T() {
+        return GL_T;
+    }
+    private static final int GL_R = (int)8194L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R 8194
+     * }
+     */
+    public static int GL_R() {
+        return GL_R;
+    }
+    private static final int GL_Q = (int)8195L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_Q 8195
+     * }
+     */
+    public static int GL_Q() {
+        return GL_Q;
+    }
+    private static final int GL_MODULATE = (int)8448L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE 8448
+     * }
+     */
+    public static int GL_MODULATE() {
+        return GL_MODULATE;
+    }
+    private static final int GL_DECAL = (int)8449L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECAL 8449
+     * }
+     */
+    public static int GL_DECAL() {
+        return GL_DECAL;
+    }
+    private static final int GL_TEXTURE_ENV_MODE = (int)8704L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_MODE 8704
+     * }
+     */
+    public static int GL_TEXTURE_ENV_MODE() {
+        return GL_TEXTURE_ENV_MODE;
+    }
+    private static final int GL_TEXTURE_ENV_COLOR = (int)8705L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_COLOR 8705
+     * }
+     */
+    public static int GL_TEXTURE_ENV_COLOR() {
+        return GL_TEXTURE_ENV_COLOR;
+    }
+    private static final int GL_TEXTURE_ENV = (int)8960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV 8960
+     * }
+     */
+    public static int GL_TEXTURE_ENV() {
+        return GL_TEXTURE_ENV;
+    }
+    private static final int GL_EYE_LINEAR = (int)9216L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_LINEAR 9216
+     * }
+     */
+    public static int GL_EYE_LINEAR() {
+        return GL_EYE_LINEAR;
+    }
+    private static final int GL_OBJECT_LINEAR = (int)9217L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_LINEAR 9217
+     * }
+     */
+    public static int GL_OBJECT_LINEAR() {
+        return GL_OBJECT_LINEAR;
+    }
+    private static final int GL_SPHERE_MAP = (int)9218L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPHERE_MAP 9218
+     * }
+     */
+    public static int GL_SPHERE_MAP() {
+        return GL_SPHERE_MAP;
+    }
+    private static final int GL_TEXTURE_GEN_MODE = (int)9472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_MODE 9472
+     * }
+     */
+    public static int GL_TEXTURE_GEN_MODE() {
+        return GL_TEXTURE_GEN_MODE;
+    }
+    private static final int GL_OBJECT_PLANE = (int)9473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_PLANE 9473
+     * }
+     */
+    public static int GL_OBJECT_PLANE() {
+        return GL_OBJECT_PLANE;
+    }
+    private static final int GL_EYE_PLANE = (int)9474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_PLANE 9474
+     * }
+     */
+    public static int GL_EYE_PLANE() {
+        return GL_EYE_PLANE;
+    }
+    private static final int GL_NEAREST = (int)9728L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST 9728
+     * }
+     */
+    public static int GL_NEAREST() {
+        return GL_NEAREST;
+    }
+    private static final int GL_LINEAR = (int)9729L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR 9729
+     * }
+     */
+    public static int GL_LINEAR() {
+        return GL_LINEAR;
+    }
+    private static final int GL_NEAREST_MIPMAP_NEAREST = (int)9984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_NEAREST 9984
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_NEAREST() {
+        return GL_NEAREST_MIPMAP_NEAREST;
+    }
+    private static final int GL_LINEAR_MIPMAP_NEAREST = (int)9985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_NEAREST 9985
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_NEAREST() {
+        return GL_LINEAR_MIPMAP_NEAREST;
+    }
+    private static final int GL_NEAREST_MIPMAP_LINEAR = (int)9986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_LINEAR 9986
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_LINEAR() {
+        return GL_NEAREST_MIPMAP_LINEAR;
+    }
+    private static final int GL_LINEAR_MIPMAP_LINEAR = (int)9987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_LINEAR 9987
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_LINEAR() {
+        return GL_LINEAR_MIPMAP_LINEAR;
+    }
+    private static final int GL_TEXTURE_MAG_FILTER = (int)10240L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAG_FILTER 10240
+     * }
+     */
+    public static int GL_TEXTURE_MAG_FILTER() {
+        return GL_TEXTURE_MAG_FILTER;
+    }
+    private static final int GL_TEXTURE_MIN_FILTER = (int)10241L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MIN_FILTER 10241
+     * }
+     */
+    public static int GL_TEXTURE_MIN_FILTER() {
+        return GL_TEXTURE_MIN_FILTER;
+    }
+    private static final int GL_TEXTURE_WRAP_S = (int)10242L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_S 10242
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_S() {
+        return GL_TEXTURE_WRAP_S;
+    }
+    private static final int GL_TEXTURE_WRAP_T = (int)10243L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_T 10243
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_T() {
+        return GL_TEXTURE_WRAP_T;
+    }
+    private static final int GL_CLAMP = (int)10496L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP 10496
+     * }
+     */
+    public static int GL_CLAMP() {
+        return GL_CLAMP;
+    }
+    private static final int GL_REPEAT = (int)10497L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPEAT 10497
+     * }
+     */
+    public static int GL_REPEAT() {
+        return GL_REPEAT;
+    }
+    private static final int GL_CLIENT_PIXEL_STORE_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_PIXEL_STORE_BIT 1
+     * }
+     */
+    public static int GL_CLIENT_PIXEL_STORE_BIT() {
+        return GL_CLIENT_PIXEL_STORE_BIT;
+    }
+    private static final int GL_CLIENT_VERTEX_ARRAY_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_VERTEX_ARRAY_BIT 2
+     * }
+     */
+    public static int GL_CLIENT_VERTEX_ARRAY_BIT() {
+        return GL_CLIENT_VERTEX_ARRAY_BIT;
+    }
+    private static final int GL_POLYGON_OFFSET_FACTOR = (int)32824L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FACTOR 32824
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FACTOR() {
+        return GL_POLYGON_OFFSET_FACTOR;
+    }
+    private static final int GL_POLYGON_OFFSET_UNITS = (int)10752L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_UNITS 10752
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_UNITS() {
+        return GL_POLYGON_OFFSET_UNITS;
+    }
+    private static final int GL_POLYGON_OFFSET_POINT = (int)10753L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_POINT 10753
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_POINT() {
+        return GL_POLYGON_OFFSET_POINT;
+    }
+    private static final int GL_POLYGON_OFFSET_LINE = (int)10754L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_LINE 10754
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_LINE() {
+        return GL_POLYGON_OFFSET_LINE;
+    }
+    private static final int GL_POLYGON_OFFSET_FILL = (int)32823L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FILL 32823
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FILL() {
+        return GL_POLYGON_OFFSET_FILL;
+    }
+    private static final int GL_ALPHA4 = (int)32827L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA4 32827
+     * }
+     */
+    public static int GL_ALPHA4() {
+        return GL_ALPHA4;
+    }
+    private static final int GL_ALPHA8 = (int)32828L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA8 32828
+     * }
+     */
+    public static int GL_ALPHA8() {
+        return GL_ALPHA8;
+    }
+    private static final int GL_ALPHA12 = (int)32829L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA12 32829
+     * }
+     */
+    public static int GL_ALPHA12() {
+        return GL_ALPHA12;
+    }
+    private static final int GL_ALPHA16 = (int)32830L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA16 32830
+     * }
+     */
+    public static int GL_ALPHA16() {
+        return GL_ALPHA16;
+    }
+    private static final int GL_LUMINANCE4 = (int)32831L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4 32831
+     * }
+     */
+    public static int GL_LUMINANCE4() {
+        return GL_LUMINANCE4;
+    }
+    private static final int GL_LUMINANCE8 = (int)32832L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8 32832
+     * }
+     */
+    public static int GL_LUMINANCE8() {
+        return GL_LUMINANCE8;
+    }
+    private static final int GL_LUMINANCE12 = (int)32833L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12 32833
+     * }
+     */
+    public static int GL_LUMINANCE12() {
+        return GL_LUMINANCE12;
+    }
+    private static final int GL_LUMINANCE16 = (int)32834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16 32834
+     * }
+     */
+    public static int GL_LUMINANCE16() {
+        return GL_LUMINANCE16;
+    }
+    private static final int GL_LUMINANCE4_ALPHA4 = (int)32835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4_ALPHA4 32835
+     * }
+     */
+    public static int GL_LUMINANCE4_ALPHA4() {
+        return GL_LUMINANCE4_ALPHA4;
+    }
+    private static final int GL_LUMINANCE6_ALPHA2 = (int)32836L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE6_ALPHA2 32836
+     * }
+     */
+    public static int GL_LUMINANCE6_ALPHA2() {
+        return GL_LUMINANCE6_ALPHA2;
+    }
+    private static final int GL_LUMINANCE8_ALPHA8 = (int)32837L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8_ALPHA8 32837
+     * }
+     */
+    public static int GL_LUMINANCE8_ALPHA8() {
+        return GL_LUMINANCE8_ALPHA8;
+    }
+    private static final int GL_LUMINANCE12_ALPHA4 = (int)32838L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA4 32838
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA4() {
+        return GL_LUMINANCE12_ALPHA4;
+    }
+    private static final int GL_LUMINANCE12_ALPHA12 = (int)32839L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA12 32839
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA12() {
+        return GL_LUMINANCE12_ALPHA12;
+    }
+    private static final int GL_LUMINANCE16_ALPHA16 = (int)32840L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16_ALPHA16 32840
+     * }
+     */
+    public static int GL_LUMINANCE16_ALPHA16() {
+        return GL_LUMINANCE16_ALPHA16;
+    }
+    private static final int GL_INTENSITY = (int)32841L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY 32841
+     * }
+     */
+    public static int GL_INTENSITY() {
+        return GL_INTENSITY;
+    }
+    private static final int GL_INTENSITY4 = (int)32842L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY4 32842
+     * }
+     */
+    public static int GL_INTENSITY4() {
+        return GL_INTENSITY4;
+    }
+    private static final int GL_INTENSITY8 = (int)32843L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY8 32843
+     * }
+     */
+    public static int GL_INTENSITY8() {
+        return GL_INTENSITY8;
+    }
+    private static final int GL_INTENSITY12 = (int)32844L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY12 32844
+     * }
+     */
+    public static int GL_INTENSITY12() {
+        return GL_INTENSITY12;
+    }
+    private static final int GL_INTENSITY16 = (int)32845L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY16 32845
+     * }
+     */
+    public static int GL_INTENSITY16() {
+        return GL_INTENSITY16;
+    }
+    private static final int GL_R3_G3_B2 = (int)10768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R3_G3_B2 10768
+     * }
+     */
+    public static int GL_R3_G3_B2() {
+        return GL_R3_G3_B2;
+    }
+    private static final int GL_RGB4 = (int)32847L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB4 32847
+     * }
+     */
+    public static int GL_RGB4() {
+        return GL_RGB4;
+    }
+    private static final int GL_RGB5 = (int)32848L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5 32848
+     * }
+     */
+    public static int GL_RGB5() {
+        return GL_RGB5;
+    }
+    private static final int GL_RGB8 = (int)32849L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB8 32849
+     * }
+     */
+    public static int GL_RGB8() {
+        return GL_RGB8;
+    }
+    private static final int GL_RGB10 = (int)32850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10 32850
+     * }
+     */
+    public static int GL_RGB10() {
+        return GL_RGB10;
+    }
+    private static final int GL_RGB12 = (int)32851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB12 32851
+     * }
+     */
+    public static int GL_RGB12() {
+        return GL_RGB12;
+    }
+    private static final int GL_RGB16 = (int)32852L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB16 32852
+     * }
+     */
+    public static int GL_RGB16() {
+        return GL_RGB16;
+    }
+    private static final int GL_RGBA2 = (int)32853L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA2 32853
+     * }
+     */
+    public static int GL_RGBA2() {
+        return GL_RGBA2;
+    }
+    private static final int GL_RGBA4 = (int)32854L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA4 32854
+     * }
+     */
+    public static int GL_RGBA4() {
+        return GL_RGBA4;
+    }
+    private static final int GL_RGB5_A1 = (int)32855L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5_A1 32855
+     * }
+     */
+    public static int GL_RGB5_A1() {
+        return GL_RGB5_A1;
+    }
+    private static final int GL_RGBA8 = (int)32856L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA8 32856
+     * }
+     */
+    public static int GL_RGBA8() {
+        return GL_RGBA8;
+    }
+    private static final int GL_RGB10_A2 = (int)32857L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10_A2 32857
+     * }
+     */
+    public static int GL_RGB10_A2() {
+        return GL_RGB10_A2;
+    }
+    private static final int GL_RGBA12 = (int)32858L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA12 32858
+     * }
+     */
+    public static int GL_RGBA12() {
+        return GL_RGBA12;
+    }
+    private static final int GL_RGBA16 = (int)32859L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA16 32859
+     * }
+     */
+    public static int GL_RGBA16() {
+        return GL_RGBA16;
+    }
+    private static final int GL_TEXTURE_RED_SIZE = (int)32860L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RED_SIZE 32860
+     * }
+     */
+    public static int GL_TEXTURE_RED_SIZE() {
+        return GL_TEXTURE_RED_SIZE;
+    }
+    private static final int GL_TEXTURE_GREEN_SIZE = (int)32861L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GREEN_SIZE 32861
+     * }
+     */
+    public static int GL_TEXTURE_GREEN_SIZE() {
+        return GL_TEXTURE_GREEN_SIZE;
+    }
+    private static final int GL_TEXTURE_BLUE_SIZE = (int)32862L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BLUE_SIZE 32862
+     * }
+     */
+    public static int GL_TEXTURE_BLUE_SIZE() {
+        return GL_TEXTURE_BLUE_SIZE;
+    }
+    private static final int GL_TEXTURE_ALPHA_SIZE = (int)32863L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ALPHA_SIZE 32863
+     * }
+     */
+    public static int GL_TEXTURE_ALPHA_SIZE() {
+        return GL_TEXTURE_ALPHA_SIZE;
+    }
+    private static final int GL_TEXTURE_LUMINANCE_SIZE = (int)32864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_LUMINANCE_SIZE 32864
+     * }
+     */
+    public static int GL_TEXTURE_LUMINANCE_SIZE() {
+        return GL_TEXTURE_LUMINANCE_SIZE;
+    }
+    private static final int GL_TEXTURE_INTENSITY_SIZE = (int)32865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTENSITY_SIZE 32865
+     * }
+     */
+    public static int GL_TEXTURE_INTENSITY_SIZE() {
+        return GL_TEXTURE_INTENSITY_SIZE;
+    }
+    private static final int GL_PROXY_TEXTURE_1D = (int)32867L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_1D 32867
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_1D() {
+        return GL_PROXY_TEXTURE_1D;
+    }
+    private static final int GL_PROXY_TEXTURE_2D = (int)32868L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_2D 32868
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_2D() {
+        return GL_PROXY_TEXTURE_2D;
+    }
+    private static final int GL_TEXTURE_PRIORITY = (int)32870L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_PRIORITY 32870
+     * }
+     */
+    public static int GL_TEXTURE_PRIORITY() {
+        return GL_TEXTURE_PRIORITY;
+    }
+    private static final int GL_TEXTURE_RESIDENT = (int)32871L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RESIDENT 32871
+     * }
+     */
+    public static int GL_TEXTURE_RESIDENT() {
+        return GL_TEXTURE_RESIDENT;
+    }
+    private static final int GL_TEXTURE_BINDING_1D = (int)32872L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_1D 32872
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_1D() {
+        return GL_TEXTURE_BINDING_1D;
+    }
+    private static final int GL_TEXTURE_BINDING_2D = (int)32873L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_2D 32873
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_2D() {
+        return GL_TEXTURE_BINDING_2D;
+    }
+    private static final int GL_VERTEX_ARRAY = (int)32884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY 32884
+     * }
+     */
+    public static int GL_VERTEX_ARRAY() {
+        return GL_VERTEX_ARRAY;
+    }
+    private static final int GL_NORMAL_ARRAY = (int)32885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY 32885
+     * }
+     */
+    public static int GL_NORMAL_ARRAY() {
+        return GL_NORMAL_ARRAY;
+    }
+    private static final int GL_COLOR_ARRAY = (int)32886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY 32886
+     * }
+     */
+    public static int GL_COLOR_ARRAY() {
+        return GL_COLOR_ARRAY;
+    }
+    private static final int GL_INDEX_ARRAY = (int)32887L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY 32887
+     * }
+     */
+    public static int GL_INDEX_ARRAY() {
+        return GL_INDEX_ARRAY;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY = (int)32888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY 32888
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY() {
+        return GL_TEXTURE_COORD_ARRAY;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY = (int)32889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY 32889
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY() {
+        return GL_EDGE_FLAG_ARRAY;
+    }
+    private static final int GL_VERTEX_ARRAY_SIZE = (int)32890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_SIZE 32890
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_SIZE() {
+        return GL_VERTEX_ARRAY_SIZE;
+    }
+    private static final int GL_VERTEX_ARRAY_TYPE = (int)32891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_TYPE 32891
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_TYPE() {
+        return GL_VERTEX_ARRAY_TYPE;
+    }
+    private static final int GL_VERTEX_ARRAY_STRIDE = (int)32892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STRIDE 32892
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STRIDE() {
+        return GL_VERTEX_ARRAY_STRIDE;
+    }
+    private static final int GL_NORMAL_ARRAY_TYPE = (int)32894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_TYPE 32894
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_TYPE() {
+        return GL_NORMAL_ARRAY_TYPE;
+    }
+    private static final int GL_NORMAL_ARRAY_STRIDE = (int)32895L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_STRIDE 32895
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_STRIDE() {
+        return GL_NORMAL_ARRAY_STRIDE;
+    }
+    private static final int GL_COLOR_ARRAY_SIZE = (int)32897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_SIZE 32897
+     * }
+     */
+    public static int GL_COLOR_ARRAY_SIZE() {
+        return GL_COLOR_ARRAY_SIZE;
+    }
+    private static final int GL_COLOR_ARRAY_TYPE = (int)32898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_TYPE 32898
+     * }
+     */
+    public static int GL_COLOR_ARRAY_TYPE() {
+        return GL_COLOR_ARRAY_TYPE;
+    }
+    private static final int GL_COLOR_ARRAY_STRIDE = (int)32899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_STRIDE 32899
+     * }
+     */
+    public static int GL_COLOR_ARRAY_STRIDE() {
+        return GL_COLOR_ARRAY_STRIDE;
+    }
+    private static final int GL_INDEX_ARRAY_TYPE = (int)32901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_TYPE 32901
+     * }
+     */
+    public static int GL_INDEX_ARRAY_TYPE() {
+        return GL_INDEX_ARRAY_TYPE;
+    }
+    private static final int GL_INDEX_ARRAY_STRIDE = (int)32902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_STRIDE 32902
+     * }
+     */
+    public static int GL_INDEX_ARRAY_STRIDE() {
+        return GL_INDEX_ARRAY_STRIDE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_SIZE = (int)32904L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_SIZE 32904
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_SIZE() {
+        return GL_TEXTURE_COORD_ARRAY_SIZE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_TYPE = (int)32905L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_TYPE 32905
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_TYPE() {
+        return GL_TEXTURE_COORD_ARRAY_TYPE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_STRIDE = (int)32906L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_STRIDE 32906
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_STRIDE() {
+        return GL_TEXTURE_COORD_ARRAY_STRIDE;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_STRIDE = (int)32908L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_STRIDE 32908
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_STRIDE() {
+        return GL_EDGE_FLAG_ARRAY_STRIDE;
+    }
+    private static final int GL_VERTEX_ARRAY_POINTER = (int)32910L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_POINTER 32910
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_POINTER() {
+        return GL_VERTEX_ARRAY_POINTER;
+    }
+    private static final int GL_NORMAL_ARRAY_POINTER = (int)32911L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_POINTER 32911
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_POINTER() {
+        return GL_NORMAL_ARRAY_POINTER;
+    }
+    private static final int GL_COLOR_ARRAY_POINTER = (int)32912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_POINTER 32912
+     * }
+     */
+    public static int GL_COLOR_ARRAY_POINTER() {
+        return GL_COLOR_ARRAY_POINTER;
+    }
+    private static final int GL_INDEX_ARRAY_POINTER = (int)32913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_POINTER 32913
+     * }
+     */
+    public static int GL_INDEX_ARRAY_POINTER() {
+        return GL_INDEX_ARRAY_POINTER;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_POINTER = (int)32914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_POINTER 32914
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_POINTER() {
+        return GL_TEXTURE_COORD_ARRAY_POINTER;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_POINTER = (int)32915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_POINTER 32915
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_POINTER() {
+        return GL_EDGE_FLAG_ARRAY_POINTER;
+    }
+    private static final int GL_V2F = (int)10784L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V2F 10784
+     * }
+     */
+    public static int GL_V2F() {
+        return GL_V2F;
+    }
+    private static final int GL_V3F = (int)10785L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V3F 10785
+     * }
+     */
+    public static int GL_V3F() {
+        return GL_V3F;
+    }
+    private static final int GL_C4UB_V2F = (int)10786L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V2F 10786
+     * }
+     */
+    public static int GL_C4UB_V2F() {
+        return GL_C4UB_V2F;
+    }
+    private static final int GL_C4UB_V3F = (int)10787L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V3F 10787
+     * }
+     */
+    public static int GL_C4UB_V3F() {
+        return GL_C4UB_V3F;
+    }
+    private static final int GL_C3F_V3F = (int)10788L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C3F_V3F 10788
+     * }
+     */
+    public static int GL_C3F_V3F() {
+        return GL_C3F_V3F;
+    }
+    private static final int GL_N3F_V3F = (int)10789L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_N3F_V3F 10789
+     * }
+     */
+    public static int GL_N3F_V3F() {
+        return GL_N3F_V3F;
+    }
+    private static final int GL_C4F_N3F_V3F = (int)10790L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4F_N3F_V3F 10790
+     * }
+     */
+    public static int GL_C4F_N3F_V3F() {
+        return GL_C4F_N3F_V3F;
+    }
+    private static final int GL_T2F_V3F = (int)10791L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_V3F 10791
+     * }
+     */
+    public static int GL_T2F_V3F() {
+        return GL_T2F_V3F;
+    }
+    private static final int GL_T4F_V4F = (int)10792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_V4F 10792
+     * }
+     */
+    public static int GL_T4F_V4F() {
+        return GL_T4F_V4F;
+    }
+    private static final int GL_T2F_C4UB_V3F = (int)10793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4UB_V3F 10793
+     * }
+     */
+    public static int GL_T2F_C4UB_V3F() {
+        return GL_T2F_C4UB_V3F;
+    }
+    private static final int GL_T2F_C3F_V3F = (int)10794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C3F_V3F 10794
+     * }
+     */
+    public static int GL_T2F_C3F_V3F() {
+        return GL_T2F_C3F_V3F;
+    }
+    private static final int GL_T2F_N3F_V3F = (int)10795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_N3F_V3F 10795
+     * }
+     */
+    public static int GL_T2F_N3F_V3F() {
+        return GL_T2F_N3F_V3F;
+    }
+    private static final int GL_T2F_C4F_N3F_V3F = (int)10796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4F_N3F_V3F 10796
+     * }
+     */
+    public static int GL_T2F_C4F_N3F_V3F() {
+        return GL_T2F_C4F_N3F_V3F;
+    }
+    private static final int GL_T4F_C4F_N3F_V4F = (int)10797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_C4F_N3F_V4F 10797
+     * }
+     */
+    public static int GL_T4F_C4F_N3F_V4F() {
+        return GL_T4F_C4F_N3F_V4F;
+    }
+    private static final int GL_EXT_vertex_array = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_vertex_array 1
+     * }
+     */
+    public static int GL_EXT_vertex_array() {
+        return GL_EXT_vertex_array;
+    }
+    private static final int GL_EXT_bgra = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_bgra 1
+     * }
+     */
+    public static int GL_EXT_bgra() {
+        return GL_EXT_bgra;
+    }
+    private static final int GL_EXT_paletted_texture = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXT_paletted_texture 1
+     * }
+     */
+    public static int GL_EXT_paletted_texture() {
+        return GL_EXT_paletted_texture;
+    }
+    private static final int GL_WIN_swap_hint = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WIN_swap_hint 1
+     * }
+     */
+    public static int GL_WIN_swap_hint() {
+        return GL_WIN_swap_hint;
+    }
+    private static final int GL_WIN_draw_range_elements = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WIN_draw_range_elements 1
+     * }
+     */
+    public static int GL_WIN_draw_range_elements() {
+        return GL_WIN_draw_range_elements;
+    }
+    private static final int GL_VERTEX_ARRAY_EXT = (int)32884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_EXT 32884
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_EXT() {
+        return GL_VERTEX_ARRAY_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_EXT = (int)32885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_EXT 32885
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_EXT() {
+        return GL_NORMAL_ARRAY_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_EXT = (int)32886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_EXT 32886
+     * }
+     */
+    public static int GL_COLOR_ARRAY_EXT() {
+        return GL_COLOR_ARRAY_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_EXT = (int)32887L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_EXT 32887
+     * }
+     */
+    public static int GL_INDEX_ARRAY_EXT() {
+        return GL_INDEX_ARRAY_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_EXT = (int)32888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_EXT 32888
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_EXT = (int)32889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_EXT 32889
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_EXT() {
+        return GL_EDGE_FLAG_ARRAY_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_SIZE_EXT = (int)32890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_SIZE_EXT 32890
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_SIZE_EXT() {
+        return GL_VERTEX_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_TYPE_EXT = (int)32891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_TYPE_EXT 32891
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_TYPE_EXT() {
+        return GL_VERTEX_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_STRIDE_EXT = (int)32892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STRIDE_EXT 32892
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STRIDE_EXT() {
+        return GL_VERTEX_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_COUNT_EXT = (int)32893L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_COUNT_EXT 32893
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_COUNT_EXT() {
+        return GL_VERTEX_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_TYPE_EXT = (int)32894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_TYPE_EXT 32894
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_TYPE_EXT() {
+        return GL_NORMAL_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_STRIDE_EXT = (int)32895L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_STRIDE_EXT 32895
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_STRIDE_EXT() {
+        return GL_NORMAL_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_COUNT_EXT = (int)32896L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_COUNT_EXT 32896
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_COUNT_EXT() {
+        return GL_NORMAL_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_SIZE_EXT = (int)32897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_SIZE_EXT 32897
+     * }
+     */
+    public static int GL_COLOR_ARRAY_SIZE_EXT() {
+        return GL_COLOR_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_TYPE_EXT = (int)32898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_TYPE_EXT 32898
+     * }
+     */
+    public static int GL_COLOR_ARRAY_TYPE_EXT() {
+        return GL_COLOR_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_STRIDE_EXT = (int)32899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_STRIDE_EXT 32899
+     * }
+     */
+    public static int GL_COLOR_ARRAY_STRIDE_EXT() {
+        return GL_COLOR_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_COUNT_EXT = (int)32900L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_COUNT_EXT 32900
+     * }
+     */
+    public static int GL_COLOR_ARRAY_COUNT_EXT() {
+        return GL_COLOR_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_TYPE_EXT = (int)32901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_TYPE_EXT 32901
+     * }
+     */
+    public static int GL_INDEX_ARRAY_TYPE_EXT() {
+        return GL_INDEX_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_STRIDE_EXT = (int)32902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_STRIDE_EXT 32902
+     * }
+     */
+    public static int GL_INDEX_ARRAY_STRIDE_EXT() {
+        return GL_INDEX_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_COUNT_EXT = (int)32903L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_COUNT_EXT 32903
+     * }
+     */
+    public static int GL_INDEX_ARRAY_COUNT_EXT() {
+        return GL_INDEX_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_SIZE_EXT = (int)32904L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_SIZE_EXT 32904
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_SIZE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_SIZE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_TYPE_EXT = (int)32905L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_TYPE_EXT 32905
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_TYPE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_TYPE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_STRIDE_EXT = (int)32906L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_STRIDE_EXT 32906
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_STRIDE_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_COUNT_EXT = (int)32907L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_COUNT_EXT 32907
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_COUNT_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_STRIDE_EXT = (int)32908L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_STRIDE_EXT 32908
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_STRIDE_EXT() {
+        return GL_EDGE_FLAG_ARRAY_STRIDE_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_COUNT_EXT = (int)32909L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_COUNT_EXT 32909
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_COUNT_EXT() {
+        return GL_EDGE_FLAG_ARRAY_COUNT_EXT;
+    }
+    private static final int GL_VERTEX_ARRAY_POINTER_EXT = (int)32910L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_POINTER_EXT 32910
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_POINTER_EXT() {
+        return GL_VERTEX_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_NORMAL_ARRAY_POINTER_EXT = (int)32911L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_POINTER_EXT 32911
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_POINTER_EXT() {
+        return GL_NORMAL_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_COLOR_ARRAY_POINTER_EXT = (int)32912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_POINTER_EXT 32912
+     * }
+     */
+    public static int GL_COLOR_ARRAY_POINTER_EXT() {
+        return GL_COLOR_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_INDEX_ARRAY_POINTER_EXT = (int)32913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_POINTER_EXT 32913
+     * }
+     */
+    public static int GL_INDEX_ARRAY_POINTER_EXT() {
+        return GL_INDEX_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_POINTER_EXT = (int)32914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_POINTER_EXT 32914
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_POINTER_EXT() {
+        return GL_TEXTURE_COORD_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_POINTER_EXT = (int)32915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_POINTER_EXT 32915
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_POINTER_EXT() {
+        return GL_EDGE_FLAG_ARRAY_POINTER_EXT;
+    }
+    private static final int GL_BGR_EXT = (int)32992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGR_EXT 32992
+     * }
+     */
+    public static int GL_BGR_EXT() {
+        return GL_BGR_EXT;
+    }
+    private static final int GL_BGRA_EXT = (int)32993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGRA_EXT 32993
+     * }
+     */
+    public static int GL_BGRA_EXT() {
+        return GL_BGRA_EXT;
+    }
+    private static final int GL_COLOR_TABLE_FORMAT_EXT = (int)32984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_FORMAT_EXT 32984
+     * }
+     */
+    public static int GL_COLOR_TABLE_FORMAT_EXT() {
+        return GL_COLOR_TABLE_FORMAT_EXT;
+    }
+    private static final int GL_COLOR_TABLE_WIDTH_EXT = (int)32985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_WIDTH_EXT 32985
+     * }
+     */
+    public static int GL_COLOR_TABLE_WIDTH_EXT() {
+        return GL_COLOR_TABLE_WIDTH_EXT;
+    }
+    private static final int GL_COLOR_TABLE_RED_SIZE_EXT = (int)32986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_RED_SIZE_EXT 32986
+     * }
+     */
+    public static int GL_COLOR_TABLE_RED_SIZE_EXT() {
+        return GL_COLOR_TABLE_RED_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_GREEN_SIZE_EXT = (int)32987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_GREEN_SIZE_EXT 32987
+     * }
+     */
+    public static int GL_COLOR_TABLE_GREEN_SIZE_EXT() {
+        return GL_COLOR_TABLE_GREEN_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_BLUE_SIZE_EXT = (int)32988L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_BLUE_SIZE_EXT 32988
+     * }
+     */
+    public static int GL_COLOR_TABLE_BLUE_SIZE_EXT() {
+        return GL_COLOR_TABLE_BLUE_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_ALPHA_SIZE_EXT = (int)32989L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_ALPHA_SIZE_EXT 32989
+     * }
+     */
+    public static int GL_COLOR_TABLE_ALPHA_SIZE_EXT() {
+        return GL_COLOR_TABLE_ALPHA_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_LUMINANCE_SIZE_EXT = (int)32990L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_LUMINANCE_SIZE_EXT 32990
+     * }
+     */
+    public static int GL_COLOR_TABLE_LUMINANCE_SIZE_EXT() {
+        return GL_COLOR_TABLE_LUMINANCE_SIZE_EXT;
+    }
+    private static final int GL_COLOR_TABLE_INTENSITY_SIZE_EXT = (int)32991L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_INTENSITY_SIZE_EXT 32991
+     * }
+     */
+    public static int GL_COLOR_TABLE_INTENSITY_SIZE_EXT() {
+        return GL_COLOR_TABLE_INTENSITY_SIZE_EXT;
+    }
+    private static final int GL_COLOR_INDEX1_EXT = (int)32994L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX1_EXT 32994
+     * }
+     */
+    public static int GL_COLOR_INDEX1_EXT() {
+        return GL_COLOR_INDEX1_EXT;
+    }
+    private static final int GL_COLOR_INDEX2_EXT = (int)32995L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX2_EXT 32995
+     * }
+     */
+    public static int GL_COLOR_INDEX2_EXT() {
+        return GL_COLOR_INDEX2_EXT;
+    }
+    private static final int GL_COLOR_INDEX4_EXT = (int)32996L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX4_EXT 32996
+     * }
+     */
+    public static int GL_COLOR_INDEX4_EXT() {
+        return GL_COLOR_INDEX4_EXT;
+    }
+    private static final int GL_COLOR_INDEX8_EXT = (int)32997L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX8_EXT 32997
+     * }
+     */
+    public static int GL_COLOR_INDEX8_EXT() {
+        return GL_COLOR_INDEX8_EXT;
+    }
+    private static final int GL_COLOR_INDEX12_EXT = (int)32998L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX12_EXT 32998
+     * }
+     */
+    public static int GL_COLOR_INDEX12_EXT() {
+        return GL_COLOR_INDEX12_EXT;
+    }
+    private static final int GL_COLOR_INDEX16_EXT = (int)32999L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX16_EXT 32999
+     * }
+     */
+    public static int GL_COLOR_INDEX16_EXT() {
+        return GL_COLOR_INDEX16_EXT;
+    }
+    private static final int GL_MAX_ELEMENTS_VERTICES_WIN = (int)33000L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_VERTICES_WIN 33000
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_VERTICES_WIN() {
+        return GL_MAX_ELEMENTS_VERTICES_WIN;
+    }
+    private static final int GL_MAX_ELEMENTS_INDICES_WIN = (int)33001L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_INDICES_WIN 33001
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_INDICES_WIN() {
+        return GL_MAX_ELEMENTS_INDICES_WIN;
+    }
+    private static final int GL_PHONG_WIN = (int)33002L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PHONG_WIN 33002
+     * }
+     */
+    public static int GL_PHONG_WIN() {
+        return GL_PHONG_WIN;
+    }
+    private static final int GL_PHONG_HINT_WIN = (int)33003L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PHONG_HINT_WIN 33003
+     * }
+     */
+    public static int GL_PHONG_HINT_WIN() {
+        return GL_PHONG_HINT_WIN;
+    }
+    private static final int GL_FOG_SPECULAR_TEXTURE_WIN = (int)33004L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_SPECULAR_TEXTURE_WIN 33004
+     * }
+     */
+    public static int GL_FOG_SPECULAR_TEXTURE_WIN() {
+        return GL_FOG_SPECULAR_TEXTURE_WIN;
+    }
+    private static final int GLU_VERSION_1_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION_1_1 1
+     * }
+     */
+    public static int GLU_VERSION_1_1() {
+        return GLU_VERSION_1_1;
+    }
+    private static final int GLU_VERSION_1_2 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION_1_2 1
+     * }
+     */
+    public static int GLU_VERSION_1_2() {
+        return GLU_VERSION_1_2;
+    }
+    private static final int GLU_INVALID_ENUM = (int)100900L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INVALID_ENUM 100900
+     * }
+     */
+    public static int GLU_INVALID_ENUM() {
+        return GLU_INVALID_ENUM;
+    }
+    private static final int GLU_INVALID_VALUE = (int)100901L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INVALID_VALUE 100901
+     * }
+     */
+    public static int GLU_INVALID_VALUE() {
+        return GLU_INVALID_VALUE;
+    }
+    private static final int GLU_OUT_OF_MEMORY = (int)100902L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUT_OF_MEMORY 100902
+     * }
+     */
+    public static int GLU_OUT_OF_MEMORY() {
+        return GLU_OUT_OF_MEMORY;
+    }
+    private static final int GLU_INCOMPATIBLE_GL_VERSION = (int)100903L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INCOMPATIBLE_GL_VERSION 100903
+     * }
+     */
+    public static int GLU_INCOMPATIBLE_GL_VERSION() {
+        return GLU_INCOMPATIBLE_GL_VERSION;
+    }
+    private static final int GLU_VERSION = (int)100800L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERSION 100800
+     * }
+     */
+    public static int GLU_VERSION() {
+        return GLU_VERSION;
+    }
+    private static final int GLU_EXTENSIONS = (int)100801L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_EXTENSIONS 100801
+     * }
+     */
+    public static int GLU_EXTENSIONS() {
+        return GLU_EXTENSIONS;
+    }
+    private static final int GLU_SMOOTH = (int)100000L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SMOOTH 100000
+     * }
+     */
+    public static int GLU_SMOOTH() {
+        return GLU_SMOOTH;
+    }
+    private static final int GLU_FLAT = (int)100001L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_FLAT 100001
+     * }
+     */
+    public static int GLU_FLAT() {
+        return GLU_FLAT;
+    }
+    private static final int GLU_NONE = (int)100002L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NONE 100002
+     * }
+     */
+    public static int GLU_NONE() {
+        return GLU_NONE;
+    }
+    private static final int GLU_POINT = (int)100010L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_POINT 100010
+     * }
+     */
+    public static int GLU_POINT() {
+        return GLU_POINT;
+    }
+    private static final int GLU_LINE = (int)100011L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_LINE 100011
+     * }
+     */
+    public static int GLU_LINE() {
+        return GLU_LINE;
+    }
+    private static final int GLU_FILL = (int)100012L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_FILL 100012
+     * }
+     */
+    public static int GLU_FILL() {
+        return GLU_FILL;
+    }
+    private static final int GLU_SILHOUETTE = (int)100013L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SILHOUETTE 100013
+     * }
+     */
+    public static int GLU_SILHOUETTE() {
+        return GLU_SILHOUETTE;
+    }
+    private static final int GLU_OUTSIDE = (int)100020L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTSIDE 100020
+     * }
+     */
+    public static int GLU_OUTSIDE() {
+        return GLU_OUTSIDE;
+    }
+    private static final int GLU_INSIDE = (int)100021L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INSIDE 100021
+     * }
+     */
+    public static int GLU_INSIDE() {
+        return GLU_INSIDE;
+    }
+    private static final int GLU_TESS_WINDING_RULE = (int)100140L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_RULE 100140
+     * }
+     */
+    public static int GLU_TESS_WINDING_RULE() {
+        return GLU_TESS_WINDING_RULE;
+    }
+    private static final int GLU_TESS_BOUNDARY_ONLY = (int)100141L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BOUNDARY_ONLY 100141
+     * }
+     */
+    public static int GLU_TESS_BOUNDARY_ONLY() {
+        return GLU_TESS_BOUNDARY_ONLY;
+    }
+    private static final int GLU_TESS_TOLERANCE = (int)100142L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_TOLERANCE 100142
+     * }
+     */
+    public static int GLU_TESS_TOLERANCE() {
+        return GLU_TESS_TOLERANCE;
+    }
+    private static final int GLU_TESS_WINDING_ODD = (int)100130L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_ODD 100130
+     * }
+     */
+    public static int GLU_TESS_WINDING_ODD() {
+        return GLU_TESS_WINDING_ODD;
+    }
+    private static final int GLU_TESS_WINDING_NONZERO = (int)100131L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_NONZERO 100131
+     * }
+     */
+    public static int GLU_TESS_WINDING_NONZERO() {
+        return GLU_TESS_WINDING_NONZERO;
+    }
+    private static final int GLU_TESS_WINDING_POSITIVE = (int)100132L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_POSITIVE 100132
+     * }
+     */
+    public static int GLU_TESS_WINDING_POSITIVE() {
+        return GLU_TESS_WINDING_POSITIVE;
+    }
+    private static final int GLU_TESS_WINDING_NEGATIVE = (int)100133L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_NEGATIVE 100133
+     * }
+     */
+    public static int GLU_TESS_WINDING_NEGATIVE() {
+        return GLU_TESS_WINDING_NEGATIVE;
+    }
+    private static final int GLU_TESS_WINDING_ABS_GEQ_TWO = (int)100134L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_WINDING_ABS_GEQ_TWO 100134
+     * }
+     */
+    public static int GLU_TESS_WINDING_ABS_GEQ_TWO() {
+        return GLU_TESS_WINDING_ABS_GEQ_TWO;
+    }
+    private static final int GLU_TESS_BEGIN = (int)100100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BEGIN 100100
+     * }
+     */
+    public static int GLU_TESS_BEGIN() {
+        return GLU_TESS_BEGIN;
+    }
+    private static final int GLU_TESS_VERTEX = (int)100101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_VERTEX 100101
+     * }
+     */
+    public static int GLU_TESS_VERTEX() {
+        return GLU_TESS_VERTEX;
+    }
+    private static final int GLU_TESS_END = (int)100102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_END 100102
+     * }
+     */
+    public static int GLU_TESS_END() {
+        return GLU_TESS_END;
+    }
+    private static final int GLU_TESS_ERROR = (int)100103L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR 100103
+     * }
+     */
+    public static int GLU_TESS_ERROR() {
+        return GLU_TESS_ERROR;
+    }
+    private static final int GLU_TESS_EDGE_FLAG = (int)100104L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_EDGE_FLAG 100104
+     * }
+     */
+    public static int GLU_TESS_EDGE_FLAG() {
+        return GLU_TESS_EDGE_FLAG;
+    }
+    private static final int GLU_TESS_COMBINE = (int)100105L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_COMBINE 100105
+     * }
+     */
+    public static int GLU_TESS_COMBINE() {
+        return GLU_TESS_COMBINE;
+    }
+    private static final int GLU_TESS_BEGIN_DATA = (int)100106L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_BEGIN_DATA 100106
+     * }
+     */
+    public static int GLU_TESS_BEGIN_DATA() {
+        return GLU_TESS_BEGIN_DATA;
+    }
+    private static final int GLU_TESS_VERTEX_DATA = (int)100107L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_VERTEX_DATA 100107
+     * }
+     */
+    public static int GLU_TESS_VERTEX_DATA() {
+        return GLU_TESS_VERTEX_DATA;
+    }
+    private static final int GLU_TESS_END_DATA = (int)100108L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_END_DATA 100108
+     * }
+     */
+    public static int GLU_TESS_END_DATA() {
+        return GLU_TESS_END_DATA;
+    }
+    private static final int GLU_TESS_ERROR_DATA = (int)100109L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR_DATA 100109
+     * }
+     */
+    public static int GLU_TESS_ERROR_DATA() {
+        return GLU_TESS_ERROR_DATA;
+    }
+    private static final int GLU_TESS_EDGE_FLAG_DATA = (int)100110L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_EDGE_FLAG_DATA 100110
+     * }
+     */
+    public static int GLU_TESS_EDGE_FLAG_DATA() {
+        return GLU_TESS_EDGE_FLAG_DATA;
+    }
+    private static final int GLU_TESS_COMBINE_DATA = (int)100111L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_COMBINE_DATA 100111
+     * }
+     */
+    public static int GLU_TESS_COMBINE_DATA() {
+        return GLU_TESS_COMBINE_DATA;
+    }
+    private static final int GLU_TESS_ERROR1 = (int)100151L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR1 100151
+     * }
+     */
+    public static int GLU_TESS_ERROR1() {
+        return GLU_TESS_ERROR1;
+    }
+    private static final int GLU_TESS_ERROR2 = (int)100152L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR2 100152
+     * }
+     */
+    public static int GLU_TESS_ERROR2() {
+        return GLU_TESS_ERROR2;
+    }
+    private static final int GLU_TESS_ERROR3 = (int)100153L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR3 100153
+     * }
+     */
+    public static int GLU_TESS_ERROR3() {
+        return GLU_TESS_ERROR3;
+    }
+    private static final int GLU_TESS_ERROR4 = (int)100154L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR4 100154
+     * }
+     */
+    public static int GLU_TESS_ERROR4() {
+        return GLU_TESS_ERROR4;
+    }
+    private static final int GLU_TESS_ERROR5 = (int)100155L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR5 100155
+     * }
+     */
+    public static int GLU_TESS_ERROR5() {
+        return GLU_TESS_ERROR5;
+    }
+    private static final int GLU_TESS_ERROR6 = (int)100156L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR6 100156
+     * }
+     */
+    public static int GLU_TESS_ERROR6() {
+        return GLU_TESS_ERROR6;
+    }
+    private static final int GLU_TESS_ERROR7 = (int)100157L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR7 100157
+     * }
+     */
+    public static int GLU_TESS_ERROR7() {
+        return GLU_TESS_ERROR7;
+    }
+    private static final int GLU_TESS_ERROR8 = (int)100158L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_ERROR8 100158
+     * }
+     */
+    public static int GLU_TESS_ERROR8() {
+        return GLU_TESS_ERROR8;
+    }
+    private static final int GLU_AUTO_LOAD_MATRIX = (int)100200L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_AUTO_LOAD_MATRIX 100200
+     * }
+     */
+    public static int GLU_AUTO_LOAD_MATRIX() {
+        return GLU_AUTO_LOAD_MATRIX;
+    }
+    private static final int GLU_CULLING = (int)100201L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CULLING 100201
+     * }
+     */
+    public static int GLU_CULLING() {
+        return GLU_CULLING;
+    }
+    private static final int GLU_SAMPLING_TOLERANCE = (int)100203L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SAMPLING_TOLERANCE 100203
+     * }
+     */
+    public static int GLU_SAMPLING_TOLERANCE() {
+        return GLU_SAMPLING_TOLERANCE;
+    }
+    private static final int GLU_DISPLAY_MODE = (int)100204L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_DISPLAY_MODE 100204
+     * }
+     */
+    public static int GLU_DISPLAY_MODE() {
+        return GLU_DISPLAY_MODE;
+    }
+    private static final int GLU_PARAMETRIC_TOLERANCE = (int)100202L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PARAMETRIC_TOLERANCE 100202
+     * }
+     */
+    public static int GLU_PARAMETRIC_TOLERANCE() {
+        return GLU_PARAMETRIC_TOLERANCE;
+    }
+    private static final int GLU_SAMPLING_METHOD = (int)100205L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_SAMPLING_METHOD 100205
+     * }
+     */
+    public static int GLU_SAMPLING_METHOD() {
+        return GLU_SAMPLING_METHOD;
+    }
+    private static final int GLU_U_STEP = (int)100206L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_U_STEP 100206
+     * }
+     */
+    public static int GLU_U_STEP() {
+        return GLU_U_STEP;
+    }
+    private static final int GLU_V_STEP = (int)100207L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_V_STEP 100207
+     * }
+     */
+    public static int GLU_V_STEP() {
+        return GLU_V_STEP;
+    }
+    private static final int GLU_PATH_LENGTH = (int)100215L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PATH_LENGTH 100215
+     * }
+     */
+    public static int GLU_PATH_LENGTH() {
+        return GLU_PATH_LENGTH;
+    }
+    private static final int GLU_PARAMETRIC_ERROR = (int)100216L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_PARAMETRIC_ERROR 100216
+     * }
+     */
+    public static int GLU_PARAMETRIC_ERROR() {
+        return GLU_PARAMETRIC_ERROR;
+    }
+    private static final int GLU_DOMAIN_DISTANCE = (int)100217L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_DOMAIN_DISTANCE 100217
+     * }
+     */
+    public static int GLU_DOMAIN_DISTANCE() {
+        return GLU_DOMAIN_DISTANCE;
+    }
+    private static final int GLU_MAP1_TRIM_2 = (int)100210L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_MAP1_TRIM_2 100210
+     * }
+     */
+    public static int GLU_MAP1_TRIM_2() {
+        return GLU_MAP1_TRIM_2;
+    }
+    private static final int GLU_MAP1_TRIM_3 = (int)100211L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_MAP1_TRIM_3 100211
+     * }
+     */
+    public static int GLU_MAP1_TRIM_3() {
+        return GLU_MAP1_TRIM_3;
+    }
+    private static final int GLU_OUTLINE_POLYGON = (int)100240L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTLINE_POLYGON 100240
+     * }
+     */
+    public static int GLU_OUTLINE_POLYGON() {
+        return GLU_OUTLINE_POLYGON;
+    }
+    private static final int GLU_OUTLINE_PATCH = (int)100241L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_OUTLINE_PATCH 100241
+     * }
+     */
+    public static int GLU_OUTLINE_PATCH() {
+        return GLU_OUTLINE_PATCH;
+    }
+    private static final int GLU_NURBS_ERROR1 = (int)100251L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR1 100251
+     * }
+     */
+    public static int GLU_NURBS_ERROR1() {
+        return GLU_NURBS_ERROR1;
+    }
+    private static final int GLU_NURBS_ERROR2 = (int)100252L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR2 100252
+     * }
+     */
+    public static int GLU_NURBS_ERROR2() {
+        return GLU_NURBS_ERROR2;
+    }
+    private static final int GLU_NURBS_ERROR3 = (int)100253L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR3 100253
+     * }
+     */
+    public static int GLU_NURBS_ERROR3() {
+        return GLU_NURBS_ERROR3;
+    }
+    private static final int GLU_NURBS_ERROR4 = (int)100254L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR4 100254
+     * }
+     */
+    public static int GLU_NURBS_ERROR4() {
+        return GLU_NURBS_ERROR4;
+    }
+    private static final int GLU_NURBS_ERROR5 = (int)100255L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR5 100255
+     * }
+     */
+    public static int GLU_NURBS_ERROR5() {
+        return GLU_NURBS_ERROR5;
+    }
+    private static final int GLU_NURBS_ERROR6 = (int)100256L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR6 100256
+     * }
+     */
+    public static int GLU_NURBS_ERROR6() {
+        return GLU_NURBS_ERROR6;
+    }
+    private static final int GLU_NURBS_ERROR7 = (int)100257L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR7 100257
+     * }
+     */
+    public static int GLU_NURBS_ERROR7() {
+        return GLU_NURBS_ERROR7;
+    }
+    private static final int GLU_NURBS_ERROR8 = (int)100258L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR8 100258
+     * }
+     */
+    public static int GLU_NURBS_ERROR8() {
+        return GLU_NURBS_ERROR8;
+    }
+    private static final int GLU_NURBS_ERROR9 = (int)100259L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR9 100259
+     * }
+     */
+    public static int GLU_NURBS_ERROR9() {
+        return GLU_NURBS_ERROR9;
+    }
+    private static final int GLU_NURBS_ERROR10 = (int)100260L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR10 100260
+     * }
+     */
+    public static int GLU_NURBS_ERROR10() {
+        return GLU_NURBS_ERROR10;
+    }
+    private static final int GLU_NURBS_ERROR11 = (int)100261L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR11 100261
+     * }
+     */
+    public static int GLU_NURBS_ERROR11() {
+        return GLU_NURBS_ERROR11;
+    }
+    private static final int GLU_NURBS_ERROR12 = (int)100262L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR12 100262
+     * }
+     */
+    public static int GLU_NURBS_ERROR12() {
+        return GLU_NURBS_ERROR12;
+    }
+    private static final int GLU_NURBS_ERROR13 = (int)100263L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR13 100263
+     * }
+     */
+    public static int GLU_NURBS_ERROR13() {
+        return GLU_NURBS_ERROR13;
+    }
+    private static final int GLU_NURBS_ERROR14 = (int)100264L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR14 100264
+     * }
+     */
+    public static int GLU_NURBS_ERROR14() {
+        return GLU_NURBS_ERROR14;
+    }
+    private static final int GLU_NURBS_ERROR15 = (int)100265L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR15 100265
+     * }
+     */
+    public static int GLU_NURBS_ERROR15() {
+        return GLU_NURBS_ERROR15;
+    }
+    private static final int GLU_NURBS_ERROR16 = (int)100266L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR16 100266
+     * }
+     */
+    public static int GLU_NURBS_ERROR16() {
+        return GLU_NURBS_ERROR16;
+    }
+    private static final int GLU_NURBS_ERROR17 = (int)100267L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR17 100267
+     * }
+     */
+    public static int GLU_NURBS_ERROR17() {
+        return GLU_NURBS_ERROR17;
+    }
+    private static final int GLU_NURBS_ERROR18 = (int)100268L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR18 100268
+     * }
+     */
+    public static int GLU_NURBS_ERROR18() {
+        return GLU_NURBS_ERROR18;
+    }
+    private static final int GLU_NURBS_ERROR19 = (int)100269L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR19 100269
+     * }
+     */
+    public static int GLU_NURBS_ERROR19() {
+        return GLU_NURBS_ERROR19;
+    }
+    private static final int GLU_NURBS_ERROR20 = (int)100270L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR20 100270
+     * }
+     */
+    public static int GLU_NURBS_ERROR20() {
+        return GLU_NURBS_ERROR20;
+    }
+    private static final int GLU_NURBS_ERROR21 = (int)100271L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR21 100271
+     * }
+     */
+    public static int GLU_NURBS_ERROR21() {
+        return GLU_NURBS_ERROR21;
+    }
+    private static final int GLU_NURBS_ERROR22 = (int)100272L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR22 100272
+     * }
+     */
+    public static int GLU_NURBS_ERROR22() {
+        return GLU_NURBS_ERROR22;
+    }
+    private static final int GLU_NURBS_ERROR23 = (int)100273L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR23 100273
+     * }
+     */
+    public static int GLU_NURBS_ERROR23() {
+        return GLU_NURBS_ERROR23;
+    }
+    private static final int GLU_NURBS_ERROR24 = (int)100274L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR24 100274
+     * }
+     */
+    public static int GLU_NURBS_ERROR24() {
+        return GLU_NURBS_ERROR24;
+    }
+    private static final int GLU_NURBS_ERROR25 = (int)100275L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR25 100275
+     * }
+     */
+    public static int GLU_NURBS_ERROR25() {
+        return GLU_NURBS_ERROR25;
+    }
+    private static final int GLU_NURBS_ERROR26 = (int)100276L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR26 100276
+     * }
+     */
+    public static int GLU_NURBS_ERROR26() {
+        return GLU_NURBS_ERROR26;
+    }
+    private static final int GLU_NURBS_ERROR27 = (int)100277L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR27 100277
+     * }
+     */
+    public static int GLU_NURBS_ERROR27() {
+        return GLU_NURBS_ERROR27;
+    }
+    private static final int GLU_NURBS_ERROR28 = (int)100278L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR28 100278
+     * }
+     */
+    public static int GLU_NURBS_ERROR28() {
+        return GLU_NURBS_ERROR28;
+    }
+    private static final int GLU_NURBS_ERROR29 = (int)100279L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR29 100279
+     * }
+     */
+    public static int GLU_NURBS_ERROR29() {
+        return GLU_NURBS_ERROR29;
+    }
+    private static final int GLU_NURBS_ERROR30 = (int)100280L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR30 100280
+     * }
+     */
+    public static int GLU_NURBS_ERROR30() {
+        return GLU_NURBS_ERROR30;
+    }
+    private static final int GLU_NURBS_ERROR31 = (int)100281L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR31 100281
+     * }
+     */
+    public static int GLU_NURBS_ERROR31() {
+        return GLU_NURBS_ERROR31;
+    }
+    private static final int GLU_NURBS_ERROR32 = (int)100282L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR32 100282
+     * }
+     */
+    public static int GLU_NURBS_ERROR32() {
+        return GLU_NURBS_ERROR32;
+    }
+    private static final int GLU_NURBS_ERROR33 = (int)100283L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR33 100283
+     * }
+     */
+    public static int GLU_NURBS_ERROR33() {
+        return GLU_NURBS_ERROR33;
+    }
+    private static final int GLU_NURBS_ERROR34 = (int)100284L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR34 100284
+     * }
+     */
+    public static int GLU_NURBS_ERROR34() {
+        return GLU_NURBS_ERROR34;
+    }
+    private static final int GLU_NURBS_ERROR35 = (int)100285L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR35 100285
+     * }
+     */
+    public static int GLU_NURBS_ERROR35() {
+        return GLU_NURBS_ERROR35;
+    }
+    private static final int GLU_NURBS_ERROR36 = (int)100286L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR36 100286
+     * }
+     */
+    public static int GLU_NURBS_ERROR36() {
+        return GLU_NURBS_ERROR36;
+    }
+    private static final int GLU_NURBS_ERROR37 = (int)100287L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_NURBS_ERROR37 100287
+     * }
+     */
+    public static int GLU_NURBS_ERROR37() {
+        return GLU_NURBS_ERROR37;
+    }
+    private static final int GLU_CW = (int)100120L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CW 100120
+     * }
+     */
+    public static int GLU_CW() {
+        return GLU_CW;
+    }
+    private static final int GLU_CCW = (int)100121L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_CCW 100121
+     * }
+     */
+    public static int GLU_CCW() {
+        return GLU_CCW;
+    }
+    private static final int GLU_INTERIOR = (int)100122L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_INTERIOR 100122
+     * }
+     */
+    public static int GLU_INTERIOR() {
+        return GLU_INTERIOR;
+    }
+    private static final int GLU_EXTERIOR = (int)100123L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_EXTERIOR 100123
+     * }
+     */
+    public static int GLU_EXTERIOR() {
+        return GLU_EXTERIOR;
+    }
+    private static final int GLU_UNKNOWN = (int)100124L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_UNKNOWN 100124
+     * }
+     */
+    public static int GLU_UNKNOWN() {
+        return GLU_UNKNOWN;
+    }
+    private static final int __wgl_wgl_h_ = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define __wgl_wgl_h_ 1
+     * }
+     */
+    public static int __wgl_wgl_h_() {
+        return __wgl_wgl_h_;
+    }
+    private static final int WGL_VERSION_1_0 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_VERSION_1_0 1
+     * }
+     */
+    public static int WGL_VERSION_1_0() {
+        return WGL_VERSION_1_0;
+    }
+    private static final int WGL_ARB_buffer_region = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_buffer_region 1
+     * }
+     */
+    public static int WGL_ARB_buffer_region() {
+        return WGL_ARB_buffer_region;
+    }
+    private static final int WGL_FRONT_COLOR_BUFFER_BIT_ARB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FRONT_COLOR_BUFFER_BIT_ARB 1
+     * }
+     */
+    public static int WGL_FRONT_COLOR_BUFFER_BIT_ARB() {
+        return WGL_FRONT_COLOR_BUFFER_BIT_ARB;
+    }
+    private static final int WGL_BACK_COLOR_BUFFER_BIT_ARB = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BACK_COLOR_BUFFER_BIT_ARB 2
+     * }
+     */
+    public static int WGL_BACK_COLOR_BUFFER_BIT_ARB() {
+        return WGL_BACK_COLOR_BUFFER_BIT_ARB;
+    }
+    private static final int WGL_DEPTH_BUFFER_BIT_ARB = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DEPTH_BUFFER_BIT_ARB 4
+     * }
+     */
+    public static int WGL_DEPTH_BUFFER_BIT_ARB() {
+        return WGL_DEPTH_BUFFER_BIT_ARB;
+    }
+    private static final int WGL_STENCIL_BUFFER_BIT_ARB = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STENCIL_BUFFER_BIT_ARB 8
+     * }
+     */
+    public static int WGL_STENCIL_BUFFER_BIT_ARB() {
+        return WGL_STENCIL_BUFFER_BIT_ARB;
+    }
+    private static final int WGL_ARB_context_flush_control = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_context_flush_control 1
+     * }
+     */
+    public static int WGL_ARB_context_flush_control() {
+        return WGL_ARB_context_flush_control;
+    }
+    private static final int WGL_CONTEXT_RELEASE_BEHAVIOR_ARB = (int)8343L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_RELEASE_BEHAVIOR_ARB 8343
+     * }
+     */
+    public static int WGL_CONTEXT_RELEASE_BEHAVIOR_ARB() {
+        return WGL_CONTEXT_RELEASE_BEHAVIOR_ARB;
+    }
+    private static final int WGL_CONTEXT_RELEASE_BEHAVIOR_NONE_ARB = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_RELEASE_BEHAVIOR_NONE_ARB 0
+     * }
+     */
+    public static int WGL_CONTEXT_RELEASE_BEHAVIOR_NONE_ARB() {
+        return WGL_CONTEXT_RELEASE_BEHAVIOR_NONE_ARB;
+    }
+    private static final int WGL_CONTEXT_RELEASE_BEHAVIOR_FLUSH_ARB = (int)8344L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_RELEASE_BEHAVIOR_FLUSH_ARB 8344
+     * }
+     */
+    public static int WGL_CONTEXT_RELEASE_BEHAVIOR_FLUSH_ARB() {
+        return WGL_CONTEXT_RELEASE_BEHAVIOR_FLUSH_ARB;
+    }
+    private static final int WGL_ARB_create_context = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_create_context 1
+     * }
+     */
+    public static int WGL_ARB_create_context() {
+        return WGL_ARB_create_context;
+    }
+    private static final int WGL_CONTEXT_DEBUG_BIT_ARB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_DEBUG_BIT_ARB 1
+     * }
+     */
+    public static int WGL_CONTEXT_DEBUG_BIT_ARB() {
+        return WGL_CONTEXT_DEBUG_BIT_ARB;
+    }
+    private static final int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB 2
+     * }
+     */
+    public static int WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB() {
+        return WGL_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB;
+    }
+    private static final int WGL_CONTEXT_MAJOR_VERSION_ARB = (int)8337L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_MAJOR_VERSION_ARB 8337
+     * }
+     */
+    public static int WGL_CONTEXT_MAJOR_VERSION_ARB() {
+        return WGL_CONTEXT_MAJOR_VERSION_ARB;
+    }
+    private static final int WGL_CONTEXT_MINOR_VERSION_ARB = (int)8338L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_MINOR_VERSION_ARB 8338
+     * }
+     */
+    public static int WGL_CONTEXT_MINOR_VERSION_ARB() {
+        return WGL_CONTEXT_MINOR_VERSION_ARB;
+    }
+    private static final int WGL_CONTEXT_LAYER_PLANE_ARB = (int)8339L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_LAYER_PLANE_ARB 8339
+     * }
+     */
+    public static int WGL_CONTEXT_LAYER_PLANE_ARB() {
+        return WGL_CONTEXT_LAYER_PLANE_ARB;
+    }
+    private static final int WGL_CONTEXT_FLAGS_ARB = (int)8340L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_FLAGS_ARB 8340
+     * }
+     */
+    public static int WGL_CONTEXT_FLAGS_ARB() {
+        return WGL_CONTEXT_FLAGS_ARB;
+    }
+    private static final int ERROR_INVALID_VERSION_ARB = (int)8341L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_VERSION_ARB 8341
+     * }
+     */
+    public static int ERROR_INVALID_VERSION_ARB() {
+        return ERROR_INVALID_VERSION_ARB;
+    }
+    private static final int WGL_ARB_create_context_no_error = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_create_context_no_error 1
+     * }
+     */
+    public static int WGL_ARB_create_context_no_error() {
+        return WGL_ARB_create_context_no_error;
+    }
+    private static final int WGL_CONTEXT_OPENGL_NO_ERROR_ARB = (int)12723L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_OPENGL_NO_ERROR_ARB 12723
+     * }
+     */
+    public static int WGL_CONTEXT_OPENGL_NO_ERROR_ARB() {
+        return WGL_CONTEXT_OPENGL_NO_ERROR_ARB;
+    }
+    private static final int WGL_ARB_create_context_profile = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_create_context_profile 1
+     * }
+     */
+    public static int WGL_ARB_create_context_profile() {
+        return WGL_ARB_create_context_profile;
+    }
+    private static final int WGL_CONTEXT_PROFILE_MASK_ARB = (int)37158L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_PROFILE_MASK_ARB 37158
+     * }
+     */
+    public static int WGL_CONTEXT_PROFILE_MASK_ARB() {
+        return WGL_CONTEXT_PROFILE_MASK_ARB;
+    }
+    private static final int WGL_CONTEXT_CORE_PROFILE_BIT_ARB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_CORE_PROFILE_BIT_ARB 1
+     * }
+     */
+    public static int WGL_CONTEXT_CORE_PROFILE_BIT_ARB() {
+        return WGL_CONTEXT_CORE_PROFILE_BIT_ARB;
+    }
+    private static final int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB 2
+     * }
+     */
+    public static int WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB() {
+        return WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB;
+    }
+    private static final int ERROR_INVALID_PROFILE_ARB = (int)8342L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_PROFILE_ARB 8342
+     * }
+     */
+    public static int ERROR_INVALID_PROFILE_ARB() {
+        return ERROR_INVALID_PROFILE_ARB;
+    }
+    private static final int WGL_ARB_create_context_robustness = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_create_context_robustness 1
+     * }
+     */
+    public static int WGL_ARB_create_context_robustness() {
+        return WGL_ARB_create_context_robustness;
+    }
+    private static final int WGL_CONTEXT_ROBUST_ACCESS_BIT_ARB = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_ROBUST_ACCESS_BIT_ARB 4
+     * }
+     */
+    public static int WGL_CONTEXT_ROBUST_ACCESS_BIT_ARB() {
+        return WGL_CONTEXT_ROBUST_ACCESS_BIT_ARB;
+    }
+    private static final int WGL_LOSE_CONTEXT_ON_RESET_ARB = (int)33362L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_LOSE_CONTEXT_ON_RESET_ARB 33362
+     * }
+     */
+    public static int WGL_LOSE_CONTEXT_ON_RESET_ARB() {
+        return WGL_LOSE_CONTEXT_ON_RESET_ARB;
+    }
+    private static final int WGL_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB = (int)33366L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB 33366
+     * }
+     */
+    public static int WGL_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB() {
+        return WGL_CONTEXT_RESET_NOTIFICATION_STRATEGY_ARB;
+    }
+    private static final int WGL_NO_RESET_NOTIFICATION_ARB = (int)33377L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NO_RESET_NOTIFICATION_ARB 33377
+     * }
+     */
+    public static int WGL_NO_RESET_NOTIFICATION_ARB() {
+        return WGL_NO_RESET_NOTIFICATION_ARB;
+    }
+    private static final int WGL_ARB_extensions_string = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_extensions_string 1
+     * }
+     */
+    public static int WGL_ARB_extensions_string() {
+        return WGL_ARB_extensions_string;
+    }
+    private static final int WGL_ARB_framebuffer_sRGB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_framebuffer_sRGB 1
+     * }
+     */
+    public static int WGL_ARB_framebuffer_sRGB() {
+        return WGL_ARB_framebuffer_sRGB;
+    }
+    private static final int WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB = (int)8361L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB 8361
+     * }
+     */
+    public static int WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB() {
+        return WGL_FRAMEBUFFER_SRGB_CAPABLE_ARB;
+    }
+    private static final int WGL_ARB_make_current_read = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_make_current_read 1
+     * }
+     */
+    public static int WGL_ARB_make_current_read() {
+        return WGL_ARB_make_current_read;
+    }
+    private static final int ERROR_INVALID_PIXEL_TYPE_ARB = (int)8259L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_PIXEL_TYPE_ARB 8259
+     * }
+     */
+    public static int ERROR_INVALID_PIXEL_TYPE_ARB() {
+        return ERROR_INVALID_PIXEL_TYPE_ARB;
+    }
+    private static final int ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB = (int)8276L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB 8276
+     * }
+     */
+    public static int ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB() {
+        return ERROR_INCOMPATIBLE_DEVICE_CONTEXTS_ARB;
+    }
+    private static final int WGL_ARB_multisample = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_multisample 1
+     * }
+     */
+    public static int WGL_ARB_multisample() {
+        return WGL_ARB_multisample;
+    }
+    private static final int WGL_SAMPLE_BUFFERS_ARB = (int)8257L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLE_BUFFERS_ARB 8257
+     * }
+     */
+    public static int WGL_SAMPLE_BUFFERS_ARB() {
+        return WGL_SAMPLE_BUFFERS_ARB;
+    }
+    private static final int WGL_SAMPLES_ARB = (int)8258L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLES_ARB 8258
+     * }
+     */
+    public static int WGL_SAMPLES_ARB() {
+        return WGL_SAMPLES_ARB;
+    }
+    private static final int WGL_ARB_pbuffer = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_pbuffer 1
+     * }
+     */
+    public static int WGL_ARB_pbuffer() {
+        return WGL_ARB_pbuffer;
+    }
+    private static final int WGL_DRAW_TO_PBUFFER_ARB = (int)8237L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_PBUFFER_ARB 8237
+     * }
+     */
+    public static int WGL_DRAW_TO_PBUFFER_ARB() {
+        return WGL_DRAW_TO_PBUFFER_ARB;
+    }
+    private static final int WGL_MAX_PBUFFER_PIXELS_ARB = (int)8238L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_PIXELS_ARB 8238
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_PIXELS_ARB() {
+        return WGL_MAX_PBUFFER_PIXELS_ARB;
+    }
+    private static final int WGL_MAX_PBUFFER_WIDTH_ARB = (int)8239L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_WIDTH_ARB 8239
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_WIDTH_ARB() {
+        return WGL_MAX_PBUFFER_WIDTH_ARB;
+    }
+    private static final int WGL_MAX_PBUFFER_HEIGHT_ARB = (int)8240L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_HEIGHT_ARB 8240
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_HEIGHT_ARB() {
+        return WGL_MAX_PBUFFER_HEIGHT_ARB;
+    }
+    private static final int WGL_PBUFFER_LARGEST_ARB = (int)8243L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_LARGEST_ARB 8243
+     * }
+     */
+    public static int WGL_PBUFFER_LARGEST_ARB() {
+        return WGL_PBUFFER_LARGEST_ARB;
+    }
+    private static final int WGL_PBUFFER_WIDTH_ARB = (int)8244L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_WIDTH_ARB 8244
+     * }
+     */
+    public static int WGL_PBUFFER_WIDTH_ARB() {
+        return WGL_PBUFFER_WIDTH_ARB;
+    }
+    private static final int WGL_PBUFFER_HEIGHT_ARB = (int)8245L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_HEIGHT_ARB 8245
+     * }
+     */
+    public static int WGL_PBUFFER_HEIGHT_ARB() {
+        return WGL_PBUFFER_HEIGHT_ARB;
+    }
+    private static final int WGL_PBUFFER_LOST_ARB = (int)8246L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_LOST_ARB 8246
+     * }
+     */
+    public static int WGL_PBUFFER_LOST_ARB() {
+        return WGL_PBUFFER_LOST_ARB;
+    }
+    private static final int WGL_ARB_pixel_format = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_pixel_format 1
+     * }
+     */
+    public static int WGL_ARB_pixel_format() {
+        return WGL_ARB_pixel_format;
+    }
+    private static final int WGL_NUMBER_PIXEL_FORMATS_ARB = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_PIXEL_FORMATS_ARB 8192
+     * }
+     */
+    public static int WGL_NUMBER_PIXEL_FORMATS_ARB() {
+        return WGL_NUMBER_PIXEL_FORMATS_ARB;
+    }
+    private static final int WGL_DRAW_TO_WINDOW_ARB = (int)8193L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_WINDOW_ARB 8193
+     * }
+     */
+    public static int WGL_DRAW_TO_WINDOW_ARB() {
+        return WGL_DRAW_TO_WINDOW_ARB;
+    }
+    private static final int WGL_DRAW_TO_BITMAP_ARB = (int)8194L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_BITMAP_ARB 8194
+     * }
+     */
+    public static int WGL_DRAW_TO_BITMAP_ARB() {
+        return WGL_DRAW_TO_BITMAP_ARB;
+    }
+    private static final int WGL_ACCELERATION_ARB = (int)8195L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCELERATION_ARB 8195
+     * }
+     */
+    public static int WGL_ACCELERATION_ARB() {
+        return WGL_ACCELERATION_ARB;
+    }
+    private static final int WGL_NEED_PALETTE_ARB = (int)8196L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NEED_PALETTE_ARB 8196
+     * }
+     */
+    public static int WGL_NEED_PALETTE_ARB() {
+        return WGL_NEED_PALETTE_ARB;
+    }
+    private static final int WGL_NEED_SYSTEM_PALETTE_ARB = (int)8197L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NEED_SYSTEM_PALETTE_ARB 8197
+     * }
+     */
+    public static int WGL_NEED_SYSTEM_PALETTE_ARB() {
+        return WGL_NEED_SYSTEM_PALETTE_ARB;
+    }
+    private static final int WGL_SWAP_LAYER_BUFFERS_ARB = (int)8198L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_LAYER_BUFFERS_ARB 8198
+     * }
+     */
+    public static int WGL_SWAP_LAYER_BUFFERS_ARB() {
+        return WGL_SWAP_LAYER_BUFFERS_ARB;
+    }
+    private static final int WGL_SWAP_METHOD_ARB = (int)8199L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_METHOD_ARB 8199
+     * }
+     */
+    public static int WGL_SWAP_METHOD_ARB() {
+        return WGL_SWAP_METHOD_ARB;
+    }
+    private static final int WGL_NUMBER_OVERLAYS_ARB = (int)8200L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_OVERLAYS_ARB 8200
+     * }
+     */
+    public static int WGL_NUMBER_OVERLAYS_ARB() {
+        return WGL_NUMBER_OVERLAYS_ARB;
+    }
+    private static final int WGL_NUMBER_UNDERLAYS_ARB = (int)8201L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_UNDERLAYS_ARB 8201
+     * }
+     */
+    public static int WGL_NUMBER_UNDERLAYS_ARB() {
+        return WGL_NUMBER_UNDERLAYS_ARB;
+    }
+    private static final int WGL_TRANSPARENT_ARB = (int)8202L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_ARB 8202
+     * }
+     */
+    public static int WGL_TRANSPARENT_ARB() {
+        return WGL_TRANSPARENT_ARB;
+    }
+    private static final int WGL_TRANSPARENT_RED_VALUE_ARB = (int)8247L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_RED_VALUE_ARB 8247
+     * }
+     */
+    public static int WGL_TRANSPARENT_RED_VALUE_ARB() {
+        return WGL_TRANSPARENT_RED_VALUE_ARB;
+    }
+    private static final int WGL_TRANSPARENT_GREEN_VALUE_ARB = (int)8248L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_GREEN_VALUE_ARB 8248
+     * }
+     */
+    public static int WGL_TRANSPARENT_GREEN_VALUE_ARB() {
+        return WGL_TRANSPARENT_GREEN_VALUE_ARB;
+    }
+    private static final int WGL_TRANSPARENT_BLUE_VALUE_ARB = (int)8249L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_BLUE_VALUE_ARB 8249
+     * }
+     */
+    public static int WGL_TRANSPARENT_BLUE_VALUE_ARB() {
+        return WGL_TRANSPARENT_BLUE_VALUE_ARB;
+    }
+    private static final int WGL_TRANSPARENT_ALPHA_VALUE_ARB = (int)8250L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_ALPHA_VALUE_ARB 8250
+     * }
+     */
+    public static int WGL_TRANSPARENT_ALPHA_VALUE_ARB() {
+        return WGL_TRANSPARENT_ALPHA_VALUE_ARB;
+    }
+    private static final int WGL_TRANSPARENT_INDEX_VALUE_ARB = (int)8251L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_INDEX_VALUE_ARB 8251
+     * }
+     */
+    public static int WGL_TRANSPARENT_INDEX_VALUE_ARB() {
+        return WGL_TRANSPARENT_INDEX_VALUE_ARB;
+    }
+    private static final int WGL_SHARE_DEPTH_ARB = (int)8204L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_DEPTH_ARB 8204
+     * }
+     */
+    public static int WGL_SHARE_DEPTH_ARB() {
+        return WGL_SHARE_DEPTH_ARB;
+    }
+    private static final int WGL_SHARE_STENCIL_ARB = (int)8205L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_STENCIL_ARB 8205
+     * }
+     */
+    public static int WGL_SHARE_STENCIL_ARB() {
+        return WGL_SHARE_STENCIL_ARB;
+    }
+    private static final int WGL_SHARE_ACCUM_ARB = (int)8206L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_ACCUM_ARB 8206
+     * }
+     */
+    public static int WGL_SHARE_ACCUM_ARB() {
+        return WGL_SHARE_ACCUM_ARB;
+    }
+    private static final int WGL_SUPPORT_GDI_ARB = (int)8207L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SUPPORT_GDI_ARB 8207
+     * }
+     */
+    public static int WGL_SUPPORT_GDI_ARB() {
+        return WGL_SUPPORT_GDI_ARB;
+    }
+    private static final int WGL_SUPPORT_OPENGL_ARB = (int)8208L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SUPPORT_OPENGL_ARB 8208
+     * }
+     */
+    public static int WGL_SUPPORT_OPENGL_ARB() {
+        return WGL_SUPPORT_OPENGL_ARB;
+    }
+    private static final int WGL_DOUBLE_BUFFER_ARB = (int)8209L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DOUBLE_BUFFER_ARB 8209
+     * }
+     */
+    public static int WGL_DOUBLE_BUFFER_ARB() {
+        return WGL_DOUBLE_BUFFER_ARB;
+    }
+    private static final int WGL_STEREO_ARB = (int)8210L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_ARB 8210
+     * }
+     */
+    public static int WGL_STEREO_ARB() {
+        return WGL_STEREO_ARB;
+    }
+    private static final int WGL_PIXEL_TYPE_ARB = (int)8211L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PIXEL_TYPE_ARB 8211
+     * }
+     */
+    public static int WGL_PIXEL_TYPE_ARB() {
+        return WGL_PIXEL_TYPE_ARB;
+    }
+    private static final int WGL_COLOR_BITS_ARB = (int)8212L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_COLOR_BITS_ARB 8212
+     * }
+     */
+    public static int WGL_COLOR_BITS_ARB() {
+        return WGL_COLOR_BITS_ARB;
+    }
+    private static final int WGL_RED_BITS_ARB = (int)8213L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_RED_BITS_ARB 8213
+     * }
+     */
+    public static int WGL_RED_BITS_ARB() {
+        return WGL_RED_BITS_ARB;
+    }
+    private static final int WGL_RED_SHIFT_ARB = (int)8214L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_RED_SHIFT_ARB 8214
+     * }
+     */
+    public static int WGL_RED_SHIFT_ARB() {
+        return WGL_RED_SHIFT_ARB;
+    }
+    private static final int WGL_GREEN_BITS_ARB = (int)8215L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GREEN_BITS_ARB 8215
+     * }
+     */
+    public static int WGL_GREEN_BITS_ARB() {
+        return WGL_GREEN_BITS_ARB;
+    }
+    private static final int WGL_GREEN_SHIFT_ARB = (int)8216L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GREEN_SHIFT_ARB 8216
+     * }
+     */
+    public static int WGL_GREEN_SHIFT_ARB() {
+        return WGL_GREEN_SHIFT_ARB;
+    }
+    private static final int WGL_BLUE_BITS_ARB = (int)8217L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BLUE_BITS_ARB 8217
+     * }
+     */
+    public static int WGL_BLUE_BITS_ARB() {
+        return WGL_BLUE_BITS_ARB;
+    }
+    private static final int WGL_BLUE_SHIFT_ARB = (int)8218L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BLUE_SHIFT_ARB 8218
+     * }
+     */
+    public static int WGL_BLUE_SHIFT_ARB() {
+        return WGL_BLUE_SHIFT_ARB;
+    }
+    private static final int WGL_ALPHA_BITS_ARB = (int)8219L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ALPHA_BITS_ARB 8219
+     * }
+     */
+    public static int WGL_ALPHA_BITS_ARB() {
+        return WGL_ALPHA_BITS_ARB;
+    }
+    private static final int WGL_ALPHA_SHIFT_ARB = (int)8220L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ALPHA_SHIFT_ARB 8220
+     * }
+     */
+    public static int WGL_ALPHA_SHIFT_ARB() {
+        return WGL_ALPHA_SHIFT_ARB;
+    }
+    private static final int WGL_ACCUM_BITS_ARB = (int)8221L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_BITS_ARB 8221
+     * }
+     */
+    public static int WGL_ACCUM_BITS_ARB() {
+        return WGL_ACCUM_BITS_ARB;
+    }
+    private static final int WGL_ACCUM_RED_BITS_ARB = (int)8222L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_RED_BITS_ARB 8222
+     * }
+     */
+    public static int WGL_ACCUM_RED_BITS_ARB() {
+        return WGL_ACCUM_RED_BITS_ARB;
+    }
+    private static final int WGL_ACCUM_GREEN_BITS_ARB = (int)8223L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_GREEN_BITS_ARB 8223
+     * }
+     */
+    public static int WGL_ACCUM_GREEN_BITS_ARB() {
+        return WGL_ACCUM_GREEN_BITS_ARB;
+    }
+    private static final int WGL_ACCUM_BLUE_BITS_ARB = (int)8224L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_BLUE_BITS_ARB 8224
+     * }
+     */
+    public static int WGL_ACCUM_BLUE_BITS_ARB() {
+        return WGL_ACCUM_BLUE_BITS_ARB;
+    }
+    private static final int WGL_ACCUM_ALPHA_BITS_ARB = (int)8225L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_ALPHA_BITS_ARB 8225
+     * }
+     */
+    public static int WGL_ACCUM_ALPHA_BITS_ARB() {
+        return WGL_ACCUM_ALPHA_BITS_ARB;
+    }
+    private static final int WGL_DEPTH_BITS_ARB = (int)8226L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DEPTH_BITS_ARB 8226
+     * }
+     */
+    public static int WGL_DEPTH_BITS_ARB() {
+        return WGL_DEPTH_BITS_ARB;
+    }
+    private static final int WGL_STENCIL_BITS_ARB = (int)8227L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STENCIL_BITS_ARB 8227
+     * }
+     */
+    public static int WGL_STENCIL_BITS_ARB() {
+        return WGL_STENCIL_BITS_ARB;
+    }
+    private static final int WGL_AUX_BUFFERS_ARB = (int)8228L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX_BUFFERS_ARB 8228
+     * }
+     */
+    public static int WGL_AUX_BUFFERS_ARB() {
+        return WGL_AUX_BUFFERS_ARB;
+    }
+    private static final int WGL_NO_ACCELERATION_ARB = (int)8229L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NO_ACCELERATION_ARB 8229
+     * }
+     */
+    public static int WGL_NO_ACCELERATION_ARB() {
+        return WGL_NO_ACCELERATION_ARB;
+    }
+    private static final int WGL_GENERIC_ACCELERATION_ARB = (int)8230L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENERIC_ACCELERATION_ARB 8230
+     * }
+     */
+    public static int WGL_GENERIC_ACCELERATION_ARB() {
+        return WGL_GENERIC_ACCELERATION_ARB;
+    }
+    private static final int WGL_FULL_ACCELERATION_ARB = (int)8231L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FULL_ACCELERATION_ARB 8231
+     * }
+     */
+    public static int WGL_FULL_ACCELERATION_ARB() {
+        return WGL_FULL_ACCELERATION_ARB;
+    }
+    private static final int WGL_SWAP_EXCHANGE_ARB = (int)8232L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_EXCHANGE_ARB 8232
+     * }
+     */
+    public static int WGL_SWAP_EXCHANGE_ARB() {
+        return WGL_SWAP_EXCHANGE_ARB;
+    }
+    private static final int WGL_SWAP_COPY_ARB = (int)8233L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_COPY_ARB 8233
+     * }
+     */
+    public static int WGL_SWAP_COPY_ARB() {
+        return WGL_SWAP_COPY_ARB;
+    }
+    private static final int WGL_SWAP_UNDEFINED_ARB = (int)8234L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_UNDEFINED_ARB 8234
+     * }
+     */
+    public static int WGL_SWAP_UNDEFINED_ARB() {
+        return WGL_SWAP_UNDEFINED_ARB;
+    }
+    private static final int WGL_TYPE_RGBA_ARB = (int)8235L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_RGBA_ARB 8235
+     * }
+     */
+    public static int WGL_TYPE_RGBA_ARB() {
+        return WGL_TYPE_RGBA_ARB;
+    }
+    private static final int WGL_TYPE_COLORINDEX_ARB = (int)8236L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_COLORINDEX_ARB 8236
+     * }
+     */
+    public static int WGL_TYPE_COLORINDEX_ARB() {
+        return WGL_TYPE_COLORINDEX_ARB;
+    }
+    private static final int WGL_ARB_pixel_format_float = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_pixel_format_float 1
+     * }
+     */
+    public static int WGL_ARB_pixel_format_float() {
+        return WGL_ARB_pixel_format_float;
+    }
+    private static final int WGL_TYPE_RGBA_FLOAT_ARB = (int)8608L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_RGBA_FLOAT_ARB 8608
+     * }
+     */
+    public static int WGL_TYPE_RGBA_FLOAT_ARB() {
+        return WGL_TYPE_RGBA_FLOAT_ARB;
+    }
+    private static final int WGL_ARB_render_texture = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_render_texture 1
+     * }
+     */
+    public static int WGL_ARB_render_texture() {
+        return WGL_ARB_render_texture;
+    }
+    private static final int WGL_BIND_TO_TEXTURE_RGB_ARB = (int)8304L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BIND_TO_TEXTURE_RGB_ARB 8304
+     * }
+     */
+    public static int WGL_BIND_TO_TEXTURE_RGB_ARB() {
+        return WGL_BIND_TO_TEXTURE_RGB_ARB;
+    }
+    private static final int WGL_BIND_TO_TEXTURE_RGBA_ARB = (int)8305L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BIND_TO_TEXTURE_RGBA_ARB 8305
+     * }
+     */
+    public static int WGL_BIND_TO_TEXTURE_RGBA_ARB() {
+        return WGL_BIND_TO_TEXTURE_RGBA_ARB;
+    }
+    private static final int WGL_TEXTURE_FORMAT_ARB = (int)8306L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_FORMAT_ARB 8306
+     * }
+     */
+    public static int WGL_TEXTURE_FORMAT_ARB() {
+        return WGL_TEXTURE_FORMAT_ARB;
+    }
+    private static final int WGL_TEXTURE_TARGET_ARB = (int)8307L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_TARGET_ARB 8307
+     * }
+     */
+    public static int WGL_TEXTURE_TARGET_ARB() {
+        return WGL_TEXTURE_TARGET_ARB;
+    }
+    private static final int WGL_MIPMAP_TEXTURE_ARB = (int)8308L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MIPMAP_TEXTURE_ARB 8308
+     * }
+     */
+    public static int WGL_MIPMAP_TEXTURE_ARB() {
+        return WGL_MIPMAP_TEXTURE_ARB;
+    }
+    private static final int WGL_TEXTURE_RGB_ARB = (int)8309L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_RGB_ARB 8309
+     * }
+     */
+    public static int WGL_TEXTURE_RGB_ARB() {
+        return WGL_TEXTURE_RGB_ARB;
+    }
+    private static final int WGL_TEXTURE_RGBA_ARB = (int)8310L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_RGBA_ARB 8310
+     * }
+     */
+    public static int WGL_TEXTURE_RGBA_ARB() {
+        return WGL_TEXTURE_RGBA_ARB;
+    }
+    private static final int WGL_NO_TEXTURE_ARB = (int)8311L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NO_TEXTURE_ARB 8311
+     * }
+     */
+    public static int WGL_NO_TEXTURE_ARB() {
+        return WGL_NO_TEXTURE_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_ARB = (int)8312L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_ARB 8312
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_ARB;
+    }
+    private static final int WGL_TEXTURE_1D_ARB = (int)8313L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_1D_ARB 8313
+     * }
+     */
+    public static int WGL_TEXTURE_1D_ARB() {
+        return WGL_TEXTURE_1D_ARB;
+    }
+    private static final int WGL_TEXTURE_2D_ARB = (int)8314L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_2D_ARB 8314
+     * }
+     */
+    public static int WGL_TEXTURE_2D_ARB() {
+        return WGL_TEXTURE_2D_ARB;
+    }
+    private static final int WGL_MIPMAP_LEVEL_ARB = (int)8315L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MIPMAP_LEVEL_ARB 8315
+     * }
+     */
+    public static int WGL_MIPMAP_LEVEL_ARB() {
+        return WGL_MIPMAP_LEVEL_ARB;
+    }
+    private static final int WGL_CUBE_MAP_FACE_ARB = (int)8316L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CUBE_MAP_FACE_ARB 8316
+     * }
+     */
+    public static int WGL_CUBE_MAP_FACE_ARB() {
+        return WGL_CUBE_MAP_FACE_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB = (int)8317L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB 8317
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_POSITIVE_X_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB = (int)8318L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB 8318
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_NEGATIVE_X_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB = (int)8319L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB 8319
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_POSITIVE_Y_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB = (int)8320L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB 8320
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_NEGATIVE_Y_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB = (int)8321L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB 8321
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_POSITIVE_Z_ARB;
+    }
+    private static final int WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB = (int)8322L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB 8322
+     * }
+     */
+    public static int WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB() {
+        return WGL_TEXTURE_CUBE_MAP_NEGATIVE_Z_ARB;
+    }
+    private static final int WGL_FRONT_LEFT_ARB = (int)8323L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FRONT_LEFT_ARB 8323
+     * }
+     */
+    public static int WGL_FRONT_LEFT_ARB() {
+        return WGL_FRONT_LEFT_ARB;
+    }
+    private static final int WGL_FRONT_RIGHT_ARB = (int)8324L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FRONT_RIGHT_ARB 8324
+     * }
+     */
+    public static int WGL_FRONT_RIGHT_ARB() {
+        return WGL_FRONT_RIGHT_ARB;
+    }
+    private static final int WGL_BACK_LEFT_ARB = (int)8325L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BACK_LEFT_ARB 8325
+     * }
+     */
+    public static int WGL_BACK_LEFT_ARB() {
+        return WGL_BACK_LEFT_ARB;
+    }
+    private static final int WGL_BACK_RIGHT_ARB = (int)8326L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BACK_RIGHT_ARB 8326
+     * }
+     */
+    public static int WGL_BACK_RIGHT_ARB() {
+        return WGL_BACK_RIGHT_ARB;
+    }
+    private static final int WGL_AUX0_ARB = (int)8327L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX0_ARB 8327
+     * }
+     */
+    public static int WGL_AUX0_ARB() {
+        return WGL_AUX0_ARB;
+    }
+    private static final int WGL_AUX1_ARB = (int)8328L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX1_ARB 8328
+     * }
+     */
+    public static int WGL_AUX1_ARB() {
+        return WGL_AUX1_ARB;
+    }
+    private static final int WGL_AUX2_ARB = (int)8329L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX2_ARB 8329
+     * }
+     */
+    public static int WGL_AUX2_ARB() {
+        return WGL_AUX2_ARB;
+    }
+    private static final int WGL_AUX3_ARB = (int)8330L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX3_ARB 8330
+     * }
+     */
+    public static int WGL_AUX3_ARB() {
+        return WGL_AUX3_ARB;
+    }
+    private static final int WGL_AUX4_ARB = (int)8331L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX4_ARB 8331
+     * }
+     */
+    public static int WGL_AUX4_ARB() {
+        return WGL_AUX4_ARB;
+    }
+    private static final int WGL_AUX5_ARB = (int)8332L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX5_ARB 8332
+     * }
+     */
+    public static int WGL_AUX5_ARB() {
+        return WGL_AUX5_ARB;
+    }
+    private static final int WGL_AUX6_ARB = (int)8333L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX6_ARB 8333
+     * }
+     */
+    public static int WGL_AUX6_ARB() {
+        return WGL_AUX6_ARB;
+    }
+    private static final int WGL_AUX7_ARB = (int)8334L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX7_ARB 8334
+     * }
+     */
+    public static int WGL_AUX7_ARB() {
+        return WGL_AUX7_ARB;
+    }
+    private static final int WGL_AUX8_ARB = (int)8335L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX8_ARB 8335
+     * }
+     */
+    public static int WGL_AUX8_ARB() {
+        return WGL_AUX8_ARB;
+    }
+    private static final int WGL_AUX9_ARB = (int)8336L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX9_ARB 8336
+     * }
+     */
+    public static int WGL_AUX9_ARB() {
+        return WGL_AUX9_ARB;
+    }
+    private static final int WGL_ARB_robustness_application_isolation = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_robustness_application_isolation 1
+     * }
+     */
+    public static int WGL_ARB_robustness_application_isolation() {
+        return WGL_ARB_robustness_application_isolation;
+    }
+    private static final int WGL_CONTEXT_RESET_ISOLATION_BIT_ARB = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_RESET_ISOLATION_BIT_ARB 8
+     * }
+     */
+    public static int WGL_CONTEXT_RESET_ISOLATION_BIT_ARB() {
+        return WGL_CONTEXT_RESET_ISOLATION_BIT_ARB;
+    }
+    private static final int WGL_ARB_robustness_share_group_isolation = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ARB_robustness_share_group_isolation 1
+     * }
+     */
+    public static int WGL_ARB_robustness_share_group_isolation() {
+        return WGL_ARB_robustness_share_group_isolation;
+    }
+    private static final int WGL_3DFX_multisample = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_3DFX_multisample 1
+     * }
+     */
+    public static int WGL_3DFX_multisample() {
+        return WGL_3DFX_multisample;
+    }
+    private static final int WGL_SAMPLE_BUFFERS_3DFX = (int)8288L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLE_BUFFERS_3DFX 8288
+     * }
+     */
+    public static int WGL_SAMPLE_BUFFERS_3DFX() {
+        return WGL_SAMPLE_BUFFERS_3DFX;
+    }
+    private static final int WGL_SAMPLES_3DFX = (int)8289L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLES_3DFX 8289
+     * }
+     */
+    public static int WGL_SAMPLES_3DFX() {
+        return WGL_SAMPLES_3DFX;
+    }
+    private static final int WGL_3DL_stereo_control = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_3DL_stereo_control 1
+     * }
+     */
+    public static int WGL_3DL_stereo_control() {
+        return WGL_3DL_stereo_control;
+    }
+    private static final int WGL_STEREO_EMITTER_ENABLE_3DL = (int)8277L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_EMITTER_ENABLE_3DL 8277
+     * }
+     */
+    public static int WGL_STEREO_EMITTER_ENABLE_3DL() {
+        return WGL_STEREO_EMITTER_ENABLE_3DL;
+    }
+    private static final int WGL_STEREO_EMITTER_DISABLE_3DL = (int)8278L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_EMITTER_DISABLE_3DL 8278
+     * }
+     */
+    public static int WGL_STEREO_EMITTER_DISABLE_3DL() {
+        return WGL_STEREO_EMITTER_DISABLE_3DL;
+    }
+    private static final int WGL_STEREO_POLARITY_NORMAL_3DL = (int)8279L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_POLARITY_NORMAL_3DL 8279
+     * }
+     */
+    public static int WGL_STEREO_POLARITY_NORMAL_3DL() {
+        return WGL_STEREO_POLARITY_NORMAL_3DL;
+    }
+    private static final int WGL_STEREO_POLARITY_INVERT_3DL = (int)8280L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_POLARITY_INVERT_3DL 8280
+     * }
+     */
+    public static int WGL_STEREO_POLARITY_INVERT_3DL() {
+        return WGL_STEREO_POLARITY_INVERT_3DL;
+    }
+    private static final int WGL_AMD_gpu_association = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AMD_gpu_association 1
+     * }
+     */
+    public static int WGL_AMD_gpu_association() {
+        return WGL_AMD_gpu_association;
+    }
+    private static final int WGL_GPU_VENDOR_AMD = (int)7936L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_VENDOR_AMD 7936
+     * }
+     */
+    public static int WGL_GPU_VENDOR_AMD() {
+        return WGL_GPU_VENDOR_AMD;
+    }
+    private static final int WGL_GPU_RENDERER_STRING_AMD = (int)7937L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_RENDERER_STRING_AMD 7937
+     * }
+     */
+    public static int WGL_GPU_RENDERER_STRING_AMD() {
+        return WGL_GPU_RENDERER_STRING_AMD;
+    }
+    private static final int WGL_GPU_OPENGL_VERSION_STRING_AMD = (int)7938L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_OPENGL_VERSION_STRING_AMD 7938
+     * }
+     */
+    public static int WGL_GPU_OPENGL_VERSION_STRING_AMD() {
+        return WGL_GPU_OPENGL_VERSION_STRING_AMD;
+    }
+    private static final int WGL_GPU_FASTEST_TARGET_GPUS_AMD = (int)8610L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_FASTEST_TARGET_GPUS_AMD 8610
+     * }
+     */
+    public static int WGL_GPU_FASTEST_TARGET_GPUS_AMD() {
+        return WGL_GPU_FASTEST_TARGET_GPUS_AMD;
+    }
+    private static final int WGL_GPU_RAM_AMD = (int)8611L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_RAM_AMD 8611
+     * }
+     */
+    public static int WGL_GPU_RAM_AMD() {
+        return WGL_GPU_RAM_AMD;
+    }
+    private static final int WGL_GPU_CLOCK_AMD = (int)8612L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_CLOCK_AMD 8612
+     * }
+     */
+    public static int WGL_GPU_CLOCK_AMD() {
+        return WGL_GPU_CLOCK_AMD;
+    }
+    private static final int WGL_GPU_NUM_PIPES_AMD = (int)8613L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_NUM_PIPES_AMD 8613
+     * }
+     */
+    public static int WGL_GPU_NUM_PIPES_AMD() {
+        return WGL_GPU_NUM_PIPES_AMD;
+    }
+    private static final int WGL_GPU_NUM_SIMD_AMD = (int)8614L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_NUM_SIMD_AMD 8614
+     * }
+     */
+    public static int WGL_GPU_NUM_SIMD_AMD() {
+        return WGL_GPU_NUM_SIMD_AMD;
+    }
+    private static final int WGL_GPU_NUM_RB_AMD = (int)8615L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_NUM_RB_AMD 8615
+     * }
+     */
+    public static int WGL_GPU_NUM_RB_AMD() {
+        return WGL_GPU_NUM_RB_AMD;
+    }
+    private static final int WGL_GPU_NUM_SPI_AMD = (int)8616L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GPU_NUM_SPI_AMD 8616
+     * }
+     */
+    public static int WGL_GPU_NUM_SPI_AMD() {
+        return WGL_GPU_NUM_SPI_AMD;
+    }
+    private static final int WGL_ATI_pixel_format_float = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ATI_pixel_format_float 1
+     * }
+     */
+    public static int WGL_ATI_pixel_format_float() {
+        return WGL_ATI_pixel_format_float;
+    }
+    private static final int WGL_TYPE_RGBA_FLOAT_ATI = (int)8608L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_RGBA_FLOAT_ATI 8608
+     * }
+     */
+    public static int WGL_TYPE_RGBA_FLOAT_ATI() {
+        return WGL_TYPE_RGBA_FLOAT_ATI;
+    }
+    private static final int WGL_ATI_render_texture_rectangle = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ATI_render_texture_rectangle 1
+     * }
+     */
+    public static int WGL_ATI_render_texture_rectangle() {
+        return WGL_ATI_render_texture_rectangle;
+    }
+    private static final int WGL_TEXTURE_RECTANGLE_ATI = (int)8613L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TEXTURE_RECTANGLE_ATI 8613
+     * }
+     */
+    public static int WGL_TEXTURE_RECTANGLE_ATI() {
+        return WGL_TEXTURE_RECTANGLE_ATI;
+    }
+    private static final int WGL_EXT_colorspace = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_colorspace 1
+     * }
+     */
+    public static int WGL_EXT_colorspace() {
+        return WGL_EXT_colorspace;
+    }
+    private static final int WGL_COLORSPACE_EXT = (int)12445L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_COLORSPACE_EXT 12445
+     * }
+     */
+    public static int WGL_COLORSPACE_EXT() {
+        return WGL_COLORSPACE_EXT;
+    }
+    private static final int WGL_COLORSPACE_SRGB_EXT = (int)12425L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_COLORSPACE_SRGB_EXT 12425
+     * }
+     */
+    public static int WGL_COLORSPACE_SRGB_EXT() {
+        return WGL_COLORSPACE_SRGB_EXT;
+    }
+    private static final int WGL_COLORSPACE_LINEAR_EXT = (int)12426L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_COLORSPACE_LINEAR_EXT 12426
+     * }
+     */
+    public static int WGL_COLORSPACE_LINEAR_EXT() {
+        return WGL_COLORSPACE_LINEAR_EXT;
+    }
+    private static final int WGL_EXT_create_context_es2_profile = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_create_context_es2_profile 1
+     * }
+     */
+    public static int WGL_EXT_create_context_es2_profile() {
+        return WGL_EXT_create_context_es2_profile;
+    }
+    private static final int WGL_CONTEXT_ES2_PROFILE_BIT_EXT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_ES2_PROFILE_BIT_EXT 4
+     * }
+     */
+    public static int WGL_CONTEXT_ES2_PROFILE_BIT_EXT() {
+        return WGL_CONTEXT_ES2_PROFILE_BIT_EXT;
+    }
+    private static final int WGL_EXT_create_context_es_profile = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_create_context_es_profile 1
+     * }
+     */
+    public static int WGL_EXT_create_context_es_profile() {
+        return WGL_EXT_create_context_es_profile;
+    }
+    private static final int WGL_CONTEXT_ES_PROFILE_BIT_EXT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_CONTEXT_ES_PROFILE_BIT_EXT 4
+     * }
+     */
+    public static int WGL_CONTEXT_ES_PROFILE_BIT_EXT() {
+        return WGL_CONTEXT_ES_PROFILE_BIT_EXT;
+    }
+    private static final int WGL_EXT_depth_float = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_depth_float 1
+     * }
+     */
+    public static int WGL_EXT_depth_float() {
+        return WGL_EXT_depth_float;
+    }
+    private static final int WGL_DEPTH_FLOAT_EXT = (int)8256L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DEPTH_FLOAT_EXT 8256
+     * }
+     */
+    public static int WGL_DEPTH_FLOAT_EXT() {
+        return WGL_DEPTH_FLOAT_EXT;
+    }
+    private static final int WGL_EXT_display_color_table = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_display_color_table 1
+     * }
+     */
+    public static int WGL_EXT_display_color_table() {
+        return WGL_EXT_display_color_table;
+    }
+    private static final int WGL_EXT_extensions_string = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_extensions_string 1
+     * }
+     */
+    public static int WGL_EXT_extensions_string() {
+        return WGL_EXT_extensions_string;
+    }
+    private static final int WGL_EXT_framebuffer_sRGB = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_framebuffer_sRGB 1
+     * }
+     */
+    public static int WGL_EXT_framebuffer_sRGB() {
+        return WGL_EXT_framebuffer_sRGB;
+    }
+    private static final int WGL_FRAMEBUFFER_SRGB_CAPABLE_EXT = (int)8361L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FRAMEBUFFER_SRGB_CAPABLE_EXT 8361
+     * }
+     */
+    public static int WGL_FRAMEBUFFER_SRGB_CAPABLE_EXT() {
+        return WGL_FRAMEBUFFER_SRGB_CAPABLE_EXT;
+    }
+    private static final int WGL_EXT_make_current_read = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_make_current_read 1
+     * }
+     */
+    public static int WGL_EXT_make_current_read() {
+        return WGL_EXT_make_current_read;
+    }
+    private static final int ERROR_INVALID_PIXEL_TYPE_EXT = (int)8259L;
+    /**
+     * {@snippet lang=c :
+     * #define ERROR_INVALID_PIXEL_TYPE_EXT 8259
+     * }
+     */
+    public static int ERROR_INVALID_PIXEL_TYPE_EXT() {
+        return ERROR_INVALID_PIXEL_TYPE_EXT;
+    }
+    private static final int WGL_EXT_multisample = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_multisample 1
+     * }
+     */
+    public static int WGL_EXT_multisample() {
+        return WGL_EXT_multisample;
+    }
+    private static final int WGL_SAMPLE_BUFFERS_EXT = (int)8257L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLE_BUFFERS_EXT 8257
+     * }
+     */
+    public static int WGL_SAMPLE_BUFFERS_EXT() {
+        return WGL_SAMPLE_BUFFERS_EXT;
+    }
+    private static final int WGL_SAMPLES_EXT = (int)8258L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SAMPLES_EXT 8258
+     * }
+     */
+    public static int WGL_SAMPLES_EXT() {
+        return WGL_SAMPLES_EXT;
+    }
+    private static final int WGL_EXT_pbuffer = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_pbuffer 1
+     * }
+     */
+    public static int WGL_EXT_pbuffer() {
+        return WGL_EXT_pbuffer;
+    }
+    private static final int WGL_DRAW_TO_PBUFFER_EXT = (int)8237L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_PBUFFER_EXT 8237
+     * }
+     */
+    public static int WGL_DRAW_TO_PBUFFER_EXT() {
+        return WGL_DRAW_TO_PBUFFER_EXT;
+    }
+    private static final int WGL_MAX_PBUFFER_PIXELS_EXT = (int)8238L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_PIXELS_EXT 8238
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_PIXELS_EXT() {
+        return WGL_MAX_PBUFFER_PIXELS_EXT;
+    }
+    private static final int WGL_MAX_PBUFFER_WIDTH_EXT = (int)8239L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_WIDTH_EXT 8239
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_WIDTH_EXT() {
+        return WGL_MAX_PBUFFER_WIDTH_EXT;
+    }
+    private static final int WGL_MAX_PBUFFER_HEIGHT_EXT = (int)8240L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_MAX_PBUFFER_HEIGHT_EXT 8240
+     * }
+     */
+    public static int WGL_MAX_PBUFFER_HEIGHT_EXT() {
+        return WGL_MAX_PBUFFER_HEIGHT_EXT;
+    }
+    private static final int WGL_OPTIMAL_PBUFFER_WIDTH_EXT = (int)8241L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_OPTIMAL_PBUFFER_WIDTH_EXT 8241
+     * }
+     */
+    public static int WGL_OPTIMAL_PBUFFER_WIDTH_EXT() {
+        return WGL_OPTIMAL_PBUFFER_WIDTH_EXT;
+    }
+    private static final int WGL_OPTIMAL_PBUFFER_HEIGHT_EXT = (int)8242L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_OPTIMAL_PBUFFER_HEIGHT_EXT 8242
+     * }
+     */
+    public static int WGL_OPTIMAL_PBUFFER_HEIGHT_EXT() {
+        return WGL_OPTIMAL_PBUFFER_HEIGHT_EXT;
+    }
+    private static final int WGL_PBUFFER_LARGEST_EXT = (int)8243L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_LARGEST_EXT 8243
+     * }
+     */
+    public static int WGL_PBUFFER_LARGEST_EXT() {
+        return WGL_PBUFFER_LARGEST_EXT;
+    }
+    private static final int WGL_PBUFFER_WIDTH_EXT = (int)8244L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_WIDTH_EXT 8244
+     * }
+     */
+    public static int WGL_PBUFFER_WIDTH_EXT() {
+        return WGL_PBUFFER_WIDTH_EXT;
+    }
+    private static final int WGL_PBUFFER_HEIGHT_EXT = (int)8245L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PBUFFER_HEIGHT_EXT 8245
+     * }
+     */
+    public static int WGL_PBUFFER_HEIGHT_EXT() {
+        return WGL_PBUFFER_HEIGHT_EXT;
+    }
+    private static final int WGL_EXT_pixel_format = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_pixel_format 1
+     * }
+     */
+    public static int WGL_EXT_pixel_format() {
+        return WGL_EXT_pixel_format;
+    }
+    private static final int WGL_NUMBER_PIXEL_FORMATS_EXT = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_PIXEL_FORMATS_EXT 8192
+     * }
+     */
+    public static int WGL_NUMBER_PIXEL_FORMATS_EXT() {
+        return WGL_NUMBER_PIXEL_FORMATS_EXT;
+    }
+    private static final int WGL_DRAW_TO_WINDOW_EXT = (int)8193L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_WINDOW_EXT 8193
+     * }
+     */
+    public static int WGL_DRAW_TO_WINDOW_EXT() {
+        return WGL_DRAW_TO_WINDOW_EXT;
+    }
+    private static final int WGL_DRAW_TO_BITMAP_EXT = (int)8194L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DRAW_TO_BITMAP_EXT 8194
+     * }
+     */
+    public static int WGL_DRAW_TO_BITMAP_EXT() {
+        return WGL_DRAW_TO_BITMAP_EXT;
+    }
+    private static final int WGL_ACCELERATION_EXT = (int)8195L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCELERATION_EXT 8195
+     * }
+     */
+    public static int WGL_ACCELERATION_EXT() {
+        return WGL_ACCELERATION_EXT;
+    }
+    private static final int WGL_NEED_PALETTE_EXT = (int)8196L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NEED_PALETTE_EXT 8196
+     * }
+     */
+    public static int WGL_NEED_PALETTE_EXT() {
+        return WGL_NEED_PALETTE_EXT;
+    }
+    private static final int WGL_NEED_SYSTEM_PALETTE_EXT = (int)8197L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NEED_SYSTEM_PALETTE_EXT 8197
+     * }
+     */
+    public static int WGL_NEED_SYSTEM_PALETTE_EXT() {
+        return WGL_NEED_SYSTEM_PALETTE_EXT;
+    }
+    private static final int WGL_SWAP_LAYER_BUFFERS_EXT = (int)8198L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_LAYER_BUFFERS_EXT 8198
+     * }
+     */
+    public static int WGL_SWAP_LAYER_BUFFERS_EXT() {
+        return WGL_SWAP_LAYER_BUFFERS_EXT;
+    }
+    private static final int WGL_SWAP_METHOD_EXT = (int)8199L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_METHOD_EXT 8199
+     * }
+     */
+    public static int WGL_SWAP_METHOD_EXT() {
+        return WGL_SWAP_METHOD_EXT;
+    }
+    private static final int WGL_NUMBER_OVERLAYS_EXT = (int)8200L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_OVERLAYS_EXT 8200
+     * }
+     */
+    public static int WGL_NUMBER_OVERLAYS_EXT() {
+        return WGL_NUMBER_OVERLAYS_EXT;
+    }
+    private static final int WGL_NUMBER_UNDERLAYS_EXT = (int)8201L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NUMBER_UNDERLAYS_EXT 8201
+     * }
+     */
+    public static int WGL_NUMBER_UNDERLAYS_EXT() {
+        return WGL_NUMBER_UNDERLAYS_EXT;
+    }
+    private static final int WGL_TRANSPARENT_EXT = (int)8202L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_EXT 8202
+     * }
+     */
+    public static int WGL_TRANSPARENT_EXT() {
+        return WGL_TRANSPARENT_EXT;
+    }
+    private static final int WGL_TRANSPARENT_VALUE_EXT = (int)8203L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TRANSPARENT_VALUE_EXT 8203
+     * }
+     */
+    public static int WGL_TRANSPARENT_VALUE_EXT() {
+        return WGL_TRANSPARENT_VALUE_EXT;
+    }
+    private static final int WGL_SHARE_DEPTH_EXT = (int)8204L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_DEPTH_EXT 8204
+     * }
+     */
+    public static int WGL_SHARE_DEPTH_EXT() {
+        return WGL_SHARE_DEPTH_EXT;
+    }
+    private static final int WGL_SHARE_STENCIL_EXT = (int)8205L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_STENCIL_EXT 8205
+     * }
+     */
+    public static int WGL_SHARE_STENCIL_EXT() {
+        return WGL_SHARE_STENCIL_EXT;
+    }
+    private static final int WGL_SHARE_ACCUM_EXT = (int)8206L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SHARE_ACCUM_EXT 8206
+     * }
+     */
+    public static int WGL_SHARE_ACCUM_EXT() {
+        return WGL_SHARE_ACCUM_EXT;
+    }
+    private static final int WGL_SUPPORT_GDI_EXT = (int)8207L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SUPPORT_GDI_EXT 8207
+     * }
+     */
+    public static int WGL_SUPPORT_GDI_EXT() {
+        return WGL_SUPPORT_GDI_EXT;
+    }
+    private static final int WGL_SUPPORT_OPENGL_EXT = (int)8208L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SUPPORT_OPENGL_EXT 8208
+     * }
+     */
+    public static int WGL_SUPPORT_OPENGL_EXT() {
+        return WGL_SUPPORT_OPENGL_EXT;
+    }
+    private static final int WGL_DOUBLE_BUFFER_EXT = (int)8209L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DOUBLE_BUFFER_EXT 8209
+     * }
+     */
+    public static int WGL_DOUBLE_BUFFER_EXT() {
+        return WGL_DOUBLE_BUFFER_EXT;
+    }
+    private static final int WGL_STEREO_EXT = (int)8210L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STEREO_EXT 8210
+     * }
+     */
+    public static int WGL_STEREO_EXT() {
+        return WGL_STEREO_EXT;
+    }
+    private static final int WGL_PIXEL_TYPE_EXT = (int)8211L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_PIXEL_TYPE_EXT 8211
+     * }
+     */
+    public static int WGL_PIXEL_TYPE_EXT() {
+        return WGL_PIXEL_TYPE_EXT;
+    }
+    private static final int WGL_COLOR_BITS_EXT = (int)8212L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_COLOR_BITS_EXT 8212
+     * }
+     */
+    public static int WGL_COLOR_BITS_EXT() {
+        return WGL_COLOR_BITS_EXT;
+    }
+    private static final int WGL_RED_BITS_EXT = (int)8213L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_RED_BITS_EXT 8213
+     * }
+     */
+    public static int WGL_RED_BITS_EXT() {
+        return WGL_RED_BITS_EXT;
+    }
+    private static final int WGL_RED_SHIFT_EXT = (int)8214L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_RED_SHIFT_EXT 8214
+     * }
+     */
+    public static int WGL_RED_SHIFT_EXT() {
+        return WGL_RED_SHIFT_EXT;
+    }
+    private static final int WGL_GREEN_BITS_EXT = (int)8215L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GREEN_BITS_EXT 8215
+     * }
+     */
+    public static int WGL_GREEN_BITS_EXT() {
+        return WGL_GREEN_BITS_EXT;
+    }
+    private static final int WGL_GREEN_SHIFT_EXT = (int)8216L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GREEN_SHIFT_EXT 8216
+     * }
+     */
+    public static int WGL_GREEN_SHIFT_EXT() {
+        return WGL_GREEN_SHIFT_EXT;
+    }
+    private static final int WGL_BLUE_BITS_EXT = (int)8217L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BLUE_BITS_EXT 8217
+     * }
+     */
+    public static int WGL_BLUE_BITS_EXT() {
+        return WGL_BLUE_BITS_EXT;
+    }
+    private static final int WGL_BLUE_SHIFT_EXT = (int)8218L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BLUE_SHIFT_EXT 8218
+     * }
+     */
+    public static int WGL_BLUE_SHIFT_EXT() {
+        return WGL_BLUE_SHIFT_EXT;
+    }
+    private static final int WGL_ALPHA_BITS_EXT = (int)8219L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ALPHA_BITS_EXT 8219
+     * }
+     */
+    public static int WGL_ALPHA_BITS_EXT() {
+        return WGL_ALPHA_BITS_EXT;
+    }
+    private static final int WGL_ALPHA_SHIFT_EXT = (int)8220L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ALPHA_SHIFT_EXT 8220
+     * }
+     */
+    public static int WGL_ALPHA_SHIFT_EXT() {
+        return WGL_ALPHA_SHIFT_EXT;
+    }
+    private static final int WGL_ACCUM_BITS_EXT = (int)8221L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_BITS_EXT 8221
+     * }
+     */
+    public static int WGL_ACCUM_BITS_EXT() {
+        return WGL_ACCUM_BITS_EXT;
+    }
+    private static final int WGL_ACCUM_RED_BITS_EXT = (int)8222L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_RED_BITS_EXT 8222
+     * }
+     */
+    public static int WGL_ACCUM_RED_BITS_EXT() {
+        return WGL_ACCUM_RED_BITS_EXT;
+    }
+    private static final int WGL_ACCUM_GREEN_BITS_EXT = (int)8223L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_GREEN_BITS_EXT 8223
+     * }
+     */
+    public static int WGL_ACCUM_GREEN_BITS_EXT() {
+        return WGL_ACCUM_GREEN_BITS_EXT;
+    }
+    private static final int WGL_ACCUM_BLUE_BITS_EXT = (int)8224L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_BLUE_BITS_EXT 8224
+     * }
+     */
+    public static int WGL_ACCUM_BLUE_BITS_EXT() {
+        return WGL_ACCUM_BLUE_BITS_EXT;
+    }
+    private static final int WGL_ACCUM_ALPHA_BITS_EXT = (int)8225L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCUM_ALPHA_BITS_EXT 8225
+     * }
+     */
+    public static int WGL_ACCUM_ALPHA_BITS_EXT() {
+        return WGL_ACCUM_ALPHA_BITS_EXT;
+    }
+    private static final int WGL_DEPTH_BITS_EXT = (int)8226L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DEPTH_BITS_EXT 8226
+     * }
+     */
+    public static int WGL_DEPTH_BITS_EXT() {
+        return WGL_DEPTH_BITS_EXT;
+    }
+    private static final int WGL_STENCIL_BITS_EXT = (int)8227L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_STENCIL_BITS_EXT 8227
+     * }
+     */
+    public static int WGL_STENCIL_BITS_EXT() {
+        return WGL_STENCIL_BITS_EXT;
+    }
+    private static final int WGL_AUX_BUFFERS_EXT = (int)8228L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_AUX_BUFFERS_EXT 8228
+     * }
+     */
+    public static int WGL_AUX_BUFFERS_EXT() {
+        return WGL_AUX_BUFFERS_EXT;
+    }
+    private static final int WGL_NO_ACCELERATION_EXT = (int)8229L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NO_ACCELERATION_EXT 8229
+     * }
+     */
+    public static int WGL_NO_ACCELERATION_EXT() {
+        return WGL_NO_ACCELERATION_EXT;
+    }
+    private static final int WGL_GENERIC_ACCELERATION_EXT = (int)8230L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENERIC_ACCELERATION_EXT 8230
+     * }
+     */
+    public static int WGL_GENERIC_ACCELERATION_EXT() {
+        return WGL_GENERIC_ACCELERATION_EXT;
+    }
+    private static final int WGL_FULL_ACCELERATION_EXT = (int)8231L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FULL_ACCELERATION_EXT 8231
+     * }
+     */
+    public static int WGL_FULL_ACCELERATION_EXT() {
+        return WGL_FULL_ACCELERATION_EXT;
+    }
+    private static final int WGL_SWAP_EXCHANGE_EXT = (int)8232L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_EXCHANGE_EXT 8232
+     * }
+     */
+    public static int WGL_SWAP_EXCHANGE_EXT() {
+        return WGL_SWAP_EXCHANGE_EXT;
+    }
+    private static final int WGL_SWAP_COPY_EXT = (int)8233L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_COPY_EXT 8233
+     * }
+     */
+    public static int WGL_SWAP_COPY_EXT() {
+        return WGL_SWAP_COPY_EXT;
+    }
+    private static final int WGL_SWAP_UNDEFINED_EXT = (int)8234L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_SWAP_UNDEFINED_EXT 8234
+     * }
+     */
+    public static int WGL_SWAP_UNDEFINED_EXT() {
+        return WGL_SWAP_UNDEFINED_EXT;
+    }
+    private static final int WGL_TYPE_RGBA_EXT = (int)8235L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_RGBA_EXT 8235
+     * }
+     */
+    public static int WGL_TYPE_RGBA_EXT() {
+        return WGL_TYPE_RGBA_EXT;
+    }
+    private static final int WGL_TYPE_COLORINDEX_EXT = (int)8236L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_COLORINDEX_EXT 8236
+     * }
+     */
+    public static int WGL_TYPE_COLORINDEX_EXT() {
+        return WGL_TYPE_COLORINDEX_EXT;
+    }
+    private static final int WGL_EXT_pixel_format_packed_float = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_pixel_format_packed_float 1
+     * }
+     */
+    public static int WGL_EXT_pixel_format_packed_float() {
+        return WGL_EXT_pixel_format_packed_float;
+    }
+    private static final int WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT = (int)8360L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT 8360
+     * }
+     */
+    public static int WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT() {
+        return WGL_TYPE_RGBA_UNSIGNED_FLOAT_EXT;
+    }
+    private static final int WGL_EXT_swap_control = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_swap_control 1
+     * }
+     */
+    public static int WGL_EXT_swap_control() {
+        return WGL_EXT_swap_control;
+    }
+    private static final int WGL_EXT_swap_control_tear = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_EXT_swap_control_tear 1
+     * }
+     */
+    public static int WGL_EXT_swap_control_tear() {
+        return WGL_EXT_swap_control_tear;
+    }
+    private static final int WGL_I3D_digital_video_control = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_digital_video_control 1
+     * }
+     */
+    public static int WGL_I3D_digital_video_control() {
+        return WGL_I3D_digital_video_control;
+    }
+    private static final int WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D = (int)8272L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D 8272
+     * }
+     */
+    public static int WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D() {
+        return WGL_DIGITAL_VIDEO_CURSOR_ALPHA_FRAMEBUFFER_I3D;
+    }
+    private static final int WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D = (int)8273L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D 8273
+     * }
+     */
+    public static int WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D() {
+        return WGL_DIGITAL_VIDEO_CURSOR_ALPHA_VALUE_I3D;
+    }
+    private static final int WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D = (int)8274L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D 8274
+     * }
+     */
+    public static int WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D() {
+        return WGL_DIGITAL_VIDEO_CURSOR_INCLUDED_I3D;
+    }
+    private static final int WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D = (int)8275L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D 8275
+     * }
+     */
+    public static int WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D() {
+        return WGL_DIGITAL_VIDEO_GAMMA_CORRECTED_I3D;
+    }
+    private static final int WGL_I3D_gamma = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_gamma 1
+     * }
+     */
+    public static int WGL_I3D_gamma() {
+        return WGL_I3D_gamma;
+    }
+    private static final int WGL_GAMMA_TABLE_SIZE_I3D = (int)8270L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GAMMA_TABLE_SIZE_I3D 8270
+     * }
+     */
+    public static int WGL_GAMMA_TABLE_SIZE_I3D() {
+        return WGL_GAMMA_TABLE_SIZE_I3D;
+    }
+    private static final int WGL_GAMMA_EXCLUDE_DESKTOP_I3D = (int)8271L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GAMMA_EXCLUDE_DESKTOP_I3D 8271
+     * }
+     */
+    public static int WGL_GAMMA_EXCLUDE_DESKTOP_I3D() {
+        return WGL_GAMMA_EXCLUDE_DESKTOP_I3D;
+    }
+    private static final int WGL_I3D_genlock = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_genlock 1
+     * }
+     */
+    public static int WGL_I3D_genlock() {
+        return WGL_I3D_genlock;
+    }
+    private static final int WGL_GENLOCK_SOURCE_MULTIVIEW_I3D = (int)8260L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_MULTIVIEW_I3D 8260
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_MULTIVIEW_I3D() {
+        return WGL_GENLOCK_SOURCE_MULTIVIEW_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EXTERNAL_SYNC_I3D = (int)8261L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EXTERNAL_SYNC_I3D 8261
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EXTERNAL_SYNC_I3D() {
+        return WGL_GENLOCK_SOURCE_EXTERNAL_SYNC_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EXTERNAL_FIELD_I3D = (int)8262L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EXTERNAL_FIELD_I3D 8262
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EXTERNAL_FIELD_I3D() {
+        return WGL_GENLOCK_SOURCE_EXTERNAL_FIELD_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EXTERNAL_TTL_I3D = (int)8263L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EXTERNAL_TTL_I3D 8263
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EXTERNAL_TTL_I3D() {
+        return WGL_GENLOCK_SOURCE_EXTERNAL_TTL_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D = (int)8264L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D 8264
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D() {
+        return WGL_GENLOCK_SOURCE_DIGITAL_SYNC_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D = (int)8265L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D 8265
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D() {
+        return WGL_GENLOCK_SOURCE_DIGITAL_FIELD_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D = (int)8266L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D 8266
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D() {
+        return WGL_GENLOCK_SOURCE_EDGE_FALLING_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EDGE_RISING_I3D = (int)8267L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EDGE_RISING_I3D 8267
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EDGE_RISING_I3D() {
+        return WGL_GENLOCK_SOURCE_EDGE_RISING_I3D;
+    }
+    private static final int WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D = (int)8268L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D 8268
+     * }
+     */
+    public static int WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D() {
+        return WGL_GENLOCK_SOURCE_EDGE_BOTH_I3D;
+    }
+    private static final int WGL_I3D_image_buffer = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_image_buffer 1
+     * }
+     */
+    public static int WGL_I3D_image_buffer() {
+        return WGL_I3D_image_buffer;
+    }
+    private static final int WGL_IMAGE_BUFFER_MIN_ACCESS_I3D = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_IMAGE_BUFFER_MIN_ACCESS_I3D 1
+     * }
+     */
+    public static int WGL_IMAGE_BUFFER_MIN_ACCESS_I3D() {
+        return WGL_IMAGE_BUFFER_MIN_ACCESS_I3D;
+    }
+    private static final int WGL_IMAGE_BUFFER_LOCK_I3D = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_IMAGE_BUFFER_LOCK_I3D 2
+     * }
+     */
+    public static int WGL_IMAGE_BUFFER_LOCK_I3D() {
+        return WGL_IMAGE_BUFFER_LOCK_I3D;
+    }
+    private static final int WGL_I3D_swap_frame_lock = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_swap_frame_lock 1
+     * }
+     */
+    public static int WGL_I3D_swap_frame_lock() {
+        return WGL_I3D_swap_frame_lock;
+    }
+    private static final int WGL_I3D_swap_frame_usage = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_I3D_swap_frame_usage 1
+     * }
+     */
+    public static int WGL_I3D_swap_frame_usage() {
+        return WGL_I3D_swap_frame_usage;
+    }
+    private static final int WGL_NV_DX_interop = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NV_DX_interop 1
+     * }
+     */
+    public static int WGL_NV_DX_interop() {
+        return WGL_NV_DX_interop;
+    }
+    private static final int WGL_ACCESS_READ_ONLY_NV = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCESS_READ_ONLY_NV 0
+     * }
+     */
+    public static int WGL_ACCESS_READ_ONLY_NV() {
+        return WGL_ACCESS_READ_ONLY_NV;
+    }
+    private static final int WGL_ACCESS_READ_WRITE_NV = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCESS_READ_WRITE_NV 1
+     * }
+     */
+    public static int WGL_ACCESS_READ_WRITE_NV() {
+        return WGL_ACCESS_READ_WRITE_NV;
+    }
+    private static final int WGL_ACCESS_WRITE_DISCARD_NV = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_ACCESS_WRITE_DISCARD_NV 2
+     * }
+     */
+    public static int WGL_ACCESS_WRITE_DISCARD_NV() {
+        return WGL_ACCESS_WRITE_DISCARD_NV;
+    }
+    private static final int WGL_NV_DX_interop2 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NV_DX_interop2 1
+     * }
+     */
+    public static int WGL_NV_DX_interop2() {
+        return WGL_NV_DX_interop2;
+    }
+    private static final int WGL_NV_copy_image = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NV_copy_image 1
+     * }
+     */
+    public static int WGL_NV_copy_image() {
+        return WGL_NV_copy_image;
+    }
+    private static final int WGL_NV_delay_before_swap = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NV_delay_before_swap 1
+     * }
+     */
+    public static int WGL_NV_delay_before_swap() {
+        return WGL_NV_delay_before_swap;
+    }
+    private static final int WGL_NV_float_buffer = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_NV_float_buffer 1
+     * }
+     */
+    public static int WGL_NV_float_buffer() {
+        return WGL_NV_float_buffer;
+    }
+    private static final int WGL_FLOAT_COMPONENTS_NV = (int)8368L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_FLOAT_COMPONENTS_NV 8368
+     * }
+     */
+    public static int WGL_FLOAT_COMPONENTS_NV() {
+        return WGL_FLOAT_COMPONENTS_NV;
+    }
+    private static final int WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV = (int)8369L;
+    /**
+     * {@snippet lang=c :
+     * #define WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV 8369
+     * }
+     */
+    public static int WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV() {
+        return WGL_BIND_TO_TEXTURE_RECTANGLE_FLOAT_R_NV;
     }
 }
-
 

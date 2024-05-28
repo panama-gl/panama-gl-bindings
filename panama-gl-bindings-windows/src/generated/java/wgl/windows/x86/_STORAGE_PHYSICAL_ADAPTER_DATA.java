@@ -2,132 +2,784 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_PHYSICAL_ADAPTER_DATA {
+ *     DWORD AdapterId;
+ *     STORAGE_COMPONENT_HEALTH_STATUS HealthStatus;
+ *     STORAGE_PROTOCOL_TYPE CommandProtocol;
+ *     STORAGE_SPEC_VERSION SpecVersion;
+ *     BYTE Vendor[8];
+ *     BYTE Model[40];
+ *     BYTE FirmwareRevision[16];
+ *     BYTE PhysicalLocation[32];
+ *     BOOLEAN ExpanderConnected;
+ *     BYTE Reserved0[3];
+ *     DWORD Reserved1[3];
+ * }
+ * }
+ */
 public class _STORAGE_PHYSICAL_ADAPTER_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("AdapterId"),
-        Constants$root.C_LONG$LAYOUT.withName("HealthStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("CommandProtocol"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("SubMinor"),
-                        Constants$root.C_CHAR$LAYOUT.withName("Minor")
-                    ).withName("$anon$0"),
-                    Constants$root.C_SHORT$LAYOUT.withName("AsUshort")
-                ).withName("MinorVersion"),
-                Constants$root.C_SHORT$LAYOUT.withName("MajorVersion")
-            ).withName("$anon$0"),
-            Constants$root.C_LONG$LAYOUT.withName("AsUlong")
-        ).withName("SpecVersion"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Vendor"),
-        MemoryLayout.sequenceLayout(40, Constants$root.C_CHAR$LAYOUT).withName("Model"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("FirmwareRevision"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("PhysicalLocation"),
-        Constants$root.C_CHAR$LAYOUT.withName("ExpanderConnected"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_CHAR$LAYOUT).withName("Reserved0"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_LONG$LAYOUT).withName("Reserved1")
-    ).withName("_STORAGE_PHYSICAL_ADAPTER_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_PHYSICAL_ADAPTER_DATA.$struct$LAYOUT;
+    _STORAGE_PHYSICAL_ADAPTER_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle AdapterId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AdapterId"));
-    public static VarHandle AdapterId$VH() {
-        return _STORAGE_PHYSICAL_ADAPTER_DATA.AdapterId$VH;
-    }
-    public static int AdapterId$get(MemorySegment seg) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.AdapterId$VH.get(seg);
-    }
-    public static void AdapterId$set( MemorySegment seg, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.AdapterId$VH.set(seg, x);
-    }
-    public static int AdapterId$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.AdapterId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AdapterId$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.AdapterId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HealthStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HealthStatus"));
-    public static VarHandle HealthStatus$VH() {
-        return _STORAGE_PHYSICAL_ADAPTER_DATA.HealthStatus$VH;
-    }
-    public static int HealthStatus$get(MemorySegment seg) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.HealthStatus$VH.get(seg);
-    }
-    public static void HealthStatus$set( MemorySegment seg, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.HealthStatus$VH.set(seg, x);
-    }
-    public static int HealthStatus$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.HealthStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HealthStatus$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.HealthStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CommandProtocol$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CommandProtocol"));
-    public static VarHandle CommandProtocol$VH() {
-        return _STORAGE_PHYSICAL_ADAPTER_DATA.CommandProtocol$VH;
-    }
-    public static int CommandProtocol$get(MemorySegment seg) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.CommandProtocol$VH.get(seg);
-    }
-    public static void CommandProtocol$set( MemorySegment seg, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.CommandProtocol$VH.set(seg, x);
-    }
-    public static int CommandProtocol$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PHYSICAL_ADAPTER_DATA.CommandProtocol$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CommandProtocol$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.CommandProtocol$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SpecVersion$slice(MemorySegment seg) {
-        return seg.asSlice(12, 4);
-    }
-    public static MemorySegment Vendor$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment Model$slice(MemorySegment seg) {
-        return seg.asSlice(24, 40);
-    }
-    public static MemorySegment FirmwareRevision$slice(MemorySegment seg) {
-        return seg.asSlice(64, 16);
-    }
-    public static MemorySegment PhysicalLocation$slice(MemorySegment seg) {
-        return seg.asSlice(80, 32);
-    }
-    static final VarHandle ExpanderConnected$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExpanderConnected"));
-    public static VarHandle ExpanderConnected$VH() {
-        return _STORAGE_PHYSICAL_ADAPTER_DATA.ExpanderConnected$VH;
-    }
-    public static byte ExpanderConnected$get(MemorySegment seg) {
-        return (byte)_STORAGE_PHYSICAL_ADAPTER_DATA.ExpanderConnected$VH.get(seg);
-    }
-    public static void ExpanderConnected$set( MemorySegment seg, byte x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.ExpanderConnected$VH.set(seg, x);
-    }
-    public static byte ExpanderConnected$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_PHYSICAL_ADAPTER_DATA.ExpanderConnected$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExpanderConnected$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_PHYSICAL_ADAPTER_DATA.ExpanderConnected$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved0$slice(MemorySegment seg) {
-        return seg.asSlice(113, 3);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(116, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("AdapterId"),
+        wgl_h.C_INT.withName("HealthStatus"),
+        wgl_h.C_INT.withName("CommandProtocol"),
+        _STORAGE_SPEC_VERSION.layout().withName("SpecVersion"),
+        MemoryLayout.sequenceLayout(8, wgl_h.C_CHAR).withName("Vendor"),
+        MemoryLayout.sequenceLayout(40, wgl_h.C_CHAR).withName("Model"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("FirmwareRevision"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("PhysicalLocation"),
+        wgl_h.C_CHAR.withName("ExpanderConnected"),
+        MemoryLayout.sequenceLayout(3, wgl_h.C_CHAR).withName("Reserved0"),
+        MemoryLayout.sequenceLayout(3, wgl_h.C_LONG).withName("Reserved1")
+    ).withName("_STORAGE_PHYSICAL_ADAPTER_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt AdapterId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AdapterId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AdapterId
+     * }
+     */
+    public static final OfInt AdapterId$layout() {
+        return AdapterId$LAYOUT;
+    }
+
+    private static final long AdapterId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AdapterId
+     * }
+     */
+    public static final long AdapterId$offset() {
+        return AdapterId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AdapterId
+     * }
+     */
+    public static int AdapterId(MemorySegment struct) {
+        return struct.get(AdapterId$LAYOUT, AdapterId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AdapterId
+     * }
+     */
+    public static void AdapterId(MemorySegment struct, int fieldValue) {
+        struct.set(AdapterId$LAYOUT, AdapterId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HealthStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HealthStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_COMPONENT_HEALTH_STATUS HealthStatus
+     * }
+     */
+    public static final OfInt HealthStatus$layout() {
+        return HealthStatus$LAYOUT;
+    }
+
+    private static final long HealthStatus$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_COMPONENT_HEALTH_STATUS HealthStatus
+     * }
+     */
+    public static final long HealthStatus$offset() {
+        return HealthStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_COMPONENT_HEALTH_STATUS HealthStatus
+     * }
+     */
+    public static int HealthStatus(MemorySegment struct) {
+        return struct.get(HealthStatus$LAYOUT, HealthStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_COMPONENT_HEALTH_STATUS HealthStatus
+     * }
+     */
+    public static void HealthStatus(MemorySegment struct, int fieldValue) {
+        struct.set(HealthStatus$LAYOUT, HealthStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CommandProtocol$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CommandProtocol"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE CommandProtocol
+     * }
+     */
+    public static final OfInt CommandProtocol$layout() {
+        return CommandProtocol$LAYOUT;
+    }
+
+    private static final long CommandProtocol$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE CommandProtocol
+     * }
+     */
+    public static final long CommandProtocol$offset() {
+        return CommandProtocol$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE CommandProtocol
+     * }
+     */
+    public static int CommandProtocol(MemorySegment struct) {
+        return struct.get(CommandProtocol$LAYOUT, CommandProtocol$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE CommandProtocol
+     * }
+     */
+    public static void CommandProtocol(MemorySegment struct, int fieldValue) {
+        struct.set(CommandProtocol$LAYOUT, CommandProtocol$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout SpecVersion$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SpecVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_SPEC_VERSION SpecVersion
+     * }
+     */
+    public static final GroupLayout SpecVersion$layout() {
+        return SpecVersion$LAYOUT;
+    }
+
+    private static final long SpecVersion$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_SPEC_VERSION SpecVersion
+     * }
+     */
+    public static final long SpecVersion$offset() {
+        return SpecVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_SPEC_VERSION SpecVersion
+     * }
+     */
+    public static MemorySegment SpecVersion(MemorySegment struct) {
+        return struct.asSlice(SpecVersion$OFFSET, SpecVersion$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_SPEC_VERSION SpecVersion
+     * }
+     */
+    public static void SpecVersion(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SpecVersion$OFFSET, SpecVersion$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout Vendor$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Vendor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static final SequenceLayout Vendor$layout() {
+        return Vendor$LAYOUT;
+    }
+
+    private static final long Vendor$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static final long Vendor$offset() {
+        return Vendor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static MemorySegment Vendor(MemorySegment struct) {
+        return struct.asSlice(Vendor$OFFSET, Vendor$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static void Vendor(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Vendor$OFFSET, Vendor$LAYOUT.byteSize());
+    }
+
+    private static long[] Vendor$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static long[] Vendor$dimensions() {
+        return Vendor$DIMS;
+    }
+    private static final VarHandle Vendor$ELEM_HANDLE = Vendor$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static byte Vendor(MemorySegment struct, long index0) {
+        return (byte)Vendor$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Vendor[8]
+     * }
+     */
+    public static void Vendor(MemorySegment struct, long index0, byte fieldValue) {
+        Vendor$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Model$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Model"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static final SequenceLayout Model$layout() {
+        return Model$LAYOUT;
+    }
+
+    private static final long Model$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static final long Model$offset() {
+        return Model$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static MemorySegment Model(MemorySegment struct) {
+        return struct.asSlice(Model$OFFSET, Model$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static void Model(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Model$OFFSET, Model$LAYOUT.byteSize());
+    }
+
+    private static long[] Model$DIMS = { 40 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static long[] Model$dimensions() {
+        return Model$DIMS;
+    }
+    private static final VarHandle Model$ELEM_HANDLE = Model$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static byte Model(MemorySegment struct, long index0) {
+        return (byte)Model$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Model[40]
+     * }
+     */
+    public static void Model(MemorySegment struct, long index0, byte fieldValue) {
+        Model$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout FirmwareRevision$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FirmwareRevision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static final SequenceLayout FirmwareRevision$layout() {
+        return FirmwareRevision$LAYOUT;
+    }
+
+    private static final long FirmwareRevision$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static final long FirmwareRevision$offset() {
+        return FirmwareRevision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static MemorySegment FirmwareRevision(MemorySegment struct) {
+        return struct.asSlice(FirmwareRevision$OFFSET, FirmwareRevision$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static void FirmwareRevision(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FirmwareRevision$OFFSET, FirmwareRevision$LAYOUT.byteSize());
+    }
+
+    private static long[] FirmwareRevision$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static long[] FirmwareRevision$dimensions() {
+        return FirmwareRevision$DIMS;
+    }
+    private static final VarHandle FirmwareRevision$ELEM_HANDLE = FirmwareRevision$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static byte FirmwareRevision(MemorySegment struct, long index0) {
+        return (byte)FirmwareRevision$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE FirmwareRevision[16]
+     * }
+     */
+    public static void FirmwareRevision(MemorySegment struct, long index0, byte fieldValue) {
+        FirmwareRevision$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout PhysicalLocation$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("PhysicalLocation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static final SequenceLayout PhysicalLocation$layout() {
+        return PhysicalLocation$LAYOUT;
+    }
+
+    private static final long PhysicalLocation$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static final long PhysicalLocation$offset() {
+        return PhysicalLocation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static MemorySegment PhysicalLocation(MemorySegment struct) {
+        return struct.asSlice(PhysicalLocation$OFFSET, PhysicalLocation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static void PhysicalLocation(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PhysicalLocation$OFFSET, PhysicalLocation$LAYOUT.byteSize());
+    }
+
+    private static long[] PhysicalLocation$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static long[] PhysicalLocation$dimensions() {
+        return PhysicalLocation$DIMS;
+    }
+    private static final VarHandle PhysicalLocation$ELEM_HANDLE = PhysicalLocation$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static byte PhysicalLocation(MemorySegment struct, long index0) {
+        return (byte)PhysicalLocation$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE PhysicalLocation[32]
+     * }
+     */
+    public static void PhysicalLocation(MemorySegment struct, long index0, byte fieldValue) {
+        PhysicalLocation$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfByte ExpanderConnected$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ExpanderConnected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN ExpanderConnected
+     * }
+     */
+    public static final OfByte ExpanderConnected$layout() {
+        return ExpanderConnected$LAYOUT;
+    }
+
+    private static final long ExpanderConnected$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN ExpanderConnected
+     * }
+     */
+    public static final long ExpanderConnected$offset() {
+        return ExpanderConnected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ExpanderConnected
+     * }
+     */
+    public static byte ExpanderConnected(MemorySegment struct) {
+        return struct.get(ExpanderConnected$LAYOUT, ExpanderConnected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ExpanderConnected
+     * }
+     */
+    public static void ExpanderConnected(MemorySegment struct, byte fieldValue) {
+        struct.set(ExpanderConnected$LAYOUT, ExpanderConnected$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved0$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static final SequenceLayout Reserved0$layout() {
+        return Reserved0$LAYOUT;
+    }
+
+    private static final long Reserved0$OFFSET = 113;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static final long Reserved0$offset() {
+        return Reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static MemorySegment Reserved0(MemorySegment struct) {
+        return struct.asSlice(Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved0$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static long[] Reserved0$dimensions() {
+        return Reserved0$DIMS;
+    }
+    private static final VarHandle Reserved0$ELEM_HANDLE = Reserved0$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static byte Reserved0(MemorySegment struct, long index0) {
+        return (byte)Reserved0$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved0$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static int Reserved1(MemorySegment struct, long index0) {
+        return (int)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[3]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, int fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

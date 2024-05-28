@@ -2,52 +2,633 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_ARCHIVE_MEMBER_HEADER {
+ *     BYTE Name[16];
+ *     BYTE Date[12];
+ *     BYTE UserID[6];
+ *     BYTE GroupID[6];
+ *     BYTE Mode[8];
+ *     BYTE Size[10];
+ *     BYTE EndHeader[2];
+ * }
+ * }
+ */
 public class _IMAGE_ARCHIVE_MEMBER_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Name"),
-        MemoryLayout.sequenceLayout(12, Constants$root.C_CHAR$LAYOUT).withName("Date"),
-        MemoryLayout.sequenceLayout(6, Constants$root.C_CHAR$LAYOUT).withName("UserID"),
-        MemoryLayout.sequenceLayout(6, Constants$root.C_CHAR$LAYOUT).withName("GroupID"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Mode"),
-        MemoryLayout.sequenceLayout(10, Constants$root.C_CHAR$LAYOUT).withName("Size"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("EndHeader")
-    ).withName("_IMAGE_ARCHIVE_MEMBER_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_ARCHIVE_MEMBER_HEADER.$struct$LAYOUT;
+    _IMAGE_ARCHIVE_MEMBER_HEADER() {
+        // Should not be called directly
     }
-    public static MemorySegment Name$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment Date$slice(MemorySegment seg) {
-        return seg.asSlice(16, 12);
-    }
-    public static MemorySegment UserID$slice(MemorySegment seg) {
-        return seg.asSlice(28, 6);
-    }
-    public static MemorySegment GroupID$slice(MemorySegment seg) {
-        return seg.asSlice(34, 6);
-    }
-    public static MemorySegment Mode$slice(MemorySegment seg) {
-        return seg.asSlice(40, 8);
-    }
-    public static MemorySegment Size$slice(MemorySegment seg) {
-        return seg.asSlice(48, 10);
-    }
-    public static MemorySegment EndHeader$slice(MemorySegment seg) {
-        return seg.asSlice(58, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("Name"),
+        MemoryLayout.sequenceLayout(12, wgl_h.C_CHAR).withName("Date"),
+        MemoryLayout.sequenceLayout(6, wgl_h.C_CHAR).withName("UserID"),
+        MemoryLayout.sequenceLayout(6, wgl_h.C_CHAR).withName("GroupID"),
+        MemoryLayout.sequenceLayout(8, wgl_h.C_CHAR).withName("Mode"),
+        MemoryLayout.sequenceLayout(10, wgl_h.C_CHAR).withName("Size"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("EndHeader")
+    ).withName("_IMAGE_ARCHIVE_MEMBER_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout Name$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static final SequenceLayout Name$layout() {
+        return Name$LAYOUT;
+    }
+
+    private static final long Name$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static final long Name$offset() {
+        return Name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static MemorySegment Name(MemorySegment struct) {
+        return struct.asSlice(Name$OFFSET, Name$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static void Name(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Name$OFFSET, Name$LAYOUT.byteSize());
+    }
+
+    private static long[] Name$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static long[] Name$dimensions() {
+        return Name$DIMS;
+    }
+    private static final VarHandle Name$ELEM_HANDLE = Name$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static byte Name(MemorySegment struct, long index0) {
+        return (byte)Name$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Name[16]
+     * }
+     */
+    public static void Name(MemorySegment struct, long index0, byte fieldValue) {
+        Name$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Date$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Date"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static final SequenceLayout Date$layout() {
+        return Date$LAYOUT;
+    }
+
+    private static final long Date$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static final long Date$offset() {
+        return Date$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static MemorySegment Date(MemorySegment struct) {
+        return struct.asSlice(Date$OFFSET, Date$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static void Date(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Date$OFFSET, Date$LAYOUT.byteSize());
+    }
+
+    private static long[] Date$DIMS = { 12 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static long[] Date$dimensions() {
+        return Date$DIMS;
+    }
+    private static final VarHandle Date$ELEM_HANDLE = Date$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static byte Date(MemorySegment struct, long index0) {
+        return (byte)Date$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Date[12]
+     * }
+     */
+    public static void Date(MemorySegment struct, long index0, byte fieldValue) {
+        Date$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout UserID$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("UserID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static final SequenceLayout UserID$layout() {
+        return UserID$LAYOUT;
+    }
+
+    private static final long UserID$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static final long UserID$offset() {
+        return UserID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static MemorySegment UserID(MemorySegment struct) {
+        return struct.asSlice(UserID$OFFSET, UserID$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static void UserID(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, UserID$OFFSET, UserID$LAYOUT.byteSize());
+    }
+
+    private static long[] UserID$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static long[] UserID$dimensions() {
+        return UserID$DIMS;
+    }
+    private static final VarHandle UserID$ELEM_HANDLE = UserID$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static byte UserID(MemorySegment struct, long index0) {
+        return (byte)UserID$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE UserID[6]
+     * }
+     */
+    public static void UserID(MemorySegment struct, long index0, byte fieldValue) {
+        UserID$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout GroupID$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("GroupID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static final SequenceLayout GroupID$layout() {
+        return GroupID$LAYOUT;
+    }
+
+    private static final long GroupID$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static final long GroupID$offset() {
+        return GroupID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static MemorySegment GroupID(MemorySegment struct) {
+        return struct.asSlice(GroupID$OFFSET, GroupID$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static void GroupID(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, GroupID$OFFSET, GroupID$LAYOUT.byteSize());
+    }
+
+    private static long[] GroupID$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static long[] GroupID$dimensions() {
+        return GroupID$DIMS;
+    }
+    private static final VarHandle GroupID$ELEM_HANDLE = GroupID$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static byte GroupID(MemorySegment struct, long index0) {
+        return (byte)GroupID$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE GroupID[6]
+     * }
+     */
+    public static void GroupID(MemorySegment struct, long index0, byte fieldValue) {
+        GroupID$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Mode$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Mode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static final SequenceLayout Mode$layout() {
+        return Mode$LAYOUT;
+    }
+
+    private static final long Mode$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static final long Mode$offset() {
+        return Mode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static MemorySegment Mode(MemorySegment struct) {
+        return struct.asSlice(Mode$OFFSET, Mode$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static void Mode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Mode$OFFSET, Mode$LAYOUT.byteSize());
+    }
+
+    private static long[] Mode$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static long[] Mode$dimensions() {
+        return Mode$DIMS;
+    }
+    private static final VarHandle Mode$ELEM_HANDLE = Mode$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static byte Mode(MemorySegment struct, long index0) {
+        return (byte)Mode$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Mode[8]
+     * }
+     */
+    public static void Mode(MemorySegment struct, long index0, byte fieldValue) {
+        Mode$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Size$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static final SequenceLayout Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static MemorySegment Size(MemorySegment struct) {
+        return struct.asSlice(Size$OFFSET, Size$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static void Size(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Size$OFFSET, Size$LAYOUT.byteSize());
+    }
+
+    private static long[] Size$DIMS = { 10 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static long[] Size$dimensions() {
+        return Size$DIMS;
+    }
+    private static final VarHandle Size$ELEM_HANDLE = Size$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static byte Size(MemorySegment struct, long index0) {
+        return (byte)Size$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Size[10]
+     * }
+     */
+    public static void Size(MemorySegment struct, long index0, byte fieldValue) {
+        Size$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout EndHeader$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("EndHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static final SequenceLayout EndHeader$layout() {
+        return EndHeader$LAYOUT;
+    }
+
+    private static final long EndHeader$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static final long EndHeader$offset() {
+        return EndHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static MemorySegment EndHeader(MemorySegment struct) {
+        return struct.asSlice(EndHeader$OFFSET, EndHeader$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static void EndHeader(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, EndHeader$OFFSET, EndHeader$LAYOUT.byteSize());
+    }
+
+    private static long[] EndHeader$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static long[] EndHeader$dimensions() {
+        return EndHeader$DIMS;
+    }
+    private static final VarHandle EndHeader$ELEM_HANDLE = EndHeader$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static byte EndHeader(MemorySegment struct, long index0) {
+        return (byte)EndHeader$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE EndHeader[2]
+     * }
+     */
+    public static void EndHeader(MemorySegment struct, long index0, byte fieldValue) {
+        EndHeader$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,161 +2,449 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     USN StartUsn;
+ *     DWORD ReasonMask;
+ *     DWORD ReturnOnlyOnClose;
+ *     DWORDLONG Timeout;
+ *     DWORDLONG BytesToWaitFor;
+ *     DWORDLONG UsnJournalID;
+ *     WORD MinMajorVersion;
+ *     WORD MaxMajorVersion;
+ * }
+ * }
+ */
 public class READ_USN_JOURNAL_DATA_V1 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("StartUsn"),
-        Constants$root.C_LONG$LAYOUT.withName("ReasonMask"),
-        Constants$root.C_LONG$LAYOUT.withName("ReturnOnlyOnClose"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Timeout"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BytesToWaitFor"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UsnJournalID"),
-        Constants$root.C_SHORT$LAYOUT.withName("MinMajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("MaxMajorVersion"),
-        MemoryLayout.paddingLayout(32)
-    );
-    public static MemoryLayout $LAYOUT() {
-        return READ_USN_JOURNAL_DATA_V1.$struct$LAYOUT;
+    READ_USN_JOURNAL_DATA_V1() {
+        // Should not be called directly
     }
-    static final VarHandle StartUsn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartUsn"));
-    public static VarHandle StartUsn$VH() {
-        return READ_USN_JOURNAL_DATA_V1.StartUsn$VH;
-    }
-    public static long StartUsn$get(MemorySegment seg) {
-        return (long)READ_USN_JOURNAL_DATA_V1.StartUsn$VH.get(seg);
-    }
-    public static void StartUsn$set( MemorySegment seg, long x) {
-        READ_USN_JOURNAL_DATA_V1.StartUsn$VH.set(seg, x);
-    }
-    public static long StartUsn$get(MemorySegment seg, long index) {
-        return (long)READ_USN_JOURNAL_DATA_V1.StartUsn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartUsn$set(MemorySegment seg, long index, long x) {
-        READ_USN_JOURNAL_DATA_V1.StartUsn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReasonMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReasonMask"));
-    public static VarHandle ReasonMask$VH() {
-        return READ_USN_JOURNAL_DATA_V1.ReasonMask$VH;
-    }
-    public static int ReasonMask$get(MemorySegment seg) {
-        return (int)READ_USN_JOURNAL_DATA_V1.ReasonMask$VH.get(seg);
-    }
-    public static void ReasonMask$set( MemorySegment seg, int x) {
-        READ_USN_JOURNAL_DATA_V1.ReasonMask$VH.set(seg, x);
-    }
-    public static int ReasonMask$get(MemorySegment seg, long index) {
-        return (int)READ_USN_JOURNAL_DATA_V1.ReasonMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReasonMask$set(MemorySegment seg, long index, int x) {
-        READ_USN_JOURNAL_DATA_V1.ReasonMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReturnOnlyOnClose$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReturnOnlyOnClose"));
-    public static VarHandle ReturnOnlyOnClose$VH() {
-        return READ_USN_JOURNAL_DATA_V1.ReturnOnlyOnClose$VH;
-    }
-    public static int ReturnOnlyOnClose$get(MemorySegment seg) {
-        return (int)READ_USN_JOURNAL_DATA_V1.ReturnOnlyOnClose$VH.get(seg);
-    }
-    public static void ReturnOnlyOnClose$set( MemorySegment seg, int x) {
-        READ_USN_JOURNAL_DATA_V1.ReturnOnlyOnClose$VH.set(seg, x);
-    }
-    public static int ReturnOnlyOnClose$get(MemorySegment seg, long index) {
-        return (int)READ_USN_JOURNAL_DATA_V1.ReturnOnlyOnClose$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReturnOnlyOnClose$set(MemorySegment seg, long index, int x) {
-        READ_USN_JOURNAL_DATA_V1.ReturnOnlyOnClose$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Timeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Timeout"));
-    public static VarHandle Timeout$VH() {
-        return READ_USN_JOURNAL_DATA_V1.Timeout$VH;
-    }
-    public static long Timeout$get(MemorySegment seg) {
-        return (long)READ_USN_JOURNAL_DATA_V1.Timeout$VH.get(seg);
-    }
-    public static void Timeout$set( MemorySegment seg, long x) {
-        READ_USN_JOURNAL_DATA_V1.Timeout$VH.set(seg, x);
-    }
-    public static long Timeout$get(MemorySegment seg, long index) {
-        return (long)READ_USN_JOURNAL_DATA_V1.Timeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Timeout$set(MemorySegment seg, long index, long x) {
-        READ_USN_JOURNAL_DATA_V1.Timeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesToWaitFor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesToWaitFor"));
-    public static VarHandle BytesToWaitFor$VH() {
-        return READ_USN_JOURNAL_DATA_V1.BytesToWaitFor$VH;
-    }
-    public static long BytesToWaitFor$get(MemorySegment seg) {
-        return (long)READ_USN_JOURNAL_DATA_V1.BytesToWaitFor$VH.get(seg);
-    }
-    public static void BytesToWaitFor$set( MemorySegment seg, long x) {
-        READ_USN_JOURNAL_DATA_V1.BytesToWaitFor$VH.set(seg, x);
-    }
-    public static long BytesToWaitFor$get(MemorySegment seg, long index) {
-        return (long)READ_USN_JOURNAL_DATA_V1.BytesToWaitFor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesToWaitFor$set(MemorySegment seg, long index, long x) {
-        READ_USN_JOURNAL_DATA_V1.BytesToWaitFor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UsnJournalID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UsnJournalID"));
-    public static VarHandle UsnJournalID$VH() {
-        return READ_USN_JOURNAL_DATA_V1.UsnJournalID$VH;
-    }
-    public static long UsnJournalID$get(MemorySegment seg) {
-        return (long)READ_USN_JOURNAL_DATA_V1.UsnJournalID$VH.get(seg);
-    }
-    public static void UsnJournalID$set( MemorySegment seg, long x) {
-        READ_USN_JOURNAL_DATA_V1.UsnJournalID$VH.set(seg, x);
-    }
-    public static long UsnJournalID$get(MemorySegment seg, long index) {
-        return (long)READ_USN_JOURNAL_DATA_V1.UsnJournalID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UsnJournalID$set(MemorySegment seg, long index, long x) {
-        READ_USN_JOURNAL_DATA_V1.UsnJournalID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinMajorVersion"));
-    public static VarHandle MinMajorVersion$VH() {
-        return READ_USN_JOURNAL_DATA_V1.MinMajorVersion$VH;
-    }
-    public static short MinMajorVersion$get(MemorySegment seg) {
-        return (short)READ_USN_JOURNAL_DATA_V1.MinMajorVersion$VH.get(seg);
-    }
-    public static void MinMajorVersion$set( MemorySegment seg, short x) {
-        READ_USN_JOURNAL_DATA_V1.MinMajorVersion$VH.set(seg, x);
-    }
-    public static short MinMajorVersion$get(MemorySegment seg, long index) {
-        return (short)READ_USN_JOURNAL_DATA_V1.MinMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinMajorVersion$set(MemorySegment seg, long index, short x) {
-        READ_USN_JOURNAL_DATA_V1.MinMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaxMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxMajorVersion"));
-    public static VarHandle MaxMajorVersion$VH() {
-        return READ_USN_JOURNAL_DATA_V1.MaxMajorVersion$VH;
-    }
-    public static short MaxMajorVersion$get(MemorySegment seg) {
-        return (short)READ_USN_JOURNAL_DATA_V1.MaxMajorVersion$VH.get(seg);
-    }
-    public static void MaxMajorVersion$set( MemorySegment seg, short x) {
-        READ_USN_JOURNAL_DATA_V1.MaxMajorVersion$VH.set(seg, x);
-    }
-    public static short MaxMajorVersion$get(MemorySegment seg, long index) {
-        return (short)READ_USN_JOURNAL_DATA_V1.MaxMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxMajorVersion$set(MemorySegment seg, long index, short x) {
-        READ_USN_JOURNAL_DATA_V1.MaxMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("StartUsn"),
+        wgl_h.C_LONG.withName("ReasonMask"),
+        wgl_h.C_LONG.withName("ReturnOnlyOnClose"),
+        wgl_h.C_LONG_LONG.withName("Timeout"),
+        wgl_h.C_LONG_LONG.withName("BytesToWaitFor"),
+        wgl_h.C_LONG_LONG.withName("UsnJournalID"),
+        wgl_h.C_SHORT.withName("MinMajorVersion"),
+        wgl_h.C_SHORT.withName("MaxMajorVersion"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("$anon$10799:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong StartUsn$LAYOUT = (OfLong)$LAYOUT.select(groupElement("StartUsn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN StartUsn
+     * }
+     */
+    public static final OfLong StartUsn$layout() {
+        return StartUsn$LAYOUT;
+    }
+
+    private static final long StartUsn$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN StartUsn
+     * }
+     */
+    public static final long StartUsn$offset() {
+        return StartUsn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN StartUsn
+     * }
+     */
+    public static long StartUsn(MemorySegment struct) {
+        return struct.get(StartUsn$LAYOUT, StartUsn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN StartUsn
+     * }
+     */
+    public static void StartUsn(MemorySegment struct, long fieldValue) {
+        struct.set(StartUsn$LAYOUT, StartUsn$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ReasonMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReasonMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ReasonMask
+     * }
+     */
+    public static final OfInt ReasonMask$layout() {
+        return ReasonMask$LAYOUT;
+    }
+
+    private static final long ReasonMask$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ReasonMask
+     * }
+     */
+    public static final long ReasonMask$offset() {
+        return ReasonMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ReasonMask
+     * }
+     */
+    public static int ReasonMask(MemorySegment struct) {
+        return struct.get(ReasonMask$LAYOUT, ReasonMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ReasonMask
+     * }
+     */
+    public static void ReasonMask(MemorySegment struct, int fieldValue) {
+        struct.set(ReasonMask$LAYOUT, ReasonMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ReturnOnlyOnClose$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReturnOnlyOnClose"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ReturnOnlyOnClose
+     * }
+     */
+    public static final OfInt ReturnOnlyOnClose$layout() {
+        return ReturnOnlyOnClose$LAYOUT;
+    }
+
+    private static final long ReturnOnlyOnClose$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ReturnOnlyOnClose
+     * }
+     */
+    public static final long ReturnOnlyOnClose$offset() {
+        return ReturnOnlyOnClose$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ReturnOnlyOnClose
+     * }
+     */
+    public static int ReturnOnlyOnClose(MemorySegment struct) {
+        return struct.get(ReturnOnlyOnClose$LAYOUT, ReturnOnlyOnClose$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ReturnOnlyOnClose
+     * }
+     */
+    public static void ReturnOnlyOnClose(MemorySegment struct, int fieldValue) {
+        struct.set(ReturnOnlyOnClose$LAYOUT, ReturnOnlyOnClose$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Timeout$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Timeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Timeout
+     * }
+     */
+    public static final OfLong Timeout$layout() {
+        return Timeout$LAYOUT;
+    }
+
+    private static final long Timeout$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Timeout
+     * }
+     */
+    public static final long Timeout$offset() {
+        return Timeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Timeout
+     * }
+     */
+    public static long Timeout(MemorySegment struct) {
+        return struct.get(Timeout$LAYOUT, Timeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Timeout
+     * }
+     */
+    public static void Timeout(MemorySegment struct, long fieldValue) {
+        struct.set(Timeout$LAYOUT, Timeout$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BytesToWaitFor$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BytesToWaitFor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG BytesToWaitFor
+     * }
+     */
+    public static final OfLong BytesToWaitFor$layout() {
+        return BytesToWaitFor$LAYOUT;
+    }
+
+    private static final long BytesToWaitFor$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG BytesToWaitFor
+     * }
+     */
+    public static final long BytesToWaitFor$offset() {
+        return BytesToWaitFor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BytesToWaitFor
+     * }
+     */
+    public static long BytesToWaitFor(MemorySegment struct) {
+        return struct.get(BytesToWaitFor$LAYOUT, BytesToWaitFor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG BytesToWaitFor
+     * }
+     */
+    public static void BytesToWaitFor(MemorySegment struct, long fieldValue) {
+        struct.set(BytesToWaitFor$LAYOUT, BytesToWaitFor$OFFSET, fieldValue);
+    }
+
+    private static final OfLong UsnJournalID$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UsnJournalID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG UsnJournalID
+     * }
+     */
+    public static final OfLong UsnJournalID$layout() {
+        return UsnJournalID$LAYOUT;
+    }
+
+    private static final long UsnJournalID$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG UsnJournalID
+     * }
+     */
+    public static final long UsnJournalID$offset() {
+        return UsnJournalID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UsnJournalID
+     * }
+     */
+    public static long UsnJournalID(MemorySegment struct) {
+        return struct.get(UsnJournalID$LAYOUT, UsnJournalID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG UsnJournalID
+     * }
+     */
+    public static void UsnJournalID(MemorySegment struct, long fieldValue) {
+        struct.set(UsnJournalID$LAYOUT, UsnJournalID$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MinMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MinMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MinMajorVersion
+     * }
+     */
+    public static final OfShort MinMajorVersion$layout() {
+        return MinMajorVersion$LAYOUT;
+    }
+
+    private static final long MinMajorVersion$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MinMajorVersion
+     * }
+     */
+    public static final long MinMajorVersion$offset() {
+        return MinMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MinMajorVersion
+     * }
+     */
+    public static short MinMajorVersion(MemorySegment struct) {
+        return struct.get(MinMajorVersion$LAYOUT, MinMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MinMajorVersion
+     * }
+     */
+    public static void MinMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MinMajorVersion$LAYOUT, MinMajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MaxMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MaxMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MaxMajorVersion
+     * }
+     */
+    public static final OfShort MaxMajorVersion$layout() {
+        return MaxMajorVersion$LAYOUT;
+    }
+
+    private static final long MaxMajorVersion$OFFSET = 42;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MaxMajorVersion
+     * }
+     */
+    public static final long MaxMajorVersion$offset() {
+        return MaxMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MaxMajorVersion
+     * }
+     */
+    public static short MaxMajorVersion(MemorySegment struct) {
+        return struct.get(MaxMajorVersion$LAYOUT, MaxMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MaxMajorVersion
+     * }
+     */
+    public static void MaxMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MaxMajorVersion$LAYOUT, MaxMajorVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

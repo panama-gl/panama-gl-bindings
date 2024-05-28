@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT {
+ *     ULONG cbPerObject;
+ *     ULONG cbPerElement;
+ * } BCRYPT_MULTI_OBJECT_LENGTH_STRUCT
+ * }
+ */
 public class BCRYPT_MULTI_OBJECT_LENGTH_STRUCT extends _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT {
 
+    BCRYPT_MULTI_OBJECT_LENGTH_STRUCT() {
+        // Should not be called directly
+    }
 }
-
 

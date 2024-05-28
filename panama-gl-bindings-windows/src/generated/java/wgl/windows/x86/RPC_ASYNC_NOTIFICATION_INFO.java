@@ -2,13 +2,42 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef union _RPC_ASYNC_NOTIFICATION_INFO {
+ *     struct {
+ *         PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+ *         HANDLE hThread;
+ *     } APC;
+ *     struct {
+ *         HANDLE hIOPort;
+ *         DWORD dwNumberOfBytesTransferred;
+ *         DWORD_PTR dwCompletionKey;
+ *         LPOVERLAPPED lpOverlapped;
+ *     } IOC;
+ *     struct {
+ *         HWND hWnd;
+ *         UINT Msg;
+ *     } HWND;
+ *     HANDLE hEvent;
+ *     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+ * } RPC_ASYNC_NOTIFICATION_INFO
+ * }
+ */
 public class RPC_ASYNC_NOTIFICATION_INFO extends _RPC_ASYNC_NOTIFICATION_INFO {
 
+    RPC_ASYNC_NOTIFICATION_INFO() {
+        // Should not be called directly
+    }
 }
-
 

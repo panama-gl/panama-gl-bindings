@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_PROPERTY_SET {
+ *     STORAGE_PROPERTY_ID PropertyId;
+ *     STORAGE_SET_TYPE SetType;
+ *     BYTE AdditionalParameters[1];
+ * } STORAGE_PROPERTY_SET
+ * }
+ */
 public class STORAGE_PROPERTY_SET extends _STORAGE_PROPERTY_SET {
 
+    STORAGE_PROPERTY_SET() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,83 +2,439 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct RETRIEVAL_POINTERS_BUFFER {
+ *     DWORD ExtentCount;
+ *     LARGE_INTEGER StartingVcn;
+ *     struct {
+ *         LARGE_INTEGER NextVcn;
+ *         LARGE_INTEGER Lcn;
+ *     } Extents[1];
+ * }
+ * }
+ */
 public class RETRIEVAL_POINTERS_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ExtentCount"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("StartingVcn"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("NextVcn"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("Lcn")
-        )).withName("Extents")
-    ).withName("RETRIEVAL_POINTERS_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return RETRIEVAL_POINTERS_BUFFER.$struct$LAYOUT;
+    RETRIEVAL_POINTERS_BUFFER() {
+        // Should not be called directly
     }
-    static final VarHandle ExtentCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExtentCount"));
-    public static VarHandle ExtentCount$VH() {
-        return RETRIEVAL_POINTERS_BUFFER.ExtentCount$VH;
-    }
-    public static int ExtentCount$get(MemorySegment seg) {
-        return (int)RETRIEVAL_POINTERS_BUFFER.ExtentCount$VH.get(seg);
-    }
-    public static void ExtentCount$set( MemorySegment seg, int x) {
-        RETRIEVAL_POINTERS_BUFFER.ExtentCount$VH.set(seg, x);
-    }
-    public static int ExtentCount$get(MemorySegment seg, long index) {
-        return (int)RETRIEVAL_POINTERS_BUFFER.ExtentCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExtentCount$set(MemorySegment seg, long index, int x) {
-        RETRIEVAL_POINTERS_BUFFER.ExtentCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment StartingVcn$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment Extents$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ExtentCount"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("StartingVcn"),
+        MemoryLayout.sequenceLayout(1, RETRIEVAL_POINTERS_BUFFER.Extents.layout()).withName("Extents")
+    ).withName("RETRIEVAL_POINTERS_BUFFER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ExtentCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ExtentCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ExtentCount
+     * }
+     */
+    public static final OfInt ExtentCount$layout() {
+        return ExtentCount$LAYOUT;
+    }
+
+    private static final long ExtentCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ExtentCount
+     * }
+     */
+    public static final long ExtentCount$offset() {
+        return ExtentCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ExtentCount
+     * }
+     */
+    public static int ExtentCount(MemorySegment struct) {
+        return struct.get(ExtentCount$LAYOUT, ExtentCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ExtentCount
+     * }
+     */
+    public static void ExtentCount(MemorySegment struct, int fieldValue) {
+        struct.set(ExtentCount$LAYOUT, ExtentCount$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout StartingVcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingVcn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingVcn
+     * }
+     */
+    public static final GroupLayout StartingVcn$layout() {
+        return StartingVcn$LAYOUT;
+    }
+
+    private static final long StartingVcn$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingVcn
+     * }
+     */
+    public static final long StartingVcn$offset() {
+        return StartingVcn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingVcn
+     * }
+     */
+    public static MemorySegment StartingVcn(MemorySegment struct) {
+        return struct.asSlice(StartingVcn$OFFSET, StartingVcn$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingVcn
+     * }
+     */
+    public static void StartingVcn(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingVcn$OFFSET, StartingVcn$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * }
+     * }
+     */
+    public static class Extents {
+
+        Extents() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            _LARGE_INTEGER.layout().withName("NextVcn"),
+            _LARGE_INTEGER.layout().withName("Lcn")
+        ).withName("$anon$10580:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        private static final GroupLayout NextVcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NextVcn"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER NextVcn
+         * }
+         */
+        public static final GroupLayout NextVcn$layout() {
+            return NextVcn$LAYOUT;
+        }
+
+        private static final long NextVcn$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER NextVcn
+         * }
+         */
+        public static final long NextVcn$offset() {
+            return NextVcn$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER NextVcn
+         * }
+         */
+        public static MemorySegment NextVcn(MemorySegment struct) {
+            return struct.asSlice(NextVcn$OFFSET, NextVcn$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER NextVcn
+         * }
+         */
+        public static void NextVcn(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, NextVcn$OFFSET, NextVcn$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout Lcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Lcn"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Lcn
+         * }
+         */
+        public static final GroupLayout Lcn$layout() {
+            return Lcn$LAYOUT;
+        }
+
+        private static final long Lcn$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Lcn
+         * }
+         */
+        public static final long Lcn$offset() {
+            return Lcn$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Lcn
+         * }
+         */
+        public static MemorySegment Lcn(MemorySegment struct) {
+            return struct.asSlice(Lcn$OFFSET, Lcn$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Lcn
+         * }
+         */
+        public static void Lcn(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, Lcn$OFFSET, Lcn$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
+    }
+
+    private static final SequenceLayout Extents$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Extents"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static final SequenceLayout Extents$layout() {
+        return Extents$LAYOUT;
+    }
+
+    private static final long Extents$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static final long Extents$offset() {
+        return Extents$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct) {
+        return struct.asSlice(Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Extents$OFFSET, Extents$LAYOUT.byteSize());
+    }
+
+    private static long[] Extents$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static long[] Extents$dimensions() {
+        return Extents$DIMS;
+    }
+    private static final MethodHandle Extents$ELEM_HANDLE = Extents$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static MemorySegment Extents(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Extents$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER NextVcn;
+     *     LARGE_INTEGER Lcn;
+     * } Extents[1]
+     * }
+     */
+    public static void Extents(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Extents(struct, index0), 0L, RETRIEVAL_POINTERS_BUFFER.Extents.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

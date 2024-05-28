@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_OR_CRL_BUNDLE {
+ *     DWORD cItem;
+ *     PCERT_OR_CRL_BLOB rgItem;
+ * }
+ * }
+ */
 public class _CERT_OR_CRL_BUNDLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cItem"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgItem")
-    ).withName("_CERT_OR_CRL_BUNDLE");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_OR_CRL_BUNDLE.$struct$LAYOUT;
+    _CERT_OR_CRL_BUNDLE() {
+        // Should not be called directly
     }
-    static final VarHandle cItem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cItem"));
-    public static VarHandle cItem$VH() {
-        return _CERT_OR_CRL_BUNDLE.cItem$VH;
-    }
-    public static int cItem$get(MemorySegment seg) {
-        return (int)_CERT_OR_CRL_BUNDLE.cItem$VH.get(seg);
-    }
-    public static void cItem$set( MemorySegment seg, int x) {
-        _CERT_OR_CRL_BUNDLE.cItem$VH.set(seg, x);
-    }
-    public static int cItem$get(MemorySegment seg, long index) {
-        return (int)_CERT_OR_CRL_BUNDLE.cItem$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cItem$set(MemorySegment seg, long index, int x) {
-        _CERT_OR_CRL_BUNDLE.cItem$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgItem$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgItem"));
-    public static VarHandle rgItem$VH() {
-        return _CERT_OR_CRL_BUNDLE.rgItem$VH;
-    }
-    public static MemoryAddress rgItem$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_OR_CRL_BUNDLE.rgItem$VH.get(seg);
-    }
-    public static void rgItem$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_OR_CRL_BUNDLE.rgItem$VH.set(seg, x);
-    }
-    public static MemoryAddress rgItem$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_OR_CRL_BUNDLE.rgItem$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgItem$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_OR_CRL_BUNDLE.rgItem$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cItem"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgItem")
+    ).withName("_CERT_OR_CRL_BUNDLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cItem$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cItem
+     * }
+     */
+    public static final OfInt cItem$layout() {
+        return cItem$LAYOUT;
+    }
+
+    private static final long cItem$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cItem
+     * }
+     */
+    public static final long cItem$offset() {
+        return cItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cItem
+     * }
+     */
+    public static int cItem(MemorySegment struct) {
+        return struct.get(cItem$LAYOUT, cItem$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cItem
+     * }
+     */
+    public static void cItem(MemorySegment struct, int fieldValue) {
+        struct.set(cItem$LAYOUT, cItem$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgItem$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_OR_CRL_BLOB rgItem
+     * }
+     */
+    public static final AddressLayout rgItem$layout() {
+        return rgItem$LAYOUT;
+    }
+
+    private static final long rgItem$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_OR_CRL_BLOB rgItem
+     * }
+     */
+    public static final long rgItem$offset() {
+        return rgItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_OR_CRL_BLOB rgItem
+     * }
+     */
+    public static MemorySegment rgItem(MemorySegment struct) {
+        return struct.get(rgItem$LAYOUT, rgItem$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_OR_CRL_BLOB rgItem
+     * }
+     */
+    public static void rgItem(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgItem$LAYOUT, rgItem$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

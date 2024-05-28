@@ -2,729 +2,1625 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IInternetZoneManagerVtbl {
+ *     HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall));
+ *     ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall));
+ *     HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall));
+ *     HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall));
+ *     HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall));
+ *     HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall));
+ *     HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall));
+ *     HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall));
+ *     HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall));
+ *     HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall));
+ *     HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IInternetZoneManagerVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetZoneAttributes"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetZoneAttributes"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetZoneCustomPolicy"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetZoneCustomPolicy"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetZoneActionPolicy"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetZoneActionPolicy"),
-        Constants$root.C_POINTER$LAYOUT.withName("PromptAction"),
-        Constants$root.C_POINTER$LAYOUT.withName("LogAction"),
-        Constants$root.C_POINTER$LAYOUT.withName("CreateZoneEnumerator"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetZoneAt"),
-        Constants$root.C_POINTER$LAYOUT.withName("DestroyZoneEnumerator"),
-        Constants$root.C_POINTER$LAYOUT.withName("CopyTemplatePoliciesToZone")
+    IInternetZoneManagerVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetZoneAttributes"),
+        wgl_h.C_POINTER.withName("SetZoneAttributes"),
+        wgl_h.C_POINTER.withName("GetZoneCustomPolicy"),
+        wgl_h.C_POINTER.withName("SetZoneCustomPolicy"),
+        wgl_h.C_POINTER.withName("GetZoneActionPolicy"),
+        wgl_h.C_POINTER.withName("SetZoneActionPolicy"),
+        wgl_h.C_POINTER.withName("PromptAction"),
+        wgl_h.C_POINTER.withName("LogAction"),
+        wgl_h.C_POINTER.withName("CreateZoneEnumerator"),
+        wgl_h.C_POINTER.withName("GetZoneAt"),
+        wgl_h.C_POINTER.withName("DestroyZoneEnumerator"),
+        wgl_h.C_POINTER.withName("CopyTemplatePoliciesToZone")
     ).withName("IInternetZoneManagerVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IInternetZoneManagerVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IInternetZoneManagerVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IInternetZoneManagerVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IInternetZoneManagerVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IInternetZoneManagerVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IInternetZoneManagerVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IInternetZoneManagerVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetZoneAttributes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetZoneAttributes$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.GetZoneAttributes$FUNC
-    );
-    public interface GetZoneAttributes {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(GetZoneAttributes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetZoneAttributes.class, fi, IInternetZoneManagerVtbl.GetZoneAttributes$FUNC, session);
-        }
-        static GetZoneAttributes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.GetZoneAttributes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetZoneAttributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetZoneAttributes"));
-    public static VarHandle GetZoneAttributes$VH() {
-        return IInternetZoneManagerVtbl.GetZoneAttributes$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetZoneAttributes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneAttributes$VH.get(seg);
-    }
-    public static void GetZoneAttributes$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneAttributes$VH.set(seg, x);
-    }
-    public static MemoryAddress GetZoneAttributes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneAttributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetZoneAttributes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneAttributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetZoneAttributes GetZoneAttributes (MemorySegment segment, MemorySession session) {
-        return GetZoneAttributes.ofAddress(GetZoneAttributes$get(segment), session);
-    }
-    static final FunctionDescriptor SetZoneAttributes$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle SetZoneAttributes$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.SetZoneAttributes$FUNC
-    );
-    public interface SetZoneAttributes {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(SetZoneAttributes fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetZoneAttributes.class, fi, IInternetZoneManagerVtbl.SetZoneAttributes$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetZoneManager *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static SetZoneAttributes ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.SetZoneAttributes$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle SetZoneAttributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetZoneAttributes"));
-    public static VarHandle SetZoneAttributes$VH() {
-        return IInternetZoneManagerVtbl.SetZoneAttributes$VH;
-    }
-    public static MemoryAddress SetZoneAttributes$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneAttributes$VH.get(seg);
-    }
-    public static void SetZoneAttributes$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneAttributes$VH.set(seg, x);
-    }
-    public static MemoryAddress SetZoneAttributes$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneAttributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetZoneAttributes$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneAttributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetZoneAttributes SetZoneAttributes (MemorySegment segment, MemorySession session) {
-        return SetZoneAttributes.ofAddress(SetZoneAttributes$get(segment), session);
-    }
-    static final FunctionDescriptor GetZoneCustomPolicy$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle GetZoneCustomPolicy$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.GetZoneCustomPolicy$FUNC
-    );
-    public interface GetZoneCustomPolicy {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, int _x5);
-        static MemorySegment allocate(GetZoneCustomPolicy fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetZoneCustomPolicy.class, fi, IInternetZoneManagerVtbl.GetZoneCustomPolicy$FUNC, session);
-        }
-        static GetZoneCustomPolicy ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, int __x5) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.GetZoneCustomPolicy$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle GetZoneCustomPolicy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetZoneCustomPolicy"));
-    public static VarHandle GetZoneCustomPolicy$VH() {
-        return IInternetZoneManagerVtbl.GetZoneCustomPolicy$VH;
-    }
-    public static MemoryAddress GetZoneCustomPolicy$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneCustomPolicy$VH.get(seg);
-    }
-    public static void GetZoneCustomPolicy$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneCustomPolicy$VH.set(seg, x);
-    }
-    public static MemoryAddress GetZoneCustomPolicy$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneCustomPolicy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetZoneCustomPolicy$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneCustomPolicy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetZoneCustomPolicy GetZoneCustomPolicy (MemorySegment segment, MemorySession session) {
-        return GetZoneCustomPolicy.ofAddress(GetZoneCustomPolicy$get(segment), session);
-    }
-    static final FunctionDescriptor SetZoneCustomPolicy$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle SetZoneCustomPolicy$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.SetZoneCustomPolicy$FUNC
-    );
-    public interface SetZoneCustomPolicy {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4, int _x5);
-        static MemorySegment allocate(SetZoneCustomPolicy fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetZoneCustomPolicy.class, fi, IInternetZoneManagerVtbl.SetZoneCustomPolicy$FUNC, session);
-        }
-        static SetZoneCustomPolicy ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4, int __x5) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.SetZoneCustomPolicy$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle SetZoneCustomPolicy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetZoneCustomPolicy"));
-    public static VarHandle SetZoneCustomPolicy$VH() {
-        return IInternetZoneManagerVtbl.SetZoneCustomPolicy$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress SetZoneCustomPolicy$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneCustomPolicy$VH.get(seg);
-    }
-    public static void SetZoneCustomPolicy$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneCustomPolicy$VH.set(seg, x);
-    }
-    public static MemoryAddress SetZoneCustomPolicy$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneCustomPolicy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetZoneCustomPolicy$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneCustomPolicy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetZoneCustomPolicy SetZoneCustomPolicy (MemorySegment segment, MemorySession session) {
-        return SetZoneCustomPolicy.ofAddress(SetZoneCustomPolicy$get(segment), session);
-    }
-    static final FunctionDescriptor GetZoneActionPolicy$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle GetZoneActionPolicy$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.GetZoneActionPolicy$FUNC
-    );
-    public interface GetZoneActionPolicy {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3, int _x4, int _x5);
-        static MemorySegment allocate(GetZoneActionPolicy fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetZoneActionPolicy.class, fi, IInternetZoneManagerVtbl.GetZoneActionPolicy$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static GetZoneActionPolicy ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3, int __x4, int __x5) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.GetZoneActionPolicy$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetZoneActionPolicy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetZoneActionPolicy"));
-    public static VarHandle GetZoneActionPolicy$VH() {
-        return IInternetZoneManagerVtbl.GetZoneActionPolicy$VH;
-    }
-    public static MemoryAddress GetZoneActionPolicy$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneActionPolicy$VH.get(seg);
-    }
-    public static void GetZoneActionPolicy$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneActionPolicy$VH.set(seg, x);
-    }
-    public static MemoryAddress GetZoneActionPolicy$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneActionPolicy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetZoneActionPolicy$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneActionPolicy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetZoneActionPolicy GetZoneActionPolicy (MemorySegment segment, MemorySession session) {
-        return GetZoneActionPolicy.ofAddress(GetZoneActionPolicy$get(segment), session);
-    }
-    static final FunctionDescriptor SetZoneActionPolicy$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle SetZoneActionPolicy$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.SetZoneActionPolicy$FUNC
-    );
-    public interface SetZoneActionPolicy {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3, int _x4, int _x5);
-        static MemorySegment allocate(SetZoneActionPolicy fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetZoneActionPolicy.class, fi, IInternetZoneManagerVtbl.SetZoneActionPolicy$FUNC, session);
-        }
-        static SetZoneActionPolicy ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3, int __x4, int __x5) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.SetZoneActionPolicy$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle SetZoneActionPolicy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetZoneActionPolicy"));
-    public static VarHandle SetZoneActionPolicy$VH() {
-        return IInternetZoneManagerVtbl.SetZoneActionPolicy$VH;
-    }
-    public static MemoryAddress SetZoneActionPolicy$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneActionPolicy$VH.get(seg);
-    }
-    public static void SetZoneActionPolicy$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneActionPolicy$VH.set(seg, x);
-    }
-    public static MemoryAddress SetZoneActionPolicy$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.SetZoneActionPolicy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetZoneActionPolicy$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.SetZoneActionPolicy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetZoneActionPolicy SetZoneActionPolicy (MemorySegment segment, MemorySession session) {
-        return SetZoneActionPolicy.ofAddress(SetZoneActionPolicy$get(segment), session);
-    }
-    static final FunctionDescriptor PromptAction$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle PromptAction$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.PromptAction$FUNC
-    );
-    public interface PromptAction {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, int _x5);
-        static MemorySegment allocate(PromptAction fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(PromptAction.class, fi, IInternetZoneManagerVtbl.PromptAction$FUNC, session);
-        }
-        static PromptAction ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, int __x5) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.PromptAction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle PromptAction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PromptAction"));
-    public static VarHandle PromptAction$VH() {
-        return IInternetZoneManagerVtbl.PromptAction$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress PromptAction$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.PromptAction$VH.get(seg);
-    }
-    public static void PromptAction$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.PromptAction$VH.set(seg, x);
-    }
-    public static MemoryAddress PromptAction$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.PromptAction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PromptAction$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.PromptAction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PromptAction PromptAction (MemorySegment segment, MemorySession session) {
-        return PromptAction.ofAddress(PromptAction$get(segment), session);
-    }
-    static final FunctionDescriptor LogAction$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle LogAction$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.LogAction$FUNC
-    );
-    public interface LogAction {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4);
-        static MemorySegment allocate(LogAction fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(LogAction.class, fi, IInternetZoneManagerVtbl.LogAction$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetZoneManager *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetZoneAttributes {
+
+        GetZoneAttributes() {
+            // Should not be called directly
         }
-        static LogAction ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.LogAction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetZoneAttributes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetZoneAttributes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle LogAction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogAction"));
-    public static VarHandle LogAction$VH() {
-        return IInternetZoneManagerVtbl.LogAction$VH;
-    }
-    public static MemoryAddress LogAction$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.LogAction$VH.get(seg);
-    }
-    public static void LogAction$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.LogAction$VH.set(seg, x);
-    }
-    public static MemoryAddress LogAction$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.LogAction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogAction$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.LogAction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LogAction LogAction (MemorySegment segment, MemorySession session) {
-        return LogAction.ofAddress(LogAction$get(segment), session);
-    }
-    static final FunctionDescriptor CreateZoneEnumerator$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle CreateZoneEnumerator$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.CreateZoneEnumerator$FUNC
-    );
-    public interface CreateZoneEnumerator {
+    private static final AddressLayout GetZoneAttributes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetZoneAttributes"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3);
-        static MemorySegment allocate(CreateZoneEnumerator fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(CreateZoneEnumerator.class, fi, IInternetZoneManagerVtbl.CreateZoneEnumerator$FUNC, session);
-        }
-        static CreateZoneEnumerator ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.CreateZoneEnumerator$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetZoneAttributes$layout() {
+        return GetZoneAttributes$LAYOUT;
     }
 
-    static final VarHandle CreateZoneEnumerator$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CreateZoneEnumerator"));
-    public static VarHandle CreateZoneEnumerator$VH() {
-        return IInternetZoneManagerVtbl.CreateZoneEnumerator$VH;
-    }
-    public static MemoryAddress CreateZoneEnumerator$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.CreateZoneEnumerator$VH.get(seg);
-    }
-    public static void CreateZoneEnumerator$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.CreateZoneEnumerator$VH.set(seg, x);
-    }
-    public static MemoryAddress CreateZoneEnumerator$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.CreateZoneEnumerator$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CreateZoneEnumerator$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.CreateZoneEnumerator$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static CreateZoneEnumerator CreateZoneEnumerator (MemorySegment segment, MemorySession session) {
-        return CreateZoneEnumerator.ofAddress(CreateZoneEnumerator$get(segment), session);
-    }
-    static final FunctionDescriptor GetZoneAt$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetZoneAt$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.GetZoneAt$FUNC
-    );
-    public interface GetZoneAt {
+    private static final long GetZoneAttributes$OFFSET = 24;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(GetZoneAt fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetZoneAt.class, fi, IInternetZoneManagerVtbl.GetZoneAt$FUNC, session);
-        }
-        static GetZoneAt ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.GetZoneAt$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetZoneAttributes$offset() {
+        return GetZoneAttributes$OFFSET;
     }
 
-    static final VarHandle GetZoneAt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetZoneAt"));
-    public static VarHandle GetZoneAt$VH() {
-        return IInternetZoneManagerVtbl.GetZoneAt$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetZoneAttributes(MemorySegment struct) {
+        return struct.get(GetZoneAttributes$LAYOUT, GetZoneAttributes$OFFSET);
     }
-    public static MemoryAddress GetZoneAt$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneAt$VH.get(seg);
-    }
-    public static void GetZoneAt$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneAt$VH.set(seg, x);
-    }
-    public static MemoryAddress GetZoneAt$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.GetZoneAt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetZoneAt$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.GetZoneAt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetZoneAt GetZoneAt (MemorySegment segment, MemorySession session) {
-        return GetZoneAt.ofAddress(GetZoneAt$get(segment), session);
-    }
-    static final FunctionDescriptor DestroyZoneEnumerator$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle DestroyZoneEnumerator$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.DestroyZoneEnumerator$FUNC
-    );
-    public interface DestroyZoneEnumerator {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(DestroyZoneEnumerator fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(DestroyZoneEnumerator.class, fi, IInternetZoneManagerVtbl.DestroyZoneEnumerator$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetZoneAttributes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetZoneAttributes$LAYOUT, GetZoneAttributes$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static class SetZoneAttributes {
+
+        SetZoneAttributes() {
+            // Should not be called directly
         }
-        static DestroyZoneEnumerator ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.DestroyZoneEnumerator$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetZoneAttributes.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetZoneAttributes.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle DestroyZoneEnumerator$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DestroyZoneEnumerator"));
-    public static VarHandle DestroyZoneEnumerator$VH() {
-        return IInternetZoneManagerVtbl.DestroyZoneEnumerator$VH;
-    }
-    public static MemoryAddress DestroyZoneEnumerator$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.DestroyZoneEnumerator$VH.get(seg);
-    }
-    public static void DestroyZoneEnumerator$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.DestroyZoneEnumerator$VH.set(seg, x);
-    }
-    public static MemoryAddress DestroyZoneEnumerator$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.DestroyZoneEnumerator$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DestroyZoneEnumerator$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.DestroyZoneEnumerator$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static DestroyZoneEnumerator DestroyZoneEnumerator (MemorySegment segment, MemorySession session) {
-        return DestroyZoneEnumerator.ofAddress(DestroyZoneEnumerator$get(segment), session);
-    }
-    static final FunctionDescriptor CopyTemplatePoliciesToZone$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle CopyTemplatePoliciesToZone$MH = RuntimeHelper.downcallHandle(
-        IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$FUNC
-    );
-    public interface CopyTemplatePoliciesToZone {
+    private static final AddressLayout SetZoneAttributes$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetZoneAttributes"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, int _x3);
-        static MemorySegment allocate(CopyTemplatePoliciesToZone fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(CopyTemplatePoliciesToZone.class, fi, IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$FUNC, session);
-        }
-        static CopyTemplatePoliciesToZone ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, int __x3) -> {
-                try {
-                    return (int)IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetZoneAttributes$layout() {
+        return SetZoneAttributes$LAYOUT;
     }
 
-    static final VarHandle CopyTemplatePoliciesToZone$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CopyTemplatePoliciesToZone"));
-    public static VarHandle CopyTemplatePoliciesToZone$VH() {
-        return IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$VH;
+    private static final long SetZoneAttributes$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetZoneAttributes$offset() {
+        return SetZoneAttributes$OFFSET;
     }
-    public static MemoryAddress CopyTemplatePoliciesToZone$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetZoneAttributes(MemorySegment struct) {
+        return struct.get(SetZoneAttributes$LAYOUT, SetZoneAttributes$OFFSET);
     }
-    public static void CopyTemplatePoliciesToZone$set( MemorySegment seg, MemoryAddress x) {
-        IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneAttributes)(IInternetZoneManager *, DWORD, ZONEATTRIBUTES *) __attribute__((stdcall))
+     * }
+     */
+    public static void SetZoneAttributes(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetZoneAttributes$LAYOUT, SetZoneAttributes$OFFSET, fieldValue);
     }
-    public static MemoryAddress CopyTemplatePoliciesToZone$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static class GetZoneCustomPolicy {
+
+        GetZoneCustomPolicy() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetZoneCustomPolicy.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetZoneCustomPolicy.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void CopyTemplatePoliciesToZone$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetZoneManagerVtbl.CopyTemplatePoliciesToZone$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout GetZoneCustomPolicy$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetZoneCustomPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetZoneCustomPolicy$layout() {
+        return GetZoneCustomPolicy$LAYOUT;
     }
-    public static CopyTemplatePoliciesToZone CopyTemplatePoliciesToZone (MemorySegment segment, MemorySession session) {
-        return CopyTemplatePoliciesToZone.ofAddress(CopyTemplatePoliciesToZone$get(segment), session);
+
+    private static final long GetZoneCustomPolicy$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetZoneCustomPolicy$offset() {
+        return GetZoneCustomPolicy$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetZoneCustomPolicy(MemorySegment struct) {
+        return struct.get(GetZoneCustomPolicy$LAYOUT, GetZoneCustomPolicy$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE **, DWORD *, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static void GetZoneCustomPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetZoneCustomPolicy$LAYOUT, GetZoneCustomPolicy$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static class SetZoneCustomPolicy {
+
+        SetZoneCustomPolicy() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetZoneCustomPolicy.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetZoneCustomPolicy.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4, int _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetZoneCustomPolicy$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetZoneCustomPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetZoneCustomPolicy$layout() {
+        return SetZoneCustomPolicy$LAYOUT;
+    }
+
+    private static final long SetZoneCustomPolicy$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetZoneCustomPolicy$offset() {
+        return SetZoneCustomPolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetZoneCustomPolicy(MemorySegment struct) {
+        return struct.get(SetZoneCustomPolicy$LAYOUT, SetZoneCustomPolicy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneCustomPolicy)(IInternetZoneManager *, DWORD, const GUID *const, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static void SetZoneCustomPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetZoneCustomPolicy$LAYOUT, SetZoneCustomPolicy$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static class GetZoneActionPolicy {
+
+        GetZoneActionPolicy() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3, int _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetZoneActionPolicy.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetZoneActionPolicy.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3, int _x4, int _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetZoneActionPolicy$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetZoneActionPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetZoneActionPolicy$layout() {
+        return GetZoneActionPolicy$LAYOUT;
+    }
+
+    private static final long GetZoneActionPolicy$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetZoneActionPolicy$offset() {
+        return GetZoneActionPolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetZoneActionPolicy(MemorySegment struct) {
+        return struct.get(GetZoneActionPolicy$LAYOUT, GetZoneActionPolicy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static void GetZoneActionPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetZoneActionPolicy$LAYOUT, GetZoneActionPolicy$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static class SetZoneActionPolicy {
+
+        SetZoneActionPolicy() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3, int _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetZoneActionPolicy.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetZoneActionPolicy.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3, int _x4, int _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetZoneActionPolicy$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetZoneActionPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetZoneActionPolicy$layout() {
+        return SetZoneActionPolicy$LAYOUT;
+    }
+
+    private static final long SetZoneActionPolicy$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetZoneActionPolicy$offset() {
+        return SetZoneActionPolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetZoneActionPolicy(MemorySegment struct) {
+        return struct.get(SetZoneActionPolicy$LAYOUT, SetZoneActionPolicy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneActionPolicy)(IInternetZoneManager *, DWORD, DWORD, BYTE *, DWORD, URLZONEREG) __attribute__((stdcall))
+     * }
+     */
+    public static void SetZoneActionPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetZoneActionPolicy$LAYOUT, SetZoneActionPolicy$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class PromptAction {
+
+        PromptAction() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(PromptAction.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(PromptAction.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout PromptAction$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PromptAction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout PromptAction$layout() {
+        return PromptAction$LAYOUT;
+    }
+
+    private static final long PromptAction$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long PromptAction$offset() {
+        return PromptAction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment PromptAction(MemorySegment struct) {
+        return struct.get(PromptAction$LAYOUT, PromptAction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*PromptAction)(IInternetZoneManager *, DWORD, HWND, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void PromptAction(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PromptAction$LAYOUT, PromptAction$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class LogAction {
+
+        LogAction() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(LogAction.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(LogAction.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, MemorySegment _x3, int _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout LogAction$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LogAction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout LogAction$layout() {
+        return LogAction$LAYOUT;
+    }
+
+    private static final long LogAction$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long LogAction$offset() {
+        return LogAction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment LogAction(MemorySegment struct) {
+        return struct.get(LogAction$LAYOUT, LogAction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LogAction)(IInternetZoneManager *, DWORD, LPCWSTR, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void LogAction(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LogAction$LAYOUT, LogAction$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class CreateZoneEnumerator {
+
+        CreateZoneEnumerator() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(CreateZoneEnumerator.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(CreateZoneEnumerator.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout CreateZoneEnumerator$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CreateZoneEnumerator"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout CreateZoneEnumerator$layout() {
+        return CreateZoneEnumerator$LAYOUT;
+    }
+
+    private static final long CreateZoneEnumerator$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long CreateZoneEnumerator$offset() {
+        return CreateZoneEnumerator$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment CreateZoneEnumerator(MemorySegment struct) {
+        return struct.get(CreateZoneEnumerator$LAYOUT, CreateZoneEnumerator$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CreateZoneEnumerator)(IInternetZoneManager *, DWORD *, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void CreateZoneEnumerator(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CreateZoneEnumerator$LAYOUT, CreateZoneEnumerator$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetZoneAt {
+
+        GetZoneAt() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetZoneAt.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetZoneAt.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetZoneAt$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetZoneAt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetZoneAt$layout() {
+        return GetZoneAt$LAYOUT;
+    }
+
+    private static final long GetZoneAt$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetZoneAt$offset() {
+        return GetZoneAt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetZoneAt(MemorySegment struct) {
+        return struct.get(GetZoneAt$LAYOUT, GetZoneAt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneAt)(IInternetZoneManager *, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetZoneAt(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetZoneAt$LAYOUT, GetZoneAt$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class DestroyZoneEnumerator {
+
+        DestroyZoneEnumerator() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(DestroyZoneEnumerator.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(DestroyZoneEnumerator.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout DestroyZoneEnumerator$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DestroyZoneEnumerator"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout DestroyZoneEnumerator$layout() {
+        return DestroyZoneEnumerator$LAYOUT;
+    }
+
+    private static final long DestroyZoneEnumerator$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long DestroyZoneEnumerator$offset() {
+        return DestroyZoneEnumerator$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment DestroyZoneEnumerator(MemorySegment struct) {
+        return struct.get(DestroyZoneEnumerator$LAYOUT, DestroyZoneEnumerator$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DestroyZoneEnumerator)(IInternetZoneManager *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void DestroyZoneEnumerator(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DestroyZoneEnumerator$LAYOUT, DestroyZoneEnumerator$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class CopyTemplatePoliciesToZone {
+
+        CopyTemplatePoliciesToZone() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(CopyTemplatePoliciesToZone.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(CopyTemplatePoliciesToZone.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout CopyTemplatePoliciesToZone$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CopyTemplatePoliciesToZone"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout CopyTemplatePoliciesToZone$layout() {
+        return CopyTemplatePoliciesToZone$LAYOUT;
+    }
+
+    private static final long CopyTemplatePoliciesToZone$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long CopyTemplatePoliciesToZone$offset() {
+        return CopyTemplatePoliciesToZone$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment CopyTemplatePoliciesToZone(MemorySegment struct) {
+        return struct.get(CopyTemplatePoliciesToZone$LAYOUT, CopyTemplatePoliciesToZone$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CopyTemplatePoliciesToZone)(IInternetZoneManager *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void CopyTemplatePoliciesToZone(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CopyTemplatePoliciesToZone$LAYOUT, CopyTemplatePoliciesToZone$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

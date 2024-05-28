@@ -2,122 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union {
+ *     USN_RECORD_COMMON_HEADER Header;
+ *     USN_RECORD_V2 V2;
+ *     USN_RECORD_V3 V3;
+ *     USN_RECORD_V4 V4;
+ * }
+ * }
+ */
 public class USN_RECORD_UNION {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-        ).withName("Header"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("MinorVersion"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("FileReferenceNumber"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("ParentFileReferenceNumber"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Usn"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("TimeStamp"),
-            Constants$root.C_LONG$LAYOUT.withName("Reason"),
-            Constants$root.C_LONG$LAYOUT.withName("SourceInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("SecurityId"),
-            Constants$root.C_LONG$LAYOUT.withName("FileAttributes"),
-            Constants$root.C_SHORT$LAYOUT.withName("FileNameLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("FileNameOffset"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("FileName"),
-            MemoryLayout.paddingLayout(16)
-        ).withName("V2"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("MinorVersion"),
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-            ).withName("FileReferenceNumber"),
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-            ).withName("ParentFileReferenceNumber"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Usn"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("TimeStamp"),
-            Constants$root.C_LONG$LAYOUT.withName("Reason"),
-            Constants$root.C_LONG$LAYOUT.withName("SourceInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("SecurityId"),
-            Constants$root.C_LONG$LAYOUT.withName("FileAttributes"),
-            Constants$root.C_SHORT$LAYOUT.withName("FileNameLength"),
-            Constants$root.C_SHORT$LAYOUT.withName("FileNameOffset"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("FileName"),
-            MemoryLayout.paddingLayout(16)
-        ).withName("V3"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-                Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-                Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-            ).withName("Header"),
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-            ).withName("FileReferenceNumber"),
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Identifier")
-            ).withName("ParentFileReferenceNumber"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Usn"),
-            Constants$root.C_LONG$LAYOUT.withName("Reason"),
-            Constants$root.C_LONG$LAYOUT.withName("SourceInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("RemainingExtents"),
-            Constants$root.C_SHORT$LAYOUT.withName("NumberOfExtents"),
-            Constants$root.C_SHORT$LAYOUT.withName("ExtentSize"),
-            MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Length")
-            )).withName("Extents")
-        ).withName("V4")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return USN_RECORD_UNION.$union$LAYOUT;
+    USN_RECORD_UNION() {
+        // Should not be called directly
     }
-    public static MemorySegment Header$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment V2$slice(MemorySegment seg) {
-        return seg.asSlice(0, 64);
-    }
-    public static MemorySegment V3$slice(MemorySegment seg) {
-        return seg.asSlice(0, 80);
-    }
-    public static MemorySegment V4$slice(MemorySegment seg) {
-        return seg.asSlice(0, 80);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+        USN_RECORD_COMMON_HEADER.layout().withName("Header"),
+        USN_RECORD_V2.layout().withName("V2"),
+        USN_RECORD_V3.layout().withName("V3"),
+        USN_RECORD_V4.layout().withName("V4")
+    ).withName("$anon$10921:9");
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Header$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static final GroupLayout Header$layout() {
+        return Header$LAYOUT;
+    }
+
+    private static final long Header$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static final long Header$offset() {
+        return Header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static MemorySegment Header(MemorySegment union) {
+        return union.asSlice(Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_COMMON_HEADER Header
+     * }
+     */
+    public static void Header(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout V2$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("V2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V2 V2
+     * }
+     */
+    public static final GroupLayout V2$layout() {
+        return V2$LAYOUT;
+    }
+
+    private static final long V2$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V2 V2
+     * }
+     */
+    public static final long V2$offset() {
+        return V2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V2 V2
+     * }
+     */
+    public static MemorySegment V2(MemorySegment union) {
+        return union.asSlice(V2$OFFSET, V2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V2 V2
+     * }
+     */
+    public static void V2(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, V2$OFFSET, V2$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout V3$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("V3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V3 V3
+     * }
+     */
+    public static final GroupLayout V3$layout() {
+        return V3$LAYOUT;
+    }
+
+    private static final long V3$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V3 V3
+     * }
+     */
+    public static final long V3$offset() {
+        return V3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V3 V3
+     * }
+     */
+    public static MemorySegment V3(MemorySegment union) {
+        return union.asSlice(V3$OFFSET, V3$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V3 V3
+     * }
+     */
+    public static void V3(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, V3$OFFSET, V3$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout V4$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("V4"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V4 V4
+     * }
+     */
+    public static final GroupLayout V4$layout() {
+        return V4$LAYOUT;
+    }
+
+    private static final long V4$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V4 V4
+     * }
+     */
+    public static final long V4$offset() {
+        return V4$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V4 V4
+     * }
+     */
+    public static MemorySegment V4(MemorySegment union) {
+        return union.asSlice(V4$OFFSET, V4$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USN_RECORD_V4 V4
+     * }
+     */
+    public static void V4(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, V4$OFFSET, V4$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

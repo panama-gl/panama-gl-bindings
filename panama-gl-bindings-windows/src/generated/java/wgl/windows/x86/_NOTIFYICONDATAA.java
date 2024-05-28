@@ -2,253 +2,921 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NOTIFYICONDATAA {
+ *     DWORD cbSize;
+ *     HWND hWnd;
+ *     UINT uID;
+ *     UINT uFlags;
+ *     UINT uCallbackMessage;
+ *     HICON hIcon;
+ *     CHAR szTip[128];
+ *     DWORD dwState;
+ *     DWORD dwStateMask;
+ *     CHAR szInfo[256];
+ *     union {
+ *         UINT uTimeout;
+ *         UINT uVersion;
+ *     };
+ *     CHAR szInfoTitle[64];
+ *     DWORD dwInfoFlags;
+ *     GUID guidItem;
+ *     HICON hBalloonIcon;
+ * }
+ * }
+ */
 public class _NOTIFYICONDATAA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hWnd"),
-        Constants$root.C_LONG$LAYOUT.withName("uID"),
-        Constants$root.C_LONG$LAYOUT.withName("uFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("uCallbackMessage"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hIcon"),
-        MemoryLayout.sequenceLayout(128, Constants$root.C_CHAR$LAYOUT).withName("szTip"),
-        Constants$root.C_LONG$LAYOUT.withName("dwState"),
-        Constants$root.C_LONG$LAYOUT.withName("dwStateMask"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_CHAR$LAYOUT).withName("szInfo"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("uTimeout"),
-            Constants$root.C_LONG$LAYOUT.withName("uVersion")
-        ).withName("$anon$0"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_CHAR$LAYOUT).withName("szInfoTitle"),
-        Constants$root.C_LONG$LAYOUT.withName("dwInfoFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("guidItem"),
-        Constants$root.C_POINTER$LAYOUT.withName("hBalloonIcon")
-    ).withName("_NOTIFYICONDATAA");
-    public static MemoryLayout $LAYOUT() {
-        return _NOTIFYICONDATAA.$struct$LAYOUT;
+    _NOTIFYICONDATAA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _NOTIFYICONDATAA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hWnd$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hWnd"));
-    public static VarHandle hWnd$VH() {
-        return _NOTIFYICONDATAA.hWnd$VH;
-    }
-    public static MemoryAddress hWnd$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hWnd$VH.get(seg);
-    }
-    public static void hWnd$set( MemorySegment seg, MemoryAddress x) {
-        _NOTIFYICONDATAA.hWnd$VH.set(seg, x);
-    }
-    public static MemoryAddress hWnd$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hWnd$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hWnd$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NOTIFYICONDATAA.hWnd$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uID"));
-    public static VarHandle uID$VH() {
-        return _NOTIFYICONDATAA.uID$VH;
-    }
-    public static int uID$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.uID$VH.get(seg);
-    }
-    public static void uID$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.uID$VH.set(seg, x);
-    }
-    public static int uID$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.uID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uID$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.uID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uFlags"));
-    public static VarHandle uFlags$VH() {
-        return _NOTIFYICONDATAA.uFlags$VH;
-    }
-    public static int uFlags$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.uFlags$VH.get(seg);
-    }
-    public static void uFlags$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.uFlags$VH.set(seg, x);
-    }
-    public static int uFlags$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.uFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uFlags$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.uFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uCallbackMessage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uCallbackMessage"));
-    public static VarHandle uCallbackMessage$VH() {
-        return _NOTIFYICONDATAA.uCallbackMessage$VH;
-    }
-    public static int uCallbackMessage$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.uCallbackMessage$VH.get(seg);
-    }
-    public static void uCallbackMessage$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.uCallbackMessage$VH.set(seg, x);
-    }
-    public static int uCallbackMessage$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.uCallbackMessage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uCallbackMessage$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.uCallbackMessage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hIcon$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hIcon"));
-    public static VarHandle hIcon$VH() {
-        return _NOTIFYICONDATAA.hIcon$VH;
-    }
-    public static MemoryAddress hIcon$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hIcon$VH.get(seg);
-    }
-    public static void hIcon$set( MemorySegment seg, MemoryAddress x) {
-        _NOTIFYICONDATAA.hIcon$VH.set(seg, x);
-    }
-    public static MemoryAddress hIcon$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hIcon$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hIcon$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NOTIFYICONDATAA.hIcon$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szTip$slice(MemorySegment seg) {
-        return seg.asSlice(40, 128);
-    }
-    static final VarHandle dwState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwState"));
-    public static VarHandle dwState$VH() {
-        return _NOTIFYICONDATAA.dwState$VH;
-    }
-    public static int dwState$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.dwState$VH.get(seg);
-    }
-    public static void dwState$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.dwState$VH.set(seg, x);
-    }
-    public static int dwState$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.dwState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwState$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.dwState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwStateMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStateMask"));
-    public static VarHandle dwStateMask$VH() {
-        return _NOTIFYICONDATAA.dwStateMask$VH;
-    }
-    public static int dwStateMask$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.dwStateMask$VH.get(seg);
-    }
-    public static void dwStateMask$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.dwStateMask$VH.set(seg, x);
-    }
-    public static int dwStateMask$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.dwStateMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStateMask$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.dwStateMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szInfo$slice(MemorySegment seg) {
-        return seg.asSlice(176, 256);
-    }
-    static final VarHandle uTimeout$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("uTimeout"));
-    public static VarHandle uTimeout$VH() {
-        return _NOTIFYICONDATAA.uTimeout$VH;
-    }
-    public static int uTimeout$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.uTimeout$VH.get(seg);
-    }
-    public static void uTimeout$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.uTimeout$VH.set(seg, x);
-    }
-    public static int uTimeout$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.uTimeout$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uTimeout$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.uTimeout$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("uVersion"));
-    public static VarHandle uVersion$VH() {
-        return _NOTIFYICONDATAA.uVersion$VH;
-    }
-    public static int uVersion$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.uVersion$VH.get(seg);
-    }
-    public static void uVersion$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.uVersion$VH.set(seg, x);
-    }
-    public static int uVersion$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.uVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uVersion$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.uVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szInfoTitle$slice(MemorySegment seg) {
-        return seg.asSlice(436, 64);
-    }
-    static final VarHandle dwInfoFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwInfoFlags"));
-    public static VarHandle dwInfoFlags$VH() {
-        return _NOTIFYICONDATAA.dwInfoFlags$VH;
-    }
-    public static int dwInfoFlags$get(MemorySegment seg) {
-        return (int)_NOTIFYICONDATAA.dwInfoFlags$VH.get(seg);
-    }
-    public static void dwInfoFlags$set( MemorySegment seg, int x) {
-        _NOTIFYICONDATAA.dwInfoFlags$VH.set(seg, x);
-    }
-    public static int dwInfoFlags$get(MemorySegment seg, long index) {
-        return (int)_NOTIFYICONDATAA.dwInfoFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwInfoFlags$set(MemorySegment seg, long index, int x) {
-        _NOTIFYICONDATAA.dwInfoFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment guidItem$slice(MemorySegment seg) {
-        return seg.asSlice(504, 16);
-    }
-    static final VarHandle hBalloonIcon$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hBalloonIcon"));
-    public static VarHandle hBalloonIcon$VH() {
-        return _NOTIFYICONDATAA.hBalloonIcon$VH;
-    }
-    public static MemoryAddress hBalloonIcon$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hBalloonIcon$VH.get(seg);
-    }
-    public static void hBalloonIcon$set( MemorySegment seg, MemoryAddress x) {
-        _NOTIFYICONDATAA.hBalloonIcon$VH.set(seg, x);
-    }
-    public static MemoryAddress hBalloonIcon$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NOTIFYICONDATAA.hBalloonIcon$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hBalloonIcon$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NOTIFYICONDATAA.hBalloonIcon$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hWnd"),
+        wgl_h.C_INT.withName("uID"),
+        wgl_h.C_INT.withName("uFlags"),
+        wgl_h.C_INT.withName("uCallbackMessage"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hIcon"),
+        MemoryLayout.sequenceLayout(128, wgl_h.C_CHAR).withName("szTip"),
+        wgl_h.C_LONG.withName("dwState"),
+        wgl_h.C_LONG.withName("dwStateMask"),
+        MemoryLayout.sequenceLayout(256, wgl_h.C_CHAR).withName("szInfo"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_INT.withName("uTimeout"),
+            wgl_h.C_INT.withName("uVersion")
+        ).withName("$anon$1026:5"),
+        MemoryLayout.sequenceLayout(64, wgl_h.C_CHAR).withName("szInfoTitle"),
+        wgl_h.C_LONG.withName("dwInfoFlags"),
+        _GUID.layout().withName("guidItem"),
+        wgl_h.C_POINTER.withName("hBalloonIcon")
+    ).withName("_NOTIFYICONDATAA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hWnd$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hWnd"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hWnd
+     * }
+     */
+    public static final AddressLayout hWnd$layout() {
+        return hWnd$LAYOUT;
+    }
+
+    private static final long hWnd$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hWnd
+     * }
+     */
+    public static final long hWnd$offset() {
+        return hWnd$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hWnd
+     * }
+     */
+    public static MemorySegment hWnd(MemorySegment struct) {
+        return struct.get(hWnd$LAYOUT, hWnd$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hWnd
+     * }
+     */
+    public static void hWnd(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hWnd$LAYOUT, hWnd$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uID
+     * }
+     */
+    public static final OfInt uID$layout() {
+        return uID$LAYOUT;
+    }
+
+    private static final long uID$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uID
+     * }
+     */
+    public static final long uID$offset() {
+        return uID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uID
+     * }
+     */
+    public static int uID(MemorySegment struct) {
+        return struct.get(uID$LAYOUT, uID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uID
+     * }
+     */
+    public static void uID(MemorySegment struct, int fieldValue) {
+        struct.set(uID$LAYOUT, uID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uFlags
+     * }
+     */
+    public static final OfInt uFlags$layout() {
+        return uFlags$LAYOUT;
+    }
+
+    private static final long uFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uFlags
+     * }
+     */
+    public static final long uFlags$offset() {
+        return uFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uFlags
+     * }
+     */
+    public static int uFlags(MemorySegment struct) {
+        return struct.get(uFlags$LAYOUT, uFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uFlags
+     * }
+     */
+    public static void uFlags(MemorySegment struct, int fieldValue) {
+        struct.set(uFlags$LAYOUT, uFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uCallbackMessage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uCallbackMessage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uCallbackMessage
+     * }
+     */
+    public static final OfInt uCallbackMessage$layout() {
+        return uCallbackMessage$LAYOUT;
+    }
+
+    private static final long uCallbackMessage$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uCallbackMessage
+     * }
+     */
+    public static final long uCallbackMessage$offset() {
+        return uCallbackMessage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uCallbackMessage
+     * }
+     */
+    public static int uCallbackMessage(MemorySegment struct) {
+        return struct.get(uCallbackMessage$LAYOUT, uCallbackMessage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uCallbackMessage
+     * }
+     */
+    public static void uCallbackMessage(MemorySegment struct, int fieldValue) {
+        struct.set(uCallbackMessage$LAYOUT, uCallbackMessage$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hIcon$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hIcon"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HICON hIcon
+     * }
+     */
+    public static final AddressLayout hIcon$layout() {
+        return hIcon$LAYOUT;
+    }
+
+    private static final long hIcon$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HICON hIcon
+     * }
+     */
+    public static final long hIcon$offset() {
+        return hIcon$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HICON hIcon
+     * }
+     */
+    public static MemorySegment hIcon(MemorySegment struct) {
+        return struct.get(hIcon$LAYOUT, hIcon$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HICON hIcon
+     * }
+     */
+    public static void hIcon(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hIcon$LAYOUT, hIcon$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szTip$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szTip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static final SequenceLayout szTip$layout() {
+        return szTip$LAYOUT;
+    }
+
+    private static final long szTip$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static final long szTip$offset() {
+        return szTip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static MemorySegment szTip(MemorySegment struct) {
+        return struct.asSlice(szTip$OFFSET, szTip$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static void szTip(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szTip$OFFSET, szTip$LAYOUT.byteSize());
+    }
+
+    private static long[] szTip$DIMS = { 128 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static long[] szTip$dimensions() {
+        return szTip$DIMS;
+    }
+    private static final VarHandle szTip$ELEM_HANDLE = szTip$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static byte szTip(MemorySegment struct, long index0) {
+        return (byte)szTip$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szTip[128]
+     * }
+     */
+    public static void szTip(MemorySegment struct, long index0, byte fieldValue) {
+        szTip$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwState
+     * }
+     */
+    public static final OfInt dwState$layout() {
+        return dwState$LAYOUT;
+    }
+
+    private static final long dwState$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwState
+     * }
+     */
+    public static final long dwState$offset() {
+        return dwState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwState
+     * }
+     */
+    public static int dwState(MemorySegment struct) {
+        return struct.get(dwState$LAYOUT, dwState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwState
+     * }
+     */
+    public static void dwState(MemorySegment struct, int fieldValue) {
+        struct.set(dwState$LAYOUT, dwState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwStateMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStateMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStateMask
+     * }
+     */
+    public static final OfInt dwStateMask$layout() {
+        return dwStateMask$LAYOUT;
+    }
+
+    private static final long dwStateMask$OFFSET = 172;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStateMask
+     * }
+     */
+    public static final long dwStateMask$offset() {
+        return dwStateMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStateMask
+     * }
+     */
+    public static int dwStateMask(MemorySegment struct) {
+        return struct.get(dwStateMask$LAYOUT, dwStateMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStateMask
+     * }
+     */
+    public static void dwStateMask(MemorySegment struct, int fieldValue) {
+        struct.set(dwStateMask$LAYOUT, dwStateMask$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static final SequenceLayout szInfo$layout() {
+        return szInfo$LAYOUT;
+    }
+
+    private static final long szInfo$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static final long szInfo$offset() {
+        return szInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static MemorySegment szInfo(MemorySegment struct) {
+        return struct.asSlice(szInfo$OFFSET, szInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static void szInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szInfo$OFFSET, szInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] szInfo$DIMS = { 256 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static long[] szInfo$dimensions() {
+        return szInfo$DIMS;
+    }
+    private static final VarHandle szInfo$ELEM_HANDLE = szInfo$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static byte szInfo(MemorySegment struct, long index0) {
+        return (byte)szInfo$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szInfo[256]
+     * }
+     */
+    public static void szInfo(MemorySegment struct, long index0, byte fieldValue) {
+        szInfo$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt uTimeout$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$1026:5"), groupElement("uTimeout"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uTimeout
+     * }
+     */
+    public static final OfInt uTimeout$layout() {
+        return uTimeout$LAYOUT;
+    }
+
+    private static final long uTimeout$OFFSET = 432;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uTimeout
+     * }
+     */
+    public static final long uTimeout$offset() {
+        return uTimeout$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uTimeout
+     * }
+     */
+    public static int uTimeout(MemorySegment struct) {
+        return struct.get(uTimeout$LAYOUT, uTimeout$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uTimeout
+     * }
+     */
+    public static void uTimeout(MemorySegment struct, int fieldValue) {
+        struct.set(uTimeout$LAYOUT, uTimeout$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$1026:5"), groupElement("uVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uVersion
+     * }
+     */
+    public static final OfInt uVersion$layout() {
+        return uVersion$LAYOUT;
+    }
+
+    private static final long uVersion$OFFSET = 432;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uVersion
+     * }
+     */
+    public static final long uVersion$offset() {
+        return uVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uVersion
+     * }
+     */
+    public static int uVersion(MemorySegment struct) {
+        return struct.get(uVersion$LAYOUT, uVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uVersion
+     * }
+     */
+    public static void uVersion(MemorySegment struct, int fieldValue) {
+        struct.set(uVersion$LAYOUT, uVersion$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szInfoTitle$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szInfoTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static final SequenceLayout szInfoTitle$layout() {
+        return szInfoTitle$LAYOUT;
+    }
+
+    private static final long szInfoTitle$OFFSET = 436;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static final long szInfoTitle$offset() {
+        return szInfoTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static MemorySegment szInfoTitle(MemorySegment struct) {
+        return struct.asSlice(szInfoTitle$OFFSET, szInfoTitle$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static void szInfoTitle(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szInfoTitle$OFFSET, szInfoTitle$LAYOUT.byteSize());
+    }
+
+    private static long[] szInfoTitle$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static long[] szInfoTitle$dimensions() {
+        return szInfoTitle$DIMS;
+    }
+    private static final VarHandle szInfoTitle$ELEM_HANDLE = szInfoTitle$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static byte szInfoTitle(MemorySegment struct, long index0) {
+        return (byte)szInfoTitle$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szInfoTitle[64]
+     * }
+     */
+    public static void szInfoTitle(MemorySegment struct, long index0, byte fieldValue) {
+        szInfoTitle$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwInfoFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwInfoFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoFlags
+     * }
+     */
+    public static final OfInt dwInfoFlags$layout() {
+        return dwInfoFlags$LAYOUT;
+    }
+
+    private static final long dwInfoFlags$OFFSET = 500;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoFlags
+     * }
+     */
+    public static final long dwInfoFlags$offset() {
+        return dwInfoFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoFlags
+     * }
+     */
+    public static int dwInfoFlags(MemorySegment struct) {
+        return struct.get(dwInfoFlags$LAYOUT, dwInfoFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoFlags
+     * }
+     */
+    public static void dwInfoFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwInfoFlags$LAYOUT, dwInfoFlags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout guidItem$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("guidItem"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID guidItem
+     * }
+     */
+    public static final GroupLayout guidItem$layout() {
+        return guidItem$LAYOUT;
+    }
+
+    private static final long guidItem$OFFSET = 504;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID guidItem
+     * }
+     */
+    public static final long guidItem$offset() {
+        return guidItem$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID guidItem
+     * }
+     */
+    public static MemorySegment guidItem(MemorySegment struct) {
+        return struct.asSlice(guidItem$OFFSET, guidItem$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID guidItem
+     * }
+     */
+    public static void guidItem(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, guidItem$OFFSET, guidItem$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout hBalloonIcon$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hBalloonIcon"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HICON hBalloonIcon
+     * }
+     */
+    public static final AddressLayout hBalloonIcon$layout() {
+        return hBalloonIcon$LAYOUT;
+    }
+
+    private static final long hBalloonIcon$OFFSET = 520;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HICON hBalloonIcon
+     * }
+     */
+    public static final long hBalloonIcon$offset() {
+        return hBalloonIcon$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HICON hBalloonIcon
+     * }
+     */
+    public static MemorySegment hBalloonIcon(MemorySegment struct) {
+        return struct.get(hBalloonIcon$LAYOUT, hBalloonIcon$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HICON hBalloonIcon
+     * }
+     */
+    public static void hBalloonIcon(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hBalloonIcon$LAYOUT, hBalloonIcon$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

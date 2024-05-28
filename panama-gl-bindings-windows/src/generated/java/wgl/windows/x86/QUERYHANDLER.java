@@ -2,27 +2,72 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface QUERYHANDLER {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress keycontext, java.lang.foreign.MemoryAddress val_list, int num_vals, java.lang.foreign.MemoryAddress outputbuffer, java.lang.foreign.MemoryAddress total_outlen, int input_blen);
-    static MemorySegment allocate(QUERYHANDLER fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(QUERYHANDLER.class, fi, constants$580.QUERYHANDLER$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef DWORD (QUERYHANDLER)(LPVOID, PVALCONTEXT, DWORD, LPVOID, DWORD *, DWORD) __attribute__((cdecl))
+ * }
+ */
+public class QUERYHANDLER {
+
+    QUERYHANDLER() {
+        // Should not be called directly
     }
-    static QUERYHANDLER ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _keycontext, java.lang.foreign.MemoryAddress _val_list, int _num_vals, java.lang.foreign.MemoryAddress _outputbuffer, java.lang.foreign.MemoryAddress _total_outlen, int _input_blen) -> {
-            try {
-                return (int)constants$580.QUERYHANDLER$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_keycontext, (java.lang.foreign.Addressable)_val_list, _num_vals, (java.lang.foreign.Addressable)_outputbuffer, (java.lang.foreign.Addressable)_total_outlen, _input_blen);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment keycontext, MemorySegment val_list, int num_vals, MemorySegment outputbuffer, MemorySegment total_outlen, int input_blen);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(QUERYHANDLER.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(QUERYHANDLER.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment keycontext, MemorySegment val_list, int num_vals, MemorySegment outputbuffer, MemorySegment total_outlen, int input_blen) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, keycontext, val_list, num_vals, outputbuffer, total_outlen, input_blen);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

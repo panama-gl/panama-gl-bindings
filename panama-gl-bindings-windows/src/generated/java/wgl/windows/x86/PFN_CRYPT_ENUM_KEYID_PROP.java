@@ -2,27 +2,74 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_ENUM_KEYID_PROP {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress pKeyIdentifier, int dwFlags, java.lang.foreign.MemoryAddress pvReserved, java.lang.foreign.MemoryAddress pvArg, int cProp, java.lang.foreign.MemoryAddress rgdwPropId, java.lang.foreign.MemoryAddress rgpvData, java.lang.foreign.MemoryAddress rgcbData);
-    static MemorySegment allocate(PFN_CRYPT_ENUM_KEYID_PROP fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_ENUM_KEYID_PROP.class, fi, constants$807.PFN_CRYPT_ENUM_KEYID_PROP$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CRYPT_ENUM_KEYID_PROP)(const CRYPT_HASH_BLOB *, DWORD, void *, void *, DWORD, DWORD *, void **, DWORD *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_ENUM_KEYID_PROP {
+
+    PFN_CRYPT_ENUM_KEYID_PROP() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_ENUM_KEYID_PROP ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pKeyIdentifier, int _dwFlags, java.lang.foreign.MemoryAddress _pvReserved, java.lang.foreign.MemoryAddress _pvArg, int _cProp, java.lang.foreign.MemoryAddress _rgdwPropId, java.lang.foreign.MemoryAddress _rgpvData, java.lang.foreign.MemoryAddress _rgcbData) -> {
-            try {
-                return (int)constants$807.PFN_CRYPT_ENUM_KEYID_PROP$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pKeyIdentifier, _dwFlags, (java.lang.foreign.Addressable)_pvReserved, (java.lang.foreign.Addressable)_pvArg, _cProp, (java.lang.foreign.Addressable)_rgdwPropId, (java.lang.foreign.Addressable)_rgpvData, (java.lang.foreign.Addressable)_rgcbData);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment pKeyIdentifier, int dwFlags, MemorySegment pvReserved, MemorySegment pvArg, int cProp, MemorySegment rgdwPropId, MemorySegment rgpvData, MemorySegment rgcbData);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_ENUM_KEYID_PROP.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_ENUM_KEYID_PROP.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment pKeyIdentifier, int dwFlags, MemorySegment pvReserved, MemorySegment pvArg, int cProp, MemorySegment rgdwPropId, MemorySegment rgpvData, MemorySegment rgcbData) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, pKeyIdentifier, dwFlags, pvReserved, pvArg, cProp, rgdwPropId, rgpvData, rgcbData);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

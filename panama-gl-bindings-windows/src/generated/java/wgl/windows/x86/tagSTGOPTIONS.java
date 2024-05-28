@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSTGOPTIONS {
+ *     USHORT usVersion;
+ *     USHORT reserved;
+ *     ULONG ulSectorSize;
+ *     const WCHAR *pwcsTemplateFile;
+ * }
+ * }
+ */
 public class tagSTGOPTIONS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("usVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("ulSectorSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("pwcsTemplateFile")
-    ).withName("tagSTGOPTIONS");
-    public static MemoryLayout $LAYOUT() {
-        return tagSTGOPTIONS.$struct$LAYOUT;
+    tagSTGOPTIONS() {
+        // Should not be called directly
     }
-    static final VarHandle usVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("usVersion"));
-    public static VarHandle usVersion$VH() {
-        return tagSTGOPTIONS.usVersion$VH;
-    }
-    public static short usVersion$get(MemorySegment seg) {
-        return (short)tagSTGOPTIONS.usVersion$VH.get(seg);
-    }
-    public static void usVersion$set( MemorySegment seg, short x) {
-        tagSTGOPTIONS.usVersion$VH.set(seg, x);
-    }
-    public static short usVersion$get(MemorySegment seg, long index) {
-        return (short)tagSTGOPTIONS.usVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void usVersion$set(MemorySegment seg, long index, short x) {
-        tagSTGOPTIONS.usVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
-    public static VarHandle reserved$VH() {
-        return tagSTGOPTIONS.reserved$VH;
-    }
-    public static short reserved$get(MemorySegment seg) {
-        return (short)tagSTGOPTIONS.reserved$VH.get(seg);
-    }
-    public static void reserved$set( MemorySegment seg, short x) {
-        tagSTGOPTIONS.reserved$VH.set(seg, x);
-    }
-    public static short reserved$get(MemorySegment seg, long index) {
-        return (short)tagSTGOPTIONS.reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void reserved$set(MemorySegment seg, long index, short x) {
-        tagSTGOPTIONS.reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ulSectorSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulSectorSize"));
-    public static VarHandle ulSectorSize$VH() {
-        return tagSTGOPTIONS.ulSectorSize$VH;
-    }
-    public static int ulSectorSize$get(MemorySegment seg) {
-        return (int)tagSTGOPTIONS.ulSectorSize$VH.get(seg);
-    }
-    public static void ulSectorSize$set( MemorySegment seg, int x) {
-        tagSTGOPTIONS.ulSectorSize$VH.set(seg, x);
-    }
-    public static int ulSectorSize$get(MemorySegment seg, long index) {
-        return (int)tagSTGOPTIONS.ulSectorSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulSectorSize$set(MemorySegment seg, long index, int x) {
-        tagSTGOPTIONS.ulSectorSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwcsTemplateFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwcsTemplateFile"));
-    public static VarHandle pwcsTemplateFile$VH() {
-        return tagSTGOPTIONS.pwcsTemplateFile$VH;
-    }
-    public static MemoryAddress pwcsTemplateFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTGOPTIONS.pwcsTemplateFile$VH.get(seg);
-    }
-    public static void pwcsTemplateFile$set( MemorySegment seg, MemoryAddress x) {
-        tagSTGOPTIONS.pwcsTemplateFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pwcsTemplateFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTGOPTIONS.pwcsTemplateFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwcsTemplateFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTGOPTIONS.pwcsTemplateFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("usVersion"),
+        wgl_h.C_SHORT.withName("reserved"),
+        wgl_h.C_LONG.withName("ulSectorSize"),
+        wgl_h.C_POINTER.withName("pwcsTemplateFile")
+    ).withName("tagSTGOPTIONS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort usVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("usVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT usVersion
+     * }
+     */
+    public static final OfShort usVersion$layout() {
+        return usVersion$LAYOUT;
+    }
+
+    private static final long usVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT usVersion
+     * }
+     */
+    public static final long usVersion$offset() {
+        return usVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT usVersion
+     * }
+     */
+    public static short usVersion(MemorySegment struct) {
+        return struct.get(usVersion$LAYOUT, usVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT usVersion
+     * }
+     */
+    public static void usVersion(MemorySegment struct, short fieldValue) {
+        struct.set(usVersion$LAYOUT, usVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT reserved
+     * }
+     */
+    public static final OfShort reserved$layout() {
+        return reserved$LAYOUT;
+    }
+
+    private static final long reserved$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT reserved
+     * }
+     */
+    public static final long reserved$offset() {
+        return reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT reserved
+     * }
+     */
+    public static short reserved(MemorySegment struct) {
+        return struct.get(reserved$LAYOUT, reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT reserved
+     * }
+     */
+    public static void reserved(MemorySegment struct, short fieldValue) {
+        struct.set(reserved$LAYOUT, reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ulSectorSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulSectorSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ulSectorSize
+     * }
+     */
+    public static final OfInt ulSectorSize$layout() {
+        return ulSectorSize$LAYOUT;
+    }
+
+    private static final long ulSectorSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ulSectorSize
+     * }
+     */
+    public static final long ulSectorSize$offset() {
+        return ulSectorSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ulSectorSize
+     * }
+     */
+    public static int ulSectorSize(MemorySegment struct) {
+        return struct.get(ulSectorSize$LAYOUT, ulSectorSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ulSectorSize
+     * }
+     */
+    public static void ulSectorSize(MemorySegment struct, int fieldValue) {
+        struct.set(ulSectorSize$LAYOUT, ulSectorSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwcsTemplateFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwcsTemplateFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const WCHAR *pwcsTemplateFile
+     * }
+     */
+    public static final AddressLayout pwcsTemplateFile$layout() {
+        return pwcsTemplateFile$LAYOUT;
+    }
+
+    private static final long pwcsTemplateFile$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const WCHAR *pwcsTemplateFile
+     * }
+     */
+    public static final long pwcsTemplateFile$offset() {
+        return pwcsTemplateFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const WCHAR *pwcsTemplateFile
+     * }
+     */
+    public static MemorySegment pwcsTemplateFile(MemorySegment struct) {
+        return struct.get(pwcsTemplateFile$LAYOUT, pwcsTemplateFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const WCHAR *pwcsTemplateFile
+     * }
+     */
+    public static void pwcsTemplateFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwcsTemplateFile$LAYOUT, pwcsTemplateFile$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

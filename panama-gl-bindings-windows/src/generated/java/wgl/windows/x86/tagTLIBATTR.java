@@ -2,119 +2,357 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagTLIBATTR {
+ *     GUID guid;
+ *     LCID lcid;
+ *     SYSKIND syskind;
+ *     WORD wMajorVerNum;
+ *     WORD wMinorVerNum;
+ *     WORD wLibFlags;
+ * }
+ * }
+ */
 public class tagTLIBATTR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("guid"),
-        Constants$root.C_LONG$LAYOUT.withName("lcid"),
-        Constants$root.C_LONG$LAYOUT.withName("syskind"),
-        Constants$root.C_SHORT$LAYOUT.withName("wMajorVerNum"),
-        Constants$root.C_SHORT$LAYOUT.withName("wMinorVerNum"),
-        Constants$root.C_SHORT$LAYOUT.withName("wLibFlags"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("tagTLIBATTR");
-    public static MemoryLayout $LAYOUT() {
-        return tagTLIBATTR.$struct$LAYOUT;
+    tagTLIBATTR() {
+        // Should not be called directly
     }
-    public static MemorySegment guid$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle lcid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcid"));
-    public static VarHandle lcid$VH() {
-        return tagTLIBATTR.lcid$VH;
-    }
-    public static int lcid$get(MemorySegment seg) {
-        return (int)tagTLIBATTR.lcid$VH.get(seg);
-    }
-    public static void lcid$set( MemorySegment seg, int x) {
-        tagTLIBATTR.lcid$VH.set(seg, x);
-    }
-    public static int lcid$get(MemorySegment seg, long index) {
-        return (int)tagTLIBATTR.lcid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcid$set(MemorySegment seg, long index, int x) {
-        tagTLIBATTR.lcid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle syskind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("syskind"));
-    public static VarHandle syskind$VH() {
-        return tagTLIBATTR.syskind$VH;
-    }
-    public static int syskind$get(MemorySegment seg) {
-        return (int)tagTLIBATTR.syskind$VH.get(seg);
-    }
-    public static void syskind$set( MemorySegment seg, int x) {
-        tagTLIBATTR.syskind$VH.set(seg, x);
-    }
-    public static int syskind$get(MemorySegment seg, long index) {
-        return (int)tagTLIBATTR.syskind$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void syskind$set(MemorySegment seg, long index, int x) {
-        tagTLIBATTR.syskind$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wMajorVerNum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMajorVerNum"));
-    public static VarHandle wMajorVerNum$VH() {
-        return tagTLIBATTR.wMajorVerNum$VH;
-    }
-    public static short wMajorVerNum$get(MemorySegment seg) {
-        return (short)tagTLIBATTR.wMajorVerNum$VH.get(seg);
-    }
-    public static void wMajorVerNum$set( MemorySegment seg, short x) {
-        tagTLIBATTR.wMajorVerNum$VH.set(seg, x);
-    }
-    public static short wMajorVerNum$get(MemorySegment seg, long index) {
-        return (short)tagTLIBATTR.wMajorVerNum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wMajorVerNum$set(MemorySegment seg, long index, short x) {
-        tagTLIBATTR.wMajorVerNum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wMinorVerNum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMinorVerNum"));
-    public static VarHandle wMinorVerNum$VH() {
-        return tagTLIBATTR.wMinorVerNum$VH;
-    }
-    public static short wMinorVerNum$get(MemorySegment seg) {
-        return (short)tagTLIBATTR.wMinorVerNum$VH.get(seg);
-    }
-    public static void wMinorVerNum$set( MemorySegment seg, short x) {
-        tagTLIBATTR.wMinorVerNum$VH.set(seg, x);
-    }
-    public static short wMinorVerNum$get(MemorySegment seg, long index) {
-        return (short)tagTLIBATTR.wMinorVerNum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wMinorVerNum$set(MemorySegment seg, long index, short x) {
-        tagTLIBATTR.wMinorVerNum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wLibFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wLibFlags"));
-    public static VarHandle wLibFlags$VH() {
-        return tagTLIBATTR.wLibFlags$VH;
-    }
-    public static short wLibFlags$get(MemorySegment seg) {
-        return (short)tagTLIBATTR.wLibFlags$VH.get(seg);
-    }
-    public static void wLibFlags$set( MemorySegment seg, short x) {
-        tagTLIBATTR.wLibFlags$VH.set(seg, x);
-    }
-    public static short wLibFlags$get(MemorySegment seg, long index) {
-        return (short)tagTLIBATTR.wLibFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wLibFlags$set(MemorySegment seg, long index, short x) {
-        tagTLIBATTR.wLibFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("guid"),
+        wgl_h.C_LONG.withName("lcid"),
+        wgl_h.C_INT.withName("syskind"),
+        wgl_h.C_SHORT.withName("wMajorVerNum"),
+        wgl_h.C_SHORT.withName("wMinorVerNum"),
+        wgl_h.C_SHORT.withName("wLibFlags"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("tagTLIBATTR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout guid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("guid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID guid
+     * }
+     */
+    public static final GroupLayout guid$layout() {
+        return guid$LAYOUT;
+    }
+
+    private static final long guid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID guid
+     * }
+     */
+    public static final long guid$offset() {
+        return guid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID guid
+     * }
+     */
+    public static MemorySegment guid(MemorySegment struct) {
+        return struct.asSlice(guid$OFFSET, guid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID guid
+     * }
+     */
+    public static void guid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, guid$OFFSET, guid$LAYOUT.byteSize());
+    }
+
+    private static final OfInt lcid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LCID lcid
+     * }
+     */
+    public static final OfInt lcid$layout() {
+        return lcid$LAYOUT;
+    }
+
+    private static final long lcid$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LCID lcid
+     * }
+     */
+    public static final long lcid$offset() {
+        return lcid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LCID lcid
+     * }
+     */
+    public static int lcid(MemorySegment struct) {
+        return struct.get(lcid$LAYOUT, lcid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LCID lcid
+     * }
+     */
+    public static void lcid(MemorySegment struct, int fieldValue) {
+        struct.set(lcid$LAYOUT, lcid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt syskind$LAYOUT = (OfInt)$LAYOUT.select(groupElement("syskind"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSKIND syskind
+     * }
+     */
+    public static final OfInt syskind$layout() {
+        return syskind$LAYOUT;
+    }
+
+    private static final long syskind$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSKIND syskind
+     * }
+     */
+    public static final long syskind$offset() {
+        return syskind$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSKIND syskind
+     * }
+     */
+    public static int syskind(MemorySegment struct) {
+        return struct.get(syskind$LAYOUT, syskind$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSKIND syskind
+     * }
+     */
+    public static void syskind(MemorySegment struct, int fieldValue) {
+        struct.set(syskind$LAYOUT, syskind$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wMajorVerNum$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wMajorVerNum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wMajorVerNum
+     * }
+     */
+    public static final OfShort wMajorVerNum$layout() {
+        return wMajorVerNum$LAYOUT;
+    }
+
+    private static final long wMajorVerNum$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wMajorVerNum
+     * }
+     */
+    public static final long wMajorVerNum$offset() {
+        return wMajorVerNum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wMajorVerNum
+     * }
+     */
+    public static short wMajorVerNum(MemorySegment struct) {
+        return struct.get(wMajorVerNum$LAYOUT, wMajorVerNum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wMajorVerNum
+     * }
+     */
+    public static void wMajorVerNum(MemorySegment struct, short fieldValue) {
+        struct.set(wMajorVerNum$LAYOUT, wMajorVerNum$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wMinorVerNum$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wMinorVerNum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wMinorVerNum
+     * }
+     */
+    public static final OfShort wMinorVerNum$layout() {
+        return wMinorVerNum$LAYOUT;
+    }
+
+    private static final long wMinorVerNum$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wMinorVerNum
+     * }
+     */
+    public static final long wMinorVerNum$offset() {
+        return wMinorVerNum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wMinorVerNum
+     * }
+     */
+    public static short wMinorVerNum(MemorySegment struct) {
+        return struct.get(wMinorVerNum$LAYOUT, wMinorVerNum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wMinorVerNum
+     * }
+     */
+    public static void wMinorVerNum(MemorySegment struct, short fieldValue) {
+        struct.set(wMinorVerNum$LAYOUT, wMinorVerNum$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wLibFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wLibFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wLibFlags
+     * }
+     */
+    public static final OfShort wLibFlags$layout() {
+        return wLibFlags$LAYOUT;
+    }
+
+    private static final long wLibFlags$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wLibFlags
+     * }
+     */
+    public static final long wLibFlags$offset() {
+        return wLibFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wLibFlags
+     * }
+     */
+    public static short wLibFlags(MemorySegment struct) {
+        return struct.get(wLibFlags$LAYOUT, wLibFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wLibFlags
+     * }
+     */
+    public static void wLibFlags(MemorySegment struct, short fieldValue) {
+        struct.set(wLibFlags$LAYOUT, wLibFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

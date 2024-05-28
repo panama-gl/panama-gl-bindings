@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MIDL_INTERFACE_METHOD_PROPERTIES {
+ *     unsigned short MethodCount;
+ *     const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties;
+ * }
+ * }
+ */
 public class _MIDL_INTERFACE_METHOD_PROPERTIES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("MethodCount"),
-        MemoryLayout.paddingLayout(48),
-        Constants$root.C_POINTER$LAYOUT.withName("MethodProperties")
-    ).withName("_MIDL_INTERFACE_METHOD_PROPERTIES");
-    public static MemoryLayout $LAYOUT() {
-        return _MIDL_INTERFACE_METHOD_PROPERTIES.$struct$LAYOUT;
+    _MIDL_INTERFACE_METHOD_PROPERTIES() {
+        // Should not be called directly
     }
-    static final VarHandle MethodCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MethodCount"));
-    public static VarHandle MethodCount$VH() {
-        return _MIDL_INTERFACE_METHOD_PROPERTIES.MethodCount$VH;
-    }
-    public static short MethodCount$get(MemorySegment seg) {
-        return (short)_MIDL_INTERFACE_METHOD_PROPERTIES.MethodCount$VH.get(seg);
-    }
-    public static void MethodCount$set( MemorySegment seg, short x) {
-        _MIDL_INTERFACE_METHOD_PROPERTIES.MethodCount$VH.set(seg, x);
-    }
-    public static short MethodCount$get(MemorySegment seg, long index) {
-        return (short)_MIDL_INTERFACE_METHOD_PROPERTIES.MethodCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MethodCount$set(MemorySegment seg, long index, short x) {
-        _MIDL_INTERFACE_METHOD_PROPERTIES.MethodCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MethodProperties$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MethodProperties"));
-    public static VarHandle MethodProperties$VH() {
-        return _MIDL_INTERFACE_METHOD_PROPERTIES.MethodProperties$VH;
-    }
-    public static MemoryAddress MethodProperties$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_INTERFACE_METHOD_PROPERTIES.MethodProperties$VH.get(seg);
-    }
-    public static void MethodProperties$set( MemorySegment seg, MemoryAddress x) {
-        _MIDL_INTERFACE_METHOD_PROPERTIES.MethodProperties$VH.set(seg, x);
-    }
-    public static MemoryAddress MethodProperties$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_MIDL_INTERFACE_METHOD_PROPERTIES.MethodProperties$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MethodProperties$set(MemorySegment seg, long index, MemoryAddress x) {
-        _MIDL_INTERFACE_METHOD_PROPERTIES.MethodProperties$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("MethodCount"),
+        MemoryLayout.paddingLayout(6),
+        wgl_h.C_POINTER.withName("MethodProperties")
+    ).withName("_MIDL_INTERFACE_METHOD_PROPERTIES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort MethodCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MethodCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short MethodCount
+     * }
+     */
+    public static final OfShort MethodCount$layout() {
+        return MethodCount$LAYOUT;
+    }
+
+    private static final long MethodCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short MethodCount
+     * }
+     */
+    public static final long MethodCount$offset() {
+        return MethodCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short MethodCount
+     * }
+     */
+    public static short MethodCount(MemorySegment struct) {
+        return struct.get(MethodCount$LAYOUT, MethodCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short MethodCount
+     * }
+     */
+    public static void MethodCount(MemorySegment struct, short fieldValue) {
+        struct.set(MethodCount$LAYOUT, MethodCount$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout MethodProperties$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("MethodProperties"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties
+     * }
+     */
+    public static final AddressLayout MethodProperties$layout() {
+        return MethodProperties$LAYOUT;
+    }
+
+    private static final long MethodProperties$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties
+     * }
+     */
+    public static final long MethodProperties$offset() {
+        return MethodProperties$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties
+     * }
+     */
+    public static MemorySegment MethodProperties(MemorySegment struct) {
+        return struct.get(MethodProperties$LAYOUT, MethodProperties$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const MIDL_METHOD_PROPERTY_MAP *const *MethodProperties
+     * }
+     */
+    public static void MethodProperties(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(MethodProperties$LAYOUT, MethodProperties$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

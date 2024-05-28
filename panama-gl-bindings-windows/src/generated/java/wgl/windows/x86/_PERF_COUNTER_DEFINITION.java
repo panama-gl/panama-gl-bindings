@@ -2,194 +2,540 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PERF_COUNTER_DEFINITION {
+ *     DWORD ByteLength;
+ *     DWORD CounterNameTitleIndex;
+ *     DWORD CounterNameTitle;
+ *     DWORD CounterHelpTitleIndex;
+ *     DWORD CounterHelpTitle;
+ *     LONG DefaultScale;
+ *     DWORD DetailLevel;
+ *     DWORD CounterType;
+ *     DWORD CounterSize;
+ *     DWORD CounterOffset;
+ * }
+ * }
+ */
 public class _PERF_COUNTER_DEFINITION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ByteLength"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterNameTitleIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterNameTitle"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterHelpTitleIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterHelpTitle"),
-        Constants$root.C_LONG$LAYOUT.withName("DefaultScale"),
-        Constants$root.C_LONG$LAYOUT.withName("DetailLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterType"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterSize"),
-        Constants$root.C_LONG$LAYOUT.withName("CounterOffset")
-    ).withName("_PERF_COUNTER_DEFINITION");
-    public static MemoryLayout $LAYOUT() {
-        return _PERF_COUNTER_DEFINITION.$struct$LAYOUT;
+    _PERF_COUNTER_DEFINITION() {
+        // Should not be called directly
     }
-    static final VarHandle ByteLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ByteLength"));
-    public static VarHandle ByteLength$VH() {
-        return _PERF_COUNTER_DEFINITION.ByteLength$VH;
-    }
-    public static int ByteLength$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.ByteLength$VH.get(seg);
-    }
-    public static void ByteLength$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.ByteLength$VH.set(seg, x);
-    }
-    public static int ByteLength$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.ByteLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ByteLength$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.ByteLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterNameTitleIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterNameTitleIndex"));
-    public static VarHandle CounterNameTitleIndex$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterNameTitleIndex$VH;
-    }
-    public static int CounterNameTitleIndex$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterNameTitleIndex$VH.get(seg);
-    }
-    public static void CounterNameTitleIndex$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterNameTitleIndex$VH.set(seg, x);
-    }
-    public static int CounterNameTitleIndex$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterNameTitleIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterNameTitleIndex$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterNameTitleIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterNameTitle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterNameTitle"));
-    public static VarHandle CounterNameTitle$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterNameTitle$VH;
-    }
-    public static int CounterNameTitle$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterNameTitle$VH.get(seg);
-    }
-    public static void CounterNameTitle$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterNameTitle$VH.set(seg, x);
-    }
-    public static int CounterNameTitle$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterNameTitle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterNameTitle$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterNameTitle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterHelpTitleIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterHelpTitleIndex"));
-    public static VarHandle CounterHelpTitleIndex$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterHelpTitleIndex$VH;
-    }
-    public static int CounterHelpTitleIndex$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterHelpTitleIndex$VH.get(seg);
-    }
-    public static void CounterHelpTitleIndex$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterHelpTitleIndex$VH.set(seg, x);
-    }
-    public static int CounterHelpTitleIndex$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterHelpTitleIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterHelpTitleIndex$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterHelpTitleIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterHelpTitle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterHelpTitle"));
-    public static VarHandle CounterHelpTitle$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterHelpTitle$VH;
-    }
-    public static int CounterHelpTitle$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterHelpTitle$VH.get(seg);
-    }
-    public static void CounterHelpTitle$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterHelpTitle$VH.set(seg, x);
-    }
-    public static int CounterHelpTitle$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterHelpTitle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterHelpTitle$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterHelpTitle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DefaultScale$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DefaultScale"));
-    public static VarHandle DefaultScale$VH() {
-        return _PERF_COUNTER_DEFINITION.DefaultScale$VH;
-    }
-    public static int DefaultScale$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.DefaultScale$VH.get(seg);
-    }
-    public static void DefaultScale$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.DefaultScale$VH.set(seg, x);
-    }
-    public static int DefaultScale$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.DefaultScale$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DefaultScale$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.DefaultScale$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DetailLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DetailLevel"));
-    public static VarHandle DetailLevel$VH() {
-        return _PERF_COUNTER_DEFINITION.DetailLevel$VH;
-    }
-    public static int DetailLevel$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.DetailLevel$VH.get(seg);
-    }
-    public static void DetailLevel$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.DetailLevel$VH.set(seg, x);
-    }
-    public static int DetailLevel$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.DetailLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DetailLevel$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.DetailLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterType"));
-    public static VarHandle CounterType$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterType$VH;
-    }
-    public static int CounterType$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterType$VH.get(seg);
-    }
-    public static void CounterType$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterType$VH.set(seg, x);
-    }
-    public static int CounterType$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterType$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterSize"));
-    public static VarHandle CounterSize$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterSize$VH;
-    }
-    public static int CounterSize$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterSize$VH.get(seg);
-    }
-    public static void CounterSize$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterSize$VH.set(seg, x);
-    }
-    public static int CounterSize$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterSize$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CounterOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CounterOffset"));
-    public static VarHandle CounterOffset$VH() {
-        return _PERF_COUNTER_DEFINITION.CounterOffset$VH;
-    }
-    public static int CounterOffset$get(MemorySegment seg) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterOffset$VH.get(seg);
-    }
-    public static void CounterOffset$set( MemorySegment seg, int x) {
-        _PERF_COUNTER_DEFINITION.CounterOffset$VH.set(seg, x);
-    }
-    public static int CounterOffset$get(MemorySegment seg, long index) {
-        return (int)_PERF_COUNTER_DEFINITION.CounterOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CounterOffset$set(MemorySegment seg, long index, int x) {
-        _PERF_COUNTER_DEFINITION.CounterOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ByteLength"),
+        wgl_h.C_LONG.withName("CounterNameTitleIndex"),
+        wgl_h.C_LONG.withName("CounterNameTitle"),
+        wgl_h.C_LONG.withName("CounterHelpTitleIndex"),
+        wgl_h.C_LONG.withName("CounterHelpTitle"),
+        wgl_h.C_LONG.withName("DefaultScale"),
+        wgl_h.C_LONG.withName("DetailLevel"),
+        wgl_h.C_LONG.withName("CounterType"),
+        wgl_h.C_LONG.withName("CounterSize"),
+        wgl_h.C_LONG.withName("CounterOffset")
+    ).withName("_PERF_COUNTER_DEFINITION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ByteLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ByteLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static final OfInt ByteLength$layout() {
+        return ByteLength$LAYOUT;
+    }
+
+    private static final long ByteLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static final long ByteLength$offset() {
+        return ByteLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static int ByteLength(MemorySegment struct) {
+        return struct.get(ByteLength$LAYOUT, ByteLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static void ByteLength(MemorySegment struct, int fieldValue) {
+        struct.set(ByteLength$LAYOUT, ByteLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterNameTitleIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterNameTitleIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitleIndex
+     * }
+     */
+    public static final OfInt CounterNameTitleIndex$layout() {
+        return CounterNameTitleIndex$LAYOUT;
+    }
+
+    private static final long CounterNameTitleIndex$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitleIndex
+     * }
+     */
+    public static final long CounterNameTitleIndex$offset() {
+        return CounterNameTitleIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitleIndex
+     * }
+     */
+    public static int CounterNameTitleIndex(MemorySegment struct) {
+        return struct.get(CounterNameTitleIndex$LAYOUT, CounterNameTitleIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitleIndex
+     * }
+     */
+    public static void CounterNameTitleIndex(MemorySegment struct, int fieldValue) {
+        struct.set(CounterNameTitleIndex$LAYOUT, CounterNameTitleIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterNameTitle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterNameTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitle
+     * }
+     */
+    public static final OfInt CounterNameTitle$layout() {
+        return CounterNameTitle$LAYOUT;
+    }
+
+    private static final long CounterNameTitle$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitle
+     * }
+     */
+    public static final long CounterNameTitle$offset() {
+        return CounterNameTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitle
+     * }
+     */
+    public static int CounterNameTitle(MemorySegment struct) {
+        return struct.get(CounterNameTitle$LAYOUT, CounterNameTitle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterNameTitle
+     * }
+     */
+    public static void CounterNameTitle(MemorySegment struct, int fieldValue) {
+        struct.set(CounterNameTitle$LAYOUT, CounterNameTitle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterHelpTitleIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterHelpTitleIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitleIndex
+     * }
+     */
+    public static final OfInt CounterHelpTitleIndex$layout() {
+        return CounterHelpTitleIndex$LAYOUT;
+    }
+
+    private static final long CounterHelpTitleIndex$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitleIndex
+     * }
+     */
+    public static final long CounterHelpTitleIndex$offset() {
+        return CounterHelpTitleIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitleIndex
+     * }
+     */
+    public static int CounterHelpTitleIndex(MemorySegment struct) {
+        return struct.get(CounterHelpTitleIndex$LAYOUT, CounterHelpTitleIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitleIndex
+     * }
+     */
+    public static void CounterHelpTitleIndex(MemorySegment struct, int fieldValue) {
+        struct.set(CounterHelpTitleIndex$LAYOUT, CounterHelpTitleIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterHelpTitle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterHelpTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitle
+     * }
+     */
+    public static final OfInt CounterHelpTitle$layout() {
+        return CounterHelpTitle$LAYOUT;
+    }
+
+    private static final long CounterHelpTitle$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitle
+     * }
+     */
+    public static final long CounterHelpTitle$offset() {
+        return CounterHelpTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitle
+     * }
+     */
+    public static int CounterHelpTitle(MemorySegment struct) {
+        return struct.get(CounterHelpTitle$LAYOUT, CounterHelpTitle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterHelpTitle
+     * }
+     */
+    public static void CounterHelpTitle(MemorySegment struct, int fieldValue) {
+        struct.set(CounterHelpTitle$LAYOUT, CounterHelpTitle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DefaultScale$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DefaultScale"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG DefaultScale
+     * }
+     */
+    public static final OfInt DefaultScale$layout() {
+        return DefaultScale$LAYOUT;
+    }
+
+    private static final long DefaultScale$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG DefaultScale
+     * }
+     */
+    public static final long DefaultScale$offset() {
+        return DefaultScale$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG DefaultScale
+     * }
+     */
+    public static int DefaultScale(MemorySegment struct) {
+        return struct.get(DefaultScale$LAYOUT, DefaultScale$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG DefaultScale
+     * }
+     */
+    public static void DefaultScale(MemorySegment struct, int fieldValue) {
+        struct.set(DefaultScale$LAYOUT, DefaultScale$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DetailLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DetailLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DetailLevel
+     * }
+     */
+    public static final OfInt DetailLevel$layout() {
+        return DetailLevel$LAYOUT;
+    }
+
+    private static final long DetailLevel$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DetailLevel
+     * }
+     */
+    public static final long DetailLevel$offset() {
+        return DetailLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DetailLevel
+     * }
+     */
+    public static int DetailLevel(MemorySegment struct) {
+        return struct.get(DetailLevel$LAYOUT, DetailLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DetailLevel
+     * }
+     */
+    public static void DetailLevel(MemorySegment struct, int fieldValue) {
+        struct.set(DetailLevel$LAYOUT, DetailLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterType
+     * }
+     */
+    public static final OfInt CounterType$layout() {
+        return CounterType$LAYOUT;
+    }
+
+    private static final long CounterType$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterType
+     * }
+     */
+    public static final long CounterType$offset() {
+        return CounterType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterType
+     * }
+     */
+    public static int CounterType(MemorySegment struct) {
+        return struct.get(CounterType$LAYOUT, CounterType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterType
+     * }
+     */
+    public static void CounterType(MemorySegment struct, int fieldValue) {
+        struct.set(CounterType$LAYOUT, CounterType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterSize
+     * }
+     */
+    public static final OfInt CounterSize$layout() {
+        return CounterSize$LAYOUT;
+    }
+
+    private static final long CounterSize$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterSize
+     * }
+     */
+    public static final long CounterSize$offset() {
+        return CounterSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterSize
+     * }
+     */
+    public static int CounterSize(MemorySegment struct) {
+        return struct.get(CounterSize$LAYOUT, CounterSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterSize
+     * }
+     */
+    public static void CounterSize(MemorySegment struct, int fieldValue) {
+        struct.set(CounterSize$LAYOUT, CounterSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CounterOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CounterOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CounterOffset
+     * }
+     */
+    public static final OfInt CounterOffset$layout() {
+        return CounterOffset$LAYOUT;
+    }
+
+    private static final long CounterOffset$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CounterOffset
+     * }
+     */
+    public static final long CounterOffset$offset() {
+        return CounterOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CounterOffset
+     * }
+     */
+    public static int CounterOffset(MemorySegment struct) {
+        return struct.get(CounterOffset$LAYOUT, CounterOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CounterOffset
+     * }
+     */
+    public static void CounterOffset(MemorySegment struct, int fieldValue) {
+        struct.set(CounterOffset$LAYOUT, CounterOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

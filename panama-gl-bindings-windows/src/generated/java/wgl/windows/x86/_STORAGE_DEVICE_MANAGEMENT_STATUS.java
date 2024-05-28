@@ -2,135 +2,472 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_DEVICE_MANAGEMENT_STATUS {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     STORAGE_DISK_HEALTH_STATUS Health;
+ *     DWORD NumberOfOperationalStatus;
+ *     DWORD NumberOfAdditionalReasons;
+ *     STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16];
+ *     STORAGE_OPERATIONAL_REASON AdditionalReasons[1];
+ * }
+ * }
+ */
 public class _STORAGE_DEVICE_MANAGEMENT_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Health"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfOperationalStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfAdditionalReasons"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_LONG$LAYOUT).withName("OperationalStatus"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Version"),
-            Constants$root.C_LONG$LAYOUT.withName("Size"),
-            Constants$root.C_LONG$LAYOUT.withName("Reason"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("SenseKey"),
-                    Constants$root.C_CHAR$LAYOUT.withName("ASC"),
-                    Constants$root.C_CHAR$LAYOUT.withName("ASCQ"),
-                    Constants$root.C_CHAR$LAYOUT.withName("Reserved")
-                ).withName("ScsiSenseKey"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("CriticalHealth"),
-                    MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("ModuleHealth"),
-                    Constants$root.C_CHAR$LAYOUT.withName("ErrorThresholdStatus")
-                ).withName("NVDIMM_N"),
-                Constants$root.C_LONG$LAYOUT.withName("AsUlong")
-            ).withName("RawBytes")
-        ).withName("_STORAGE_OPERATIONAL_REASON")).withName("AdditionalReasons")
-    ).withName("_STORAGE_DEVICE_MANAGEMENT_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.$struct$LAYOUT;
+    _STORAGE_DEVICE_MANAGEMENT_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Health$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Health"));
-    public static VarHandle Health$VH() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.Health$VH;
-    }
-    public static int Health$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Health$VH.get(seg);
-    }
-    public static void Health$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Health$VH.set(seg, x);
-    }
-    public static int Health$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.Health$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Health$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.Health$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfOperationalStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfOperationalStatus"));
-    public static VarHandle NumberOfOperationalStatus$VH() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfOperationalStatus$VH;
-    }
-    public static int NumberOfOperationalStatus$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfOperationalStatus$VH.get(seg);
-    }
-    public static void NumberOfOperationalStatus$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfOperationalStatus$VH.set(seg, x);
-    }
-    public static int NumberOfOperationalStatus$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfOperationalStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfOperationalStatus$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfOperationalStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfAdditionalReasons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfAdditionalReasons"));
-    public static VarHandle NumberOfAdditionalReasons$VH() {
-        return _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfAdditionalReasons$VH;
-    }
-    public static int NumberOfAdditionalReasons$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfAdditionalReasons$VH.get(seg);
-    }
-    public static void NumberOfAdditionalReasons$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfAdditionalReasons$VH.set(seg, x);
-    }
-    public static int NumberOfAdditionalReasons$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfAdditionalReasons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfAdditionalReasons$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_MANAGEMENT_STATUS.NumberOfAdditionalReasons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment OperationalStatus$slice(MemorySegment seg) {
-        return seg.asSlice(20, 64);
-    }
-    public static MemorySegment AdditionalReasons$slice(MemorySegment seg) {
-        return seg.asSlice(84, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("Health"),
+        wgl_h.C_LONG.withName("NumberOfOperationalStatus"),
+        wgl_h.C_LONG.withName("NumberOfAdditionalReasons"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_INT).withName("OperationalStatus"),
+        MemoryLayout.sequenceLayout(1, _STORAGE_OPERATIONAL_REASON.layout()).withName("AdditionalReasons")
+    ).withName("_STORAGE_DEVICE_MANAGEMENT_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Health$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Health"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_HEALTH_STATUS Health
+     * }
+     */
+    public static final OfInt Health$layout() {
+        return Health$LAYOUT;
+    }
+
+    private static final long Health$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_HEALTH_STATUS Health
+     * }
+     */
+    public static final long Health$offset() {
+        return Health$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_HEALTH_STATUS Health
+     * }
+     */
+    public static int Health(MemorySegment struct) {
+        return struct.get(Health$LAYOUT, Health$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_HEALTH_STATUS Health
+     * }
+     */
+    public static void Health(MemorySegment struct, int fieldValue) {
+        struct.set(Health$LAYOUT, Health$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfOperationalStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfOperationalStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfOperationalStatus
+     * }
+     */
+    public static final OfInt NumberOfOperationalStatus$layout() {
+        return NumberOfOperationalStatus$LAYOUT;
+    }
+
+    private static final long NumberOfOperationalStatus$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfOperationalStatus
+     * }
+     */
+    public static final long NumberOfOperationalStatus$offset() {
+        return NumberOfOperationalStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfOperationalStatus
+     * }
+     */
+    public static int NumberOfOperationalStatus(MemorySegment struct) {
+        return struct.get(NumberOfOperationalStatus$LAYOUT, NumberOfOperationalStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfOperationalStatus
+     * }
+     */
+    public static void NumberOfOperationalStatus(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfOperationalStatus$LAYOUT, NumberOfOperationalStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfAdditionalReasons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfAdditionalReasons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfAdditionalReasons
+     * }
+     */
+    public static final OfInt NumberOfAdditionalReasons$layout() {
+        return NumberOfAdditionalReasons$LAYOUT;
+    }
+
+    private static final long NumberOfAdditionalReasons$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfAdditionalReasons
+     * }
+     */
+    public static final long NumberOfAdditionalReasons$offset() {
+        return NumberOfAdditionalReasons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfAdditionalReasons
+     * }
+     */
+    public static int NumberOfAdditionalReasons(MemorySegment struct) {
+        return struct.get(NumberOfAdditionalReasons$LAYOUT, NumberOfAdditionalReasons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfAdditionalReasons
+     * }
+     */
+    public static void NumberOfAdditionalReasons(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfAdditionalReasons$LAYOUT, NumberOfAdditionalReasons$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout OperationalStatus$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("OperationalStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static final SequenceLayout OperationalStatus$layout() {
+        return OperationalStatus$LAYOUT;
+    }
+
+    private static final long OperationalStatus$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static final long OperationalStatus$offset() {
+        return OperationalStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static MemorySegment OperationalStatus(MemorySegment struct) {
+        return struct.asSlice(OperationalStatus$OFFSET, OperationalStatus$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static void OperationalStatus(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, OperationalStatus$OFFSET, OperationalStatus$LAYOUT.byteSize());
+    }
+
+    private static long[] OperationalStatus$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static long[] OperationalStatus$dimensions() {
+        return OperationalStatus$DIMS;
+    }
+    private static final VarHandle OperationalStatus$ELEM_HANDLE = OperationalStatus$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static int OperationalStatus(MemorySegment struct, long index0) {
+        return (int)OperationalStatus$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * STORAGE_DISK_OPERATIONAL_STATUS OperationalStatus[16]
+     * }
+     */
+    public static void OperationalStatus(MemorySegment struct, long index0, int fieldValue) {
+        OperationalStatus$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout AdditionalReasons$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("AdditionalReasons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static final SequenceLayout AdditionalReasons$layout() {
+        return AdditionalReasons$LAYOUT;
+    }
+
+    private static final long AdditionalReasons$OFFSET = 84;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static final long AdditionalReasons$offset() {
+        return AdditionalReasons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static MemorySegment AdditionalReasons(MemorySegment struct) {
+        return struct.asSlice(AdditionalReasons$OFFSET, AdditionalReasons$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static void AdditionalReasons(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, AdditionalReasons$OFFSET, AdditionalReasons$LAYOUT.byteSize());
+    }
+
+    private static long[] AdditionalReasons$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static long[] AdditionalReasons$dimensions() {
+        return AdditionalReasons$DIMS;
+    }
+    private static final MethodHandle AdditionalReasons$ELEM_HANDLE = AdditionalReasons$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static MemorySegment AdditionalReasons(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)AdditionalReasons$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_REASON AdditionalReasons[1]
+     * }
+     */
+    public static void AdditionalReasons(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, AdditionalReasons(struct, index0), 0L, _STORAGE_OPERATIONAL_REASON.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

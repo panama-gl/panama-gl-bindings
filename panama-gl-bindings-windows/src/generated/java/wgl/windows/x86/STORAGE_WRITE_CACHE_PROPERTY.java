@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_WRITE_CACHE_PROPERTY {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     WRITE_CACHE_TYPE WriteCacheType;
+ *     WRITE_CACHE_ENABLE WriteCacheEnabled;
+ *     WRITE_CACHE_CHANGE WriteCacheChangeable;
+ *     WRITE_THROUGH WriteThroughSupported;
+ *     BOOLEAN FlushCacheSupported;
+ *     BOOLEAN UserDefinedPowerProtection;
+ *     BOOLEAN NVCacheEnabled;
+ * } STORAGE_WRITE_CACHE_PROPERTY
+ * }
+ */
 public class STORAGE_WRITE_CACHE_PROPERTY extends _STORAGE_WRITE_CACHE_PROPERTY {
 
+    STORAGE_WRITE_CACHE_PROPERTY() {
+        // Should not be called directly
+    }
 }
-
 

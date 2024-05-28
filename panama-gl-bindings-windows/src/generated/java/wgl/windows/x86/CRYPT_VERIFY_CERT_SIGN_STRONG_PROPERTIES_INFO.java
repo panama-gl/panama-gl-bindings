@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO {
+ *     CRYPT_DATA_BLOB CertSignHashCNGAlgPropData;
+ *     CRYPT_DATA_BLOB CertIssuerPubKeyBitLengthPropData;
+ * } CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO
+ * }
+ */
 public class CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO extends _CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO {
 
+    CRYPT_VERIFY_CERT_SIGN_STRONG_PROPERTIES_INFO() {
+        // Should not be called directly
+    }
 }
-
 

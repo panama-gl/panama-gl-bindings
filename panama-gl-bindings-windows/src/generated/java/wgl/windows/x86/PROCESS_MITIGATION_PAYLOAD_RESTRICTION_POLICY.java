@@ -2,13 +2,44 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
+ *     union {
+ *         DWORD Flags;
+ *         struct {
+ *             DWORD EnableExportAddressFilter : 1;
+ *             DWORD AuditExportAddressFilter : 1;
+ *             DWORD EnableExportAddressFilterPlus : 1;
+ *             DWORD AuditExportAddressFilterPlus : 1;
+ *             DWORD EnableImportAddressFilter : 1;
+ *             DWORD AuditImportAddressFilter : 1;
+ *             DWORD EnableRopStackPivot : 1;
+ *             DWORD AuditRopStackPivot : 1;
+ *             DWORD EnableRopCallerCheck : 1;
+ *             DWORD AuditRopCallerCheck : 1;
+ *             DWORD EnableRopSimExec : 1;
+ *             DWORD AuditRopSimExec : 1;
+ *             DWORD ReservedFlags : 20;
+ *         };
+ *     };
+ * } PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY
+ * }
+ */
 public class PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY extends _PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY {
 
+    PROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY() {
+        // Should not be called directly
+    }
 }
-
 

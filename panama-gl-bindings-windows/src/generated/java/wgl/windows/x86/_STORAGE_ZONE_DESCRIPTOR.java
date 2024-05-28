@@ -2,130 +2,435 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_ZONE_DESCRIPTOR {
+ *     DWORD Size;
+ *     STORAGE_ZONE_TYPES ZoneType;
+ *     STORAGE_ZONE_CONDITION ZoneCondition;
+ *     BOOLEAN ResetWritePointerRecommend;
+ *     BYTE Reserved0[3];
+ *     DWORDLONG ZoneSize;
+ *     DWORDLONG WritePointerOffset;
+ * }
+ * }
+ */
 public class _STORAGE_ZONE_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("ZoneType"),
-        Constants$root.C_LONG$LAYOUT.withName("ZoneCondition"),
-        Constants$root.C_CHAR$LAYOUT.withName("ResetWritePointerRecommend"),
-        MemoryLayout.sequenceLayout(3, Constants$root.C_CHAR$LAYOUT).withName("Reserved0"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ZoneSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("WritePointerOffset")
-    ).withName("_STORAGE_ZONE_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_ZONE_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_ZONE_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ZoneType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ZoneType"));
-    public static VarHandle ZoneType$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.ZoneType$VH;
-    }
-    public static int ZoneType$get(MemorySegment seg) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.ZoneType$VH.get(seg);
-    }
-    public static void ZoneType$set( MemorySegment seg, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneType$VH.set(seg, x);
-    }
-    public static int ZoneType$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.ZoneType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ZoneType$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ZoneCondition$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ZoneCondition"));
-    public static VarHandle ZoneCondition$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.ZoneCondition$VH;
-    }
-    public static int ZoneCondition$get(MemorySegment seg) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.ZoneCondition$VH.get(seg);
-    }
-    public static void ZoneCondition$set( MemorySegment seg, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneCondition$VH.set(seg, x);
-    }
-    public static int ZoneCondition$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ZONE_DESCRIPTOR.ZoneCondition$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ZoneCondition$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneCondition$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ResetWritePointerRecommend$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ResetWritePointerRecommend"));
-    public static VarHandle ResetWritePointerRecommend$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.ResetWritePointerRecommend$VH;
-    }
-    public static byte ResetWritePointerRecommend$get(MemorySegment seg) {
-        return (byte)_STORAGE_ZONE_DESCRIPTOR.ResetWritePointerRecommend$VH.get(seg);
-    }
-    public static void ResetWritePointerRecommend$set( MemorySegment seg, byte x) {
-        _STORAGE_ZONE_DESCRIPTOR.ResetWritePointerRecommend$VH.set(seg, x);
-    }
-    public static byte ResetWritePointerRecommend$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ZONE_DESCRIPTOR.ResetWritePointerRecommend$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ResetWritePointerRecommend$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ZONE_DESCRIPTOR.ResetWritePointerRecommend$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved0$slice(MemorySegment seg) {
-        return seg.asSlice(13, 3);
-    }
-    static final VarHandle ZoneSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ZoneSize"));
-    public static VarHandle ZoneSize$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.ZoneSize$VH;
-    }
-    public static long ZoneSize$get(MemorySegment seg) {
-        return (long)_STORAGE_ZONE_DESCRIPTOR.ZoneSize$VH.get(seg);
-    }
-    public static void ZoneSize$set( MemorySegment seg, long x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneSize$VH.set(seg, x);
-    }
-    public static long ZoneSize$get(MemorySegment seg, long index) {
-        return (long)_STORAGE_ZONE_DESCRIPTOR.ZoneSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ZoneSize$set(MemorySegment seg, long index, long x) {
-        _STORAGE_ZONE_DESCRIPTOR.ZoneSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WritePointerOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WritePointerOffset"));
-    public static VarHandle WritePointerOffset$VH() {
-        return _STORAGE_ZONE_DESCRIPTOR.WritePointerOffset$VH;
-    }
-    public static long WritePointerOffset$get(MemorySegment seg) {
-        return (long)_STORAGE_ZONE_DESCRIPTOR.WritePointerOffset$VH.get(seg);
-    }
-    public static void WritePointerOffset$set( MemorySegment seg, long x) {
-        _STORAGE_ZONE_DESCRIPTOR.WritePointerOffset$VH.set(seg, x);
-    }
-    public static long WritePointerOffset$get(MemorySegment seg, long index) {
-        return (long)_STORAGE_ZONE_DESCRIPTOR.WritePointerOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WritePointerOffset$set(MemorySegment seg, long index, long x) {
-        _STORAGE_ZONE_DESCRIPTOR.WritePointerOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("ZoneType"),
+        wgl_h.C_INT.withName("ZoneCondition"),
+        wgl_h.C_CHAR.withName("ResetWritePointerRecommend"),
+        MemoryLayout.sequenceLayout(3, wgl_h.C_CHAR).withName("Reserved0"),
+        wgl_h.C_LONG_LONG.withName("ZoneSize"),
+        wgl_h.C_LONG_LONG.withName("WritePointerOffset")
+    ).withName("_STORAGE_ZONE_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ZoneType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ZoneType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_TYPES ZoneType
+     * }
+     */
+    public static final OfInt ZoneType$layout() {
+        return ZoneType$LAYOUT;
+    }
+
+    private static final long ZoneType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_TYPES ZoneType
+     * }
+     */
+    public static final long ZoneType$offset() {
+        return ZoneType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_TYPES ZoneType
+     * }
+     */
+    public static int ZoneType(MemorySegment struct) {
+        return struct.get(ZoneType$LAYOUT, ZoneType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_TYPES ZoneType
+     * }
+     */
+    public static void ZoneType(MemorySegment struct, int fieldValue) {
+        struct.set(ZoneType$LAYOUT, ZoneType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ZoneCondition$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ZoneCondition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_CONDITION ZoneCondition
+     * }
+     */
+    public static final OfInt ZoneCondition$layout() {
+        return ZoneCondition$LAYOUT;
+    }
+
+    private static final long ZoneCondition$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_CONDITION ZoneCondition
+     * }
+     */
+    public static final long ZoneCondition$offset() {
+        return ZoneCondition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_CONDITION ZoneCondition
+     * }
+     */
+    public static int ZoneCondition(MemorySegment struct) {
+        return struct.get(ZoneCondition$LAYOUT, ZoneCondition$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_ZONE_CONDITION ZoneCondition
+     * }
+     */
+    public static void ZoneCondition(MemorySegment struct, int fieldValue) {
+        struct.set(ZoneCondition$LAYOUT, ZoneCondition$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ResetWritePointerRecommend$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ResetWritePointerRecommend"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN ResetWritePointerRecommend
+     * }
+     */
+    public static final OfByte ResetWritePointerRecommend$layout() {
+        return ResetWritePointerRecommend$LAYOUT;
+    }
+
+    private static final long ResetWritePointerRecommend$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN ResetWritePointerRecommend
+     * }
+     */
+    public static final long ResetWritePointerRecommend$offset() {
+        return ResetWritePointerRecommend$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ResetWritePointerRecommend
+     * }
+     */
+    public static byte ResetWritePointerRecommend(MemorySegment struct) {
+        return struct.get(ResetWritePointerRecommend$LAYOUT, ResetWritePointerRecommend$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN ResetWritePointerRecommend
+     * }
+     */
+    public static void ResetWritePointerRecommend(MemorySegment struct, byte fieldValue) {
+        struct.set(ResetWritePointerRecommend$LAYOUT, ResetWritePointerRecommend$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved0$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static final SequenceLayout Reserved0$layout() {
+        return Reserved0$LAYOUT;
+    }
+
+    private static final long Reserved0$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static final long Reserved0$offset() {
+        return Reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static MemorySegment Reserved0(MemorySegment struct) {
+        return struct.asSlice(Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved0$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static long[] Reserved0$dimensions() {
+        return Reserved0$DIMS;
+    }
+    private static final VarHandle Reserved0$ELEM_HANDLE = Reserved0$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static byte Reserved0(MemorySegment struct, long index0) {
+        return (byte)Reserved0$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[3]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved0$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfLong ZoneSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ZoneSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ZoneSize
+     * }
+     */
+    public static final OfLong ZoneSize$layout() {
+        return ZoneSize$LAYOUT;
+    }
+
+    private static final long ZoneSize$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ZoneSize
+     * }
+     */
+    public static final long ZoneSize$offset() {
+        return ZoneSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ZoneSize
+     * }
+     */
+    public static long ZoneSize(MemorySegment struct) {
+        return struct.get(ZoneSize$LAYOUT, ZoneSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ZoneSize
+     * }
+     */
+    public static void ZoneSize(MemorySegment struct, long fieldValue) {
+        struct.set(ZoneSize$LAYOUT, ZoneSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong WritePointerOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("WritePointerOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG WritePointerOffset
+     * }
+     */
+    public static final OfLong WritePointerOffset$layout() {
+        return WritePointerOffset$LAYOUT;
+    }
+
+    private static final long WritePointerOffset$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG WritePointerOffset
+     * }
+     */
+    public static final long WritePointerOffset$offset() {
+        return WritePointerOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG WritePointerOffset
+     * }
+     */
+    public static long WritePointerOffset(MemorySegment struct) {
+        return struct.get(WritePointerOffset$LAYOUT, WritePointerOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG WritePointerOffset
+     * }
+     */
+    public static void WritePointerOffset(MemorySegment struct, long fieldValue) {
+        struct.set(WritePointerOffset$LAYOUT, WritePointerOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

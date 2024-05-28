@@ -2,96 +2,343 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RTL_BARRIER {
+ *     DWORD Reserved1;
+ *     DWORD Reserved2;
+ *     ULONG_PTR Reserved3[2];
+ *     DWORD Reserved4;
+ *     DWORD Reserved5;
+ * }
+ * }
+ */
 public class _RTL_BARRIER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Reserved1"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved2"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_LONG_LONG$LAYOUT).withName("Reserved3"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved4"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved5")
-    ).withName("_RTL_BARRIER");
-    public static MemoryLayout $LAYOUT() {
-        return _RTL_BARRIER.$struct$LAYOUT;
+    _RTL_BARRIER() {
+        // Should not be called directly
     }
-    static final VarHandle Reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved1"));
-    public static VarHandle Reserved1$VH() {
-        return _RTL_BARRIER.Reserved1$VH;
-    }
-    public static int Reserved1$get(MemorySegment seg) {
-        return (int)_RTL_BARRIER.Reserved1$VH.get(seg);
-    }
-    public static void Reserved1$set( MemorySegment seg, int x) {
-        _RTL_BARRIER.Reserved1$VH.set(seg, x);
-    }
-    public static int Reserved1$get(MemorySegment seg, long index) {
-        return (int)_RTL_BARRIER.Reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved1$set(MemorySegment seg, long index, int x) {
-        _RTL_BARRIER.Reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved2"));
-    public static VarHandle Reserved2$VH() {
-        return _RTL_BARRIER.Reserved2$VH;
-    }
-    public static int Reserved2$get(MemorySegment seg) {
-        return (int)_RTL_BARRIER.Reserved2$VH.get(seg);
-    }
-    public static void Reserved2$set( MemorySegment seg, int x) {
-        _RTL_BARRIER.Reserved2$VH.set(seg, x);
-    }
-    public static int Reserved2$get(MemorySegment seg, long index) {
-        return (int)_RTL_BARRIER.Reserved2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved2$set(MemorySegment seg, long index, int x) {
-        _RTL_BARRIER.Reserved2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved3$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle Reserved4$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved4"));
-    public static VarHandle Reserved4$VH() {
-        return _RTL_BARRIER.Reserved4$VH;
-    }
-    public static int Reserved4$get(MemorySegment seg) {
-        return (int)_RTL_BARRIER.Reserved4$VH.get(seg);
-    }
-    public static void Reserved4$set( MemorySegment seg, int x) {
-        _RTL_BARRIER.Reserved4$VH.set(seg, x);
-    }
-    public static int Reserved4$get(MemorySegment seg, long index) {
-        return (int)_RTL_BARRIER.Reserved4$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved4$set(MemorySegment seg, long index, int x) {
-        _RTL_BARRIER.Reserved4$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved5$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved5"));
-    public static VarHandle Reserved5$VH() {
-        return _RTL_BARRIER.Reserved5$VH;
-    }
-    public static int Reserved5$get(MemorySegment seg) {
-        return (int)_RTL_BARRIER.Reserved5$VH.get(seg);
-    }
-    public static void Reserved5$set( MemorySegment seg, int x) {
-        _RTL_BARRIER.Reserved5$VH.set(seg, x);
-    }
-    public static int Reserved5$get(MemorySegment seg, long index) {
-        return (int)_RTL_BARRIER.Reserved5$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved5$set(MemorySegment seg, long index, int x) {
-        _RTL_BARRIER.Reserved5$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("Reserved1"),
+        freeglut_h.C_LONG.withName("Reserved2"),
+        MemoryLayout.sequenceLayout(2, freeglut_h.C_LONG_LONG).withName("Reserved3"),
+        freeglut_h.C_LONG.withName("Reserved4"),
+        freeglut_h.C_LONG.withName("Reserved5")
+    ).withName("_RTL_BARRIER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final OfInt Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static int Reserved1(MemorySegment struct) {
+        return struct.get(Reserved1$LAYOUT, Reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved1$LAYOUT, Reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final OfInt Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static int Reserved2(MemorySegment struct) {
+        return struct.get(Reserved2$LAYOUT, Reserved2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved2
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved2$LAYOUT, Reserved2$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved3$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static final SequenceLayout Reserved3$layout() {
+        return Reserved3$LAYOUT;
+    }
+
+    private static final long Reserved3$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static final long Reserved3$offset() {
+        return Reserved3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static MemorySegment Reserved3(MemorySegment struct) {
+        return struct.asSlice(Reserved3$OFFSET, Reserved3$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved3$OFFSET, Reserved3$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved3$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static long[] Reserved3$dimensions() {
+        return Reserved3$DIMS;
+    }
+    private static final VarHandle Reserved3$ELEM_HANDLE = Reserved3$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static long Reserved3(MemorySegment struct, long index0) {
+        return (long)Reserved3$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Reserved3[2]
+     * }
+     */
+    public static void Reserved3(MemorySegment struct, long index0, long fieldValue) {
+        Reserved3$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt Reserved4$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved4"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved4
+     * }
+     */
+    public static final OfInt Reserved4$layout() {
+        return Reserved4$LAYOUT;
+    }
+
+    private static final long Reserved4$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved4
+     * }
+     */
+    public static final long Reserved4$offset() {
+        return Reserved4$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved4
+     * }
+     */
+    public static int Reserved4(MemorySegment struct) {
+        return struct.get(Reserved4$LAYOUT, Reserved4$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved4
+     * }
+     */
+    public static void Reserved4(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved4$LAYOUT, Reserved4$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved5$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved5"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved5
+     * }
+     */
+    public static final OfInt Reserved5$layout() {
+        return Reserved5$LAYOUT;
+    }
+
+    private static final long Reserved5$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved5
+     * }
+     */
+    public static final long Reserved5$offset() {
+        return Reserved5$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved5
+     * }
+     */
+    public static int Reserved5(MemorySegment struct) {
+        return struct.get(Reserved5$LAYOUT, Reserved5$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved5
+     * }
+     */
+    public static void Reserved5(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved5$LAYOUT, Reserved5$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

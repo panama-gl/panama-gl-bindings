@@ -2,263 +2,725 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_ADAPTER_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD MaximumTransferLength;
+ *     DWORD MaximumPhysicalPages;
+ *     DWORD AlignmentMask;
+ *     BOOLEAN AdapterUsesPio;
+ *     BOOLEAN AdapterScansDown;
+ *     BOOLEAN CommandQueueing;
+ *     BOOLEAN AcceleratedTransfer;
+ *     BYTE BusType;
+ *     WORD BusMajorVersion;
+ *     WORD BusMinorVersion;
+ *     BYTE SrbType;
+ *     BYTE AddressType;
+ * }
+ * }
+ */
 public class _STORAGE_ADAPTER_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("MaximumTransferLength"),
-        Constants$root.C_LONG$LAYOUT.withName("MaximumPhysicalPages"),
-        Constants$root.C_LONG$LAYOUT.withName("AlignmentMask"),
-        Constants$root.C_CHAR$LAYOUT.withName("AdapterUsesPio"),
-        Constants$root.C_CHAR$LAYOUT.withName("AdapterScansDown"),
-        Constants$root.C_CHAR$LAYOUT.withName("CommandQueueing"),
-        Constants$root.C_CHAR$LAYOUT.withName("AcceleratedTransfer"),
-        Constants$root.C_CHAR$LAYOUT.withName("BusType"),
-        MemoryLayout.paddingLayout(8),
-        Constants$root.C_SHORT$LAYOUT.withName("BusMajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("BusMinorVersion"),
-        Constants$root.C_CHAR$LAYOUT.withName("SrbType"),
-        Constants$root.C_CHAR$LAYOUT.withName("AddressType")
-    ).withName("_STORAGE_ADAPTER_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_ADAPTER_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumTransferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumTransferLength"));
-    public static VarHandle MaximumTransferLength$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.MaximumTransferLength$VH;
-    }
-    public static int MaximumTransferLength$get(MemorySegment seg) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.MaximumTransferLength$VH.get(seg);
-    }
-    public static void MaximumTransferLength$set( MemorySegment seg, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.MaximumTransferLength$VH.set(seg, x);
-    }
-    public static int MaximumTransferLength$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.MaximumTransferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumTransferLength$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.MaximumTransferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumPhysicalPages$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumPhysicalPages"));
-    public static VarHandle MaximumPhysicalPages$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.MaximumPhysicalPages$VH;
-    }
-    public static int MaximumPhysicalPages$get(MemorySegment seg) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.MaximumPhysicalPages$VH.get(seg);
-    }
-    public static void MaximumPhysicalPages$set( MemorySegment seg, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.MaximumPhysicalPages$VH.set(seg, x);
-    }
-    public static int MaximumPhysicalPages$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.MaximumPhysicalPages$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumPhysicalPages$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.MaximumPhysicalPages$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AlignmentMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AlignmentMask"));
-    public static VarHandle AlignmentMask$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.AlignmentMask$VH;
-    }
-    public static int AlignmentMask$get(MemorySegment seg) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.AlignmentMask$VH.get(seg);
-    }
-    public static void AlignmentMask$set( MemorySegment seg, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AlignmentMask$VH.set(seg, x);
-    }
-    public static int AlignmentMask$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_ADAPTER_DESCRIPTOR.AlignmentMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AlignmentMask$set(MemorySegment seg, long index, int x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AlignmentMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AdapterUsesPio$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AdapterUsesPio"));
-    public static VarHandle AdapterUsesPio$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.AdapterUsesPio$VH;
-    }
-    public static byte AdapterUsesPio$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AdapterUsesPio$VH.get(seg);
-    }
-    public static void AdapterUsesPio$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AdapterUsesPio$VH.set(seg, x);
-    }
-    public static byte AdapterUsesPio$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AdapterUsesPio$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AdapterUsesPio$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AdapterUsesPio$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AdapterScansDown$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AdapterScansDown"));
-    public static VarHandle AdapterScansDown$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.AdapterScansDown$VH;
-    }
-    public static byte AdapterScansDown$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AdapterScansDown$VH.get(seg);
-    }
-    public static void AdapterScansDown$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AdapterScansDown$VH.set(seg, x);
-    }
-    public static byte AdapterScansDown$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AdapterScansDown$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AdapterScansDown$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AdapterScansDown$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CommandQueueing$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CommandQueueing"));
-    public static VarHandle CommandQueueing$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.CommandQueueing$VH;
-    }
-    public static byte CommandQueueing$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.CommandQueueing$VH.get(seg);
-    }
-    public static void CommandQueueing$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.CommandQueueing$VH.set(seg, x);
-    }
-    public static byte CommandQueueing$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.CommandQueueing$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CommandQueueing$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.CommandQueueing$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AcceleratedTransfer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AcceleratedTransfer"));
-    public static VarHandle AcceleratedTransfer$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.AcceleratedTransfer$VH;
-    }
-    public static byte AcceleratedTransfer$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AcceleratedTransfer$VH.get(seg);
-    }
-    public static void AcceleratedTransfer$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AcceleratedTransfer$VH.set(seg, x);
-    }
-    public static byte AcceleratedTransfer$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AcceleratedTransfer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AcceleratedTransfer$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AcceleratedTransfer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BusType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BusType"));
-    public static VarHandle BusType$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.BusType$VH;
-    }
-    public static byte BusType$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.BusType$VH.get(seg);
-    }
-    public static void BusType$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusType$VH.set(seg, x);
-    }
-    public static byte BusType$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.BusType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BusType$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BusMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BusMajorVersion"));
-    public static VarHandle BusMajorVersion$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.BusMajorVersion$VH;
-    }
-    public static short BusMajorVersion$get(MemorySegment seg) {
-        return (short)_STORAGE_ADAPTER_DESCRIPTOR.BusMajorVersion$VH.get(seg);
-    }
-    public static void BusMajorVersion$set( MemorySegment seg, short x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusMajorVersion$VH.set(seg, x);
-    }
-    public static short BusMajorVersion$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_ADAPTER_DESCRIPTOR.BusMajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BusMajorVersion$set(MemorySegment seg, long index, short x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BusMinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BusMinorVersion"));
-    public static VarHandle BusMinorVersion$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.BusMinorVersion$VH;
-    }
-    public static short BusMinorVersion$get(MemorySegment seg) {
-        return (short)_STORAGE_ADAPTER_DESCRIPTOR.BusMinorVersion$VH.get(seg);
-    }
-    public static void BusMinorVersion$set( MemorySegment seg, short x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusMinorVersion$VH.set(seg, x);
-    }
-    public static short BusMinorVersion$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_ADAPTER_DESCRIPTOR.BusMinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BusMinorVersion$set(MemorySegment seg, long index, short x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.BusMinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SrbType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SrbType"));
-    public static VarHandle SrbType$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.SrbType$VH;
-    }
-    public static byte SrbType$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.SrbType$VH.get(seg);
-    }
-    public static void SrbType$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.SrbType$VH.set(seg, x);
-    }
-    public static byte SrbType$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.SrbType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SrbType$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.SrbType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AddressType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddressType"));
-    public static VarHandle AddressType$VH() {
-        return _STORAGE_ADAPTER_DESCRIPTOR.AddressType$VH;
-    }
-    public static byte AddressType$get(MemorySegment seg) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AddressType$VH.get(seg);
-    }
-    public static void AddressType$set( MemorySegment seg, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AddressType$VH.set(seg, x);
-    }
-    public static byte AddressType$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_ADAPTER_DESCRIPTOR.AddressType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddressType$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_ADAPTER_DESCRIPTOR.AddressType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("MaximumTransferLength"),
+        wgl_h.C_LONG.withName("MaximumPhysicalPages"),
+        wgl_h.C_LONG.withName("AlignmentMask"),
+        wgl_h.C_CHAR.withName("AdapterUsesPio"),
+        wgl_h.C_CHAR.withName("AdapterScansDown"),
+        wgl_h.C_CHAR.withName("CommandQueueing"),
+        wgl_h.C_CHAR.withName("AcceleratedTransfer"),
+        wgl_h.C_CHAR.withName("BusType"),
+        MemoryLayout.paddingLayout(1),
+        wgl_h.C_SHORT.withName("BusMajorVersion"),
+        wgl_h.C_SHORT.withName("BusMinorVersion"),
+        wgl_h.C_CHAR.withName("SrbType"),
+        wgl_h.C_CHAR.withName("AddressType")
+    ).withName("_STORAGE_ADAPTER_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaximumTransferLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumTransferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumTransferLength
+     * }
+     */
+    public static final OfInt MaximumTransferLength$layout() {
+        return MaximumTransferLength$LAYOUT;
+    }
+
+    private static final long MaximumTransferLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumTransferLength
+     * }
+     */
+    public static final long MaximumTransferLength$offset() {
+        return MaximumTransferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumTransferLength
+     * }
+     */
+    public static int MaximumTransferLength(MemorySegment struct) {
+        return struct.get(MaximumTransferLength$LAYOUT, MaximumTransferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumTransferLength
+     * }
+     */
+    public static void MaximumTransferLength(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumTransferLength$LAYOUT, MaximumTransferLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MaximumPhysicalPages$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaximumPhysicalPages"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPhysicalPages
+     * }
+     */
+    public static final OfInt MaximumPhysicalPages$layout() {
+        return MaximumPhysicalPages$LAYOUT;
+    }
+
+    private static final long MaximumPhysicalPages$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPhysicalPages
+     * }
+     */
+    public static final long MaximumPhysicalPages$offset() {
+        return MaximumPhysicalPages$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPhysicalPages
+     * }
+     */
+    public static int MaximumPhysicalPages(MemorySegment struct) {
+        return struct.get(MaximumPhysicalPages$LAYOUT, MaximumPhysicalPages$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaximumPhysicalPages
+     * }
+     */
+    public static void MaximumPhysicalPages(MemorySegment struct, int fieldValue) {
+        struct.set(MaximumPhysicalPages$LAYOUT, MaximumPhysicalPages$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AlignmentMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AlignmentMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AlignmentMask
+     * }
+     */
+    public static final OfInt AlignmentMask$layout() {
+        return AlignmentMask$LAYOUT;
+    }
+
+    private static final long AlignmentMask$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AlignmentMask
+     * }
+     */
+    public static final long AlignmentMask$offset() {
+        return AlignmentMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AlignmentMask
+     * }
+     */
+    public static int AlignmentMask(MemorySegment struct) {
+        return struct.get(AlignmentMask$LAYOUT, AlignmentMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AlignmentMask
+     * }
+     */
+    public static void AlignmentMask(MemorySegment struct, int fieldValue) {
+        struct.set(AlignmentMask$LAYOUT, AlignmentMask$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AdapterUsesPio$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AdapterUsesPio"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterUsesPio
+     * }
+     */
+    public static final OfByte AdapterUsesPio$layout() {
+        return AdapterUsesPio$LAYOUT;
+    }
+
+    private static final long AdapterUsesPio$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterUsesPio
+     * }
+     */
+    public static final long AdapterUsesPio$offset() {
+        return AdapterUsesPio$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterUsesPio
+     * }
+     */
+    public static byte AdapterUsesPio(MemorySegment struct) {
+        return struct.get(AdapterUsesPio$LAYOUT, AdapterUsesPio$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterUsesPio
+     * }
+     */
+    public static void AdapterUsesPio(MemorySegment struct, byte fieldValue) {
+        struct.set(AdapterUsesPio$LAYOUT, AdapterUsesPio$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AdapterScansDown$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AdapterScansDown"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterScansDown
+     * }
+     */
+    public static final OfByte AdapterScansDown$layout() {
+        return AdapterScansDown$LAYOUT;
+    }
+
+    private static final long AdapterScansDown$OFFSET = 21;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterScansDown
+     * }
+     */
+    public static final long AdapterScansDown$offset() {
+        return AdapterScansDown$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterScansDown
+     * }
+     */
+    public static byte AdapterScansDown(MemorySegment struct) {
+        return struct.get(AdapterScansDown$LAYOUT, AdapterScansDown$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AdapterScansDown
+     * }
+     */
+    public static void AdapterScansDown(MemorySegment struct, byte fieldValue) {
+        struct.set(AdapterScansDown$LAYOUT, AdapterScansDown$OFFSET, fieldValue);
+    }
+
+    private static final OfByte CommandQueueing$LAYOUT = (OfByte)$LAYOUT.select(groupElement("CommandQueueing"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN CommandQueueing
+     * }
+     */
+    public static final OfByte CommandQueueing$layout() {
+        return CommandQueueing$LAYOUT;
+    }
+
+    private static final long CommandQueueing$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN CommandQueueing
+     * }
+     */
+    public static final long CommandQueueing$offset() {
+        return CommandQueueing$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN CommandQueueing
+     * }
+     */
+    public static byte CommandQueueing(MemorySegment struct) {
+        return struct.get(CommandQueueing$LAYOUT, CommandQueueing$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN CommandQueueing
+     * }
+     */
+    public static void CommandQueueing(MemorySegment struct, byte fieldValue) {
+        struct.set(CommandQueueing$LAYOUT, CommandQueueing$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AcceleratedTransfer$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AcceleratedTransfer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN AcceleratedTransfer
+     * }
+     */
+    public static final OfByte AcceleratedTransfer$layout() {
+        return AcceleratedTransfer$LAYOUT;
+    }
+
+    private static final long AcceleratedTransfer$OFFSET = 23;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN AcceleratedTransfer
+     * }
+     */
+    public static final long AcceleratedTransfer$offset() {
+        return AcceleratedTransfer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AcceleratedTransfer
+     * }
+     */
+    public static byte AcceleratedTransfer(MemorySegment struct) {
+        return struct.get(AcceleratedTransfer$LAYOUT, AcceleratedTransfer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AcceleratedTransfer
+     * }
+     */
+    public static void AcceleratedTransfer(MemorySegment struct, byte fieldValue) {
+        struct.set(AcceleratedTransfer$LAYOUT, AcceleratedTransfer$OFFSET, fieldValue);
+    }
+
+    private static final OfByte BusType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BusType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BusType
+     * }
+     */
+    public static final OfByte BusType$layout() {
+        return BusType$LAYOUT;
+    }
+
+    private static final long BusType$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BusType
+     * }
+     */
+    public static final long BusType$offset() {
+        return BusType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BusType
+     * }
+     */
+    public static byte BusType(MemorySegment struct) {
+        return struct.get(BusType$LAYOUT, BusType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BusType
+     * }
+     */
+    public static void BusType(MemorySegment struct, byte fieldValue) {
+        struct.set(BusType$LAYOUT, BusType$OFFSET, fieldValue);
+    }
+
+    private static final OfShort BusMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("BusMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD BusMajorVersion
+     * }
+     */
+    public static final OfShort BusMajorVersion$layout() {
+        return BusMajorVersion$LAYOUT;
+    }
+
+    private static final long BusMajorVersion$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD BusMajorVersion
+     * }
+     */
+    public static final long BusMajorVersion$offset() {
+        return BusMajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD BusMajorVersion
+     * }
+     */
+    public static short BusMajorVersion(MemorySegment struct) {
+        return struct.get(BusMajorVersion$LAYOUT, BusMajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD BusMajorVersion
+     * }
+     */
+    public static void BusMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(BusMajorVersion$LAYOUT, BusMajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort BusMinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("BusMinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD BusMinorVersion
+     * }
+     */
+    public static final OfShort BusMinorVersion$layout() {
+        return BusMinorVersion$LAYOUT;
+    }
+
+    private static final long BusMinorVersion$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD BusMinorVersion
+     * }
+     */
+    public static final long BusMinorVersion$offset() {
+        return BusMinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD BusMinorVersion
+     * }
+     */
+    public static short BusMinorVersion(MemorySegment struct) {
+        return struct.get(BusMinorVersion$LAYOUT, BusMinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD BusMinorVersion
+     * }
+     */
+    public static void BusMinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(BusMinorVersion$LAYOUT, BusMinorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SrbType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SrbType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SrbType
+     * }
+     */
+    public static final OfByte SrbType$layout() {
+        return SrbType$LAYOUT;
+    }
+
+    private static final long SrbType$OFFSET = 30;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SrbType
+     * }
+     */
+    public static final long SrbType$offset() {
+        return SrbType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SrbType
+     * }
+     */
+    public static byte SrbType(MemorySegment struct) {
+        return struct.get(SrbType$LAYOUT, SrbType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SrbType
+     * }
+     */
+    public static void SrbType(MemorySegment struct, byte fieldValue) {
+        struct.set(SrbType$LAYOUT, SrbType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AddressType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AddressType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE AddressType
+     * }
+     */
+    public static final OfByte AddressType$layout() {
+        return AddressType$LAYOUT;
+    }
+
+    private static final long AddressType$OFFSET = 31;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE AddressType
+     * }
+     */
+    public static final long AddressType$offset() {
+        return AddressType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE AddressType
+     * }
+     */
+    public static byte AddressType(MemorySegment struct) {
+        return struct.get(AddressType$LAYOUT, AddressType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE AddressType
+     * }
+     */
+    public static void AddressType(MemorySegment struct, byte fieldValue) {
+        struct.set(AddressType$LAYOUT, AddressType$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

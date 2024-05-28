@@ -2,13 +2,45 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROPSHEETHEADERA_V1 {
+ *     DWORD dwSize;
+ *     DWORD dwFlags;
+ *     HWND hwndParent;
+ *     HINSTANCE hInstance;
+ *     union {
+ *         HICON hIcon;
+ *         LPCSTR pszIcon;
+ *     };
+ *     LPCSTR pszCaption;
+ *     UINT nPages;
+ *     union {
+ *         UINT nStartPage;
+ *         LPCSTR pStartPage;
+ *     };
+ *     union {
+ *         LPCPROPSHEETPAGEA ppsp;
+ *         HPROPSHEETPAGE *phpage;
+ *     };
+ *     PFNPROPSHEETCALLBACK pfnCallback;
+ * } PROPSHEETHEADERA_V1
+ * }
+ */
 public class PROPSHEETHEADERA_V1 extends _PROPSHEETHEADERA_V1 {
 
+    PROPSHEETHEADERA_V1() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,131 +2,551 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_TEMPERATURE_DATA_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     SHORT CriticalTemperature;
+ *     SHORT WarningTemperature;
+ *     WORD InfoCount;
+ *     BYTE Reserved0[2];
+ *     DWORD Reserved1[2];
+ *     STORAGE_TEMPERATURE_INFO TemperatureInfo[1];
+ * }
+ * }
+ */
 public class _STORAGE_TEMPERATURE_DATA_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_SHORT$LAYOUT.withName("CriticalTemperature"),
-        Constants$root.C_SHORT$LAYOUT.withName("WarningTemperature"),
-        Constants$root.C_SHORT$LAYOUT.withName("InfoCount"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved0"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_LONG$LAYOUT).withName("Reserved1"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("Index"),
-            Constants$root.C_SHORT$LAYOUT.withName("Temperature"),
-            Constants$root.C_SHORT$LAYOUT.withName("OverThreshold"),
-            Constants$root.C_SHORT$LAYOUT.withName("UnderThreshold"),
-            Constants$root.C_CHAR$LAYOUT.withName("OverThresholdChangable"),
-            Constants$root.C_CHAR$LAYOUT.withName("UnderThresholdChangable"),
-            Constants$root.C_CHAR$LAYOUT.withName("EventGenerated"),
-            Constants$root.C_CHAR$LAYOUT.withName("Reserved0"),
-            Constants$root.C_LONG$LAYOUT.withName("Reserved1")
-        ).withName("_STORAGE_TEMPERATURE_INFO")).withName("TemperatureInfo")
-    ).withName("_STORAGE_TEMPERATURE_DATA_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_TEMPERATURE_DATA_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CriticalTemperature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CriticalTemperature"));
-    public static VarHandle CriticalTemperature$VH() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.CriticalTemperature$VH;
-    }
-    public static short CriticalTemperature$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.CriticalTemperature$VH.get(seg);
-    }
-    public static void CriticalTemperature$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.CriticalTemperature$VH.set(seg, x);
-    }
-    public static short CriticalTemperature$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.CriticalTemperature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CriticalTemperature$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.CriticalTemperature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WarningTemperature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WarningTemperature"));
-    public static VarHandle WarningTemperature$VH() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.WarningTemperature$VH;
-    }
-    public static short WarningTemperature$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.WarningTemperature$VH.get(seg);
-    }
-    public static void WarningTemperature$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.WarningTemperature$VH.set(seg, x);
-    }
-    public static short WarningTemperature$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.WarningTemperature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WarningTemperature$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.WarningTemperature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle InfoCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("InfoCount"));
-    public static VarHandle InfoCount$VH() {
-        return _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.InfoCount$VH;
-    }
-    public static short InfoCount$get(MemorySegment seg) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.InfoCount$VH.get(seg);
-    }
-    public static void InfoCount$set( MemorySegment seg, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.InfoCount$VH.set(seg, x);
-    }
-    public static short InfoCount$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_TEMPERATURE_DATA_DESCRIPTOR.InfoCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void InfoCount$set(MemorySegment seg, long index, short x) {
-        _STORAGE_TEMPERATURE_DATA_DESCRIPTOR.InfoCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved0$slice(MemorySegment seg) {
-        return seg.asSlice(14, 2);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(16, 8);
-    }
-    public static MemorySegment TemperatureInfo$slice(MemorySegment seg) {
-        return seg.asSlice(24, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_SHORT.withName("CriticalTemperature"),
+        wgl_h.C_SHORT.withName("WarningTemperature"),
+        wgl_h.C_SHORT.withName("InfoCount"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Reserved0"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_LONG).withName("Reserved1"),
+        MemoryLayout.sequenceLayout(1, _STORAGE_TEMPERATURE_INFO.layout()).withName("TemperatureInfo")
+    ).withName("_STORAGE_TEMPERATURE_DATA_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CriticalTemperature$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CriticalTemperature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT CriticalTemperature
+     * }
+     */
+    public static final OfShort CriticalTemperature$layout() {
+        return CriticalTemperature$LAYOUT;
+    }
+
+    private static final long CriticalTemperature$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT CriticalTemperature
+     * }
+     */
+    public static final long CriticalTemperature$offset() {
+        return CriticalTemperature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT CriticalTemperature
+     * }
+     */
+    public static short CriticalTemperature(MemorySegment struct) {
+        return struct.get(CriticalTemperature$LAYOUT, CriticalTemperature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT CriticalTemperature
+     * }
+     */
+    public static void CriticalTemperature(MemorySegment struct, short fieldValue) {
+        struct.set(CriticalTemperature$LAYOUT, CriticalTemperature$OFFSET, fieldValue);
+    }
+
+    private static final OfShort WarningTemperature$LAYOUT = (OfShort)$LAYOUT.select(groupElement("WarningTemperature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT WarningTemperature
+     * }
+     */
+    public static final OfShort WarningTemperature$layout() {
+        return WarningTemperature$LAYOUT;
+    }
+
+    private static final long WarningTemperature$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT WarningTemperature
+     * }
+     */
+    public static final long WarningTemperature$offset() {
+        return WarningTemperature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT WarningTemperature
+     * }
+     */
+    public static short WarningTemperature(MemorySegment struct) {
+        return struct.get(WarningTemperature$LAYOUT, WarningTemperature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT WarningTemperature
+     * }
+     */
+    public static void WarningTemperature(MemorySegment struct, short fieldValue) {
+        struct.set(WarningTemperature$LAYOUT, WarningTemperature$OFFSET, fieldValue);
+    }
+
+    private static final OfShort InfoCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("InfoCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD InfoCount
+     * }
+     */
+    public static final OfShort InfoCount$layout() {
+        return InfoCount$LAYOUT;
+    }
+
+    private static final long InfoCount$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD InfoCount
+     * }
+     */
+    public static final long InfoCount$offset() {
+        return InfoCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD InfoCount
+     * }
+     */
+    public static short InfoCount(MemorySegment struct) {
+        return struct.get(InfoCount$LAYOUT, InfoCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD InfoCount
+     * }
+     */
+    public static void InfoCount(MemorySegment struct, short fieldValue) {
+        struct.set(InfoCount$LAYOUT, InfoCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved0$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static final SequenceLayout Reserved0$layout() {
+        return Reserved0$LAYOUT;
+    }
+
+    private static final long Reserved0$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static final long Reserved0$offset() {
+        return Reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static MemorySegment Reserved0(MemorySegment struct) {
+        return struct.asSlice(Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved0$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static long[] Reserved0$dimensions() {
+        return Reserved0$DIMS;
+    }
+    private static final VarHandle Reserved0$ELEM_HANDLE = Reserved0$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static byte Reserved0(MemorySegment struct, long index0) {
+        return (byte)Reserved0$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[2]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved0$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static int Reserved1(MemorySegment struct, long index0) {
+        return (int)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved1[2]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, int fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout TemperatureInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("TemperatureInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static final SequenceLayout TemperatureInfo$layout() {
+        return TemperatureInfo$LAYOUT;
+    }
+
+    private static final long TemperatureInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static final long TemperatureInfo$offset() {
+        return TemperatureInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static MemorySegment TemperatureInfo(MemorySegment struct) {
+        return struct.asSlice(TemperatureInfo$OFFSET, TemperatureInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static void TemperatureInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TemperatureInfo$OFFSET, TemperatureInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] TemperatureInfo$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static long[] TemperatureInfo$dimensions() {
+        return TemperatureInfo$DIMS;
+    }
+    private static final MethodHandle TemperatureInfo$ELEM_HANDLE = TemperatureInfo$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static MemorySegment TemperatureInfo(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)TemperatureInfo$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * STORAGE_TEMPERATURE_INFO TemperatureInfo[1]
+     * }
+     */
+    public static void TemperatureInfo(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, TemperatureInfo(struct, index0), 0L, _STORAGE_TEMPERATURE_INFO.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

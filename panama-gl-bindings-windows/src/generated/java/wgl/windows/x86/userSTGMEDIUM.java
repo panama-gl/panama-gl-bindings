@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _userSTGMEDIUM {
+ *     struct _STGMEDIUM_UNION {
+ *         DWORD tymed;
+ *         union __MIDL_IAdviseSink_0003 {
+ *             wireHMETAFILEPICT hMetaFilePict;
+ *             wireHENHMETAFILE hHEnhMetaFile;
+ *             GDI_OBJECT *hGdiHandle;
+ *             wireHGLOBAL hGlobal;
+ *             LPOLESTR lpszFileName;
+ *             BYTE_BLOB *pstm;
+ *             BYTE_BLOB *pstg;
+ *         } u;
+ *     };
+ *     IUnknown *pUnkForRelease;
+ * } userSTGMEDIUM
+ * }
+ */
 public class userSTGMEDIUM extends _userSTGMEDIUM {
 
+    userSTGMEDIUM() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,34 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY {
+ *     union {
+ *         DWORD Flags;
+ *         struct {
+ *             DWORD RaiseExceptionOnInvalidHandleReference : 1;
+ *             DWORD HandleExceptionsPermanentlyEnabled : 1;
+ *             DWORD ReservedFlags : 30;
+ *         };
+ *     };
+ * } PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY
+ * }
+ */
 public class PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY extends _PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY {
 
+    PROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY() {
+        // Should not be called directly
+    }
 }
-
 

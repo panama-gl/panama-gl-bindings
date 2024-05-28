@@ -2,82 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MOUSE_EVENT_RECORD {
+ *     COORD dwMousePosition;
+ *     DWORD dwButtonState;
+ *     DWORD dwControlKeyState;
+ *     DWORD dwEventFlags;
+ * }
+ * }
+ */
 public class _MOUSE_EVENT_RECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("X"),
-            Constants$root.C_SHORT$LAYOUT.withName("Y")
-        ).withName("dwMousePosition"),
-        Constants$root.C_LONG$LAYOUT.withName("dwButtonState"),
-        Constants$root.C_LONG$LAYOUT.withName("dwControlKeyState"),
-        Constants$root.C_LONG$LAYOUT.withName("dwEventFlags")
-    ).withName("_MOUSE_EVENT_RECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _MOUSE_EVENT_RECORD.$struct$LAYOUT;
+    _MOUSE_EVENT_RECORD() {
+        // Should not be called directly
     }
-    public static MemorySegment dwMousePosition$slice(MemorySegment seg) {
-        return seg.asSlice(0, 4);
-    }
-    static final VarHandle dwButtonState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwButtonState"));
-    public static VarHandle dwButtonState$VH() {
-        return _MOUSE_EVENT_RECORD.dwButtonState$VH;
-    }
-    public static int dwButtonState$get(MemorySegment seg) {
-        return (int)_MOUSE_EVENT_RECORD.dwButtonState$VH.get(seg);
-    }
-    public static void dwButtonState$set( MemorySegment seg, int x) {
-        _MOUSE_EVENT_RECORD.dwButtonState$VH.set(seg, x);
-    }
-    public static int dwButtonState$get(MemorySegment seg, long index) {
-        return (int)_MOUSE_EVENT_RECORD.dwButtonState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwButtonState$set(MemorySegment seg, long index, int x) {
-        _MOUSE_EVENT_RECORD.dwButtonState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwControlKeyState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwControlKeyState"));
-    public static VarHandle dwControlKeyState$VH() {
-        return _MOUSE_EVENT_RECORD.dwControlKeyState$VH;
-    }
-    public static int dwControlKeyState$get(MemorySegment seg) {
-        return (int)_MOUSE_EVENT_RECORD.dwControlKeyState$VH.get(seg);
-    }
-    public static void dwControlKeyState$set( MemorySegment seg, int x) {
-        _MOUSE_EVENT_RECORD.dwControlKeyState$VH.set(seg, x);
-    }
-    public static int dwControlKeyState$get(MemorySegment seg, long index) {
-        return (int)_MOUSE_EVENT_RECORD.dwControlKeyState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwControlKeyState$set(MemorySegment seg, long index, int x) {
-        _MOUSE_EVENT_RECORD.dwControlKeyState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwEventFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwEventFlags"));
-    public static VarHandle dwEventFlags$VH() {
-        return _MOUSE_EVENT_RECORD.dwEventFlags$VH;
-    }
-    public static int dwEventFlags$get(MemorySegment seg) {
-        return (int)_MOUSE_EVENT_RECORD.dwEventFlags$VH.get(seg);
-    }
-    public static void dwEventFlags$set( MemorySegment seg, int x) {
-        _MOUSE_EVENT_RECORD.dwEventFlags$VH.set(seg, x);
-    }
-    public static int dwEventFlags$get(MemorySegment seg, long index) {
-        return (int)_MOUSE_EVENT_RECORD.dwEventFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwEventFlags$set(MemorySegment seg, long index, int x) {
-        _MOUSE_EVENT_RECORD.dwEventFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _COORD.layout().withName("dwMousePosition"),
+        freeglut_h.C_LONG.withName("dwButtonState"),
+        freeglut_h.C_LONG.withName("dwControlKeyState"),
+        freeglut_h.C_LONG.withName("dwEventFlags")
+    ).withName("_MOUSE_EVENT_RECORD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout dwMousePosition$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("dwMousePosition"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COORD dwMousePosition
+     * }
+     */
+    public static final GroupLayout dwMousePosition$layout() {
+        return dwMousePosition$LAYOUT;
+    }
+
+    private static final long dwMousePosition$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COORD dwMousePosition
+     * }
+     */
+    public static final long dwMousePosition$offset() {
+        return dwMousePosition$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COORD dwMousePosition
+     * }
+     */
+    public static MemorySegment dwMousePosition(MemorySegment struct) {
+        return struct.asSlice(dwMousePosition$OFFSET, dwMousePosition$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COORD dwMousePosition
+     * }
+     */
+    public static void dwMousePosition(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, dwMousePosition$OFFSET, dwMousePosition$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwButtonState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwButtonState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwButtonState
+     * }
+     */
+    public static final OfInt dwButtonState$layout() {
+        return dwButtonState$LAYOUT;
+    }
+
+    private static final long dwButtonState$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwButtonState
+     * }
+     */
+    public static final long dwButtonState$offset() {
+        return dwButtonState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwButtonState
+     * }
+     */
+    public static int dwButtonState(MemorySegment struct) {
+        return struct.get(dwButtonState$LAYOUT, dwButtonState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwButtonState
+     * }
+     */
+    public static void dwButtonState(MemorySegment struct, int fieldValue) {
+        struct.set(dwButtonState$LAYOUT, dwButtonState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwControlKeyState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwControlKeyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static final OfInt dwControlKeyState$layout() {
+        return dwControlKeyState$LAYOUT;
+    }
+
+    private static final long dwControlKeyState$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static final long dwControlKeyState$offset() {
+        return dwControlKeyState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static int dwControlKeyState(MemorySegment struct) {
+        return struct.get(dwControlKeyState$LAYOUT, dwControlKeyState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlKeyState
+     * }
+     */
+    public static void dwControlKeyState(MemorySegment struct, int fieldValue) {
+        struct.set(dwControlKeyState$LAYOUT, dwControlKeyState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwEventFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwEventFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwEventFlags
+     * }
+     */
+    public static final OfInt dwEventFlags$layout() {
+        return dwEventFlags$LAYOUT;
+    }
+
+    private static final long dwEventFlags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwEventFlags
+     * }
+     */
+    public static final long dwEventFlags$offset() {
+        return dwEventFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwEventFlags
+     * }
+     */
+    public static int dwEventFlags(MemorySegment struct) {
+        return struct.get(dwEventFlags$LAYOUT, dwEventFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwEventFlags
+     * }
+     */
+    public static void dwEventFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwEventFlags$LAYOUT, dwEventFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

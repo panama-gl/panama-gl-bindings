@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMDINEXTMENU {
+ *     HMENU hmenuIn;
+ *     HMENU hmenuNext;
+ *     HWND hwndNext;
+ * }
+ * }
+ */
 public class tagMDINEXTMENU {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hmenuIn"),
-        Constants$root.C_POINTER$LAYOUT.withName("hmenuNext"),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndNext")
-    ).withName("tagMDINEXTMENU");
-    public static MemoryLayout $LAYOUT() {
-        return tagMDINEXTMENU.$struct$LAYOUT;
+    tagMDINEXTMENU() {
+        // Should not be called directly
     }
-    static final VarHandle hmenuIn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hmenuIn"));
-    public static VarHandle hmenuIn$VH() {
-        return tagMDINEXTMENU.hmenuIn$VH;
-    }
-    public static MemoryAddress hmenuIn$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hmenuIn$VH.get(seg);
-    }
-    public static void hmenuIn$set( MemorySegment seg, MemoryAddress x) {
-        tagMDINEXTMENU.hmenuIn$VH.set(seg, x);
-    }
-    public static MemoryAddress hmenuIn$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hmenuIn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hmenuIn$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMDINEXTMENU.hmenuIn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hmenuNext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hmenuNext"));
-    public static VarHandle hmenuNext$VH() {
-        return tagMDINEXTMENU.hmenuNext$VH;
-    }
-    public static MemoryAddress hmenuNext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hmenuNext$VH.get(seg);
-    }
-    public static void hmenuNext$set( MemorySegment seg, MemoryAddress x) {
-        tagMDINEXTMENU.hmenuNext$VH.set(seg, x);
-    }
-    public static MemoryAddress hmenuNext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hmenuNext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hmenuNext$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMDINEXTMENU.hmenuNext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndNext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndNext"));
-    public static VarHandle hwndNext$VH() {
-        return tagMDINEXTMENU.hwndNext$VH;
-    }
-    public static MemoryAddress hwndNext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hwndNext$VH.get(seg);
-    }
-    public static void hwndNext$set( MemorySegment seg, MemoryAddress x) {
-        tagMDINEXTMENU.hwndNext$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndNext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMDINEXTMENU.hwndNext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndNext$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMDINEXTMENU.hwndNext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("hmenuIn"),
+        freeglut_h.C_POINTER.withName("hmenuNext"),
+        freeglut_h.C_POINTER.withName("hwndNext")
+    ).withName("tagMDINEXTMENU");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hmenuIn$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hmenuIn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMENU hmenuIn
+     * }
+     */
+    public static final AddressLayout hmenuIn$layout() {
+        return hmenuIn$LAYOUT;
+    }
+
+    private static final long hmenuIn$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMENU hmenuIn
+     * }
+     */
+    public static final long hmenuIn$offset() {
+        return hmenuIn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMENU hmenuIn
+     * }
+     */
+    public static MemorySegment hmenuIn(MemorySegment struct) {
+        return struct.get(hmenuIn$LAYOUT, hmenuIn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMENU hmenuIn
+     * }
+     */
+    public static void hmenuIn(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hmenuIn$LAYOUT, hmenuIn$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hmenuNext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hmenuNext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMENU hmenuNext
+     * }
+     */
+    public static final AddressLayout hmenuNext$layout() {
+        return hmenuNext$LAYOUT;
+    }
+
+    private static final long hmenuNext$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMENU hmenuNext
+     * }
+     */
+    public static final long hmenuNext$offset() {
+        return hmenuNext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMENU hmenuNext
+     * }
+     */
+    public static MemorySegment hmenuNext(MemorySegment struct) {
+        return struct.get(hmenuNext$LAYOUT, hmenuNext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMENU hmenuNext
+     * }
+     */
+    public static void hmenuNext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hmenuNext$LAYOUT, hmenuNext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndNext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndNext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndNext
+     * }
+     */
+    public static final AddressLayout hwndNext$layout() {
+        return hwndNext$LAYOUT;
+    }
+
+    private static final long hwndNext$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndNext
+     * }
+     */
+    public static final long hwndNext$offset() {
+        return hwndNext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndNext
+     * }
+     */
+    public static MemorySegment hwndNext(MemorySegment struct) {
+        return struct.get(hwndNext$LAYOUT, hwndNext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndNext
+     * }
+     */
+    public static void hwndNext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndNext$LAYOUT, hwndNext$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

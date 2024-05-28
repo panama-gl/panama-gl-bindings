@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagRPC_CALL_ATTRIBUTES_V1_W {
+ *     unsigned int Version;
+ *     unsigned long Flags;
+ *     unsigned long ServerPrincipalNameBufferLength;
+ *     unsigned short *ServerPrincipalName;
+ *     unsigned long ClientPrincipalNameBufferLength;
+ *     unsigned short *ClientPrincipalName;
+ *     unsigned long AuthenticationLevel;
+ *     unsigned long AuthenticationService;
+ *     BOOL NullSession;
+ * } RPC_CALL_ATTRIBUTES_V1_W
+ * }
+ */
 public class RPC_CALL_ATTRIBUTES_V1_W extends tagRPC_CALL_ATTRIBUTES_V1_W {
 
+    RPC_CALL_ATTRIBUTES_V1_W() {
+        // Should not be called directly
+    }
 }
-
 

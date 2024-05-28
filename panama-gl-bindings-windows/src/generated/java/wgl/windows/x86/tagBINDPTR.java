@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union tagBINDPTR {
+ *     FUNCDESC *lpfuncdesc;
+ *     VARDESC *lpvardesc;
+ *     ITypeComp *lptcomp;
+ * }
+ * }
+ */
 public class tagBINDPTR {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("lpfuncdesc"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpvardesc"),
-        Constants$root.C_POINTER$LAYOUT.withName("lptcomp")
-    ).withName("tagBINDPTR");
-    public static MemoryLayout $LAYOUT() {
-        return tagBINDPTR.$union$LAYOUT;
+    tagBINDPTR() {
+        // Should not be called directly
     }
-    static final VarHandle lpfuncdesc$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfuncdesc"));
-    public static VarHandle lpfuncdesc$VH() {
-        return tagBINDPTR.lpfuncdesc$VH;
-    }
-    public static MemoryAddress lpfuncdesc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lpfuncdesc$VH.get(seg);
-    }
-    public static void lpfuncdesc$set( MemorySegment seg, MemoryAddress x) {
-        tagBINDPTR.lpfuncdesc$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfuncdesc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lpfuncdesc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfuncdesc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagBINDPTR.lpfuncdesc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpvardesc$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpvardesc"));
-    public static VarHandle lpvardesc$VH() {
-        return tagBINDPTR.lpvardesc$VH;
-    }
-    public static MemoryAddress lpvardesc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lpvardesc$VH.get(seg);
-    }
-    public static void lpvardesc$set( MemorySegment seg, MemoryAddress x) {
-        tagBINDPTR.lpvardesc$VH.set(seg, x);
-    }
-    public static MemoryAddress lpvardesc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lpvardesc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpvardesc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagBINDPTR.lpvardesc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lptcomp$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lptcomp"));
-    public static VarHandle lptcomp$VH() {
-        return tagBINDPTR.lptcomp$VH;
-    }
-    public static MemoryAddress lptcomp$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lptcomp$VH.get(seg);
-    }
-    public static void lptcomp$set( MemorySegment seg, MemoryAddress x) {
-        tagBINDPTR.lptcomp$VH.set(seg, x);
-    }
-    public static MemoryAddress lptcomp$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagBINDPTR.lptcomp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lptcomp$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagBINDPTR.lptcomp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+        wgl_h.C_POINTER.withName("lpfuncdesc"),
+        wgl_h.C_POINTER.withName("lpvardesc"),
+        wgl_h.C_POINTER.withName("lptcomp")
+    ).withName("tagBINDPTR");
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout lpfuncdesc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfuncdesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FUNCDESC *lpfuncdesc
+     * }
+     */
+    public static final AddressLayout lpfuncdesc$layout() {
+        return lpfuncdesc$LAYOUT;
+    }
+
+    private static final long lpfuncdesc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FUNCDESC *lpfuncdesc
+     * }
+     */
+    public static final long lpfuncdesc$offset() {
+        return lpfuncdesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FUNCDESC *lpfuncdesc
+     * }
+     */
+    public static MemorySegment lpfuncdesc(MemorySegment union) {
+        return union.get(lpfuncdesc$LAYOUT, lpfuncdesc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FUNCDESC *lpfuncdesc
+     * }
+     */
+    public static void lpfuncdesc(MemorySegment union, MemorySegment fieldValue) {
+        union.set(lpfuncdesc$LAYOUT, lpfuncdesc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpvardesc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpvardesc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARDESC *lpvardesc
+     * }
+     */
+    public static final AddressLayout lpvardesc$layout() {
+        return lpvardesc$LAYOUT;
+    }
+
+    private static final long lpvardesc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARDESC *lpvardesc
+     * }
+     */
+    public static final long lpvardesc$offset() {
+        return lpvardesc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARDESC *lpvardesc
+     * }
+     */
+    public static MemorySegment lpvardesc(MemorySegment union) {
+        return union.get(lpvardesc$LAYOUT, lpvardesc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARDESC *lpvardesc
+     * }
+     */
+    public static void lpvardesc(MemorySegment union, MemorySegment fieldValue) {
+        union.set(lpvardesc$LAYOUT, lpvardesc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lptcomp$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lptcomp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ITypeComp *lptcomp
+     * }
+     */
+    public static final AddressLayout lptcomp$layout() {
+        return lptcomp$LAYOUT;
+    }
+
+    private static final long lptcomp$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ITypeComp *lptcomp
+     * }
+     */
+    public static final long lptcomp$offset() {
+        return lptcomp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ITypeComp *lptcomp
+     * }
+     */
+    public static MemorySegment lptcomp(MemorySegment union) {
+        return union.get(lptcomp$LAYOUT, lptcomp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ITypeComp *lptcomp
+     * }
+     */
+    public static void lptcomp(MemorySegment union, MemorySegment fieldValue) {
+        union.set(lptcomp$LAYOUT, lptcomp$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

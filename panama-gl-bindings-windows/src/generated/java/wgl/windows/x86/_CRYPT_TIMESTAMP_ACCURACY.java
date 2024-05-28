@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_TIMESTAMP_ACCURACY {
+ *     DWORD dwSeconds;
+ *     DWORD dwMillis;
+ *     DWORD dwMicros;
+ * }
+ * }
+ */
 public class _CRYPT_TIMESTAMP_ACCURACY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwSeconds"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMillis"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMicros")
-    ).withName("_CRYPT_TIMESTAMP_ACCURACY");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_TIMESTAMP_ACCURACY.$struct$LAYOUT;
+    _CRYPT_TIMESTAMP_ACCURACY() {
+        // Should not be called directly
     }
-    static final VarHandle dwSeconds$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSeconds"));
-    public static VarHandle dwSeconds$VH() {
-        return _CRYPT_TIMESTAMP_ACCURACY.dwSeconds$VH;
-    }
-    public static int dwSeconds$get(MemorySegment seg) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwSeconds$VH.get(seg);
-    }
-    public static void dwSeconds$set( MemorySegment seg, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwSeconds$VH.set(seg, x);
-    }
-    public static int dwSeconds$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwSeconds$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSeconds$set(MemorySegment seg, long index, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwSeconds$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMillis$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMillis"));
-    public static VarHandle dwMillis$VH() {
-        return _CRYPT_TIMESTAMP_ACCURACY.dwMillis$VH;
-    }
-    public static int dwMillis$get(MemorySegment seg) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwMillis$VH.get(seg);
-    }
-    public static void dwMillis$set( MemorySegment seg, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwMillis$VH.set(seg, x);
-    }
-    public static int dwMillis$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwMillis$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMillis$set(MemorySegment seg, long index, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwMillis$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMicros$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMicros"));
-    public static VarHandle dwMicros$VH() {
-        return _CRYPT_TIMESTAMP_ACCURACY.dwMicros$VH;
-    }
-    public static int dwMicros$get(MemorySegment seg) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwMicros$VH.get(seg);
-    }
-    public static void dwMicros$set( MemorySegment seg, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwMicros$VH.set(seg, x);
-    }
-    public static int dwMicros$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_TIMESTAMP_ACCURACY.dwMicros$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMicros$set(MemorySegment seg, long index, int x) {
-        _CRYPT_TIMESTAMP_ACCURACY.dwMicros$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwSeconds"),
+        wgl_h.C_LONG.withName("dwMillis"),
+        wgl_h.C_LONG.withName("dwMicros")
+    ).withName("_CRYPT_TIMESTAMP_ACCURACY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwSeconds$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSeconds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSeconds
+     * }
+     */
+    public static final OfInt dwSeconds$layout() {
+        return dwSeconds$LAYOUT;
+    }
+
+    private static final long dwSeconds$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSeconds
+     * }
+     */
+    public static final long dwSeconds$offset() {
+        return dwSeconds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSeconds
+     * }
+     */
+    public static int dwSeconds(MemorySegment struct) {
+        return struct.get(dwSeconds$LAYOUT, dwSeconds$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSeconds
+     * }
+     */
+    public static void dwSeconds(MemorySegment struct, int fieldValue) {
+        struct.set(dwSeconds$LAYOUT, dwSeconds$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMillis$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMillis"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMillis
+     * }
+     */
+    public static final OfInt dwMillis$layout() {
+        return dwMillis$LAYOUT;
+    }
+
+    private static final long dwMillis$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMillis
+     * }
+     */
+    public static final long dwMillis$offset() {
+        return dwMillis$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMillis
+     * }
+     */
+    public static int dwMillis(MemorySegment struct) {
+        return struct.get(dwMillis$LAYOUT, dwMillis$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMillis
+     * }
+     */
+    public static void dwMillis(MemorySegment struct, int fieldValue) {
+        struct.set(dwMillis$LAYOUT, dwMillis$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMicros$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMicros"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMicros
+     * }
+     */
+    public static final OfInt dwMicros$layout() {
+        return dwMicros$LAYOUT;
+    }
+
+    private static final long dwMicros$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMicros
+     * }
+     */
+    public static final long dwMicros$offset() {
+        return dwMicros$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMicros
+     * }
+     */
+    public static int dwMicros(MemorySegment struct) {
+        return struct.get(dwMicros$LAYOUT, dwMicros$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMicros
+     * }
+     */
+    public static void dwMicros(MemorySegment struct, int fieldValue) {
+        struct.set(dwMicros$LAYOUT, dwMicros$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

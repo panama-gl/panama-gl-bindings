@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_PROPERTY_REF {
+ *     PWSTR pszProperty;
+ *     ULONG cbValue;
+ *     PUCHAR pbValue;
+ * }
+ * }
+ */
 public class _CRYPT_PROPERTY_REF {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszProperty"),
-        Constants$root.C_LONG$LAYOUT.withName("cbValue"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pbValue")
-    ).withName("_CRYPT_PROPERTY_REF");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_PROPERTY_REF.$struct$LAYOUT;
+    _CRYPT_PROPERTY_REF() {
+        // Should not be called directly
     }
-    static final VarHandle pszProperty$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszProperty"));
-    public static VarHandle pszProperty$VH() {
-        return _CRYPT_PROPERTY_REF.pszProperty$VH;
-    }
-    public static MemoryAddress pszProperty$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROPERTY_REF.pszProperty$VH.get(seg);
-    }
-    public static void pszProperty$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PROPERTY_REF.pszProperty$VH.set(seg, x);
-    }
-    public static MemoryAddress pszProperty$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROPERTY_REF.pszProperty$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszProperty$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PROPERTY_REF.pszProperty$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbValue"));
-    public static VarHandle cbValue$VH() {
-        return _CRYPT_PROPERTY_REF.cbValue$VH;
-    }
-    public static int cbValue$get(MemorySegment seg) {
-        return (int)_CRYPT_PROPERTY_REF.cbValue$VH.get(seg);
-    }
-    public static void cbValue$set( MemorySegment seg, int x) {
-        _CRYPT_PROPERTY_REF.cbValue$VH.set(seg, x);
-    }
-    public static int cbValue$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_PROPERTY_REF.cbValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbValue$set(MemorySegment seg, long index, int x) {
-        _CRYPT_PROPERTY_REF.cbValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbValue"));
-    public static VarHandle pbValue$VH() {
-        return _CRYPT_PROPERTY_REF.pbValue$VH;
-    }
-    public static MemoryAddress pbValue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROPERTY_REF.pbValue$VH.get(seg);
-    }
-    public static void pbValue$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PROPERTY_REF.pbValue$VH.set(seg, x);
-    }
-    public static MemoryAddress pbValue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROPERTY_REF.pbValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbValue$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PROPERTY_REF.pbValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszProperty"),
+        wgl_h.C_LONG.withName("cbValue"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pbValue")
+    ).withName("_CRYPT_PROPERTY_REF");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszProperty$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszProperty"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWSTR pszProperty
+     * }
+     */
+    public static final AddressLayout pszProperty$layout() {
+        return pszProperty$LAYOUT;
+    }
+
+    private static final long pszProperty$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWSTR pszProperty
+     * }
+     */
+    public static final long pszProperty$offset() {
+        return pszProperty$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWSTR pszProperty
+     * }
+     */
+    public static MemorySegment pszProperty(MemorySegment struct) {
+        return struct.get(pszProperty$LAYOUT, pszProperty$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWSTR pszProperty
+     * }
+     */
+    public static void pszProperty(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszProperty$LAYOUT, pszProperty$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbValue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbValue
+     * }
+     */
+    public static final OfInt cbValue$layout() {
+        return cbValue$LAYOUT;
+    }
+
+    private static final long cbValue$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbValue
+     * }
+     */
+    public static final long cbValue$offset() {
+        return cbValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbValue
+     * }
+     */
+    public static int cbValue(MemorySegment struct) {
+        return struct.get(cbValue$LAYOUT, cbValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbValue
+     * }
+     */
+    public static void cbValue(MemorySegment struct, int fieldValue) {
+        struct.set(cbValue$LAYOUT, cbValue$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbValue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUCHAR pbValue
+     * }
+     */
+    public static final AddressLayout pbValue$layout() {
+        return pbValue$LAYOUT;
+    }
+
+    private static final long pbValue$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUCHAR pbValue
+     * }
+     */
+    public static final long pbValue$offset() {
+        return pbValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbValue
+     * }
+     */
+    public static MemorySegment pbValue(MemorySegment struct) {
+        return struct.get(pbValue$LAYOUT, pbValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUCHAR pbValue
+     * }
+     */
+    public static void pbValue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbValue$LAYOUT, pbValue$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

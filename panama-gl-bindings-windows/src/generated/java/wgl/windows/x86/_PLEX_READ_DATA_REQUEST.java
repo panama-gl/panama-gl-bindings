@@ -2,72 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PLEX_READ_DATA_REQUEST {
+ *     LARGE_INTEGER ByteOffset;
+ *     DWORD ByteLength;
+ *     DWORD PlexNumber;
+ * }
+ * }
+ */
 public class _PLEX_READ_DATA_REQUEST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("ByteOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("ByteLength"),
-        Constants$root.C_LONG$LAYOUT.withName("PlexNumber")
-    ).withName("_PLEX_READ_DATA_REQUEST");
-    public static MemoryLayout $LAYOUT() {
-        return _PLEX_READ_DATA_REQUEST.$struct$LAYOUT;
+    _PLEX_READ_DATA_REQUEST() {
+        // Should not be called directly
     }
-    public static MemorySegment ByteOffset$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle ByteLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ByteLength"));
-    public static VarHandle ByteLength$VH() {
-        return _PLEX_READ_DATA_REQUEST.ByteLength$VH;
-    }
-    public static int ByteLength$get(MemorySegment seg) {
-        return (int)_PLEX_READ_DATA_REQUEST.ByteLength$VH.get(seg);
-    }
-    public static void ByteLength$set( MemorySegment seg, int x) {
-        _PLEX_READ_DATA_REQUEST.ByteLength$VH.set(seg, x);
-    }
-    public static int ByteLength$get(MemorySegment seg, long index) {
-        return (int)_PLEX_READ_DATA_REQUEST.ByteLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ByteLength$set(MemorySegment seg, long index, int x) {
-        _PLEX_READ_DATA_REQUEST.ByteLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PlexNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PlexNumber"));
-    public static VarHandle PlexNumber$VH() {
-        return _PLEX_READ_DATA_REQUEST.PlexNumber$VH;
-    }
-    public static int PlexNumber$get(MemorySegment seg) {
-        return (int)_PLEX_READ_DATA_REQUEST.PlexNumber$VH.get(seg);
-    }
-    public static void PlexNumber$set( MemorySegment seg, int x) {
-        _PLEX_READ_DATA_REQUEST.PlexNumber$VH.set(seg, x);
-    }
-    public static int PlexNumber$get(MemorySegment seg, long index) {
-        return (int)_PLEX_READ_DATA_REQUEST.PlexNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PlexNumber$set(MemorySegment seg, long index, int x) {
-        _PLEX_READ_DATA_REQUEST.PlexNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("ByteOffset"),
+        wgl_h.C_LONG.withName("ByteLength"),
+        wgl_h.C_LONG.withName("PlexNumber")
+    ).withName("_PLEX_READ_DATA_REQUEST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout ByteOffset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ByteOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ByteOffset
+     * }
+     */
+    public static final GroupLayout ByteOffset$layout() {
+        return ByteOffset$LAYOUT;
+    }
+
+    private static final long ByteOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ByteOffset
+     * }
+     */
+    public static final long ByteOffset$offset() {
+        return ByteOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ByteOffset
+     * }
+     */
+    public static MemorySegment ByteOffset(MemorySegment struct) {
+        return struct.asSlice(ByteOffset$OFFSET, ByteOffset$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER ByteOffset
+     * }
+     */
+    public static void ByteOffset(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ByteOffset$OFFSET, ByteOffset$LAYOUT.byteSize());
+    }
+
+    private static final OfInt ByteLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ByteLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static final OfInt ByteLength$layout() {
+        return ByteLength$LAYOUT;
+    }
+
+    private static final long ByteLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static final long ByteLength$offset() {
+        return ByteLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static int ByteLength(MemorySegment struct) {
+        return struct.get(ByteLength$LAYOUT, ByteLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ByteLength
+     * }
+     */
+    public static void ByteLength(MemorySegment struct, int fieldValue) {
+        struct.set(ByteLength$LAYOUT, ByteLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PlexNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PlexNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PlexNumber
+     * }
+     */
+    public static final OfInt PlexNumber$layout() {
+        return PlexNumber$LAYOUT;
+    }
+
+    private static final long PlexNumber$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PlexNumber
+     * }
+     */
+    public static final long PlexNumber$offset() {
+        return PlexNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PlexNumber
+     * }
+     */
+    public static int PlexNumber(MemorySegment struct) {
+        return struct.get(PlexNumber$LAYOUT, PlexNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PlexNumber
+     * }
+     */
+    public static void PlexNumber(MemorySegment struct, int fieldValue) {
+        struct.set(PlexNumber$LAYOUT, PlexNumber$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

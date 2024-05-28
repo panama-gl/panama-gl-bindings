@@ -1,19 +1,34 @@
-Install
-* CLang
 
-## Compile freeglut binaries
+## Method 1 : Generate binding to precompiled freeglut binaries
 
-### using MSYS2
+### Download freeglut
 
-Open the `scripts/windows/build-freeglut-msys2.sh` script and follow the steps provided there on how to setup the required environment and how to run the script.
+* Find Freeglut [here](https://www.transmissionzero.co.uk/files/software/development/GLUT/freeglut-MSVC-3.0.0-2.mp.zip)
 
-### using Microsoft Visual Studio C-Compiler
+### Build OpenGL java wrappers with JExtract
 
-Open the `scripts/windows/build-freeglut-msvsc.bat` script and follow the steps provided there on how to setup the required environment and how to run the script.
+* Navigate to `scripts/windows` and run on the CLI the following command:
 
-## Build OpenGL java wrappers with JExtract
+`generate_glut.bat`
 
-Navigate to `scripts/windows` and run on the CLI the following command:
+
+## Method 2 : Generate binding to freeglut binaries compiled by yourself
+
+Either build freeglut using Msys2 or Microsoft Visual Studio 
+
+### 2.1 : using MSYS2
+
+* Install CLang
+* Open the `scripts/windows/build-freeglut-msys2.sh` script and follow the steps provided there on how to setup the required environment and how to run the script.
+
+### 2.2 : using Microsoft Visual Studio C-Compiler
+
+* Install Visual Studio
+* Open the `scripts/windows/build-freeglut-msvsc.bat` script and follow the steps provided there on how to setup the required environment and how to run the script.
+
+### Build OpenGL java wrappers with JExtract
+
+* Navigate to `scripts/windows` and run on the CLI the following command:
 
 `generate_freeglut.bat`
 

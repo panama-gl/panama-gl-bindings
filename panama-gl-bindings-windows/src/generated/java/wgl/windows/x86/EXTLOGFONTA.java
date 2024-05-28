@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagEXTLOGFONTA {
+ *     LOGFONTA elfLogFont;
+ *     BYTE elfFullName[64];
+ *     BYTE elfStyle[32];
+ *     DWORD elfVersion;
+ *     DWORD elfStyleSize;
+ *     DWORD elfMatch;
+ *     DWORD elfReserved;
+ *     BYTE elfVendorId[4];
+ *     DWORD elfCulture;
+ *     PANOSE elfPanose;
+ * } EXTLOGFONTA
+ * }
+ */
 public class EXTLOGFONTA extends tagEXTLOGFONTA {
 
+    EXTLOGFONTA() {
+        // Should not be called directly
+    }
 }
-
 

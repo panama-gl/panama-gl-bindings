@@ -2,84 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _OFNOTIFYEXW {
+ *     NMHDR hdr;
+ *     LPOPENFILENAMEW lpOFN;
+ *     LPVOID psf;
+ *     LPVOID pidl;
+ * }
+ * }
+ */
 public class _OFNOTIFYEXW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hwndFrom"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("idFrom"),
-            Constants$root.C_LONG$LAYOUT.withName("code"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("hdr"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpOFN"),
-        Constants$root.C_POINTER$LAYOUT.withName("psf"),
-        Constants$root.C_POINTER$LAYOUT.withName("pidl")
-    ).withName("_OFNOTIFYEXW");
-    public static MemoryLayout $LAYOUT() {
-        return _OFNOTIFYEXW.$struct$LAYOUT;
+    _OFNOTIFYEXW() {
+        // Should not be called directly
     }
-    public static MemorySegment hdr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    static final VarHandle lpOFN$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpOFN"));
-    public static VarHandle lpOFN$VH() {
-        return _OFNOTIFYEXW.lpOFN$VH;
-    }
-    public static MemoryAddress lpOFN$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.lpOFN$VH.get(seg);
-    }
-    public static void lpOFN$set( MemorySegment seg, MemoryAddress x) {
-        _OFNOTIFYEXW.lpOFN$VH.set(seg, x);
-    }
-    public static MemoryAddress lpOFN$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.lpOFN$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpOFN$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OFNOTIFYEXW.lpOFN$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle psf$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("psf"));
-    public static VarHandle psf$VH() {
-        return _OFNOTIFYEXW.psf$VH;
-    }
-    public static MemoryAddress psf$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.psf$VH.get(seg);
-    }
-    public static void psf$set( MemorySegment seg, MemoryAddress x) {
-        _OFNOTIFYEXW.psf$VH.set(seg, x);
-    }
-    public static MemoryAddress psf$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.psf$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void psf$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OFNOTIFYEXW.psf$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pidl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pidl"));
-    public static VarHandle pidl$VH() {
-        return _OFNOTIFYEXW.pidl$VH;
-    }
-    public static MemoryAddress pidl$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.pidl$VH.get(seg);
-    }
-    public static void pidl$set( MemorySegment seg, MemoryAddress x) {
-        _OFNOTIFYEXW.pidl$VH.set(seg, x);
-    }
-    public static MemoryAddress pidl$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OFNOTIFYEXW.pidl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pidl$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OFNOTIFYEXW.pidl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagNMHDR.layout().withName("hdr"),
+        wgl_h.C_POINTER.withName("lpOFN"),
+        wgl_h.C_POINTER.withName("psf"),
+        wgl_h.C_POINTER.withName("pidl")
+    ).withName("_OFNOTIFYEXW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout hdr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("hdr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static final GroupLayout hdr$layout() {
+        return hdr$LAYOUT;
+    }
+
+    private static final long hdr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static final long hdr$offset() {
+        return hdr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static MemorySegment hdr(MemorySegment struct) {
+        return struct.asSlice(hdr$OFFSET, hdr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static void hdr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, hdr$OFFSET, hdr$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout lpOFN$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpOFN"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOPENFILENAMEW lpOFN
+     * }
+     */
+    public static final AddressLayout lpOFN$layout() {
+        return lpOFN$LAYOUT;
+    }
+
+    private static final long lpOFN$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOPENFILENAMEW lpOFN
+     * }
+     */
+    public static final long lpOFN$offset() {
+        return lpOFN$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOPENFILENAMEW lpOFN
+     * }
+     */
+    public static MemorySegment lpOFN(MemorySegment struct) {
+        return struct.get(lpOFN$LAYOUT, lpOFN$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOPENFILENAMEW lpOFN
+     * }
+     */
+    public static void lpOFN(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpOFN$LAYOUT, lpOFN$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout psf$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("psf"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID psf
+     * }
+     */
+    public static final AddressLayout psf$layout() {
+        return psf$LAYOUT;
+    }
+
+    private static final long psf$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID psf
+     * }
+     */
+    public static final long psf$offset() {
+        return psf$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID psf
+     * }
+     */
+    public static MemorySegment psf(MemorySegment struct) {
+        return struct.get(psf$LAYOUT, psf$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID psf
+     * }
+     */
+    public static void psf(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(psf$LAYOUT, psf$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pidl$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pidl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID pidl
+     * }
+     */
+    public static final AddressLayout pidl$layout() {
+        return pidl$LAYOUT;
+    }
+
+    private static final long pidl$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID pidl
+     * }
+     */
+    public static final long pidl$offset() {
+        return pidl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID pidl
+     * }
+     */
+    public static MemorySegment pidl(MemorySegment struct) {
+        return struct.get(pidl$LAYOUT, pidl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID pidl
+     * }
+     */
+    public static void pidl(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pidl$LAYOUT, pidl$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

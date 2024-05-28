@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CPS_URLS {
+ *     LPWSTR pszURL;
+ *     CRYPT_ALGORITHM_IDENTIFIER *pAlgorithm;
+ *     CRYPT_DATA_BLOB *pDigest;
+ * }
+ * }
+ */
 public class _CPS_URLS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszURL"),
-        Constants$root.C_POINTER$LAYOUT.withName("pAlgorithm"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDigest")
-    ).withName("_CPS_URLS");
-    public static MemoryLayout $LAYOUT() {
-        return _CPS_URLS.$struct$LAYOUT;
+    _CPS_URLS() {
+        // Should not be called directly
     }
-    static final VarHandle pszURL$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszURL"));
-    public static VarHandle pszURL$VH() {
-        return _CPS_URLS.pszURL$VH;
-    }
-    public static MemoryAddress pszURL$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pszURL$VH.get(seg);
-    }
-    public static void pszURL$set( MemorySegment seg, MemoryAddress x) {
-        _CPS_URLS.pszURL$VH.set(seg, x);
-    }
-    public static MemoryAddress pszURL$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pszURL$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszURL$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CPS_URLS.pszURL$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pAlgorithm$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pAlgorithm"));
-    public static VarHandle pAlgorithm$VH() {
-        return _CPS_URLS.pAlgorithm$VH;
-    }
-    public static MemoryAddress pAlgorithm$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pAlgorithm$VH.get(seg);
-    }
-    public static void pAlgorithm$set( MemorySegment seg, MemoryAddress x) {
-        _CPS_URLS.pAlgorithm$VH.set(seg, x);
-    }
-    public static MemoryAddress pAlgorithm$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pAlgorithm$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pAlgorithm$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CPS_URLS.pAlgorithm$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDigest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDigest"));
-    public static VarHandle pDigest$VH() {
-        return _CPS_URLS.pDigest$VH;
-    }
-    public static MemoryAddress pDigest$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pDigest$VH.get(seg);
-    }
-    public static void pDigest$set( MemorySegment seg, MemoryAddress x) {
-        _CPS_URLS.pDigest$VH.set(seg, x);
-    }
-    public static MemoryAddress pDigest$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CPS_URLS.pDigest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDigest$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CPS_URLS.pDigest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszURL"),
+        wgl_h.C_POINTER.withName("pAlgorithm"),
+        wgl_h.C_POINTER.withName("pDigest")
+    ).withName("_CPS_URLS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszURL$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszURL"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pszURL
+     * }
+     */
+    public static final AddressLayout pszURL$layout() {
+        return pszURL$LAYOUT;
+    }
+
+    private static final long pszURL$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pszURL
+     * }
+     */
+    public static final long pszURL$offset() {
+        return pszURL$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszURL
+     * }
+     */
+    public static MemorySegment pszURL(MemorySegment struct) {
+        return struct.get(pszURL$LAYOUT, pszURL$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszURL
+     * }
+     */
+    public static void pszURL(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszURL$LAYOUT, pszURL$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pAlgorithm$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER *pAlgorithm
+     * }
+     */
+    public static final AddressLayout pAlgorithm$layout() {
+        return pAlgorithm$LAYOUT;
+    }
+
+    private static final long pAlgorithm$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER *pAlgorithm
+     * }
+     */
+    public static final long pAlgorithm$offset() {
+        return pAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER *pAlgorithm
+     * }
+     */
+    public static MemorySegment pAlgorithm(MemorySegment struct) {
+        return struct.get(pAlgorithm$LAYOUT, pAlgorithm$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER *pAlgorithm
+     * }
+     */
+    public static void pAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pAlgorithm$LAYOUT, pAlgorithm$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDigest$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDigest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB *pDigest
+     * }
+     */
+    public static final AddressLayout pDigest$layout() {
+        return pDigest$LAYOUT;
+    }
+
+    private static final long pDigest$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB *pDigest
+     * }
+     */
+    public static final long pDigest$offset() {
+        return pDigest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB *pDigest
+     * }
+     */
+    public static MemorySegment pDigest(MemorySegment struct) {
+        return struct.get(pDigest$LAYOUT, pDigest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB *pDigest
+     * }
+     */
+    public static void pDigest(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDigest$LAYOUT, pDigest$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,94 +2,268 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_FUNCTION_ENTRY64 {
+ *     ULONGLONG StartingAddress;
+ *     ULONGLONG EndingAddress;
+ *     union {
+ *         ULONGLONG EndOfPrologue;
+ *         ULONGLONG UnwindInfoAddress;
+ *     };
+ * }
+ * }
+ */
 public class _IMAGE_FUNCTION_ENTRY64 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("StartingAddress"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EndingAddress"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("EndOfPrologue"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("UnwindInfoAddress")
-        ).withName("$anon$0")
-    ).withName("_IMAGE_FUNCTION_ENTRY64");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_FUNCTION_ENTRY64.$struct$LAYOUT;
+    _IMAGE_FUNCTION_ENTRY64() {
+        // Should not be called directly
     }
-    static final VarHandle StartingAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartingAddress"));
-    public static VarHandle StartingAddress$VH() {
-        return _IMAGE_FUNCTION_ENTRY64.StartingAddress$VH;
-    }
-    public static long StartingAddress$get(MemorySegment seg) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.StartingAddress$VH.get(seg);
-    }
-    public static void StartingAddress$set( MemorySegment seg, long x) {
-        _IMAGE_FUNCTION_ENTRY64.StartingAddress$VH.set(seg, x);
-    }
-    public static long StartingAddress$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.StartingAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartingAddress$set(MemorySegment seg, long index, long x) {
-        _IMAGE_FUNCTION_ENTRY64.StartingAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndingAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EndingAddress"));
-    public static VarHandle EndingAddress$VH() {
-        return _IMAGE_FUNCTION_ENTRY64.EndingAddress$VH;
-    }
-    public static long EndingAddress$get(MemorySegment seg) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.EndingAddress$VH.get(seg);
-    }
-    public static void EndingAddress$set( MemorySegment seg, long x) {
-        _IMAGE_FUNCTION_ENTRY64.EndingAddress$VH.set(seg, x);
-    }
-    public static long EndingAddress$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.EndingAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndingAddress$set(MemorySegment seg, long index, long x) {
-        _IMAGE_FUNCTION_ENTRY64.EndingAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EndOfPrologue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("EndOfPrologue"));
-    public static VarHandle EndOfPrologue$VH() {
-        return _IMAGE_FUNCTION_ENTRY64.EndOfPrologue$VH;
-    }
-    public static long EndOfPrologue$get(MemorySegment seg) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.EndOfPrologue$VH.get(seg);
-    }
-    public static void EndOfPrologue$set( MemorySegment seg, long x) {
-        _IMAGE_FUNCTION_ENTRY64.EndOfPrologue$VH.set(seg, x);
-    }
-    public static long EndOfPrologue$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.EndOfPrologue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndOfPrologue$set(MemorySegment seg, long index, long x) {
-        _IMAGE_FUNCTION_ENTRY64.EndOfPrologue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UnwindInfoAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("UnwindInfoAddress"));
-    public static VarHandle UnwindInfoAddress$VH() {
-        return _IMAGE_FUNCTION_ENTRY64.UnwindInfoAddress$VH;
-    }
-    public static long UnwindInfoAddress$get(MemorySegment seg) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.UnwindInfoAddress$VH.get(seg);
-    }
-    public static void UnwindInfoAddress$set( MemorySegment seg, long x) {
-        _IMAGE_FUNCTION_ENTRY64.UnwindInfoAddress$VH.set(seg, x);
-    }
-    public static long UnwindInfoAddress$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_FUNCTION_ENTRY64.UnwindInfoAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnwindInfoAddress$set(MemorySegment seg, long index, long x) {
-        _IMAGE_FUNCTION_ENTRY64.UnwindInfoAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.align(freeglut_h.C_LONG_LONG, 4).withName("StartingAddress"),
+        freeglut_h.align(freeglut_h.C_LONG_LONG, 4).withName("EndingAddress"),
+        MemoryLayout.unionLayout(
+            freeglut_h.align(freeglut_h.C_LONG_LONG, 4).withName("EndOfPrologue"),
+            freeglut_h.align(freeglut_h.C_LONG_LONG, 4).withName("UnwindInfoAddress")
+        ).withName("$anon$19066:5")
+    ).withName("_IMAGE_FUNCTION_ENTRY64");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong StartingAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("StartingAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG StartingAddress
+     * }
+     */
+    public static final OfLong StartingAddress$layout() {
+        return StartingAddress$LAYOUT;
+    }
+
+    private static final long StartingAddress$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG StartingAddress
+     * }
+     */
+    public static final long StartingAddress$offset() {
+        return StartingAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG StartingAddress
+     * }
+     */
+    public static long StartingAddress(MemorySegment struct) {
+        return struct.get(StartingAddress$LAYOUT, StartingAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG StartingAddress
+     * }
+     */
+    public static void StartingAddress(MemorySegment struct, long fieldValue) {
+        struct.set(StartingAddress$LAYOUT, StartingAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EndingAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EndingAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndingAddress
+     * }
+     */
+    public static final OfLong EndingAddress$layout() {
+        return EndingAddress$LAYOUT;
+    }
+
+    private static final long EndingAddress$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndingAddress
+     * }
+     */
+    public static final long EndingAddress$offset() {
+        return EndingAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndingAddress
+     * }
+     */
+    public static long EndingAddress(MemorySegment struct) {
+        return struct.get(EndingAddress$LAYOUT, EndingAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndingAddress
+     * }
+     */
+    public static void EndingAddress(MemorySegment struct, long fieldValue) {
+        struct.set(EndingAddress$LAYOUT, EndingAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EndOfPrologue$LAYOUT = (OfLong)$LAYOUT.select(groupElement("$anon$19066:5"), groupElement("EndOfPrologue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndOfPrologue
+     * }
+     */
+    public static final OfLong EndOfPrologue$layout() {
+        return EndOfPrologue$LAYOUT;
+    }
+
+    private static final long EndOfPrologue$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndOfPrologue
+     * }
+     */
+    public static final long EndOfPrologue$offset() {
+        return EndOfPrologue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndOfPrologue
+     * }
+     */
+    public static long EndOfPrologue(MemorySegment struct) {
+        return struct.get(EndOfPrologue$LAYOUT, EndOfPrologue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG EndOfPrologue
+     * }
+     */
+    public static void EndOfPrologue(MemorySegment struct, long fieldValue) {
+        struct.set(EndOfPrologue$LAYOUT, EndOfPrologue$OFFSET, fieldValue);
+    }
+
+    private static final OfLong UnwindInfoAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("$anon$19066:5"), groupElement("UnwindInfoAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG UnwindInfoAddress
+     * }
+     */
+    public static final OfLong UnwindInfoAddress$layout() {
+        return UnwindInfoAddress$LAYOUT;
+    }
+
+    private static final long UnwindInfoAddress$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG UnwindInfoAddress
+     * }
+     */
+    public static final long UnwindInfoAddress$offset() {
+        return UnwindInfoAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG UnwindInfoAddress
+     * }
+     */
+    public static long UnwindInfoAddress(MemorySegment struct) {
+        return struct.get(UnwindInfoAddress$LAYOUT, UnwindInfoAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG UnwindInfoAddress
+     * }
+     */
+    public static void UnwindInfoAddress(MemorySegment struct, long fieldValue) {
+        struct.set(UnwindInfoAddress$LAYOUT, UnwindInfoAddress$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

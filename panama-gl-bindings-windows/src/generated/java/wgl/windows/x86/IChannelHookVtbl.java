@@ -2,449 +2,1003 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IChannelHookVtbl {
+ *     HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall));
+ *     ULONG (*Release)(IChannelHook *) __attribute__((stdcall));
+ *     void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall));
+ *     void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall));
+ *     void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall));
+ *     void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall));
+ *     void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall));
+ *     void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IChannelHookVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("ClientGetSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("ClientFillBuffer"),
-        Constants$root.C_POINTER$LAYOUT.withName("ClientNotify"),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerNotify"),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerGetSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerFillBuffer")
+    IChannelHookVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("ClientGetSize"),
+        wgl_h.C_POINTER.withName("ClientFillBuffer"),
+        wgl_h.C_POINTER.withName("ClientNotify"),
+        wgl_h.C_POINTER.withName("ServerNotify"),
+        wgl_h.C_POINTER.withName("ServerGetSize"),
+        wgl_h.C_POINTER.withName("ServerFillBuffer")
     ).withName("IChannelHookVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IChannelHookVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IChannelHookVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IChannelHookVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IChannelHookVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IChannelHookVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IChannelHookVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IChannelHookVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IChannelHookVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IChannelHookVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IChannelHookVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor ClientGetSize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ClientGetSize$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ClientGetSize$FUNC
-    );
-    public interface ClientGetSize {
+    private static final long QueryInterface$OFFSET = 0;
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(ClientGetSize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ClientGetSize.class, fi, IChannelHookVtbl.ClientGetSize$FUNC, session);
-        }
-        static ClientGetSize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    IChannelHookVtbl.ClientGetSize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle ClientGetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClientGetSize"));
-    public static VarHandle ClientGetSize$VH() {
-        return IChannelHookVtbl.ClientGetSize$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress ClientGetSize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientGetSize$VH.get(seg);
-    }
-    public static void ClientGetSize$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ClientGetSize$VH.set(seg, x);
-    }
-    public static MemoryAddress ClientGetSize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientGetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClientGetSize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ClientGetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ClientGetSize ClientGetSize (MemorySegment segment, MemorySession session) {
-        return ClientGetSize.ofAddress(ClientGetSize$get(segment), session);
-    }
-    static final FunctionDescriptor ClientFillBuffer$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ClientFillBuffer$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ClientFillBuffer$FUNC
-    );
-    public interface ClientFillBuffer {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4);
-        static MemorySegment allocate(ClientFillBuffer fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ClientFillBuffer.class, fi, IChannelHookVtbl.ClientFillBuffer$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IChannelHook *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static ClientFillBuffer ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4) -> {
-                try {
-                    IChannelHookVtbl.ClientFillBuffer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ClientFillBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClientFillBuffer"));
-    public static VarHandle ClientFillBuffer$VH() {
-        return IChannelHookVtbl.ClientFillBuffer$VH;
-    }
-    public static MemoryAddress ClientFillBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientFillBuffer$VH.get(seg);
-    }
-    public static void ClientFillBuffer$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ClientFillBuffer$VH.set(seg, x);
-    }
-    public static MemoryAddress ClientFillBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientFillBuffer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClientFillBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ClientFillBuffer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ClientFillBuffer ClientFillBuffer (MemorySegment segment, MemorySession session) {
-        return ClientFillBuffer.ofAddress(ClientFillBuffer$get(segment), session);
-    }
-    static final FunctionDescriptor ClientNotify$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ClientNotify$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ClientNotify$FUNC
-    );
-    public interface ClientNotify {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4, int _x5, int _x6);
-        static MemorySegment allocate(ClientNotify fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ClientNotify.class, fi, IChannelHookVtbl.ClientNotify$FUNC, session);
-        }
-        static ClientNotify ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4, int __x5, int __x6) -> {
-                try {
-                    IChannelHookVtbl.ClientNotify$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4, __x5, __x6);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle ClientNotify$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClientNotify"));
-    public static VarHandle ClientNotify$VH() {
-        return IChannelHookVtbl.ClientNotify$VH;
-    }
-    public static MemoryAddress ClientNotify$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientNotify$VH.get(seg);
-    }
-    public static void ClientNotify$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ClientNotify$VH.set(seg, x);
-    }
-    public static MemoryAddress ClientNotify$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ClientNotify$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClientNotify$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ClientNotify$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ClientNotify ClientNotify (MemorySegment segment, MemorySession session) {
-        return ClientNotify.ofAddress(ClientNotify$get(segment), session);
-    }
-    static final FunctionDescriptor ServerNotify$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ServerNotify$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ServerNotify$FUNC
-    );
-    public interface ServerNotify {
+    private static final long AddRef$OFFSET = 8;
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4, int _x5);
-        static MemorySegment allocate(ServerNotify fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ServerNotify.class, fi, IChannelHookVtbl.ServerNotify$FUNC, session);
-        }
-        static ServerNotify ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4, int __x5) -> {
-                try {
-                    IChannelHookVtbl.ServerNotify$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle ServerNotify$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerNotify"));
-    public static VarHandle ServerNotify$VH() {
-        return IChannelHookVtbl.ServerNotify$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress ServerNotify$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerNotify$VH.get(seg);
-    }
-    public static void ServerNotify$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ServerNotify$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerNotify$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerNotify$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerNotify$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ServerNotify$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ServerNotify ServerNotify (MemorySegment segment, MemorySession session) {
-        return ServerNotify.ofAddress(ServerNotify$get(segment), session);
-    }
-    static final FunctionDescriptor ServerGetSize$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ServerGetSize$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ServerGetSize$FUNC
-    );
-    public interface ServerGetSize {
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4);
-        static MemorySegment allocate(ServerGetSize fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ServerGetSize.class, fi, IChannelHookVtbl.ServerGetSize$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static ServerGetSize ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4) -> {
-                try {
-                    IChannelHookVtbl.ServerGetSize$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ServerGetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerGetSize"));
-    public static VarHandle ServerGetSize$VH() {
-        return IChannelHookVtbl.ServerGetSize$VH;
-    }
-    public static MemoryAddress ServerGetSize$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerGetSize$VH.get(seg);
-    }
-    public static void ServerGetSize$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ServerGetSize$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerGetSize$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerGetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerGetSize$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ServerGetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ServerGetSize ServerGetSize (MemorySegment segment, MemorySession session) {
-        return ServerGetSize.ofAddress(ServerGetSize$get(segment), session);
-    }
-    static final FunctionDescriptor ServerFillBuffer$FUNC = FunctionDescriptor.ofVoid(
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ServerFillBuffer$MH = RuntimeHelper.downcallHandle(
-        IChannelHookVtbl.ServerFillBuffer$FUNC
-    );
-    public interface ServerFillBuffer {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        void apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, int _x5);
-        static MemorySegment allocate(ServerFillBuffer fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ServerFillBuffer.class, fi, IChannelHookVtbl.ServerFillBuffer$FUNC, session);
-        }
-        static ServerFillBuffer ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, int __x5) -> {
-                try {
-                    IChannelHookVtbl.ServerFillBuffer$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle ServerFillBuffer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerFillBuffer"));
-    public static VarHandle ServerFillBuffer$VH() {
-        return IChannelHookVtbl.ServerFillBuffer$VH;
+    private static final long Release$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
-    public static MemoryAddress ServerFillBuffer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerFillBuffer$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static void ServerFillBuffer$set( MemorySegment seg, MemoryAddress x) {
-        IChannelHookVtbl.ServerFillBuffer$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IChannelHook *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
     }
-    public static MemoryAddress ServerFillBuffer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IChannelHookVtbl.ServerFillBuffer$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static class ClientGetSize {
+
+        ClientGetSize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ClientGetSize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ClientGetSize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void ServerFillBuffer$set(MemorySegment seg, long index, MemoryAddress x) {
-        IChannelHookVtbl.ServerFillBuffer$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout ClientGetSize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ClientGetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ClientGetSize$layout() {
+        return ClientGetSize$LAYOUT;
     }
-    public static ServerFillBuffer ServerFillBuffer (MemorySegment segment, MemorySession session) {
-        return ServerFillBuffer.ofAddress(ServerFillBuffer$get(segment), session);
+
+    private static final long ClientGetSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ClientGetSize$offset() {
+        return ClientGetSize$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ClientGetSize(MemorySegment struct) {
+        return struct.get(ClientGetSize$LAYOUT, ClientGetSize$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ClientGetSize)(IChannelHook *, const GUID *const, const IID *const, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static void ClientGetSize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ClientGetSize$LAYOUT, ClientGetSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static class ClientFillBuffer {
+
+        ClientFillBuffer() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ClientFillBuffer.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ClientFillBuffer.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ClientFillBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ClientFillBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ClientFillBuffer$layout() {
+        return ClientFillBuffer$LAYOUT;
+    }
+
+    private static final long ClientFillBuffer$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ClientFillBuffer$offset() {
+        return ClientFillBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ClientFillBuffer(MemorySegment struct) {
+        return struct.get(ClientFillBuffer$LAYOUT, ClientFillBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ClientFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *) __attribute__((stdcall))
+     * }
+     */
+    public static void ClientFillBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ClientFillBuffer$LAYOUT, ClientFillBuffer$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static class ClientNotify {
+
+        ClientNotify() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, int _x6);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ClientNotify.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ClientNotify.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5, int _x6) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ClientNotify$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ClientNotify"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ClientNotify$layout() {
+        return ClientNotify$LAYOUT;
+    }
+
+    private static final long ClientNotify$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static final long ClientNotify$offset() {
+        return ClientNotify$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ClientNotify(MemorySegment struct) {
+        return struct.get(ClientNotify$LAYOUT, ClientNotify$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ClientNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static void ClientNotify(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ClientNotify$LAYOUT, ClientNotify$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class ServerNotify {
+
+        ServerNotify() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ServerNotify.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ServerNotify.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, int _x5) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ServerNotify$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerNotify"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ServerNotify$layout() {
+        return ServerNotify$LAYOUT;
+    }
+
+    private static final long ServerNotify$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long ServerNotify$offset() {
+        return ServerNotify$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ServerNotify(MemorySegment struct) {
+        return struct.get(ServerNotify$LAYOUT, ServerNotify$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ServerNotify)(IChannelHook *, const GUID *const, const IID *const, ULONG, void *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void ServerNotify(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerNotify$LAYOUT, ServerNotify$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static class ServerGetSize {
+
+        ServerGetSize() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ServerGetSize.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ServerGetSize.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ServerGetSize$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerGetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ServerGetSize$layout() {
+        return ServerGetSize$LAYOUT;
+    }
+
+    private static final long ServerGetSize$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ServerGetSize$offset() {
+        return ServerGetSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ServerGetSize(MemorySegment struct) {
+        return struct.get(ServerGetSize$LAYOUT, ServerGetSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ServerGetSize)(IChannelHook *, const GUID *const, const IID *const, HRESULT, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static void ServerGetSize(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerGetSize$LAYOUT, ServerGetSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static class ServerFillBuffer {
+
+        ServerFillBuffer() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            void apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ServerFillBuffer.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ServerFillBuffer.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static void invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, int _x5) {
+            try {
+                 DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ServerFillBuffer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerFillBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ServerFillBuffer$layout() {
+        return ServerFillBuffer$LAYOUT;
+    }
+
+    private static final long ServerFillBuffer$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static final long ServerFillBuffer$offset() {
+        return ServerFillBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ServerFillBuffer(MemorySegment struct) {
+        return struct.get(ServerFillBuffer$LAYOUT, ServerFillBuffer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void (*ServerFillBuffer)(IChannelHook *, const GUID *const, const IID *const, ULONG *, void *, HRESULT) __attribute__((stdcall))
+     * }
+     */
+    public static void ServerFillBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerFillBuffer$LAYOUT, ServerFillBuffer$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

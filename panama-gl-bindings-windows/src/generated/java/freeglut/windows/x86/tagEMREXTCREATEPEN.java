@@ -2,128 +2,402 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMREXTCREATEPEN {
+ *     EMR emr;
+ *     DWORD ihPen;
+ *     DWORD offBmi;
+ *     DWORD cbBmi;
+ *     DWORD offBits;
+ *     DWORD cbBits;
+ *     EXTLOGPEN32 elp;
+ * }
+ * }
+ */
 public class tagEMREXTCREATEPEN {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        Constants$root.C_LONG$LAYOUT.withName("ihPen"),
-        Constants$root.C_LONG$LAYOUT.withName("offBmi"),
-        Constants$root.C_LONG$LAYOUT.withName("cbBmi"),
-        Constants$root.C_LONG$LAYOUT.withName("offBits"),
-        Constants$root.C_LONG$LAYOUT.withName("cbBits"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("elpPenStyle"),
-            Constants$root.C_LONG$LAYOUT.withName("elpWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("elpBrushStyle"),
-            Constants$root.C_LONG$LAYOUT.withName("elpColor"),
-            Constants$root.C_LONG$LAYOUT.withName("elpHatch"),
-            Constants$root.C_LONG$LAYOUT.withName("elpNumEntries"),
-            MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("elpStyleEntry")
-        ).withName("elp")
-    ).withName("tagEMREXTCREATEPEN");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMREXTCREATEPEN.$struct$LAYOUT;
+    tagEMREXTCREATEPEN() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle ihPen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ihPen"));
-    public static VarHandle ihPen$VH() {
-        return tagEMREXTCREATEPEN.ihPen$VH;
-    }
-    public static int ihPen$get(MemorySegment seg) {
-        return (int)tagEMREXTCREATEPEN.ihPen$VH.get(seg);
-    }
-    public static void ihPen$set( MemorySegment seg, int x) {
-        tagEMREXTCREATEPEN.ihPen$VH.set(seg, x);
-    }
-    public static int ihPen$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTCREATEPEN.ihPen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ihPen$set(MemorySegment seg, long index, int x) {
-        tagEMREXTCREATEPEN.ihPen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle offBmi$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("offBmi"));
-    public static VarHandle offBmi$VH() {
-        return tagEMREXTCREATEPEN.offBmi$VH;
-    }
-    public static int offBmi$get(MemorySegment seg) {
-        return (int)tagEMREXTCREATEPEN.offBmi$VH.get(seg);
-    }
-    public static void offBmi$set( MemorySegment seg, int x) {
-        tagEMREXTCREATEPEN.offBmi$VH.set(seg, x);
-    }
-    public static int offBmi$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTCREATEPEN.offBmi$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void offBmi$set(MemorySegment seg, long index, int x) {
-        tagEMREXTCREATEPEN.offBmi$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbBmi$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbBmi"));
-    public static VarHandle cbBmi$VH() {
-        return tagEMREXTCREATEPEN.cbBmi$VH;
-    }
-    public static int cbBmi$get(MemorySegment seg) {
-        return (int)tagEMREXTCREATEPEN.cbBmi$VH.get(seg);
-    }
-    public static void cbBmi$set( MemorySegment seg, int x) {
-        tagEMREXTCREATEPEN.cbBmi$VH.set(seg, x);
-    }
-    public static int cbBmi$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTCREATEPEN.cbBmi$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbBmi$set(MemorySegment seg, long index, int x) {
-        tagEMREXTCREATEPEN.cbBmi$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle offBits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("offBits"));
-    public static VarHandle offBits$VH() {
-        return tagEMREXTCREATEPEN.offBits$VH;
-    }
-    public static int offBits$get(MemorySegment seg) {
-        return (int)tagEMREXTCREATEPEN.offBits$VH.get(seg);
-    }
-    public static void offBits$set( MemorySegment seg, int x) {
-        tagEMREXTCREATEPEN.offBits$VH.set(seg, x);
-    }
-    public static int offBits$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTCREATEPEN.offBits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void offBits$set(MemorySegment seg, long index, int x) {
-        tagEMREXTCREATEPEN.offBits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbBits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbBits"));
-    public static VarHandle cbBits$VH() {
-        return tagEMREXTCREATEPEN.cbBits$VH;
-    }
-    public static int cbBits$get(MemorySegment seg) {
-        return (int)tagEMREXTCREATEPEN.cbBits$VH.get(seg);
-    }
-    public static void cbBits$set( MemorySegment seg, int x) {
-        tagEMREXTCREATEPEN.cbBits$VH.set(seg, x);
-    }
-    public static int cbBits$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTCREATEPEN.cbBits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbBits$set(MemorySegment seg, long index, int x) {
-        tagEMREXTCREATEPEN.cbBits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment elp$slice(MemorySegment seg) {
-        return seg.asSlice(28, 28);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        freeglut_h.C_LONG.withName("ihPen"),
+        freeglut_h.C_LONG.withName("offBmi"),
+        freeglut_h.C_LONG.withName("cbBmi"),
+        freeglut_h.C_LONG.withName("offBits"),
+        freeglut_h.C_LONG.withName("cbBits"),
+        tagEXTLOGPEN32.layout().withName("elp")
+    ).withName("tagEMREXTCREATEPEN");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final OfInt ihPen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ihPen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ihPen
+     * }
+     */
+    public static final OfInt ihPen$layout() {
+        return ihPen$LAYOUT;
+    }
+
+    private static final long ihPen$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ihPen
+     * }
+     */
+    public static final long ihPen$offset() {
+        return ihPen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ihPen
+     * }
+     */
+    public static int ihPen(MemorySegment struct) {
+        return struct.get(ihPen$LAYOUT, ihPen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ihPen
+     * }
+     */
+    public static void ihPen(MemorySegment struct, int fieldValue) {
+        struct.set(ihPen$LAYOUT, ihPen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt offBmi$LAYOUT = (OfInt)$LAYOUT.select(groupElement("offBmi"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD offBmi
+     * }
+     */
+    public static final OfInt offBmi$layout() {
+        return offBmi$LAYOUT;
+    }
+
+    private static final long offBmi$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD offBmi
+     * }
+     */
+    public static final long offBmi$offset() {
+        return offBmi$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD offBmi
+     * }
+     */
+    public static int offBmi(MemorySegment struct) {
+        return struct.get(offBmi$LAYOUT, offBmi$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD offBmi
+     * }
+     */
+    public static void offBmi(MemorySegment struct, int fieldValue) {
+        struct.set(offBmi$LAYOUT, offBmi$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbBmi$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbBmi"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbBmi
+     * }
+     */
+    public static final OfInt cbBmi$layout() {
+        return cbBmi$LAYOUT;
+    }
+
+    private static final long cbBmi$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbBmi
+     * }
+     */
+    public static final long cbBmi$offset() {
+        return cbBmi$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbBmi
+     * }
+     */
+    public static int cbBmi(MemorySegment struct) {
+        return struct.get(cbBmi$LAYOUT, cbBmi$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbBmi
+     * }
+     */
+    public static void cbBmi(MemorySegment struct, int fieldValue) {
+        struct.set(cbBmi$LAYOUT, cbBmi$OFFSET, fieldValue);
+    }
+
+    private static final OfInt offBits$LAYOUT = (OfInt)$LAYOUT.select(groupElement("offBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD offBits
+     * }
+     */
+    public static final OfInt offBits$layout() {
+        return offBits$LAYOUT;
+    }
+
+    private static final long offBits$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD offBits
+     * }
+     */
+    public static final long offBits$offset() {
+        return offBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD offBits
+     * }
+     */
+    public static int offBits(MemorySegment struct) {
+        return struct.get(offBits$LAYOUT, offBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD offBits
+     * }
+     */
+    public static void offBits(MemorySegment struct, int fieldValue) {
+        struct.set(offBits$LAYOUT, offBits$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbBits$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbBits
+     * }
+     */
+    public static final OfInt cbBits$layout() {
+        return cbBits$LAYOUT;
+    }
+
+    private static final long cbBits$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbBits
+     * }
+     */
+    public static final long cbBits$offset() {
+        return cbBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbBits
+     * }
+     */
+    public static int cbBits(MemorySegment struct) {
+        return struct.get(cbBits$LAYOUT, cbBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbBits
+     * }
+     */
+    public static void cbBits(MemorySegment struct, int fieldValue) {
+        struct.set(cbBits$LAYOUT, cbBits$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout elp$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("elp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EXTLOGPEN32 elp
+     * }
+     */
+    public static final GroupLayout elp$layout() {
+        return elp$LAYOUT;
+    }
+
+    private static final long elp$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EXTLOGPEN32 elp
+     * }
+     */
+    public static final long elp$offset() {
+        return elp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EXTLOGPEN32 elp
+     * }
+     */
+    public static MemorySegment elp(MemorySegment struct) {
+        return struct.asSlice(elp$OFFSET, elp$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EXTLOGPEN32 elp
+     * }
+     */
+    public static void elp(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elp$OFFSET, elp$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

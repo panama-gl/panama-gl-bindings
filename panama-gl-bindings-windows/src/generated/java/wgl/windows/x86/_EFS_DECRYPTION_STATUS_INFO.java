@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EFS_DECRYPTION_STATUS_INFO {
+ *     DWORD dwDecryptionError;
+ *     DWORD dwHashOffset;
+ *     DWORD cbHash;
+ * }
+ * }
+ */
 public class _EFS_DECRYPTION_STATUS_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwDecryptionError"),
-        Constants$root.C_LONG$LAYOUT.withName("dwHashOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("cbHash")
-    ).withName("_EFS_DECRYPTION_STATUS_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _EFS_DECRYPTION_STATUS_INFO.$struct$LAYOUT;
+    _EFS_DECRYPTION_STATUS_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwDecryptionError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDecryptionError"));
-    public static VarHandle dwDecryptionError$VH() {
-        return _EFS_DECRYPTION_STATUS_INFO.dwDecryptionError$VH;
-    }
-    public static int dwDecryptionError$get(MemorySegment seg) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.dwDecryptionError$VH.get(seg);
-    }
-    public static void dwDecryptionError$set( MemorySegment seg, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.dwDecryptionError$VH.set(seg, x);
-    }
-    public static int dwDecryptionError$get(MemorySegment seg, long index) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.dwDecryptionError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwDecryptionError$set(MemorySegment seg, long index, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.dwDecryptionError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwHashOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwHashOffset"));
-    public static VarHandle dwHashOffset$VH() {
-        return _EFS_DECRYPTION_STATUS_INFO.dwHashOffset$VH;
-    }
-    public static int dwHashOffset$get(MemorySegment seg) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.dwHashOffset$VH.get(seg);
-    }
-    public static void dwHashOffset$set( MemorySegment seg, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.dwHashOffset$VH.set(seg, x);
-    }
-    public static int dwHashOffset$get(MemorySegment seg, long index) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.dwHashOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwHashOffset$set(MemorySegment seg, long index, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.dwHashOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbHash$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbHash"));
-    public static VarHandle cbHash$VH() {
-        return _EFS_DECRYPTION_STATUS_INFO.cbHash$VH;
-    }
-    public static int cbHash$get(MemorySegment seg) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.cbHash$VH.get(seg);
-    }
-    public static void cbHash$set( MemorySegment seg, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.cbHash$VH.set(seg, x);
-    }
-    public static int cbHash$get(MemorySegment seg, long index) {
-        return (int)_EFS_DECRYPTION_STATUS_INFO.cbHash$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbHash$set(MemorySegment seg, long index, int x) {
-        _EFS_DECRYPTION_STATUS_INFO.cbHash$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwDecryptionError"),
+        wgl_h.C_LONG.withName("dwHashOffset"),
+        wgl_h.C_LONG.withName("cbHash")
+    ).withName("_EFS_DECRYPTION_STATUS_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwDecryptionError$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDecryptionError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwDecryptionError
+     * }
+     */
+    public static final OfInt dwDecryptionError$layout() {
+        return dwDecryptionError$LAYOUT;
+    }
+
+    private static final long dwDecryptionError$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwDecryptionError
+     * }
+     */
+    public static final long dwDecryptionError$offset() {
+        return dwDecryptionError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwDecryptionError
+     * }
+     */
+    public static int dwDecryptionError(MemorySegment struct) {
+        return struct.get(dwDecryptionError$LAYOUT, dwDecryptionError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwDecryptionError
+     * }
+     */
+    public static void dwDecryptionError(MemorySegment struct, int fieldValue) {
+        struct.set(dwDecryptionError$LAYOUT, dwDecryptionError$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwHashOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwHashOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwHashOffset
+     * }
+     */
+    public static final OfInt dwHashOffset$layout() {
+        return dwHashOffset$LAYOUT;
+    }
+
+    private static final long dwHashOffset$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwHashOffset
+     * }
+     */
+    public static final long dwHashOffset$offset() {
+        return dwHashOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwHashOffset
+     * }
+     */
+    public static int dwHashOffset(MemorySegment struct) {
+        return struct.get(dwHashOffset$LAYOUT, dwHashOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwHashOffset
+     * }
+     */
+    public static void dwHashOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwHashOffset$LAYOUT, dwHashOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbHash$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbHash"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbHash
+     * }
+     */
+    public static final OfInt cbHash$layout() {
+        return cbHash$LAYOUT;
+    }
+
+    private static final long cbHash$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbHash
+     * }
+     */
+    public static final long cbHash$offset() {
+        return cbHash$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbHash
+     * }
+     */
+    public static int cbHash(MemorySegment struct) {
+        return struct.get(cbHash$LAYOUT, cbHash$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbHash
+     * }
+     */
+    public static void cbHash(MemorySegment struct, int fieldValue) {
+        struct.set(cbHash$LAYOUT, cbHash$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

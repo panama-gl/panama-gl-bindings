@@ -2,27 +2,71 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface DRAWSTATEPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hdc, long lData, long wData, int cx, int cy);
-    static MemorySegment allocate(DRAWSTATEPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(DRAWSTATEPROC.class, fi, constants$414.DRAWSTATEPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*DRAWSTATEPROC)(HDC, LPARAM, WPARAM, int, int) __attribute__((stdcall))
+ * }
+ */
+public class DRAWSTATEPROC {
+
+    DRAWSTATEPROC() {
+        // Should not be called directly
     }
-    static DRAWSTATEPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, long _lData, long _wData, int _cx, int _cy) -> {
-            try {
-                return (int)constants$415.DRAWSTATEPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, _lData, _wData, _cx, _cy);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hdc, long lData, long wData, int cx, int cy);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_INT,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG_LONG,
+        freeglut_h.C_LONG_LONG,
+        freeglut_h.C_INT,
+        freeglut_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(DRAWSTATEPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(DRAWSTATEPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hdc, long lData, long wData, int cx, int cy) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hdc, lData, wData, cx, cy);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

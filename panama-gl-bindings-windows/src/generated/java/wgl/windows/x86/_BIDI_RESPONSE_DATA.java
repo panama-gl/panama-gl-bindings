@@ -2,93 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BIDI_RESPONSE_DATA {
+ *     DWORD dwResult;
+ *     DWORD dwReqNumber;
+ *     LPWSTR pSchema;
+ *     BIDI_DATA data;
+ * }
+ * }
+ */
 public class _BIDI_RESPONSE_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwResult"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReqNumber"),
-        Constants$root.C_POINTER$LAYOUT.withName("pSchema"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwBidiType"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                Constants$root.C_LONG$LAYOUT.withName("bData"),
-                Constants$root.C_LONG$LAYOUT.withName("iData"),
-                Constants$root.C_POINTER$LAYOUT.withName("sData"),
-                Constants$root.C_FLOAT$LAYOUT.withName("fData"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbBuf"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pData")
-                ).withName("biData")
-            ).withName("u")
-        ).withName("data")
-    ).withName("_BIDI_RESPONSE_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _BIDI_RESPONSE_DATA.$struct$LAYOUT;
+    _BIDI_RESPONSE_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle dwResult$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwResult"));
-    public static VarHandle dwResult$VH() {
-        return _BIDI_RESPONSE_DATA.dwResult$VH;
-    }
-    public static int dwResult$get(MemorySegment seg) {
-        return (int)_BIDI_RESPONSE_DATA.dwResult$VH.get(seg);
-    }
-    public static void dwResult$set( MemorySegment seg, int x) {
-        _BIDI_RESPONSE_DATA.dwResult$VH.set(seg, x);
-    }
-    public static int dwResult$get(MemorySegment seg, long index) {
-        return (int)_BIDI_RESPONSE_DATA.dwResult$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwResult$set(MemorySegment seg, long index, int x) {
-        _BIDI_RESPONSE_DATA.dwResult$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReqNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReqNumber"));
-    public static VarHandle dwReqNumber$VH() {
-        return _BIDI_RESPONSE_DATA.dwReqNumber$VH;
-    }
-    public static int dwReqNumber$get(MemorySegment seg) {
-        return (int)_BIDI_RESPONSE_DATA.dwReqNumber$VH.get(seg);
-    }
-    public static void dwReqNumber$set( MemorySegment seg, int x) {
-        _BIDI_RESPONSE_DATA.dwReqNumber$VH.set(seg, x);
-    }
-    public static int dwReqNumber$get(MemorySegment seg, long index) {
-        return (int)_BIDI_RESPONSE_DATA.dwReqNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReqNumber$set(MemorySegment seg, long index, int x) {
-        _BIDI_RESPONSE_DATA.dwReqNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pSchema$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pSchema"));
-    public static VarHandle pSchema$VH() {
-        return _BIDI_RESPONSE_DATA.pSchema$VH;
-    }
-    public static MemoryAddress pSchema$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_BIDI_RESPONSE_DATA.pSchema$VH.get(seg);
-    }
-    public static void pSchema$set( MemorySegment seg, MemoryAddress x) {
-        _BIDI_RESPONSE_DATA.pSchema$VH.set(seg, x);
-    }
-    public static MemoryAddress pSchema$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_BIDI_RESPONSE_DATA.pSchema$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSchema$set(MemorySegment seg, long index, MemoryAddress x) {
-        _BIDI_RESPONSE_DATA.pSchema$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment data$slice(MemorySegment seg) {
-        return seg.asSlice(16, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwResult"),
+        wgl_h.C_LONG.withName("dwReqNumber"),
+        wgl_h.C_POINTER.withName("pSchema"),
+        _BIDI_DATA.layout().withName("data")
+    ).withName("_BIDI_RESPONSE_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwResult$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwResult"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwResult
+     * }
+     */
+    public static final OfInt dwResult$layout() {
+        return dwResult$LAYOUT;
+    }
+
+    private static final long dwResult$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwResult
+     * }
+     */
+    public static final long dwResult$offset() {
+        return dwResult$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwResult
+     * }
+     */
+    public static int dwResult(MemorySegment struct) {
+        return struct.get(dwResult$LAYOUT, dwResult$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwResult
+     * }
+     */
+    public static void dwResult(MemorySegment struct, int fieldValue) {
+        struct.set(dwResult$LAYOUT, dwResult$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReqNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReqNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReqNumber
+     * }
+     */
+    public static final OfInt dwReqNumber$layout() {
+        return dwReqNumber$LAYOUT;
+    }
+
+    private static final long dwReqNumber$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReqNumber
+     * }
+     */
+    public static final long dwReqNumber$offset() {
+        return dwReqNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReqNumber
+     * }
+     */
+    public static int dwReqNumber(MemorySegment struct) {
+        return struct.get(dwReqNumber$LAYOUT, dwReqNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReqNumber
+     * }
+     */
+    public static void dwReqNumber(MemorySegment struct, int fieldValue) {
+        struct.set(dwReqNumber$LAYOUT, dwReqNumber$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pSchema$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pSchema"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pSchema
+     * }
+     */
+    public static final AddressLayout pSchema$layout() {
+        return pSchema$LAYOUT;
+    }
+
+    private static final long pSchema$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pSchema
+     * }
+     */
+    public static final long pSchema$offset() {
+        return pSchema$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pSchema
+     * }
+     */
+    public static MemorySegment pSchema(MemorySegment struct) {
+        return struct.get(pSchema$LAYOUT, pSchema$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pSchema
+     * }
+     */
+    public static void pSchema(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSchema$LAYOUT, pSchema$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout data$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("data"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BIDI_DATA data
+     * }
+     */
+    public static final GroupLayout data$layout() {
+        return data$LAYOUT;
+    }
+
+    private static final long data$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BIDI_DATA data
+     * }
+     */
+    public static final long data$offset() {
+        return data$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BIDI_DATA data
+     * }
+     */
+    public static MemorySegment data(MemorySegment struct) {
+        return struct.asSlice(data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BIDI_DATA data
+     * }
+     */
+    public static void data(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

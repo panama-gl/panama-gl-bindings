@@ -2,80 +2,298 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SI_COPYFILE {
+ *     DWORD SourceFileNameLength;
+ *     DWORD DestinationFileNameLength;
+ *     DWORD Flags;
+ *     WCHAR FileNameBuffer[1];
+ * }
+ * }
+ */
 public class _SI_COPYFILE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("SourceFileNameLength"),
-        Constants$root.C_LONG$LAYOUT.withName("DestinationFileNameLength"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("FileNameBuffer"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("_SI_COPYFILE");
-    public static MemoryLayout $LAYOUT() {
-        return _SI_COPYFILE.$struct$LAYOUT;
+    _SI_COPYFILE() {
+        // Should not be called directly
     }
-    static final VarHandle SourceFileNameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SourceFileNameLength"));
-    public static VarHandle SourceFileNameLength$VH() {
-        return _SI_COPYFILE.SourceFileNameLength$VH;
-    }
-    public static int SourceFileNameLength$get(MemorySegment seg) {
-        return (int)_SI_COPYFILE.SourceFileNameLength$VH.get(seg);
-    }
-    public static void SourceFileNameLength$set( MemorySegment seg, int x) {
-        _SI_COPYFILE.SourceFileNameLength$VH.set(seg, x);
-    }
-    public static int SourceFileNameLength$get(MemorySegment seg, long index) {
-        return (int)_SI_COPYFILE.SourceFileNameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SourceFileNameLength$set(MemorySegment seg, long index, int x) {
-        _SI_COPYFILE.SourceFileNameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DestinationFileNameLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DestinationFileNameLength"));
-    public static VarHandle DestinationFileNameLength$VH() {
-        return _SI_COPYFILE.DestinationFileNameLength$VH;
-    }
-    public static int DestinationFileNameLength$get(MemorySegment seg) {
-        return (int)_SI_COPYFILE.DestinationFileNameLength$VH.get(seg);
-    }
-    public static void DestinationFileNameLength$set( MemorySegment seg, int x) {
-        _SI_COPYFILE.DestinationFileNameLength$VH.set(seg, x);
-    }
-    public static int DestinationFileNameLength$get(MemorySegment seg, long index) {
-        return (int)_SI_COPYFILE.DestinationFileNameLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DestinationFileNameLength$set(MemorySegment seg, long index, int x) {
-        _SI_COPYFILE.DestinationFileNameLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _SI_COPYFILE.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_SI_COPYFILE.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _SI_COPYFILE.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_SI_COPYFILE.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _SI_COPYFILE.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FileNameBuffer$slice(MemorySegment seg) {
-        return seg.asSlice(12, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("SourceFileNameLength"),
+        wgl_h.C_LONG.withName("DestinationFileNameLength"),
+        wgl_h.C_LONG.withName("Flags"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_SHORT).withName("FileNameBuffer"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("_SI_COPYFILE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt SourceFileNameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SourceFileNameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SourceFileNameLength
+     * }
+     */
+    public static final OfInt SourceFileNameLength$layout() {
+        return SourceFileNameLength$LAYOUT;
+    }
+
+    private static final long SourceFileNameLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SourceFileNameLength
+     * }
+     */
+    public static final long SourceFileNameLength$offset() {
+        return SourceFileNameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SourceFileNameLength
+     * }
+     */
+    public static int SourceFileNameLength(MemorySegment struct) {
+        return struct.get(SourceFileNameLength$LAYOUT, SourceFileNameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SourceFileNameLength
+     * }
+     */
+    public static void SourceFileNameLength(MemorySegment struct, int fieldValue) {
+        struct.set(SourceFileNameLength$LAYOUT, SourceFileNameLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DestinationFileNameLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DestinationFileNameLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DestinationFileNameLength
+     * }
+     */
+    public static final OfInt DestinationFileNameLength$layout() {
+        return DestinationFileNameLength$LAYOUT;
+    }
+
+    private static final long DestinationFileNameLength$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DestinationFileNameLength
+     * }
+     */
+    public static final long DestinationFileNameLength$offset() {
+        return DestinationFileNameLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DestinationFileNameLength
+     * }
+     */
+    public static int DestinationFileNameLength(MemorySegment struct) {
+        return struct.get(DestinationFileNameLength$LAYOUT, DestinationFileNameLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DestinationFileNameLength
+     * }
+     */
+    public static void DestinationFileNameLength(MemorySegment struct, int fieldValue) {
+        struct.set(DestinationFileNameLength$LAYOUT, DestinationFileNameLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout FileNameBuffer$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("FileNameBuffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static final SequenceLayout FileNameBuffer$layout() {
+        return FileNameBuffer$LAYOUT;
+    }
+
+    private static final long FileNameBuffer$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static final long FileNameBuffer$offset() {
+        return FileNameBuffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static MemorySegment FileNameBuffer(MemorySegment struct) {
+        return struct.asSlice(FileNameBuffer$OFFSET, FileNameBuffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static void FileNameBuffer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FileNameBuffer$OFFSET, FileNameBuffer$LAYOUT.byteSize());
+    }
+
+    private static long[] FileNameBuffer$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static long[] FileNameBuffer$dimensions() {
+        return FileNameBuffer$DIMS;
+    }
+    private static final VarHandle FileNameBuffer$ELEM_HANDLE = FileNameBuffer$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static short FileNameBuffer(MemorySegment struct, long index0) {
+        return (short)FileNameBuffer$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR FileNameBuffer[1]
+     * }
+     */
+    public static void FileNameBuffer(MemorySegment struct, long index0, short fieldValue) {
+        FileNameBuffer$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

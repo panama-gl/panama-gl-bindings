@@ -2,581 +2,2009 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_MEDIA_INFO {
+ *     union {
+ *         struct {
+ *             LARGE_INTEGER Cylinders;
+ *             STORAGE_MEDIA_TYPE MediaType;
+ *             DWORD TracksPerCylinder;
+ *             DWORD SectorsPerTrack;
+ *             DWORD BytesPerSector;
+ *             DWORD NumberMediaSides;
+ *             DWORD MediaCharacteristics;
+ *         } DiskInfo;
+ *         struct {
+ *             LARGE_INTEGER Cylinders;
+ *             STORAGE_MEDIA_TYPE MediaType;
+ *             DWORD TracksPerCylinder;
+ *             DWORD SectorsPerTrack;
+ *             DWORD BytesPerSector;
+ *             DWORD NumberMediaSides;
+ *             DWORD MediaCharacteristics;
+ *         } RemovableDiskInfo;
+ *         struct {
+ *             STORAGE_MEDIA_TYPE MediaType;
+ *             DWORD MediaCharacteristics;
+ *             DWORD CurrentBlockSize;
+ *             STORAGE_BUS_TYPE BusType;
+ *             union {
+ *                 struct {
+ *                     BYTE MediumType;
+ *                     BYTE DensityCode;
+ *                 } ScsiInformation;
+ *             } BusSpecificData;
+ *         } TapeInfo;
+ *     } DeviceSpecific;
+ * }
+ * }
+ */
 public class _DEVICE_MEDIA_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            ).withName("DiskInfo"),
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            ).withName("RemovableDiskInfo"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics"),
-                Constants$root.C_LONG$LAYOUT.withName("CurrentBlockSize"),
-                Constants$root.C_LONG$LAYOUT.withName("BusType"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                        Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                    ).withName("ScsiInformation")
-                ).withName("BusSpecificData"),
-                MemoryLayout.paddingLayout(16)
-            ).withName("TapeInfo")
-        ).withName("DeviceSpecific")
-    ).withName("_DEVICE_MEDIA_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_MEDIA_INFO.$struct$LAYOUT;
+    _DEVICE_MEDIA_INFO() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _DEVICE_MEDIA_INFO.DeviceSpecific.layout().withName("DeviceSpecific")
+    ).withName("_DEVICE_MEDIA_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } DiskInfo;
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } RemovableDiskInfo;
+     *     struct {
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD MediaCharacteristics;
+     *         DWORD CurrentBlockSize;
+     *         STORAGE_BUS_TYPE BusType;
+     *         union {
+     *             struct {
+     *                 BYTE MediumType;
+     *                 BYTE DensityCode;
+     *             } ScsiInformation;
+     *         } BusSpecificData;
+     *     } TapeInfo;
+     * }
+     * }
+     */
     public static class DeviceSpecific {
 
-        static final  GroupLayout DeviceSpecific$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            ).withName("DiskInfo"),
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            ).withName("RemovableDiskInfo"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics"),
-                Constants$root.C_LONG$LAYOUT.withName("CurrentBlockSize"),
-                Constants$root.C_LONG$LAYOUT.withName("BusType"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                        Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                    ).withName("ScsiInformation")
-                ).withName("BusSpecificData"),
-                MemoryLayout.paddingLayout(16)
-            ).withName("TapeInfo")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return DeviceSpecific.DeviceSpecific$union$LAYOUT;
+        DeviceSpecific() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _DEVICE_MEDIA_INFO.DeviceSpecific.DiskInfo.layout().withName("DiskInfo"),
+            _DEVICE_MEDIA_INFO.DeviceSpecific.RemovableDiskInfo.layout().withName("RemovableDiskInfo"),
+            _DEVICE_MEDIA_INFO.DeviceSpecific.TapeInfo.layout().withName("TapeInfo")
+        ).withName("$anon$948:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * }
+         * }
+         */
         public static class DiskInfo {
 
-            static final  GroupLayout DeviceSpecific$DiskInfo$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return DiskInfo.DeviceSpecific$DiskInfo$struct$LAYOUT;
+            DiskInfo() {
+                // Should not be called directly
             }
-            public static MemorySegment Cylinders$slice(MemorySegment seg) {
-                return seg.asSlice(0, 8);
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                _LARGE_INTEGER.layout().withName("Cylinders"),
+                wgl_h.C_INT.withName("MediaType"),
+                wgl_h.C_LONG.withName("TracksPerCylinder"),
+                wgl_h.C_LONG.withName("SectorsPerTrack"),
+                wgl_h.C_LONG.withName("BytesPerSector"),
+                wgl_h.C_LONG.withName("NumberMediaSides"),
+                wgl_h.C_LONG.withName("MediaCharacteristics")
+            ).withName("$anon$949:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle MediaType$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaType"));
-            public static VarHandle MediaType$VH() {
-                return DiskInfo.MediaType$VH;
+
+            private static final GroupLayout Cylinders$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Cylinders"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static final GroupLayout Cylinders$layout() {
+                return Cylinders$LAYOUT;
             }
-            public static int MediaType$get(MemorySegment seg) {
-                return (int)DiskInfo.MediaType$VH.get(seg);
+
+            private static final long Cylinders$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static final long Cylinders$offset() {
+                return Cylinders$OFFSET;
             }
-            public static void MediaType$set( MemorySegment seg, int x) {
-                DiskInfo.MediaType$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static MemorySegment Cylinders(MemorySegment struct) {
+                return struct.asSlice(Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
             }
-            public static int MediaType$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.MediaType$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static void Cylinders(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
             }
-            public static void MediaType$set(MemorySegment seg, long index, int x) {
-                DiskInfo.MediaType$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt MediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaType"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final OfInt MediaType$layout() {
+                return MediaType$LAYOUT;
             }
-            static final VarHandle TracksPerCylinder$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TracksPerCylinder"));
-            public static VarHandle TracksPerCylinder$VH() {
-                return DiskInfo.TracksPerCylinder$VH;
+
+            private static final long MediaType$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final long MediaType$offset() {
+                return MediaType$OFFSET;
             }
-            public static int TracksPerCylinder$get(MemorySegment seg) {
-                return (int)DiskInfo.TracksPerCylinder$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static int MediaType(MemorySegment struct) {
+                return struct.get(MediaType$LAYOUT, MediaType$OFFSET);
             }
-            public static void TracksPerCylinder$set( MemorySegment seg, int x) {
-                DiskInfo.TracksPerCylinder$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static void MediaType(MemorySegment struct, int fieldValue) {
+                struct.set(MediaType$LAYOUT, MediaType$OFFSET, fieldValue);
             }
-            public static int TracksPerCylinder$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.TracksPerCylinder$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt TracksPerCylinder$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TracksPerCylinder"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static final OfInt TracksPerCylinder$layout() {
+                return TracksPerCylinder$LAYOUT;
             }
-            public static void TracksPerCylinder$set(MemorySegment seg, long index, int x) {
-                DiskInfo.TracksPerCylinder$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long TracksPerCylinder$OFFSET = 12;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static final long TracksPerCylinder$offset() {
+                return TracksPerCylinder$OFFSET;
             }
-            static final VarHandle SectorsPerTrack$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorsPerTrack"));
-            public static VarHandle SectorsPerTrack$VH() {
-                return DiskInfo.SectorsPerTrack$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static int TracksPerCylinder(MemorySegment struct) {
+                return struct.get(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET);
             }
-            public static int SectorsPerTrack$get(MemorySegment seg) {
-                return (int)DiskInfo.SectorsPerTrack$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static void TracksPerCylinder(MemorySegment struct, int fieldValue) {
+                struct.set(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET, fieldValue);
             }
-            public static void SectorsPerTrack$set( MemorySegment seg, int x) {
-                DiskInfo.SectorsPerTrack$VH.set(seg, x);
+
+            private static final OfInt SectorsPerTrack$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SectorsPerTrack"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static final OfInt SectorsPerTrack$layout() {
+                return SectorsPerTrack$LAYOUT;
             }
-            public static int SectorsPerTrack$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.SectorsPerTrack$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final long SectorsPerTrack$OFFSET = 16;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static final long SectorsPerTrack$offset() {
+                return SectorsPerTrack$OFFSET;
             }
-            public static void SectorsPerTrack$set(MemorySegment seg, long index, int x) {
-                DiskInfo.SectorsPerTrack$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static int SectorsPerTrack(MemorySegment struct) {
+                return struct.get(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET);
             }
-            static final VarHandle BytesPerSector$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-            public static VarHandle BytesPerSector$VH() {
-                return DiskInfo.BytesPerSector$VH;
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static void SectorsPerTrack(MemorySegment struct, int fieldValue) {
+                struct.set(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET, fieldValue);
             }
-            public static int BytesPerSector$get(MemorySegment seg) {
-                return (int)DiskInfo.BytesPerSector$VH.get(seg);
+
+            private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static final OfInt BytesPerSector$layout() {
+                return BytesPerSector$LAYOUT;
             }
-            public static void BytesPerSector$set( MemorySegment seg, int x) {
-                DiskInfo.BytesPerSector$VH.set(seg, x);
+
+            private static final long BytesPerSector$OFFSET = 20;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static final long BytesPerSector$offset() {
+                return BytesPerSector$OFFSET;
             }
-            public static int BytesPerSector$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static int BytesPerSector(MemorySegment struct) {
+                return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
             }
-            public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-                DiskInfo.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+                struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
             }
-            static final VarHandle NumberMediaSides$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberMediaSides"));
-            public static VarHandle NumberMediaSides$VH() {
-                return DiskInfo.NumberMediaSides$VH;
+
+            private static final OfInt NumberMediaSides$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberMediaSides"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static final OfInt NumberMediaSides$layout() {
+                return NumberMediaSides$LAYOUT;
             }
-            public static int NumberMediaSides$get(MemorySegment seg) {
-                return (int)DiskInfo.NumberMediaSides$VH.get(seg);
+
+            private static final long NumberMediaSides$OFFSET = 24;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static final long NumberMediaSides$offset() {
+                return NumberMediaSides$OFFSET;
             }
-            public static void NumberMediaSides$set( MemorySegment seg, int x) {
-                DiskInfo.NumberMediaSides$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static int NumberMediaSides(MemorySegment struct) {
+                return struct.get(NumberMediaSides$LAYOUT, NumberMediaSides$OFFSET);
             }
-            public static int NumberMediaSides$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.NumberMediaSides$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static void NumberMediaSides(MemorySegment struct, int fieldValue) {
+                struct.set(NumberMediaSides$LAYOUT, NumberMediaSides$OFFSET, fieldValue);
             }
-            public static void NumberMediaSides$set(MemorySegment seg, long index, int x) {
-                DiskInfo.NumberMediaSides$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt MediaCharacteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaCharacteristics"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final OfInt MediaCharacteristics$layout() {
+                return MediaCharacteristics$LAYOUT;
             }
-            static final VarHandle MediaCharacteristics$VH = DeviceSpecific$DiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaCharacteristics"));
-            public static VarHandle MediaCharacteristics$VH() {
-                return DiskInfo.MediaCharacteristics$VH;
+
+            private static final long MediaCharacteristics$OFFSET = 28;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final long MediaCharacteristics$offset() {
+                return MediaCharacteristics$OFFSET;
             }
-            public static int MediaCharacteristics$get(MemorySegment seg) {
-                return (int)DiskInfo.MediaCharacteristics$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static int MediaCharacteristics(MemorySegment struct) {
+                return struct.get(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET);
             }
-            public static void MediaCharacteristics$set( MemorySegment seg, int x) {
-                DiskInfo.MediaCharacteristics$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static void MediaCharacteristics(MemorySegment struct, int fieldValue) {
+                struct.set(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET, fieldValue);
             }
-            public static int MediaCharacteristics$get(MemorySegment seg, long index) {
-                return (int)DiskInfo.MediaCharacteristics$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void MediaCharacteristics$set(MemorySegment seg, long index, int x) {
-                DiskInfo.MediaCharacteristics$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment DiskInfo$slice(MemorySegment seg) {
-            return seg.asSlice(0, 32);
+        private static final GroupLayout DiskInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DiskInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } DiskInfo
+         * }
+         */
+        public static final GroupLayout DiskInfo$layout() {
+            return DiskInfo$LAYOUT;
         }
+
+        private static final long DiskInfo$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } DiskInfo
+         * }
+         */
+        public static final long DiskInfo$offset() {
+            return DiskInfo$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } DiskInfo
+         * }
+         */
+        public static MemorySegment DiskInfo(MemorySegment union) {
+            return union.asSlice(DiskInfo$OFFSET, DiskInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } DiskInfo
+         * }
+         */
+        public static void DiskInfo(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, DiskInfo$OFFSET, DiskInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * }
+         * }
+         */
         public static class RemovableDiskInfo {
 
-            static final  GroupLayout DeviceSpecific$RemovableDiskInfo$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("$anon$0"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                        Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                    ).withName("u"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                ).withName("Cylinders"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return RemovableDiskInfo.DeviceSpecific$RemovableDiskInfo$struct$LAYOUT;
+            RemovableDiskInfo() {
+                // Should not be called directly
             }
-            public static MemorySegment Cylinders$slice(MemorySegment seg) {
-                return seg.asSlice(0, 8);
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                _LARGE_INTEGER.layout().withName("Cylinders"),
+                wgl_h.C_INT.withName("MediaType"),
+                wgl_h.C_LONG.withName("TracksPerCylinder"),
+                wgl_h.C_LONG.withName("SectorsPerTrack"),
+                wgl_h.C_LONG.withName("BytesPerSector"),
+                wgl_h.C_LONG.withName("NumberMediaSides"),
+                wgl_h.C_LONG.withName("MediaCharacteristics")
+            ).withName("$anon$959:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            static final VarHandle MediaType$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaType"));
-            public static VarHandle MediaType$VH() {
-                return RemovableDiskInfo.MediaType$VH;
+
+            private static final GroupLayout Cylinders$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Cylinders"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static final GroupLayout Cylinders$layout() {
+                return Cylinders$LAYOUT;
             }
-            public static int MediaType$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.MediaType$VH.get(seg);
+
+            private static final long Cylinders$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static final long Cylinders$offset() {
+                return Cylinders$OFFSET;
             }
-            public static void MediaType$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.MediaType$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static MemorySegment Cylinders(MemorySegment struct) {
+                return struct.asSlice(Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
             }
-            public static int MediaType$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.MediaType$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * LARGE_INTEGER Cylinders
+             * }
+             */
+            public static void Cylinders(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
             }
-            public static void MediaType$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.MediaType$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt MediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaType"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final OfInt MediaType$layout() {
+                return MediaType$LAYOUT;
             }
-            static final VarHandle TracksPerCylinder$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TracksPerCylinder"));
-            public static VarHandle TracksPerCylinder$VH() {
-                return RemovableDiskInfo.TracksPerCylinder$VH;
+
+            private static final long MediaType$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final long MediaType$offset() {
+                return MediaType$OFFSET;
             }
-            public static int TracksPerCylinder$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.TracksPerCylinder$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static int MediaType(MemorySegment struct) {
+                return struct.get(MediaType$LAYOUT, MediaType$OFFSET);
             }
-            public static void TracksPerCylinder$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.TracksPerCylinder$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static void MediaType(MemorySegment struct, int fieldValue) {
+                struct.set(MediaType$LAYOUT, MediaType$OFFSET, fieldValue);
             }
-            public static int TracksPerCylinder$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.TracksPerCylinder$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt TracksPerCylinder$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TracksPerCylinder"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static final OfInt TracksPerCylinder$layout() {
+                return TracksPerCylinder$LAYOUT;
             }
-            public static void TracksPerCylinder$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.TracksPerCylinder$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long TracksPerCylinder$OFFSET = 12;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static final long TracksPerCylinder$offset() {
+                return TracksPerCylinder$OFFSET;
             }
-            static final VarHandle SectorsPerTrack$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorsPerTrack"));
-            public static VarHandle SectorsPerTrack$VH() {
-                return RemovableDiskInfo.SectorsPerTrack$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static int TracksPerCylinder(MemorySegment struct) {
+                return struct.get(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET);
             }
-            public static int SectorsPerTrack$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.SectorsPerTrack$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD TracksPerCylinder
+             * }
+             */
+            public static void TracksPerCylinder(MemorySegment struct, int fieldValue) {
+                struct.set(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET, fieldValue);
             }
-            public static void SectorsPerTrack$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.SectorsPerTrack$VH.set(seg, x);
+
+            private static final OfInt SectorsPerTrack$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SectorsPerTrack"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static final OfInt SectorsPerTrack$layout() {
+                return SectorsPerTrack$LAYOUT;
             }
-            public static int SectorsPerTrack$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.SectorsPerTrack$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final long SectorsPerTrack$OFFSET = 16;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static final long SectorsPerTrack$offset() {
+                return SectorsPerTrack$OFFSET;
             }
-            public static void SectorsPerTrack$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.SectorsPerTrack$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static int SectorsPerTrack(MemorySegment struct) {
+                return struct.get(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET);
             }
-            static final VarHandle BytesPerSector$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-            public static VarHandle BytesPerSector$VH() {
-                return RemovableDiskInfo.BytesPerSector$VH;
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD SectorsPerTrack
+             * }
+             */
+            public static void SectorsPerTrack(MemorySegment struct, int fieldValue) {
+                struct.set(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET, fieldValue);
             }
-            public static int BytesPerSector$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.BytesPerSector$VH.get(seg);
+
+            private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static final OfInt BytesPerSector$layout() {
+                return BytesPerSector$LAYOUT;
             }
-            public static void BytesPerSector$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.BytesPerSector$VH.set(seg, x);
+
+            private static final long BytesPerSector$OFFSET = 20;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static final long BytesPerSector$offset() {
+                return BytesPerSector$OFFSET;
             }
-            public static int BytesPerSector$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static int BytesPerSector(MemorySegment struct) {
+                return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
             }
-            public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD BytesPerSector
+             * }
+             */
+            public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+                struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
             }
-            static final VarHandle NumberMediaSides$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberMediaSides"));
-            public static VarHandle NumberMediaSides$VH() {
-                return RemovableDiskInfo.NumberMediaSides$VH;
+
+            private static final OfInt NumberMediaSides$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberMediaSides"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static final OfInt NumberMediaSides$layout() {
+                return NumberMediaSides$LAYOUT;
             }
-            public static int NumberMediaSides$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.NumberMediaSides$VH.get(seg);
+
+            private static final long NumberMediaSides$OFFSET = 24;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static final long NumberMediaSides$offset() {
+                return NumberMediaSides$OFFSET;
             }
-            public static void NumberMediaSides$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.NumberMediaSides$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static int NumberMediaSides(MemorySegment struct) {
+                return struct.get(NumberMediaSides$LAYOUT, NumberMediaSides$OFFSET);
             }
-            public static int NumberMediaSides$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.NumberMediaSides$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD NumberMediaSides
+             * }
+             */
+            public static void NumberMediaSides(MemorySegment struct, int fieldValue) {
+                struct.set(NumberMediaSides$LAYOUT, NumberMediaSides$OFFSET, fieldValue);
             }
-            public static void NumberMediaSides$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.NumberMediaSides$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt MediaCharacteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaCharacteristics"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final OfInt MediaCharacteristics$layout() {
+                return MediaCharacteristics$LAYOUT;
             }
-            static final VarHandle MediaCharacteristics$VH = DeviceSpecific$RemovableDiskInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaCharacteristics"));
-            public static VarHandle MediaCharacteristics$VH() {
-                return RemovableDiskInfo.MediaCharacteristics$VH;
+
+            private static final long MediaCharacteristics$OFFSET = 28;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final long MediaCharacteristics$offset() {
+                return MediaCharacteristics$OFFSET;
             }
-            public static int MediaCharacteristics$get(MemorySegment seg) {
-                return (int)RemovableDiskInfo.MediaCharacteristics$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static int MediaCharacteristics(MemorySegment struct) {
+                return struct.get(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET);
             }
-            public static void MediaCharacteristics$set( MemorySegment seg, int x) {
-                RemovableDiskInfo.MediaCharacteristics$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static void MediaCharacteristics(MemorySegment struct, int fieldValue) {
+                struct.set(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET, fieldValue);
             }
-            public static int MediaCharacteristics$get(MemorySegment seg, long index) {
-                return (int)RemovableDiskInfo.MediaCharacteristics$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static void MediaCharacteristics$set(MemorySegment seg, long index, int x) {
-                RemovableDiskInfo.MediaCharacteristics$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment RemovableDiskInfo$slice(MemorySegment seg) {
-            return seg.asSlice(0, 32);
+        private static final GroupLayout RemovableDiskInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RemovableDiskInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } RemovableDiskInfo
+         * }
+         */
+        public static final GroupLayout RemovableDiskInfo$layout() {
+            return RemovableDiskInfo$LAYOUT;
         }
+
+        private static final long RemovableDiskInfo$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } RemovableDiskInfo
+         * }
+         */
+        public static final long RemovableDiskInfo$offset() {
+            return RemovableDiskInfo$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } RemovableDiskInfo
+         * }
+         */
+        public static MemorySegment RemovableDiskInfo(MemorySegment union) {
+            return union.asSlice(RemovableDiskInfo$OFFSET, RemovableDiskInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LARGE_INTEGER Cylinders;
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD TracksPerCylinder;
+         *     DWORD SectorsPerTrack;
+         *     DWORD BytesPerSector;
+         *     DWORD NumberMediaSides;
+         *     DWORD MediaCharacteristics;
+         * } RemovableDiskInfo
+         * }
+         */
+        public static void RemovableDiskInfo(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, RemovableDiskInfo$OFFSET, RemovableDiskInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD MediaCharacteristics;
+         *     DWORD CurrentBlockSize;
+         *     STORAGE_BUS_TYPE BusType;
+         *     union {
+         *         struct {
+         *             BYTE MediumType;
+         *             BYTE DensityCode;
+         *         } ScsiInformation;
+         *     } BusSpecificData;
+         * }
+         * }
+         */
         public static class TapeInfo {
 
-            static final  GroupLayout DeviceSpecific$TapeInfo$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics"),
-                Constants$root.C_LONG$LAYOUT.withName("CurrentBlockSize"),
-                Constants$root.C_LONG$LAYOUT.withName("BusType"),
-                MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                        Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                    ).withName("ScsiInformation")
-                ).withName("BusSpecificData"),
-                MemoryLayout.paddingLayout(16)
-            );
-            public static MemoryLayout $LAYOUT() {
-                return TapeInfo.DeviceSpecific$TapeInfo$struct$LAYOUT;
+            TapeInfo() {
+                // Should not be called directly
             }
-            static final VarHandle MediaType$VH = DeviceSpecific$TapeInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaType"));
-            public static VarHandle MediaType$VH() {
-                return TapeInfo.MediaType$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_INT.withName("MediaType"),
+                wgl_h.C_LONG.withName("MediaCharacteristics"),
+                wgl_h.C_LONG.withName("CurrentBlockSize"),
+                wgl_h.C_INT.withName("BusType"),
+                _DEVICE_MEDIA_INFO.DeviceSpecific.TapeInfo.BusSpecificData.layout().withName("BusSpecificData"),
+                MemoryLayout.paddingLayout(2)
+            ).withName("$anon$969:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static int MediaType$get(MemorySegment seg) {
-                return (int)TapeInfo.MediaType$VH.get(seg);
+
+            private static final OfInt MediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaType"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final OfInt MediaType$layout() {
+                return MediaType$LAYOUT;
             }
-            public static void MediaType$set( MemorySegment seg, int x) {
-                TapeInfo.MediaType$VH.set(seg, x);
+
+            private static final long MediaType$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static final long MediaType$offset() {
+                return MediaType$OFFSET;
             }
-            public static int MediaType$get(MemorySegment seg, long index) {
-                return (int)TapeInfo.MediaType$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static int MediaType(MemorySegment struct) {
+                return struct.get(MediaType$LAYOUT, MediaType$OFFSET);
             }
-            public static void MediaType$set(MemorySegment seg, long index, int x) {
-                TapeInfo.MediaType$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * STORAGE_MEDIA_TYPE MediaType
+             * }
+             */
+            public static void MediaType(MemorySegment struct, int fieldValue) {
+                struct.set(MediaType$LAYOUT, MediaType$OFFSET, fieldValue);
             }
-            static final VarHandle MediaCharacteristics$VH = DeviceSpecific$TapeInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaCharacteristics"));
-            public static VarHandle MediaCharacteristics$VH() {
-                return TapeInfo.MediaCharacteristics$VH;
+
+            private static final OfInt MediaCharacteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaCharacteristics"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final OfInt MediaCharacteristics$layout() {
+                return MediaCharacteristics$LAYOUT;
             }
-            public static int MediaCharacteristics$get(MemorySegment seg) {
-                return (int)TapeInfo.MediaCharacteristics$VH.get(seg);
+
+            private static final long MediaCharacteristics$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static final long MediaCharacteristics$offset() {
+                return MediaCharacteristics$OFFSET;
             }
-            public static void MediaCharacteristics$set( MemorySegment seg, int x) {
-                TapeInfo.MediaCharacteristics$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static int MediaCharacteristics(MemorySegment struct) {
+                return struct.get(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET);
             }
-            public static int MediaCharacteristics$get(MemorySegment seg, long index) {
-                return (int)TapeInfo.MediaCharacteristics$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD MediaCharacteristics
+             * }
+             */
+            public static void MediaCharacteristics(MemorySegment struct, int fieldValue) {
+                struct.set(MediaCharacteristics$LAYOUT, MediaCharacteristics$OFFSET, fieldValue);
             }
-            public static void MediaCharacteristics$set(MemorySegment seg, long index, int x) {
-                TapeInfo.MediaCharacteristics$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfInt CurrentBlockSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CurrentBlockSize"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * DWORD CurrentBlockSize
+             * }
+             */
+            public static final OfInt CurrentBlockSize$layout() {
+                return CurrentBlockSize$LAYOUT;
             }
-            static final VarHandle CurrentBlockSize$VH = DeviceSpecific$TapeInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CurrentBlockSize"));
-            public static VarHandle CurrentBlockSize$VH() {
-                return TapeInfo.CurrentBlockSize$VH;
+
+            private static final long CurrentBlockSize$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * DWORD CurrentBlockSize
+             * }
+             */
+            public static final long CurrentBlockSize$offset() {
+                return CurrentBlockSize$OFFSET;
             }
-            public static int CurrentBlockSize$get(MemorySegment seg) {
-                return (int)TapeInfo.CurrentBlockSize$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * DWORD CurrentBlockSize
+             * }
+             */
+            public static int CurrentBlockSize(MemorySegment struct) {
+                return struct.get(CurrentBlockSize$LAYOUT, CurrentBlockSize$OFFSET);
             }
-            public static void CurrentBlockSize$set( MemorySegment seg, int x) {
-                TapeInfo.CurrentBlockSize$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * DWORD CurrentBlockSize
+             * }
+             */
+            public static void CurrentBlockSize(MemorySegment struct, int fieldValue) {
+                struct.set(CurrentBlockSize$LAYOUT, CurrentBlockSize$OFFSET, fieldValue);
             }
-            public static int CurrentBlockSize$get(MemorySegment seg, long index) {
-                return (int)TapeInfo.CurrentBlockSize$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfInt BusType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BusType"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * STORAGE_BUS_TYPE BusType
+             * }
+             */
+            public static final OfInt BusType$layout() {
+                return BusType$LAYOUT;
             }
-            public static void CurrentBlockSize$set(MemorySegment seg, long index, int x) {
-                TapeInfo.CurrentBlockSize$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long BusType$OFFSET = 12;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * STORAGE_BUS_TYPE BusType
+             * }
+             */
+            public static final long BusType$offset() {
+                return BusType$OFFSET;
             }
-            static final VarHandle BusType$VH = DeviceSpecific$TapeInfo$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BusType"));
-            public static VarHandle BusType$VH() {
-                return TapeInfo.BusType$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * STORAGE_BUS_TYPE BusType
+             * }
+             */
+            public static int BusType(MemorySegment struct) {
+                return struct.get(BusType$LAYOUT, BusType$OFFSET);
             }
-            public static int BusType$get(MemorySegment seg) {
-                return (int)TapeInfo.BusType$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * STORAGE_BUS_TYPE BusType
+             * }
+             */
+            public static void BusType(MemorySegment struct, int fieldValue) {
+                struct.set(BusType$LAYOUT, BusType$OFFSET, fieldValue);
             }
-            public static void BusType$set( MemorySegment seg, int x) {
-                TapeInfo.BusType$VH.set(seg, x);
-            }
-            public static int BusType$get(MemorySegment seg, long index) {
-                return (int)TapeInfo.BusType$VH.get(seg.asSlice(index*sizeof()));
-            }
-            public static void BusType$set(MemorySegment seg, long index, int x) {
-                TapeInfo.BusType$VH.set(seg.asSlice(index*sizeof()), x);
-            }
+
+            /**
+             * {@snippet lang=c :
+             * union {
+             *     struct {
+             *         BYTE MediumType;
+             *         BYTE DensityCode;
+             *     } ScsiInformation;
+             * }
+             * }
+             */
             public static class BusSpecificData {
 
-                static final  GroupLayout DeviceSpecific$TapeInfo$BusSpecificData$union$LAYOUT = MemoryLayout.unionLayout(
-                    MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                        Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                    ).withName("ScsiInformation")
-                );
-                public static MemoryLayout $LAYOUT() {
-                    return BusSpecificData.DeviceSpecific$TapeInfo$BusSpecificData$union$LAYOUT;
+                BusSpecificData() {
+                    // Should not be called directly
                 }
+
+                private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+                    _DEVICE_MEDIA_INFO.DeviceSpecific.TapeInfo.BusSpecificData.ScsiInformation.layout().withName("ScsiInformation")
+                ).withName("$anon$979:13");
+
+                /**
+                 * The layout of this union
+                 */
+                public static final GroupLayout layout() {
+                    return $LAYOUT;
+                }
+
+                /**
+                 * {@snippet lang=c :
+                 * struct {
+                 *     BYTE MediumType;
+                 *     BYTE DensityCode;
+                 * }
+                 * }
+                 */
                 public static class ScsiInformation {
 
-                    static final  GroupLayout DeviceSpecific$TapeInfo$BusSpecificData$ScsiInformation$struct$LAYOUT = MemoryLayout.structLayout(
-                        Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                        Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                    );
-                    public static MemoryLayout $LAYOUT() {
-                        return ScsiInformation.DeviceSpecific$TapeInfo$BusSpecificData$ScsiInformation$struct$LAYOUT;
+                    ScsiInformation() {
+                        // Should not be called directly
                     }
-                    static final VarHandle MediumType$VH = DeviceSpecific$TapeInfo$BusSpecificData$ScsiInformation$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediumType"));
-                    public static VarHandle MediumType$VH() {
-                        return ScsiInformation.MediumType$VH;
+
+                    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                        wgl_h.C_CHAR.withName("MediumType"),
+                        wgl_h.C_CHAR.withName("DensityCode")
+                    ).withName("$anon$980:17");
+
+                    /**
+                     * The layout of this struct
+                     */
+                    public static final GroupLayout layout() {
+                        return $LAYOUT;
                     }
-                    public static byte MediumType$get(MemorySegment seg) {
-                        return (byte)ScsiInformation.MediumType$VH.get(seg);
+
+                    private static final OfByte MediumType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MediumType"));
+
+                    /**
+                     * Layout for field:
+                     * {@snippet lang=c :
+                     * BYTE MediumType
+                     * }
+                     */
+                    public static final OfByte MediumType$layout() {
+                        return MediumType$LAYOUT;
                     }
-                    public static void MediumType$set( MemorySegment seg, byte x) {
-                        ScsiInformation.MediumType$VH.set(seg, x);
+
+                    private static final long MediumType$OFFSET = 0;
+
+                    /**
+                     * Offset for field:
+                     * {@snippet lang=c :
+                     * BYTE MediumType
+                     * }
+                     */
+                    public static final long MediumType$offset() {
+                        return MediumType$OFFSET;
                     }
-                    public static byte MediumType$get(MemorySegment seg, long index) {
-                        return (byte)ScsiInformation.MediumType$VH.get(seg.asSlice(index*sizeof()));
+
+                    /**
+                     * Getter for field:
+                     * {@snippet lang=c :
+                     * BYTE MediumType
+                     * }
+                     */
+                    public static byte MediumType(MemorySegment struct) {
+                        return struct.get(MediumType$LAYOUT, MediumType$OFFSET);
                     }
-                    public static void MediumType$set(MemorySegment seg, long index, byte x) {
-                        ScsiInformation.MediumType$VH.set(seg.asSlice(index*sizeof()), x);
+
+                    /**
+                     * Setter for field:
+                     * {@snippet lang=c :
+                     * BYTE MediumType
+                     * }
+                     */
+                    public static void MediumType(MemorySegment struct, byte fieldValue) {
+                        struct.set(MediumType$LAYOUT, MediumType$OFFSET, fieldValue);
                     }
-                    static final VarHandle DensityCode$VH = DeviceSpecific$TapeInfo$BusSpecificData$ScsiInformation$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DensityCode"));
-                    public static VarHandle DensityCode$VH() {
-                        return ScsiInformation.DensityCode$VH;
+
+                    private static final OfByte DensityCode$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DensityCode"));
+
+                    /**
+                     * Layout for field:
+                     * {@snippet lang=c :
+                     * BYTE DensityCode
+                     * }
+                     */
+                    public static final OfByte DensityCode$layout() {
+                        return DensityCode$LAYOUT;
                     }
-                    public static byte DensityCode$get(MemorySegment seg) {
-                        return (byte)ScsiInformation.DensityCode$VH.get(seg);
+
+                    private static final long DensityCode$OFFSET = 1;
+
+                    /**
+                     * Offset for field:
+                     * {@snippet lang=c :
+                     * BYTE DensityCode
+                     * }
+                     */
+                    public static final long DensityCode$offset() {
+                        return DensityCode$OFFSET;
                     }
-                    public static void DensityCode$set( MemorySegment seg, byte x) {
-                        ScsiInformation.DensityCode$VH.set(seg, x);
+
+                    /**
+                     * Getter for field:
+                     * {@snippet lang=c :
+                     * BYTE DensityCode
+                     * }
+                     */
+                    public static byte DensityCode(MemorySegment struct) {
+                        return struct.get(DensityCode$LAYOUT, DensityCode$OFFSET);
                     }
-                    public static byte DensityCode$get(MemorySegment seg, long index) {
-                        return (byte)ScsiInformation.DensityCode$VH.get(seg.asSlice(index*sizeof()));
+
+                    /**
+                     * Setter for field:
+                     * {@snippet lang=c :
+                     * BYTE DensityCode
+                     * }
+                     */
+                    public static void DensityCode(MemorySegment struct, byte fieldValue) {
+                        struct.set(DensityCode$LAYOUT, DensityCode$OFFSET, fieldValue);
                     }
-                    public static void DensityCode$set(MemorySegment seg, long index, byte x) {
-                        ScsiInformation.DensityCode$VH.set(seg.asSlice(index*sizeof()), x);
+
+                    /**
+                     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+                     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+                     */
+                    public static MemorySegment asSlice(MemorySegment array, long index) {
+                        return array.asSlice(layout().byteSize() * index);
                     }
-                    public static long sizeof() { return $LAYOUT().byteSize(); }
-                    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-                    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+                    /**
+                     * The size (in bytes) of this struct
+                     */
+                    public static long sizeof() { return layout().byteSize(); }
+
+                    /**
+                     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+                     */
+                    public static MemorySegment allocate(SegmentAllocator allocator) {
+                        return allocator.allocate(layout());
                     }
-                    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+                    /**
+                     * Allocate an array of size {@code elementCount} using {@code allocator}.
+                     * The returned segment has size {@code elementCount * layout().byteSize()}.
+                     */
+                    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+                    }
+
+                    /**
+                     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                     * The returned segment has size {@code layout().byteSize()}
+                     */
+                    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                        return reinterpret(addr, 1, arena, cleanup);
+                    }
+
+                    /**
+                     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                     * The returned segment has size {@code elementCount * layout().byteSize()}
+                     */
+                    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+                    }
                 }
 
-                public static MemorySegment ScsiInformation$slice(MemorySegment seg) {
-                    return seg.asSlice(0, 2);
+                private static final GroupLayout ScsiInformation$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ScsiInformation"));
+
+                /**
+                 * Layout for field:
+                 * {@snippet lang=c :
+                 * struct {
+                 *     BYTE MediumType;
+                 *     BYTE DensityCode;
+                 * } ScsiInformation
+                 * }
+                 */
+                public static final GroupLayout ScsiInformation$layout() {
+                    return ScsiInformation$LAYOUT;
                 }
-                public static long sizeof() { return $LAYOUT().byteSize(); }
-                public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-                public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                    return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+                private static final long ScsiInformation$OFFSET = 0;
+
+                /**
+                 * Offset for field:
+                 * {@snippet lang=c :
+                 * struct {
+                 *     BYTE MediumType;
+                 *     BYTE DensityCode;
+                 * } ScsiInformation
+                 * }
+                 */
+                public static final long ScsiInformation$offset() {
+                    return ScsiInformation$OFFSET;
                 }
-                public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+                /**
+                 * Getter for field:
+                 * {@snippet lang=c :
+                 * struct {
+                 *     BYTE MediumType;
+                 *     BYTE DensityCode;
+                 * } ScsiInformation
+                 * }
+                 */
+                public static MemorySegment ScsiInformation(MemorySegment union) {
+                    return union.asSlice(ScsiInformation$OFFSET, ScsiInformation$LAYOUT.byteSize());
+                }
+
+                /**
+                 * Setter for field:
+                 * {@snippet lang=c :
+                 * struct {
+                 *     BYTE MediumType;
+                 *     BYTE DensityCode;
+                 * } ScsiInformation
+                 * }
+                 */
+                public static void ScsiInformation(MemorySegment union, MemorySegment fieldValue) {
+                    MemorySegment.copy(fieldValue, 0L, union, ScsiInformation$OFFSET, ScsiInformation$LAYOUT.byteSize());
+                }
+
+                /**
+                 * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+                 * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+                 */
+                public static MemorySegment asSlice(MemorySegment array, long index) {
+                    return array.asSlice(layout().byteSize() * index);
+                }
+
+                /**
+                 * The size (in bytes) of this union
+                 */
+                public static long sizeof() { return layout().byteSize(); }
+
+                /**
+                 * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+                 */
+                public static MemorySegment allocate(SegmentAllocator allocator) {
+                    return allocator.allocate(layout());
+                }
+
+                /**
+                 * Allocate an array of size {@code elementCount} using {@code allocator}.
+                 * The returned segment has size {@code elementCount * layout().byteSize()}.
+                 */
+                public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                    return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return reinterpret(addr, 1, arena, cleanup);
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code elementCount * layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+                }
             }
 
-            public static MemorySegment BusSpecificData$slice(MemorySegment seg) {
-                return seg.asSlice(16, 2);
+            private static final GroupLayout BusSpecificData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BusSpecificData"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * union {
+             *     struct {
+             *         BYTE MediumType;
+             *         BYTE DensityCode;
+             *     } ScsiInformation;
+             * } BusSpecificData
+             * }
+             */
+            public static final GroupLayout BusSpecificData$layout() {
+                return BusSpecificData$LAYOUT;
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final long BusSpecificData$OFFSET = 16;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * union {
+             *     struct {
+             *         BYTE MediumType;
+             *         BYTE DensityCode;
+             *     } ScsiInformation;
+             * } BusSpecificData
+             * }
+             */
+            public static final long BusSpecificData$offset() {
+                return BusSpecificData$OFFSET;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * union {
+             *     struct {
+             *         BYTE MediumType;
+             *         BYTE DensityCode;
+             *     } ScsiInformation;
+             * } BusSpecificData
+             * }
+             */
+            public static MemorySegment BusSpecificData(MemorySegment struct) {
+                return struct.asSlice(BusSpecificData$OFFSET, BusSpecificData$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * union {
+             *     struct {
+             *         BYTE MediumType;
+             *         BYTE DensityCode;
+             *     } ScsiInformation;
+             * } BusSpecificData
+             * }
+             */
+            public static void BusSpecificData(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, BusSpecificData$OFFSET, BusSpecificData$LAYOUT.byteSize());
+            }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment TapeInfo$slice(MemorySegment seg) {
-            return seg.asSlice(0, 20);
+        private static final GroupLayout TapeInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TapeInfo"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD MediaCharacteristics;
+         *     DWORD CurrentBlockSize;
+         *     STORAGE_BUS_TYPE BusType;
+         *     union {
+         *         struct {
+         *             BYTE MediumType;
+         *             BYTE DensityCode;
+         *         } ScsiInformation;
+         *     } BusSpecificData;
+         * } TapeInfo
+         * }
+         */
+        public static final GroupLayout TapeInfo$layout() {
+            return TapeInfo$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long TapeInfo$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD MediaCharacteristics;
+         *     DWORD CurrentBlockSize;
+         *     STORAGE_BUS_TYPE BusType;
+         *     union {
+         *         struct {
+         *             BYTE MediumType;
+         *             BYTE DensityCode;
+         *         } ScsiInformation;
+         *     } BusSpecificData;
+         * } TapeInfo
+         * }
+         */
+        public static final long TapeInfo$offset() {
+            return TapeInfo$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD MediaCharacteristics;
+         *     DWORD CurrentBlockSize;
+         *     STORAGE_BUS_TYPE BusType;
+         *     union {
+         *         struct {
+         *             BYTE MediumType;
+         *             BYTE DensityCode;
+         *         } ScsiInformation;
+         *     } BusSpecificData;
+         * } TapeInfo
+         * }
+         */
+        public static MemorySegment TapeInfo(MemorySegment union) {
+            return union.asSlice(TapeInfo$OFFSET, TapeInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     STORAGE_MEDIA_TYPE MediaType;
+         *     DWORD MediaCharacteristics;
+         *     DWORD CurrentBlockSize;
+         *     STORAGE_BUS_TYPE BusType;
+         *     union {
+         *         struct {
+         *             BYTE MediumType;
+         *             BYTE DensityCode;
+         *         } ScsiInformation;
+         *     } BusSpecificData;
+         * } TapeInfo
+         * }
+         */
+        public static void TapeInfo(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, TapeInfo$OFFSET, TapeInfo$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment DeviceSpecific$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
+    private static final GroupLayout DeviceSpecific$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DeviceSpecific"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } DiskInfo;
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } RemovableDiskInfo;
+     *     struct {
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD MediaCharacteristics;
+     *         DWORD CurrentBlockSize;
+     *         STORAGE_BUS_TYPE BusType;
+     *         union {
+     *             struct {
+     *                 BYTE MediumType;
+     *                 BYTE DensityCode;
+     *             } ScsiInformation;
+     *         } BusSpecificData;
+     *     } TapeInfo;
+     * } DeviceSpecific
+     * }
+     */
+    public static final GroupLayout DeviceSpecific$layout() {
+        return DeviceSpecific$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long DeviceSpecific$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } DiskInfo;
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } RemovableDiskInfo;
+     *     struct {
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD MediaCharacteristics;
+     *         DWORD CurrentBlockSize;
+     *         STORAGE_BUS_TYPE BusType;
+     *         union {
+     *             struct {
+     *                 BYTE MediumType;
+     *                 BYTE DensityCode;
+     *             } ScsiInformation;
+     *         } BusSpecificData;
+     *     } TapeInfo;
+     * } DeviceSpecific
+     * }
+     */
+    public static final long DeviceSpecific$offset() {
+        return DeviceSpecific$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } DiskInfo;
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } RemovableDiskInfo;
+     *     struct {
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD MediaCharacteristics;
+     *         DWORD CurrentBlockSize;
+     *         STORAGE_BUS_TYPE BusType;
+     *         union {
+     *             struct {
+     *                 BYTE MediumType;
+     *                 BYTE DensityCode;
+     *             } ScsiInformation;
+     *         } BusSpecificData;
+     *     } TapeInfo;
+     * } DeviceSpecific
+     * }
+     */
+    public static MemorySegment DeviceSpecific(MemorySegment struct) {
+        return struct.asSlice(DeviceSpecific$OFFSET, DeviceSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } DiskInfo;
+     *     struct {
+     *         LARGE_INTEGER Cylinders;
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD TracksPerCylinder;
+     *         DWORD SectorsPerTrack;
+     *         DWORD BytesPerSector;
+     *         DWORD NumberMediaSides;
+     *         DWORD MediaCharacteristics;
+     *     } RemovableDiskInfo;
+     *     struct {
+     *         STORAGE_MEDIA_TYPE MediaType;
+     *         DWORD MediaCharacteristics;
+     *         DWORD CurrentBlockSize;
+     *         STORAGE_BUS_TYPE BusType;
+     *         union {
+     *             struct {
+     *                 BYTE MediumType;
+     *                 BYTE DensityCode;
+     *             } ScsiInformation;
+     *         } BusSpecificData;
+     *     } TapeInfo;
+     * } DeviceSpecific
+     * }
+     */
+    public static void DeviceSpecific(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DeviceSpecific$OFFSET, DeviceSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

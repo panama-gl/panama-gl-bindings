@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRFORMAT {
+ *     DWORD dSignature;
+ *     DWORD nVersion;
+ *     DWORD cbData;
+ *     DWORD offData;
+ * }
+ * }
+ */
 public class tagEMRFORMAT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dSignature"),
-        Constants$root.C_LONG$LAYOUT.withName("nVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("cbData"),
-        Constants$root.C_LONG$LAYOUT.withName("offData")
-    ).withName("tagEMRFORMAT");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRFORMAT.$struct$LAYOUT;
+    tagEMRFORMAT() {
+        // Should not be called directly
     }
-    static final VarHandle dSignature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dSignature"));
-    public static VarHandle dSignature$VH() {
-        return tagEMRFORMAT.dSignature$VH;
-    }
-    public static int dSignature$get(MemorySegment seg) {
-        return (int)tagEMRFORMAT.dSignature$VH.get(seg);
-    }
-    public static void dSignature$set( MemorySegment seg, int x) {
-        tagEMRFORMAT.dSignature$VH.set(seg, x);
-    }
-    public static int dSignature$get(MemorySegment seg, long index) {
-        return (int)tagEMRFORMAT.dSignature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dSignature$set(MemorySegment seg, long index, int x) {
-        tagEMRFORMAT.dSignature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nVersion"));
-    public static VarHandle nVersion$VH() {
-        return tagEMRFORMAT.nVersion$VH;
-    }
-    public static int nVersion$get(MemorySegment seg) {
-        return (int)tagEMRFORMAT.nVersion$VH.get(seg);
-    }
-    public static void nVersion$set( MemorySegment seg, int x) {
-        tagEMRFORMAT.nVersion$VH.set(seg, x);
-    }
-    public static int nVersion$get(MemorySegment seg, long index) {
-        return (int)tagEMRFORMAT.nVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nVersion$set(MemorySegment seg, long index, int x) {
-        tagEMRFORMAT.nVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbData"));
-    public static VarHandle cbData$VH() {
-        return tagEMRFORMAT.cbData$VH;
-    }
-    public static int cbData$get(MemorySegment seg) {
-        return (int)tagEMRFORMAT.cbData$VH.get(seg);
-    }
-    public static void cbData$set( MemorySegment seg, int x) {
-        tagEMRFORMAT.cbData$VH.set(seg, x);
-    }
-    public static int cbData$get(MemorySegment seg, long index) {
-        return (int)tagEMRFORMAT.cbData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbData$set(MemorySegment seg, long index, int x) {
-        tagEMRFORMAT.cbData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle offData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("offData"));
-    public static VarHandle offData$VH() {
-        return tagEMRFORMAT.offData$VH;
-    }
-    public static int offData$get(MemorySegment seg) {
-        return (int)tagEMRFORMAT.offData$VH.get(seg);
-    }
-    public static void offData$set( MemorySegment seg, int x) {
-        tagEMRFORMAT.offData$VH.set(seg, x);
-    }
-    public static int offData$get(MemorySegment seg, long index) {
-        return (int)tagEMRFORMAT.offData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void offData$set(MemorySegment seg, long index, int x) {
-        tagEMRFORMAT.offData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dSignature"),
+        wgl_h.C_LONG.withName("nVersion"),
+        wgl_h.C_LONG.withName("cbData"),
+        wgl_h.C_LONG.withName("offData")
+    ).withName("tagEMRFORMAT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dSignature$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dSignature
+     * }
+     */
+    public static final OfInt dSignature$layout() {
+        return dSignature$LAYOUT;
+    }
+
+    private static final long dSignature$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dSignature
+     * }
+     */
+    public static final long dSignature$offset() {
+        return dSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dSignature
+     * }
+     */
+    public static int dSignature(MemorySegment struct) {
+        return struct.get(dSignature$LAYOUT, dSignature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dSignature
+     * }
+     */
+    public static void dSignature(MemorySegment struct, int fieldValue) {
+        struct.set(dSignature$LAYOUT, dSignature$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nVersion
+     * }
+     */
+    public static final OfInt nVersion$layout() {
+        return nVersion$LAYOUT;
+    }
+
+    private static final long nVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nVersion
+     * }
+     */
+    public static final long nVersion$offset() {
+        return nVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nVersion
+     * }
+     */
+    public static int nVersion(MemorySegment struct) {
+        return struct.get(nVersion$LAYOUT, nVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nVersion
+     * }
+     */
+    public static void nVersion(MemorySegment struct, int fieldValue) {
+        struct.set(nVersion$LAYOUT, nVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static final OfInt cbData$layout() {
+        return cbData$LAYOUT;
+    }
+
+    private static final long cbData$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static final long cbData$offset() {
+        return cbData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static int cbData(MemorySegment struct) {
+        return struct.get(cbData$LAYOUT, cbData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbData
+     * }
+     */
+    public static void cbData(MemorySegment struct, int fieldValue) {
+        struct.set(cbData$LAYOUT, cbData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt offData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("offData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD offData
+     * }
+     */
+    public static final OfInt offData$layout() {
+        return offData$LAYOUT;
+    }
+
+    private static final long offData$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD offData
+     * }
+     */
+    public static final long offData$offset() {
+        return offData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD offData
+     * }
+     */
+    public static int offData(MemorySegment struct) {
+        return struct.get(offData$LAYOUT, offData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD offData
+     * }
+     */
+    public static void offData(MemorySegment struct, int fieldValue) {
+        struct.set(offData$LAYOUT, offData$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

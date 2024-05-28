@@ -2,94 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_DEVICE_LOCATION_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DEVICE_LOCATION Location;
+ *     DWORD StringOffset;
+ * }
+ * }
+ */
 public class _STORAGE_DEVICE_LOCATION_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Socket"),
-            Constants$root.C_LONG$LAYOUT.withName("Slot"),
-            Constants$root.C_LONG$LAYOUT.withName("Adapter"),
-            Constants$root.C_LONG$LAYOUT.withName("Port"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Channel"),
-                    Constants$root.C_LONG$LAYOUT.withName("Device")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Target"),
-                    Constants$root.C_LONG$LAYOUT.withName("Lun")
-                ).withName("$anon$1")
-            ).withName("$anon$0")
-        ).withName("Location"),
-        Constants$root.C_LONG$LAYOUT.withName("StringOffset")
-    ).withName("_STORAGE_DEVICE_LOCATION_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_DEVICE_LOCATION_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_DEVICE_LOCATION_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Location$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    static final VarHandle StringOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StringOffset"));
-    public static VarHandle StringOffset$VH() {
-        return _STORAGE_DEVICE_LOCATION_DESCRIPTOR.StringOffset$VH;
-    }
-    public static int StringOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.StringOffset$VH.get(seg);
-    }
-    public static void StringOffset$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.StringOffset$VH.set(seg, x);
-    }
-    public static int StringOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_LOCATION_DESCRIPTOR.StringOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StringOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_LOCATION_DESCRIPTOR.StringOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        _DEVICE_LOCATION.layout().withName("Location"),
+        wgl_h.C_LONG.withName("StringOffset")
+    ).withName("_STORAGE_DEVICE_LOCATION_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Location$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Location"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICE_LOCATION Location
+     * }
+     */
+    public static final GroupLayout Location$layout() {
+        return Location$LAYOUT;
+    }
+
+    private static final long Location$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICE_LOCATION Location
+     * }
+     */
+    public static final long Location$offset() {
+        return Location$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICE_LOCATION Location
+     * }
+     */
+    public static MemorySegment Location(MemorySegment struct) {
+        return struct.asSlice(Location$OFFSET, Location$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICE_LOCATION Location
+     * }
+     */
+    public static void Location(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Location$OFFSET, Location$LAYOUT.byteSize());
+    }
+
+    private static final OfInt StringOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StringOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StringOffset
+     * }
+     */
+    public static final OfInt StringOffset$layout() {
+        return StringOffset$LAYOUT;
+    }
+
+    private static final long StringOffset$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StringOffset
+     * }
+     */
+    public static final long StringOffset$offset() {
+        return StringOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StringOffset
+     * }
+     */
+    public static int StringOffset(MemorySegment struct) {
+        return struct.get(StringOffset$LAYOUT, StringOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StringOffset
+     * }
+     */
+    public static void StringOffset(MemorySegment struct, int fieldValue) {
+        struct.set(StringOffset$LAYOUT, StringOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

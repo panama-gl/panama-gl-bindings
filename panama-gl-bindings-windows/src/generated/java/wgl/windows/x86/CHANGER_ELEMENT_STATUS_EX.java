@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CHANGER_ELEMENT_STATUS_EX {
+ *     CHANGER_ELEMENT Element;
+ *     CHANGER_ELEMENT SrcElementAddress;
+ *     DWORD Flags;
+ *     DWORD ExceptionCode;
+ *     BYTE TargetId;
+ *     BYTE Lun;
+ *     WORD Reserved;
+ *     BYTE PrimaryVolumeID[36];
+ *     BYTE AlternateVolumeID[36];
+ *     BYTE VendorIdentification[8];
+ *     BYTE ProductIdentification[16];
+ *     BYTE SerialNumber[32];
+ * } CHANGER_ELEMENT_STATUS_EX
+ * }
+ */
 public class CHANGER_ELEMENT_STATUS_EX extends _CHANGER_ELEMENT_STATUS_EX {
 
+    CHANGER_ELEMENT_STATUS_EX() {
+        // Should not be called directly
+    }
 }
-
 

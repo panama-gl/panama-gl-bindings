@@ -2,143 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SERVICE_STATUS {
+ *     DWORD dwServiceType;
+ *     DWORD dwCurrentState;
+ *     DWORD dwControlsAccepted;
+ *     DWORD dwWin32ExitCode;
+ *     DWORD dwServiceSpecificExitCode;
+ *     DWORD dwCheckPoint;
+ *     DWORD dwWaitHint;
+ * }
+ * }
+ */
 public class _SERVICE_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwServiceType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCurrentState"),
-        Constants$root.C_LONG$LAYOUT.withName("dwControlsAccepted"),
-        Constants$root.C_LONG$LAYOUT.withName("dwWin32ExitCode"),
-        Constants$root.C_LONG$LAYOUT.withName("dwServiceSpecificExitCode"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCheckPoint"),
-        Constants$root.C_LONG$LAYOUT.withName("dwWaitHint")
-    ).withName("_SERVICE_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _SERVICE_STATUS.$struct$LAYOUT;
+    _SERVICE_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle dwServiceType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwServiceType"));
-    public static VarHandle dwServiceType$VH() {
-        return _SERVICE_STATUS.dwServiceType$VH;
-    }
-    public static int dwServiceType$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwServiceType$VH.get(seg);
-    }
-    public static void dwServiceType$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwServiceType$VH.set(seg, x);
-    }
-    public static int dwServiceType$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwServiceType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwServiceType$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwServiceType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCurrentState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCurrentState"));
-    public static VarHandle dwCurrentState$VH() {
-        return _SERVICE_STATUS.dwCurrentState$VH;
-    }
-    public static int dwCurrentState$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwCurrentState$VH.get(seg);
-    }
-    public static void dwCurrentState$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwCurrentState$VH.set(seg, x);
-    }
-    public static int dwCurrentState$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwCurrentState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCurrentState$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwCurrentState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwControlsAccepted$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwControlsAccepted"));
-    public static VarHandle dwControlsAccepted$VH() {
-        return _SERVICE_STATUS.dwControlsAccepted$VH;
-    }
-    public static int dwControlsAccepted$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwControlsAccepted$VH.get(seg);
-    }
-    public static void dwControlsAccepted$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwControlsAccepted$VH.set(seg, x);
-    }
-    public static int dwControlsAccepted$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwControlsAccepted$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwControlsAccepted$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwControlsAccepted$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwWin32ExitCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwWin32ExitCode"));
-    public static VarHandle dwWin32ExitCode$VH() {
-        return _SERVICE_STATUS.dwWin32ExitCode$VH;
-    }
-    public static int dwWin32ExitCode$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwWin32ExitCode$VH.get(seg);
-    }
-    public static void dwWin32ExitCode$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwWin32ExitCode$VH.set(seg, x);
-    }
-    public static int dwWin32ExitCode$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwWin32ExitCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwWin32ExitCode$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwWin32ExitCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwServiceSpecificExitCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwServiceSpecificExitCode"));
-    public static VarHandle dwServiceSpecificExitCode$VH() {
-        return _SERVICE_STATUS.dwServiceSpecificExitCode$VH;
-    }
-    public static int dwServiceSpecificExitCode$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwServiceSpecificExitCode$VH.get(seg);
-    }
-    public static void dwServiceSpecificExitCode$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwServiceSpecificExitCode$VH.set(seg, x);
-    }
-    public static int dwServiceSpecificExitCode$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwServiceSpecificExitCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwServiceSpecificExitCode$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwServiceSpecificExitCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwCheckPoint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCheckPoint"));
-    public static VarHandle dwCheckPoint$VH() {
-        return _SERVICE_STATUS.dwCheckPoint$VH;
-    }
-    public static int dwCheckPoint$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwCheckPoint$VH.get(seg);
-    }
-    public static void dwCheckPoint$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwCheckPoint$VH.set(seg, x);
-    }
-    public static int dwCheckPoint$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwCheckPoint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCheckPoint$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwCheckPoint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwWaitHint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwWaitHint"));
-    public static VarHandle dwWaitHint$VH() {
-        return _SERVICE_STATUS.dwWaitHint$VH;
-    }
-    public static int dwWaitHint$get(MemorySegment seg) {
-        return (int)_SERVICE_STATUS.dwWaitHint$VH.get(seg);
-    }
-    public static void dwWaitHint$set( MemorySegment seg, int x) {
-        _SERVICE_STATUS.dwWaitHint$VH.set(seg, x);
-    }
-    public static int dwWaitHint$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_STATUS.dwWaitHint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwWaitHint$set(MemorySegment seg, long index, int x) {
-        _SERVICE_STATUS.dwWaitHint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwServiceType"),
+        wgl_h.C_LONG.withName("dwCurrentState"),
+        wgl_h.C_LONG.withName("dwControlsAccepted"),
+        wgl_h.C_LONG.withName("dwWin32ExitCode"),
+        wgl_h.C_LONG.withName("dwServiceSpecificExitCode"),
+        wgl_h.C_LONG.withName("dwCheckPoint"),
+        wgl_h.C_LONG.withName("dwWaitHint")
+    ).withName("_SERVICE_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwServiceType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwServiceType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceType
+     * }
+     */
+    public static final OfInt dwServiceType$layout() {
+        return dwServiceType$LAYOUT;
+    }
+
+    private static final long dwServiceType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceType
+     * }
+     */
+    public static final long dwServiceType$offset() {
+        return dwServiceType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceType
+     * }
+     */
+    public static int dwServiceType(MemorySegment struct) {
+        return struct.get(dwServiceType$LAYOUT, dwServiceType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceType
+     * }
+     */
+    public static void dwServiceType(MemorySegment struct, int fieldValue) {
+        struct.set(dwServiceType$LAYOUT, dwServiceType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCurrentState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCurrentState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static final OfInt dwCurrentState$layout() {
+        return dwCurrentState$LAYOUT;
+    }
+
+    private static final long dwCurrentState$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static final long dwCurrentState$offset() {
+        return dwCurrentState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static int dwCurrentState(MemorySegment struct) {
+        return struct.get(dwCurrentState$LAYOUT, dwCurrentState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCurrentState
+     * }
+     */
+    public static void dwCurrentState(MemorySegment struct, int fieldValue) {
+        struct.set(dwCurrentState$LAYOUT, dwCurrentState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwControlsAccepted$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwControlsAccepted"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwControlsAccepted
+     * }
+     */
+    public static final OfInt dwControlsAccepted$layout() {
+        return dwControlsAccepted$LAYOUT;
+    }
+
+    private static final long dwControlsAccepted$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwControlsAccepted
+     * }
+     */
+    public static final long dwControlsAccepted$offset() {
+        return dwControlsAccepted$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlsAccepted
+     * }
+     */
+    public static int dwControlsAccepted(MemorySegment struct) {
+        return struct.get(dwControlsAccepted$LAYOUT, dwControlsAccepted$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwControlsAccepted
+     * }
+     */
+    public static void dwControlsAccepted(MemorySegment struct, int fieldValue) {
+        struct.set(dwControlsAccepted$LAYOUT, dwControlsAccepted$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwWin32ExitCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwWin32ExitCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwWin32ExitCode
+     * }
+     */
+    public static final OfInt dwWin32ExitCode$layout() {
+        return dwWin32ExitCode$LAYOUT;
+    }
+
+    private static final long dwWin32ExitCode$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwWin32ExitCode
+     * }
+     */
+    public static final long dwWin32ExitCode$offset() {
+        return dwWin32ExitCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwWin32ExitCode
+     * }
+     */
+    public static int dwWin32ExitCode(MemorySegment struct) {
+        return struct.get(dwWin32ExitCode$LAYOUT, dwWin32ExitCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwWin32ExitCode
+     * }
+     */
+    public static void dwWin32ExitCode(MemorySegment struct, int fieldValue) {
+        struct.set(dwWin32ExitCode$LAYOUT, dwWin32ExitCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwServiceSpecificExitCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwServiceSpecificExitCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceSpecificExitCode
+     * }
+     */
+    public static final OfInt dwServiceSpecificExitCode$layout() {
+        return dwServiceSpecificExitCode$LAYOUT;
+    }
+
+    private static final long dwServiceSpecificExitCode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceSpecificExitCode
+     * }
+     */
+    public static final long dwServiceSpecificExitCode$offset() {
+        return dwServiceSpecificExitCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceSpecificExitCode
+     * }
+     */
+    public static int dwServiceSpecificExitCode(MemorySegment struct) {
+        return struct.get(dwServiceSpecificExitCode$LAYOUT, dwServiceSpecificExitCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwServiceSpecificExitCode
+     * }
+     */
+    public static void dwServiceSpecificExitCode(MemorySegment struct, int fieldValue) {
+        struct.set(dwServiceSpecificExitCode$LAYOUT, dwServiceSpecificExitCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwCheckPoint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCheckPoint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCheckPoint
+     * }
+     */
+    public static final OfInt dwCheckPoint$layout() {
+        return dwCheckPoint$LAYOUT;
+    }
+
+    private static final long dwCheckPoint$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCheckPoint
+     * }
+     */
+    public static final long dwCheckPoint$offset() {
+        return dwCheckPoint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCheckPoint
+     * }
+     */
+    public static int dwCheckPoint(MemorySegment struct) {
+        return struct.get(dwCheckPoint$LAYOUT, dwCheckPoint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCheckPoint
+     * }
+     */
+    public static void dwCheckPoint(MemorySegment struct, int fieldValue) {
+        struct.set(dwCheckPoint$LAYOUT, dwCheckPoint$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwWaitHint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwWaitHint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwWaitHint
+     * }
+     */
+    public static final OfInt dwWaitHint$layout() {
+        return dwWaitHint$LAYOUT;
+    }
+
+    private static final long dwWaitHint$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwWaitHint
+     * }
+     */
+    public static final long dwWaitHint$offset() {
+        return dwWaitHint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwWaitHint
+     * }
+     */
+    public static int dwWaitHint(MemorySegment struct) {
+        return struct.get(dwWaitHint$LAYOUT, dwWaitHint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwWaitHint
+     * }
+     */
+    public static void dwWaitHint(MemorySegment struct, int fieldValue) {
+        struct.set(dwWaitHint$LAYOUT, dwWaitHint$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

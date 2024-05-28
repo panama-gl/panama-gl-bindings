@@ -2,99 +2,302 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BIDI_RESPONSE_CONTAINER {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     DWORD Count;
+ *     BIDI_RESPONSE_DATA aData[1];
+ * }
+ * }
+ */
 public class _BIDI_RESPONSE_CONTAINER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("Count"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwResult"),
-            Constants$root.C_LONG$LAYOUT.withName("dwReqNumber"),
-            Constants$root.C_POINTER$LAYOUT.withName("pSchema"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwBidiType"),
-                MemoryLayout.paddingLayout(32),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("bData"),
-                    Constants$root.C_LONG$LAYOUT.withName("iData"),
-                    Constants$root.C_POINTER$LAYOUT.withName("sData"),
-                    Constants$root.C_FLOAT$LAYOUT.withName("fData"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cbBuf"),
-                        MemoryLayout.paddingLayout(32),
-                        Constants$root.C_POINTER$LAYOUT.withName("pData")
-                    ).withName("biData")
-                ).withName("u")
-            ).withName("data")
-        ).withName("_BIDI_RESPONSE_DATA")).withName("aData")
-    ).withName("_BIDI_RESPONSE_CONTAINER");
-    public static MemoryLayout $LAYOUT() {
-        return _BIDI_RESPONSE_CONTAINER.$struct$LAYOUT;
+    _BIDI_RESPONSE_CONTAINER() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _BIDI_RESPONSE_CONTAINER.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _BIDI_RESPONSE_CONTAINER.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _BIDI_RESPONSE_CONTAINER.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _BIDI_RESPONSE_CONTAINER.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _BIDI_RESPONSE_CONTAINER.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _BIDI_RESPONSE_CONTAINER.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Count"));
-    public static VarHandle Count$VH() {
-        return _BIDI_RESPONSE_CONTAINER.Count$VH;
-    }
-    public static int Count$get(MemorySegment seg) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Count$VH.get(seg);
-    }
-    public static void Count$set( MemorySegment seg, int x) {
-        _BIDI_RESPONSE_CONTAINER.Count$VH.set(seg, x);
-    }
-    public static int Count$get(MemorySegment seg, long index) {
-        return (int)_BIDI_RESPONSE_CONTAINER.Count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Count$set(MemorySegment seg, long index, int x) {
-        _BIDI_RESPONSE_CONTAINER.Count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment aData$slice(MemorySegment seg) {
-        return seg.asSlice(16, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("Count"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(1, _BIDI_RESPONSE_DATA.layout()).withName("aData")
+    ).withName("_BIDI_RESPONSE_CONTAINER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Count$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final OfInt Count$layout() {
+        return Count$LAYOUT;
+    }
+
+    private static final long Count$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static final long Count$offset() {
+        return Count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static int Count(MemorySegment struct) {
+        return struct.get(Count$LAYOUT, Count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Count
+     * }
+     */
+    public static void Count(MemorySegment struct, int fieldValue) {
+        struct.set(Count$LAYOUT, Count$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout aData$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("aData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static final SequenceLayout aData$layout() {
+        return aData$LAYOUT;
+    }
+
+    private static final long aData$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static final long aData$offset() {
+        return aData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static MemorySegment aData(MemorySegment struct) {
+        return struct.asSlice(aData$OFFSET, aData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static void aData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, aData$OFFSET, aData$LAYOUT.byteSize());
+    }
+
+    private static long[] aData$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static long[] aData$dimensions() {
+        return aData$DIMS;
+    }
+    private static final MethodHandle aData$ELEM_HANDLE = aData$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static MemorySegment aData(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)aData$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BIDI_RESPONSE_DATA aData[1]
+     * }
+     */
+    public static void aData(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, aData(struct, index0), 0L, _BIDI_RESPONSE_DATA.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

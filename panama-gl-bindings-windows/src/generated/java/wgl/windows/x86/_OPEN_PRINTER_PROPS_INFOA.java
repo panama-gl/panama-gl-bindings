@@ -2,111 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _OPEN_PRINTER_PROPS_INFOA {
+ *     DWORD dwSize;
+ *     LPSTR pszSheetName;
+ *     UINT uSheetIndex;
+ *     DWORD dwFlags;
+ *     BOOL bModal;
+ * }
+ * }
+ */
 public class _OPEN_PRINTER_PROPS_INFOA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pszSheetName"),
-        Constants$root.C_LONG$LAYOUT.withName("uSheetIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("bModal"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_OPEN_PRINTER_PROPS_INFOA");
-    public static MemoryLayout $LAYOUT() {
-        return _OPEN_PRINTER_PROPS_INFOA.$struct$LAYOUT;
+    _OPEN_PRINTER_PROPS_INFOA() {
+        // Should not be called directly
     }
-    static final VarHandle dwSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSize"));
-    public static VarHandle dwSize$VH() {
-        return _OPEN_PRINTER_PROPS_INFOA.dwSize$VH;
-    }
-    public static int dwSize$get(MemorySegment seg) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.dwSize$VH.get(seg);
-    }
-    public static void dwSize$set( MemorySegment seg, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.dwSize$VH.set(seg, x);
-    }
-    public static int dwSize$get(MemorySegment seg, long index) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.dwSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSize$set(MemorySegment seg, long index, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.dwSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszSheetName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszSheetName"));
-    public static VarHandle pszSheetName$VH() {
-        return _OPEN_PRINTER_PROPS_INFOA.pszSheetName$VH;
-    }
-    public static MemoryAddress pszSheetName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OPEN_PRINTER_PROPS_INFOA.pszSheetName$VH.get(seg);
-    }
-    public static void pszSheetName$set( MemorySegment seg, MemoryAddress x) {
-        _OPEN_PRINTER_PROPS_INFOA.pszSheetName$VH.set(seg, x);
-    }
-    public static MemoryAddress pszSheetName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OPEN_PRINTER_PROPS_INFOA.pszSheetName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszSheetName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OPEN_PRINTER_PROPS_INFOA.pszSheetName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uSheetIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uSheetIndex"));
-    public static VarHandle uSheetIndex$VH() {
-        return _OPEN_PRINTER_PROPS_INFOA.uSheetIndex$VH;
-    }
-    public static int uSheetIndex$get(MemorySegment seg) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.uSheetIndex$VH.get(seg);
-    }
-    public static void uSheetIndex$set( MemorySegment seg, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.uSheetIndex$VH.set(seg, x);
-    }
-    public static int uSheetIndex$get(MemorySegment seg, long index) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.uSheetIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uSheetIndex$set(MemorySegment seg, long index, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.uSheetIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _OPEN_PRINTER_PROPS_INFOA.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bModal$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bModal"));
-    public static VarHandle bModal$VH() {
-        return _OPEN_PRINTER_PROPS_INFOA.bModal$VH;
-    }
-    public static int bModal$get(MemorySegment seg) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.bModal$VH.get(seg);
-    }
-    public static void bModal$set( MemorySegment seg, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.bModal$VH.set(seg, x);
-    }
-    public static int bModal$get(MemorySegment seg, long index) {
-        return (int)_OPEN_PRINTER_PROPS_INFOA.bModal$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bModal$set(MemorySegment seg, long index, int x) {
-        _OPEN_PRINTER_PROPS_INFOA.bModal$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pszSheetName"),
+        wgl_h.C_INT.withName("uSheetIndex"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        wgl_h.C_INT.withName("bModal"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_OPEN_PRINTER_PROPS_INFOA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final OfInt dwSize$layout() {
+        return dwSize$LAYOUT;
+    }
+
+    private static final long dwSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final long dwSize$offset() {
+        return dwSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static int dwSize(MemorySegment struct) {
+        return struct.get(dwSize$LAYOUT, dwSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static void dwSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwSize$LAYOUT, dwSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszSheetName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszSheetName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszSheetName
+     * }
+     */
+    public static final AddressLayout pszSheetName$layout() {
+        return pszSheetName$LAYOUT;
+    }
+
+    private static final long pszSheetName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszSheetName
+     * }
+     */
+    public static final long pszSheetName$offset() {
+        return pszSheetName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszSheetName
+     * }
+     */
+    public static MemorySegment pszSheetName(MemorySegment struct) {
+        return struct.get(pszSheetName$LAYOUT, pszSheetName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszSheetName
+     * }
+     */
+    public static void pszSheetName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszSheetName$LAYOUT, pszSheetName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uSheetIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uSheetIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uSheetIndex
+     * }
+     */
+    public static final OfInt uSheetIndex$layout() {
+        return uSheetIndex$LAYOUT;
+    }
+
+    private static final long uSheetIndex$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uSheetIndex
+     * }
+     */
+    public static final long uSheetIndex$offset() {
+        return uSheetIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uSheetIndex
+     * }
+     */
+    public static int uSheetIndex(MemorySegment struct) {
+        return struct.get(uSheetIndex$LAYOUT, uSheetIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uSheetIndex
+     * }
+     */
+    public static void uSheetIndex(MemorySegment struct, int fieldValue) {
+        struct.set(uSheetIndex$LAYOUT, uSheetIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bModal$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bModal"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL bModal
+     * }
+     */
+    public static final OfInt bModal$layout() {
+        return bModal$LAYOUT;
+    }
+
+    private static final long bModal$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL bModal
+     * }
+     */
+    public static final long bModal$offset() {
+        return bModal$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL bModal
+     * }
+     */
+    public static int bModal(MemorySegment struct) {
+        return struct.get(bModal$LAYOUT, bModal$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL bModal
+     * }
+     */
+    public static void bModal(MemorySegment struct, int fieldValue) {
+        struct.set(bModal$LAYOUT, bModal$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

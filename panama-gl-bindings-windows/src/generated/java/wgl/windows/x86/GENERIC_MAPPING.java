@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _GENERIC_MAPPING {
+ *     ACCESS_MASK GenericRead;
+ *     ACCESS_MASK GenericWrite;
+ *     ACCESS_MASK GenericExecute;
+ *     ACCESS_MASK GenericAll;
+ * } GENERIC_MAPPING
+ * }
+ */
 public class GENERIC_MAPPING extends _GENERIC_MAPPING {
 
+    GENERIC_MAPPING() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,40 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_DELAYLOAD_DESCRIPTOR {
+ *     union {
+ *         DWORD AllAttributes;
+ *         struct {
+ *             DWORD RvaBased : 1;
+ *             DWORD ReservedAttributes : 31;
+ *         };
+ *     } Attributes;
+ *     DWORD DllNameRVA;
+ *     DWORD ModuleHandleRVA;
+ *     DWORD ImportAddressTableRVA;
+ *     DWORD ImportNameTableRVA;
+ *     DWORD BoundImportAddressTableRVA;
+ *     DWORD UnloadInformationTableRVA;
+ *     DWORD TimeDateStamp;
+ * } IMAGE_DELAYLOAD_DESCRIPTOR
+ * }
+ */
 public class IMAGE_DELAYLOAD_DESCRIPTOR extends _IMAGE_DELAYLOAD_DESCRIPTOR {
 
+    IMAGE_DELAYLOAD_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

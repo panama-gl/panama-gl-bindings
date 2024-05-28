@@ -2,160 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPOINTER_PEN_INFO {
+ *     POINTER_INFO pointerInfo;
+ *     PEN_FLAGS penFlags;
+ *     PEN_MASK penMask;
+ *     UINT32 pressure;
+ *     UINT32 rotation;
+ *     INT32 tiltX;
+ *     INT32 tiltY;
+ * }
+ * }
+ */
 public class tagPOINTER_PEN_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("pointerType"),
-            Constants$root.C_LONG$LAYOUT.withName("pointerId"),
-            Constants$root.C_LONG$LAYOUT.withName("frameId"),
-            Constants$root.C_LONG$LAYOUT.withName("pointerFlags"),
-            Constants$root.C_POINTER$LAYOUT.withName("sourceDevice"),
-            Constants$root.C_POINTER$LAYOUT.withName("hwndTarget"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("x"),
-                Constants$root.C_LONG$LAYOUT.withName("y")
-            ).withName("ptPixelLocation"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("x"),
-                Constants$root.C_LONG$LAYOUT.withName("y")
-            ).withName("ptHimetricLocation"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("x"),
-                Constants$root.C_LONG$LAYOUT.withName("y")
-            ).withName("ptPixelLocationRaw"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("x"),
-                Constants$root.C_LONG$LAYOUT.withName("y")
-            ).withName("ptHimetricLocationRaw"),
-            Constants$root.C_LONG$LAYOUT.withName("dwTime"),
-            Constants$root.C_LONG$LAYOUT.withName("historyCount"),
-            Constants$root.C_LONG$LAYOUT.withName("InputData"),
-            Constants$root.C_LONG$LAYOUT.withName("dwKeyStates"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("PerformanceCount"),
-            Constants$root.C_LONG$LAYOUT.withName("ButtonChangeType"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("pointerInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("penFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("penMask"),
-        Constants$root.C_LONG$LAYOUT.withName("pressure"),
-        Constants$root.C_LONG$LAYOUT.withName("rotation"),
-        Constants$root.C_LONG$LAYOUT.withName("tiltX"),
-        Constants$root.C_LONG$LAYOUT.withName("tiltY")
-    ).withName("tagPOINTER_PEN_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagPOINTER_PEN_INFO.$struct$LAYOUT;
+    tagPOINTER_PEN_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment pointerInfo$slice(MemorySegment seg) {
-        return seg.asSlice(0, 96);
-    }
-    static final VarHandle penFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("penFlags"));
-    public static VarHandle penFlags$VH() {
-        return tagPOINTER_PEN_INFO.penFlags$VH;
-    }
-    public static int penFlags$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.penFlags$VH.get(seg);
-    }
-    public static void penFlags$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.penFlags$VH.set(seg, x);
-    }
-    public static int penFlags$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.penFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void penFlags$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.penFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle penMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("penMask"));
-    public static VarHandle penMask$VH() {
-        return tagPOINTER_PEN_INFO.penMask$VH;
-    }
-    public static int penMask$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.penMask$VH.get(seg);
-    }
-    public static void penMask$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.penMask$VH.set(seg, x);
-    }
-    public static int penMask$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.penMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void penMask$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.penMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pressure$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pressure"));
-    public static VarHandle pressure$VH() {
-        return tagPOINTER_PEN_INFO.pressure$VH;
-    }
-    public static int pressure$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.pressure$VH.get(seg);
-    }
-    public static void pressure$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.pressure$VH.set(seg, x);
-    }
-    public static int pressure$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.pressure$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pressure$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.pressure$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rotation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rotation"));
-    public static VarHandle rotation$VH() {
-        return tagPOINTER_PEN_INFO.rotation$VH;
-    }
-    public static int rotation$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.rotation$VH.get(seg);
-    }
-    public static void rotation$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.rotation$VH.set(seg, x);
-    }
-    public static int rotation$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.rotation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rotation$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.rotation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle tiltX$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tiltX"));
-    public static VarHandle tiltX$VH() {
-        return tagPOINTER_PEN_INFO.tiltX$VH;
-    }
-    public static int tiltX$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.tiltX$VH.get(seg);
-    }
-    public static void tiltX$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.tiltX$VH.set(seg, x);
-    }
-    public static int tiltX$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.tiltX$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void tiltX$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.tiltX$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle tiltY$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tiltY"));
-    public static VarHandle tiltY$VH() {
-        return tagPOINTER_PEN_INFO.tiltY$VH;
-    }
-    public static int tiltY$get(MemorySegment seg) {
-        return (int)tagPOINTER_PEN_INFO.tiltY$VH.get(seg);
-    }
-    public static void tiltY$set( MemorySegment seg, int x) {
-        tagPOINTER_PEN_INFO.tiltY$VH.set(seg, x);
-    }
-    public static int tiltY$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_PEN_INFO.tiltY$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void tiltY$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_PEN_INFO.tiltY$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagPOINTER_INFO.layout().withName("pointerInfo"),
+        wgl_h.C_INT.withName("penFlags"),
+        wgl_h.C_INT.withName("penMask"),
+        wgl_h.C_INT.withName("pressure"),
+        wgl_h.C_INT.withName("rotation"),
+        wgl_h.C_INT.withName("tiltX"),
+        wgl_h.C_INT.withName("tiltY")
+    ).withName("tagPOINTER_PEN_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout pointerInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("pointerInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTER_INFO pointerInfo
+     * }
+     */
+    public static final GroupLayout pointerInfo$layout() {
+        return pointerInfo$LAYOUT;
+    }
+
+    private static final long pointerInfo$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTER_INFO pointerInfo
+     * }
+     */
+    public static final long pointerInfo$offset() {
+        return pointerInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTER_INFO pointerInfo
+     * }
+     */
+    public static MemorySegment pointerInfo(MemorySegment struct) {
+        return struct.asSlice(pointerInfo$OFFSET, pointerInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTER_INFO pointerInfo
+     * }
+     */
+    public static void pointerInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pointerInfo$OFFSET, pointerInfo$LAYOUT.byteSize());
+    }
+
+    private static final OfInt penFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("penFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PEN_FLAGS penFlags
+     * }
+     */
+    public static final OfInt penFlags$layout() {
+        return penFlags$LAYOUT;
+    }
+
+    private static final long penFlags$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PEN_FLAGS penFlags
+     * }
+     */
+    public static final long penFlags$offset() {
+        return penFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PEN_FLAGS penFlags
+     * }
+     */
+    public static int penFlags(MemorySegment struct) {
+        return struct.get(penFlags$LAYOUT, penFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PEN_FLAGS penFlags
+     * }
+     */
+    public static void penFlags(MemorySegment struct, int fieldValue) {
+        struct.set(penFlags$LAYOUT, penFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt penMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("penMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PEN_MASK penMask
+     * }
+     */
+    public static final OfInt penMask$layout() {
+        return penMask$LAYOUT;
+    }
+
+    private static final long penMask$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PEN_MASK penMask
+     * }
+     */
+    public static final long penMask$offset() {
+        return penMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PEN_MASK penMask
+     * }
+     */
+    public static int penMask(MemorySegment struct) {
+        return struct.get(penMask$LAYOUT, penMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PEN_MASK penMask
+     * }
+     */
+    public static void penMask(MemorySegment struct, int fieldValue) {
+        struct.set(penMask$LAYOUT, penMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt pressure$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pressure"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 pressure
+     * }
+     */
+    public static final OfInt pressure$layout() {
+        return pressure$LAYOUT;
+    }
+
+    private static final long pressure$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 pressure
+     * }
+     */
+    public static final long pressure$offset() {
+        return pressure$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 pressure
+     * }
+     */
+    public static int pressure(MemorySegment struct) {
+        return struct.get(pressure$LAYOUT, pressure$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 pressure
+     * }
+     */
+    public static void pressure(MemorySegment struct, int fieldValue) {
+        struct.set(pressure$LAYOUT, pressure$OFFSET, fieldValue);
+    }
+
+    private static final OfInt rotation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("rotation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 rotation
+     * }
+     */
+    public static final OfInt rotation$layout() {
+        return rotation$LAYOUT;
+    }
+
+    private static final long rotation$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 rotation
+     * }
+     */
+    public static final long rotation$offset() {
+        return rotation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 rotation
+     * }
+     */
+    public static int rotation(MemorySegment struct) {
+        return struct.get(rotation$LAYOUT, rotation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 rotation
+     * }
+     */
+    public static void rotation(MemorySegment struct, int fieldValue) {
+        struct.set(rotation$LAYOUT, rotation$OFFSET, fieldValue);
+    }
+
+    private static final OfInt tiltX$LAYOUT = (OfInt)$LAYOUT.select(groupElement("tiltX"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 tiltX
+     * }
+     */
+    public static final OfInt tiltX$layout() {
+        return tiltX$LAYOUT;
+    }
+
+    private static final long tiltX$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 tiltX
+     * }
+     */
+    public static final long tiltX$offset() {
+        return tiltX$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 tiltX
+     * }
+     */
+    public static int tiltX(MemorySegment struct) {
+        return struct.get(tiltX$LAYOUT, tiltX$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 tiltX
+     * }
+     */
+    public static void tiltX(MemorySegment struct, int fieldValue) {
+        struct.set(tiltX$LAYOUT, tiltX$OFFSET, fieldValue);
+    }
+
+    private static final OfInt tiltY$LAYOUT = (OfInt)$LAYOUT.select(groupElement("tiltY"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 tiltY
+     * }
+     */
+    public static final OfInt tiltY$layout() {
+        return tiltY$LAYOUT;
+    }
+
+    private static final long tiltY$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 tiltY
+     * }
+     */
+    public static final long tiltY$offset() {
+        return tiltY$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 tiltY
+     * }
+     */
+    public static int tiltY(MemorySegment struct) {
+        return struct.get(tiltY$LAYOUT, tiltY$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 tiltY
+     * }
+     */
+    public static void tiltY(MemorySegment struct, int fieldValue) {
+        struct.set(tiltY$LAYOUT, tiltY$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

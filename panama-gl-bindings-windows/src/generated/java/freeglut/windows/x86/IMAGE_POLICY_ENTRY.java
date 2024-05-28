@@ -2,13 +2,42 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_POLICY_ENTRY {
+ *     IMAGE_POLICY_ENTRY_TYPE Type;
+ *     IMAGE_POLICY_ID PolicyId;
+ *     union {
+ *         const void *None;
+ *         BOOLEAN BoolValue;
+ *         INT8 Int8Value;
+ *         UINT8 UInt8Value;
+ *         INT16 Int16Value;
+ *         UINT16 UInt16Value;
+ *         INT32 Int32Value;
+ *         UINT32 UInt32Value;
+ *         INT64 Int64Value;
+ *         UINT64 UInt64Value;
+ *         PCSTR AnsiStringValue;
+ *         PCWSTR UnicodeStringValue;
+ *     } u;
+ * } IMAGE_POLICY_ENTRY
+ * }
+ */
 public class IMAGE_POLICY_ENTRY extends _IMAGE_POLICY_ENTRY {
 
+    IMAGE_POLICY_ENTRY() {
+        // Should not be called directly
+    }
 }
-
 

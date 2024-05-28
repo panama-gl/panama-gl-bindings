@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EV_EXTRA_CERT_CHAIN_POLICY_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwRootProgramQualifierFlags;
+ * }
+ * }
+ */
 public class _EV_EXTRA_CERT_CHAIN_POLICY_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwRootProgramQualifierFlags")
-    ).withName("_EV_EXTRA_CERT_CHAIN_POLICY_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _EV_EXTRA_CERT_CHAIN_POLICY_PARA.$struct$LAYOUT;
+    _EV_EXTRA_CERT_CHAIN_POLICY_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _EV_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_EV_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _EV_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_EV_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _EV_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwRootProgramQualifierFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwRootProgramQualifierFlags"));
-    public static VarHandle dwRootProgramQualifierFlags$VH() {
-        return _EV_EXTRA_CERT_CHAIN_POLICY_PARA.dwRootProgramQualifierFlags$VH;
-    }
-    public static int dwRootProgramQualifierFlags$get(MemorySegment seg) {
-        return (int)_EV_EXTRA_CERT_CHAIN_POLICY_PARA.dwRootProgramQualifierFlags$VH.get(seg);
-    }
-    public static void dwRootProgramQualifierFlags$set( MemorySegment seg, int x) {
-        _EV_EXTRA_CERT_CHAIN_POLICY_PARA.dwRootProgramQualifierFlags$VH.set(seg, x);
-    }
-    public static int dwRootProgramQualifierFlags$get(MemorySegment seg, long index) {
-        return (int)_EV_EXTRA_CERT_CHAIN_POLICY_PARA.dwRootProgramQualifierFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwRootProgramQualifierFlags$set(MemorySegment seg, long index, int x) {
-        _EV_EXTRA_CERT_CHAIN_POLICY_PARA.dwRootProgramQualifierFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwRootProgramQualifierFlags")
+    ).withName("_EV_EXTRA_CERT_CHAIN_POLICY_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwRootProgramQualifierFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwRootProgramQualifierFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwRootProgramQualifierFlags
+     * }
+     */
+    public static final OfInt dwRootProgramQualifierFlags$layout() {
+        return dwRootProgramQualifierFlags$LAYOUT;
+    }
+
+    private static final long dwRootProgramQualifierFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwRootProgramQualifierFlags
+     * }
+     */
+    public static final long dwRootProgramQualifierFlags$offset() {
+        return dwRootProgramQualifierFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwRootProgramQualifierFlags
+     * }
+     */
+    public static int dwRootProgramQualifierFlags(MemorySegment struct) {
+        return struct.get(dwRootProgramQualifierFlags$LAYOUT, dwRootProgramQualifierFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwRootProgramQualifierFlags
+     * }
+     */
+    public static void dwRootProgramQualifierFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwRootProgramQualifierFlags$LAYOUT, dwRootProgramQualifierFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

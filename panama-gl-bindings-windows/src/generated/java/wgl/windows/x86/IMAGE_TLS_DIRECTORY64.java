@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_TLS_DIRECTORY64 {
+ *     ULONGLONG StartAddressOfRawData;
+ *     ULONGLONG EndAddressOfRawData;
+ *     ULONGLONG AddressOfIndex;
+ *     ULONGLONG AddressOfCallBacks;
+ *     DWORD SizeOfZeroFill;
+ *     union {
+ *         DWORD Characteristics;
+ *         struct {
+ *             DWORD Reserved0 : 20;
+ *             DWORD Alignment : 4;
+ *             DWORD Reserved1 : 8;
+ *         };
+ *     };
+ * } IMAGE_TLS_DIRECTORY64
+ * }
+ */
 public class IMAGE_TLS_DIRECTORY64 extends _IMAGE_TLS_DIRECTORY64 {
 
+    IMAGE_TLS_DIRECTORY64() {
+        // Should not be called directly
+    }
 }
-
 

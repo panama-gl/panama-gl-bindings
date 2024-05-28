@@ -2,59 +2,173 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SID_AND_ATTRIBUTES {
+ *     PSID Sid;
+ *     DWORD Attributes;
+ * }
+ * }
+ */
 public class _SID_AND_ATTRIBUTES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Sid"),
-        Constants$root.C_LONG$LAYOUT.withName("Attributes"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_SID_AND_ATTRIBUTES");
-    public static MemoryLayout $LAYOUT() {
-        return _SID_AND_ATTRIBUTES.$struct$LAYOUT;
+    _SID_AND_ATTRIBUTES() {
+        // Should not be called directly
     }
-    static final VarHandle Sid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Sid"));
-    public static VarHandle Sid$VH() {
-        return _SID_AND_ATTRIBUTES.Sid$VH;
-    }
-    public static MemoryAddress Sid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SID_AND_ATTRIBUTES.Sid$VH.get(seg);
-    }
-    public static void Sid$set( MemorySegment seg, MemoryAddress x) {
-        _SID_AND_ATTRIBUTES.Sid$VH.set(seg, x);
-    }
-    public static MemoryAddress Sid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SID_AND_ATTRIBUTES.Sid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Sid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SID_AND_ATTRIBUTES.Sid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Attributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Attributes"));
-    public static VarHandle Attributes$VH() {
-        return _SID_AND_ATTRIBUTES.Attributes$VH;
-    }
-    public static int Attributes$get(MemorySegment seg) {
-        return (int)_SID_AND_ATTRIBUTES.Attributes$VH.get(seg);
-    }
-    public static void Attributes$set( MemorySegment seg, int x) {
-        _SID_AND_ATTRIBUTES.Attributes$VH.set(seg, x);
-    }
-    public static int Attributes$get(MemorySegment seg, long index) {
-        return (int)_SID_AND_ATTRIBUTES.Attributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Attributes$set(MemorySegment seg, long index, int x) {
-        _SID_AND_ATTRIBUTES.Attributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("Sid"),
+        freeglut_h.C_LONG.withName("Attributes"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_SID_AND_ATTRIBUTES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Sid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Sid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID Sid
+     * }
+     */
+    public static final AddressLayout Sid$layout() {
+        return Sid$LAYOUT;
+    }
+
+    private static final long Sid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID Sid
+     * }
+     */
+    public static final long Sid$offset() {
+        return Sid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID Sid
+     * }
+     */
+    public static MemorySegment Sid(MemorySegment struct) {
+        return struct.get(Sid$LAYOUT, Sid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID Sid
+     * }
+     */
+    public static void Sid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Sid$LAYOUT, Sid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Attributes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Attributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static final OfInt Attributes$layout() {
+        return Attributes$LAYOUT;
+    }
+
+    private static final long Attributes$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static final long Attributes$offset() {
+        return Attributes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static int Attributes(MemorySegment struct) {
+        return struct.get(Attributes$LAYOUT, Attributes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static void Attributes(MemorySegment struct, int fieldValue) {
+        struct.set(Attributes$LAYOUT, Attributes$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

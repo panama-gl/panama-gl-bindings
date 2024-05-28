@@ -2,7506 +2,9020 @@
 
 package opengl.macos.arm;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class glut_h_2 extends glut_h_1 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static int GL_MAX_DRAW_BUFFERS() {
-        return (int)34852L;
-    }
-    public static int GL_DRAW_BUFFER0() {
-        return (int)34853L;
-    }
-    public static int GL_DRAW_BUFFER1() {
-        return (int)34854L;
-    }
-    public static int GL_DRAW_BUFFER2() {
-        return (int)34855L;
-    }
-    public static int GL_DRAW_BUFFER3() {
-        return (int)34856L;
-    }
-    public static int GL_DRAW_BUFFER4() {
-        return (int)34857L;
-    }
-    public static int GL_DRAW_BUFFER5() {
-        return (int)34858L;
-    }
-    public static int GL_DRAW_BUFFER6() {
-        return (int)34859L;
-    }
-    public static int GL_DRAW_BUFFER7() {
-        return (int)34860L;
-    }
-    public static int GL_DRAW_BUFFER8() {
-        return (int)34861L;
-    }
-    public static int GL_DRAW_BUFFER9() {
-        return (int)34862L;
-    }
-    public static int GL_DRAW_BUFFER10() {
-        return (int)34863L;
-    }
-    public static int GL_DRAW_BUFFER11() {
-        return (int)34864L;
-    }
-    public static int GL_DRAW_BUFFER12() {
-        return (int)34865L;
-    }
-    public static int GL_DRAW_BUFFER13() {
-        return (int)34866L;
-    }
-    public static int GL_DRAW_BUFFER14() {
-        return (int)34867L;
-    }
-    public static int GL_DRAW_BUFFER15() {
-        return (int)34868L;
-    }
-    public static int GL_POINT_SPRITE() {
-        return (int)34913L;
-    }
-    public static int GL_COORD_REPLACE() {
-        return (int)34914L;
-    }
-    public static int GL_POINT_SPRITE_COORD_ORIGIN() {
-        return (int)36000L;
-    }
-    public static int GL_LOWER_LEFT() {
-        return (int)36001L;
-    }
-    public static int GL_UPPER_LEFT() {
-        return (int)36002L;
-    }
-    public static int GL_STENCIL_BACK_FUNC() {
-        return (int)34816L;
-    }
-    public static int GL_STENCIL_BACK_VALUE_MASK() {
-        return (int)36004L;
-    }
-    public static int GL_STENCIL_BACK_REF() {
-        return (int)36003L;
-    }
-    public static int GL_STENCIL_BACK_FAIL() {
-        return (int)34817L;
-    }
-    public static int GL_STENCIL_BACK_PASS_DEPTH_FAIL() {
-        return (int)34818L;
-    }
-    public static int GL_STENCIL_BACK_PASS_DEPTH_PASS() {
-        return (int)34819L;
-    }
-    public static int GL_STENCIL_BACK_WRITEMASK() {
-        return (int)36005L;
-    }
-    public static int GL_CURRENT_RASTER_SECONDARY_COLOR() {
-        return (int)33887L;
-    }
-    public static int GL_PIXEL_PACK_BUFFER() {
-        return (int)35051L;
-    }
-    public static int GL_PIXEL_UNPACK_BUFFER() {
-        return (int)35052L;
-    }
-    public static int GL_PIXEL_PACK_BUFFER_BINDING() {
-        return (int)35053L;
-    }
-    public static int GL_PIXEL_UNPACK_BUFFER_BINDING() {
-        return (int)35055L;
-    }
-    public static int GL_FLOAT_MAT2x3() {
-        return (int)35685L;
-    }
-    public static int GL_FLOAT_MAT2x4() {
-        return (int)35686L;
-    }
-    public static int GL_FLOAT_MAT3x2() {
-        return (int)35687L;
-    }
-    public static int GL_FLOAT_MAT3x4() {
-        return (int)35688L;
-    }
-    public static int GL_FLOAT_MAT4x2() {
-        return (int)35689L;
-    }
-    public static int GL_FLOAT_MAT4x3() {
-        return (int)35690L;
-    }
-    public static int GL_SRGB() {
-        return (int)35904L;
-    }
-    public static int GL_SRGB8() {
-        return (int)35905L;
-    }
-    public static int GL_SRGB_ALPHA() {
-        return (int)35906L;
-    }
-    public static int GL_SRGB8_ALPHA8() {
-        return (int)35907L;
-    }
-    public static int GL_SLUMINANCE_ALPHA() {
-        return (int)35908L;
-    }
-    public static int GL_SLUMINANCE8_ALPHA8() {
-        return (int)35909L;
-    }
-    public static int GL_SLUMINANCE() {
-        return (int)35910L;
-    }
-    public static int GL_SLUMINANCE8() {
-        return (int)35911L;
-    }
-    public static int GL_COMPRESSED_SRGB() {
-        return (int)35912L;
-    }
-    public static int GL_COMPRESSED_SRGB_ALPHA() {
-        return (int)35913L;
-    }
-    public static int GL_COMPRESSED_SLUMINANCE() {
-        return (int)35914L;
-    }
-    public static int GL_COMPRESSED_SLUMINANCE_ALPHA() {
-        return (int)35915L;
-    }
-    public static int GLU_EXT_object_space_tess() {
-        return (int)1L;
-    }
-    public static int GLU_EXT_nurbs_tessellator() {
-        return (int)1L;
-    }
-    public static int GLU_FALSE() {
-        return (int)0L;
-    }
-    public static int GLU_TRUE() {
-        return (int)1L;
-    }
-    public static int GLU_VERSION_1_1() {
-        return (int)1L;
-    }
-    public static int GLU_VERSION_1_2() {
-        return (int)1L;
-    }
-    public static int GLU_VERSION_1_3() {
-        return (int)1L;
-    }
-    public static int GLU_VERSION() {
-        return (int)100800L;
-    }
-    public static int GLU_EXTENSIONS() {
-        return (int)100801L;
-    }
-    public static int GLU_INVALID_ENUM() {
-        return (int)100900L;
-    }
-    public static int GLU_INVALID_VALUE() {
-        return (int)100901L;
-    }
-    public static int GLU_OUT_OF_MEMORY() {
-        return (int)100902L;
-    }
-    public static int GLU_INCOMPATIBLE_GL_VERSION() {
-        return (int)100903L;
-    }
-    public static int GLU_INVALID_OPERATION() {
-        return (int)100904L;
-    }
-    public static int GLU_OUTLINE_POLYGON() {
-        return (int)100240L;
-    }
-    public static int GLU_OUTLINE_PATCH() {
-        return (int)100241L;
-    }
-    public static int GLU_NURBS_ERROR() {
-        return (int)100103L;
-    }
-    public static int GLU_ERROR() {
-        return (int)100103L;
-    }
-    public static int GLU_NURBS_BEGIN() {
-        return (int)100164L;
-    }
-    public static int GLU_NURBS_BEGIN_EXT() {
-        return (int)100164L;
-    }
-    public static int GLU_NURBS_VERTEX() {
-        return (int)100165L;
-    }
-    public static int GLU_NURBS_VERTEX_EXT() {
-        return (int)100165L;
-    }
-    public static int GLU_NURBS_NORMAL() {
-        return (int)100166L;
-    }
-    public static int GLU_NURBS_NORMAL_EXT() {
-        return (int)100166L;
-    }
-    public static int GLU_NURBS_COLOR() {
-        return (int)100167L;
-    }
-    public static int GLU_NURBS_COLOR_EXT() {
-        return (int)100167L;
-    }
-    public static int GLU_NURBS_TEXTURE_COORD() {
-        return (int)100168L;
-    }
-    public static int GLU_NURBS_TEX_COORD_EXT() {
-        return (int)100168L;
-    }
-    public static int GLU_NURBS_END() {
-        return (int)100169L;
-    }
-    public static int GLU_NURBS_END_EXT() {
-        return (int)100169L;
-    }
-    public static int GLU_NURBS_BEGIN_DATA() {
-        return (int)100170L;
-    }
-    public static int GLU_NURBS_BEGIN_DATA_EXT() {
-        return (int)100170L;
-    }
-    public static int GLU_NURBS_VERTEX_DATA() {
-        return (int)100171L;
-    }
-    public static int GLU_NURBS_VERTEX_DATA_EXT() {
-        return (int)100171L;
-    }
-    public static int GLU_NURBS_NORMAL_DATA() {
-        return (int)100172L;
-    }
-    public static int GLU_NURBS_NORMAL_DATA_EXT() {
-        return (int)100172L;
-    }
-    public static int GLU_NURBS_COLOR_DATA() {
-        return (int)100173L;
-    }
-    public static int GLU_NURBS_COLOR_DATA_EXT() {
-        return (int)100173L;
-    }
-    public static int GLU_NURBS_TEXTURE_COORD_DATA() {
-        return (int)100174L;
-    }
-    public static int GLU_NURBS_TEX_COORD_DATA_EXT() {
-        return (int)100174L;
-    }
-    public static int GLU_NURBS_END_DATA() {
-        return (int)100175L;
-    }
-    public static int GLU_NURBS_END_DATA_EXT() {
-        return (int)100175L;
-    }
-    public static int GLU_NURBS_ERROR1() {
-        return (int)100251L;
-    }
-    public static int GLU_NURBS_ERROR2() {
-        return (int)100252L;
-    }
-    public static int GLU_NURBS_ERROR3() {
-        return (int)100253L;
-    }
-    public static int GLU_NURBS_ERROR4() {
-        return (int)100254L;
-    }
-    public static int GLU_NURBS_ERROR5() {
-        return (int)100255L;
-    }
-    public static int GLU_NURBS_ERROR6() {
-        return (int)100256L;
-    }
-    public static int GLU_NURBS_ERROR7() {
-        return (int)100257L;
-    }
-    public static int GLU_NURBS_ERROR8() {
-        return (int)100258L;
-    }
-    public static int GLU_NURBS_ERROR9() {
-        return (int)100259L;
-    }
-    public static int GLU_NURBS_ERROR10() {
-        return (int)100260L;
-    }
-    public static int GLU_NURBS_ERROR11() {
-        return (int)100261L;
-    }
-    public static int GLU_NURBS_ERROR12() {
-        return (int)100262L;
-    }
-    public static int GLU_NURBS_ERROR13() {
-        return (int)100263L;
-    }
-    public static int GLU_NURBS_ERROR14() {
-        return (int)100264L;
-    }
-    public static int GLU_NURBS_ERROR15() {
-        return (int)100265L;
-    }
-    public static int GLU_NURBS_ERROR16() {
-        return (int)100266L;
-    }
-    public static int GLU_NURBS_ERROR17() {
-        return (int)100267L;
-    }
-    public static int GLU_NURBS_ERROR18() {
-        return (int)100268L;
-    }
-    public static int GLU_NURBS_ERROR19() {
-        return (int)100269L;
-    }
-    public static int GLU_NURBS_ERROR20() {
-        return (int)100270L;
-    }
-    public static int GLU_NURBS_ERROR21() {
-        return (int)100271L;
-    }
-    public static int GLU_NURBS_ERROR22() {
-        return (int)100272L;
-    }
-    public static int GLU_NURBS_ERROR23() {
-        return (int)100273L;
-    }
-    public static int GLU_NURBS_ERROR24() {
-        return (int)100274L;
-    }
-    public static int GLU_NURBS_ERROR25() {
-        return (int)100275L;
-    }
-    public static int GLU_NURBS_ERROR26() {
-        return (int)100276L;
-    }
-    public static int GLU_NURBS_ERROR27() {
-        return (int)100277L;
-    }
-    public static int GLU_NURBS_ERROR28() {
-        return (int)100278L;
-    }
-    public static int GLU_NURBS_ERROR29() {
-        return (int)100279L;
-    }
-    public static int GLU_NURBS_ERROR30() {
-        return (int)100280L;
-    }
-    public static int GLU_NURBS_ERROR31() {
-        return (int)100281L;
-    }
-    public static int GLU_NURBS_ERROR32() {
-        return (int)100282L;
-    }
-    public static int GLU_NURBS_ERROR33() {
-        return (int)100283L;
-    }
-    public static int GLU_NURBS_ERROR34() {
-        return (int)100284L;
-    }
-    public static int GLU_NURBS_ERROR35() {
-        return (int)100285L;
-    }
-    public static int GLU_NURBS_ERROR36() {
-        return (int)100286L;
-    }
-    public static int GLU_NURBS_ERROR37() {
-        return (int)100287L;
-    }
-    public static int GLU_AUTO_LOAD_MATRIX() {
-        return (int)100200L;
-    }
-    public static int GLU_CULLING() {
-        return (int)100201L;
-    }
-    public static int GLU_SAMPLING_TOLERANCE() {
-        return (int)100203L;
-    }
-    public static int GLU_DISPLAY_MODE() {
-        return (int)100204L;
-    }
-    public static int GLU_PARAMETRIC_TOLERANCE() {
-        return (int)100202L;
-    }
-    public static int GLU_SAMPLING_METHOD() {
-        return (int)100205L;
-    }
-    public static int GLU_U_STEP() {
-        return (int)100206L;
-    }
-    public static int GLU_V_STEP() {
-        return (int)100207L;
-    }
-    public static int GLU_NURBS_MODE() {
-        return (int)100160L;
-    }
-    public static int GLU_NURBS_MODE_EXT() {
-        return (int)100160L;
-    }
-    public static int GLU_NURBS_TESSELLATOR() {
-        return (int)100161L;
-    }
-    public static int GLU_NURBS_TESSELLATOR_EXT() {
-        return (int)100161L;
-    }
-    public static int GLU_NURBS_RENDERER() {
-        return (int)100162L;
-    }
-    public static int GLU_NURBS_RENDERER_EXT() {
-        return (int)100162L;
-    }
-    public static int GLU_OBJECT_PARAMETRIC_ERROR() {
-        return (int)100208L;
-    }
-    public static int GLU_OBJECT_PARAMETRIC_ERROR_EXT() {
-        return (int)100208L;
-    }
-    public static int GLU_OBJECT_PATH_LENGTH() {
-        return (int)100209L;
-    }
-    public static int GLU_OBJECT_PATH_LENGTH_EXT() {
-        return (int)100209L;
-    }
-    public static int GLU_PATH_LENGTH() {
-        return (int)100215L;
-    }
-    public static int GLU_PARAMETRIC_ERROR() {
-        return (int)100216L;
-    }
-    public static int GLU_DOMAIN_DISTANCE() {
-        return (int)100217L;
-    }
-    public static int GLU_MAP1_TRIM_2() {
-        return (int)100210L;
-    }
-    public static int GLU_MAP1_TRIM_3() {
-        return (int)100211L;
-    }
-    public static int GLU_POINT() {
-        return (int)100010L;
-    }
-    public static int GLU_LINE() {
-        return (int)100011L;
-    }
-    public static int GLU_FILL() {
-        return (int)100012L;
-    }
-    public static int GLU_SILHOUETTE() {
-        return (int)100013L;
-    }
-    public static int GLU_SMOOTH() {
-        return (int)100000L;
-    }
-    public static int GLU_FLAT() {
-        return (int)100001L;
-    }
-    public static int GLU_NONE() {
-        return (int)100002L;
-    }
-    public static int GLU_OUTSIDE() {
-        return (int)100020L;
-    }
-    public static int GLU_INSIDE() {
-        return (int)100021L;
-    }
-    public static int GLU_TESS_BEGIN() {
-        return (int)100100L;
-    }
-    public static int GLU_BEGIN() {
-        return (int)100100L;
-    }
-    public static int GLU_TESS_VERTEX() {
-        return (int)100101L;
-    }
-    public static int GLU_VERTEX() {
-        return (int)100101L;
-    }
-    public static int GLU_TESS_END() {
-        return (int)100102L;
-    }
-    public static int GLU_END() {
-        return (int)100102L;
-    }
-    public static int GLU_TESS_ERROR() {
-        return (int)100103L;
-    }
-    public static int GLU_TESS_EDGE_FLAG() {
-        return (int)100104L;
-    }
-    public static int GLU_EDGE_FLAG() {
-        return (int)100104L;
-    }
-    public static int GLU_TESS_COMBINE() {
-        return (int)100105L;
-    }
-    public static int GLU_TESS_BEGIN_DATA() {
-        return (int)100106L;
-    }
-    public static int GLU_TESS_VERTEX_DATA() {
-        return (int)100107L;
-    }
-    public static int GLU_TESS_END_DATA() {
-        return (int)100108L;
-    }
-    public static int GLU_TESS_ERROR_DATA() {
-        return (int)100109L;
-    }
-    public static int GLU_TESS_EDGE_FLAG_DATA() {
-        return (int)100110L;
-    }
-    public static int GLU_TESS_COMBINE_DATA() {
-        return (int)100111L;
-    }
-    public static int GLU_CW() {
-        return (int)100120L;
-    }
-    public static int GLU_CCW() {
-        return (int)100121L;
-    }
-    public static int GLU_INTERIOR() {
-        return (int)100122L;
-    }
-    public static int GLU_EXTERIOR() {
-        return (int)100123L;
-    }
-    public static int GLU_UNKNOWN() {
-        return (int)100124L;
-    }
-    public static int GLU_TESS_WINDING_RULE() {
-        return (int)100140L;
-    }
-    public static int GLU_TESS_BOUNDARY_ONLY() {
-        return (int)100141L;
-    }
-    public static int GLU_TESS_TOLERANCE() {
-        return (int)100142L;
-    }
-    public static int GLU_TESS_ERROR1() {
-        return (int)100151L;
-    }
-    public static int GLU_TESS_ERROR2() {
-        return (int)100152L;
-    }
-    public static int GLU_TESS_ERROR3() {
-        return (int)100153L;
-    }
-    public static int GLU_TESS_ERROR4() {
-        return (int)100154L;
-    }
-    public static int GLU_TESS_ERROR5() {
-        return (int)100155L;
-    }
-    public static int GLU_TESS_ERROR6() {
-        return (int)100156L;
-    }
-    public static int GLU_TESS_ERROR7() {
-        return (int)100157L;
-    }
-    public static int GLU_TESS_ERROR8() {
-        return (int)100158L;
-    }
-    public static int GLU_TESS_MISSING_BEGIN_POLYGON() {
-        return (int)100151L;
-    }
-    public static int GLU_TESS_MISSING_BEGIN_CONTOUR() {
-        return (int)100152L;
-    }
-    public static int GLU_TESS_MISSING_END_POLYGON() {
-        return (int)100153L;
-    }
-    public static int GLU_TESS_MISSING_END_CONTOUR() {
-        return (int)100154L;
-    }
-    public static int GLU_TESS_COORD_TOO_LARGE() {
-        return (int)100155L;
-    }
-    public static int GLU_TESS_NEED_COMBINE_CALLBACK() {
-        return (int)100156L;
-    }
-    public static int GLU_TESS_WINDING_ODD() {
-        return (int)100130L;
-    }
-    public static int GLU_TESS_WINDING_NONZERO() {
-        return (int)100131L;
-    }
-    public static int GLU_TESS_WINDING_POSITIVE() {
-        return (int)100132L;
-    }
-    public static int GLU_TESS_WINDING_NEGATIVE() {
-        return (int)100133L;
-    }
-    public static int GLU_TESS_WINDING_ABS_GEQ_TWO() {
-        return (int)100134L;
-    }
-    public static int GLUT_API_VERSION() {
-        return (int)5L;
-    }
-    public static int GLUT_XLIB_IMPLEMENTATION() {
-        return (int)15L;
-    }
-    public static int GLUT_MACOSX_IMPLEMENTATION() {
-        return (int)4L;
-    }
-    public static int GLUT_RGB() {
-        return (int)0L;
-    }
-    public static int GLUT_INDEX() {
-        return (int)1L;
-    }
-    public static int GLUT_SINGLE() {
-        return (int)0L;
-    }
-    public static int GLUT_DOUBLE() {
-        return (int)2L;
-    }
-    public static int GLUT_ACCUM() {
-        return (int)4L;
-    }
-    public static int GLUT_ALPHA() {
-        return (int)8L;
-    }
-    public static int GLUT_DEPTH() {
-        return (int)16L;
-    }
-    public static int GLUT_STENCIL() {
-        return (int)32L;
-    }
-    public static int GLUT_MULTISAMPLE() {
-        return (int)128L;
-    }
-    public static int GLUT_STEREO() {
-        return (int)256L;
-    }
-    public static int GLUT_LUMINANCE() {
-        return (int)512L;
-    }
-    public static int GLUT_NO_RECOVERY() {
-        return (int)1024L;
-    }
-    public static int GLUT_3_2_CORE_PROFILE() {
-        return (int)2048L;
-    }
-    public static int GLUT_LEFT_BUTTON() {
-        return (int)0L;
-    }
-    public static int GLUT_MIDDLE_BUTTON() {
-        return (int)1L;
-    }
-    public static int GLUT_RIGHT_BUTTON() {
-        return (int)2L;
-    }
-    public static int GLUT_DOWN() {
-        return (int)0L;
-    }
-    public static int GLUT_UP() {
-        return (int)1L;
-    }
-    public static int GLUT_KEY_F1() {
-        return (int)1L;
-    }
-    public static int GLUT_KEY_F2() {
-        return (int)2L;
-    }
-    public static int GLUT_KEY_F3() {
-        return (int)3L;
-    }
-    public static int GLUT_KEY_F4() {
-        return (int)4L;
-    }
-    public static int GLUT_KEY_F5() {
-        return (int)5L;
-    }
-    public static int GLUT_KEY_F6() {
-        return (int)6L;
-    }
-    public static int GLUT_KEY_F7() {
-        return (int)7L;
-    }
-    public static int GLUT_KEY_F8() {
-        return (int)8L;
-    }
-    public static int GLUT_KEY_F9() {
-        return (int)9L;
-    }
-    public static int GLUT_KEY_F10() {
-        return (int)10L;
-    }
-    public static int GLUT_KEY_F11() {
-        return (int)11L;
-    }
-    public static int GLUT_KEY_F12() {
-        return (int)12L;
-    }
-    public static int GLUT_KEY_LEFT() {
-        return (int)100L;
-    }
-    public static int GLUT_KEY_UP() {
-        return (int)101L;
-    }
-    public static int GLUT_KEY_RIGHT() {
-        return (int)102L;
-    }
-    public static int GLUT_KEY_DOWN() {
-        return (int)103L;
-    }
-    public static int GLUT_KEY_PAGE_UP() {
-        return (int)104L;
-    }
-    public static int GLUT_KEY_PAGE_DOWN() {
-        return (int)105L;
-    }
-    public static int GLUT_KEY_HOME() {
-        return (int)106L;
-    }
-    public static int GLUT_KEY_END() {
-        return (int)107L;
-    }
-    public static int GLUT_KEY_INSERT() {
-        return (int)108L;
-    }
-    public static int GLUT_LEFT() {
-        return (int)0L;
-    }
-    public static int GLUT_ENTERED() {
-        return (int)1L;
-    }
-    public static int GLUT_MENU_NOT_IN_USE() {
-        return (int)0L;
-    }
-    public static int GLUT_MENU_IN_USE() {
-        return (int)1L;
-    }
-    public static int GLUT_NOT_VISIBLE() {
-        return (int)0L;
-    }
-    public static int GLUT_VISIBLE() {
-        return (int)1L;
-    }
-    public static int GLUT_HIDDEN() {
-        return (int)0L;
-    }
-    public static int GLUT_FULLY_RETAINED() {
-        return (int)1L;
-    }
-    public static int GLUT_PARTIALLY_RETAINED() {
-        return (int)2L;
-    }
-    public static int GLUT_FULLY_COVERED() {
-        return (int)3L;
-    }
-    public static int GLUT_RED() {
-        return (int)0L;
-    }
-    public static int GLUT_GREEN() {
-        return (int)1L;
-    }
-    public static int GLUT_BLUE() {
-        return (int)2L;
-    }
-    public static int GLUT_NORMAL() {
-        return (int)0L;
-    }
-    public static int GLUT_OVERLAY() {
-        return (int)1L;
-    }
-    public static int GLUT_WINDOW_X() {
-        return (int)100L;
-    }
-    public static int GLUT_WINDOW_Y() {
-        return (int)101L;
-    }
-    public static int GLUT_WINDOW_WIDTH() {
-        return (int)102L;
-    }
-    public static int GLUT_WINDOW_HEIGHT() {
-        return (int)103L;
-    }
-    public static int GLUT_WINDOW_BUFFER_SIZE() {
-        return (int)104L;
-    }
-    public static int GLUT_WINDOW_STENCIL_SIZE() {
-        return (int)105L;
-    }
-    public static int GLUT_WINDOW_DEPTH_SIZE() {
-        return (int)106L;
-    }
-    public static int GLUT_WINDOW_RED_SIZE() {
-        return (int)107L;
-    }
-    public static int GLUT_WINDOW_GREEN_SIZE() {
-        return (int)108L;
-    }
-    public static int GLUT_WINDOW_BLUE_SIZE() {
-        return (int)109L;
-    }
-    public static int GLUT_WINDOW_ALPHA_SIZE() {
-        return (int)110L;
-    }
-    public static int GLUT_WINDOW_ACCUM_RED_SIZE() {
-        return (int)111L;
-    }
-    public static int GLUT_WINDOW_ACCUM_GREEN_SIZE() {
-        return (int)112L;
-    }
-    public static int GLUT_WINDOW_ACCUM_BLUE_SIZE() {
-        return (int)113L;
-    }
-    public static int GLUT_WINDOW_ACCUM_ALPHA_SIZE() {
-        return (int)114L;
-    }
-    public static int GLUT_WINDOW_DOUBLEBUFFER() {
-        return (int)115L;
-    }
-    public static int GLUT_WINDOW_RGBA() {
-        return (int)116L;
-    }
-    public static int GLUT_WINDOW_PARENT() {
-        return (int)117L;
-    }
-    public static int GLUT_WINDOW_NUM_CHILDREN() {
-        return (int)118L;
-    }
-    public static int GLUT_WINDOW_COLORMAP_SIZE() {
-        return (int)119L;
-    }
-    public static int GLUT_WINDOW_NUM_SAMPLES() {
-        return (int)120L;
-    }
-    public static int GLUT_WINDOW_STEREO() {
-        return (int)121L;
-    }
-    public static int GLUT_WINDOW_CURSOR() {
-        return (int)122L;
-    }
-    public static int GLUT_SCREEN_WIDTH() {
-        return (int)200L;
-    }
-    public static int GLUT_SCREEN_HEIGHT() {
-        return (int)201L;
-    }
-    public static int GLUT_SCREEN_WIDTH_MM() {
-        return (int)202L;
-    }
-    public static int GLUT_SCREEN_HEIGHT_MM() {
-        return (int)203L;
-    }
-    public static int GLUT_MENU_NUM_ITEMS() {
-        return (int)300L;
-    }
-    public static int GLUT_DISPLAY_MODE_POSSIBLE() {
-        return (int)400L;
-    }
-    public static int GLUT_INIT_WINDOW_X() {
-        return (int)500L;
-    }
-    public static int GLUT_INIT_WINDOW_Y() {
-        return (int)501L;
-    }
-    public static int GLUT_INIT_WINDOW_WIDTH() {
-        return (int)502L;
-    }
-    public static int GLUT_INIT_WINDOW_HEIGHT() {
-        return (int)503L;
-    }
-    public static int GLUT_INIT_DISPLAY_MODE() {
-        return (int)504L;
-    }
-    public static int GLUT_ELAPSED_TIME() {
-        return (int)700L;
-    }
-    public static int GLUT_WINDOW_FORMAT_ID() {
-        return (int)123L;
-    }
-    public static int GLUT_HAS_KEYBOARD() {
-        return (int)600L;
-    }
-    public static int GLUT_HAS_MOUSE() {
-        return (int)601L;
-    }
-    public static int GLUT_HAS_SPACEBALL() {
-        return (int)602L;
-    }
-    public static int GLUT_HAS_DIAL_AND_BUTTON_BOX() {
-        return (int)603L;
-    }
-    public static int GLUT_HAS_TABLET() {
-        return (int)604L;
-    }
-    public static int GLUT_NUM_MOUSE_BUTTONS() {
-        return (int)605L;
-    }
-    public static int GLUT_NUM_SPACEBALL_BUTTONS() {
-        return (int)606L;
-    }
-    public static int GLUT_NUM_BUTTON_BOX_BUTTONS() {
-        return (int)607L;
-    }
-    public static int GLUT_NUM_DIALS() {
-        return (int)608L;
-    }
-    public static int GLUT_NUM_TABLET_BUTTONS() {
-        return (int)609L;
-    }
-    public static int GLUT_DEVICE_IGNORE_KEY_REPEAT() {
-        return (int)610L;
-    }
-    public static int GLUT_DEVICE_KEY_REPEAT() {
-        return (int)611L;
-    }
-    public static int GLUT_HAS_JOYSTICK() {
-        return (int)612L;
-    }
-    public static int GLUT_OWNS_JOYSTICK() {
-        return (int)613L;
-    }
-    public static int GLUT_JOYSTICK_BUTTONS() {
-        return (int)614L;
-    }
-    public static int GLUT_JOYSTICK_AXES() {
-        return (int)615L;
-    }
-    public static int GLUT_JOYSTICK_POLL_RATE() {
-        return (int)616L;
-    }
-    public static int GLUT_OVERLAY_POSSIBLE() {
-        return (int)800L;
-    }
-    public static int GLUT_LAYER_IN_USE() {
-        return (int)801L;
-    }
-    public static int GLUT_HAS_OVERLAY() {
-        return (int)802L;
-    }
-    public static int GLUT_TRANSPARENT_INDEX() {
-        return (int)803L;
-    }
-    public static int GLUT_NORMAL_DAMAGED() {
-        return (int)804L;
-    }
-    public static int GLUT_OVERLAY_DAMAGED() {
-        return (int)805L;
-    }
-    public static int GLUT_VIDEO_RESIZE_POSSIBLE() {
-        return (int)900L;
-    }
-    public static int GLUT_VIDEO_RESIZE_IN_USE() {
-        return (int)901L;
-    }
-    public static int GLUT_VIDEO_RESIZE_X_DELTA() {
-        return (int)902L;
-    }
-    public static int GLUT_VIDEO_RESIZE_Y_DELTA() {
-        return (int)903L;
-    }
-    public static int GLUT_VIDEO_RESIZE_WIDTH_DELTA() {
-        return (int)904L;
-    }
-    public static int GLUT_VIDEO_RESIZE_HEIGHT_DELTA() {
-        return (int)905L;
-    }
-    public static int GLUT_VIDEO_RESIZE_X() {
-        return (int)906L;
-    }
-    public static int GLUT_VIDEO_RESIZE_Y() {
-        return (int)907L;
-    }
-    public static int GLUT_VIDEO_RESIZE_WIDTH() {
-        return (int)908L;
-    }
-    public static int GLUT_VIDEO_RESIZE_HEIGHT() {
-        return (int)909L;
-    }
-    public static int GLUT_ACTIVE_SHIFT() {
-        return (int)1L;
-    }
-    public static int GLUT_ACTIVE_CTRL() {
-        return (int)2L;
-    }
-    public static int GLUT_ACTIVE_ALT() {
-        return (int)4L;
-    }
-    public static int GLUT_CURSOR_RIGHT_ARROW() {
-        return (int)0L;
-    }
-    public static int GLUT_CURSOR_LEFT_ARROW() {
-        return (int)1L;
-    }
-    public static int GLUT_CURSOR_INFO() {
-        return (int)2L;
-    }
-    public static int GLUT_CURSOR_DESTROY() {
-        return (int)3L;
-    }
-    public static int GLUT_CURSOR_HELP() {
-        return (int)4L;
-    }
-    public static int GLUT_CURSOR_CYCLE() {
-        return (int)5L;
-    }
-    public static int GLUT_CURSOR_SPRAY() {
-        return (int)6L;
-    }
-    public static int GLUT_CURSOR_WAIT() {
-        return (int)7L;
-    }
-    public static int GLUT_CURSOR_TEXT() {
-        return (int)8L;
-    }
-    public static int GLUT_CURSOR_CROSSHAIR() {
-        return (int)9L;
-    }
-    public static int GLUT_CURSOR_UP_DOWN() {
-        return (int)10L;
-    }
-    public static int GLUT_CURSOR_LEFT_RIGHT() {
-        return (int)11L;
-    }
-    public static int GLUT_CURSOR_TOP_SIDE() {
-        return (int)12L;
-    }
-    public static int GLUT_CURSOR_BOTTOM_SIDE() {
-        return (int)13L;
-    }
-    public static int GLUT_CURSOR_LEFT_SIDE() {
-        return (int)14L;
-    }
-    public static int GLUT_CURSOR_RIGHT_SIDE() {
-        return (int)15L;
-    }
-    public static int GLUT_CURSOR_TOP_LEFT_CORNER() {
-        return (int)16L;
-    }
-    public static int GLUT_CURSOR_TOP_RIGHT_CORNER() {
-        return (int)17L;
-    }
-    public static int GLUT_CURSOR_BOTTOM_RIGHT_CORNER() {
-        return (int)18L;
-    }
-    public static int GLUT_CURSOR_BOTTOM_LEFT_CORNER() {
-        return (int)19L;
-    }
-    public static int GLUT_CURSOR_INHERIT() {
-        return (int)100L;
-    }
-    public static int GLUT_CURSOR_NONE() {
-        return (int)101L;
-    }
-    public static int GLUT_CURSOR_FULL_CROSSHAIR() {
-        return (int)102L;
-    }
-    public static int GLUT_KEY_REPEAT_OFF() {
-        return (int)0L;
-    }
-    public static int GLUT_KEY_REPEAT_ON() {
-        return (int)1L;
-    }
-    public static int GLUT_KEY_REPEAT_DEFAULT() {
-        return (int)2L;
-    }
-    public static int GLUT_JOYSTICK_BUTTON_A() {
-        return (int)1L;
-    }
-    public static int GLUT_JOYSTICK_BUTTON_B() {
-        return (int)2L;
-    }
-    public static int GLUT_JOYSTICK_BUTTON_C() {
-        return (int)4L;
-    }
-    public static int GLUT_JOYSTICK_BUTTON_D() {
-        return (int)8L;
-    }
-    public static int GLUT_GAME_MODE_ACTIVE() {
-        return (int)0L;
-    }
-    public static int GLUT_GAME_MODE_POSSIBLE() {
-        return (int)1L;
-    }
-    public static int GLUT_GAME_MODE_WIDTH() {
-        return (int)2L;
-    }
-    public static int GLUT_GAME_MODE_HEIGHT() {
-        return (int)3L;
-    }
-    public static int GLUT_GAME_MODE_PIXEL_DEPTH() {
-        return (int)4L;
-    }
-    public static int GLUT_GAME_MODE_REFRESH_RATE() {
-        return (int)5L;
-    }
-    public static int GLUT_GAME_MODE_DISPLAY_CHANGED() {
-        return (int)6L;
-    }
-    public static OfShort int16_t = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt int32_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong int64_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfShort int_least16_t = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt int_least32_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong int_least64_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfShort int_fast16_t = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt int_fast32_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong int_fast64_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfShort __int16_t = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt __int32_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong __int64_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong __darwin_intptr_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt __darwin_ct_rune_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong __darwin_ptrdiff_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt __darwin_wchar_t = Constants$root.C_INT$LAYOUT;
-    public static OfInt __darwin_rune_t = Constants$root.C_INT$LAYOUT;
-    public static OfInt __darwin_wint_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong __darwin_ssize_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong __darwin_time_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong __darwin_blkcnt_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt __darwin_blksize_t = Constants$root.C_INT$LAYOUT;
-    public static OfInt __darwin_dev_t = Constants$root.C_INT$LAYOUT;
-    public static OfLong __darwin_off_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfInt __darwin_pid_t = Constants$root.C_INT$LAYOUT;
-    public static OfInt __darwin_suseconds_t = Constants$root.C_INT$LAYOUT;
-    public static OfAddress __darwin_pthread_t = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong register_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong user_ssize_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong user_long_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong user_time_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong user_off_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong intptr_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong intmax_t = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfFloat GLclampf = Constants$root.C_FLOAT$LAYOUT;
-    public static OfFloat GLfloat = Constants$root.C_FLOAT$LAYOUT;
-    public static OfInt GLint = Constants$root.C_INT$LAYOUT;
-    public static OfShort GLshort = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt GLsizei = Constants$root.C_INT$LAYOUT;
-    public static OfByte GLchar = Constants$root.C_CHAR$LAYOUT;
-    public static OfByte GLcharARB = Constants$root.C_CHAR$LAYOUT;
-    public static OfAddress GLhandleARB = Constants$root.C_POINTER$LAYOUT;
-    public static OfDouble GLdouble = Constants$root.C_DOUBLE$LAYOUT;
-    public static OfDouble GLclampd = Constants$root.C_DOUBLE$LAYOUT;
-    public static OfInt GLfixed = Constants$root.C_INT$LAYOUT;
-    public static OfLong GLint64 = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress GLsync = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong GLint64EXT = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong GLintptr = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong GLsizeiptr = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong GLintptrARB = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfLong GLsizeiptrARB = Constants$root.C_LONG_LONG$LAYOUT;
-    public static MethodHandle glClampColorARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glClampColorARB$MH,"glClampColorARB");
-    }
-    public static void glClampColorARB ( int target,  int clamp) {
-        var mh$ = glClampColorARB$MH();
-        try {
-            mh$.invokeExact(target, clamp);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawBuffersARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glDrawBuffersARB$MH,"glDrawBuffersARB");
-    }
-    public static void glDrawBuffersARB ( int n,  Addressable bufs) {
-        var mh$ = glDrawBuffersARB$MH();
-        try {
-            mh$.invokeExact(n, bufs);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElementsBaseVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glDrawElementsBaseVertex$MH,"glDrawElementsBaseVertex");
-    }
-    public static void glDrawElementsBaseVertex ( int mode,  int count,  int type,  Addressable indices,  int base_vertex) {
-        var mh$ = glDrawElementsBaseVertex$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices, base_vertex);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawRangeElementsBaseVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glDrawRangeElementsBaseVertex$MH,"glDrawRangeElementsBaseVertex");
-    }
-    public static void glDrawRangeElementsBaseVertex ( int mode,  int start,  int end,  int count,  int type,  Addressable indices,  int base_vertex) {
-        var mh$ = glDrawRangeElementsBaseVertex$MH();
-        try {
-            mh$.invokeExact(mode, start, end, count, type, indices, base_vertex);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElementsInstancedBaseVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glDrawElementsInstancedBaseVertex$MH,"glDrawElementsInstancedBaseVertex");
-    }
-    public static void glDrawElementsInstancedBaseVertex ( int mode,  int count,  int type,  Addressable indices,  int primcount,  int base_vertex) {
-        var mh$ = glDrawElementsInstancedBaseVertex$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices, primcount, base_vertex);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiDrawElementsBaseVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$0.glMultiDrawElementsBaseVertex$MH,"glMultiDrawElementsBaseVertex");
-    }
-    public static void glMultiDrawElementsBaseVertex ( int mode,  Addressable count,  int type,  Addressable indices,  int primcount,  Addressable base_vertex) {
-        var mh$ = glMultiDrawElementsBaseVertex$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices, primcount, base_vertex);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawArraysInstancedARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glDrawArraysInstancedARB$MH,"glDrawArraysInstancedARB");
-    }
-    public static void glDrawArraysInstancedARB ( int mode,  int first,  int count,  int primcount) {
-        var mh$ = glDrawArraysInstancedARB$MH();
-        try {
-            mh$.invokeExact(mode, first, count, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElementsInstancedARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glDrawElementsInstancedARB$MH,"glDrawElementsInstancedARB");
-    }
-    public static void glDrawElementsInstancedARB ( int mode,  int count,  int type,  Addressable indices,  int primcount) {
-        var mh$ = glDrawElementsInstancedARB$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsRenderbuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glIsRenderbuffer$MH,"glIsRenderbuffer");
-    }
-    public static byte glIsRenderbuffer ( int renderbuffer) {
-        var mh$ = glIsRenderbuffer$MH();
-        try {
-            return (byte)mh$.invokeExact(renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindRenderbuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glBindRenderbuffer$MH,"glBindRenderbuffer");
-    }
-    public static void glBindRenderbuffer ( int target,  int renderbuffer) {
-        var mh$ = glBindRenderbuffer$MH();
-        try {
-            mh$.invokeExact(target, renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteRenderbuffers$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glDeleteRenderbuffers$MH,"glDeleteRenderbuffers");
-    }
-    public static void glDeleteRenderbuffers ( int n,  Addressable renderbuffers) {
-        var mh$ = glDeleteRenderbuffers$MH();
-        try {
-            mh$.invokeExact(n, renderbuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenRenderbuffers$MH() {
-        return RuntimeHelper.requireNonNull(constants$1.glGenRenderbuffers$MH,"glGenRenderbuffers");
-    }
-    public static void glGenRenderbuffers ( int n,  Addressable renderbuffers) {
-        var mh$ = glGenRenderbuffers$MH();
-        try {
-            mh$.invokeExact(n, renderbuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRenderbufferStorage$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glRenderbufferStorage$MH,"glRenderbufferStorage");
-    }
-    public static void glRenderbufferStorage ( int target,  int internalformat,  int width,  int height) {
-        var mh$ = glRenderbufferStorage$MH();
-        try {
-            mh$.invokeExact(target, internalformat, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetRenderbufferParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glGetRenderbufferParameteriv$MH,"glGetRenderbufferParameteriv");
-    }
-    public static void glGetRenderbufferParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetRenderbufferParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsFramebuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glIsFramebuffer$MH,"glIsFramebuffer");
-    }
-    public static byte glIsFramebuffer ( int framebuffer) {
-        var mh$ = glIsFramebuffer$MH();
-        try {
-            return (byte)mh$.invokeExact(framebuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindFramebuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glBindFramebuffer$MH,"glBindFramebuffer");
-    }
-    public static void glBindFramebuffer ( int target,  int framebuffer) {
-        var mh$ = glBindFramebuffer$MH();
-        try {
-            mh$.invokeExact(target, framebuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteFramebuffers$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glDeleteFramebuffers$MH,"glDeleteFramebuffers");
-    }
-    public static void glDeleteFramebuffers ( int n,  Addressable framebuffers) {
-        var mh$ = glDeleteFramebuffers$MH();
-        try {
-            mh$.invokeExact(n, framebuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenFramebuffers$MH() {
-        return RuntimeHelper.requireNonNull(constants$2.glGenFramebuffers$MH,"glGenFramebuffers");
-    }
-    public static void glGenFramebuffers ( int n,  Addressable framebuffers) {
-        var mh$ = glGenFramebuffers$MH();
-        try {
-            mh$.invokeExact(n, framebuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCheckFramebufferStatus$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glCheckFramebufferStatus$MH,"glCheckFramebufferStatus");
-    }
-    public static int glCheckFramebufferStatus ( int target) {
-        var mh$ = glCheckFramebufferStatus$MH();
-        try {
-            return (int)mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glFramebufferTexture1D$MH,"glFramebufferTexture1D");
-    }
-    public static void glFramebufferTexture1D ( int target,  int attachment,  int textarget,  int texture,  int level) {
-        var mh$ = glFramebufferTexture1D$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glFramebufferTexture2D$MH,"glFramebufferTexture2D");
-    }
-    public static void glFramebufferTexture2D ( int target,  int attachment,  int textarget,  int texture,  int level) {
-        var mh$ = glFramebufferTexture2D$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture3D$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glFramebufferTexture3D$MH,"glFramebufferTexture3D");
-    }
-    public static void glFramebufferTexture3D ( int target,  int attachment,  int textarget,  int texture,  int level,  int zoffset) {
-        var mh$ = glFramebufferTexture3D$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level, zoffset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferRenderbuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glFramebufferRenderbuffer$MH,"glFramebufferRenderbuffer");
-    }
-    public static void glFramebufferRenderbuffer ( int target,  int attachment,  int renderbuffertarget,  int renderbuffer) {
-        var mh$ = glFramebufferRenderbuffer$MH();
-        try {
-            mh$.invokeExact(target, attachment, renderbuffertarget, renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetFramebufferAttachmentParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$3.glGetFramebufferAttachmentParameteriv$MH,"glGetFramebufferAttachmentParameteriv");
-    }
-    public static void glGetFramebufferAttachmentParameteriv ( int target,  int attachment,  int pname,  Addressable params) {
-        var mh$ = glGetFramebufferAttachmentParameteriv$MH();
-        try {
-            mh$.invokeExact(target, attachment, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenerateMipmap$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glGenerateMipmap$MH,"glGenerateMipmap");
-    }
-    public static void glGenerateMipmap ( int target) {
-        var mh$ = glGenerateMipmap$MH();
-        try {
-            mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlitFramebuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glBlitFramebuffer$MH,"glBlitFramebuffer");
-    }
-    public static void glBlitFramebuffer ( int srcX0,  int srcY0,  int srcX1,  int srcY1,  int dstX0,  int dstY0,  int dstX1,  int dstY1,  int mask,  int filter) {
-        var mh$ = glBlitFramebuffer$MH();
-        try {
-            mh$.invokeExact(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRenderbufferStorageMultisample$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glRenderbufferStorageMultisample$MH,"glRenderbufferStorageMultisample");
-    }
-    public static void glRenderbufferStorageMultisample ( int target,  int samples,  int internalformat,  int width,  int height) {
-        var mh$ = glRenderbufferStorageMultisample$MH();
-        try {
-            mh$.invokeExact(target, samples, internalformat, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTextureLayer$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glFramebufferTextureLayer$MH,"glFramebufferTextureLayer");
-    }
-    public static void glFramebufferTextureLayer ( int target,  int attachment,  int texture,  int level,  int layer) {
-        var mh$ = glFramebufferTextureLayer$MH();
-        try {
-            mh$.invokeExact(target, attachment, texture, level, layer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribDivisorARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glVertexAttribDivisorARB$MH,"glVertexAttribDivisorARB");
-    }
-    public static void glVertexAttribDivisorARB ( int index,  int divisor) {
-        var mh$ = glVertexAttribDivisorARB$MH();
-        try {
-            mh$.invokeExact(index, divisor);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSampleCoverageARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$4.glSampleCoverageARB$MH,"glSampleCoverageARB");
-    }
-    public static void glSampleCoverageARB ( float value,  byte invert) {
-        var mh$ = glSampleCoverageARB$MH();
-        try {
-            mh$.invokeExact(value, invert);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glActiveTextureARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glActiveTextureARB$MH,"glActiveTextureARB");
-    }
-    public static void glActiveTextureARB ( int texture) {
-        var mh$ = glActiveTextureARB$MH();
-        try {
-            mh$.invokeExact(texture);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClientActiveTextureARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glClientActiveTextureARB$MH,"glClientActiveTextureARB");
-    }
-    public static void glClientActiveTextureARB ( int texture) {
-        var mh$ = glClientActiveTextureARB$MH();
-        try {
-            mh$.invokeExact(texture);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glMultiTexCoord1dARB$MH,"glMultiTexCoord1dARB");
-    }
-    public static void glMultiTexCoord1dARB ( int target,  double s) {
-        var mh$ = glMultiTexCoord1dARB$MH();
-        try {
-            mh$.invokeExact(target, s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glMultiTexCoord1dvARB$MH,"glMultiTexCoord1dvARB");
-    }
-    public static void glMultiTexCoord1dvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord1dvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glMultiTexCoord1fARB$MH,"glMultiTexCoord1fARB");
-    }
-    public static void glMultiTexCoord1fARB ( int target,  float s) {
-        var mh$ = glMultiTexCoord1fARB$MH();
-        try {
-            mh$.invokeExact(target, s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$5.glMultiTexCoord1fvARB$MH,"glMultiTexCoord1fvARB");
-    }
-    public static void glMultiTexCoord1fvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord1fvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord1iARB$MH,"glMultiTexCoord1iARB");
-    }
-    public static void glMultiTexCoord1iARB ( int target,  int s) {
-        var mh$ = glMultiTexCoord1iARB$MH();
-        try {
-            mh$.invokeExact(target, s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord1ivARB$MH,"glMultiTexCoord1ivARB");
-    }
-    public static void glMultiTexCoord1ivARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord1ivARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord1sARB$MH,"glMultiTexCoord1sARB");
-    }
-    public static void glMultiTexCoord1sARB ( int target,  short s) {
-        var mh$ = glMultiTexCoord1sARB$MH();
-        try {
-            mh$.invokeExact(target, s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord1svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord1svARB$MH,"glMultiTexCoord1svARB");
-    }
-    public static void glMultiTexCoord1svARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord1svARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord2dARB$MH,"glMultiTexCoord2dARB");
-    }
-    public static void glMultiTexCoord2dARB ( int target,  double s,  double t) {
-        var mh$ = glMultiTexCoord2dARB$MH();
-        try {
-            mh$.invokeExact(target, s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$6.glMultiTexCoord2dvARB$MH,"glMultiTexCoord2dvARB");
-    }
-    public static void glMultiTexCoord2dvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord2dvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2fARB$MH,"glMultiTexCoord2fARB");
-    }
-    public static void glMultiTexCoord2fARB ( int target,  float s,  float t) {
-        var mh$ = glMultiTexCoord2fARB$MH();
-        try {
-            mh$.invokeExact(target, s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2fvARB$MH,"glMultiTexCoord2fvARB");
-    }
-    public static void glMultiTexCoord2fvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord2fvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2iARB$MH,"glMultiTexCoord2iARB");
-    }
-    public static void glMultiTexCoord2iARB ( int target,  int s,  int t) {
-        var mh$ = glMultiTexCoord2iARB$MH();
-        try {
-            mh$.invokeExact(target, s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2ivARB$MH,"glMultiTexCoord2ivARB");
-    }
-    public static void glMultiTexCoord2ivARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord2ivARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2sARB$MH,"glMultiTexCoord2sARB");
-    }
-    public static void glMultiTexCoord2sARB ( int target,  short s,  short t) {
-        var mh$ = glMultiTexCoord2sARB$MH();
-        try {
-            mh$.invokeExact(target, s, t);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord2svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$7.glMultiTexCoord2svARB$MH,"glMultiTexCoord2svARB");
-    }
-    public static void glMultiTexCoord2svARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord2svARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3dARB$MH,"glMultiTexCoord3dARB");
-    }
-    public static void glMultiTexCoord3dARB ( int target,  double s,  double t,  double r) {
-        var mh$ = glMultiTexCoord3dARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3dvARB$MH,"glMultiTexCoord3dvARB");
-    }
-    public static void glMultiTexCoord3dvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord3dvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3fARB$MH,"glMultiTexCoord3fARB");
-    }
-    public static void glMultiTexCoord3fARB ( int target,  float s,  float t,  float r) {
-        var mh$ = glMultiTexCoord3fARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3fvARB$MH,"glMultiTexCoord3fvARB");
-    }
-    public static void glMultiTexCoord3fvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord3fvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3iARB$MH,"glMultiTexCoord3iARB");
-    }
-    public static void glMultiTexCoord3iARB ( int target,  int s,  int t,  int r) {
-        var mh$ = glMultiTexCoord3iARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$8.glMultiTexCoord3ivARB$MH,"glMultiTexCoord3ivARB");
-    }
-    public static void glMultiTexCoord3ivARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord3ivARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord3sARB$MH,"glMultiTexCoord3sARB");
-    }
-    public static void glMultiTexCoord3sARB ( int target,  short s,  short t,  short r) {
-        var mh$ = glMultiTexCoord3sARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord3svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord3svARB$MH,"glMultiTexCoord3svARB");
-    }
-    public static void glMultiTexCoord3svARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord3svARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord4dARB$MH,"glMultiTexCoord4dARB");
-    }
-    public static void glMultiTexCoord4dARB ( int target,  double s,  double t,  double r,  double q) {
-        var mh$ = glMultiTexCoord4dARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord4dvARB$MH,"glMultiTexCoord4dvARB");
-    }
-    public static void glMultiTexCoord4dvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord4dvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord4fARB$MH,"glMultiTexCoord4fARB");
-    }
-    public static void glMultiTexCoord4fARB ( int target,  float s,  float t,  float r,  float q) {
-        var mh$ = glMultiTexCoord4fARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$9.glMultiTexCoord4fvARB$MH,"glMultiTexCoord4fvARB");
-    }
-    public static void glMultiTexCoord4fvARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord4fvARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glMultiTexCoord4iARB$MH,"glMultiTexCoord4iARB");
-    }
-    public static void glMultiTexCoord4iARB ( int target,  int s,  int t,  int r,  int q) {
-        var mh$ = glMultiTexCoord4iARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glMultiTexCoord4ivARB$MH,"glMultiTexCoord4ivARB");
-    }
-    public static void glMultiTexCoord4ivARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord4ivARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glMultiTexCoord4sARB$MH,"glMultiTexCoord4sARB");
-    }
-    public static void glMultiTexCoord4sARB ( int target,  short s,  short t,  short r,  short q) {
-        var mh$ = glMultiTexCoord4sARB$MH();
-        try {
-            mh$.invokeExact(target, s, t, r, q);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiTexCoord4svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glMultiTexCoord4svARB$MH,"glMultiTexCoord4svARB");
-    }
-    public static void glMultiTexCoord4svARB ( int target,  Addressable v) {
-        var mh$ = glMultiTexCoord4svARB$MH();
-        try {
-            mh$.invokeExact(target, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenQueriesARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glGenQueriesARB$MH,"glGenQueriesARB");
-    }
-    public static void glGenQueriesARB ( int n,  Addressable ids) {
-        var mh$ = glGenQueriesARB$MH();
-        try {
-            mh$.invokeExact(n, ids);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteQueriesARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$10.glDeleteQueriesARB$MH,"glDeleteQueriesARB");
-    }
-    public static void glDeleteQueriesARB ( int n,  Addressable ids) {
-        var mh$ = glDeleteQueriesARB$MH();
-        try {
-            mh$.invokeExact(n, ids);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsQueryARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glIsQueryARB$MH,"glIsQueryARB");
-    }
-    public static byte glIsQueryARB ( int id) {
-        var mh$ = glIsQueryARB$MH();
-        try {
-            return (byte)mh$.invokeExact(id);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBeginQueryARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glBeginQueryARB$MH,"glBeginQueryARB");
-    }
-    public static void glBeginQueryARB ( int target,  int id) {
-        var mh$ = glBeginQueryARB$MH();
-        try {
-            mh$.invokeExact(target, id);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEndQueryARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glEndQueryARB$MH,"glEndQueryARB");
-    }
-    public static void glEndQueryARB ( int target) {
-        var mh$ = glEndQueryARB$MH();
-        try {
-            mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetQueryivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glGetQueryivARB$MH,"glGetQueryivARB");
-    }
-    public static void glGetQueryivARB ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetQueryivARB$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetQueryObjectivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glGetQueryObjectivARB$MH,"glGetQueryObjectivARB");
-    }
-    public static void glGetQueryObjectivARB ( int id,  int pname,  Addressable params) {
-        var mh$ = glGetQueryObjectivARB$MH();
-        try {
-            mh$.invokeExact(id, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetQueryObjectuivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$11.glGetQueryObjectuivARB$MH,"glGetQueryObjectuivARB");
-    }
-    public static void glGetQueryObjectuivARB ( int id,  int pname,  Addressable params) {
-        var mh$ = glGetQueryObjectuivARB$MH();
-        try {
-            mh$.invokeExact(id, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointParameterfARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glPointParameterfARB$MH,"glPointParameterfARB");
-    }
-    public static void glPointParameterfARB ( int pname,  float param) {
-        var mh$ = glPointParameterfARB$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointParameterfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glPointParameterfvARB$MH,"glPointParameterfvARB");
-    }
-    public static void glPointParameterfvARB ( int pname,  Addressable params) {
-        var mh$ = glPointParameterfvARB$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProvokingVertex$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glProvokingVertex$MH,"glProvokingVertex");
-    }
-    public static void glProvokingVertex ( int mode) {
-        var mh$ = glProvokingVertex$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glDeleteObjectARB$MH,"glDeleteObjectARB");
-    }
-    public static void glDeleteObjectARB ( Addressable obj) {
-        var mh$ = glDeleteObjectARB$MH();
-        try {
-            mh$.invokeExact(obj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetHandleARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glGetHandleARB$MH,"glGetHandleARB");
-    }
-    public static MemoryAddress glGetHandleARB ( int pname) {
-        var mh$ = glGetHandleARB$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(pname);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDetachObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$12.glDetachObjectARB$MH,"glDetachObjectARB");
-    }
-    public static void glDetachObjectARB ( Addressable containerObj,  Addressable attachedObj) {
-        var mh$ = glDetachObjectARB$MH();
-        try {
-            mh$.invokeExact(containerObj, attachedObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCreateShaderObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glCreateShaderObjectARB$MH,"glCreateShaderObjectARB");
-    }
-    public static MemoryAddress glCreateShaderObjectARB ( int shaderType) {
-        var mh$ = glCreateShaderObjectARB$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(shaderType);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glShaderSourceARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glShaderSourceARB$MH,"glShaderSourceARB");
-    }
-    public static void glShaderSourceARB ( Addressable shaderObj,  int count,  Addressable string,  Addressable length) {
-        var mh$ = glShaderSourceARB$MH();
-        try {
-            mh$.invokeExact(shaderObj, count, string, length);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompileShaderARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glCompileShaderARB$MH,"glCompileShaderARB");
-    }
-    public static void glCompileShaderARB ( Addressable shaderObj) {
-        var mh$ = glCompileShaderARB$MH();
-        try {
-            mh$.invokeExact(shaderObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCreateProgramObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glCreateProgramObjectARB$MH,"glCreateProgramObjectARB");
-    }
-    public static MemoryAddress glCreateProgramObjectARB () {
-        var mh$ = glCreateProgramObjectARB$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAttachObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glAttachObjectARB$MH,"glAttachObjectARB");
-    }
-    public static void glAttachObjectARB ( Addressable containerObj,  Addressable obj) {
-        var mh$ = glAttachObjectARB$MH();
-        try {
-            mh$.invokeExact(containerObj, obj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLinkProgramARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$13.glLinkProgramARB$MH,"glLinkProgramARB");
-    }
-    public static void glLinkProgramARB ( Addressable programObj) {
-        var mh$ = glLinkProgramARB$MH();
-        try {
-            mh$.invokeExact(programObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUseProgramObjectARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glUseProgramObjectARB$MH,"glUseProgramObjectARB");
-    }
-    public static void glUseProgramObjectARB ( Addressable programObj) {
-        var mh$ = glUseProgramObjectARB$MH();
-        try {
-            mh$.invokeExact(programObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glValidateProgramARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glValidateProgramARB$MH,"glValidateProgramARB");
-    }
-    public static void glValidateProgramARB ( Addressable programObj) {
-        var mh$ = glValidateProgramARB$MH();
-        try {
-            mh$.invokeExact(programObj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glUniform1fARB$MH,"glUniform1fARB");
-    }
-    public static void glUniform1fARB ( int location,  float v0) {
-        var mh$ = glUniform1fARB$MH();
-        try {
-            mh$.invokeExact(location, v0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glUniform2fARB$MH,"glUniform2fARB");
-    }
-    public static void glUniform2fARB ( int location,  float v0,  float v1) {
-        var mh$ = glUniform2fARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glUniform3fARB$MH,"glUniform3fARB");
-    }
-    public static void glUniform3fARB ( int location,  float v0,  float v1,  float v2) {
-        var mh$ = glUniform3fARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$14.glUniform4fARB$MH,"glUniform4fARB");
-    }
-    public static void glUniform4fARB ( int location,  float v0,  float v1,  float v2,  float v3) {
-        var mh$ = glUniform4fARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2, v3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform1iARB$MH,"glUniform1iARB");
-    }
-    public static void glUniform1iARB ( int location,  int v0) {
-        var mh$ = glUniform1iARB$MH();
-        try {
-            mh$.invokeExact(location, v0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform2iARB$MH,"glUniform2iARB");
-    }
-    public static void glUniform2iARB ( int location,  int v0,  int v1) {
-        var mh$ = glUniform2iARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform3iARB$MH,"glUniform3iARB");
-    }
-    public static void glUniform3iARB ( int location,  int v0,  int v1,  int v2) {
-        var mh$ = glUniform3iARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform4iARB$MH,"glUniform4iARB");
-    }
-    public static void glUniform4iARB ( int location,  int v0,  int v1,  int v2,  int v3) {
-        var mh$ = glUniform4iARB$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2, v3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform1fvARB$MH,"glUniform1fvARB");
-    }
-    public static void glUniform1fvARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform1fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$15.glUniform2fvARB$MH,"glUniform2fvARB");
-    }
-    public static void glUniform2fvARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform2fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform3fvARB$MH,"glUniform3fvARB");
-    }
-    public static void glUniform3fvARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform3fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform4fvARB$MH,"glUniform4fvARB");
-    }
-    public static void glUniform4fvARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform4fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform1ivARB$MH,"glUniform1ivARB");
-    }
-    public static void glUniform1ivARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform1ivARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform2ivARB$MH,"glUniform2ivARB");
-    }
-    public static void glUniform2ivARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform2ivARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform3ivARB$MH,"glUniform3ivARB");
-    }
-    public static void glUniform3ivARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform3ivARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.glUniform4ivARB$MH,"glUniform4ivARB");
-    }
-    public static void glUniform4ivARB ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform4ivARB$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniformMatrix2fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glUniformMatrix2fvARB$MH,"glUniformMatrix2fvARB");
-    }
-    public static void glUniformMatrix2fvARB ( int location,  int count,  byte transpose,  Addressable value) {
-        var mh$ = glUniformMatrix2fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, transpose, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniformMatrix3fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glUniformMatrix3fvARB$MH,"glUniformMatrix3fvARB");
-    }
-    public static void glUniformMatrix3fvARB ( int location,  int count,  byte transpose,  Addressable value) {
-        var mh$ = glUniformMatrix3fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, transpose, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniformMatrix4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glUniformMatrix4fvARB$MH,"glUniformMatrix4fvARB");
-    }
-    public static void glUniformMatrix4fvARB ( int location,  int count,  byte transpose,  Addressable value) {
-        var mh$ = glUniformMatrix4fvARB$MH();
-        try {
-            mh$.invokeExact(location, count, transpose, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetObjectParameterfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glGetObjectParameterfvARB$MH,"glGetObjectParameterfvARB");
-    }
-    public static void glGetObjectParameterfvARB ( Addressable obj,  int pname,  Addressable params) {
-        var mh$ = glGetObjectParameterfvARB$MH();
-        try {
-            mh$.invokeExact(obj, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetObjectParameterivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glGetObjectParameterivARB$MH,"glGetObjectParameterivARB");
-    }
-    public static void glGetObjectParameterivARB ( Addressable obj,  int pname,  Addressable params) {
-        var mh$ = glGetObjectParameterivARB$MH();
-        try {
-            mh$.invokeExact(obj, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetInfoLogARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.glGetInfoLogARB$MH,"glGetInfoLogARB");
-    }
-    public static void glGetInfoLogARB ( Addressable obj,  int maxLength,  Addressable length,  Addressable infoLog) {
-        var mh$ = glGetInfoLogARB$MH();
-        try {
-            mh$.invokeExact(obj, maxLength, length, infoLog);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetAttachedObjectsARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetAttachedObjectsARB$MH,"glGetAttachedObjectsARB");
-    }
-    public static void glGetAttachedObjectsARB ( Addressable containerObj,  int maxCount,  Addressable count,  Addressable obj) {
-        var mh$ = glGetAttachedObjectsARB$MH();
-        try {
-            mh$.invokeExact(containerObj, maxCount, count, obj);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformLocationARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetUniformLocationARB$MH,"glGetUniformLocationARB");
-    }
-    public static int glGetUniformLocationARB ( Addressable programObj,  Addressable name) {
-        var mh$ = glGetUniformLocationARB$MH();
-        try {
-            return (int)mh$.invokeExact(programObj, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetActiveUniformARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetActiveUniformARB$MH,"glGetActiveUniformARB");
-    }
-    public static void glGetActiveUniformARB ( Addressable programObj,  int index,  int maxLength,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
-        var mh$ = glGetActiveUniformARB$MH();
-        try {
-            mh$.invokeExact(programObj, index, maxLength, length, size, type, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetUniformfvARB$MH,"glGetUniformfvARB");
-    }
-    public static void glGetUniformfvARB ( Addressable programObj,  int location,  Addressable params) {
-        var mh$ = glGetUniformfvARB$MH();
-        try {
-            mh$.invokeExact(programObj, location, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetUniformivARB$MH,"glGetUniformivARB");
-    }
-    public static void glGetUniformivARB ( Addressable programObj,  int location,  Addressable params) {
-        var mh$ = glGetUniformivARB$MH();
-        try {
-            mh$.invokeExact(programObj, location, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetShaderSourceARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.glGetShaderSourceARB$MH,"glGetShaderSourceARB");
-    }
-    public static void glGetShaderSourceARB ( Addressable obj,  int maxLength,  Addressable length,  Addressable source) {
-        var mh$ = glGetShaderSourceARB$MH();
-        try {
-            mh$.invokeExact(obj, maxLength, length, source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFenceSync$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glFenceSync$MH,"glFenceSync");
-    }
-    public static MemoryAddress glFenceSync ( int condition,  int flags) {
-        var mh$ = glFenceSync$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(condition, flags);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsSync$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glIsSync$MH,"glIsSync");
-    }
-    public static byte glIsSync ( Addressable sync) {
-        var mh$ = glIsSync$MH();
-        try {
-            return (byte)mh$.invokeExact(sync);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteSync$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glDeleteSync$MH,"glDeleteSync");
-    }
-    public static void glDeleteSync ( Addressable sync) {
-        var mh$ = glDeleteSync$MH();
-        try {
-            mh$.invokeExact(sync);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClientWaitSync$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glClientWaitSync$MH,"glClientWaitSync");
-    }
-    public static int glClientWaitSync ( Addressable sync,  int flags,  long timeout) {
-        var mh$ = glClientWaitSync$MH();
-        try {
-            return (int)mh$.invokeExact(sync, flags, timeout);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWaitSync$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glWaitSync$MH,"glWaitSync");
-    }
-    public static void glWaitSync ( Addressable sync,  int flags,  long timeout) {
-        var mh$ = glWaitSync$MH();
-        try {
-            mh$.invokeExact(sync, flags, timeout);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetInteger64v$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.glGetInteger64v$MH,"glGetInteger64v");
-    }
-    public static void glGetInteger64v ( int pname,  Addressable params) {
-        var mh$ = glGetInteger64v$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetSynciv$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glGetSynciv$MH,"glGetSynciv");
-    }
-    public static void glGetSynciv ( Addressable sync,  int pname,  int bufSize,  Addressable length,  Addressable values) {
-        var mh$ = glGetSynciv$MH();
-        try {
-            mh$.invokeExact(sync, pname, bufSize, length, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexImage3DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glCompressedTexImage3DARB$MH,"glCompressedTexImage3DARB");
-    }
-    public static void glCompressedTexImage3DARB ( int target,  int level,  int internalformat,  int width,  int height,  int depth,  int border,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexImage3DARB$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, width, height, depth, border, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexImage2DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glCompressedTexImage2DARB$MH,"glCompressedTexImage2DARB");
-    }
-    public static void glCompressedTexImage2DARB ( int target,  int level,  int internalformat,  int width,  int height,  int border,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexImage2DARB$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, width, height, border, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexImage1DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glCompressedTexImage1DARB$MH,"glCompressedTexImage1DARB");
-    }
-    public static void glCompressedTexImage1DARB ( int target,  int level,  int internalformat,  int width,  int border,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexImage1DARB$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, width, border, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexSubImage3DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glCompressedTexSubImage3DARB$MH,"glCompressedTexSubImage3DARB");
-    }
-    public static void glCompressedTexSubImage3DARB ( int target,  int level,  int xoffset,  int yoffset,  int zoffset,  int width,  int height,  int depth,  int format,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexSubImage3DARB$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexSubImage2DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$20.glCompressedTexSubImage2DARB$MH,"glCompressedTexSubImage2DARB");
-    }
-    public static void glCompressedTexSubImage2DARB ( int target,  int level,  int xoffset,  int yoffset,  int width,  int height,  int format,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexSubImage2DARB$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, width, height, format, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCompressedTexSubImage1DARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glCompressedTexSubImage1DARB$MH,"glCompressedTexSubImage1DARB");
-    }
-    public static void glCompressedTexSubImage1DARB ( int target,  int level,  int xoffset,  int width,  int format,  int imageSize,  Addressable data) {
-        var mh$ = glCompressedTexSubImage1DARB$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, width, format, imageSize, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetCompressedTexImageARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glGetCompressedTexImageARB$MH,"glGetCompressedTexImageARB");
-    }
-    public static void glGetCompressedTexImageARB ( int target,  int level,  Addressable data) {
-        var mh$ = glGetCompressedTexImageARB$MH();
-        try {
-            mh$.invokeExact(target, level, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadTransposeMatrixfARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glLoadTransposeMatrixfARB$MH,"glLoadTransposeMatrixfARB");
-    }
-    public static void glLoadTransposeMatrixfARB ( Addressable m) {
-        var mh$ = glLoadTransposeMatrixfARB$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLoadTransposeMatrixdARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glLoadTransposeMatrixdARB$MH,"glLoadTransposeMatrixdARB");
-    }
-    public static void glLoadTransposeMatrixdARB ( Addressable m) {
-        var mh$ = glLoadTransposeMatrixdARB$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultTransposeMatrixfARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glMultTransposeMatrixfARB$MH,"glMultTransposeMatrixfARB");
-    }
-    public static void glMultTransposeMatrixfARB ( Addressable m) {
-        var mh$ = glMultTransposeMatrixfARB$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultTransposeMatrixdARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.glMultTransposeMatrixdARB$MH,"glMultTransposeMatrixdARB");
-    }
-    public static void glMultTransposeMatrixdARB ( Addressable m) {
-        var mh$ = glMultTransposeMatrixdARB$MH();
-        try {
-            mh$.invokeExact(m);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightbvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightbvARB$MH,"glWeightbvARB");
-    }
-    public static void glWeightbvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightbvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightsvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightsvARB$MH,"glWeightsvARB");
-    }
-    public static void glWeightsvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightsvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightivARB$MH,"glWeightivARB");
-    }
-    public static void glWeightivARB ( int size,  Addressable weights) {
-        var mh$ = glWeightivARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightfvARB$MH,"glWeightfvARB");
-    }
-    public static void glWeightfvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightfvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightdvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightdvARB$MH,"glWeightdvARB");
-    }
-    public static void glWeightdvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightdvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightubvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.glWeightubvARB$MH,"glWeightubvARB");
-    }
-    public static void glWeightubvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightubvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightusvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glWeightusvARB$MH,"glWeightusvARB");
-    }
-    public static void glWeightusvARB ( int size,  Addressable weights) {
-        var mh$ = glWeightusvARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightuivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glWeightuivARB$MH,"glWeightuivARB");
-    }
-    public static void glWeightuivARB ( int size,  Addressable weights) {
-        var mh$ = glWeightuivARB$MH();
-        try {
-            mh$.invokeExact(size, weights);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWeightPointerARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glWeightPointerARB$MH,"glWeightPointerARB");
-    }
-    public static void glWeightPointerARB ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glWeightPointerARB$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexBlendARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glVertexBlendARB$MH,"glVertexBlendARB");
-    }
-    public static void glVertexBlendARB ( int count) {
-        var mh$ = glVertexBlendARB$MH();
-        try {
-            mh$.invokeExact(count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindBufferARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glBindBufferARB$MH,"glBindBufferARB");
-    }
-    public static void glBindBufferARB ( int target,  int buffer) {
-        var mh$ = glBindBufferARB$MH();
-        try {
-            mh$.invokeExact(target, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteBuffersARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.glDeleteBuffersARB$MH,"glDeleteBuffersARB");
-    }
-    public static void glDeleteBuffersARB ( int n,  Addressable buffers) {
-        var mh$ = glDeleteBuffersARB$MH();
-        try {
-            mh$.invokeExact(n, buffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenBuffersARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glGenBuffersARB$MH,"glGenBuffersARB");
-    }
-    public static void glGenBuffersARB ( int n,  Addressable buffers) {
-        var mh$ = glGenBuffersARB$MH();
-        try {
-            mh$.invokeExact(n, buffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsBufferARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glIsBufferARB$MH,"glIsBufferARB");
-    }
-    public static byte glIsBufferARB ( int buffer) {
-        var mh$ = glIsBufferARB$MH();
-        try {
-            return (byte)mh$.invokeExact(buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBufferDataARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glBufferDataARB$MH,"glBufferDataARB");
-    }
-    public static void glBufferDataARB ( int target,  long size,  Addressable data,  int usage) {
-        var mh$ = glBufferDataARB$MH();
-        try {
-            mh$.invokeExact(target, size, data, usage);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBufferSubDataARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glBufferSubDataARB$MH,"glBufferSubDataARB");
-    }
-    public static void glBufferSubDataARB ( int target,  long offset,  long size,  Addressable data) {
-        var mh$ = glBufferSubDataARB$MH();
-        try {
-            mh$.invokeExact(target, offset, size, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBufferSubDataARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glGetBufferSubDataARB$MH,"glGetBufferSubDataARB");
-    }
-    public static void glGetBufferSubDataARB ( int target,  long offset,  long size,  Addressable data) {
-        var mh$ = glGetBufferSubDataARB$MH();
-        try {
-            mh$.invokeExact(target, offset, size, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapBufferARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.glMapBufferARB$MH,"glMapBufferARB");
-    }
-    public static MemoryAddress glMapBufferARB ( int target,  int access) {
-        var mh$ = glMapBufferARB$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(target, access);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUnmapBufferARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glUnmapBufferARB$MH,"glUnmapBufferARB");
-    }
-    public static byte glUnmapBufferARB ( int target) {
-        var mh$ = glUnmapBufferARB$MH();
-        try {
-            return (byte)mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBufferParameterivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glGetBufferParameterivARB$MH,"glGetBufferParameterivARB");
-    }
-    public static void glGetBufferParameterivARB ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetBufferParameterivARB$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBufferPointervARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glGetBufferPointervARB$MH,"glGetBufferPointervARB");
-    }
-    public static void glGetBufferPointervARB ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetBufferPointervARB$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindProgramARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glBindProgramARB$MH,"glBindProgramARB");
-    }
-    public static void glBindProgramARB ( int target,  int program) {
-        var mh$ = glBindProgramARB$MH();
-        try {
-            mh$.invokeExact(target, program);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteProgramsARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glDeleteProgramsARB$MH,"glDeleteProgramsARB");
-    }
-    public static void glDeleteProgramsARB ( int n,  Addressable programs) {
-        var mh$ = glDeleteProgramsARB$MH();
-        try {
-            mh$.invokeExact(n, programs);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenProgramsARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.glGenProgramsARB$MH,"glGenProgramsARB");
-    }
-    public static void glGenProgramsARB ( int n,  Addressable programs) {
-        var mh$ = glGenProgramsARB$MH();
-        try {
-            mh$.invokeExact(n, programs);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsProgramARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glIsProgramARB$MH,"glIsProgramARB");
-    }
-    public static byte glIsProgramARB ( int program) {
-        var mh$ = glIsProgramARB$MH();
-        try {
-            return (byte)mh$.invokeExact(program);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramEnvParameter4dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glProgramEnvParameter4dARB$MH,"glProgramEnvParameter4dARB");
-    }
-    public static void glProgramEnvParameter4dARB ( int target,  int index,  double x,  double y,  double z,  double w) {
-        var mh$ = glProgramEnvParameter4dARB$MH();
-        try {
-            mh$.invokeExact(target, index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramEnvParameter4dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glProgramEnvParameter4dvARB$MH,"glProgramEnvParameter4dvARB");
-    }
-    public static void glProgramEnvParameter4dvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glProgramEnvParameter4dvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramEnvParameter4fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glProgramEnvParameter4fARB$MH,"glProgramEnvParameter4fARB");
-    }
-    public static void glProgramEnvParameter4fARB ( int target,  int index,  float x,  float y,  float z,  float w) {
-        var mh$ = glProgramEnvParameter4fARB$MH();
-        try {
-            mh$.invokeExact(target, index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramEnvParameter4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glProgramEnvParameter4fvARB$MH,"glProgramEnvParameter4fvARB");
-    }
-    public static void glProgramEnvParameter4fvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glProgramEnvParameter4fvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramLocalParameter4dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.glProgramLocalParameter4dARB$MH,"glProgramLocalParameter4dARB");
-    }
-    public static void glProgramLocalParameter4dARB ( int target,  int index,  double x,  double y,  double z,  double w) {
-        var mh$ = glProgramLocalParameter4dARB$MH();
-        try {
-            mh$.invokeExact(target, index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramLocalParameter4dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glProgramLocalParameter4dvARB$MH,"glProgramLocalParameter4dvARB");
-    }
-    public static void glProgramLocalParameter4dvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glProgramLocalParameter4dvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramLocalParameter4fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glProgramLocalParameter4fARB$MH,"glProgramLocalParameter4fARB");
-    }
-    public static void glProgramLocalParameter4fARB ( int target,  int index,  float x,  float y,  float z,  float w) {
-        var mh$ = glProgramLocalParameter4fARB$MH();
-        try {
-            mh$.invokeExact(target, index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramLocalParameter4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glProgramLocalParameter4fvARB$MH,"glProgramLocalParameter4fvARB");
-    }
-    public static void glProgramLocalParameter4fvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glProgramLocalParameter4fvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramEnvParameterdvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glGetProgramEnvParameterdvARB$MH,"glGetProgramEnvParameterdvARB");
-    }
-    public static void glGetProgramEnvParameterdvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glGetProgramEnvParameterdvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramEnvParameterfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glGetProgramEnvParameterfvARB$MH,"glGetProgramEnvParameterfvARB");
-    }
-    public static void glGetProgramEnvParameterfvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glGetProgramEnvParameterfvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramEnvParameters4fvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.glProgramEnvParameters4fvEXT$MH,"glProgramEnvParameters4fvEXT");
-    }
-    public static void glProgramEnvParameters4fvEXT ( int target,  int index,  int count,  Addressable params) {
-        var mh$ = glProgramEnvParameters4fvEXT$MH();
-        try {
-            mh$.invokeExact(target, index, count, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramLocalParameters4fvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glProgramLocalParameters4fvEXT$MH,"glProgramLocalParameters4fvEXT");
-    }
-    public static void glProgramLocalParameters4fvEXT ( int target,  int index,  int count,  Addressable params) {
-        var mh$ = glProgramLocalParameters4fvEXT$MH();
-        try {
-            mh$.invokeExact(target, index, count, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramLocalParameterdvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glGetProgramLocalParameterdvARB$MH,"glGetProgramLocalParameterdvARB");
-    }
-    public static void glGetProgramLocalParameterdvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glGetProgramLocalParameterdvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramLocalParameterfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glGetProgramLocalParameterfvARB$MH,"glGetProgramLocalParameterfvARB");
-    }
-    public static void glGetProgramLocalParameterfvARB ( int target,  int index,  Addressable params) {
-        var mh$ = glGetProgramLocalParameterfvARB$MH();
-        try {
-            mh$.invokeExact(target, index, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramStringARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glProgramStringARB$MH,"glProgramStringARB");
-    }
-    public static void glProgramStringARB ( int target,  int format,  int len,  Addressable string) {
-        var mh$ = glProgramStringARB$MH();
-        try {
-            mh$.invokeExact(target, format, len, string);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramStringARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glGetProgramStringARB$MH,"glGetProgramStringARB");
-    }
-    public static void glGetProgramStringARB ( int target,  int pname,  Addressable string) {
-        var mh$ = glGetProgramStringARB$MH();
-        try {
-            mh$.invokeExact(target, pname, string);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetProgramivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.glGetProgramivARB$MH,"glGetProgramivARB");
-    }
-    public static void glGetProgramivARB ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetProgramivARB$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindAttribLocationARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glBindAttribLocationARB$MH,"glBindAttribLocationARB");
-    }
-    public static void glBindAttribLocationARB ( Addressable programObj,  int index,  Addressable name) {
-        var mh$ = glBindAttribLocationARB$MH();
-        try {
-            mh$.invokeExact(programObj, index, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetActiveAttribARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glGetActiveAttribARB$MH,"glGetActiveAttribARB");
-    }
-    public static void glGetActiveAttribARB ( Addressable programObj,  int index,  int maxLength,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
-        var mh$ = glGetActiveAttribARB$MH();
-        try {
-            mh$.invokeExact(programObj, index, maxLength, length, size, type, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetAttribLocationARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glGetAttribLocationARB$MH,"glGetAttribLocationARB");
-    }
-    public static int glGetAttribLocationARB ( Addressable programObj,  Addressable name) {
-        var mh$ = glGetAttribLocationARB$MH();
-        try {
-            return (int)mh$.invokeExact(programObj, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glVertexAttrib1dARB$MH,"glVertexAttrib1dARB");
-    }
-    public static void glVertexAttrib1dARB ( int index,  double x) {
-        var mh$ = glVertexAttrib1dARB$MH();
-        try {
-            mh$.invokeExact(index, x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glVertexAttrib1dvARB$MH,"glVertexAttrib1dvARB");
-    }
-    public static void glVertexAttrib1dvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib1dvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$29.glVertexAttrib1fARB$MH,"glVertexAttrib1fARB");
-    }
-    public static void glVertexAttrib1fARB ( int index,  float x) {
-        var mh$ = glVertexAttrib1fARB$MH();
-        try {
-            mh$.invokeExact(index, x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib1fvARB$MH,"glVertexAttrib1fvARB");
-    }
-    public static void glVertexAttrib1fvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib1fvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib1sARB$MH,"glVertexAttrib1sARB");
-    }
-    public static void glVertexAttrib1sARB ( int index,  short x) {
-        var mh$ = glVertexAttrib1sARB$MH();
-        try {
-            mh$.invokeExact(index, x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib1svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib1svARB$MH,"glVertexAttrib1svARB");
-    }
-    public static void glVertexAttrib1svARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib1svARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib2dARB$MH,"glVertexAttrib2dARB");
-    }
-    public static void glVertexAttrib2dARB ( int index,  double x,  double y) {
-        var mh$ = glVertexAttrib2dARB$MH();
-        try {
-            mh$.invokeExact(index, x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib2dvARB$MH,"glVertexAttrib2dvARB");
-    }
-    public static void glVertexAttrib2dvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib2dvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$30.glVertexAttrib2fARB$MH,"glVertexAttrib2fARB");
-    }
-    public static void glVertexAttrib2fARB ( int index,  float x,  float y) {
-        var mh$ = glVertexAttrib2fARB$MH();
-        try {
-            mh$.invokeExact(index, x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib2fvARB$MH,"glVertexAttrib2fvARB");
-    }
-    public static void glVertexAttrib2fvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib2fvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib2sARB$MH,"glVertexAttrib2sARB");
-    }
-    public static void glVertexAttrib2sARB ( int index,  short x,  short y) {
-        var mh$ = glVertexAttrib2sARB$MH();
-        try {
-            mh$.invokeExact(index, x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib2svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib2svARB$MH,"glVertexAttrib2svARB");
-    }
-    public static void glVertexAttrib2svARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib2svARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib3dARB$MH,"glVertexAttrib3dARB");
-    }
-    public static void glVertexAttrib3dARB ( int index,  double x,  double y,  double z) {
-        var mh$ = glVertexAttrib3dARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib3dvARB$MH,"glVertexAttrib3dvARB");
-    }
-    public static void glVertexAttrib3dvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib3dvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.glVertexAttrib3fARB$MH,"glVertexAttrib3fARB");
-    }
-    public static void glVertexAttrib3fARB ( int index,  float x,  float y,  float z) {
-        var mh$ = glVertexAttrib3fARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib3fvARB$MH,"glVertexAttrib3fvARB");
-    }
-    public static void glVertexAttrib3fvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib3fvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib3sARB$MH,"glVertexAttrib3sARB");
-    }
-    public static void glVertexAttrib3sARB ( int index,  short x,  short y,  short z) {
-        var mh$ = glVertexAttrib3sARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib3svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib3svARB$MH,"glVertexAttrib3svARB");
-    }
-    public static void glVertexAttrib3svARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib3svARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NbvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib4NbvARB$MH,"glVertexAttrib4NbvARB");
-    }
-    public static void glVertexAttrib4NbvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NbvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib4NivARB$MH,"glVertexAttrib4NivARB");
-    }
-    public static void glVertexAttrib4NivARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NivARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NsvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$32.glVertexAttrib4NsvARB$MH,"glVertexAttrib4NsvARB");
-    }
-    public static void glVertexAttrib4NsvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NsvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NubARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4NubARB$MH,"glVertexAttrib4NubARB");
-    }
-    public static void glVertexAttrib4NubARB ( int index,  byte x,  byte y,  byte z,  byte w) {
-        var mh$ = glVertexAttrib4NubARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NubvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4NubvARB$MH,"glVertexAttrib4NubvARB");
-    }
-    public static void glVertexAttrib4NubvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NubvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NuivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4NuivARB$MH,"glVertexAttrib4NuivARB");
-    }
-    public static void glVertexAttrib4NuivARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NuivARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4NusvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4NusvARB$MH,"glVertexAttrib4NusvARB");
-    }
-    public static void glVertexAttrib4NusvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4NusvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4bvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4bvARB$MH,"glVertexAttrib4bvARB");
-    }
-    public static void glVertexAttrib4bvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4bvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.glVertexAttrib4dARB$MH,"glVertexAttrib4dARB");
-    }
-    public static void glVertexAttrib4dARB ( int index,  double x,  double y,  double z,  double w) {
-        var mh$ = glVertexAttrib4dARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4dvARB$MH,"glVertexAttrib4dvARB");
-    }
-    public static void glVertexAttrib4dvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4dvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4fARB$MH,"glVertexAttrib4fARB");
-    }
-    public static void glVertexAttrib4fARB ( int index,  float x,  float y,  float z,  float w) {
-        var mh$ = glVertexAttrib4fARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4fvARB$MH,"glVertexAttrib4fvARB");
-    }
-    public static void glVertexAttrib4fvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4fvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4ivARB$MH,"glVertexAttrib4ivARB");
-    }
-    public static void glVertexAttrib4ivARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4ivARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4sARB$MH,"glVertexAttrib4sARB");
-    }
-    public static void glVertexAttrib4sARB ( int index,  short x,  short y,  short z,  short w) {
-        var mh$ = glVertexAttrib4sARB$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.glVertexAttrib4svARB$MH,"glVertexAttrib4svARB");
-    }
-    public static void glVertexAttrib4svARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4svARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4ubvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glVertexAttrib4ubvARB$MH,"glVertexAttrib4ubvARB");
-    }
-    public static void glVertexAttrib4ubvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4ubvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4uivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glVertexAttrib4uivARB$MH,"glVertexAttrib4uivARB");
-    }
-    public static void glVertexAttrib4uivARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4uivARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttrib4usvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glVertexAttrib4usvARB$MH,"glVertexAttrib4usvARB");
-    }
-    public static void glVertexAttrib4usvARB ( int index,  Addressable v) {
-        var mh$ = glVertexAttrib4usvARB$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribPointerARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glVertexAttribPointerARB$MH,"glVertexAttribPointerARB");
-    }
-    public static void glVertexAttribPointerARB ( int index,  int size,  int type,  byte normalized,  int stride,  Addressable pointer) {
-        var mh$ = glVertexAttribPointerARB$MH();
-        try {
-            mh$.invokeExact(index, size, type, normalized, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisableVertexAttribArrayARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glDisableVertexAttribArrayARB$MH,"glDisableVertexAttribArrayARB");
-    }
-    public static void glDisableVertexAttribArrayARB ( int index) {
-        var mh$ = glDisableVertexAttribArrayARB$MH();
-        try {
-            mh$.invokeExact(index);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnableVertexAttribArrayARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.glEnableVertexAttribArrayARB$MH,"glEnableVertexAttribArrayARB");
-    }
-    public static void glEnableVertexAttribArrayARB ( int index) {
-        var mh$ = glEnableVertexAttribArrayARB$MH();
-        try {
-            mh$.invokeExact(index);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribPointervARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glGetVertexAttribPointervARB$MH,"glGetVertexAttribPointervARB");
-    }
-    public static void glGetVertexAttribPointervARB ( int index,  int pname,  Addressable pointer) {
-        var mh$ = glGetVertexAttribPointervARB$MH();
-        try {
-            mh$.invokeExact(index, pname, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribdvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glGetVertexAttribdvARB$MH,"glGetVertexAttribdvARB");
-    }
-    public static void glGetVertexAttribdvARB ( int index,  int pname,  Addressable params) {
-        var mh$ = glGetVertexAttribdvARB$MH();
-        try {
-            mh$.invokeExact(index, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribfvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glGetVertexAttribfvARB$MH,"glGetVertexAttribfvARB");
-    }
-    public static void glGetVertexAttribfvARB ( int index,  int pname,  Addressable params) {
-        var mh$ = glGetVertexAttribfvARB$MH();
-        try {
-            mh$.invokeExact(index, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glGetVertexAttribivARB$MH,"glGetVertexAttribivARB");
-    }
-    public static void glGetVertexAttribivARB ( int index,  int pname,  Addressable params) {
-        var mh$ = glGetVertexAttribivARB$MH();
-        try {
-            mh$.invokeExact(index, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glWindowPos2dARB$MH,"glWindowPos2dARB");
-    }
-    public static void glWindowPos2dARB ( double x,  double y) {
-        var mh$ = glWindowPos2dARB$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.glWindowPos2dvARB$MH,"glWindowPos2dvARB");
-    }
-    public static void glWindowPos2dvARB ( Addressable p) {
-        var mh$ = glWindowPos2dvARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2fARB$MH,"glWindowPos2fARB");
-    }
-    public static void glWindowPos2fARB ( float x,  float y) {
-        var mh$ = glWindowPos2fARB$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2fvARB$MH,"glWindowPos2fvARB");
-    }
-    public static void glWindowPos2fvARB ( Addressable p) {
-        var mh$ = glWindowPos2fvARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2iARB$MH,"glWindowPos2iARB");
-    }
-    public static void glWindowPos2iARB ( int x,  int y) {
-        var mh$ = glWindowPos2iARB$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2ivARB$MH,"glWindowPos2ivARB");
-    }
-    public static void glWindowPos2ivARB ( Addressable p) {
-        var mh$ = glWindowPos2ivARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2sARB$MH,"glWindowPos2sARB");
-    }
-    public static void glWindowPos2sARB ( short x,  short y) {
-        var mh$ = glWindowPos2sARB$MH();
-        try {
-            mh$.invokeExact(x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos2svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.glWindowPos2svARB$MH,"glWindowPos2svARB");
-    }
-    public static void glWindowPos2svARB ( Addressable p) {
-        var mh$ = glWindowPos2svARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3dARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3dARB$MH,"glWindowPos3dARB");
-    }
-    public static void glWindowPos3dARB ( double x,  double y,  double z) {
-        var mh$ = glWindowPos3dARB$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3dvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3dvARB$MH,"glWindowPos3dvARB");
-    }
-    public static void glWindowPos3dvARB ( Addressable p) {
-        var mh$ = glWindowPos3dvARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3fARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3fARB$MH,"glWindowPos3fARB");
-    }
-    public static void glWindowPos3fARB ( float x,  float y,  float z) {
-        var mh$ = glWindowPos3fARB$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3fvARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3fvARB$MH,"glWindowPos3fvARB");
-    }
-    public static void glWindowPos3fvARB ( Addressable p) {
-        var mh$ = glWindowPos3fvARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3iARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3iARB$MH,"glWindowPos3iARB");
-    }
-    public static void glWindowPos3iARB ( int x,  int y,  int z) {
-        var mh$ = glWindowPos3iARB$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3ivARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.glWindowPos3ivARB$MH,"glWindowPos3ivARB");
-    }
-    public static void glWindowPos3ivARB ( Addressable p) {
-        var mh$ = glWindowPos3ivARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3sARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glWindowPos3sARB$MH,"glWindowPos3sARB");
-    }
-    public static void glWindowPos3sARB ( short x,  short y,  short z) {
-        var mh$ = glWindowPos3sARB$MH();
-        try {
-            mh$.invokeExact(x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glWindowPos3svARB$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glWindowPos3svARB$MH,"glWindowPos3svARB");
-    }
-    public static void glWindowPos3svARB ( Addressable p) {
-        var mh$ = glWindowPos3svARB$MH();
-        try {
-            mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniformBufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glUniformBufferEXT$MH,"glUniformBufferEXT");
-    }
-    public static void glUniformBufferEXT ( int program,  int location,  int buffer) {
-        var mh$ = glUniformBufferEXT$MH();
-        try {
-            mh$.invokeExact(program, location, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformBufferSizeEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glGetUniformBufferSizeEXT$MH,"glGetUniformBufferSizeEXT");
-    }
-    public static int glGetUniformBufferSizeEXT ( int program,  int location) {
-        var mh$ = glGetUniformBufferSizeEXT$MH();
-        try {
-            return (int)mh$.invokeExact(program, location);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformOffsetEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glGetUniformOffsetEXT$MH,"glGetUniformOffsetEXT");
-    }
-    public static long glGetUniformOffsetEXT ( int program,  int location) {
-        var mh$ = glGetUniformOffsetEXT$MH();
-        try {
-            return (long)mh$.invokeExact(program, location);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendColorEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.glBlendColorEXT$MH,"glBlendColorEXT");
-    }
-    public static void glBlendColorEXT ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glBlendColorEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendEquationSeparateEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glBlendEquationSeparateEXT$MH,"glBlendEquationSeparateEXT");
-    }
-    public static void glBlendEquationSeparateEXT ( int modeRGB,  int modeAlpha) {
-        var mh$ = glBlendEquationSeparateEXT$MH();
-        try {
-            mh$.invokeExact(modeRGB, modeAlpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendFuncSeparateEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glBlendFuncSeparateEXT$MH,"glBlendFuncSeparateEXT");
-    }
-    public static void glBlendFuncSeparateEXT ( int sfactorRGB,  int dfactorRGB,  int sfactorAlpha,  int dfactorAlpha) {
-        var mh$ = glBlendFuncSeparateEXT$MH();
-        try {
-            mh$.invokeExact(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendEquationEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glBlendEquationEXT$MH,"glBlendEquationEXT");
-    }
-    public static void glBlendEquationEXT ( int mode) {
-        var mh$ = glBlendEquationEXT$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glLabelObjectEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glLabelObjectEXT$MH,"glLabelObjectEXT");
-    }
-    public static void glLabelObjectEXT ( int type,  int object,  int length,  Addressable label) {
-        var mh$ = glLabelObjectEXT$MH();
-        try {
-            mh$.invokeExact(type, object, length, label);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetObjectLabelEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glGetObjectLabelEXT$MH,"glGetObjectLabelEXT");
-    }
-    public static void glGetObjectLabelEXT ( int type,  int object,  int bufSize,  Addressable length,  Addressable label) {
-        var mh$ = glGetObjectLabelEXT$MH();
-        try {
-            mh$.invokeExact(type, object, bufSize, length, label);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glInsertEventMarkerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.glInsertEventMarkerEXT$MH,"glInsertEventMarkerEXT");
-    }
-    public static void glInsertEventMarkerEXT ( int length,  Addressable marker) {
-        var mh$ = glInsertEventMarkerEXT$MH();
-        try {
-            mh$.invokeExact(length, marker);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPushGroupMarkerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glPushGroupMarkerEXT$MH,"glPushGroupMarkerEXT");
-    }
-    public static void glPushGroupMarkerEXT ( int length,  Addressable marker) {
-        var mh$ = glPushGroupMarkerEXT$MH();
-        try {
-            mh$.invokeExact(length, marker);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPopGroupMarkerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glPopGroupMarkerEXT$MH,"glPopGroupMarkerEXT");
-    }
-    public static void glPopGroupMarkerEXT () {
-        var mh$ = glPopGroupMarkerEXT$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthBoundsEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glDepthBoundsEXT$MH,"glDepthBoundsEXT");
-    }
-    public static void glDepthBoundsEXT ( double zmin,  double zmax) {
-        var mh$ = glDepthBoundsEXT$MH();
-        try {
-            mh$.invokeExact(zmin, zmax);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorMaskIndexedEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glColorMaskIndexedEXT$MH,"glColorMaskIndexedEXT");
-    }
-    public static void glColorMaskIndexedEXT ( int index,  byte r,  byte g,  byte b,  byte a) {
-        var mh$ = glColorMaskIndexedEXT$MH();
-        try {
-            mh$.invokeExact(index, r, g, b, a);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnableIndexedEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glEnableIndexedEXT$MH,"glEnableIndexedEXT");
-    }
-    public static void glEnableIndexedEXT ( int target,  int index) {
-        var mh$ = glEnableIndexedEXT$MH();
-        try {
-            mh$.invokeExact(target, index);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisableIndexedEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.glDisableIndexedEXT$MH,"glDisableIndexedEXT");
-    }
-    public static void glDisableIndexedEXT ( int target,  int index) {
-        var mh$ = glDisableIndexedEXT$MH();
-        try {
-            mh$.invokeExact(target, index);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsEnabledIndexedEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glIsEnabledIndexedEXT$MH,"glIsEnabledIndexedEXT");
-    }
-    public static byte glIsEnabledIndexedEXT ( int target,  int index) {
-        var mh$ = glIsEnabledIndexedEXT$MH();
-        try {
-            return (byte)mh$.invokeExact(target, index);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawRangeElementsEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glDrawRangeElementsEXT$MH,"glDrawRangeElementsEXT");
-    }
-    public static void glDrawRangeElementsEXT ( int mode,  int start,  int end,  int count,  int type,  Addressable indices) {
-        var mh$ = glDrawRangeElementsEXT$MH();
-        try {
-            mh$.invokeExact(mode, start, end, count, type, indices);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogCoordfEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glFogCoordfEXT$MH,"glFogCoordfEXT");
-    }
-    public static void glFogCoordfEXT ( float coord) {
-        var mh$ = glFogCoordfEXT$MH();
-        try {
-            mh$.invokeExact(coord);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogCoordfvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glFogCoordfvEXT$MH,"glFogCoordfvEXT");
-    }
-    public static void glFogCoordfvEXT ( Addressable coord) {
-        var mh$ = glFogCoordfvEXT$MH();
-        try {
-            mh$.invokeExact(coord);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogCoorddEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glFogCoorddEXT$MH,"glFogCoorddEXT");
-    }
-    public static void glFogCoorddEXT ( double coord) {
-        var mh$ = glFogCoorddEXT$MH();
-        try {
-            mh$.invokeExact(coord);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogCoorddvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.glFogCoorddvEXT$MH,"glFogCoorddvEXT");
-    }
-    public static void glFogCoorddvEXT ( Addressable coord) {
-        var mh$ = glFogCoorddvEXT$MH();
-        try {
-            mh$.invokeExact(coord);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogCoordPointerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glFogCoordPointerEXT$MH,"glFogCoordPointerEXT");
-    }
-    public static void glFogCoordPointerEXT ( int type,  int stride,  Addressable pointer) {
-        var mh$ = glFogCoordPointerEXT$MH();
-        try {
-            mh$.invokeExact(type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlitFramebufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glBlitFramebufferEXT$MH,"glBlitFramebufferEXT");
-    }
-    public static void glBlitFramebufferEXT ( int srcX0,  int srcY0,  int srcX1,  int srcY1,  int dstX0,  int dstY0,  int dstX1,  int dstY1,  int mask,  int filter) {
-        var mh$ = glBlitFramebufferEXT$MH();
-        try {
-            mh$.invokeExact(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRenderbufferStorageMultisampleEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glRenderbufferStorageMultisampleEXT$MH,"glRenderbufferStorageMultisampleEXT");
-    }
-    public static void glRenderbufferStorageMultisampleEXT ( int target,  int samples,  int internalformat,  int width,  int height) {
-        var mh$ = glRenderbufferStorageMultisampleEXT$MH();
-        try {
-            mh$.invokeExact(target, samples, internalformat, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsRenderbufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glIsRenderbufferEXT$MH,"glIsRenderbufferEXT");
-    }
-    public static byte glIsRenderbufferEXT ( int renderbuffer) {
-        var mh$ = glIsRenderbufferEXT$MH();
-        try {
-            return (byte)mh$.invokeExact(renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindRenderbufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glBindRenderbufferEXT$MH,"glBindRenderbufferEXT");
-    }
-    public static void glBindRenderbufferEXT ( int target,  int renderbuffer) {
-        var mh$ = glBindRenderbufferEXT$MH();
-        try {
-            mh$.invokeExact(target, renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteRenderbuffersEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.glDeleteRenderbuffersEXT$MH,"glDeleteRenderbuffersEXT");
-    }
-    public static void glDeleteRenderbuffersEXT ( int n,  Addressable renderbuffers) {
-        var mh$ = glDeleteRenderbuffersEXT$MH();
-        try {
-            mh$.invokeExact(n, renderbuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenRenderbuffersEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glGenRenderbuffersEXT$MH,"glGenRenderbuffersEXT");
-    }
-    public static void glGenRenderbuffersEXT ( int n,  Addressable renderbuffers) {
-        var mh$ = glGenRenderbuffersEXT$MH();
-        try {
-            mh$.invokeExact(n, renderbuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glRenderbufferStorageEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glRenderbufferStorageEXT$MH,"glRenderbufferStorageEXT");
-    }
-    public static void glRenderbufferStorageEXT ( int target,  int internalformat,  int width,  int height) {
-        var mh$ = glRenderbufferStorageEXT$MH();
-        try {
-            mh$.invokeExact(target, internalformat, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetRenderbufferParameterivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glGetRenderbufferParameterivEXT$MH,"glGetRenderbufferParameterivEXT");
-    }
-    public static void glGetRenderbufferParameterivEXT ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetRenderbufferParameterivEXT$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsFramebufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glIsFramebufferEXT$MH,"glIsFramebufferEXT");
-    }
-    public static byte glIsFramebufferEXT ( int framebuffer) {
-        var mh$ = glIsFramebufferEXT$MH();
-        try {
-            return (byte)mh$.invokeExact(framebuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindFramebufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glBindFramebufferEXT$MH,"glBindFramebufferEXT");
-    }
-    public static void glBindFramebufferEXT ( int target,  int framebuffer) {
-        var mh$ = glBindFramebufferEXT$MH();
-        try {
-            mh$.invokeExact(target, framebuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteFramebuffersEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.glDeleteFramebuffersEXT$MH,"glDeleteFramebuffersEXT");
-    }
-    public static void glDeleteFramebuffersEXT ( int n,  Addressable framebuffers) {
-        var mh$ = glDeleteFramebuffersEXT$MH();
-        try {
-            mh$.invokeExact(n, framebuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenFramebuffersEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glGenFramebuffersEXT$MH,"glGenFramebuffersEXT");
-    }
-    public static void glGenFramebuffersEXT ( int n,  Addressable framebuffers) {
-        var mh$ = glGenFramebuffersEXT$MH();
-        try {
-            mh$.invokeExact(n, framebuffers);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCheckFramebufferStatusEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glCheckFramebufferStatusEXT$MH,"glCheckFramebufferStatusEXT");
-    }
-    public static int glCheckFramebufferStatusEXT ( int target) {
-        var mh$ = glCheckFramebufferStatusEXT$MH();
-        try {
-            return (int)mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture1DEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glFramebufferTexture1DEXT$MH,"glFramebufferTexture1DEXT");
-    }
-    public static void glFramebufferTexture1DEXT ( int target,  int attachment,  int textarget,  int texture,  int level) {
-        var mh$ = glFramebufferTexture1DEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture2DEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glFramebufferTexture2DEXT$MH,"glFramebufferTexture2DEXT");
-    }
-    public static void glFramebufferTexture2DEXT ( int target,  int attachment,  int textarget,  int texture,  int level) {
-        var mh$ = glFramebufferTexture2DEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTexture3DEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glFramebufferTexture3DEXT$MH,"glFramebufferTexture3DEXT");
-    }
-    public static void glFramebufferTexture3DEXT ( int target,  int attachment,  int textarget,  int texture,  int level,  int zoffset) {
-        var mh$ = glFramebufferTexture3DEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, textarget, texture, level, zoffset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferRenderbufferEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$45.glFramebufferRenderbufferEXT$MH,"glFramebufferRenderbufferEXT");
-    }
-    public static void glFramebufferRenderbufferEXT ( int target,  int attachment,  int renderbuffertarget,  int renderbuffer) {
-        var mh$ = glFramebufferRenderbufferEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, renderbuffertarget, renderbuffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetFramebufferAttachmentParameterivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glGetFramebufferAttachmentParameterivEXT$MH,"glGetFramebufferAttachmentParameterivEXT");
-    }
-    public static void glGetFramebufferAttachmentParameterivEXT ( int target,  int attachment,  int pname,  Addressable params) {
-        var mh$ = glGetFramebufferAttachmentParameterivEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenerateMipmapEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glGenerateMipmapEXT$MH,"glGenerateMipmapEXT");
-    }
-    public static void glGenerateMipmapEXT ( int target) {
-        var mh$ = glGenerateMipmapEXT$MH();
-        try {
-            mh$.invokeExact(target);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProgramParameteriEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glProgramParameteriEXT$MH,"glProgramParameteriEXT");
-    }
-    public static void glProgramParameteriEXT ( int program,  int pname,  int value) {
-        var mh$ = glProgramParameteriEXT$MH();
-        try {
-            mh$.invokeExact(program, pname, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTextureEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glFramebufferTextureEXT$MH,"glFramebufferTextureEXT");
-    }
-    public static void glFramebufferTextureEXT ( int target,  int attachment,  int texture,  int level) {
-        var mh$ = glFramebufferTextureEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, texture, level);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTextureFaceEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glFramebufferTextureFaceEXT$MH,"glFramebufferTextureFaceEXT");
-    }
-    public static void glFramebufferTextureFaceEXT ( int target,  int attachment,  int texture,  int level,  int face) {
-        var mh$ = glFramebufferTextureFaceEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, texture, level, face);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFramebufferTextureLayerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$46.glFramebufferTextureLayerEXT$MH,"glFramebufferTextureLayerEXT");
-    }
-    public static void glFramebufferTextureLayerEXT ( int target,  int attachment,  int texture,  int level,  int layer) {
-        var mh$ = glFramebufferTextureLayerEXT$MH();
-        try {
-            mh$.invokeExact(target, attachment, texture, level, layer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI1iEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI1iEXT$MH,"glVertexAttribI1iEXT");
-    }
-    public static void glVertexAttribI1iEXT ( int index,  int x) {
-        var mh$ = glVertexAttribI1iEXT$MH();
-        try {
-            mh$.invokeExact(index, x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI2iEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI2iEXT$MH,"glVertexAttribI2iEXT");
-    }
-    public static void glVertexAttribI2iEXT ( int index,  int x,  int y) {
-        var mh$ = glVertexAttribI2iEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI3iEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI3iEXT$MH,"glVertexAttribI3iEXT");
-    }
-    public static void glVertexAttribI3iEXT ( int index,  int x,  int y,  int z) {
-        var mh$ = glVertexAttribI3iEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4iEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI4iEXT$MH,"glVertexAttribI4iEXT");
-    }
-    public static void glVertexAttribI4iEXT ( int index,  int x,  int y,  int z,  int w) {
-        var mh$ = glVertexAttribI4iEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI1uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI1uiEXT$MH,"glVertexAttribI1uiEXT");
-    }
-    public static void glVertexAttribI1uiEXT ( int index,  int x) {
-        var mh$ = glVertexAttribI1uiEXT$MH();
-        try {
-            mh$.invokeExact(index, x);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI2uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$47.glVertexAttribI2uiEXT$MH,"glVertexAttribI2uiEXT");
-    }
-    public static void glVertexAttribI2uiEXT ( int index,  int x,  int y) {
-        var mh$ = glVertexAttribI2uiEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI3uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI3uiEXT$MH,"glVertexAttribI3uiEXT");
-    }
-    public static void glVertexAttribI3uiEXT ( int index,  int x,  int y,  int z) {
-        var mh$ = glVertexAttribI3uiEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y, z);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI4uiEXT$MH,"glVertexAttribI4uiEXT");
-    }
-    public static void glVertexAttribI4uiEXT ( int index,  int x,  int y,  int z,  int w) {
-        var mh$ = glVertexAttribI4uiEXT$MH();
-        try {
-            mh$.invokeExact(index, x, y, z, w);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI1ivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI1ivEXT$MH,"glVertexAttribI1ivEXT");
-    }
-    public static void glVertexAttribI1ivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI1ivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI2ivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI2ivEXT$MH,"glVertexAttribI2ivEXT");
-    }
-    public static void glVertexAttribI2ivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI2ivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI3ivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI3ivEXT$MH,"glVertexAttribI3ivEXT");
-    }
-    public static void glVertexAttribI3ivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI3ivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4ivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$48.glVertexAttribI4ivEXT$MH,"glVertexAttribI4ivEXT");
-    }
-    public static void glVertexAttribI4ivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4ivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI1uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI1uivEXT$MH,"glVertexAttribI1uivEXT");
-    }
-    public static void glVertexAttribI1uivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI1uivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI2uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI2uivEXT$MH,"glVertexAttribI2uivEXT");
-    }
-    public static void glVertexAttribI2uivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI2uivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI3uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI3uivEXT$MH,"glVertexAttribI3uivEXT");
-    }
-    public static void glVertexAttribI3uivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI3uivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI4uivEXT$MH,"glVertexAttribI4uivEXT");
-    }
-    public static void glVertexAttribI4uivEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4uivEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4bvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI4bvEXT$MH,"glVertexAttribI4bvEXT");
-    }
-    public static void glVertexAttribI4bvEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4bvEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4svEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$49.glVertexAttribI4svEXT$MH,"glVertexAttribI4svEXT");
-    }
-    public static void glVertexAttribI4svEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4svEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4ubvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glVertexAttribI4ubvEXT$MH,"glVertexAttribI4ubvEXT");
-    }
-    public static void glVertexAttribI4ubvEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4ubvEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribI4usvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glVertexAttribI4usvEXT$MH,"glVertexAttribI4usvEXT");
-    }
-    public static void glVertexAttribI4usvEXT ( int index,  Addressable v) {
-        var mh$ = glVertexAttribI4usvEXT$MH();
-        try {
-            mh$.invokeExact(index, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexAttribIPointerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glVertexAttribIPointerEXT$MH,"glVertexAttribIPointerEXT");
-    }
-    public static void glVertexAttribIPointerEXT ( int index,  int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glVertexAttribIPointerEXT$MH();
-        try {
-            mh$.invokeExact(index, size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribIivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glGetVertexAttribIivEXT$MH,"glGetVertexAttribIivEXT");
-    }
-    public static void glGetVertexAttribIivEXT ( int index,  int pname,  Addressable params) {
-        var mh$ = glGetVertexAttribIivEXT$MH();
-        try {
-            mh$.invokeExact(index, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetVertexAttribIuivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glGetVertexAttribIuivEXT$MH,"glGetVertexAttribIuivEXT");
-    }
-    public static void glGetVertexAttribIuivEXT ( int index,  int pname,  Addressable params) {
-        var mh$ = glGetVertexAttribIuivEXT$MH();
-        try {
-            mh$.invokeExact(index, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$50.glUniform1uiEXT$MH,"glUniform1uiEXT");
-    }
-    public static void glUniform1uiEXT ( int location,  int v0) {
-        var mh$ = glUniform1uiEXT$MH();
-        try {
-            mh$.invokeExact(location, v0);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform2uiEXT$MH,"glUniform2uiEXT");
-    }
-    public static void glUniform2uiEXT ( int location,  int v0,  int v1) {
-        var mh$ = glUniform2uiEXT$MH();
-        try {
-            mh$.invokeExact(location, v0, v1);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform3uiEXT$MH,"glUniform3uiEXT");
-    }
-    public static void glUniform3uiEXT ( int location,  int v0,  int v1,  int v2) {
-        var mh$ = glUniform3uiEXT$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform4uiEXT$MH,"glUniform4uiEXT");
-    }
-    public static void glUniform4uiEXT ( int location,  int v0,  int v1,  int v2,  int v3) {
-        var mh$ = glUniform4uiEXT$MH();
-        try {
-            mh$.invokeExact(location, v0, v1, v2, v3);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform1uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform1uivEXT$MH,"glUniform1uivEXT");
-    }
-    public static void glUniform1uivEXT ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform1uivEXT$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform2uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform2uivEXT$MH,"glUniform2uivEXT");
-    }
-    public static void glUniform2uivEXT ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform2uivEXT$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform3uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$51.glUniform3uivEXT$MH,"glUniform3uivEXT");
-    }
-    public static void glUniform3uivEXT ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform3uivEXT$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glUniform4uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glUniform4uivEXT$MH,"glUniform4uivEXT");
-    }
-    public static void glUniform4uivEXT ( int location,  int count,  Addressable value) {
-        var mh$ = glUniform4uivEXT$MH();
-        try {
-            mh$.invokeExact(location, count, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetUniformuivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glGetUniformuivEXT$MH,"glGetUniformuivEXT");
-    }
-    public static void glGetUniformuivEXT ( int program,  int location,  Addressable params) {
-        var mh$ = glGetUniformuivEXT$MH();
-        try {
-            mh$.invokeExact(program, location, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindFragDataLocationEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glBindFragDataLocationEXT$MH,"glBindFragDataLocationEXT");
-    }
-    public static void glBindFragDataLocationEXT ( int program,  int colorNumber,  Addressable name) {
-        var mh$ = glBindFragDataLocationEXT$MH();
-        try {
-            mh$.invokeExact(program, colorNumber, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetFragDataLocationEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glGetFragDataLocationEXT$MH,"glGetFragDataLocationEXT");
-    }
-    public static int glGetFragDataLocationEXT ( int program,  Addressable name) {
-        var mh$ = glGetFragDataLocationEXT$MH();
-        try {
-            return (int)mh$.invokeExact(program, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiDrawArraysEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glMultiDrawArraysEXT$MH,"glMultiDrawArraysEXT");
-    }
-    public static void glMultiDrawArraysEXT ( int mode,  Addressable first,  Addressable count,  int primcount) {
-        var mh$ = glMultiDrawArraysEXT$MH();
-        try {
-            mh$.invokeExact(mode, first, count, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiDrawElementsEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$52.glMultiDrawElementsEXT$MH,"glMultiDrawElementsEXT");
-    }
-    public static void glMultiDrawElementsEXT ( int mode,  Addressable count,  int type,  Addressable indices,  int primcount) {
-        var mh$ = glMultiDrawElementsEXT$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glProvokingVertexEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glProvokingVertexEXT$MH,"glProvokingVertexEXT");
-    }
-    public static void glProvokingVertexEXT ( int mode) {
-        var mh$ = glProvokingVertexEXT$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3bEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glSecondaryColor3bEXT$MH,"glSecondaryColor3bEXT");
-    }
-    public static void glSecondaryColor3bEXT ( byte red,  byte green,  byte blue) {
-        var mh$ = glSecondaryColor3bEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3bvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glSecondaryColor3bvEXT$MH,"glSecondaryColor3bvEXT");
-    }
-    public static void glSecondaryColor3bvEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3bvEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3dEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glSecondaryColor3dEXT$MH,"glSecondaryColor3dEXT");
-    }
-    public static void glSecondaryColor3dEXT ( double red,  double green,  double blue) {
-        var mh$ = glSecondaryColor3dEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3dvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glSecondaryColor3dvEXT$MH,"glSecondaryColor3dvEXT");
-    }
-    public static void glSecondaryColor3dvEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3dvEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3fEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.glSecondaryColor3fEXT$MH,"glSecondaryColor3fEXT");
-    }
-    public static void glSecondaryColor3fEXT ( float red,  float green,  float blue) {
-        var mh$ = glSecondaryColor3fEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3fvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3fvEXT$MH,"glSecondaryColor3fvEXT");
-    }
-    public static void glSecondaryColor3fvEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3fvEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3iEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3iEXT$MH,"glSecondaryColor3iEXT");
-    }
-    public static void glSecondaryColor3iEXT ( int red,  int green,  int blue) {
-        var mh$ = glSecondaryColor3iEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3ivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3ivEXT$MH,"glSecondaryColor3ivEXT");
-    }
-    public static void glSecondaryColor3ivEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3ivEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3sEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3sEXT$MH,"glSecondaryColor3sEXT");
-    }
-    public static void glSecondaryColor3sEXT ( short red,  short green,  short blue) {
-        var mh$ = glSecondaryColor3sEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3svEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3svEXT$MH,"glSecondaryColor3svEXT");
-    }
-    public static void glSecondaryColor3svEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3svEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3ubEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.glSecondaryColor3ubEXT$MH,"glSecondaryColor3ubEXT");
-    }
-    public static void glSecondaryColor3ubEXT ( byte red,  byte green,  byte blue) {
-        var mh$ = glSecondaryColor3ubEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3ubvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColor3ubvEXT$MH,"glSecondaryColor3ubvEXT");
-    }
-    public static void glSecondaryColor3ubvEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3ubvEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3uiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColor3uiEXT$MH,"glSecondaryColor3uiEXT");
-    }
-    public static void glSecondaryColor3uiEXT ( int red,  int green,  int blue) {
-        var mh$ = glSecondaryColor3uiEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3uivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColor3uivEXT$MH,"glSecondaryColor3uivEXT");
-    }
-    public static void glSecondaryColor3uivEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3uivEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3usEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColor3usEXT$MH,"glSecondaryColor3usEXT");
-    }
-    public static void glSecondaryColor3usEXT ( short red,  short green,  short blue) {
-        var mh$ = glSecondaryColor3usEXT$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColor3usvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColor3usvEXT$MH,"glSecondaryColor3usvEXT");
-    }
-    public static void glSecondaryColor3usvEXT ( Addressable v) {
-        var mh$ = glSecondaryColor3usvEXT$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSecondaryColorPointerEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.glSecondaryColorPointerEXT$MH,"glSecondaryColorPointerEXT");
-    }
-    public static void glSecondaryColorPointerEXT ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glSecondaryColorPointerEXT$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glActiveStencilFaceEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glActiveStencilFaceEXT$MH,"glActiveStencilFaceEXT");
-    }
-    public static void glActiveStencilFaceEXT ( int face) {
-        var mh$ = glActiveStencilFaceEXT$MH();
-        try {
-            mh$.invokeExact(face);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearColorIiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glClearColorIiEXT$MH,"glClearColorIiEXT");
-    }
-    public static void glClearColorIiEXT ( int r,  int g,  int b,  int a) {
-        var mh$ = glClearColorIiEXT$MH();
-        try {
-            mh$.invokeExact(r, g, b, a);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearColorIuiEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glClearColorIuiEXT$MH,"glClearColorIuiEXT");
-    }
-    public static void glClearColorIuiEXT ( int r,  int g,  int b,  int a) {
-        var mh$ = glClearColorIuiEXT$MH();
-        try {
-            mh$.invokeExact(r, g, b, a);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameterIivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glTexParameterIivEXT$MH,"glTexParameterIivEXT");
-    }
-    public static void glTexParameterIivEXT ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexParameterIivEXT$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTexParameterIuivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glTexParameterIuivEXT$MH,"glTexParameterIuivEXT");
-    }
-    public static void glTexParameterIuivEXT ( int target,  int pname,  Addressable params) {
-        var mh$ = glTexParameterIuivEXT$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameterIivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.glGetTexParameterIivEXT$MH,"glGetTexParameterIivEXT");
-    }
-    public static void glGetTexParameterIivEXT ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameterIivEXT$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameterIuivEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glGetTexParameterIuivEXT$MH,"glGetTexParameterIuivEXT");
-    }
-    public static void glGetTexParameterIuivEXT ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameterIuivEXT$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetQueryObjecti64vEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glGetQueryObjecti64vEXT$MH,"glGetQueryObjecti64vEXT");
-    }
-    public static void glGetQueryObjecti64vEXT ( int id,  int pname,  Addressable params) {
-        var mh$ = glGetQueryObjecti64vEXT$MH();
-        try {
-            mh$.invokeExact(id, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetQueryObjectui64vEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glGetQueryObjectui64vEXT$MH,"glGetQueryObjectui64vEXT");
-    }
-    public static void glGetQueryObjectui64vEXT ( int id,  int pname,  Addressable params) {
-        var mh$ = glGetQueryObjectui64vEXT$MH();
-        try {
-            mh$.invokeExact(id, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindBufferRangeEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glBindBufferRangeEXT$MH,"glBindBufferRangeEXT");
-    }
-    public static void glBindBufferRangeEXT ( int target,  int index,  int buffer,  long offset,  long size) {
-        var mh$ = glBindBufferRangeEXT$MH();
-        try {
-            mh$.invokeExact(target, index, buffer, offset, size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindBufferOffsetEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glBindBufferOffsetEXT$MH,"glBindBufferOffsetEXT");
-    }
-    public static void glBindBufferOffsetEXT ( int target,  int index,  int buffer,  long offset) {
-        var mh$ = glBindBufferOffsetEXT$MH();
-        try {
-            mh$.invokeExact(target, index, buffer, offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindBufferBaseEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.glBindBufferBaseEXT$MH,"glBindBufferBaseEXT");
-    }
-    public static void glBindBufferBaseEXT ( int target,  int index,  int buffer) {
-        var mh$ = glBindBufferBaseEXT$MH();
-        try {
-            mh$.invokeExact(target, index, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBeginTransformFeedbackEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glBeginTransformFeedbackEXT$MH,"glBeginTransformFeedbackEXT");
-    }
-    public static void glBeginTransformFeedbackEXT ( int primitiveMode) {
-        var mh$ = glBeginTransformFeedbackEXT$MH();
-        try {
-            mh$.invokeExact(primitiveMode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEndTransformFeedbackEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glEndTransformFeedbackEXT$MH,"glEndTransformFeedbackEXT");
-    }
-    public static void glEndTransformFeedbackEXT () {
-        var mh$ = glEndTransformFeedbackEXT$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTransformFeedbackVaryingsEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glTransformFeedbackVaryingsEXT$MH,"glTransformFeedbackVaryingsEXT");
-    }
-    public static void glTransformFeedbackVaryingsEXT ( int program,  int count,  Addressable varyings,  int bufferMode) {
-        var mh$ = glTransformFeedbackVaryingsEXT$MH();
-        try {
-            mh$.invokeExact(program, count, varyings, bufferMode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTransformFeedbackVaryingEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glGetTransformFeedbackVaryingEXT$MH,"glGetTransformFeedbackVaryingEXT");
-    }
-    public static void glGetTransformFeedbackVaryingEXT ( int program,  int index,  int bufSize,  Addressable length,  Addressable size,  Addressable type,  Addressable name) {
-        var mh$ = glGetTransformFeedbackVaryingEXT$MH();
-        try {
-            mh$.invokeExact(program, index, bufSize, length, size, type, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetIntegerIndexedvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glGetIntegerIndexedvEXT$MH,"glGetIntegerIndexedvEXT");
-    }
-    public static void glGetIntegerIndexedvEXT ( int param,  int index,  Addressable values) {
-        var mh$ = glGetIntegerIndexedvEXT$MH();
-        try {
-            mh$.invokeExact(param, index, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBooleanIndexedvEXT$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.glGetBooleanIndexedvEXT$MH,"glGetBooleanIndexedvEXT");
-    }
-    public static void glGetBooleanIndexedvEXT ( int param,  int index,  Addressable values) {
-        var mh$ = glGetBooleanIndexedvEXT$MH();
-        try {
-            mh$.invokeExact(param, index, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glElementPointerAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glElementPointerAPPLE$MH,"glElementPointerAPPLE");
-    }
-    public static void glElementPointerAPPLE ( int type,  Addressable pointer) {
-        var mh$ = glElementPointerAPPLE$MH();
-        try {
-            mh$.invokeExact(type, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElementArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glDrawElementArrayAPPLE$MH,"glDrawElementArrayAPPLE");
-    }
-    public static void glDrawElementArrayAPPLE ( int mode,  int first,  int count) {
-        var mh$ = glDrawElementArrayAPPLE$MH();
-        try {
-            mh$.invokeExact(mode, first, count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawRangeElementArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glDrawRangeElementArrayAPPLE$MH,"glDrawRangeElementArrayAPPLE");
-    }
-    public static void glDrawRangeElementArrayAPPLE ( int mode,  int start,  int end,  int first,  int count) {
-        var mh$ = glDrawRangeElementArrayAPPLE$MH();
-        try {
-            mh$.invokeExact(mode, start, end, first, count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiDrawElementArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glMultiDrawElementArrayAPPLE$MH,"glMultiDrawElementArrayAPPLE");
-    }
-    public static void glMultiDrawElementArrayAPPLE ( int mode,  Addressable first,  Addressable count,  int primcount) {
-        var mh$ = glMultiDrawElementArrayAPPLE$MH();
-        try {
-            mh$.invokeExact(mode, first, count, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMultiDrawRangeElementArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glMultiDrawRangeElementArrayAPPLE$MH,"glMultiDrawRangeElementArrayAPPLE");
-    }
-    public static void glMultiDrawRangeElementArrayAPPLE ( int mode,  int start,  int end,  Addressable first,  Addressable count,  int primcount) {
-        var mh$ = glMultiDrawRangeElementArrayAPPLE$MH();
-        try {
-            mh$.invokeExact(mode, start, end, first, count, primcount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenFencesAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.glGenFencesAPPLE$MH,"glGenFencesAPPLE");
-    }
-    public static void glGenFencesAPPLE ( int n,  Addressable fences) {
-        var mh$ = glGenFencesAPPLE$MH();
-        try {
-            mh$.invokeExact(n, fences);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteFencesAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glDeleteFencesAPPLE$MH,"glDeleteFencesAPPLE");
-    }
-    public static void glDeleteFencesAPPLE ( int n,  Addressable fences) {
-        var mh$ = glDeleteFencesAPPLE$MH();
-        try {
-            mh$.invokeExact(n, fences);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSetFenceAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glSetFenceAPPLE$MH,"glSetFenceAPPLE");
-    }
-    public static void glSetFenceAPPLE ( int fence) {
-        var mh$ = glSetFenceAPPLE$MH();
-        try {
-            mh$.invokeExact(fence);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsFenceAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glIsFenceAPPLE$MH,"glIsFenceAPPLE");
-    }
-    public static byte glIsFenceAPPLE ( int fence) {
-        var mh$ = glIsFenceAPPLE$MH();
-        try {
-            return (byte)mh$.invokeExact(fence);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTestFenceAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glTestFenceAPPLE$MH,"glTestFenceAPPLE");
-    }
-    public static byte glTestFenceAPPLE ( int fence) {
-        var mh$ = glTestFenceAPPLE$MH();
-        try {
-            return (byte)mh$.invokeExact(fence);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFinishFenceAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glFinishFenceAPPLE$MH,"glFinishFenceAPPLE");
-    }
-    public static void glFinishFenceAPPLE ( int fence) {
-        var mh$ = glFinishFenceAPPLE$MH();
-        try {
-            mh$.invokeExact(fence);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTestObjectAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.glTestObjectAPPLE$MH,"glTestObjectAPPLE");
-    }
-    public static byte glTestObjectAPPLE ( int object,  int name) {
-        var mh$ = glTestObjectAPPLE$MH();
-        try {
-            return (byte)mh$.invokeExact(object, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFinishObjectAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glFinishObjectAPPLE$MH,"glFinishObjectAPPLE");
-    }
-    public static void glFinishObjectAPPLE ( int object,  int name) {
-        var mh$ = glFinishObjectAPPLE$MH();
-        try {
-            mh$.invokeExact(object, name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBufferParameteriAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glBufferParameteriAPPLE$MH,"glBufferParameteriAPPLE");
-    }
-    public static void glBufferParameteriAPPLE ( int target,  int pname,  int param) {
-        var mh$ = glBufferParameteriAPPLE$MH();
-        try {
-            mh$.invokeExact(target, pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFlushMappedBufferRangeAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glFlushMappedBufferRangeAPPLE$MH,"glFlushMappedBufferRangeAPPLE");
-    }
-    public static void glFlushMappedBufferRangeAPPLE ( int target,  long offset,  long size) {
-        var mh$ = glFlushMappedBufferRangeAPPLE$MH();
-        try {
-            mh$.invokeExact(target, offset, size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFlushRenderAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glFlushRenderAPPLE$MH,"glFlushRenderAPPLE");
-    }
-    public static void glFlushRenderAPPLE () {
-        var mh$ = glFlushRenderAPPLE$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFinishRenderAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glFinishRenderAPPLE$MH,"glFinishRenderAPPLE");
-    }
-    public static void glFinishRenderAPPLE () {
-        var mh$ = glFinishRenderAPPLE$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glSwapAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.glSwapAPPLE$MH,"glSwapAPPLE");
-    }
-    public static void glSwapAPPLE () {
-        var mh$ = glSwapAPPLE$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glObjectPurgeableAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glObjectPurgeableAPPLE$MH,"glObjectPurgeableAPPLE");
-    }
-    public static int glObjectPurgeableAPPLE ( int objectType,  int name,  int option) {
-        var mh$ = glObjectPurgeableAPPLE$MH();
-        try {
-            return (int)mh$.invokeExact(objectType, name, option);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glObjectUnpurgeableAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glObjectUnpurgeableAPPLE$MH,"glObjectUnpurgeableAPPLE");
-    }
-    public static int glObjectUnpurgeableAPPLE ( int objectType,  int name,  int option) {
-        var mh$ = glObjectUnpurgeableAPPLE$MH();
-        try {
-            return (int)mh$.invokeExact(objectType, name, option);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetObjectParameterivAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glGetObjectParameterivAPPLE$MH,"glGetObjectParameterivAPPLE");
-    }
-    public static void glGetObjectParameterivAPPLE ( int objectType,  int name,  int pname,  Addressable params) {
-        var mh$ = glGetObjectParameterivAPPLE$MH();
-        try {
-            mh$.invokeExact(objectType, name, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTextureRangeAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glTextureRangeAPPLE$MH,"glTextureRangeAPPLE");
-    }
-    public static void glTextureRangeAPPLE ( int target,  int length,  Addressable pointer) {
-        var mh$ = glTextureRangeAPPLE$MH();
-        try {
-            mh$.invokeExact(target, length, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameterPointervAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glGetTexParameterPointervAPPLE$MH,"glGetTexParameterPointervAPPLE");
-    }
-    public static void glGetTexParameterPointervAPPLE ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameterPointervAPPLE$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindVertexArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.glBindVertexArrayAPPLE$MH,"glBindVertexArrayAPPLE");
-    }
-    public static void glBindVertexArrayAPPLE ( int id) {
-        var mh$ = glBindVertexArrayAPPLE$MH();
-        try {
-            mh$.invokeExact(id);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteVertexArraysAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glDeleteVertexArraysAPPLE$MH,"glDeleteVertexArraysAPPLE");
-    }
-    public static void glDeleteVertexArraysAPPLE ( int n,  Addressable ids) {
-        var mh$ = glDeleteVertexArraysAPPLE$MH();
-        try {
-            mh$.invokeExact(n, ids);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenVertexArraysAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glGenVertexArraysAPPLE$MH,"glGenVertexArraysAPPLE");
-    }
-    public static void glGenVertexArraysAPPLE ( int n,  Addressable ids) {
-        var mh$ = glGenVertexArraysAPPLE$MH();
-        try {
-            mh$.invokeExact(n, ids);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsVertexArrayAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glIsVertexArrayAPPLE$MH,"glIsVertexArrayAPPLE");
-    }
-    public static byte glIsVertexArrayAPPLE ( int id) {
-        var mh$ = glIsVertexArrayAPPLE$MH();
-        try {
-            return (byte)mh$.invokeExact(id);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexArrayRangeAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glVertexArrayRangeAPPLE$MH,"glVertexArrayRangeAPPLE");
-    }
-    public static void glVertexArrayRangeAPPLE ( int length,  Addressable pointer) {
-        var mh$ = glVertexArrayRangeAPPLE$MH();
-        try {
-            mh$.invokeExact(length, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFlushVertexArrayRangeAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glFlushVertexArrayRangeAPPLE$MH,"glFlushVertexArrayRangeAPPLE");
-    }
-    public static void glFlushVertexArrayRangeAPPLE ( int length,  Addressable pointer) {
-        var mh$ = glFlushVertexArrayRangeAPPLE$MH();
-        try {
-            mh$.invokeExact(length, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexArrayParameteriAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$63.glVertexArrayParameteriAPPLE$MH,"glVertexArrayParameteriAPPLE");
-    }
-    public static void glVertexArrayParameteriAPPLE ( int pname,  int param) {
-        var mh$ = glVertexArrayParameteriAPPLE$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointSizePointerAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glPointSizePointerAPPLE$MH,"glPointSizePointerAPPLE");
-    }
-    public static void glPointSizePointerAPPLE ( int type,  int stride,  Addressable pointer) {
-        var mh$ = glPointSizePointerAPPLE$MH();
-        try {
-            mh$.invokeExact(type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glVertexPointSizefAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glVertexPointSizefAPPLE$MH,"glVertexPointSizefAPPLE");
-    }
-    public static void glVertexPointSizefAPPLE ( float size) {
-        var mh$ = glVertexPointSizefAPPLE$MH();
-        try {
-            mh$.invokeExact(size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnableVertexAttribAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glEnableVertexAttribAPPLE$MH,"glEnableVertexAttribAPPLE");
-    }
-    public static void glEnableVertexAttribAPPLE ( int index,  int pname) {
-        var mh$ = glEnableVertexAttribAPPLE$MH();
-        try {
-            mh$.invokeExact(index, pname);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisableVertexAttribAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glDisableVertexAttribAPPLE$MH,"glDisableVertexAttribAPPLE");
-    }
-    public static void glDisableVertexAttribAPPLE ( int index,  int pname) {
-        var mh$ = glDisableVertexAttribAPPLE$MH();
-        try {
-            mh$.invokeExact(index, pname);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIsVertexAttribEnabledAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glIsVertexAttribEnabledAPPLE$MH,"glIsVertexAttribEnabledAPPLE");
-    }
-    public static byte glIsVertexAttribEnabledAPPLE ( int index,  int pname) {
-        var mh$ = glIsVertexAttribEnabledAPPLE$MH();
-        try {
-            return (byte)mh$.invokeExact(index, pname);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapVertexAttrib1dAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.glMapVertexAttrib1dAPPLE$MH,"glMapVertexAttrib1dAPPLE");
-    }
-    public static void glMapVertexAttrib1dAPPLE ( int index,  int size,  double u1,  double u2,  int stride,  int order,  Addressable points) {
-        var mh$ = glMapVertexAttrib1dAPPLE$MH();
-        try {
-            mh$.invokeExact(index, size, u1, u2, stride, order, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapVertexAttrib1fAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glMapVertexAttrib1fAPPLE$MH,"glMapVertexAttrib1fAPPLE");
-    }
-    public static void glMapVertexAttrib1fAPPLE ( int index,  int size,  float u1,  float u2,  int stride,  int order,  Addressable points) {
-        var mh$ = glMapVertexAttrib1fAPPLE$MH();
-        try {
-            mh$.invokeExact(index, size, u1, u2, stride, order, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapVertexAttrib2dAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glMapVertexAttrib2dAPPLE$MH,"glMapVertexAttrib2dAPPLE");
-    }
-    public static void glMapVertexAttrib2dAPPLE ( int index,  int size,  double u1,  double u2,  int ustride,  int uorder,  double v1,  double v2,  int vstride,  int vorder,  Addressable points) {
-        var mh$ = glMapVertexAttrib2dAPPLE$MH();
-        try {
-            mh$.invokeExact(index, size, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glMapVertexAttrib2fAPPLE$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glMapVertexAttrib2fAPPLE$MH,"glMapVertexAttrib2fAPPLE");
-    }
-    public static void glMapVertexAttrib2fAPPLE ( int index,  int size,  float u1,  float u2,  int ustride,  int uorder,  float v1,  float v2,  int vstride,  int vorder,  Addressable points) {
-        var mh$ = glMapVertexAttrib2fAPPLE$MH();
-        try {
-            mh$.invokeExact(index, size, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendEquationSeparateATI$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glBlendEquationSeparateATI$MH,"glBlendEquationSeparateATI");
-    }
-    public static void glBlendEquationSeparateATI ( int equationRGB,  int equationAlpha) {
-        var mh$ = glBlendEquationSeparateATI$MH();
-        try {
-            mh$.invokeExact(equationRGB, equationAlpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glStencilOpSeparateATI$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glStencilOpSeparateATI$MH,"glStencilOpSeparateATI");
-    }
-    public static void glStencilOpSeparateATI ( int face,  int sfail,  int dpfail,  int dppass) {
-        var mh$ = glStencilOpSeparateATI$MH();
-        try {
-            mh$.invokeExact(face, sfail, dpfail, dppass);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glStencilFuncSeparateATI$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.glStencilFuncSeparateATI$MH,"glStencilFuncSeparateATI");
-    }
-    public static void glStencilFuncSeparateATI ( int frontfunc,  int backfunc,  int ref,  int mask) {
-        var mh$ = glStencilFuncSeparateATI$MH();
-        try {
-            mh$.invokeExact(frontfunc, backfunc, ref, mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBeginConditionalRenderNV$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glBeginConditionalRenderNV$MH,"glBeginConditionalRenderNV");
-    }
-    public static void glBeginConditionalRenderNV ( int id,  int mode) {
-        var mh$ = glBeginConditionalRenderNV$MH();
-        try {
-            mh$.invokeExact(id, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEndConditionalRenderNV$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glEndConditionalRenderNV$MH,"glEndConditionalRenderNV");
-    }
-    public static void glEndConditionalRenderNV () {
-        var mh$ = glEndConditionalRenderNV$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointParameteriNV$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glPointParameteriNV$MH,"glPointParameteriNV");
-    }
-    public static void glPointParameteriNV ( int pname,  int param) {
-        var mh$ = glPointParameteriNV$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glPointParameterivNV$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glPointParameterivNV$MH,"glPointParameterivNV");
-    }
-    public static void glPointParameterivNV ( int pname,  Addressable params) {
-        var mh$ = glPointParameterivNV$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glTextureBarrierNV$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glTextureBarrierNV$MH,"glTextureBarrierNV");
-    }
-    public static void glTextureBarrierNV () {
-        var mh$ = glTextureBarrierNV$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAccum$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.glAccum$MH,"glAccum");
-    }
-    public static void glAccum ( int op,  float value) {
-        var mh$ = glAccum$MH();
-        try {
-            mh$.invokeExact(op, value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAlphaFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glAlphaFunc$MH,"glAlphaFunc");
-    }
-    public static void glAlphaFunc ( int func,  float ref) {
-        var mh$ = glAlphaFunc$MH();
-        try {
-            mh$.invokeExact(func, ref);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glAreTexturesResident$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glAreTexturesResident$MH,"glAreTexturesResident");
-    }
-    public static byte glAreTexturesResident ( int n,  Addressable textures,  Addressable residences) {
-        var mh$ = glAreTexturesResident$MH();
-        try {
-            return (byte)mh$.invokeExact(n, textures, residences);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glArrayElement$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glArrayElement$MH,"glArrayElement");
-    }
-    public static void glArrayElement ( int i) {
-        var mh$ = glArrayElement$MH();
-        try {
-            mh$.invokeExact(i);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBegin$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glBegin$MH,"glBegin");
-    }
-    public static void glBegin ( int mode) {
-        var mh$ = glBegin$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBindTexture$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glBindTexture$MH,"glBindTexture");
-    }
-    public static void glBindTexture ( int target,  int texture) {
-        var mh$ = glBindTexture$MH();
-        try {
-            mh$.invokeExact(target, texture);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBitmap$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.glBitmap$MH,"glBitmap");
-    }
-    public static void glBitmap ( int width,  int height,  float xorig,  float yorig,  float xmove,  float ymove,  Addressable bitmap) {
-        var mh$ = glBitmap$MH();
-        try {
-            mh$.invokeExact(width, height, xorig, yorig, xmove, ymove, bitmap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendColor$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glBlendColor$MH,"glBlendColor");
-    }
-    public static void glBlendColor ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glBlendColor$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendEquation$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glBlendEquation$MH,"glBlendEquation");
-    }
-    public static void glBlendEquation ( int mode) {
-        var mh$ = glBlendEquation$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendEquationSeparate$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glBlendEquationSeparate$MH,"glBlendEquationSeparate");
-    }
-    public static void glBlendEquationSeparate ( int modeRGB,  int modeAlpha) {
-        var mh$ = glBlendEquationSeparate$MH();
-        try {
-            mh$.invokeExact(modeRGB, modeAlpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glBlendFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glBlendFunc$MH,"glBlendFunc");
-    }
-    public static void glBlendFunc ( int sfactor,  int dfactor) {
-        var mh$ = glBlendFunc$MH();
-        try {
-            mh$.invokeExact(sfactor, dfactor);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCallList$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glCallList$MH,"glCallList");
-    }
-    public static void glCallList ( int list) {
-        var mh$ = glCallList$MH();
-        try {
-            mh$.invokeExact(list);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCallLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.glCallLists$MH,"glCallLists");
-    }
-    public static void glCallLists ( int n,  int type,  Addressable lists) {
-        var mh$ = glCallLists$MH();
-        try {
-            mh$.invokeExact(n, type, lists);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClear$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClear$MH,"glClear");
-    }
-    public static void glClear ( int mask) {
-        var mh$ = glClear$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearAccum$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClearAccum$MH,"glClearAccum");
-    }
-    public static void glClearAccum ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glClearAccum$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearColor$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClearColor$MH,"glClearColor");
-    }
-    public static void glClearColor ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glClearColor$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearDepth$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClearDepth$MH,"glClearDepth");
-    }
-    public static void glClearDepth ( double depth) {
-        var mh$ = glClearDepth$MH();
-        try {
-            mh$.invokeExact(depth);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearIndex$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClearIndex$MH,"glClearIndex");
-    }
-    public static void glClearIndex ( float c) {
-        var mh$ = glClearIndex$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClearStencil$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.glClearStencil$MH,"glClearStencil");
-    }
-    public static void glClearStencil ( int s) {
-        var mh$ = glClearStencil$MH();
-        try {
-            mh$.invokeExact(s);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glClipPlane$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glClipPlane$MH,"glClipPlane");
-    }
-    public static void glClipPlane ( int plane,  Addressable equation) {
-        var mh$ = glClipPlane$MH();
-        try {
-            mh$.invokeExact(plane, equation);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3b$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glColor3b$MH,"glColor3b");
-    }
-    public static void glColor3b ( byte red,  byte green,  byte blue) {
-        var mh$ = glColor3b$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3bv$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glColor3bv$MH,"glColor3bv");
-    }
-    public static void glColor3bv ( Addressable v) {
-        var mh$ = glColor3bv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3d$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glColor3d$MH,"glColor3d");
-    }
-    public static void glColor3d ( double red,  double green,  double blue) {
-        var mh$ = glColor3d$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glColor3dv$MH,"glColor3dv");
-    }
-    public static void glColor3dv ( Addressable v) {
-        var mh$ = glColor3dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3f$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.glColor3f$MH,"glColor3f");
-    }
-    public static void glColor3f ( float red,  float green,  float blue) {
-        var mh$ = glColor3f$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3fv$MH,"glColor3fv");
-    }
-    public static void glColor3fv ( Addressable v) {
-        var mh$ = glColor3fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3i$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3i$MH,"glColor3i");
-    }
-    public static void glColor3i ( int red,  int green,  int blue) {
-        var mh$ = glColor3i$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3iv$MH,"glColor3iv");
-    }
-    public static void glColor3iv ( Addressable v) {
-        var mh$ = glColor3iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3s$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3s$MH,"glColor3s");
-    }
-    public static void glColor3s ( short red,  short green,  short blue) {
-        var mh$ = glColor3s$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3sv$MH,"glColor3sv");
-    }
-    public static void glColor3sv ( Addressable v) {
-        var mh$ = glColor3sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ub$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.glColor3ub$MH,"glColor3ub");
-    }
-    public static void glColor3ub ( byte red,  byte green,  byte blue) {
-        var mh$ = glColor3ub$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor3ubv$MH,"glColor3ubv");
-    }
-    public static void glColor3ubv ( Addressable v) {
-        var mh$ = glColor3ubv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3ui$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor3ui$MH,"glColor3ui");
-    }
-    public static void glColor3ui ( int red,  int green,  int blue) {
-        var mh$ = glColor3ui$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3uiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor3uiv$MH,"glColor3uiv");
-    }
-    public static void glColor3uiv ( Addressable v) {
-        var mh$ = glColor3uiv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3us$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor3us$MH,"glColor3us");
-    }
-    public static void glColor3us ( short red,  short green,  short blue) {
-        var mh$ = glColor3us$MH();
-        try {
-            mh$.invokeExact(red, green, blue);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor3usv$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor3usv$MH,"glColor3usv");
-    }
-    public static void glColor3usv ( Addressable v) {
-        var mh$ = glColor3usv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4b$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.glColor4b$MH,"glColor4b");
-    }
-    public static void glColor4b ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColor4b$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4bv$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4bv$MH,"glColor4bv");
-    }
-    public static void glColor4bv ( Addressable v) {
-        var mh$ = glColor4bv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4d$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4d$MH,"glColor4d");
-    }
-    public static void glColor4d ( double red,  double green,  double blue,  double alpha) {
-        var mh$ = glColor4d$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4dv$MH,"glColor4dv");
-    }
-    public static void glColor4dv ( Addressable v) {
-        var mh$ = glColor4dv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4f$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4f$MH,"glColor4f");
-    }
-    public static void glColor4f ( float red,  float green,  float blue,  float alpha) {
-        var mh$ = glColor4f$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4fv$MH,"glColor4fv");
-    }
-    public static void glColor4fv ( Addressable v) {
-        var mh$ = glColor4fv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4i$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.glColor4i$MH,"glColor4i");
-    }
-    public static void glColor4i ( int red,  int green,  int blue,  int alpha) {
-        var mh$ = glColor4i$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4iv$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4iv$MH,"glColor4iv");
-    }
-    public static void glColor4iv ( Addressable v) {
-        var mh$ = glColor4iv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4s$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4s$MH,"glColor4s");
-    }
-    public static void glColor4s ( short red,  short green,  short blue,  short alpha) {
-        var mh$ = glColor4s$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4sv$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4sv$MH,"glColor4sv");
-    }
-    public static void glColor4sv ( Addressable v) {
-        var mh$ = glColor4sv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ub$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4ub$MH,"glColor4ub");
-    }
-    public static void glColor4ub ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColor4ub$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4ubv$MH,"glColor4ubv");
-    }
-    public static void glColor4ubv ( Addressable v) {
-        var mh$ = glColor4ubv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4ui$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.glColor4ui$MH,"glColor4ui");
-    }
-    public static void glColor4ui ( int red,  int green,  int blue,  int alpha) {
-        var mh$ = glColor4ui$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4uiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColor4uiv$MH,"glColor4uiv");
-    }
-    public static void glColor4uiv ( Addressable v) {
-        var mh$ = glColor4uiv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4us$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColor4us$MH,"glColor4us");
-    }
-    public static void glColor4us ( short red,  short green,  short blue,  short alpha) {
-        var mh$ = glColor4us$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColor4usv$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColor4usv$MH,"glColor4usv");
-    }
-    public static void glColor4usv ( Addressable v) {
-        var mh$ = glColor4usv$MH();
-        try {
-            mh$.invokeExact(v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColorMask$MH,"glColorMask");
-    }
-    public static void glColorMask ( byte red,  byte green,  byte blue,  byte alpha) {
-        var mh$ = glColorMask$MH();
-        try {
-            mh$.invokeExact(red, green, blue, alpha);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorMaterial$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColorMaterial$MH,"glColorMaterial");
-    }
-    public static void glColorMaterial ( int face,  int mode) {
-        var mh$ = glColorMaterial$MH();
-        try {
-            mh$.invokeExact(face, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.glColorPointer$MH,"glColorPointer");
-    }
-    public static void glColorPointer ( int size,  int type,  int stride,  Addressable pointer) {
-        var mh$ = glColorPointer$MH();
-        try {
-            mh$.invokeExact(size, type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorSubTable$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glColorSubTable$MH,"glColorSubTable");
-    }
-    public static void glColorSubTable ( int target,  int start,  int count,  int format,  int type,  Addressable data) {
-        var mh$ = glColorSubTable$MH();
-        try {
-            mh$.invokeExact(target, start, count, format, type, data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorTable$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glColorTable$MH,"glColorTable");
-    }
-    public static void glColorTable ( int target,  int internalformat,  int width,  int format,  int type,  Addressable table) {
-        var mh$ = glColorTable$MH();
-        try {
-            mh$.invokeExact(target, internalformat, width, format, type, table);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorTableParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glColorTableParameterfv$MH,"glColorTableParameterfv");
-    }
-    public static void glColorTableParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glColorTableParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glColorTableParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glColorTableParameteriv$MH,"glColorTableParameteriv");
-    }
-    public static void glColorTableParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glColorTableParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionFilter1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glConvolutionFilter1D$MH,"glConvolutionFilter1D");
-    }
-    public static void glConvolutionFilter1D ( int target,  int internalformat,  int width,  int format,  int type,  Addressable image) {
-        var mh$ = glConvolutionFilter1D$MH();
-        try {
-            mh$.invokeExact(target, internalformat, width, format, type, image);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionFilter2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$76.glConvolutionFilter2D$MH,"glConvolutionFilter2D");
-    }
-    public static void glConvolutionFilter2D ( int target,  int internalformat,  int width,  int height,  int format,  int type,  Addressable image) {
-        var mh$ = glConvolutionFilter2D$MH();
-        try {
-            mh$.invokeExact(target, internalformat, width, height, format, type, image);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionParameterf$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glConvolutionParameterf$MH,"glConvolutionParameterf");
-    }
-    public static void glConvolutionParameterf ( int target,  int pname,  float params) {
-        var mh$ = glConvolutionParameterf$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glConvolutionParameterfv$MH,"glConvolutionParameterfv");
-    }
-    public static void glConvolutionParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glConvolutionParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionParameteri$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glConvolutionParameteri$MH,"glConvolutionParameteri");
-    }
-    public static void glConvolutionParameteri ( int target,  int pname,  int params) {
-        var mh$ = glConvolutionParameteri$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glConvolutionParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glConvolutionParameteriv$MH,"glConvolutionParameteriv");
-    }
-    public static void glConvolutionParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glConvolutionParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyColorSubTable$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glCopyColorSubTable$MH,"glCopyColorSubTable");
-    }
-    public static void glCopyColorSubTable ( int target,  int start,  int x,  int y,  int width) {
-        var mh$ = glCopyColorSubTable$MH();
-        try {
-            mh$.invokeExact(target, start, x, y, width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyColorTable$MH() {
-        return RuntimeHelper.requireNonNull(constants$77.glCopyColorTable$MH,"glCopyColorTable");
-    }
-    public static void glCopyColorTable ( int target,  int internalformat,  int x,  int y,  int width) {
-        var mh$ = glCopyColorTable$MH();
-        try {
-            mh$.invokeExact(target, internalformat, x, y, width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyConvolutionFilter1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyConvolutionFilter1D$MH,"glCopyConvolutionFilter1D");
-    }
-    public static void glCopyConvolutionFilter1D ( int target,  int internalformat,  int x,  int y,  int width) {
-        var mh$ = glCopyConvolutionFilter1D$MH();
-        try {
-            mh$.invokeExact(target, internalformat, x, y, width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyConvolutionFilter2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyConvolutionFilter2D$MH,"glCopyConvolutionFilter2D");
-    }
-    public static void glCopyConvolutionFilter2D ( int target,  int internalformat,  int x,  int y,  int width,  int height) {
-        var mh$ = glCopyConvolutionFilter2D$MH();
-        try {
-            mh$.invokeExact(target, internalformat, x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyPixels$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyPixels$MH,"glCopyPixels");
-    }
-    public static void glCopyPixels ( int x,  int y,  int width,  int height,  int type) {
-        var mh$ = glCopyPixels$MH();
-        try {
-            mh$.invokeExact(x, y, width, height, type);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyTexImage1D$MH,"glCopyTexImage1D");
-    }
-    public static void glCopyTexImage1D ( int target,  int level,  int internalformat,  int x,  int y,  int width,  int border) {
-        var mh$ = glCopyTexImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, x, y, width, border);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyTexImage2D$MH,"glCopyTexImage2D");
-    }
-    public static void glCopyTexImage2D ( int target,  int level,  int internalformat,  int x,  int y,  int width,  int height,  int border) {
-        var mh$ = glCopyTexImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, internalformat, x, y, width, height, border);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexSubImage1D$MH() {
-        return RuntimeHelper.requireNonNull(constants$78.glCopyTexSubImage1D$MH,"glCopyTexSubImage1D");
-    }
-    public static void glCopyTexSubImage1D ( int target,  int level,  int xoffset,  int x,  int y,  int width) {
-        var mh$ = glCopyTexSubImage1D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, x, y, width);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexSubImage2D$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glCopyTexSubImage2D$MH,"glCopyTexSubImage2D");
-    }
-    public static void glCopyTexSubImage2D ( int target,  int level,  int xoffset,  int yoffset,  int x,  int y,  int width,  int height) {
-        var mh$ = glCopyTexSubImage2D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCopyTexSubImage3D$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glCopyTexSubImage3D$MH,"glCopyTexSubImage3D");
-    }
-    public static void glCopyTexSubImage3D ( int target,  int level,  int xoffset,  int yoffset,  int zoffset,  int x,  int y,  int width,  int height) {
-        var mh$ = glCopyTexSubImage3D$MH();
-        try {
-            mh$.invokeExact(target, level, xoffset, yoffset, zoffset, x, y, width, height);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glCullFace$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glCullFace$MH,"glCullFace");
-    }
-    public static void glCullFace ( int mode) {
-        var mh$ = glCullFace$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glDeleteLists$MH,"glDeleteLists");
-    }
-    public static void glDeleteLists ( int list,  int range) {
-        var mh$ = glDeleteLists$MH();
-        try {
-            mh$.invokeExact(list, range);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDeleteTextures$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glDeleteTextures$MH,"glDeleteTextures");
-    }
-    public static void glDeleteTextures ( int n,  Addressable textures) {
-        var mh$ = glDeleteTextures$MH();
-        try {
-            mh$.invokeExact(n, textures);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthFunc$MH() {
-        return RuntimeHelper.requireNonNull(constants$79.glDepthFunc$MH,"glDepthFunc");
-    }
-    public static void glDepthFunc ( int func) {
-        var mh$ = glDepthFunc$MH();
-        try {
-            mh$.invokeExact(func);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDepthMask$MH,"glDepthMask");
-    }
-    public static void glDepthMask ( byte flag) {
-        var mh$ = glDepthMask$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDepthRange$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDepthRange$MH,"glDepthRange");
-    }
-    public static void glDepthRange ( double zNear,  double zFar) {
-        var mh$ = glDepthRange$MH();
-        try {
-            mh$.invokeExact(zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisable$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDisable$MH,"glDisable");
-    }
-    public static void glDisable ( int cap) {
-        var mh$ = glDisable$MH();
-        try {
-            mh$.invokeExact(cap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDisableClientState$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDisableClientState$MH,"glDisableClientState");
-    }
-    public static void glDisableClientState ( int array) {
-        var mh$ = glDisableClientState$MH();
-        try {
-            mh$.invokeExact(array);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawArrays$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDrawArrays$MH,"glDrawArrays");
-    }
-    public static void glDrawArrays ( int mode,  int first,  int count) {
-        var mh$ = glDrawArrays$MH();
-        try {
-            mh$.invokeExact(mode, first, count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$80.glDrawBuffer$MH,"glDrawBuffer");
-    }
-    public static void glDrawBuffer ( int mode) {
-        var mh$ = glDrawBuffer$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawElements$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glDrawElements$MH,"glDrawElements");
-    }
-    public static void glDrawElements ( int mode,  int count,  int type,  Addressable indices) {
-        var mh$ = glDrawElements$MH();
-        try {
-            mh$.invokeExact(mode, count, type, indices);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawPixels$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glDrawPixels$MH,"glDrawPixels");
-    }
-    public static void glDrawPixels ( int width,  int height,  int format,  int type,  Addressable pixels) {
-        var mh$ = glDrawPixels$MH();
-        try {
-            mh$.invokeExact(width, height, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glDrawRangeElements$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glDrawRangeElements$MH,"glDrawRangeElements");
-    }
-    public static void glDrawRangeElements ( int mode,  int start,  int end,  int count,  int type,  Addressable indices) {
-        var mh$ = glDrawRangeElements$MH();
-        try {
-            mh$.invokeExact(mode, start, end, count, type, indices);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlag$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glEdgeFlag$MH,"glEdgeFlag");
-    }
-    public static void glEdgeFlag ( byte flag) {
-        var mh$ = glEdgeFlag$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlagPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glEdgeFlagPointer$MH,"glEdgeFlagPointer");
-    }
-    public static void glEdgeFlagPointer ( int stride,  Addressable pointer) {
-        var mh$ = glEdgeFlagPointer$MH();
-        try {
-            mh$.invokeExact(stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEdgeFlagv$MH() {
-        return RuntimeHelper.requireNonNull(constants$81.glEdgeFlagv$MH,"glEdgeFlagv");
-    }
-    public static void glEdgeFlagv ( Addressable flag) {
-        var mh$ = glEdgeFlagv$MH();
-        try {
-            mh$.invokeExact(flag);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnable$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEnable$MH,"glEnable");
-    }
-    public static void glEnable ( int cap) {
-        var mh$ = glEnable$MH();
-        try {
-            mh$.invokeExact(cap);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnableClientState$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEnableClientState$MH,"glEnableClientState");
-    }
-    public static void glEnableClientState ( int array) {
-        var mh$ = glEnableClientState$MH();
-        try {
-            mh$.invokeExact(array);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEnd$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEnd$MH,"glEnd");
-    }
-    public static void glEnd () {
-        var mh$ = glEnd$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEndList$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEndList$MH,"glEndList");
-    }
-    public static void glEndList () {
-        var mh$ = glEndList$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1d$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEvalCoord1d$MH,"glEvalCoord1d");
-    }
-    public static void glEvalCoord1d ( double u) {
-        var mh$ = glEvalCoord1d$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$82.glEvalCoord1dv$MH,"glEvalCoord1dv");
-    }
-    public static void glEvalCoord1dv ( Addressable u) {
-        var mh$ = glEvalCoord1dv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1f$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord1f$MH,"glEvalCoord1f");
-    }
-    public static void glEvalCoord1f ( float u) {
-        var mh$ = glEvalCoord1f$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord1fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord1fv$MH,"glEvalCoord1fv");
-    }
-    public static void glEvalCoord1fv ( Addressable u) {
-        var mh$ = glEvalCoord1fv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2d$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord2d$MH,"glEvalCoord2d");
-    }
-    public static void glEvalCoord2d ( double u,  double v) {
-        var mh$ = glEvalCoord2d$MH();
-        try {
-            mh$.invokeExact(u, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2dv$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord2dv$MH,"glEvalCoord2dv");
-    }
-    public static void glEvalCoord2dv ( Addressable u) {
-        var mh$ = glEvalCoord2dv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2f$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord2f$MH,"glEvalCoord2f");
-    }
-    public static void glEvalCoord2f ( float u,  float v) {
-        var mh$ = glEvalCoord2f$MH();
-        try {
-            mh$.invokeExact(u, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalCoord2fv$MH() {
-        return RuntimeHelper.requireNonNull(constants$83.glEvalCoord2fv$MH,"glEvalCoord2fv");
-    }
-    public static void glEvalCoord2fv ( Addressable u) {
-        var mh$ = glEvalCoord2fv$MH();
-        try {
-            mh$.invokeExact(u);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalMesh1$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glEvalMesh1$MH,"glEvalMesh1");
-    }
-    public static void glEvalMesh1 ( int mode,  int i1,  int i2) {
-        var mh$ = glEvalMesh1$MH();
-        try {
-            mh$.invokeExact(mode, i1, i2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalMesh2$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glEvalMesh2$MH,"glEvalMesh2");
-    }
-    public static void glEvalMesh2 ( int mode,  int i1,  int i2,  int j1,  int j2) {
-        var mh$ = glEvalMesh2$MH();
-        try {
-            mh$.invokeExact(mode, i1, i2, j1, j2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalPoint1$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glEvalPoint1$MH,"glEvalPoint1");
-    }
-    public static void glEvalPoint1 ( int i) {
-        var mh$ = glEvalPoint1$MH();
-        try {
-            mh$.invokeExact(i);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glEvalPoint2$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glEvalPoint2$MH,"glEvalPoint2");
-    }
-    public static void glEvalPoint2 ( int i,  int j) {
-        var mh$ = glEvalPoint2$MH();
-        try {
-            mh$.invokeExact(i, j);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFeedbackBuffer$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glFeedbackBuffer$MH,"glFeedbackBuffer");
-    }
-    public static void glFeedbackBuffer ( int size,  int type,  Addressable buffer) {
-        var mh$ = glFeedbackBuffer$MH();
-        try {
-            mh$.invokeExact(size, type, buffer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFinish$MH() {
-        return RuntimeHelper.requireNonNull(constants$84.glFinish$MH,"glFinish");
-    }
-    public static void glFinish () {
-        var mh$ = glFinish$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFlush$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFlush$MH,"glFlush");
-    }
-    public static void glFlush () {
-        var mh$ = glFlush$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogf$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFogf$MH,"glFogf");
-    }
-    public static void glFogf ( int pname,  float param) {
-        var mh$ = glFogf$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFogfv$MH,"glFogfv");
-    }
-    public static void glFogfv ( int pname,  Addressable params) {
-        var mh$ = glFogfv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogi$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFogi$MH,"glFogi");
-    }
-    public static void glFogi ( int pname,  int param) {
-        var mh$ = glFogi$MH();
-        try {
-            mh$.invokeExact(pname, param);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFogiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFogiv$MH,"glFogiv");
-    }
-    public static void glFogiv ( int pname,  Addressable params) {
-        var mh$ = glFogiv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFrontFace$MH() {
-        return RuntimeHelper.requireNonNull(constants$85.glFrontFace$MH,"glFrontFace");
-    }
-    public static void glFrontFace ( int mode) {
-        var mh$ = glFrontFace$MH();
-        try {
-            mh$.invokeExact(mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glFrustum$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glFrustum$MH,"glFrustum");
-    }
-    public static void glFrustum ( double left,  double right,  double bottom,  double top,  double zNear,  double zFar) {
-        var mh$ = glFrustum$MH();
-        try {
-            mh$.invokeExact(left, right, bottom, top, zNear, zFar);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenLists$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glGenLists$MH,"glGenLists");
-    }
-    public static int glGenLists ( int range) {
-        var mh$ = glGenLists$MH();
-        try {
-            return (int)mh$.invokeExact(range);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGenTextures$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glGenTextures$MH,"glGenTextures");
-    }
-    public static void glGenTextures ( int n,  Addressable textures) {
-        var mh$ = glGenTextures$MH();
-        try {
-            mh$.invokeExact(n, textures);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetBooleanv$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glGetBooleanv$MH,"glGetBooleanv");
-    }
-    public static void glGetBooleanv ( int pname,  Addressable params) {
-        var mh$ = glGetBooleanv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetClipPlane$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glGetClipPlane$MH,"glGetClipPlane");
-    }
-    public static void glGetClipPlane ( int plane,  Addressable equation) {
-        var mh$ = glGetClipPlane$MH();
-        try {
-            mh$.invokeExact(plane, equation);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetColorTable$MH() {
-        return RuntimeHelper.requireNonNull(constants$86.glGetColorTable$MH,"glGetColorTable");
-    }
-    public static void glGetColorTable ( int target,  int format,  int type,  Addressable table) {
-        var mh$ = glGetColorTable$MH();
-        try {
-            mh$.invokeExact(target, format, type, table);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetColorTableParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetColorTableParameterfv$MH,"glGetColorTableParameterfv");
-    }
-    public static void glGetColorTableParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetColorTableParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetColorTableParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetColorTableParameteriv$MH,"glGetColorTableParameteriv");
-    }
-    public static void glGetColorTableParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetColorTableParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetConvolutionFilter$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetConvolutionFilter$MH,"glGetConvolutionFilter");
-    }
-    public static void glGetConvolutionFilter ( int target,  int format,  int type,  Addressable image) {
-        var mh$ = glGetConvolutionFilter$MH();
-        try {
-            mh$.invokeExact(target, format, type, image);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetConvolutionParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetConvolutionParameterfv$MH,"glGetConvolutionParameterfv");
-    }
-    public static void glGetConvolutionParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetConvolutionParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetConvolutionParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetConvolutionParameteriv$MH,"glGetConvolutionParameteriv");
-    }
-    public static void glGetConvolutionParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetConvolutionParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetDoublev$MH() {
-        return RuntimeHelper.requireNonNull(constants$87.glGetDoublev$MH,"glGetDoublev");
-    }
-    public static void glGetDoublev ( int pname,  Addressable params) {
-        var mh$ = glGetDoublev$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetError$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetError$MH,"glGetError");
-    }
-    public static int glGetError () {
-        var mh$ = glGetError$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetFloatv$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetFloatv$MH,"glGetFloatv");
-    }
-    public static void glGetFloatv ( int pname,  Addressable params) {
-        var mh$ = glGetFloatv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetHistogram$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetHistogram$MH,"glGetHistogram");
-    }
-    public static void glGetHistogram ( int target,  byte reset,  int format,  int type,  Addressable values) {
-        var mh$ = glGetHistogram$MH();
-        try {
-            mh$.invokeExact(target, reset, format, type, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetHistogramParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetHistogramParameterfv$MH,"glGetHistogramParameterfv");
-    }
-    public static void glGetHistogramParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetHistogramParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetHistogramParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetHistogramParameteriv$MH,"glGetHistogramParameteriv");
-    }
-    public static void glGetHistogramParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetHistogramParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetIntegerv$MH() {
-        return RuntimeHelper.requireNonNull(constants$88.glGetIntegerv$MH,"glGetIntegerv");
-    }
-    public static void glGetIntegerv ( int pname,  Addressable params) {
-        var mh$ = glGetIntegerv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetLightfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetLightfv$MH,"glGetLightfv");
-    }
-    public static void glGetLightfv ( int light,  int pname,  Addressable params) {
-        var mh$ = glGetLightfv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetLightiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetLightiv$MH,"glGetLightiv");
-    }
-    public static void glGetLightiv ( int light,  int pname,  Addressable params) {
-        var mh$ = glGetLightiv$MH();
-        try {
-            mh$.invokeExact(light, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapdv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetMapdv$MH,"glGetMapdv");
-    }
-    public static void glGetMapdv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapdv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetMapfv$MH,"glGetMapfv");
-    }
-    public static void glGetMapfv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapfv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMapiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetMapiv$MH,"glGetMapiv");
-    }
-    public static void glGetMapiv ( int target,  int query,  Addressable v) {
-        var mh$ = glGetMapiv$MH();
-        try {
-            mh$.invokeExact(target, query, v);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMaterialfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$89.glGetMaterialfv$MH,"glGetMaterialfv");
-    }
-    public static void glGetMaterialfv ( int face,  int pname,  Addressable params) {
-        var mh$ = glGetMaterialfv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMaterialiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetMaterialiv$MH,"glGetMaterialiv");
-    }
-    public static void glGetMaterialiv ( int face,  int pname,  Addressable params) {
-        var mh$ = glGetMaterialiv$MH();
-        try {
-            mh$.invokeExact(face, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMinmax$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetMinmax$MH,"glGetMinmax");
-    }
-    public static void glGetMinmax ( int target,  byte reset,  int format,  int type,  Addressable values) {
-        var mh$ = glGetMinmax$MH();
-        try {
-            mh$.invokeExact(target, reset, format, type, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMinmaxParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetMinmaxParameterfv$MH,"glGetMinmaxParameterfv");
-    }
-    public static void glGetMinmaxParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetMinmaxParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetMinmaxParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetMinmaxParameteriv$MH,"glGetMinmaxParameteriv");
-    }
-    public static void glGetMinmaxParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetMinmaxParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetPixelMapfv$MH,"glGetPixelMapfv");
-    }
-    public static void glGetPixelMapfv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapfv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapuiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$90.glGetPixelMapuiv$MH,"glGetPixelMapuiv");
-    }
-    public static void glGetPixelMapuiv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapuiv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPixelMapusv$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetPixelMapusv$MH,"glGetPixelMapusv");
-    }
-    public static void glGetPixelMapusv ( int map,  Addressable values) {
-        var mh$ = glGetPixelMapusv$MH();
-        try {
-            mh$.invokeExact(map, values);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPointerv$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetPointerv$MH,"glGetPointerv");
-    }
-    public static void glGetPointerv ( int pname,  Addressable params) {
-        var mh$ = glGetPointerv$MH();
-        try {
-            mh$.invokeExact(pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetPolygonStipple$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetPolygonStipple$MH,"glGetPolygonStipple");
-    }
-    public static void glGetPolygonStipple ( Addressable mask) {
-        var mh$ = glGetPolygonStipple$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetSeparableFilter$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetSeparableFilter$MH,"glGetSeparableFilter");
-    }
-    public static void glGetSeparableFilter ( int target,  int format,  int type,  Addressable row,  Addressable column,  Addressable span) {
-        var mh$ = glGetSeparableFilter$MH();
-        try {
-            mh$.invokeExact(target, format, type, row, column, span);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetString$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetString$MH,"glGetString");
-    }
-    public static MemoryAddress glGetString ( int name) {
-        var mh$ = glGetString$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(name);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexEnvfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$91.glGetTexEnvfv$MH,"glGetTexEnvfv");
-    }
-    public static void glGetTexEnvfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexEnvfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexEnviv$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexEnviv$MH,"glGetTexEnviv");
-    }
-    public static void glGetTexEnviv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexEnviv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGendv$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexGendv$MH,"glGetTexGendv");
-    }
-    public static void glGetTexGendv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGendv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGenfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexGenfv$MH,"glGetTexGenfv");
-    }
-    public static void glGetTexGenfv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGenfv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexGeniv$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexGeniv$MH,"glGetTexGeniv");
-    }
-    public static void glGetTexGeniv ( int coord,  int pname,  Addressable params) {
-        var mh$ = glGetTexGeniv$MH();
-        try {
-            mh$.invokeExact(coord, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexImage$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexImage$MH,"glGetTexImage");
-    }
-    public static void glGetTexImage ( int target,  int level,  int format,  int type,  Addressable pixels) {
-        var mh$ = glGetTexImage$MH();
-        try {
-            mh$.invokeExact(target, level, format, type, pixels);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexLevelParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$92.glGetTexLevelParameterfv$MH,"glGetTexLevelParameterfv");
-    }
-    public static void glGetTexLevelParameterfv ( int target,  int level,  int pname,  Addressable params) {
-        var mh$ = glGetTexLevelParameterfv$MH();
-        try {
-            mh$.invokeExact(target, level, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexLevelParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glGetTexLevelParameteriv$MH,"glGetTexLevelParameteriv");
-    }
-    public static void glGetTexLevelParameteriv ( int target,  int level,  int pname,  Addressable params) {
-        var mh$ = glGetTexLevelParameteriv$MH();
-        try {
-            mh$.invokeExact(target, level, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameterfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glGetTexParameterfv$MH,"glGetTexParameterfv");
-    }
-    public static void glGetTexParameterfv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameterfv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glGetTexParameteriv$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glGetTexParameteriv$MH,"glGetTexParameteriv");
-    }
-    public static void glGetTexParameteriv ( int target,  int pname,  Addressable params) {
-        var mh$ = glGetTexParameteriv$MH();
-        try {
-            mh$.invokeExact(target, pname, params);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glHint$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glHint$MH,"glHint");
-    }
-    public static void glHint ( int target,  int mode) {
-        var mh$ = glHint$MH();
-        try {
-            mh$.invokeExact(target, mode);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glHistogram$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glHistogram$MH,"glHistogram");
-    }
-    public static void glHistogram ( int target,  int width,  int internalformat,  byte sink) {
-        var mh$ = glHistogram$MH();
-        try {
-            mh$.invokeExact(target, width, internalformat, sink);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexMask$MH() {
-        return RuntimeHelper.requireNonNull(constants$93.glIndexMask$MH,"glIndexMask");
-    }
-    public static void glIndexMask ( int mask) {
-        var mh$ = glIndexMask$MH();
-        try {
-            mh$.invokeExact(mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexPointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexPointer$MH,"glIndexPointer");
-    }
-    public static void glIndexPointer ( int type,  int stride,  Addressable pointer) {
-        var mh$ = glIndexPointer$MH();
-        try {
-            mh$.invokeExact(type, stride, pointer);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexd$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexd$MH,"glIndexd");
-    }
-    public static void glIndexd ( double c) {
-        var mh$ = glIndexd$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexdv$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexdv$MH,"glIndexdv");
-    }
-    public static void glIndexdv ( Addressable c) {
-        var mh$ = glIndexdv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexf$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexf$MH,"glIndexf");
-    }
-    public static void glIndexf ( float c) {
-        var mh$ = glIndexf$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexfv$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexfv$MH,"glIndexfv");
-    }
-    public static void glIndexfv ( Addressable c) {
-        var mh$ = glIndexfv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexi$MH() {
-        return RuntimeHelper.requireNonNull(constants$94.glIndexi$MH,"glIndexi");
-    }
-    public static void glIndexi ( int c) {
-        var mh$ = glIndexi$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexiv$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.glIndexiv$MH,"glIndexiv");
-    }
-    public static void glIndexiv ( Addressable c) {
-        var mh$ = glIndexiv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexs$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.glIndexs$MH,"glIndexs");
-    }
-    public static void glIndexs ( short c) {
-        var mh$ = glIndexs$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexsv$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.glIndexsv$MH,"glIndexsv");
-    }
-    public static void glIndexsv ( Addressable c) {
-        var mh$ = glIndexsv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexub$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.glIndexub$MH,"glIndexub");
-    }
-    public static void glIndexub ( byte c) {
-        var mh$ = glIndexub$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle glIndexubv$MH() {
-        return RuntimeHelper.requireNonNull(constants$95.glIndexubv$MH,"glIndexubv");
-    }
-    public static void glIndexubv ( Addressable c) {
-        var mh$ = glIndexubv$MH();
-        try {
-            mh$.invokeExact(c);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class glut_h_2 extends glut_h_3 {
+
+    glut_h_2() {
+        // Should not be called directly
+    }
+    private static final int GL_LUMINANCE_ALPHA_FLOAT32_APPLE = (int)34841L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA_FLOAT32_APPLE 34841
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA_FLOAT32_APPLE() {
+        return GL_LUMINANCE_ALPHA_FLOAT32_APPLE;
+    }
+    private static final int GL_RGBA_FLOAT16_APPLE = (int)34842L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_FLOAT16_APPLE 34842
+     * }
+     */
+    public static int GL_RGBA_FLOAT16_APPLE() {
+        return GL_RGBA_FLOAT16_APPLE;
+    }
+    private static final int GL_RGB_FLOAT16_APPLE = (int)34843L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB_FLOAT16_APPLE 34843
+     * }
+     */
+    public static int GL_RGB_FLOAT16_APPLE() {
+        return GL_RGB_FLOAT16_APPLE;
+    }
+    private static final int GL_ALPHA_FLOAT16_APPLE = (int)34844L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_FLOAT16_APPLE 34844
+     * }
+     */
+    public static int GL_ALPHA_FLOAT16_APPLE() {
+        return GL_ALPHA_FLOAT16_APPLE;
+    }
+    private static final int GL_INTENSITY_FLOAT16_APPLE = (int)34845L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY_FLOAT16_APPLE 34845
+     * }
+     */
+    public static int GL_INTENSITY_FLOAT16_APPLE() {
+        return GL_INTENSITY_FLOAT16_APPLE;
+    }
+    private static final int GL_LUMINANCE_FLOAT16_APPLE = (int)34846L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_FLOAT16_APPLE 34846
+     * }
+     */
+    public static int GL_LUMINANCE_FLOAT16_APPLE() {
+        return GL_LUMINANCE_FLOAT16_APPLE;
+    }
+    private static final int GL_LUMINANCE_ALPHA_FLOAT16_APPLE = (int)34847L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA_FLOAT16_APPLE 34847
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA_FLOAT16_APPLE() {
+        return GL_LUMINANCE_ALPHA_FLOAT16_APPLE;
+    }
+    private static final int GL_BUFFER_SERIALIZED_MODIFY_APPLE = (int)35346L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_SERIALIZED_MODIFY_APPLE 35346
+     * }
+     */
+    public static int GL_BUFFER_SERIALIZED_MODIFY_APPLE() {
+        return GL_BUFFER_SERIALIZED_MODIFY_APPLE;
+    }
+    private static final int GL_BUFFER_FLUSHING_UNMAP_APPLE = (int)35347L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_FLUSHING_UNMAP_APPLE 35347
+     * }
+     */
+    public static int GL_BUFFER_FLUSHING_UNMAP_APPLE() {
+        return GL_BUFFER_FLUSHING_UNMAP_APPLE;
+    }
+    private static final int GL_RELEASED_APPLE = (int)35353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RELEASED_APPLE 35353
+     * }
+     */
+    public static int GL_RELEASED_APPLE() {
+        return GL_RELEASED_APPLE;
+    }
+    private static final int GL_VOLATILE_APPLE = (int)35354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VOLATILE_APPLE 35354
+     * }
+     */
+    public static int GL_VOLATILE_APPLE() {
+        return GL_VOLATILE_APPLE;
+    }
+    private static final int GL_RETAINED_APPLE = (int)35355L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RETAINED_APPLE 35355
+     * }
+     */
+    public static int GL_RETAINED_APPLE() {
+        return GL_RETAINED_APPLE;
+    }
+    private static final int GL_UNDEFINED_APPLE = (int)35356L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNDEFINED_APPLE 35356
+     * }
+     */
+    public static int GL_UNDEFINED_APPLE() {
+        return GL_UNDEFINED_APPLE;
+    }
+    private static final int GL_PURGEABLE_APPLE = (int)35357L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PURGEABLE_APPLE 35357
+     * }
+     */
+    public static int GL_PURGEABLE_APPLE() {
+        return GL_PURGEABLE_APPLE;
+    }
+    private static final int GL_MIN_PBUFFER_VIEWPORT_DIMS_APPLE = (int)35344L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIN_PBUFFER_VIEWPORT_DIMS_APPLE 35344
+     * }
+     */
+    public static int GL_MIN_PBUFFER_VIEWPORT_DIMS_APPLE() {
+        return GL_MIN_PBUFFER_VIEWPORT_DIMS_APPLE;
+    }
+    private static final int GL_RGB_422_APPLE = (int)35359L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB_422_APPLE 35359
+     * }
+     */
+    public static int GL_RGB_422_APPLE() {
+        return GL_RGB_422_APPLE;
+    }
+    private static final int GL_PACK_ROW_BYTES_APPLE = (int)35349L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ROW_BYTES_APPLE 35349
+     * }
+     */
+    public static int GL_PACK_ROW_BYTES_APPLE() {
+        return GL_PACK_ROW_BYTES_APPLE;
+    }
+    private static final int GL_UNPACK_ROW_BYTES_APPLE = (int)35350L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ROW_BYTES_APPLE 35350
+     * }
+     */
+    public static int GL_UNPACK_ROW_BYTES_APPLE() {
+        return GL_UNPACK_ROW_BYTES_APPLE;
+    }
+    private static final int GL_PACK_IMAGE_BYTES_APPLE = (int)35351L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_IMAGE_BYTES_APPLE 35351
+     * }
+     */
+    public static int GL_PACK_IMAGE_BYTES_APPLE() {
+        return GL_PACK_IMAGE_BYTES_APPLE;
+    }
+    private static final int GL_UNPACK_IMAGE_BYTES_APPLE = (int)35352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_IMAGE_BYTES_APPLE 35352
+     * }
+     */
+    public static int GL_UNPACK_IMAGE_BYTES_APPLE() {
+        return GL_UNPACK_IMAGE_BYTES_APPLE;
+    }
+    private static final int GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE = (int)34224L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE 34224
+     * }
+     */
+    public static int GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE() {
+        return GL_LIGHT_MODEL_SPECULAR_VECTOR_APPLE;
+    }
+    private static final int GL_TEXTURE_RANGE_LENGTH_APPLE = (int)34231L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RANGE_LENGTH_APPLE 34231
+     * }
+     */
+    public static int GL_TEXTURE_RANGE_LENGTH_APPLE() {
+        return GL_TEXTURE_RANGE_LENGTH_APPLE;
+    }
+    private static final int GL_TEXTURE_RANGE_POINTER_APPLE = (int)34232L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RANGE_POINTER_APPLE 34232
+     * }
+     */
+    public static int GL_TEXTURE_RANGE_POINTER_APPLE() {
+        return GL_TEXTURE_RANGE_POINTER_APPLE;
+    }
+    private static final int GL_TEXTURE_STORAGE_HINT_APPLE = (int)34236L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_STORAGE_HINT_APPLE 34236
+     * }
+     */
+    public static int GL_TEXTURE_STORAGE_HINT_APPLE() {
+        return GL_TEXTURE_STORAGE_HINT_APPLE;
+    }
+    private static final int GL_TEXTURE_MINIMIZE_STORAGE_APPLE = (int)34230L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MINIMIZE_STORAGE_APPLE 34230
+     * }
+     */
+    public static int GL_TEXTURE_MINIMIZE_STORAGE_APPLE() {
+        return GL_TEXTURE_MINIMIZE_STORAGE_APPLE;
+    }
+    private static final int GL_STORAGE_PRIVATE_APPLE = (int)34237L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STORAGE_PRIVATE_APPLE 34237
+     * }
+     */
+    public static int GL_STORAGE_PRIVATE_APPLE() {
+        return GL_STORAGE_PRIVATE_APPLE;
+    }
+    private static final int GL_STORAGE_CACHED_APPLE = (int)34238L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STORAGE_CACHED_APPLE 34238
+     * }
+     */
+    public static int GL_STORAGE_CACHED_APPLE() {
+        return GL_STORAGE_CACHED_APPLE;
+    }
+    private static final int GL_STORAGE_SHARED_APPLE = (int)34239L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STORAGE_SHARED_APPLE 34239
+     * }
+     */
+    public static int GL_STORAGE_SHARED_APPLE() {
+        return GL_STORAGE_SHARED_APPLE;
+    }
+    private static final int GL_TRANSFORM_HINT_APPLE = (int)34225L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSFORM_HINT_APPLE 34225
+     * }
+     */
+    public static int GL_TRANSFORM_HINT_APPLE() {
+        return GL_TRANSFORM_HINT_APPLE;
+    }
+    private static final int GL_VERTEX_ARRAY_BINDING_APPLE = (int)34229L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_BINDING_APPLE 34229
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_BINDING_APPLE() {
+        return GL_VERTEX_ARRAY_BINDING_APPLE;
+    }
+    private static final int GL_VERTEX_ARRAY_RANGE_APPLE = (int)34077L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_RANGE_APPLE 34077
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_RANGE_APPLE() {
+        return GL_VERTEX_ARRAY_RANGE_APPLE;
+    }
+    private static final int GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE = (int)34078L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE 34078
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE() {
+        return GL_VERTEX_ARRAY_RANGE_LENGTH_APPLE;
+    }
+    private static final int GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_APPLE = (int)34080L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_APPLE 34080
+     * }
+     */
+    public static int GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_APPLE() {
+        return GL_MAX_VERTEX_ARRAY_RANGE_ELEMENT_APPLE;
+    }
+    private static final int GL_VERTEX_ARRAY_RANGE_POINTER_APPLE = (int)34081L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_RANGE_POINTER_APPLE 34081
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_RANGE_POINTER_APPLE() {
+        return GL_VERTEX_ARRAY_RANGE_POINTER_APPLE;
+    }
+    private static final int GL_VERTEX_ARRAY_STORAGE_HINT_APPLE = (int)34079L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STORAGE_HINT_APPLE 34079
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STORAGE_HINT_APPLE() {
+        return GL_VERTEX_ARRAY_STORAGE_HINT_APPLE;
+    }
+    private static final int GL_STORAGE_CLIENT_APPLE = (int)34228L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STORAGE_CLIENT_APPLE 34228
+     * }
+     */
+    public static int GL_STORAGE_CLIENT_APPLE() {
+        return GL_STORAGE_CLIENT_APPLE;
+    }
+    private static final int GL_VERTEX_POINT_SIZE_APPLE = (int)35366L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_POINT_SIZE_APPLE 35366
+     * }
+     */
+    public static int GL_VERTEX_POINT_SIZE_APPLE() {
+        return GL_VERTEX_POINT_SIZE_APPLE;
+    }
+    private static final int GL_CURRENT_POINT_SIZE_APPLE = (int)35367L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_POINT_SIZE_APPLE 35367
+     * }
+     */
+    public static int GL_CURRENT_POINT_SIZE_APPLE() {
+        return GL_CURRENT_POINT_SIZE_APPLE;
+    }
+    private static final int GL_POINT_SIZE_ARRAY_APPLE = (int)35740L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_ARRAY_APPLE 35740
+     * }
+     */
+    public static int GL_POINT_SIZE_ARRAY_APPLE() {
+        return GL_POINT_SIZE_ARRAY_APPLE;
+    }
+    private static final int GL_POINT_SIZE_ARRAY_TYPE_APPLE = (int)35210L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_ARRAY_TYPE_APPLE 35210
+     * }
+     */
+    public static int GL_POINT_SIZE_ARRAY_TYPE_APPLE() {
+        return GL_POINT_SIZE_ARRAY_TYPE_APPLE;
+    }
+    private static final int GL_POINT_SIZE_ARRAY_STRIDE_APPLE = (int)35211L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_ARRAY_STRIDE_APPLE 35211
+     * }
+     */
+    public static int GL_POINT_SIZE_ARRAY_STRIDE_APPLE() {
+        return GL_POINT_SIZE_ARRAY_STRIDE_APPLE;
+    }
+    private static final int GL_POINT_SIZE_ARRAY_POINTER_APPLE = (int)35212L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_ARRAY_POINTER_APPLE 35212
+     * }
+     */
+    public static int GL_POINT_SIZE_ARRAY_POINTER_APPLE() {
+        return GL_POINT_SIZE_ARRAY_POINTER_APPLE;
+    }
+    private static final int GL_POINT_SIZE_ARRAY_BUFFER_BINDING_APPLE = (int)35743L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_ARRAY_BUFFER_BINDING_APPLE 35743
+     * }
+     */
+    public static int GL_POINT_SIZE_ARRAY_BUFFER_BINDING_APPLE() {
+        return GL_POINT_SIZE_ARRAY_BUFFER_BINDING_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP1_APPLE = (int)35328L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP1_APPLE 35328
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP1_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP1_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP2_APPLE = (int)35329L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP2_APPLE 35329
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP2_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP2_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP1_SIZE_APPLE = (int)35330L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP1_SIZE_APPLE 35330
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP1_SIZE_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP1_SIZE_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP1_COEFF_APPLE = (int)35331L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP1_COEFF_APPLE 35331
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP1_COEFF_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP1_COEFF_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP1_ORDER_APPLE = (int)35332L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP1_ORDER_APPLE 35332
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP1_ORDER_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP1_ORDER_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP1_DOMAIN_APPLE = (int)35333L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP1_DOMAIN_APPLE 35333
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP1_DOMAIN_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP1_DOMAIN_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP2_SIZE_APPLE = (int)35334L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP2_SIZE_APPLE 35334
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP2_SIZE_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP2_SIZE_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP2_COEFF_APPLE = (int)35335L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP2_COEFF_APPLE 35335
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP2_COEFF_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP2_COEFF_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP2_ORDER_APPLE = (int)35336L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP2_ORDER_APPLE 35336
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP2_ORDER_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP2_ORDER_APPLE;
+    }
+    private static final int GL_VERTEX_ATTRIB_MAP2_DOMAIN_APPLE = (int)35337L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_MAP2_DOMAIN_APPLE 35337
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_MAP2_DOMAIN_APPLE() {
+        return GL_VERTEX_ATTRIB_MAP2_DOMAIN_APPLE;
+    }
+    private static final int GL_YCBCR_422_APPLE = (int)34233L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_YCBCR_422_APPLE 34233
+     * }
+     */
+    public static int GL_YCBCR_422_APPLE() {
+        return GL_YCBCR_422_APPLE;
+    }
+    private static final int GL_UNSIGNED_SHORT_8_8_APPLE = (int)34234L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_8_8_APPLE 34234
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_8_8_APPLE() {
+        return GL_UNSIGNED_SHORT_8_8_APPLE;
+    }
+    private static final int GL_UNSIGNED_SHORT_8_8_REV_APPLE = (int)34235L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_8_8_REV_APPLE 34235
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_8_8_REV_APPLE() {
+        return GL_UNSIGNED_SHORT_8_8_REV_APPLE;
+    }
+    private static final int GL_ALPHA_BLEND_EQUATION_ATI = (int)34877L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BLEND_EQUATION_ATI 34877
+     * }
+     */
+    public static int GL_ALPHA_BLEND_EQUATION_ATI() {
+        return GL_ALPHA_BLEND_EQUATION_ATI;
+    }
+    private static final int GL_MIN_WEIGHTED_ATI = (int)34685L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIN_WEIGHTED_ATI 34685
+     * }
+     */
+    public static int GL_MIN_WEIGHTED_ATI() {
+        return GL_MIN_WEIGHTED_ATI;
+    }
+    private static final int GL_MAX_WEIGHTED_ATI = (int)34686L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_WEIGHTED_ATI 34686
+     * }
+     */
+    public static int GL_MAX_WEIGHTED_ATI() {
+        return GL_MAX_WEIGHTED_ATI;
+    }
+    private static final int GL_STENCIL_BACK_FUNC_ATI = (int)34816L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BACK_FUNC_ATI 34816
+     * }
+     */
+    public static int GL_STENCIL_BACK_FUNC_ATI() {
+        return GL_STENCIL_BACK_FUNC_ATI;
+    }
+    private static final int GL_STENCIL_BACK_FAIL_ATI = (int)34817L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BACK_FAIL_ATI 34817
+     * }
+     */
+    public static int GL_STENCIL_BACK_FAIL_ATI() {
+        return GL_STENCIL_BACK_FAIL_ATI;
+    }
+    private static final int GL_STENCIL_BACK_PASS_DEPTH_FAIL_ATI = (int)34818L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BACK_PASS_DEPTH_FAIL_ATI 34818
+     * }
+     */
+    public static int GL_STENCIL_BACK_PASS_DEPTH_FAIL_ATI() {
+        return GL_STENCIL_BACK_PASS_DEPTH_FAIL_ATI;
+    }
+    private static final int GL_STENCIL_BACK_PASS_DEPTH_PASS_ATI = (int)34819L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BACK_PASS_DEPTH_PASS_ATI 34819
+     * }
+     */
+    public static int GL_STENCIL_BACK_PASS_DEPTH_PASS_ATI() {
+        return GL_STENCIL_BACK_PASS_DEPTH_PASS_ATI;
+    }
+    private static final int GL_COMPRESSED_LUMINANCE_ALPHA_3DC_ATI = (int)34871L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_LUMINANCE_ALPHA_3DC_ATI 34871
+     * }
+     */
+    public static int GL_COMPRESSED_LUMINANCE_ALPHA_3DC_ATI() {
+        return GL_COMPRESSED_LUMINANCE_ALPHA_3DC_ATI;
+    }
+    private static final int GL_MODULATE_ADD_ATI = (int)34628L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE_ADD_ATI 34628
+     * }
+     */
+    public static int GL_MODULATE_ADD_ATI() {
+        return GL_MODULATE_ADD_ATI;
+    }
+    private static final int GL_MODULATE_SIGNED_ADD_ATI = (int)34629L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE_SIGNED_ADD_ATI 34629
+     * }
+     */
+    public static int GL_MODULATE_SIGNED_ADD_ATI() {
+        return GL_MODULATE_SIGNED_ADD_ATI;
+    }
+    private static final int GL_MODULATE_SUBTRACT_ATI = (int)34630L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE_SUBTRACT_ATI 34630
+     * }
+     */
+    public static int GL_MODULATE_SUBTRACT_ATI() {
+        return GL_MODULATE_SUBTRACT_ATI;
+    }
+    private static final int GL_RGBA_FLOAT32_ATI = (int)34836L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_FLOAT32_ATI 34836
+     * }
+     */
+    public static int GL_RGBA_FLOAT32_ATI() {
+        return GL_RGBA_FLOAT32_ATI;
+    }
+    private static final int GL_RGB_FLOAT32_ATI = (int)34837L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB_FLOAT32_ATI 34837
+     * }
+     */
+    public static int GL_RGB_FLOAT32_ATI() {
+        return GL_RGB_FLOAT32_ATI;
+    }
+    private static final int GL_ALPHA_FLOAT32_ATI = (int)34838L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_FLOAT32_ATI 34838
+     * }
+     */
+    public static int GL_ALPHA_FLOAT32_ATI() {
+        return GL_ALPHA_FLOAT32_ATI;
+    }
+    private static final int GL_INTENSITY_FLOAT32_ATI = (int)34839L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY_FLOAT32_ATI 34839
+     * }
+     */
+    public static int GL_INTENSITY_FLOAT32_ATI() {
+        return GL_INTENSITY_FLOAT32_ATI;
+    }
+    private static final int GL_LUMINANCE_FLOAT32_ATI = (int)34840L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_FLOAT32_ATI 34840
+     * }
+     */
+    public static int GL_LUMINANCE_FLOAT32_ATI() {
+        return GL_LUMINANCE_FLOAT32_ATI;
+    }
+    private static final int GL_LUMINANCE_ALPHA_FLOAT32_ATI = (int)34841L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA_FLOAT32_ATI 34841
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA_FLOAT32_ATI() {
+        return GL_LUMINANCE_ALPHA_FLOAT32_ATI;
+    }
+    private static final int GL_RGBA_FLOAT16_ATI = (int)34842L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_FLOAT16_ATI 34842
+     * }
+     */
+    public static int GL_RGBA_FLOAT16_ATI() {
+        return GL_RGBA_FLOAT16_ATI;
+    }
+    private static final int GL_RGB_FLOAT16_ATI = (int)34843L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB_FLOAT16_ATI 34843
+     * }
+     */
+    public static int GL_RGB_FLOAT16_ATI() {
+        return GL_RGB_FLOAT16_ATI;
+    }
+    private static final int GL_ALPHA_FLOAT16_ATI = (int)34844L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_FLOAT16_ATI 34844
+     * }
+     */
+    public static int GL_ALPHA_FLOAT16_ATI() {
+        return GL_ALPHA_FLOAT16_ATI;
+    }
+    private static final int GL_INTENSITY_FLOAT16_ATI = (int)34845L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY_FLOAT16_ATI 34845
+     * }
+     */
+    public static int GL_INTENSITY_FLOAT16_ATI() {
+        return GL_INTENSITY_FLOAT16_ATI;
+    }
+    private static final int GL_LUMINANCE_FLOAT16_ATI = (int)34846L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_FLOAT16_ATI 34846
+     * }
+     */
+    public static int GL_LUMINANCE_FLOAT16_ATI() {
+        return GL_LUMINANCE_FLOAT16_ATI;
+    }
+    private static final int GL_LUMINANCE_ALPHA_FLOAT16_ATI = (int)34847L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA_FLOAT16_ATI 34847
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA_FLOAT16_ATI() {
+        return GL_LUMINANCE_ALPHA_FLOAT16_ATI;
+    }
+    private static final int GL_MIRROR_CLAMP_ATI = (int)34626L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIRROR_CLAMP_ATI 34626
+     * }
+     */
+    public static int GL_MIRROR_CLAMP_ATI() {
+        return GL_MIRROR_CLAMP_ATI;
+    }
+    private static final int GL_MIRROR_CLAMP_TO_EDGE_ATI = (int)34627L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIRROR_CLAMP_TO_EDGE_ATI 34627
+     * }
+     */
+    public static int GL_MIRROR_CLAMP_TO_EDGE_ATI() {
+        return GL_MIRROR_CLAMP_TO_EDGE_ATI;
+    }
+    private static final int GL_RASTER_POSITION_UNCLIPPED_IBM = (int)103010L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RASTER_POSITION_UNCLIPPED_IBM 103010
+     * }
+     */
+    public static int GL_RASTER_POSITION_UNCLIPPED_IBM() {
+        return GL_RASTER_POSITION_UNCLIPPED_IBM;
+    }
+    private static final int GL_QUERY_WAIT_NV = (int)36371L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_WAIT_NV 36371
+     * }
+     */
+    public static int GL_QUERY_WAIT_NV() {
+        return GL_QUERY_WAIT_NV;
+    }
+    private static final int GL_QUERY_NO_WAIT_NV = (int)36372L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_NO_WAIT_NV 36372
+     * }
+     */
+    public static int GL_QUERY_NO_WAIT_NV() {
+        return GL_QUERY_NO_WAIT_NV;
+    }
+    private static final int GL_QUERY_BY_REGION_WAIT_NV = (int)36373L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_BY_REGION_WAIT_NV 36373
+     * }
+     */
+    public static int GL_QUERY_BY_REGION_WAIT_NV() {
+        return GL_QUERY_BY_REGION_WAIT_NV;
+    }
+    private static final int GL_QUERY_BY_REGION_NO_WAIT_NV = (int)36374L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_BY_REGION_NO_WAIT_NV 36374
+     * }
+     */
+    public static int GL_QUERY_BY_REGION_NO_WAIT_NV() {
+        return GL_QUERY_BY_REGION_NO_WAIT_NV;
+    }
+    private static final int GL_DEPTH_CLAMP_NV = (int)34383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_CLAMP_NV 34383
+     * }
+     */
+    public static int GL_DEPTH_CLAMP_NV() {
+        return GL_DEPTH_CLAMP_NV;
+    }
+    private static final int GL_FOG_DISTANCE_MODE_NV = (int)34138L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_DISTANCE_MODE_NV 34138
+     * }
+     */
+    public static int GL_FOG_DISTANCE_MODE_NV() {
+        return GL_FOG_DISTANCE_MODE_NV;
+    }
+    private static final int GL_EYE_RADIAL_NV = (int)34139L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_RADIAL_NV 34139
+     * }
+     */
+    public static int GL_EYE_RADIAL_NV() {
+        return GL_EYE_RADIAL_NV;
+    }
+    private static final int GL_EYE_PLANE_ABSOLUTE_NV = (int)34140L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_PLANE_ABSOLUTE_NV 34140
+     * }
+     */
+    public static int GL_EYE_PLANE_ABSOLUTE_NV() {
+        return GL_EYE_PLANE_ABSOLUTE_NV;
+    }
+    private static final int GL_MAX_PROGRAM_IF_DEPTH_NV = (int)35062L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROGRAM_IF_DEPTH_NV 35062
+     * }
+     */
+    public static int GL_MAX_PROGRAM_IF_DEPTH_NV() {
+        return GL_MAX_PROGRAM_IF_DEPTH_NV;
+    }
+    private static final int GL_MAX_PROGRAM_LOOP_DEPTH_NV = (int)35063L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROGRAM_LOOP_DEPTH_NV 35063
+     * }
+     */
+    public static int GL_MAX_PROGRAM_LOOP_DEPTH_NV() {
+        return GL_MAX_PROGRAM_LOOP_DEPTH_NV;
+    }
+    private static final int GL_MAX_PROGRAM_LOOP_COUNT_NV = (int)35064L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROGRAM_LOOP_COUNT_NV 35064
+     * }
+     */
+    public static int GL_MAX_PROGRAM_LOOP_COUNT_NV() {
+        return GL_MAX_PROGRAM_LOOP_COUNT_NV;
+    }
+    private static final int GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV = (int)35060L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV 35060
+     * }
+     */
+    public static int GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV() {
+        return GL_MAX_PROGRAM_EXEC_INSTRUCTIONS_NV;
+    }
+    private static final int GL_MAX_PROGRAM_CALL_DEPTH_NV = (int)35061L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROGRAM_CALL_DEPTH_NV 35061
+     * }
+     */
+    public static int GL_MAX_PROGRAM_CALL_DEPTH_NV() {
+        return GL_MAX_PROGRAM_CALL_DEPTH_NV;
+    }
+    private static final int GL_MAX_SHININESS_NV = (int)34052L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_SHININESS_NV 34052
+     * }
+     */
+    public static int GL_MAX_SHININESS_NV() {
+        return GL_MAX_SHININESS_NV;
+    }
+    private static final int GL_MAX_SPOT_EXPONENT_NV = (int)34053L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_SPOT_EXPONENT_NV 34053
+     * }
+     */
+    public static int GL_MAX_SPOT_EXPONENT_NV() {
+        return GL_MAX_SPOT_EXPONENT_NV;
+    }
+    private static final int GL_MULTISAMPLE_FILTER_HINT_NV = (int)34100L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MULTISAMPLE_FILTER_HINT_NV 34100
+     * }
+     */
+    public static int GL_MULTISAMPLE_FILTER_HINT_NV() {
+        return GL_MULTISAMPLE_FILTER_HINT_NV;
+    }
+    private static final int GL_POINT_SPRITE_NV = (int)34913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SPRITE_NV 34913
+     * }
+     */
+    public static int GL_POINT_SPRITE_NV() {
+        return GL_POINT_SPRITE_NV;
+    }
+    private static final int GL_COORD_REPLACE_NV = (int)34914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COORD_REPLACE_NV 34914
+     * }
+     */
+    public static int GL_COORD_REPLACE_NV() {
+        return GL_COORD_REPLACE_NV;
+    }
+    private static final int GL_POINT_SPRITE_R_MODE_NV = (int)34915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SPRITE_R_MODE_NV 34915
+     * }
+     */
+    public static int GL_POINT_SPRITE_R_MODE_NV() {
+        return GL_POINT_SPRITE_R_MODE_NV;
+    }
+    private static final int GL_NORMAL_MAP_NV = (int)34065L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_MAP_NV 34065
+     * }
+     */
+    public static int GL_NORMAL_MAP_NV() {
+        return GL_NORMAL_MAP_NV;
+    }
+    private static final int GL_REFLECTION_MAP_NV = (int)34066L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REFLECTION_MAP_NV 34066
+     * }
+     */
+    public static int GL_REFLECTION_MAP_NV() {
+        return GL_REFLECTION_MAP_NV;
+    }
+    private static final int GL_COLOR_MATRIX_SGI = (int)32945L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATRIX_SGI 32945
+     * }
+     */
+    public static int GL_COLOR_MATRIX_SGI() {
+        return GL_COLOR_MATRIX_SGI;
+    }
+    private static final int GL_COLOR_MATRIX_STACK_DEPTH_SGI = (int)32946L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATRIX_STACK_DEPTH_SGI 32946
+     * }
+     */
+    public static int GL_COLOR_MATRIX_STACK_DEPTH_SGI() {
+        return GL_COLOR_MATRIX_STACK_DEPTH_SGI;
+    }
+    private static final int GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI = (int)32947L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI 32947
+     * }
+     */
+    public static int GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI() {
+        return GL_MAX_COLOR_MATRIX_STACK_DEPTH_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_RED_SCALE_SGI = (int)32948L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_RED_SCALE_SGI 32948
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_RED_SCALE_SGI() {
+        return GL_POST_COLOR_MATRIX_RED_SCALE_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI = (int)32949L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI 32949
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI() {
+        return GL_POST_COLOR_MATRIX_GREEN_SCALE_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI = (int)32950L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI 32950
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI() {
+        return GL_POST_COLOR_MATRIX_BLUE_SCALE_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI = (int)32951L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI 32951
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI() {
+        return GL_POST_COLOR_MATRIX_ALPHA_SCALE_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_RED_BIAS_SGI = (int)32952L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_RED_BIAS_SGI 32952
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_RED_BIAS_SGI() {
+        return GL_POST_COLOR_MATRIX_RED_BIAS_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI = (int)32953L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI 32953
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI() {
+        return GL_POST_COLOR_MATRIX_GREEN_BIAS_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI = (int)32954L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI 32954
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI() {
+        return GL_POST_COLOR_MATRIX_BLUE_BIAS_SGI;
+    }
+    private static final int GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI = (int)32955L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI 32955
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI() {
+        return GL_POST_COLOR_MATRIX_ALPHA_BIAS_SGI;
+    }
+    private static final int GL_GENERATE_MIPMAP_SGIS = (int)33169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GENERATE_MIPMAP_SGIS 33169
+     * }
+     */
+    public static int GL_GENERATE_MIPMAP_SGIS() {
+        return GL_GENERATE_MIPMAP_SGIS;
+    }
+    private static final int GL_GENERATE_MIPMAP_HINT_SGIS = (int)33170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GENERATE_MIPMAP_HINT_SGIS 33170
+     * }
+     */
+    public static int GL_GENERATE_MIPMAP_HINT_SGIS() {
+        return GL_GENERATE_MIPMAP_HINT_SGIS;
+    }
+    private static final int GL_CLAMP_TO_EDGE_SGIS = (int)33071L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP_TO_EDGE_SGIS 33071
+     * }
+     */
+    public static int GL_CLAMP_TO_EDGE_SGIS() {
+        return GL_CLAMP_TO_EDGE_SGIS;
+    }
+    private static final int GL_TEXTURE_MIN_LOD_SGIS = (int)33082L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MIN_LOD_SGIS 33082
+     * }
+     */
+    public static int GL_TEXTURE_MIN_LOD_SGIS() {
+        return GL_TEXTURE_MIN_LOD_SGIS;
+    }
+    private static final int GL_TEXTURE_MAX_LOD_SGIS = (int)33083L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAX_LOD_SGIS 33083
+     * }
+     */
+    public static int GL_TEXTURE_MAX_LOD_SGIS() {
+        return GL_TEXTURE_MAX_LOD_SGIS;
+    }
+    private static final int GL_TEXTURE_BASE_LEVEL_SGIS = (int)33084L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BASE_LEVEL_SGIS 33084
+     * }
+     */
+    public static int GL_TEXTURE_BASE_LEVEL_SGIS() {
+        return GL_TEXTURE_BASE_LEVEL_SGIS;
+    }
+    private static final int GL_TEXTURE_MAX_LEVEL_SGIS = (int)33085L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAX_LEVEL_SGIS 33085
+     * }
+     */
+    public static int GL_TEXTURE_MAX_LEVEL_SGIS() {
+        return GL_TEXTURE_MAX_LEVEL_SGIS;
+    }
+    private static final int GL_VERSION_1_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_1 1
+     * }
+     */
+    public static int GL_VERSION_1_1() {
+        return GL_VERSION_1_1;
+    }
+    private static final int GL_VERSION_1_2 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_2 1
+     * }
+     */
+    public static int GL_VERSION_1_2() {
+        return GL_VERSION_1_2;
+    }
+    private static final int GL_VERSION_1_3 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_3 1
+     * }
+     */
+    public static int GL_VERSION_1_3() {
+        return GL_VERSION_1_3;
+    }
+    private static final int GL_VERSION_1_4 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_4 1
+     * }
+     */
+    public static int GL_VERSION_1_4() {
+        return GL_VERSION_1_4;
+    }
+    private static final int GL_VERSION_1_5 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_1_5 1
+     * }
+     */
+    public static int GL_VERSION_1_5() {
+        return GL_VERSION_1_5;
+    }
+    private static final int GL_VERSION_2_0 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_2_0 1
+     * }
+     */
+    public static int GL_VERSION_2_0() {
+        return GL_VERSION_2_0;
+    }
+    private static final int GL_VERSION_2_1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION_2_1 1
+     * }
+     */
+    public static int GL_VERSION_2_1() {
+        return GL_VERSION_2_1;
+    }
+    private static final int GL_ACCUM = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM 256
+     * }
+     */
+    public static int GL_ACCUM() {
+        return GL_ACCUM;
+    }
+    private static final int GL_LOAD = (int)257L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOAD 257
+     * }
+     */
+    public static int GL_LOAD() {
+        return GL_LOAD;
+    }
+    private static final int GL_RETURN = (int)258L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RETURN 258
+     * }
+     */
+    public static int GL_RETURN() {
+        return GL_RETURN;
+    }
+    private static final int GL_MULT = (int)259L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MULT 259
+     * }
+     */
+    public static int GL_MULT() {
+        return GL_MULT;
+    }
+    private static final int GL_ADD = (int)260L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ADD 260
+     * }
+     */
+    public static int GL_ADD() {
+        return GL_ADD;
+    }
+    private static final int GL_NEVER = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEVER 512
+     * }
+     */
+    public static int GL_NEVER() {
+        return GL_NEVER;
+    }
+    private static final int GL_LESS = (int)513L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LESS 513
+     * }
+     */
+    public static int GL_LESS() {
+        return GL_LESS;
+    }
+    private static final int GL_EQUAL = (int)514L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EQUAL 514
+     * }
+     */
+    public static int GL_EQUAL() {
+        return GL_EQUAL;
+    }
+    private static final int GL_LEQUAL = (int)515L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LEQUAL 515
+     * }
+     */
+    public static int GL_LEQUAL() {
+        return GL_LEQUAL;
+    }
+    private static final int GL_GREATER = (int)516L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREATER 516
+     * }
+     */
+    public static int GL_GREATER() {
+        return GL_GREATER;
+    }
+    private static final int GL_NOTEQUAL = (int)517L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOTEQUAL 517
+     * }
+     */
+    public static int GL_NOTEQUAL() {
+        return GL_NOTEQUAL;
+    }
+    private static final int GL_GEQUAL = (int)518L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GEQUAL 518
+     * }
+     */
+    public static int GL_GEQUAL() {
+        return GL_GEQUAL;
+    }
+    private static final int GL_ALWAYS = (int)519L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALWAYS 519
+     * }
+     */
+    public static int GL_ALWAYS() {
+        return GL_ALWAYS;
+    }
+    private static final int GL_CURRENT_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_BIT 1
+     * }
+     */
+    public static int GL_CURRENT_BIT() {
+        return GL_CURRENT_BIT;
+    }
+    private static final int GL_POINT_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_BIT 2
+     * }
+     */
+    public static int GL_POINT_BIT() {
+        return GL_POINT_BIT;
+    }
+    private static final int GL_LINE_BIT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_BIT 4
+     * }
+     */
+    public static int GL_LINE_BIT() {
+        return GL_LINE_BIT;
+    }
+    private static final int GL_POLYGON_BIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_BIT 8
+     * }
+     */
+    public static int GL_POLYGON_BIT() {
+        return GL_POLYGON_BIT;
+    }
+    private static final int GL_POLYGON_STIPPLE_BIT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_STIPPLE_BIT 16
+     * }
+     */
+    public static int GL_POLYGON_STIPPLE_BIT() {
+        return GL_POLYGON_STIPPLE_BIT;
+    }
+    private static final int GL_PIXEL_MODE_BIT = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MODE_BIT 32
+     * }
+     */
+    public static int GL_PIXEL_MODE_BIT() {
+        return GL_PIXEL_MODE_BIT;
+    }
+    private static final int GL_LIGHTING_BIT = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHTING_BIT 64
+     * }
+     */
+    public static int GL_LIGHTING_BIT() {
+        return GL_LIGHTING_BIT;
+    }
+    private static final int GL_FOG_BIT = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_BIT 128
+     * }
+     */
+    public static int GL_FOG_BIT() {
+        return GL_FOG_BIT;
+    }
+    private static final int GL_DEPTH_BUFFER_BIT = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BUFFER_BIT 256
+     * }
+     */
+    public static int GL_DEPTH_BUFFER_BIT() {
+        return GL_DEPTH_BUFFER_BIT;
+    }
+    private static final int GL_ACCUM_BUFFER_BIT = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_BUFFER_BIT 512
+     * }
+     */
+    public static int GL_ACCUM_BUFFER_BIT() {
+        return GL_ACCUM_BUFFER_BIT;
+    }
+    private static final int GL_STENCIL_BUFFER_BIT = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BUFFER_BIT 1024
+     * }
+     */
+    public static int GL_STENCIL_BUFFER_BIT() {
+        return GL_STENCIL_BUFFER_BIT;
+    }
+    private static final int GL_VIEWPORT_BIT = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VIEWPORT_BIT 2048
+     * }
+     */
+    public static int GL_VIEWPORT_BIT() {
+        return GL_VIEWPORT_BIT;
+    }
+    private static final int GL_TRANSFORM_BIT = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSFORM_BIT 4096
+     * }
+     */
+    public static int GL_TRANSFORM_BIT() {
+        return GL_TRANSFORM_BIT;
+    }
+    private static final int GL_ENABLE_BIT = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ENABLE_BIT 8192
+     * }
+     */
+    public static int GL_ENABLE_BIT() {
+        return GL_ENABLE_BIT;
+    }
+    private static final int GL_COLOR_BUFFER_BIT = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_BUFFER_BIT 16384
+     * }
+     */
+    public static int GL_COLOR_BUFFER_BIT() {
+        return GL_COLOR_BUFFER_BIT;
+    }
+    private static final int GL_HINT_BIT = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HINT_BIT 32768
+     * }
+     */
+    public static int GL_HINT_BIT() {
+        return GL_HINT_BIT;
+    }
+    private static final int GL_EVAL_BIT = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EVAL_BIT 65536
+     * }
+     */
+    public static int GL_EVAL_BIT() {
+        return GL_EVAL_BIT;
+    }
+    private static final int GL_LIST_BIT = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_BIT 131072
+     * }
+     */
+    public static int GL_LIST_BIT() {
+        return GL_LIST_BIT;
+    }
+    private static final int GL_TEXTURE_BIT = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BIT 262144
+     * }
+     */
+    public static int GL_TEXTURE_BIT() {
+        return GL_TEXTURE_BIT;
+    }
+    private static final int GL_SCISSOR_BIT = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_BIT 524288
+     * }
+     */
+    public static int GL_SCISSOR_BIT() {
+        return GL_SCISSOR_BIT;
+    }
+    private static final int GL_ALL_ATTRIB_BITS = (int)1048575L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALL_ATTRIB_BITS 1048575
+     * }
+     */
+    public static int GL_ALL_ATTRIB_BITS() {
+        return GL_ALL_ATTRIB_BITS;
+    }
+    private static final int GL_POINTS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINTS 0
+     * }
+     */
+    public static int GL_POINTS() {
+        return GL_POINTS;
+    }
+    private static final int GL_LINES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINES 1
+     * }
+     */
+    public static int GL_LINES() {
+        return GL_LINES;
+    }
+    private static final int GL_LINE_LOOP = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_LOOP 2
+     * }
+     */
+    public static int GL_LINE_LOOP() {
+        return GL_LINE_LOOP;
+    }
+    private static final int GL_LINE_STRIP = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STRIP 3
+     * }
+     */
+    public static int GL_LINE_STRIP() {
+        return GL_LINE_STRIP;
+    }
+    private static final int GL_TRIANGLES = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLES 4
+     * }
+     */
+    public static int GL_TRIANGLES() {
+        return GL_TRIANGLES;
+    }
+    private static final int GL_TRIANGLE_STRIP = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLE_STRIP 5
+     * }
+     */
+    public static int GL_TRIANGLE_STRIP() {
+        return GL_TRIANGLE_STRIP;
+    }
+    private static final int GL_TRIANGLE_FAN = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRIANGLE_FAN 6
+     * }
+     */
+    public static int GL_TRIANGLE_FAN() {
+        return GL_TRIANGLE_FAN;
+    }
+    private static final int GL_QUADS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUADS 7
+     * }
+     */
+    public static int GL_QUADS() {
+        return GL_QUADS;
+    }
+    private static final int GL_QUAD_STRIP = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUAD_STRIP 8
+     * }
+     */
+    public static int GL_QUAD_STRIP() {
+        return GL_QUAD_STRIP;
+    }
+    private static final int GL_POLYGON = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON 9
+     * }
+     */
+    public static int GL_POLYGON() {
+        return GL_POLYGON;
+    }
+    private static final int GL_ZERO = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZERO 0
+     * }
+     */
+    public static int GL_ZERO() {
+        return GL_ZERO;
+    }
+    private static final int GL_ONE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE 1
+     * }
+     */
+    public static int GL_ONE() {
+        return GL_ONE;
+    }
+    private static final int GL_SRC_COLOR = (int)768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_COLOR 768
+     * }
+     */
+    public static int GL_SRC_COLOR() {
+        return GL_SRC_COLOR;
+    }
+    private static final int GL_ONE_MINUS_SRC_COLOR = (int)769L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_SRC_COLOR 769
+     * }
+     */
+    public static int GL_ONE_MINUS_SRC_COLOR() {
+        return GL_ONE_MINUS_SRC_COLOR;
+    }
+    private static final int GL_SRC_ALPHA = (int)770L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_ALPHA 770
+     * }
+     */
+    public static int GL_SRC_ALPHA() {
+        return GL_SRC_ALPHA;
+    }
+    private static final int GL_ONE_MINUS_SRC_ALPHA = (int)771L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_SRC_ALPHA 771
+     * }
+     */
+    public static int GL_ONE_MINUS_SRC_ALPHA() {
+        return GL_ONE_MINUS_SRC_ALPHA;
+    }
+    private static final int GL_DST_ALPHA = (int)772L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DST_ALPHA 772
+     * }
+     */
+    public static int GL_DST_ALPHA() {
+        return GL_DST_ALPHA;
+    }
+    private static final int GL_ONE_MINUS_DST_ALPHA = (int)773L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_DST_ALPHA 773
+     * }
+     */
+    public static int GL_ONE_MINUS_DST_ALPHA() {
+        return GL_ONE_MINUS_DST_ALPHA;
+    }
+    private static final int GL_DST_COLOR = (int)774L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DST_COLOR 774
+     * }
+     */
+    public static int GL_DST_COLOR() {
+        return GL_DST_COLOR;
+    }
+    private static final int GL_ONE_MINUS_DST_COLOR = (int)775L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_DST_COLOR 775
+     * }
+     */
+    public static int GL_ONE_MINUS_DST_COLOR() {
+        return GL_ONE_MINUS_DST_COLOR;
+    }
+    private static final int GL_SRC_ALPHA_SATURATE = (int)776L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC_ALPHA_SATURATE 776
+     * }
+     */
+    public static int GL_SRC_ALPHA_SATURATE() {
+        return GL_SRC_ALPHA_SATURATE;
+    }
+    private static final int GL_TRUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRUE 1
+     * }
+     */
+    public static int GL_TRUE() {
+        return GL_TRUE;
+    }
+    private static final int GL_FALSE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FALSE 0
+     * }
+     */
+    public static int GL_FALSE() {
+        return GL_FALSE;
+    }
+    private static final int GL_CLIP_PLANE0 = (int)12288L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE0 12288
+     * }
+     */
+    public static int GL_CLIP_PLANE0() {
+        return GL_CLIP_PLANE0;
+    }
+    private static final int GL_CLIP_PLANE1 = (int)12289L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE1 12289
+     * }
+     */
+    public static int GL_CLIP_PLANE1() {
+        return GL_CLIP_PLANE1;
+    }
+    private static final int GL_CLIP_PLANE2 = (int)12290L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE2 12290
+     * }
+     */
+    public static int GL_CLIP_PLANE2() {
+        return GL_CLIP_PLANE2;
+    }
+    private static final int GL_CLIP_PLANE3 = (int)12291L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE3 12291
+     * }
+     */
+    public static int GL_CLIP_PLANE3() {
+        return GL_CLIP_PLANE3;
+    }
+    private static final int GL_CLIP_PLANE4 = (int)12292L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE4 12292
+     * }
+     */
+    public static int GL_CLIP_PLANE4() {
+        return GL_CLIP_PLANE4;
+    }
+    private static final int GL_CLIP_PLANE5 = (int)12293L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIP_PLANE5 12293
+     * }
+     */
+    public static int GL_CLIP_PLANE5() {
+        return GL_CLIP_PLANE5;
+    }
+    private static final int GL_BYTE = (int)5120L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BYTE 5120
+     * }
+     */
+    public static int GL_BYTE() {
+        return GL_BYTE;
+    }
+    private static final int GL_UNSIGNED_BYTE = (int)5121L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_BYTE 5121
+     * }
+     */
+    public static int GL_UNSIGNED_BYTE() {
+        return GL_UNSIGNED_BYTE;
+    }
+    private static final int GL_SHORT = (int)5122L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHORT 5122
+     * }
+     */
+    public static int GL_SHORT() {
+        return GL_SHORT;
+    }
+    private static final int GL_UNSIGNED_SHORT = (int)5123L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT 5123
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT() {
+        return GL_UNSIGNED_SHORT;
+    }
+    private static final int GL_INT = (int)5124L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INT 5124
+     * }
+     */
+    public static int GL_INT() {
+        return GL_INT;
+    }
+    private static final int GL_UNSIGNED_INT = (int)5125L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT 5125
+     * }
+     */
+    public static int GL_UNSIGNED_INT() {
+        return GL_UNSIGNED_INT;
+    }
+    private static final int GL_FLOAT = (int)5126L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT 5126
+     * }
+     */
+    public static int GL_FLOAT() {
+        return GL_FLOAT;
+    }
+    private static final int GL_2_BYTES = (int)5127L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_2_BYTES 5127
+     * }
+     */
+    public static int GL_2_BYTES() {
+        return GL_2_BYTES;
+    }
+    private static final int GL_3_BYTES = (int)5128L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3_BYTES 5128
+     * }
+     */
+    public static int GL_3_BYTES() {
+        return GL_3_BYTES;
+    }
+    private static final int GL_4_BYTES = (int)5129L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_4_BYTES 5129
+     * }
+     */
+    public static int GL_4_BYTES() {
+        return GL_4_BYTES;
+    }
+    private static final int GL_DOUBLE = (int)5130L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLE 5130
+     * }
+     */
+    public static int GL_DOUBLE() {
+        return GL_DOUBLE;
+    }
+    private static final int GL_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NONE 0
+     * }
+     */
+    public static int GL_NONE() {
+        return GL_NONE;
+    }
+    private static final int GL_FRONT_LEFT = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_LEFT 1024
+     * }
+     */
+    public static int GL_FRONT_LEFT() {
+        return GL_FRONT_LEFT;
+    }
+    private static final int GL_FRONT_RIGHT = (int)1025L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_RIGHT 1025
+     * }
+     */
+    public static int GL_FRONT_RIGHT() {
+        return GL_FRONT_RIGHT;
+    }
+    private static final int GL_BACK_LEFT = (int)1026L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK_LEFT 1026
+     * }
+     */
+    public static int GL_BACK_LEFT() {
+        return GL_BACK_LEFT;
+    }
+    private static final int GL_BACK_RIGHT = (int)1027L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK_RIGHT 1027
+     * }
+     */
+    public static int GL_BACK_RIGHT() {
+        return GL_BACK_RIGHT;
+    }
+    private static final int GL_FRONT = (int)1028L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT 1028
+     * }
+     */
+    public static int GL_FRONT() {
+        return GL_FRONT;
+    }
+    private static final int GL_BACK = (int)1029L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BACK 1029
+     * }
+     */
+    public static int GL_BACK() {
+        return GL_BACK;
+    }
+    private static final int GL_LEFT = (int)1030L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LEFT 1030
+     * }
+     */
+    public static int GL_LEFT() {
+        return GL_LEFT;
+    }
+    private static final int GL_RIGHT = (int)1031L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RIGHT 1031
+     * }
+     */
+    public static int GL_RIGHT() {
+        return GL_RIGHT;
+    }
+    private static final int GL_FRONT_AND_BACK = (int)1032L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_AND_BACK 1032
+     * }
+     */
+    public static int GL_FRONT_AND_BACK() {
+        return GL_FRONT_AND_BACK;
+    }
+    private static final int GL_AUX0 = (int)1033L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX0 1033
+     * }
+     */
+    public static int GL_AUX0() {
+        return GL_AUX0;
+    }
+    private static final int GL_AUX1 = (int)1034L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX1 1034
+     * }
+     */
+    public static int GL_AUX1() {
+        return GL_AUX1;
+    }
+    private static final int GL_AUX2 = (int)1035L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX2 1035
+     * }
+     */
+    public static int GL_AUX2() {
+        return GL_AUX2;
+    }
+    private static final int GL_AUX3 = (int)1036L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX3 1036
+     * }
+     */
+    public static int GL_AUX3() {
+        return GL_AUX3;
+    }
+    private static final int GL_NO_ERROR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NO_ERROR 0
+     * }
+     */
+    public static int GL_NO_ERROR() {
+        return GL_NO_ERROR;
+    }
+    private static final int GL_INVALID_ENUM = (int)1280L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_ENUM 1280
+     * }
+     */
+    public static int GL_INVALID_ENUM() {
+        return GL_INVALID_ENUM;
+    }
+    private static final int GL_INVALID_VALUE = (int)1281L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_VALUE 1281
+     * }
+     */
+    public static int GL_INVALID_VALUE() {
+        return GL_INVALID_VALUE;
+    }
+    private static final int GL_INVALID_OPERATION = (int)1282L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVALID_OPERATION 1282
+     * }
+     */
+    public static int GL_INVALID_OPERATION() {
+        return GL_INVALID_OPERATION;
+    }
+    private static final int GL_STACK_OVERFLOW = (int)1283L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STACK_OVERFLOW 1283
+     * }
+     */
+    public static int GL_STACK_OVERFLOW() {
+        return GL_STACK_OVERFLOW;
+    }
+    private static final int GL_STACK_UNDERFLOW = (int)1284L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STACK_UNDERFLOW 1284
+     * }
+     */
+    public static int GL_STACK_UNDERFLOW() {
+        return GL_STACK_UNDERFLOW;
+    }
+    private static final int GL_OUT_OF_MEMORY = (int)1285L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OUT_OF_MEMORY 1285
+     * }
+     */
+    public static int GL_OUT_OF_MEMORY() {
+        return GL_OUT_OF_MEMORY;
+    }
+    private static final int GL_2D = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_2D 1536
+     * }
+     */
+    public static int GL_2D() {
+        return GL_2D;
+    }
+    private static final int GL_3D = (int)1537L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D 1537
+     * }
+     */
+    public static int GL_3D() {
+        return GL_3D;
+    }
+    private static final int GL_3D_COLOR = (int)1538L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D_COLOR 1538
+     * }
+     */
+    public static int GL_3D_COLOR() {
+        return GL_3D_COLOR;
+    }
+    private static final int GL_3D_COLOR_TEXTURE = (int)1539L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_3D_COLOR_TEXTURE 1539
+     * }
+     */
+    public static int GL_3D_COLOR_TEXTURE() {
+        return GL_3D_COLOR_TEXTURE;
+    }
+    private static final int GL_4D_COLOR_TEXTURE = (int)1540L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_4D_COLOR_TEXTURE 1540
+     * }
+     */
+    public static int GL_4D_COLOR_TEXTURE() {
+        return GL_4D_COLOR_TEXTURE;
+    }
+    private static final int GL_PASS_THROUGH_TOKEN = (int)1792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PASS_THROUGH_TOKEN 1792
+     * }
+     */
+    public static int GL_PASS_THROUGH_TOKEN() {
+        return GL_PASS_THROUGH_TOKEN;
+    }
+    private static final int GL_POINT_TOKEN = (int)1793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_TOKEN 1793
+     * }
+     */
+    public static int GL_POINT_TOKEN() {
+        return GL_POINT_TOKEN;
+    }
+    private static final int GL_LINE_TOKEN = (int)1794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_TOKEN 1794
+     * }
+     */
+    public static int GL_LINE_TOKEN() {
+        return GL_LINE_TOKEN;
+    }
+    private static final int GL_POLYGON_TOKEN = (int)1795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_TOKEN 1795
+     * }
+     */
+    public static int GL_POLYGON_TOKEN() {
+        return GL_POLYGON_TOKEN;
+    }
+    private static final int GL_BITMAP_TOKEN = (int)1796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BITMAP_TOKEN 1796
+     * }
+     */
+    public static int GL_BITMAP_TOKEN() {
+        return GL_BITMAP_TOKEN;
+    }
+    private static final int GL_DRAW_PIXEL_TOKEN = (int)1797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DRAW_PIXEL_TOKEN 1797
+     * }
+     */
+    public static int GL_DRAW_PIXEL_TOKEN() {
+        return GL_DRAW_PIXEL_TOKEN;
+    }
+    private static final int GL_COPY_PIXEL_TOKEN = (int)1798L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY_PIXEL_TOKEN 1798
+     * }
+     */
+    public static int GL_COPY_PIXEL_TOKEN() {
+        return GL_COPY_PIXEL_TOKEN;
+    }
+    private static final int GL_LINE_RESET_TOKEN = (int)1799L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_RESET_TOKEN 1799
+     * }
+     */
+    public static int GL_LINE_RESET_TOKEN() {
+        return GL_LINE_RESET_TOKEN;
+    }
+    private static final int GL_EXP = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXP 2048
+     * }
+     */
+    public static int GL_EXP() {
+        return GL_EXP;
+    }
+    private static final int GL_EXP2 = (int)2049L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXP2 2049
+     * }
+     */
+    public static int GL_EXP2() {
+        return GL_EXP2;
+    }
+    private static final int GL_CW = (int)2304L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CW 2304
+     * }
+     */
+    public static int GL_CW() {
+        return GL_CW;
+    }
+    private static final int GL_CCW = (int)2305L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CCW 2305
+     * }
+     */
+    public static int GL_CCW() {
+        return GL_CCW;
+    }
+    private static final int GL_COEFF = (int)2560L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COEFF 2560
+     * }
+     */
+    public static int GL_COEFF() {
+        return GL_COEFF;
+    }
+    private static final int GL_ORDER = (int)2561L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ORDER 2561
+     * }
+     */
+    public static int GL_ORDER() {
+        return GL_ORDER;
+    }
+    private static final int GL_DOMAIN = (int)2562L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOMAIN 2562
+     * }
+     */
+    public static int GL_DOMAIN() {
+        return GL_DOMAIN;
+    }
+    private static final int GL_CURRENT_COLOR = (int)2816L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_COLOR 2816
+     * }
+     */
+    public static int GL_CURRENT_COLOR() {
+        return GL_CURRENT_COLOR;
+    }
+    private static final int GL_CURRENT_INDEX = (int)2817L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_INDEX 2817
+     * }
+     */
+    public static int GL_CURRENT_INDEX() {
+        return GL_CURRENT_INDEX;
+    }
+    private static final int GL_CURRENT_NORMAL = (int)2818L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_NORMAL 2818
+     * }
+     */
+    public static int GL_CURRENT_NORMAL() {
+        return GL_CURRENT_NORMAL;
+    }
+    private static final int GL_CURRENT_TEXTURE_COORDS = (int)2819L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_TEXTURE_COORDS 2819
+     * }
+     */
+    public static int GL_CURRENT_TEXTURE_COORDS() {
+        return GL_CURRENT_TEXTURE_COORDS;
+    }
+    private static final int GL_CURRENT_RASTER_COLOR = (int)2820L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_COLOR 2820
+     * }
+     */
+    public static int GL_CURRENT_RASTER_COLOR() {
+        return GL_CURRENT_RASTER_COLOR;
+    }
+    private static final int GL_CURRENT_RASTER_INDEX = (int)2821L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_INDEX 2821
+     * }
+     */
+    public static int GL_CURRENT_RASTER_INDEX() {
+        return GL_CURRENT_RASTER_INDEX;
+    }
+    private static final int GL_CURRENT_RASTER_TEXTURE_COORDS = (int)2822L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_TEXTURE_COORDS 2822
+     * }
+     */
+    public static int GL_CURRENT_RASTER_TEXTURE_COORDS() {
+        return GL_CURRENT_RASTER_TEXTURE_COORDS;
+    }
+    private static final int GL_CURRENT_RASTER_POSITION = (int)2823L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_POSITION 2823
+     * }
+     */
+    public static int GL_CURRENT_RASTER_POSITION() {
+        return GL_CURRENT_RASTER_POSITION;
+    }
+    private static final int GL_CURRENT_RASTER_POSITION_VALID = (int)2824L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_POSITION_VALID 2824
+     * }
+     */
+    public static int GL_CURRENT_RASTER_POSITION_VALID() {
+        return GL_CURRENT_RASTER_POSITION_VALID;
+    }
+    private static final int GL_CURRENT_RASTER_DISTANCE = (int)2825L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_RASTER_DISTANCE 2825
+     * }
+     */
+    public static int GL_CURRENT_RASTER_DISTANCE() {
+        return GL_CURRENT_RASTER_DISTANCE;
+    }
+    private static final int GL_POINT_SMOOTH = (int)2832L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SMOOTH 2832
+     * }
+     */
+    public static int GL_POINT_SMOOTH() {
+        return GL_POINT_SMOOTH;
+    }
+    private static final int GL_POINT_SIZE = (int)2833L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE 2833
+     * }
+     */
+    public static int GL_POINT_SIZE() {
+        return GL_POINT_SIZE;
+    }
+    private static final int GL_POINT_SIZE_RANGE = (int)2834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_RANGE 2834
+     * }
+     */
+    public static int GL_POINT_SIZE_RANGE() {
+        return GL_POINT_SIZE_RANGE;
+    }
+    private static final int GL_POINT_SIZE_GRANULARITY = (int)2835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_GRANULARITY 2835
+     * }
+     */
+    public static int GL_POINT_SIZE_GRANULARITY() {
+        return GL_POINT_SIZE_GRANULARITY;
+    }
+    private static final int GL_LINE_SMOOTH = (int)2848L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_SMOOTH 2848
+     * }
+     */
+    public static int GL_LINE_SMOOTH() {
+        return GL_LINE_SMOOTH;
+    }
+    private static final int GL_LINE_WIDTH = (int)2849L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH 2849
+     * }
+     */
+    public static int GL_LINE_WIDTH() {
+        return GL_LINE_WIDTH;
+    }
+    private static final int GL_LINE_WIDTH_RANGE = (int)2850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH_RANGE 2850
+     * }
+     */
+    public static int GL_LINE_WIDTH_RANGE() {
+        return GL_LINE_WIDTH_RANGE;
+    }
+    private static final int GL_LINE_WIDTH_GRANULARITY = (int)2851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_WIDTH_GRANULARITY 2851
+     * }
+     */
+    public static int GL_LINE_WIDTH_GRANULARITY() {
+        return GL_LINE_WIDTH_GRANULARITY;
+    }
+    private static final int GL_LINE_STIPPLE = (int)2852L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE 2852
+     * }
+     */
+    public static int GL_LINE_STIPPLE() {
+        return GL_LINE_STIPPLE;
+    }
+    private static final int GL_LINE_STIPPLE_PATTERN = (int)2853L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE_PATTERN 2853
+     * }
+     */
+    public static int GL_LINE_STIPPLE_PATTERN() {
+        return GL_LINE_STIPPLE_PATTERN;
+    }
+    private static final int GL_LINE_STIPPLE_REPEAT = (int)2854L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_STIPPLE_REPEAT 2854
+     * }
+     */
+    public static int GL_LINE_STIPPLE_REPEAT() {
+        return GL_LINE_STIPPLE_REPEAT;
+    }
+    private static final int GL_LIST_MODE = (int)2864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_MODE 2864
+     * }
+     */
+    public static int GL_LIST_MODE() {
+        return GL_LIST_MODE;
+    }
+    private static final int GL_MAX_LIST_NESTING = (int)2865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_LIST_NESTING 2865
+     * }
+     */
+    public static int GL_MAX_LIST_NESTING() {
+        return GL_MAX_LIST_NESTING;
+    }
+    private static final int GL_LIST_BASE = (int)2866L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_BASE 2866
+     * }
+     */
+    public static int GL_LIST_BASE() {
+        return GL_LIST_BASE;
+    }
+    private static final int GL_LIST_INDEX = (int)2867L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIST_INDEX 2867
+     * }
+     */
+    public static int GL_LIST_INDEX() {
+        return GL_LIST_INDEX;
+    }
+    private static final int GL_POLYGON_MODE = (int)2880L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_MODE 2880
+     * }
+     */
+    public static int GL_POLYGON_MODE() {
+        return GL_POLYGON_MODE;
+    }
+    private static final int GL_POLYGON_SMOOTH = (int)2881L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_SMOOTH 2881
+     * }
+     */
+    public static int GL_POLYGON_SMOOTH() {
+        return GL_POLYGON_SMOOTH;
+    }
+    private static final int GL_POLYGON_STIPPLE = (int)2882L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_STIPPLE 2882
+     * }
+     */
+    public static int GL_POLYGON_STIPPLE() {
+        return GL_POLYGON_STIPPLE;
+    }
+    private static final int GL_EDGE_FLAG = (int)2883L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG 2883
+     * }
+     */
+    public static int GL_EDGE_FLAG() {
+        return GL_EDGE_FLAG;
+    }
+    private static final int GL_CULL_FACE = (int)2884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CULL_FACE 2884
+     * }
+     */
+    public static int GL_CULL_FACE() {
+        return GL_CULL_FACE;
+    }
+    private static final int GL_CULL_FACE_MODE = (int)2885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CULL_FACE_MODE 2885
+     * }
+     */
+    public static int GL_CULL_FACE_MODE() {
+        return GL_CULL_FACE_MODE;
+    }
+    private static final int GL_FRONT_FACE = (int)2886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRONT_FACE 2886
+     * }
+     */
+    public static int GL_FRONT_FACE() {
+        return GL_FRONT_FACE;
+    }
+    private static final int GL_LIGHTING = (int)2896L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHTING 2896
+     * }
+     */
+    public static int GL_LIGHTING() {
+        return GL_LIGHTING;
+    }
+    private static final int GL_LIGHT_MODEL_LOCAL_VIEWER = (int)2897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_LOCAL_VIEWER 2897
+     * }
+     */
+    public static int GL_LIGHT_MODEL_LOCAL_VIEWER() {
+        return GL_LIGHT_MODEL_LOCAL_VIEWER;
+    }
+    private static final int GL_LIGHT_MODEL_TWO_SIDE = (int)2898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_TWO_SIDE 2898
+     * }
+     */
+    public static int GL_LIGHT_MODEL_TWO_SIDE() {
+        return GL_LIGHT_MODEL_TWO_SIDE;
+    }
+    private static final int GL_LIGHT_MODEL_AMBIENT = (int)2899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_AMBIENT 2899
+     * }
+     */
+    public static int GL_LIGHT_MODEL_AMBIENT() {
+        return GL_LIGHT_MODEL_AMBIENT;
+    }
+    private static final int GL_SHADE_MODEL = (int)2900L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHADE_MODEL 2900
+     * }
+     */
+    public static int GL_SHADE_MODEL() {
+        return GL_SHADE_MODEL;
+    }
+    private static final int GL_COLOR_MATERIAL_FACE = (int)2901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL_FACE 2901
+     * }
+     */
+    public static int GL_COLOR_MATERIAL_FACE() {
+        return GL_COLOR_MATERIAL_FACE;
+    }
+    private static final int GL_COLOR_MATERIAL_PARAMETER = (int)2902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL_PARAMETER 2902
+     * }
+     */
+    public static int GL_COLOR_MATERIAL_PARAMETER() {
+        return GL_COLOR_MATERIAL_PARAMETER;
+    }
+    private static final int GL_COLOR_MATERIAL = (int)2903L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATERIAL 2903
+     * }
+     */
+    public static int GL_COLOR_MATERIAL() {
+        return GL_COLOR_MATERIAL;
+    }
+    private static final int GL_FOG = (int)2912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG 2912
+     * }
+     */
+    public static int GL_FOG() {
+        return GL_FOG;
+    }
+    private static final int GL_FOG_INDEX = (int)2913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_INDEX 2913
+     * }
+     */
+    public static int GL_FOG_INDEX() {
+        return GL_FOG_INDEX;
+    }
+    private static final int GL_FOG_DENSITY = (int)2914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_DENSITY 2914
+     * }
+     */
+    public static int GL_FOG_DENSITY() {
+        return GL_FOG_DENSITY;
+    }
+    private static final int GL_FOG_START = (int)2915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_START 2915
+     * }
+     */
+    public static int GL_FOG_START() {
+        return GL_FOG_START;
+    }
+    private static final int GL_FOG_END = (int)2916L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_END 2916
+     * }
+     */
+    public static int GL_FOG_END() {
+        return GL_FOG_END;
+    }
+    private static final int GL_FOG_MODE = (int)2917L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_MODE 2917
+     * }
+     */
+    public static int GL_FOG_MODE() {
+        return GL_FOG_MODE;
+    }
+    private static final int GL_FOG_COLOR = (int)2918L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COLOR 2918
+     * }
+     */
+    public static int GL_FOG_COLOR() {
+        return GL_FOG_COLOR;
+    }
+    private static final int GL_DEPTH_RANGE = (int)2928L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_RANGE 2928
+     * }
+     */
+    public static int GL_DEPTH_RANGE() {
+        return GL_DEPTH_RANGE;
+    }
+    private static final int GL_DEPTH_TEST = (int)2929L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_TEST 2929
+     * }
+     */
+    public static int GL_DEPTH_TEST() {
+        return GL_DEPTH_TEST;
+    }
+    private static final int GL_DEPTH_WRITEMASK = (int)2930L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_WRITEMASK 2930
+     * }
+     */
+    public static int GL_DEPTH_WRITEMASK() {
+        return GL_DEPTH_WRITEMASK;
+    }
+    private static final int GL_DEPTH_CLEAR_VALUE = (int)2931L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_CLEAR_VALUE 2931
+     * }
+     */
+    public static int GL_DEPTH_CLEAR_VALUE() {
+        return GL_DEPTH_CLEAR_VALUE;
+    }
+    private static final int GL_DEPTH_FUNC = (int)2932L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_FUNC 2932
+     * }
+     */
+    public static int GL_DEPTH_FUNC() {
+        return GL_DEPTH_FUNC;
+    }
+    private static final int GL_ACCUM_CLEAR_VALUE = (int)2944L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_CLEAR_VALUE 2944
+     * }
+     */
+    public static int GL_ACCUM_CLEAR_VALUE() {
+        return GL_ACCUM_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_TEST = (int)2960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_TEST 2960
+     * }
+     */
+    public static int GL_STENCIL_TEST() {
+        return GL_STENCIL_TEST;
+    }
+    private static final int GL_STENCIL_CLEAR_VALUE = (int)2961L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_CLEAR_VALUE 2961
+     * }
+     */
+    public static int GL_STENCIL_CLEAR_VALUE() {
+        return GL_STENCIL_CLEAR_VALUE;
+    }
+    private static final int GL_STENCIL_FUNC = (int)2962L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FUNC 2962
+     * }
+     */
+    public static int GL_STENCIL_FUNC() {
+        return GL_STENCIL_FUNC;
+    }
+    private static final int GL_STENCIL_VALUE_MASK = (int)2963L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_VALUE_MASK 2963
+     * }
+     */
+    public static int GL_STENCIL_VALUE_MASK() {
+        return GL_STENCIL_VALUE_MASK;
+    }
+    private static final int GL_STENCIL_FAIL = (int)2964L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_FAIL 2964
+     * }
+     */
+    public static int GL_STENCIL_FAIL() {
+        return GL_STENCIL_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_FAIL = (int)2965L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_FAIL 2965
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_FAIL() {
+        return GL_STENCIL_PASS_DEPTH_FAIL;
+    }
+    private static final int GL_STENCIL_PASS_DEPTH_PASS = (int)2966L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_PASS_DEPTH_PASS 2966
+     * }
+     */
+    public static int GL_STENCIL_PASS_DEPTH_PASS() {
+        return GL_STENCIL_PASS_DEPTH_PASS;
+    }
+    private static final int GL_STENCIL_REF = (int)2967L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_REF 2967
+     * }
+     */
+    public static int GL_STENCIL_REF() {
+        return GL_STENCIL_REF;
+    }
+    private static final int GL_STENCIL_WRITEMASK = (int)2968L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_WRITEMASK 2968
+     * }
+     */
+    public static int GL_STENCIL_WRITEMASK() {
+        return GL_STENCIL_WRITEMASK;
+    }
+    private static final int GL_MATRIX_MODE = (int)2976L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MATRIX_MODE 2976
+     * }
+     */
+    public static int GL_MATRIX_MODE() {
+        return GL_MATRIX_MODE;
+    }
+    private static final int GL_NORMALIZE = (int)2977L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMALIZE 2977
+     * }
+     */
+    public static int GL_NORMALIZE() {
+        return GL_NORMALIZE;
+    }
+    private static final int GL_VIEWPORT = (int)2978L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VIEWPORT 2978
+     * }
+     */
+    public static int GL_VIEWPORT() {
+        return GL_VIEWPORT;
+    }
+    private static final int GL_MODELVIEW_STACK_DEPTH = (int)2979L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_STACK_DEPTH 2979
+     * }
+     */
+    public static int GL_MODELVIEW_STACK_DEPTH() {
+        return GL_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_PROJECTION_STACK_DEPTH = (int)2980L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_STACK_DEPTH 2980
+     * }
+     */
+    public static int GL_PROJECTION_STACK_DEPTH() {
+        return GL_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_TEXTURE_STACK_DEPTH = (int)2981L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_STACK_DEPTH 2981
+     * }
+     */
+    public static int GL_TEXTURE_STACK_DEPTH() {
+        return GL_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MODELVIEW_MATRIX = (int)2982L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW_MATRIX 2982
+     * }
+     */
+    public static int GL_MODELVIEW_MATRIX() {
+        return GL_MODELVIEW_MATRIX;
+    }
+    private static final int GL_PROJECTION_MATRIX = (int)2983L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION_MATRIX 2983
+     * }
+     */
+    public static int GL_PROJECTION_MATRIX() {
+        return GL_PROJECTION_MATRIX;
+    }
+    private static final int GL_TEXTURE_MATRIX = (int)2984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MATRIX 2984
+     * }
+     */
+    public static int GL_TEXTURE_MATRIX() {
+        return GL_TEXTURE_MATRIX;
+    }
+    private static final int GL_ATTRIB_STACK_DEPTH = (int)2992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ATTRIB_STACK_DEPTH 2992
+     * }
+     */
+    public static int GL_ATTRIB_STACK_DEPTH() {
+        return GL_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_CLIENT_ATTRIB_STACK_DEPTH = (int)2993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_ATTRIB_STACK_DEPTH 2993
+     * }
+     */
+    public static int GL_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_ALPHA_TEST = (int)3008L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST 3008
+     * }
+     */
+    public static int GL_ALPHA_TEST() {
+        return GL_ALPHA_TEST;
+    }
+    private static final int GL_ALPHA_TEST_FUNC = (int)3009L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_FUNC 3009
+     * }
+     */
+    public static int GL_ALPHA_TEST_FUNC() {
+        return GL_ALPHA_TEST_FUNC;
+    }
+    private static final int GL_ALPHA_TEST_REF = (int)3010L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_TEST_REF 3010
+     * }
+     */
+    public static int GL_ALPHA_TEST_REF() {
+        return GL_ALPHA_TEST_REF;
+    }
+    private static final int GL_DITHER = (int)3024L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DITHER 3024
+     * }
+     */
+    public static int GL_DITHER() {
+        return GL_DITHER;
+    }
+    private static final int GL_BLEND_DST = (int)3040L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_DST 3040
+     * }
+     */
+    public static int GL_BLEND_DST() {
+        return GL_BLEND_DST;
+    }
+    private static final int GL_BLEND_SRC = (int)3041L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_SRC 3041
+     * }
+     */
+    public static int GL_BLEND_SRC() {
+        return GL_BLEND_SRC;
+    }
+    private static final int GL_BLEND = (int)3042L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND 3042
+     * }
+     */
+    public static int GL_BLEND() {
+        return GL_BLEND;
+    }
+    private static final int GL_LOGIC_OP_MODE = (int)3056L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOGIC_OP_MODE 3056
+     * }
+     */
+    public static int GL_LOGIC_OP_MODE() {
+        return GL_LOGIC_OP_MODE;
+    }
+    private static final int GL_INDEX_LOGIC_OP = (int)3057L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_LOGIC_OP 3057
+     * }
+     */
+    public static int GL_INDEX_LOGIC_OP() {
+        return GL_INDEX_LOGIC_OP;
+    }
+    private static final int GL_COLOR_LOGIC_OP = (int)3058L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_LOGIC_OP 3058
+     * }
+     */
+    public static int GL_COLOR_LOGIC_OP() {
+        return GL_COLOR_LOGIC_OP;
+    }
+    private static final int GL_AUX_BUFFERS = (int)3072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUX_BUFFERS 3072
+     * }
+     */
+    public static int GL_AUX_BUFFERS() {
+        return GL_AUX_BUFFERS;
+    }
+    private static final int GL_DRAW_BUFFER = (int)3073L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DRAW_BUFFER 3073
+     * }
+     */
+    public static int GL_DRAW_BUFFER() {
+        return GL_DRAW_BUFFER;
+    }
+    private static final int GL_READ_BUFFER = (int)3074L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_READ_BUFFER 3074
+     * }
+     */
+    public static int GL_READ_BUFFER() {
+        return GL_READ_BUFFER;
+    }
+    private static final int GL_SCISSOR_BOX = (int)3088L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_BOX 3088
+     * }
+     */
+    public static int GL_SCISSOR_BOX() {
+        return GL_SCISSOR_BOX;
+    }
+    private static final int GL_SCISSOR_TEST = (int)3089L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SCISSOR_TEST 3089
+     * }
+     */
+    public static int GL_SCISSOR_TEST() {
+        return GL_SCISSOR_TEST;
+    }
+    private static final int GL_INDEX_CLEAR_VALUE = (int)3104L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_CLEAR_VALUE 3104
+     * }
+     */
+    public static int GL_INDEX_CLEAR_VALUE() {
+        return GL_INDEX_CLEAR_VALUE;
+    }
+    private static final int GL_INDEX_WRITEMASK = (int)3105L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_WRITEMASK 3105
+     * }
+     */
+    public static int GL_INDEX_WRITEMASK() {
+        return GL_INDEX_WRITEMASK;
+    }
+    private static final int GL_COLOR_CLEAR_VALUE = (int)3106L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_CLEAR_VALUE 3106
+     * }
+     */
+    public static int GL_COLOR_CLEAR_VALUE() {
+        return GL_COLOR_CLEAR_VALUE;
+    }
+    private static final int GL_COLOR_WRITEMASK = (int)3107L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_WRITEMASK 3107
+     * }
+     */
+    public static int GL_COLOR_WRITEMASK() {
+        return GL_COLOR_WRITEMASK;
+    }
+    private static final int GL_INDEX_MODE = (int)3120L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_MODE 3120
+     * }
+     */
+    public static int GL_INDEX_MODE() {
+        return GL_INDEX_MODE;
+    }
+    private static final int GL_RGBA_MODE = (int)3121L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA_MODE 3121
+     * }
+     */
+    public static int GL_RGBA_MODE() {
+        return GL_RGBA_MODE;
+    }
+    private static final int GL_DOUBLEBUFFER = (int)3122L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLEBUFFER 3122
+     * }
+     */
+    public static int GL_DOUBLEBUFFER() {
+        return GL_DOUBLEBUFFER;
+    }
+    private static final int GL_STEREO = (int)3123L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STEREO 3123
+     * }
+     */
+    public static int GL_STEREO() {
+        return GL_STEREO;
+    }
+    private static final int GL_RENDER_MODE = (int)3136L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER_MODE 3136
+     * }
+     */
+    public static int GL_RENDER_MODE() {
+        return GL_RENDER_MODE;
+    }
+    private static final int GL_PERSPECTIVE_CORRECTION_HINT = (int)3152L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PERSPECTIVE_CORRECTION_HINT 3152
+     * }
+     */
+    public static int GL_PERSPECTIVE_CORRECTION_HINT() {
+        return GL_PERSPECTIVE_CORRECTION_HINT;
+    }
+    private static final int GL_POINT_SMOOTH_HINT = (int)3153L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SMOOTH_HINT 3153
+     * }
+     */
+    public static int GL_POINT_SMOOTH_HINT() {
+        return GL_POINT_SMOOTH_HINT;
+    }
+    private static final int GL_LINE_SMOOTH_HINT = (int)3154L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE_SMOOTH_HINT 3154
+     * }
+     */
+    public static int GL_LINE_SMOOTH_HINT() {
+        return GL_LINE_SMOOTH_HINT;
+    }
+    private static final int GL_POLYGON_SMOOTH_HINT = (int)3155L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_SMOOTH_HINT 3155
+     * }
+     */
+    public static int GL_POLYGON_SMOOTH_HINT() {
+        return GL_POLYGON_SMOOTH_HINT;
+    }
+    private static final int GL_FOG_HINT = (int)3156L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_HINT 3156
+     * }
+     */
+    public static int GL_FOG_HINT() {
+        return GL_FOG_HINT;
+    }
+    private static final int GL_TEXTURE_GEN_S = (int)3168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_S 3168
+     * }
+     */
+    public static int GL_TEXTURE_GEN_S() {
+        return GL_TEXTURE_GEN_S;
+    }
+    private static final int GL_TEXTURE_GEN_T = (int)3169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_T 3169
+     * }
+     */
+    public static int GL_TEXTURE_GEN_T() {
+        return GL_TEXTURE_GEN_T;
+    }
+    private static final int GL_TEXTURE_GEN_R = (int)3170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_R 3170
+     * }
+     */
+    public static int GL_TEXTURE_GEN_R() {
+        return GL_TEXTURE_GEN_R;
+    }
+    private static final int GL_TEXTURE_GEN_Q = (int)3171L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_Q 3171
+     * }
+     */
+    public static int GL_TEXTURE_GEN_Q() {
+        return GL_TEXTURE_GEN_Q;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I = (int)3184L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I 3184
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I() {
+        return GL_PIXEL_MAP_I_TO_I;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S = (int)3185L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S 3185
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S() {
+        return GL_PIXEL_MAP_S_TO_S;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R = (int)3186L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R 3186
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R() {
+        return GL_PIXEL_MAP_I_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G = (int)3187L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G 3187
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G() {
+        return GL_PIXEL_MAP_I_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B = (int)3188L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B 3188
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B() {
+        return GL_PIXEL_MAP_I_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A = (int)3189L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A 3189
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A() {
+        return GL_PIXEL_MAP_I_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R = (int)3190L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R 3190
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R() {
+        return GL_PIXEL_MAP_R_TO_R;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G = (int)3191L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G 3191
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G() {
+        return GL_PIXEL_MAP_G_TO_G;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B = (int)3192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B 3192
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B() {
+        return GL_PIXEL_MAP_B_TO_B;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A = (int)3193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A 3193
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A() {
+        return GL_PIXEL_MAP_A_TO_A;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_I_SIZE = (int)3248L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_I_SIZE 3248
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_I_SIZE() {
+        return GL_PIXEL_MAP_I_TO_I_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_S_TO_S_SIZE = (int)3249L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_S_TO_S_SIZE 3249
+     * }
+     */
+    public static int GL_PIXEL_MAP_S_TO_S_SIZE() {
+        return GL_PIXEL_MAP_S_TO_S_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_R_SIZE = (int)3250L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_R_SIZE 3250
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_R_SIZE() {
+        return GL_PIXEL_MAP_I_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_G_SIZE = (int)3251L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_G_SIZE 3251
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_G_SIZE() {
+        return GL_PIXEL_MAP_I_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_B_SIZE = (int)3252L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_B_SIZE 3252
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_B_SIZE() {
+        return GL_PIXEL_MAP_I_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_I_TO_A_SIZE = (int)3253L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_I_TO_A_SIZE 3253
+     * }
+     */
+    public static int GL_PIXEL_MAP_I_TO_A_SIZE() {
+        return GL_PIXEL_MAP_I_TO_A_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_R_TO_R_SIZE = (int)3254L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_R_TO_R_SIZE 3254
+     * }
+     */
+    public static int GL_PIXEL_MAP_R_TO_R_SIZE() {
+        return GL_PIXEL_MAP_R_TO_R_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_G_TO_G_SIZE = (int)3255L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_G_TO_G_SIZE 3255
+     * }
+     */
+    public static int GL_PIXEL_MAP_G_TO_G_SIZE() {
+        return GL_PIXEL_MAP_G_TO_G_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_B_TO_B_SIZE = (int)3256L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_B_TO_B_SIZE 3256
+     * }
+     */
+    public static int GL_PIXEL_MAP_B_TO_B_SIZE() {
+        return GL_PIXEL_MAP_B_TO_B_SIZE;
+    }
+    private static final int GL_PIXEL_MAP_A_TO_A_SIZE = (int)3257L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PIXEL_MAP_A_TO_A_SIZE 3257
+     * }
+     */
+    public static int GL_PIXEL_MAP_A_TO_A_SIZE() {
+        return GL_PIXEL_MAP_A_TO_A_SIZE;
+    }
+    private static final int GL_UNPACK_SWAP_BYTES = (int)3312L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SWAP_BYTES 3312
+     * }
+     */
+    public static int GL_UNPACK_SWAP_BYTES() {
+        return GL_UNPACK_SWAP_BYTES;
+    }
+    private static final int GL_UNPACK_LSB_FIRST = (int)3313L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_LSB_FIRST 3313
+     * }
+     */
+    public static int GL_UNPACK_LSB_FIRST() {
+        return GL_UNPACK_LSB_FIRST;
+    }
+    private static final int GL_UNPACK_ROW_LENGTH = (int)3314L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ROW_LENGTH 3314
+     * }
+     */
+    public static int GL_UNPACK_ROW_LENGTH() {
+        return GL_UNPACK_ROW_LENGTH;
+    }
+    private static final int GL_UNPACK_SKIP_ROWS = (int)3315L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_ROWS 3315
+     * }
+     */
+    public static int GL_UNPACK_SKIP_ROWS() {
+        return GL_UNPACK_SKIP_ROWS;
+    }
+    private static final int GL_UNPACK_SKIP_PIXELS = (int)3316L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_PIXELS 3316
+     * }
+     */
+    public static int GL_UNPACK_SKIP_PIXELS() {
+        return GL_UNPACK_SKIP_PIXELS;
+    }
+    private static final int GL_UNPACK_ALIGNMENT = (int)3317L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_ALIGNMENT 3317
+     * }
+     */
+    public static int GL_UNPACK_ALIGNMENT() {
+        return GL_UNPACK_ALIGNMENT;
+    }
+    private static final int GL_PACK_SWAP_BYTES = (int)3328L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SWAP_BYTES 3328
+     * }
+     */
+    public static int GL_PACK_SWAP_BYTES() {
+        return GL_PACK_SWAP_BYTES;
+    }
+    private static final int GL_PACK_LSB_FIRST = (int)3329L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_LSB_FIRST 3329
+     * }
+     */
+    public static int GL_PACK_LSB_FIRST() {
+        return GL_PACK_LSB_FIRST;
+    }
+    private static final int GL_PACK_ROW_LENGTH = (int)3330L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ROW_LENGTH 3330
+     * }
+     */
+    public static int GL_PACK_ROW_LENGTH() {
+        return GL_PACK_ROW_LENGTH;
+    }
+    private static final int GL_PACK_SKIP_ROWS = (int)3331L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_ROWS 3331
+     * }
+     */
+    public static int GL_PACK_SKIP_ROWS() {
+        return GL_PACK_SKIP_ROWS;
+    }
+    private static final int GL_PACK_SKIP_PIXELS = (int)3332L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_PIXELS 3332
+     * }
+     */
+    public static int GL_PACK_SKIP_PIXELS() {
+        return GL_PACK_SKIP_PIXELS;
+    }
+    private static final int GL_PACK_ALIGNMENT = (int)3333L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_ALIGNMENT 3333
+     * }
+     */
+    public static int GL_PACK_ALIGNMENT() {
+        return GL_PACK_ALIGNMENT;
+    }
+    private static final int GL_MAP_COLOR = (int)3344L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_COLOR 3344
+     * }
+     */
+    public static int GL_MAP_COLOR() {
+        return GL_MAP_COLOR;
+    }
+    private static final int GL_MAP_STENCIL = (int)3345L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP_STENCIL 3345
+     * }
+     */
+    public static int GL_MAP_STENCIL() {
+        return GL_MAP_STENCIL;
+    }
+    private static final int GL_INDEX_SHIFT = (int)3346L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_SHIFT 3346
+     * }
+     */
+    public static int GL_INDEX_SHIFT() {
+        return GL_INDEX_SHIFT;
+    }
+    private static final int GL_INDEX_OFFSET = (int)3347L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_OFFSET 3347
+     * }
+     */
+    public static int GL_INDEX_OFFSET() {
+        return GL_INDEX_OFFSET;
+    }
+    private static final int GL_RED_SCALE = (int)3348L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_SCALE 3348
+     * }
+     */
+    public static int GL_RED_SCALE() {
+        return GL_RED_SCALE;
+    }
+    private static final int GL_RED_BIAS = (int)3349L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BIAS 3349
+     * }
+     */
+    public static int GL_RED_BIAS() {
+        return GL_RED_BIAS;
+    }
+    private static final int GL_ZOOM_X = (int)3350L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_X 3350
+     * }
+     */
+    public static int GL_ZOOM_X() {
+        return GL_ZOOM_X;
+    }
+    private static final int GL_ZOOM_Y = (int)3351L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ZOOM_Y 3351
+     * }
+     */
+    public static int GL_ZOOM_Y() {
+        return GL_ZOOM_Y;
+    }
+    private static final int GL_GREEN_SCALE = (int)3352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_SCALE 3352
+     * }
+     */
+    public static int GL_GREEN_SCALE() {
+        return GL_GREEN_SCALE;
+    }
+    private static final int GL_GREEN_BIAS = (int)3353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BIAS 3353
+     * }
+     */
+    public static int GL_GREEN_BIAS() {
+        return GL_GREEN_BIAS;
+    }
+    private static final int GL_BLUE_SCALE = (int)3354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_SCALE 3354
+     * }
+     */
+    public static int GL_BLUE_SCALE() {
+        return GL_BLUE_SCALE;
+    }
+    private static final int GL_BLUE_BIAS = (int)3355L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BIAS 3355
+     * }
+     */
+    public static int GL_BLUE_BIAS() {
+        return GL_BLUE_BIAS;
+    }
+    private static final int GL_ALPHA_SCALE = (int)3356L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_SCALE 3356
+     * }
+     */
+    public static int GL_ALPHA_SCALE() {
+        return GL_ALPHA_SCALE;
+    }
+    private static final int GL_ALPHA_BIAS = (int)3357L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BIAS 3357
+     * }
+     */
+    public static int GL_ALPHA_BIAS() {
+        return GL_ALPHA_BIAS;
+    }
+    private static final int GL_DEPTH_SCALE = (int)3358L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_SCALE 3358
+     * }
+     */
+    public static int GL_DEPTH_SCALE() {
+        return GL_DEPTH_SCALE;
+    }
+    private static final int GL_DEPTH_BIAS = (int)3359L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BIAS 3359
+     * }
+     */
+    public static int GL_DEPTH_BIAS() {
+        return GL_DEPTH_BIAS;
+    }
+    private static final int GL_MAX_EVAL_ORDER = (int)3376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_EVAL_ORDER 3376
+     * }
+     */
+    public static int GL_MAX_EVAL_ORDER() {
+        return GL_MAX_EVAL_ORDER;
+    }
+    private static final int GL_MAX_LIGHTS = (int)3377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_LIGHTS 3377
+     * }
+     */
+    public static int GL_MAX_LIGHTS() {
+        return GL_MAX_LIGHTS;
+    }
+    private static final int GL_MAX_CLIP_PLANES = (int)3378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIP_PLANES 3378
+     * }
+     */
+    public static int GL_MAX_CLIP_PLANES() {
+        return GL_MAX_CLIP_PLANES;
+    }
+    private static final int GL_MAX_TEXTURE_SIZE = (int)3379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_SIZE 3379
+     * }
+     */
+    public static int GL_MAX_TEXTURE_SIZE() {
+        return GL_MAX_TEXTURE_SIZE;
+    }
+    private static final int GL_MAX_PIXEL_MAP_TABLE = (int)3380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PIXEL_MAP_TABLE 3380
+     * }
+     */
+    public static int GL_MAX_PIXEL_MAP_TABLE() {
+        return GL_MAX_PIXEL_MAP_TABLE;
+    }
+    private static final int GL_MAX_ATTRIB_STACK_DEPTH = (int)3381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ATTRIB_STACK_DEPTH 3381
+     * }
+     */
+    public static int GL_MAX_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_MAX_MODELVIEW_STACK_DEPTH = (int)3382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_MODELVIEW_STACK_DEPTH 3382
+     * }
+     */
+    public static int GL_MAX_MODELVIEW_STACK_DEPTH() {
+        return GL_MAX_MODELVIEW_STACK_DEPTH;
+    }
+    private static final int GL_MAX_NAME_STACK_DEPTH = (int)3383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_NAME_STACK_DEPTH 3383
+     * }
+     */
+    public static int GL_MAX_NAME_STACK_DEPTH() {
+        return GL_MAX_NAME_STACK_DEPTH;
+    }
+    private static final int GL_MAX_PROJECTION_STACK_DEPTH = (int)3384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_PROJECTION_STACK_DEPTH 3384
+     * }
+     */
+    public static int GL_MAX_PROJECTION_STACK_DEPTH() {
+        return GL_MAX_PROJECTION_STACK_DEPTH;
+    }
+    private static final int GL_MAX_TEXTURE_STACK_DEPTH = (int)3385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_STACK_DEPTH 3385
+     * }
+     */
+    public static int GL_MAX_TEXTURE_STACK_DEPTH() {
+        return GL_MAX_TEXTURE_STACK_DEPTH;
+    }
+    private static final int GL_MAX_VIEWPORT_DIMS = (int)3386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VIEWPORT_DIMS 3386
+     * }
+     */
+    public static int GL_MAX_VIEWPORT_DIMS() {
+        return GL_MAX_VIEWPORT_DIMS;
+    }
+    private static final int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH = (int)3387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CLIENT_ATTRIB_STACK_DEPTH 3387
+     * }
+     */
+    public static int GL_MAX_CLIENT_ATTRIB_STACK_DEPTH() {
+        return GL_MAX_CLIENT_ATTRIB_STACK_DEPTH;
+    }
+    private static final int GL_SUBPIXEL_BITS = (int)3408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SUBPIXEL_BITS 3408
+     * }
+     */
+    public static int GL_SUBPIXEL_BITS() {
+        return GL_SUBPIXEL_BITS;
+    }
+    private static final int GL_INDEX_BITS = (int)3409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_BITS 3409
+     * }
+     */
+    public static int GL_INDEX_BITS() {
+        return GL_INDEX_BITS;
+    }
+    private static final int GL_RED_BITS = (int)3410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED_BITS 3410
+     * }
+     */
+    public static int GL_RED_BITS() {
+        return GL_RED_BITS;
+    }
+    private static final int GL_GREEN_BITS = (int)3411L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN_BITS 3411
+     * }
+     */
+    public static int GL_GREEN_BITS() {
+        return GL_GREEN_BITS;
+    }
+    private static final int GL_BLUE_BITS = (int)3412L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE_BITS 3412
+     * }
+     */
+    public static int GL_BLUE_BITS() {
+        return GL_BLUE_BITS;
+    }
+    private static final int GL_ALPHA_BITS = (int)3413L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA_BITS 3413
+     * }
+     */
+    public static int GL_ALPHA_BITS() {
+        return GL_ALPHA_BITS;
+    }
+    private static final int GL_DEPTH_BITS = (int)3414L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_BITS 3414
+     * }
+     */
+    public static int GL_DEPTH_BITS() {
+        return GL_DEPTH_BITS;
+    }
+    private static final int GL_STENCIL_BITS = (int)3415L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_BITS 3415
+     * }
+     */
+    public static int GL_STENCIL_BITS() {
+        return GL_STENCIL_BITS;
+    }
+    private static final int GL_ACCUM_RED_BITS = (int)3416L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_RED_BITS 3416
+     * }
+     */
+    public static int GL_ACCUM_RED_BITS() {
+        return GL_ACCUM_RED_BITS;
+    }
+    private static final int GL_ACCUM_GREEN_BITS = (int)3417L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_GREEN_BITS 3417
+     * }
+     */
+    public static int GL_ACCUM_GREEN_BITS() {
+        return GL_ACCUM_GREEN_BITS;
+    }
+    private static final int GL_ACCUM_BLUE_BITS = (int)3418L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_BLUE_BITS 3418
+     * }
+     */
+    public static int GL_ACCUM_BLUE_BITS() {
+        return GL_ACCUM_BLUE_BITS;
+    }
+    private static final int GL_ACCUM_ALPHA_BITS = (int)3419L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACCUM_ALPHA_BITS 3419
+     * }
+     */
+    public static int GL_ACCUM_ALPHA_BITS() {
+        return GL_ACCUM_ALPHA_BITS;
+    }
+    private static final int GL_NAME_STACK_DEPTH = (int)3440L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAME_STACK_DEPTH 3440
+     * }
+     */
+    public static int GL_NAME_STACK_DEPTH() {
+        return GL_NAME_STACK_DEPTH;
+    }
+    private static final int GL_AUTO_NORMAL = (int)3456L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AUTO_NORMAL 3456
+     * }
+     */
+    public static int GL_AUTO_NORMAL() {
+        return GL_AUTO_NORMAL;
+    }
+    private static final int GL_MAP1_COLOR_4 = (int)3472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_COLOR_4 3472
+     * }
+     */
+    public static int GL_MAP1_COLOR_4() {
+        return GL_MAP1_COLOR_4;
+    }
+    private static final int GL_MAP1_INDEX = (int)3473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_INDEX 3473
+     * }
+     */
+    public static int GL_MAP1_INDEX() {
+        return GL_MAP1_INDEX;
+    }
+    private static final int GL_MAP1_NORMAL = (int)3474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_NORMAL 3474
+     * }
+     */
+    public static int GL_MAP1_NORMAL() {
+        return GL_MAP1_NORMAL;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_1 = (int)3475L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_1 3475
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_1() {
+        return GL_MAP1_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_2 = (int)3476L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_2 3476
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_2() {
+        return GL_MAP1_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_3 = (int)3477L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_3 3477
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_3() {
+        return GL_MAP1_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP1_TEXTURE_COORD_4 = (int)3478L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_TEXTURE_COORD_4 3478
+     * }
+     */
+    public static int GL_MAP1_TEXTURE_COORD_4() {
+        return GL_MAP1_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP1_VERTEX_3 = (int)3479L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_3 3479
+     * }
+     */
+    public static int GL_MAP1_VERTEX_3() {
+        return GL_MAP1_VERTEX_3;
+    }
+    private static final int GL_MAP1_VERTEX_4 = (int)3480L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_VERTEX_4 3480
+     * }
+     */
+    public static int GL_MAP1_VERTEX_4() {
+        return GL_MAP1_VERTEX_4;
+    }
+    private static final int GL_MAP2_COLOR_4 = (int)3504L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_COLOR_4 3504
+     * }
+     */
+    public static int GL_MAP2_COLOR_4() {
+        return GL_MAP2_COLOR_4;
+    }
+    private static final int GL_MAP2_INDEX = (int)3505L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_INDEX 3505
+     * }
+     */
+    public static int GL_MAP2_INDEX() {
+        return GL_MAP2_INDEX;
+    }
+    private static final int GL_MAP2_NORMAL = (int)3506L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_NORMAL 3506
+     * }
+     */
+    public static int GL_MAP2_NORMAL() {
+        return GL_MAP2_NORMAL;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_1 = (int)3507L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_1 3507
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_1() {
+        return GL_MAP2_TEXTURE_COORD_1;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_2 = (int)3508L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_2 3508
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_2() {
+        return GL_MAP2_TEXTURE_COORD_2;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_3 = (int)3509L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_3 3509
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_3() {
+        return GL_MAP2_TEXTURE_COORD_3;
+    }
+    private static final int GL_MAP2_TEXTURE_COORD_4 = (int)3510L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_TEXTURE_COORD_4 3510
+     * }
+     */
+    public static int GL_MAP2_TEXTURE_COORD_4() {
+        return GL_MAP2_TEXTURE_COORD_4;
+    }
+    private static final int GL_MAP2_VERTEX_3 = (int)3511L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_3 3511
+     * }
+     */
+    public static int GL_MAP2_VERTEX_3() {
+        return GL_MAP2_VERTEX_3;
+    }
+    private static final int GL_MAP2_VERTEX_4 = (int)3512L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_VERTEX_4 3512
+     * }
+     */
+    public static int GL_MAP2_VERTEX_4() {
+        return GL_MAP2_VERTEX_4;
+    }
+    private static final int GL_MAP1_GRID_DOMAIN = (int)3536L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_DOMAIN 3536
+     * }
+     */
+    public static int GL_MAP1_GRID_DOMAIN() {
+        return GL_MAP1_GRID_DOMAIN;
+    }
+    private static final int GL_MAP1_GRID_SEGMENTS = (int)3537L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP1_GRID_SEGMENTS 3537
+     * }
+     */
+    public static int GL_MAP1_GRID_SEGMENTS() {
+        return GL_MAP1_GRID_SEGMENTS;
+    }
+    private static final int GL_MAP2_GRID_DOMAIN = (int)3538L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_DOMAIN 3538
+     * }
+     */
+    public static int GL_MAP2_GRID_DOMAIN() {
+        return GL_MAP2_GRID_DOMAIN;
+    }
+    private static final int GL_MAP2_GRID_SEGMENTS = (int)3539L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAP2_GRID_SEGMENTS 3539
+     * }
+     */
+    public static int GL_MAP2_GRID_SEGMENTS() {
+        return GL_MAP2_GRID_SEGMENTS;
+    }
+    private static final int GL_TEXTURE_1D = (int)3552L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_1D 3552
+     * }
+     */
+    public static int GL_TEXTURE_1D() {
+        return GL_TEXTURE_1D;
+    }
+    private static final int GL_TEXTURE_2D = (int)3553L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_2D 3553
+     * }
+     */
+    public static int GL_TEXTURE_2D() {
+        return GL_TEXTURE_2D;
+    }
+    private static final int GL_FEEDBACK_BUFFER_POINTER = (int)3568L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_POINTER 3568
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_POINTER() {
+        return GL_FEEDBACK_BUFFER_POINTER;
+    }
+    private static final int GL_FEEDBACK_BUFFER_SIZE = (int)3569L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_SIZE 3569
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_SIZE() {
+        return GL_FEEDBACK_BUFFER_SIZE;
+    }
+    private static final int GL_FEEDBACK_BUFFER_TYPE = (int)3570L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK_BUFFER_TYPE 3570
+     * }
+     */
+    public static int GL_FEEDBACK_BUFFER_TYPE() {
+        return GL_FEEDBACK_BUFFER_TYPE;
+    }
+    private static final int GL_SELECTION_BUFFER_POINTER = (int)3571L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_POINTER 3571
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_POINTER() {
+        return GL_SELECTION_BUFFER_POINTER;
+    }
+    private static final int GL_SELECTION_BUFFER_SIZE = (int)3572L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECTION_BUFFER_SIZE 3572
+     * }
+     */
+    public static int GL_SELECTION_BUFFER_SIZE() {
+        return GL_SELECTION_BUFFER_SIZE;
+    }
+    private static final int GL_TEXTURE_WIDTH = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WIDTH 4096
+     * }
+     */
+    public static int GL_TEXTURE_WIDTH() {
+        return GL_TEXTURE_WIDTH;
+    }
+    private static final int GL_TEXTURE_HEIGHT = (int)4097L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_HEIGHT 4097
+     * }
+     */
+    public static int GL_TEXTURE_HEIGHT() {
+        return GL_TEXTURE_HEIGHT;
+    }
+    private static final int GL_TEXTURE_INTERNAL_FORMAT = (int)4099L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTERNAL_FORMAT 4099
+     * }
+     */
+    public static int GL_TEXTURE_INTERNAL_FORMAT() {
+        return GL_TEXTURE_INTERNAL_FORMAT;
+    }
+    private static final int GL_TEXTURE_BORDER_COLOR = (int)4100L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER_COLOR 4100
+     * }
+     */
+    public static int GL_TEXTURE_BORDER_COLOR() {
+        return GL_TEXTURE_BORDER_COLOR;
+    }
+    private static final int GL_TEXTURE_BORDER = (int)4101L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BORDER 4101
+     * }
+     */
+    public static int GL_TEXTURE_BORDER() {
+        return GL_TEXTURE_BORDER;
+    }
+    private static final int GL_DONT_CARE = (int)4352L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DONT_CARE 4352
+     * }
+     */
+    public static int GL_DONT_CARE() {
+        return GL_DONT_CARE;
+    }
+    private static final int GL_FASTEST = (int)4353L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FASTEST 4353
+     * }
+     */
+    public static int GL_FASTEST() {
+        return GL_FASTEST;
+    }
+    private static final int GL_NICEST = (int)4354L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NICEST 4354
+     * }
+     */
+    public static int GL_NICEST() {
+        return GL_NICEST;
+    }
+    private static final int GL_LIGHT0 = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT0 16384
+     * }
+     */
+    public static int GL_LIGHT0() {
+        return GL_LIGHT0;
+    }
+    private static final int GL_LIGHT1 = (int)16385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT1 16385
+     * }
+     */
+    public static int GL_LIGHT1() {
+        return GL_LIGHT1;
+    }
+    private static final int GL_LIGHT2 = (int)16386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT2 16386
+     * }
+     */
+    public static int GL_LIGHT2() {
+        return GL_LIGHT2;
+    }
+    private static final int GL_LIGHT3 = (int)16387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT3 16387
+     * }
+     */
+    public static int GL_LIGHT3() {
+        return GL_LIGHT3;
+    }
+    private static final int GL_LIGHT4 = (int)16388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT4 16388
+     * }
+     */
+    public static int GL_LIGHT4() {
+        return GL_LIGHT4;
+    }
+    private static final int GL_LIGHT5 = (int)16389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT5 16389
+     * }
+     */
+    public static int GL_LIGHT5() {
+        return GL_LIGHT5;
+    }
+    private static final int GL_LIGHT6 = (int)16390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT6 16390
+     * }
+     */
+    public static int GL_LIGHT6() {
+        return GL_LIGHT6;
+    }
+    private static final int GL_LIGHT7 = (int)16391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT7 16391
+     * }
+     */
+    public static int GL_LIGHT7() {
+        return GL_LIGHT7;
+    }
+    private static final int GL_AMBIENT = (int)4608L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT 4608
+     * }
+     */
+    public static int GL_AMBIENT() {
+        return GL_AMBIENT;
+    }
+    private static final int GL_DIFFUSE = (int)4609L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DIFFUSE 4609
+     * }
+     */
+    public static int GL_DIFFUSE() {
+        return GL_DIFFUSE;
+    }
+    private static final int GL_SPECULAR = (int)4610L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPECULAR 4610
+     * }
+     */
+    public static int GL_SPECULAR() {
+        return GL_SPECULAR;
+    }
+    private static final int GL_POSITION = (int)4611L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POSITION 4611
+     * }
+     */
+    public static int GL_POSITION() {
+        return GL_POSITION;
+    }
+    private static final int GL_SPOT_DIRECTION = (int)4612L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_DIRECTION 4612
+     * }
+     */
+    public static int GL_SPOT_DIRECTION() {
+        return GL_SPOT_DIRECTION;
+    }
+    private static final int GL_SPOT_EXPONENT = (int)4613L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_EXPONENT 4613
+     * }
+     */
+    public static int GL_SPOT_EXPONENT() {
+        return GL_SPOT_EXPONENT;
+    }
+    private static final int GL_SPOT_CUTOFF = (int)4614L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPOT_CUTOFF 4614
+     * }
+     */
+    public static int GL_SPOT_CUTOFF() {
+        return GL_SPOT_CUTOFF;
+    }
+    private static final int GL_CONSTANT_ATTENUATION = (int)4615L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_ATTENUATION 4615
+     * }
+     */
+    public static int GL_CONSTANT_ATTENUATION() {
+        return GL_CONSTANT_ATTENUATION;
+    }
+    private static final int GL_LINEAR_ATTENUATION = (int)4616L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_ATTENUATION 4616
+     * }
+     */
+    public static int GL_LINEAR_ATTENUATION() {
+        return GL_LINEAR_ATTENUATION;
+    }
+    private static final int GL_QUADRATIC_ATTENUATION = (int)4617L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUADRATIC_ATTENUATION 4617
+     * }
+     */
+    public static int GL_QUADRATIC_ATTENUATION() {
+        return GL_QUADRATIC_ATTENUATION;
+    }
+    private static final int GL_COMPILE = (int)4864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE 4864
+     * }
+     */
+    public static int GL_COMPILE() {
+        return GL_COMPILE;
+    }
+    private static final int GL_COMPILE_AND_EXECUTE = (int)4865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE_AND_EXECUTE 4865
+     * }
+     */
+    public static int GL_COMPILE_AND_EXECUTE() {
+        return GL_COMPILE_AND_EXECUTE;
+    }
+    private static final int GL_CLEAR = (int)5376L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLEAR 5376
+     * }
+     */
+    public static int GL_CLEAR() {
+        return GL_CLEAR;
+    }
+    private static final int GL_AND = (int)5377L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND 5377
+     * }
+     */
+    public static int GL_AND() {
+        return GL_AND;
+    }
+    private static final int GL_AND_REVERSE = (int)5378L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_REVERSE 5378
+     * }
+     */
+    public static int GL_AND_REVERSE() {
+        return GL_AND_REVERSE;
+    }
+    private static final int GL_COPY = (int)5379L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY 5379
+     * }
+     */
+    public static int GL_COPY() {
+        return GL_COPY;
+    }
+    private static final int GL_AND_INVERTED = (int)5380L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AND_INVERTED 5380
+     * }
+     */
+    public static int GL_AND_INVERTED() {
+        return GL_AND_INVERTED;
+    }
+    private static final int GL_NOOP = (int)5381L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOOP 5381
+     * }
+     */
+    public static int GL_NOOP() {
+        return GL_NOOP;
+    }
+    private static final int GL_XOR = (int)5382L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_XOR 5382
+     * }
+     */
+    public static int GL_XOR() {
+        return GL_XOR;
+    }
+    private static final int GL_OR = (int)5383L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR 5383
+     * }
+     */
+    public static int GL_OR() {
+        return GL_OR;
+    }
+    private static final int GL_NOR = (int)5384L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NOR 5384
+     * }
+     */
+    public static int GL_NOR() {
+        return GL_NOR;
+    }
+    private static final int GL_EQUIV = (int)5385L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EQUIV 5385
+     * }
+     */
+    public static int GL_EQUIV() {
+        return GL_EQUIV;
+    }
+    private static final int GL_INVERT = (int)5386L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INVERT 5386
+     * }
+     */
+    public static int GL_INVERT() {
+        return GL_INVERT;
+    }
+    private static final int GL_OR_REVERSE = (int)5387L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_REVERSE 5387
+     * }
+     */
+    public static int GL_OR_REVERSE() {
+        return GL_OR_REVERSE;
+    }
+    private static final int GL_COPY_INVERTED = (int)5388L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COPY_INVERTED 5388
+     * }
+     */
+    public static int GL_COPY_INVERTED() {
+        return GL_COPY_INVERTED;
+    }
+    private static final int GL_OR_INVERTED = (int)5389L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OR_INVERTED 5389
+     * }
+     */
+    public static int GL_OR_INVERTED() {
+        return GL_OR_INVERTED;
+    }
+    private static final int GL_NAND = (int)5390L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NAND 5390
+     * }
+     */
+    public static int GL_NAND() {
+        return GL_NAND;
+    }
+    private static final int GL_SET = (int)5391L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SET 5391
+     * }
+     */
+    public static int GL_SET() {
+        return GL_SET;
+    }
+    private static final int GL_EMISSION = (int)5632L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EMISSION 5632
+     * }
+     */
+    public static int GL_EMISSION() {
+        return GL_EMISSION;
+    }
+    private static final int GL_SHININESS = (int)5633L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHININESS 5633
+     * }
+     */
+    public static int GL_SHININESS() {
+        return GL_SHININESS;
+    }
+    private static final int GL_AMBIENT_AND_DIFFUSE = (int)5634L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_AMBIENT_AND_DIFFUSE 5634
+     * }
+     */
+    public static int GL_AMBIENT_AND_DIFFUSE() {
+        return GL_AMBIENT_AND_DIFFUSE;
+    }
+    private static final int GL_COLOR_INDEXES = (int)5635L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEXES 5635
+     * }
+     */
+    public static int GL_COLOR_INDEXES() {
+        return GL_COLOR_INDEXES;
+    }
+    private static final int GL_MODELVIEW = (int)5888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODELVIEW 5888
+     * }
+     */
+    public static int GL_MODELVIEW() {
+        return GL_MODELVIEW;
+    }
+    private static final int GL_PROJECTION = (int)5889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROJECTION 5889
+     * }
+     */
+    public static int GL_PROJECTION() {
+        return GL_PROJECTION;
+    }
+    private static final int GL_TEXTURE = (int)5890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE 5890
+     * }
+     */
+    public static int GL_TEXTURE() {
+        return GL_TEXTURE;
+    }
+    private static final int GL_COLOR = (int)6144L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR 6144
+     * }
+     */
+    public static int GL_COLOR() {
+        return GL_COLOR;
+    }
+    private static final int GL_DEPTH = (int)6145L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH 6145
+     * }
+     */
+    public static int GL_DEPTH() {
+        return GL_DEPTH;
+    }
+    private static final int GL_STENCIL = (int)6146L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL 6146
+     * }
+     */
+    public static int GL_STENCIL() {
+        return GL_STENCIL;
+    }
+    private static final int GL_COLOR_INDEX = (int)6400L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_INDEX 6400
+     * }
+     */
+    public static int GL_COLOR_INDEX() {
+        return GL_COLOR_INDEX;
+    }
+    private static final int GL_STENCIL_INDEX = (int)6401L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STENCIL_INDEX 6401
+     * }
+     */
+    public static int GL_STENCIL_INDEX() {
+        return GL_STENCIL_INDEX;
+    }
+    private static final int GL_DEPTH_COMPONENT = (int)6402L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT 6402
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT() {
+        return GL_DEPTH_COMPONENT;
+    }
+    private static final int GL_RED = (int)6403L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RED 6403
+     * }
+     */
+    public static int GL_RED() {
+        return GL_RED;
+    }
+    private static final int GL_GREEN = (int)6404L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GREEN 6404
+     * }
+     */
+    public static int GL_GREEN() {
+        return GL_GREEN;
+    }
+    private static final int GL_BLUE = (int)6405L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLUE 6405
+     * }
+     */
+    public static int GL_BLUE() {
+        return GL_BLUE;
+    }
+    private static final int GL_ALPHA = (int)6406L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA 6406
+     * }
+     */
+    public static int GL_ALPHA() {
+        return GL_ALPHA;
+    }
+    private static final int GL_RGB = (int)6407L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB 6407
+     * }
+     */
+    public static int GL_RGB() {
+        return GL_RGB;
+    }
+    private static final int GL_RGBA = (int)6408L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA 6408
+     * }
+     */
+    public static int GL_RGBA() {
+        return GL_RGBA;
+    }
+    private static final int GL_LUMINANCE = (int)6409L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE 6409
+     * }
+     */
+    public static int GL_LUMINANCE() {
+        return GL_LUMINANCE;
+    }
+    private static final int GL_LUMINANCE_ALPHA = (int)6410L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE_ALPHA 6410
+     * }
+     */
+    public static int GL_LUMINANCE_ALPHA() {
+        return GL_LUMINANCE_ALPHA;
+    }
+    private static final int GL_BITMAP = (int)6656L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BITMAP 6656
+     * }
+     */
+    public static int GL_BITMAP() {
+        return GL_BITMAP;
+    }
+    private static final int GL_POINT = (int)6912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT 6912
+     * }
+     */
+    public static int GL_POINT() {
+        return GL_POINT;
+    }
+    private static final int GL_LINE = (int)6913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINE 6913
+     * }
+     */
+    public static int GL_LINE() {
+        return GL_LINE;
+    }
+    private static final int GL_FILL = (int)6914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FILL 6914
+     * }
+     */
+    public static int GL_FILL() {
+        return GL_FILL;
+    }
+    private static final int GL_RENDER = (int)7168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDER 7168
+     * }
+     */
+    public static int GL_RENDER() {
+        return GL_RENDER;
+    }
+    private static final int GL_FEEDBACK = (int)7169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FEEDBACK 7169
+     * }
+     */
+    public static int GL_FEEDBACK() {
+        return GL_FEEDBACK;
+    }
+    private static final int GL_SELECT = (int)7170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SELECT 7170
+     * }
+     */
+    public static int GL_SELECT() {
+        return GL_SELECT;
+    }
+    private static final int GL_FLAT = (int)7424L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLAT 7424
+     * }
+     */
+    public static int GL_FLAT() {
+        return GL_FLAT;
+    }
+    private static final int GL_SMOOTH = (int)7425L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH 7425
+     * }
+     */
+    public static int GL_SMOOTH() {
+        return GL_SMOOTH;
+    }
+    private static final int GL_KEEP = (int)7680L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_KEEP 7680
+     * }
+     */
+    public static int GL_KEEP() {
+        return GL_KEEP;
+    }
+    private static final int GL_REPLACE = (int)7681L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPLACE 7681
+     * }
+     */
+    public static int GL_REPLACE() {
+        return GL_REPLACE;
+    }
+    private static final int GL_INCR = (int)7682L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INCR 7682
+     * }
+     */
+    public static int GL_INCR() {
+        return GL_INCR;
+    }
+    private static final int GL_DECR = (int)7683L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECR 7683
+     * }
+     */
+    public static int GL_DECR() {
+        return GL_DECR;
+    }
+    private static final int GL_VENDOR = (int)7936L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VENDOR 7936
+     * }
+     */
+    public static int GL_VENDOR() {
+        return GL_VENDOR;
+    }
+    private static final int GL_RENDERER = (int)7937L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RENDERER 7937
+     * }
+     */
+    public static int GL_RENDERER() {
+        return GL_RENDERER;
+    }
+    private static final int GL_VERSION = (int)7938L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERSION 7938
+     * }
+     */
+    public static int GL_VERSION() {
+        return GL_VERSION;
+    }
+    private static final int GL_EXTENSIONS = (int)7939L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EXTENSIONS 7939
+     * }
+     */
+    public static int GL_EXTENSIONS() {
+        return GL_EXTENSIONS;
+    }
+    private static final int GL_S = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_S 8192
+     * }
+     */
+    public static int GL_S() {
+        return GL_S;
+    }
+    private static final int GL_T = (int)8193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T 8193
+     * }
+     */
+    public static int GL_T() {
+        return GL_T;
+    }
+    private static final int GL_R = (int)8194L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R 8194
+     * }
+     */
+    public static int GL_R() {
+        return GL_R;
+    }
+    private static final int GL_Q = (int)8195L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_Q 8195
+     * }
+     */
+    public static int GL_Q() {
+        return GL_Q;
+    }
+    private static final int GL_MODULATE = (int)8448L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MODULATE 8448
+     * }
+     */
+    public static int GL_MODULATE() {
+        return GL_MODULATE;
+    }
+    private static final int GL_DECAL = (int)8449L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECAL 8449
+     * }
+     */
+    public static int GL_DECAL() {
+        return GL_DECAL;
+    }
+    private static final int GL_TEXTURE_ENV_MODE = (int)8704L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_MODE 8704
+     * }
+     */
+    public static int GL_TEXTURE_ENV_MODE() {
+        return GL_TEXTURE_ENV_MODE;
+    }
+    private static final int GL_TEXTURE_ENV_COLOR = (int)8705L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV_COLOR 8705
+     * }
+     */
+    public static int GL_TEXTURE_ENV_COLOR() {
+        return GL_TEXTURE_ENV_COLOR;
+    }
+    private static final int GL_TEXTURE_ENV = (int)8960L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ENV 8960
+     * }
+     */
+    public static int GL_TEXTURE_ENV() {
+        return GL_TEXTURE_ENV;
+    }
+    private static final int GL_EYE_LINEAR = (int)9216L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_LINEAR 9216
+     * }
+     */
+    public static int GL_EYE_LINEAR() {
+        return GL_EYE_LINEAR;
+    }
+    private static final int GL_OBJECT_LINEAR = (int)9217L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_LINEAR 9217
+     * }
+     */
+    public static int GL_OBJECT_LINEAR() {
+        return GL_OBJECT_LINEAR;
+    }
+    private static final int GL_SPHERE_MAP = (int)9218L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SPHERE_MAP 9218
+     * }
+     */
+    public static int GL_SPHERE_MAP() {
+        return GL_SPHERE_MAP;
+    }
+    private static final int GL_TEXTURE_GEN_MODE = (int)9472L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GEN_MODE 9472
+     * }
+     */
+    public static int GL_TEXTURE_GEN_MODE() {
+        return GL_TEXTURE_GEN_MODE;
+    }
+    private static final int GL_OBJECT_PLANE = (int)9473L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OBJECT_PLANE 9473
+     * }
+     */
+    public static int GL_OBJECT_PLANE() {
+        return GL_OBJECT_PLANE;
+    }
+    private static final int GL_EYE_PLANE = (int)9474L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EYE_PLANE 9474
+     * }
+     */
+    public static int GL_EYE_PLANE() {
+        return GL_EYE_PLANE;
+    }
+    private static final int GL_NEAREST = (int)9728L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST 9728
+     * }
+     */
+    public static int GL_NEAREST() {
+        return GL_NEAREST;
+    }
+    private static final int GL_LINEAR = (int)9729L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR 9729
+     * }
+     */
+    public static int GL_LINEAR() {
+        return GL_LINEAR;
+    }
+    private static final int GL_NEAREST_MIPMAP_NEAREST = (int)9984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_NEAREST 9984
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_NEAREST() {
+        return GL_NEAREST_MIPMAP_NEAREST;
+    }
+    private static final int GL_LINEAR_MIPMAP_NEAREST = (int)9985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_NEAREST 9985
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_NEAREST() {
+        return GL_LINEAR_MIPMAP_NEAREST;
+    }
+    private static final int GL_NEAREST_MIPMAP_LINEAR = (int)9986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NEAREST_MIPMAP_LINEAR 9986
+     * }
+     */
+    public static int GL_NEAREST_MIPMAP_LINEAR() {
+        return GL_NEAREST_MIPMAP_LINEAR;
+    }
+    private static final int GL_LINEAR_MIPMAP_LINEAR = (int)9987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINEAR_MIPMAP_LINEAR 9987
+     * }
+     */
+    public static int GL_LINEAR_MIPMAP_LINEAR() {
+        return GL_LINEAR_MIPMAP_LINEAR;
+    }
+    private static final int GL_TEXTURE_MAG_FILTER = (int)10240L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAG_FILTER 10240
+     * }
+     */
+    public static int GL_TEXTURE_MAG_FILTER() {
+        return GL_TEXTURE_MAG_FILTER;
+    }
+    private static final int GL_TEXTURE_MIN_FILTER = (int)10241L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MIN_FILTER 10241
+     * }
+     */
+    public static int GL_TEXTURE_MIN_FILTER() {
+        return GL_TEXTURE_MIN_FILTER;
+    }
+    private static final int GL_TEXTURE_WRAP_S = (int)10242L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_S 10242
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_S() {
+        return GL_TEXTURE_WRAP_S;
+    }
+    private static final int GL_TEXTURE_WRAP_T = (int)10243L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_T 10243
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_T() {
+        return GL_TEXTURE_WRAP_T;
+    }
+    private static final int GL_CLAMP = (int)10496L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP 10496
+     * }
+     */
+    public static int GL_CLAMP() {
+        return GL_CLAMP;
+    }
+    private static final int GL_REPEAT = (int)10497L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPEAT 10497
+     * }
+     */
+    public static int GL_REPEAT() {
+        return GL_REPEAT;
+    }
+    private static final int GL_CLIENT_PIXEL_STORE_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_PIXEL_STORE_BIT 1
+     * }
+     */
+    public static int GL_CLIENT_PIXEL_STORE_BIT() {
+        return GL_CLIENT_PIXEL_STORE_BIT;
+    }
+    private static final int GL_CLIENT_VERTEX_ARRAY_BIT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_VERTEX_ARRAY_BIT 2
+     * }
+     */
+    public static int GL_CLIENT_VERTEX_ARRAY_BIT() {
+        return GL_CLIENT_VERTEX_ARRAY_BIT;
+    }
+    private static final int GL_POLYGON_OFFSET_FACTOR = (int)32824L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FACTOR 32824
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FACTOR() {
+        return GL_POLYGON_OFFSET_FACTOR;
+    }
+    private static final int GL_POLYGON_OFFSET_UNITS = (int)10752L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_UNITS 10752
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_UNITS() {
+        return GL_POLYGON_OFFSET_UNITS;
+    }
+    private static final int GL_POLYGON_OFFSET_POINT = (int)10753L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_POINT 10753
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_POINT() {
+        return GL_POLYGON_OFFSET_POINT;
+    }
+    private static final int GL_POLYGON_OFFSET_LINE = (int)10754L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_LINE 10754
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_LINE() {
+        return GL_POLYGON_OFFSET_LINE;
+    }
+    private static final int GL_POLYGON_OFFSET_FILL = (int)32823L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POLYGON_OFFSET_FILL 32823
+     * }
+     */
+    public static int GL_POLYGON_OFFSET_FILL() {
+        return GL_POLYGON_OFFSET_FILL;
+    }
+    private static final int GL_ALPHA4 = (int)32827L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA4 32827
+     * }
+     */
+    public static int GL_ALPHA4() {
+        return GL_ALPHA4;
+    }
+    private static final int GL_ALPHA8 = (int)32828L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA8 32828
+     * }
+     */
+    public static int GL_ALPHA8() {
+        return GL_ALPHA8;
+    }
+    private static final int GL_ALPHA12 = (int)32829L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA12 32829
+     * }
+     */
+    public static int GL_ALPHA12() {
+        return GL_ALPHA12;
+    }
+    private static final int GL_ALPHA16 = (int)32830L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALPHA16 32830
+     * }
+     */
+    public static int GL_ALPHA16() {
+        return GL_ALPHA16;
+    }
+    private static final int GL_LUMINANCE4 = (int)32831L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4 32831
+     * }
+     */
+    public static int GL_LUMINANCE4() {
+        return GL_LUMINANCE4;
+    }
+    private static final int GL_LUMINANCE8 = (int)32832L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8 32832
+     * }
+     */
+    public static int GL_LUMINANCE8() {
+        return GL_LUMINANCE8;
+    }
+    private static final int GL_LUMINANCE12 = (int)32833L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12 32833
+     * }
+     */
+    public static int GL_LUMINANCE12() {
+        return GL_LUMINANCE12;
+    }
+    private static final int GL_LUMINANCE16 = (int)32834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16 32834
+     * }
+     */
+    public static int GL_LUMINANCE16() {
+        return GL_LUMINANCE16;
+    }
+    private static final int GL_LUMINANCE4_ALPHA4 = (int)32835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE4_ALPHA4 32835
+     * }
+     */
+    public static int GL_LUMINANCE4_ALPHA4() {
+        return GL_LUMINANCE4_ALPHA4;
+    }
+    private static final int GL_LUMINANCE6_ALPHA2 = (int)32836L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE6_ALPHA2 32836
+     * }
+     */
+    public static int GL_LUMINANCE6_ALPHA2() {
+        return GL_LUMINANCE6_ALPHA2;
+    }
+    private static final int GL_LUMINANCE8_ALPHA8 = (int)32837L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE8_ALPHA8 32837
+     * }
+     */
+    public static int GL_LUMINANCE8_ALPHA8() {
+        return GL_LUMINANCE8_ALPHA8;
+    }
+    private static final int GL_LUMINANCE12_ALPHA4 = (int)32838L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA4 32838
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA4() {
+        return GL_LUMINANCE12_ALPHA4;
+    }
+    private static final int GL_LUMINANCE12_ALPHA12 = (int)32839L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE12_ALPHA12 32839
+     * }
+     */
+    public static int GL_LUMINANCE12_ALPHA12() {
+        return GL_LUMINANCE12_ALPHA12;
+    }
+    private static final int GL_LUMINANCE16_ALPHA16 = (int)32840L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LUMINANCE16_ALPHA16 32840
+     * }
+     */
+    public static int GL_LUMINANCE16_ALPHA16() {
+        return GL_LUMINANCE16_ALPHA16;
+    }
+    private static final int GL_INTENSITY = (int)32841L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY 32841
+     * }
+     */
+    public static int GL_INTENSITY() {
+        return GL_INTENSITY;
+    }
+    private static final int GL_INTENSITY4 = (int)32842L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY4 32842
+     * }
+     */
+    public static int GL_INTENSITY4() {
+        return GL_INTENSITY4;
+    }
+    private static final int GL_INTENSITY8 = (int)32843L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY8 32843
+     * }
+     */
+    public static int GL_INTENSITY8() {
+        return GL_INTENSITY8;
+    }
+    private static final int GL_INTENSITY12 = (int)32844L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY12 32844
+     * }
+     */
+    public static int GL_INTENSITY12() {
+        return GL_INTENSITY12;
+    }
+    private static final int GL_INTENSITY16 = (int)32845L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTENSITY16 32845
+     * }
+     */
+    public static int GL_INTENSITY16() {
+        return GL_INTENSITY16;
+    }
+    private static final int GL_R3_G3_B2 = (int)10768L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_R3_G3_B2 10768
+     * }
+     */
+    public static int GL_R3_G3_B2() {
+        return GL_R3_G3_B2;
+    }
+    private static final int GL_RGB4 = (int)32847L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB4 32847
+     * }
+     */
+    public static int GL_RGB4() {
+        return GL_RGB4;
+    }
+    private static final int GL_RGB5 = (int)32848L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5 32848
+     * }
+     */
+    public static int GL_RGB5() {
+        return GL_RGB5;
+    }
+    private static final int GL_RGB8 = (int)32849L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB8 32849
+     * }
+     */
+    public static int GL_RGB8() {
+        return GL_RGB8;
+    }
+    private static final int GL_RGB10 = (int)32850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10 32850
+     * }
+     */
+    public static int GL_RGB10() {
+        return GL_RGB10;
+    }
+    private static final int GL_RGB12 = (int)32851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB12 32851
+     * }
+     */
+    public static int GL_RGB12() {
+        return GL_RGB12;
+    }
+    private static final int GL_RGB16 = (int)32852L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB16 32852
+     * }
+     */
+    public static int GL_RGB16() {
+        return GL_RGB16;
+    }
+    private static final int GL_RGBA2 = (int)32853L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA2 32853
+     * }
+     */
+    public static int GL_RGBA2() {
+        return GL_RGBA2;
+    }
+    private static final int GL_RGBA4 = (int)32854L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA4 32854
+     * }
+     */
+    public static int GL_RGBA4() {
+        return GL_RGBA4;
+    }
+    private static final int GL_RGB5_A1 = (int)32855L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB5_A1 32855
+     * }
+     */
+    public static int GL_RGB5_A1() {
+        return GL_RGB5_A1;
+    }
+    private static final int GL_RGBA8 = (int)32856L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA8 32856
+     * }
+     */
+    public static int GL_RGBA8() {
+        return GL_RGBA8;
+    }
+    private static final int GL_RGB10_A2 = (int)32857L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB10_A2 32857
+     * }
+     */
+    public static int GL_RGB10_A2() {
+        return GL_RGB10_A2;
+    }
+    private static final int GL_RGBA12 = (int)32858L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA12 32858
+     * }
+     */
+    public static int GL_RGBA12() {
+        return GL_RGBA12;
+    }
+    private static final int GL_RGBA16 = (int)32859L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGBA16 32859
+     * }
+     */
+    public static int GL_RGBA16() {
+        return GL_RGBA16;
+    }
+    private static final int GL_TEXTURE_RED_SIZE = (int)32860L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RED_SIZE 32860
+     * }
+     */
+    public static int GL_TEXTURE_RED_SIZE() {
+        return GL_TEXTURE_RED_SIZE;
+    }
+    private static final int GL_TEXTURE_GREEN_SIZE = (int)32861L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_GREEN_SIZE 32861
+     * }
+     */
+    public static int GL_TEXTURE_GREEN_SIZE() {
+        return GL_TEXTURE_GREEN_SIZE;
+    }
+    private static final int GL_TEXTURE_BLUE_SIZE = (int)32862L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BLUE_SIZE 32862
+     * }
+     */
+    public static int GL_TEXTURE_BLUE_SIZE() {
+        return GL_TEXTURE_BLUE_SIZE;
+    }
+    private static final int GL_TEXTURE_ALPHA_SIZE = (int)32863L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_ALPHA_SIZE 32863
+     * }
+     */
+    public static int GL_TEXTURE_ALPHA_SIZE() {
+        return GL_TEXTURE_ALPHA_SIZE;
+    }
+    private static final int GL_TEXTURE_LUMINANCE_SIZE = (int)32864L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_LUMINANCE_SIZE 32864
+     * }
+     */
+    public static int GL_TEXTURE_LUMINANCE_SIZE() {
+        return GL_TEXTURE_LUMINANCE_SIZE;
+    }
+    private static final int GL_TEXTURE_INTENSITY_SIZE = (int)32865L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_INTENSITY_SIZE 32865
+     * }
+     */
+    public static int GL_TEXTURE_INTENSITY_SIZE() {
+        return GL_TEXTURE_INTENSITY_SIZE;
+    }
+    private static final int GL_PROXY_TEXTURE_1D = (int)32867L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_1D 32867
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_1D() {
+        return GL_PROXY_TEXTURE_1D;
+    }
+    private static final int GL_PROXY_TEXTURE_2D = (int)32868L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_2D 32868
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_2D() {
+        return GL_PROXY_TEXTURE_2D;
+    }
+    private static final int GL_TEXTURE_PRIORITY = (int)32870L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_PRIORITY 32870
+     * }
+     */
+    public static int GL_TEXTURE_PRIORITY() {
+        return GL_TEXTURE_PRIORITY;
+    }
+    private static final int GL_TEXTURE_RESIDENT = (int)32871L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_RESIDENT 32871
+     * }
+     */
+    public static int GL_TEXTURE_RESIDENT() {
+        return GL_TEXTURE_RESIDENT;
+    }
+    private static final int GL_TEXTURE_BINDING_1D = (int)32872L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_1D 32872
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_1D() {
+        return GL_TEXTURE_BINDING_1D;
+    }
+    private static final int GL_TEXTURE_BINDING_2D = (int)32873L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_2D 32873
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_2D() {
+        return GL_TEXTURE_BINDING_2D;
+    }
+    private static final int GL_TEXTURE_BINDING_3D = (int)32874L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_3D 32874
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_3D() {
+        return GL_TEXTURE_BINDING_3D;
+    }
+    private static final int GL_VERTEX_ARRAY = (int)32884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY 32884
+     * }
+     */
+    public static int GL_VERTEX_ARRAY() {
+        return GL_VERTEX_ARRAY;
+    }
+    private static final int GL_NORMAL_ARRAY = (int)32885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY 32885
+     * }
+     */
+    public static int GL_NORMAL_ARRAY() {
+        return GL_NORMAL_ARRAY;
+    }
+    private static final int GL_COLOR_ARRAY = (int)32886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY 32886
+     * }
+     */
+    public static int GL_COLOR_ARRAY() {
+        return GL_COLOR_ARRAY;
+    }
+    private static final int GL_INDEX_ARRAY = (int)32887L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY 32887
+     * }
+     */
+    public static int GL_INDEX_ARRAY() {
+        return GL_INDEX_ARRAY;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY = (int)32888L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY 32888
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY() {
+        return GL_TEXTURE_COORD_ARRAY;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY = (int)32889L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY 32889
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY() {
+        return GL_EDGE_FLAG_ARRAY;
+    }
+    private static final int GL_VERTEX_ARRAY_SIZE = (int)32890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_SIZE 32890
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_SIZE() {
+        return GL_VERTEX_ARRAY_SIZE;
+    }
+    private static final int GL_VERTEX_ARRAY_TYPE = (int)32891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_TYPE 32891
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_TYPE() {
+        return GL_VERTEX_ARRAY_TYPE;
+    }
+    private static final int GL_VERTEX_ARRAY_STRIDE = (int)32892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_STRIDE 32892
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_STRIDE() {
+        return GL_VERTEX_ARRAY_STRIDE;
+    }
+    private static final int GL_NORMAL_ARRAY_TYPE = (int)32894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_TYPE 32894
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_TYPE() {
+        return GL_NORMAL_ARRAY_TYPE;
+    }
+    private static final int GL_NORMAL_ARRAY_STRIDE = (int)32895L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_STRIDE 32895
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_STRIDE() {
+        return GL_NORMAL_ARRAY_STRIDE;
+    }
+    private static final int GL_COLOR_ARRAY_SIZE = (int)32897L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_SIZE 32897
+     * }
+     */
+    public static int GL_COLOR_ARRAY_SIZE() {
+        return GL_COLOR_ARRAY_SIZE;
+    }
+    private static final int GL_COLOR_ARRAY_TYPE = (int)32898L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_TYPE 32898
+     * }
+     */
+    public static int GL_COLOR_ARRAY_TYPE() {
+        return GL_COLOR_ARRAY_TYPE;
+    }
+    private static final int GL_COLOR_ARRAY_STRIDE = (int)32899L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_STRIDE 32899
+     * }
+     */
+    public static int GL_COLOR_ARRAY_STRIDE() {
+        return GL_COLOR_ARRAY_STRIDE;
+    }
+    private static final int GL_INDEX_ARRAY_TYPE = (int)32901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_TYPE 32901
+     * }
+     */
+    public static int GL_INDEX_ARRAY_TYPE() {
+        return GL_INDEX_ARRAY_TYPE;
+    }
+    private static final int GL_INDEX_ARRAY_STRIDE = (int)32902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_STRIDE 32902
+     * }
+     */
+    public static int GL_INDEX_ARRAY_STRIDE() {
+        return GL_INDEX_ARRAY_STRIDE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_SIZE = (int)32904L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_SIZE 32904
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_SIZE() {
+        return GL_TEXTURE_COORD_ARRAY_SIZE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_TYPE = (int)32905L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_TYPE 32905
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_TYPE() {
+        return GL_TEXTURE_COORD_ARRAY_TYPE;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_STRIDE = (int)32906L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_STRIDE 32906
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_STRIDE() {
+        return GL_TEXTURE_COORD_ARRAY_STRIDE;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_STRIDE = (int)32908L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_STRIDE 32908
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_STRIDE() {
+        return GL_EDGE_FLAG_ARRAY_STRIDE;
+    }
+    private static final int GL_VERTEX_ARRAY_POINTER = (int)32910L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_POINTER 32910
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_POINTER() {
+        return GL_VERTEX_ARRAY_POINTER;
+    }
+    private static final int GL_NORMAL_ARRAY_POINTER = (int)32911L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_POINTER 32911
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_POINTER() {
+        return GL_NORMAL_ARRAY_POINTER;
+    }
+    private static final int GL_COLOR_ARRAY_POINTER = (int)32912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_POINTER 32912
+     * }
+     */
+    public static int GL_COLOR_ARRAY_POINTER() {
+        return GL_COLOR_ARRAY_POINTER;
+    }
+    private static final int GL_INDEX_ARRAY_POINTER = (int)32913L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_POINTER 32913
+     * }
+     */
+    public static int GL_INDEX_ARRAY_POINTER() {
+        return GL_INDEX_ARRAY_POINTER;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_POINTER = (int)32914L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_POINTER 32914
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_POINTER() {
+        return GL_TEXTURE_COORD_ARRAY_POINTER;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_POINTER = (int)32915L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_POINTER 32915
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_POINTER() {
+        return GL_EDGE_FLAG_ARRAY_POINTER;
+    }
+    private static final int GL_V2F = (int)10784L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V2F 10784
+     * }
+     */
+    public static int GL_V2F() {
+        return GL_V2F;
+    }
+    private static final int GL_V3F = (int)10785L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_V3F 10785
+     * }
+     */
+    public static int GL_V3F() {
+        return GL_V3F;
+    }
+    private static final int GL_C4UB_V2F = (int)10786L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V2F 10786
+     * }
+     */
+    public static int GL_C4UB_V2F() {
+        return GL_C4UB_V2F;
+    }
+    private static final int GL_C4UB_V3F = (int)10787L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4UB_V3F 10787
+     * }
+     */
+    public static int GL_C4UB_V3F() {
+        return GL_C4UB_V3F;
+    }
+    private static final int GL_C3F_V3F = (int)10788L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C3F_V3F 10788
+     * }
+     */
+    public static int GL_C3F_V3F() {
+        return GL_C3F_V3F;
+    }
+    private static final int GL_N3F_V3F = (int)10789L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_N3F_V3F 10789
+     * }
+     */
+    public static int GL_N3F_V3F() {
+        return GL_N3F_V3F;
+    }
+    private static final int GL_C4F_N3F_V3F = (int)10790L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_C4F_N3F_V3F 10790
+     * }
+     */
+    public static int GL_C4F_N3F_V3F() {
+        return GL_C4F_N3F_V3F;
+    }
+    private static final int GL_T2F_V3F = (int)10791L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_V3F 10791
+     * }
+     */
+    public static int GL_T2F_V3F() {
+        return GL_T2F_V3F;
+    }
+    private static final int GL_T4F_V4F = (int)10792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_V4F 10792
+     * }
+     */
+    public static int GL_T4F_V4F() {
+        return GL_T4F_V4F;
+    }
+    private static final int GL_T2F_C4UB_V3F = (int)10793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4UB_V3F 10793
+     * }
+     */
+    public static int GL_T2F_C4UB_V3F() {
+        return GL_T2F_C4UB_V3F;
+    }
+    private static final int GL_T2F_C3F_V3F = (int)10794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C3F_V3F 10794
+     * }
+     */
+    public static int GL_T2F_C3F_V3F() {
+        return GL_T2F_C3F_V3F;
+    }
+    private static final int GL_T2F_N3F_V3F = (int)10795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_N3F_V3F 10795
+     * }
+     */
+    public static int GL_T2F_N3F_V3F() {
+        return GL_T2F_N3F_V3F;
+    }
+    private static final int GL_T2F_C4F_N3F_V3F = (int)10796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T2F_C4F_N3F_V3F 10796
+     * }
+     */
+    public static int GL_T2F_C4F_N3F_V3F() {
+        return GL_T2F_C4F_N3F_V3F;
+    }
+    private static final int GL_T4F_C4F_N3F_V4F = (int)10797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_T4F_C4F_N3F_V4F 10797
+     * }
+     */
+    public static int GL_T4F_C4F_N3F_V4F() {
+        return GL_T4F_C4F_N3F_V4F;
+    }
+    private static final int GL_BGR = (int)32992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGR 32992
+     * }
+     */
+    public static int GL_BGR() {
+        return GL_BGR;
+    }
+    private static final int GL_BGRA = (int)32993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BGRA 32993
+     * }
+     */
+    public static int GL_BGRA() {
+        return GL_BGRA;
+    }
+    private static final int GL_CONSTANT_COLOR = (int)32769L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_COLOR 32769
+     * }
+     */
+    public static int GL_CONSTANT_COLOR() {
+        return GL_CONSTANT_COLOR;
+    }
+    private static final int GL_ONE_MINUS_CONSTANT_COLOR = (int)32770L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_CONSTANT_COLOR 32770
+     * }
+     */
+    public static int GL_ONE_MINUS_CONSTANT_COLOR() {
+        return GL_ONE_MINUS_CONSTANT_COLOR;
+    }
+    private static final int GL_CONSTANT_ALPHA = (int)32771L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_ALPHA 32771
+     * }
+     */
+    public static int GL_CONSTANT_ALPHA() {
+        return GL_CONSTANT_ALPHA;
+    }
+    private static final int GL_ONE_MINUS_CONSTANT_ALPHA = (int)32772L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ONE_MINUS_CONSTANT_ALPHA 32772
+     * }
+     */
+    public static int GL_ONE_MINUS_CONSTANT_ALPHA() {
+        return GL_ONE_MINUS_CONSTANT_ALPHA;
+    }
+    private static final int GL_BLEND_COLOR = (int)32773L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_COLOR 32773
+     * }
+     */
+    public static int GL_BLEND_COLOR() {
+        return GL_BLEND_COLOR;
+    }
+    private static final int GL_FUNC_ADD = (int)32774L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FUNC_ADD 32774
+     * }
+     */
+    public static int GL_FUNC_ADD() {
+        return GL_FUNC_ADD;
+    }
+    private static final int GL_MIN = (int)32775L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIN 32775
+     * }
+     */
+    public static int GL_MIN() {
+        return GL_MIN;
+    }
+    private static final int GL_MAX = (int)32776L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX 32776
+     * }
+     */
+    public static int GL_MAX() {
+        return GL_MAX;
+    }
+    private static final int GL_BLEND_EQUATION = (int)32777L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_EQUATION 32777
+     * }
+     */
+    public static int GL_BLEND_EQUATION() {
+        return GL_BLEND_EQUATION;
+    }
+    private static final int GL_BLEND_EQUATION_RGB = (int)32777L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_EQUATION_RGB 32777
+     * }
+     */
+    public static int GL_BLEND_EQUATION_RGB() {
+        return GL_BLEND_EQUATION_RGB;
+    }
+    private static final int GL_BLEND_EQUATION_ALPHA = (int)34877L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_EQUATION_ALPHA 34877
+     * }
+     */
+    public static int GL_BLEND_EQUATION_ALPHA() {
+        return GL_BLEND_EQUATION_ALPHA;
+    }
+    private static final int GL_FUNC_SUBTRACT = (int)32778L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FUNC_SUBTRACT 32778
+     * }
+     */
+    public static int GL_FUNC_SUBTRACT() {
+        return GL_FUNC_SUBTRACT;
+    }
+    private static final int GL_FUNC_REVERSE_SUBTRACT = (int)32779L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FUNC_REVERSE_SUBTRACT 32779
+     * }
+     */
+    public static int GL_FUNC_REVERSE_SUBTRACT() {
+        return GL_FUNC_REVERSE_SUBTRACT;
+    }
+    private static final int GL_COLOR_MATRIX = (int)32945L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATRIX 32945
+     * }
+     */
+    public static int GL_COLOR_MATRIX() {
+        return GL_COLOR_MATRIX;
+    }
+    private static final int GL_COLOR_MATRIX_STACK_DEPTH = (int)32946L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_MATRIX_STACK_DEPTH 32946
+     * }
+     */
+    public static int GL_COLOR_MATRIX_STACK_DEPTH() {
+        return GL_COLOR_MATRIX_STACK_DEPTH;
+    }
+    private static final int GL_MAX_COLOR_MATRIX_STACK_DEPTH = (int)32947L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_COLOR_MATRIX_STACK_DEPTH 32947
+     * }
+     */
+    public static int GL_MAX_COLOR_MATRIX_STACK_DEPTH() {
+        return GL_MAX_COLOR_MATRIX_STACK_DEPTH;
+    }
+    private static final int GL_POST_COLOR_MATRIX_RED_SCALE = (int)32948L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_RED_SCALE 32948
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_RED_SCALE() {
+        return GL_POST_COLOR_MATRIX_RED_SCALE;
+    }
+    private static final int GL_POST_COLOR_MATRIX_GREEN_SCALE = (int)32949L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_GREEN_SCALE 32949
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_GREEN_SCALE() {
+        return GL_POST_COLOR_MATRIX_GREEN_SCALE;
+    }
+    private static final int GL_POST_COLOR_MATRIX_BLUE_SCALE = (int)32950L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_BLUE_SCALE 32950
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_BLUE_SCALE() {
+        return GL_POST_COLOR_MATRIX_BLUE_SCALE;
+    }
+    private static final int GL_POST_COLOR_MATRIX_ALPHA_SCALE = (int)32951L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_ALPHA_SCALE 32951
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_ALPHA_SCALE() {
+        return GL_POST_COLOR_MATRIX_ALPHA_SCALE;
+    }
+    private static final int GL_POST_COLOR_MATRIX_RED_BIAS = (int)32952L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_RED_BIAS 32952
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_RED_BIAS() {
+        return GL_POST_COLOR_MATRIX_RED_BIAS;
+    }
+    private static final int GL_POST_COLOR_MATRIX_GREEN_BIAS = (int)32953L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_GREEN_BIAS 32953
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_GREEN_BIAS() {
+        return GL_POST_COLOR_MATRIX_GREEN_BIAS;
+    }
+    private static final int GL_POST_COLOR_MATRIX_BLUE_BIAS = (int)32954L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_BLUE_BIAS 32954
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_BLUE_BIAS() {
+        return GL_POST_COLOR_MATRIX_BLUE_BIAS;
+    }
+    private static final int GL_POST_COLOR_MATRIX_ALPHA_BIAS = (int)32955L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_ALPHA_BIAS 32955
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_ALPHA_BIAS() {
+        return GL_POST_COLOR_MATRIX_ALPHA_BIAS;
+    }
+    private static final int GL_COLOR_TABLE = (int)32976L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE 32976
+     * }
+     */
+    public static int GL_COLOR_TABLE() {
+        return GL_COLOR_TABLE;
+    }
+    private static final int GL_POST_CONVOLUTION_COLOR_TABLE = (int)32977L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_COLOR_TABLE 32977
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_COLOR_TABLE() {
+        return GL_POST_CONVOLUTION_COLOR_TABLE;
+    }
+    private static final int GL_POST_COLOR_MATRIX_COLOR_TABLE = (int)32978L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_COLOR_MATRIX_COLOR_TABLE 32978
+     * }
+     */
+    public static int GL_POST_COLOR_MATRIX_COLOR_TABLE() {
+        return GL_POST_COLOR_MATRIX_COLOR_TABLE;
+    }
+    private static final int GL_PROXY_COLOR_TABLE = (int)32979L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_COLOR_TABLE 32979
+     * }
+     */
+    public static int GL_PROXY_COLOR_TABLE() {
+        return GL_PROXY_COLOR_TABLE;
+    }
+    private static final int GL_PROXY_POST_CONVOLUTION_COLOR_TABLE = (int)32980L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_POST_CONVOLUTION_COLOR_TABLE 32980
+     * }
+     */
+    public static int GL_PROXY_POST_CONVOLUTION_COLOR_TABLE() {
+        return GL_PROXY_POST_CONVOLUTION_COLOR_TABLE;
+    }
+    private static final int GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE = (int)32981L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE 32981
+     * }
+     */
+    public static int GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE() {
+        return GL_PROXY_POST_COLOR_MATRIX_COLOR_TABLE;
+    }
+    private static final int GL_COLOR_TABLE_SCALE = (int)32982L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_SCALE 32982
+     * }
+     */
+    public static int GL_COLOR_TABLE_SCALE() {
+        return GL_COLOR_TABLE_SCALE;
+    }
+    private static final int GL_COLOR_TABLE_BIAS = (int)32983L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_BIAS 32983
+     * }
+     */
+    public static int GL_COLOR_TABLE_BIAS() {
+        return GL_COLOR_TABLE_BIAS;
+    }
+    private static final int GL_COLOR_TABLE_FORMAT = (int)32984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_FORMAT 32984
+     * }
+     */
+    public static int GL_COLOR_TABLE_FORMAT() {
+        return GL_COLOR_TABLE_FORMAT;
+    }
+    private static final int GL_COLOR_TABLE_WIDTH = (int)32985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_WIDTH 32985
+     * }
+     */
+    public static int GL_COLOR_TABLE_WIDTH() {
+        return GL_COLOR_TABLE_WIDTH;
+    }
+    private static final int GL_COLOR_TABLE_RED_SIZE = (int)32986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_RED_SIZE 32986
+     * }
+     */
+    public static int GL_COLOR_TABLE_RED_SIZE() {
+        return GL_COLOR_TABLE_RED_SIZE;
+    }
+    private static final int GL_COLOR_TABLE_GREEN_SIZE = (int)32987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_GREEN_SIZE 32987
+     * }
+     */
+    public static int GL_COLOR_TABLE_GREEN_SIZE() {
+        return GL_COLOR_TABLE_GREEN_SIZE;
+    }
+    private static final int GL_COLOR_TABLE_BLUE_SIZE = (int)32988L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_BLUE_SIZE 32988
+     * }
+     */
+    public static int GL_COLOR_TABLE_BLUE_SIZE() {
+        return GL_COLOR_TABLE_BLUE_SIZE;
+    }
+    private static final int GL_COLOR_TABLE_ALPHA_SIZE = (int)32989L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_ALPHA_SIZE 32989
+     * }
+     */
+    public static int GL_COLOR_TABLE_ALPHA_SIZE() {
+        return GL_COLOR_TABLE_ALPHA_SIZE;
+    }
+    private static final int GL_COLOR_TABLE_LUMINANCE_SIZE = (int)32990L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_LUMINANCE_SIZE 32990
+     * }
+     */
+    public static int GL_COLOR_TABLE_LUMINANCE_SIZE() {
+        return GL_COLOR_TABLE_LUMINANCE_SIZE;
+    }
+    private static final int GL_COLOR_TABLE_INTENSITY_SIZE = (int)32991L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_TABLE_INTENSITY_SIZE 32991
+     * }
+     */
+    public static int GL_COLOR_TABLE_INTENSITY_SIZE() {
+        return GL_COLOR_TABLE_INTENSITY_SIZE;
+    }
+    private static final int GL_CONVOLUTION_1D = (int)32784L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_1D 32784
+     * }
+     */
+    public static int GL_CONVOLUTION_1D() {
+        return GL_CONVOLUTION_1D;
+    }
+    private static final int GL_CONVOLUTION_2D = (int)32785L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_2D 32785
+     * }
+     */
+    public static int GL_CONVOLUTION_2D() {
+        return GL_CONVOLUTION_2D;
+    }
+    private static final int GL_SEPARABLE_2D = (int)32786L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SEPARABLE_2D 32786
+     * }
+     */
+    public static int GL_SEPARABLE_2D() {
+        return GL_SEPARABLE_2D;
+    }
+    private static final int GL_CONVOLUTION_BORDER_MODE = (int)32787L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_BORDER_MODE 32787
+     * }
+     */
+    public static int GL_CONVOLUTION_BORDER_MODE() {
+        return GL_CONVOLUTION_BORDER_MODE;
+    }
+    private static final int GL_CONVOLUTION_FILTER_SCALE = (int)32788L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_FILTER_SCALE 32788
+     * }
+     */
+    public static int GL_CONVOLUTION_FILTER_SCALE() {
+        return GL_CONVOLUTION_FILTER_SCALE;
+    }
+    private static final int GL_CONVOLUTION_FILTER_BIAS = (int)32789L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_FILTER_BIAS 32789
+     * }
+     */
+    public static int GL_CONVOLUTION_FILTER_BIAS() {
+        return GL_CONVOLUTION_FILTER_BIAS;
+    }
+    private static final int GL_REDUCE = (int)32790L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REDUCE 32790
+     * }
+     */
+    public static int GL_REDUCE() {
+        return GL_REDUCE;
+    }
+    private static final int GL_CONVOLUTION_FORMAT = (int)32791L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_FORMAT 32791
+     * }
+     */
+    public static int GL_CONVOLUTION_FORMAT() {
+        return GL_CONVOLUTION_FORMAT;
+    }
+    private static final int GL_CONVOLUTION_WIDTH = (int)32792L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_WIDTH 32792
+     * }
+     */
+    public static int GL_CONVOLUTION_WIDTH() {
+        return GL_CONVOLUTION_WIDTH;
+    }
+    private static final int GL_CONVOLUTION_HEIGHT = (int)32793L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_HEIGHT 32793
+     * }
+     */
+    public static int GL_CONVOLUTION_HEIGHT() {
+        return GL_CONVOLUTION_HEIGHT;
+    }
+    private static final int GL_MAX_CONVOLUTION_WIDTH = (int)32794L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CONVOLUTION_WIDTH 32794
+     * }
+     */
+    public static int GL_MAX_CONVOLUTION_WIDTH() {
+        return GL_MAX_CONVOLUTION_WIDTH;
+    }
+    private static final int GL_MAX_CONVOLUTION_HEIGHT = (int)32795L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CONVOLUTION_HEIGHT 32795
+     * }
+     */
+    public static int GL_MAX_CONVOLUTION_HEIGHT() {
+        return GL_MAX_CONVOLUTION_HEIGHT;
+    }
+    private static final int GL_POST_CONVOLUTION_RED_SCALE = (int)32796L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_RED_SCALE 32796
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_RED_SCALE() {
+        return GL_POST_CONVOLUTION_RED_SCALE;
+    }
+    private static final int GL_POST_CONVOLUTION_GREEN_SCALE = (int)32797L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_GREEN_SCALE 32797
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_GREEN_SCALE() {
+        return GL_POST_CONVOLUTION_GREEN_SCALE;
+    }
+    private static final int GL_POST_CONVOLUTION_BLUE_SCALE = (int)32798L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_BLUE_SCALE 32798
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_BLUE_SCALE() {
+        return GL_POST_CONVOLUTION_BLUE_SCALE;
+    }
+    private static final int GL_POST_CONVOLUTION_ALPHA_SCALE = (int)32799L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_ALPHA_SCALE 32799
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_ALPHA_SCALE() {
+        return GL_POST_CONVOLUTION_ALPHA_SCALE;
+    }
+    private static final int GL_POST_CONVOLUTION_RED_BIAS = (int)32800L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_RED_BIAS 32800
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_RED_BIAS() {
+        return GL_POST_CONVOLUTION_RED_BIAS;
+    }
+    private static final int GL_POST_CONVOLUTION_GREEN_BIAS = (int)32801L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_GREEN_BIAS 32801
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_GREEN_BIAS() {
+        return GL_POST_CONVOLUTION_GREEN_BIAS;
+    }
+    private static final int GL_POST_CONVOLUTION_BLUE_BIAS = (int)32802L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_BLUE_BIAS 32802
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_BLUE_BIAS() {
+        return GL_POST_CONVOLUTION_BLUE_BIAS;
+    }
+    private static final int GL_POST_CONVOLUTION_ALPHA_BIAS = (int)32803L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POST_CONVOLUTION_ALPHA_BIAS 32803
+     * }
+     */
+    public static int GL_POST_CONVOLUTION_ALPHA_BIAS() {
+        return GL_POST_CONVOLUTION_ALPHA_BIAS;
+    }
+    private static final int GL_CONSTANT_BORDER = (int)33105L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT_BORDER 33105
+     * }
+     */
+    public static int GL_CONSTANT_BORDER() {
+        return GL_CONSTANT_BORDER;
+    }
+    private static final int GL_REPLICATE_BORDER = (int)33107L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REPLICATE_BORDER 33107
+     * }
+     */
+    public static int GL_REPLICATE_BORDER() {
+        return GL_REPLICATE_BORDER;
+    }
+    private static final int GL_CONVOLUTION_BORDER_COLOR = (int)33108L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONVOLUTION_BORDER_COLOR 33108
+     * }
+     */
+    public static int GL_CONVOLUTION_BORDER_COLOR() {
+        return GL_CONVOLUTION_BORDER_COLOR;
+    }
+    private static final int GL_MAX_ELEMENTS_VERTICES = (int)33000L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_VERTICES 33000
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_VERTICES() {
+        return GL_MAX_ELEMENTS_VERTICES;
+    }
+    private static final int GL_MAX_ELEMENTS_INDICES = (int)33001L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_ELEMENTS_INDICES 33001
+     * }
+     */
+    public static int GL_MAX_ELEMENTS_INDICES() {
+        return GL_MAX_ELEMENTS_INDICES;
+    }
+    private static final int GL_HISTOGRAM = (int)32804L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM 32804
+     * }
+     */
+    public static int GL_HISTOGRAM() {
+        return GL_HISTOGRAM;
+    }
+    private static final int GL_PROXY_HISTOGRAM = (int)32805L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_HISTOGRAM 32805
+     * }
+     */
+    public static int GL_PROXY_HISTOGRAM() {
+        return GL_PROXY_HISTOGRAM;
+    }
+    private static final int GL_HISTOGRAM_WIDTH = (int)32806L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_WIDTH 32806
+     * }
+     */
+    public static int GL_HISTOGRAM_WIDTH() {
+        return GL_HISTOGRAM_WIDTH;
+    }
+    private static final int GL_HISTOGRAM_FORMAT = (int)32807L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_FORMAT 32807
+     * }
+     */
+    public static int GL_HISTOGRAM_FORMAT() {
+        return GL_HISTOGRAM_FORMAT;
+    }
+    private static final int GL_HISTOGRAM_RED_SIZE = (int)32808L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_RED_SIZE 32808
+     * }
+     */
+    public static int GL_HISTOGRAM_RED_SIZE() {
+        return GL_HISTOGRAM_RED_SIZE;
+    }
+    private static final int GL_HISTOGRAM_GREEN_SIZE = (int)32809L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_GREEN_SIZE 32809
+     * }
+     */
+    public static int GL_HISTOGRAM_GREEN_SIZE() {
+        return GL_HISTOGRAM_GREEN_SIZE;
+    }
+    private static final int GL_HISTOGRAM_BLUE_SIZE = (int)32810L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_BLUE_SIZE 32810
+     * }
+     */
+    public static int GL_HISTOGRAM_BLUE_SIZE() {
+        return GL_HISTOGRAM_BLUE_SIZE;
+    }
+    private static final int GL_HISTOGRAM_ALPHA_SIZE = (int)32811L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_ALPHA_SIZE 32811
+     * }
+     */
+    public static int GL_HISTOGRAM_ALPHA_SIZE() {
+        return GL_HISTOGRAM_ALPHA_SIZE;
+    }
+    private static final int GL_HISTOGRAM_LUMINANCE_SIZE = (int)32812L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_LUMINANCE_SIZE 32812
+     * }
+     */
+    public static int GL_HISTOGRAM_LUMINANCE_SIZE() {
+        return GL_HISTOGRAM_LUMINANCE_SIZE;
+    }
+    private static final int GL_HISTOGRAM_SINK = (int)32813L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_HISTOGRAM_SINK 32813
+     * }
+     */
+    public static int GL_HISTOGRAM_SINK() {
+        return GL_HISTOGRAM_SINK;
+    }
+    private static final int GL_MINMAX = (int)32814L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MINMAX 32814
+     * }
+     */
+    public static int GL_MINMAX() {
+        return GL_MINMAX;
+    }
+    private static final int GL_MINMAX_FORMAT = (int)32815L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MINMAX_FORMAT 32815
+     * }
+     */
+    public static int GL_MINMAX_FORMAT() {
+        return GL_MINMAX_FORMAT;
+    }
+    private static final int GL_MINMAX_SINK = (int)32816L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MINMAX_SINK 32816
+     * }
+     */
+    public static int GL_MINMAX_SINK() {
+        return GL_MINMAX_SINK;
+    }
+    private static final int GL_TABLE_TOO_LARGE = (int)32817L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TABLE_TOO_LARGE 32817
+     * }
+     */
+    public static int GL_TABLE_TOO_LARGE() {
+        return GL_TABLE_TOO_LARGE;
+    }
+    private static final int GL_UNSIGNED_BYTE_3_3_2 = (int)32818L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_BYTE_3_3_2 32818
+     * }
+     */
+    public static int GL_UNSIGNED_BYTE_3_3_2() {
+        return GL_UNSIGNED_BYTE_3_3_2;
+    }
+    private static final int GL_UNSIGNED_SHORT_4_4_4_4 = (int)32819L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_4_4_4_4 32819
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_4_4_4_4() {
+        return GL_UNSIGNED_SHORT_4_4_4_4;
+    }
+    private static final int GL_UNSIGNED_SHORT_5_5_5_1 = (int)32820L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_5_5_5_1 32820
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_5_5_5_1() {
+        return GL_UNSIGNED_SHORT_5_5_5_1;
+    }
+    private static final int GL_UNSIGNED_INT_8_8_8_8 = (int)32821L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT_8_8_8_8 32821
+     * }
+     */
+    public static int GL_UNSIGNED_INT_8_8_8_8() {
+        return GL_UNSIGNED_INT_8_8_8_8;
+    }
+    private static final int GL_UNSIGNED_INT_10_10_10_2 = (int)32822L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT_10_10_10_2 32822
+     * }
+     */
+    public static int GL_UNSIGNED_INT_10_10_10_2() {
+        return GL_UNSIGNED_INT_10_10_10_2;
+    }
+    private static final int GL_UNSIGNED_BYTE_2_3_3_REV = (int)33634L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_BYTE_2_3_3_REV 33634
+     * }
+     */
+    public static int GL_UNSIGNED_BYTE_2_3_3_REV() {
+        return GL_UNSIGNED_BYTE_2_3_3_REV;
+    }
+    private static final int GL_UNSIGNED_SHORT_5_6_5 = (int)33635L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_5_6_5 33635
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_5_6_5() {
+        return GL_UNSIGNED_SHORT_5_6_5;
+    }
+    private static final int GL_UNSIGNED_SHORT_5_6_5_REV = (int)33636L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_5_6_5_REV 33636
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_5_6_5_REV() {
+        return GL_UNSIGNED_SHORT_5_6_5_REV;
+    }
+    private static final int GL_UNSIGNED_SHORT_4_4_4_4_REV = (int)33637L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_4_4_4_4_REV 33637
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_4_4_4_4_REV() {
+        return GL_UNSIGNED_SHORT_4_4_4_4_REV;
+    }
+    private static final int GL_UNSIGNED_SHORT_1_5_5_5_REV = (int)33638L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_SHORT_1_5_5_5_REV 33638
+     * }
+     */
+    public static int GL_UNSIGNED_SHORT_1_5_5_5_REV() {
+        return GL_UNSIGNED_SHORT_1_5_5_5_REV;
+    }
+    private static final int GL_UNSIGNED_INT_8_8_8_8_REV = (int)33639L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT_8_8_8_8_REV 33639
+     * }
+     */
+    public static int GL_UNSIGNED_INT_8_8_8_8_REV() {
+        return GL_UNSIGNED_INT_8_8_8_8_REV;
+    }
+    private static final int GL_UNSIGNED_INT_2_10_10_10_REV = (int)33640L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNSIGNED_INT_2_10_10_10_REV 33640
+     * }
+     */
+    public static int GL_UNSIGNED_INT_2_10_10_10_REV() {
+        return GL_UNSIGNED_INT_2_10_10_10_REV;
+    }
+    private static final int GL_RESCALE_NORMAL = (int)32826L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RESCALE_NORMAL 32826
+     * }
+     */
+    public static int GL_RESCALE_NORMAL() {
+        return GL_RESCALE_NORMAL;
+    }
+    private static final int GL_LIGHT_MODEL_COLOR_CONTROL = (int)33272L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LIGHT_MODEL_COLOR_CONTROL 33272
+     * }
+     */
+    public static int GL_LIGHT_MODEL_COLOR_CONTROL() {
+        return GL_LIGHT_MODEL_COLOR_CONTROL;
+    }
+    private static final int GL_SINGLE_COLOR = (int)33273L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SINGLE_COLOR 33273
+     * }
+     */
+    public static int GL_SINGLE_COLOR() {
+        return GL_SINGLE_COLOR;
+    }
+    private static final int GL_SEPARATE_SPECULAR_COLOR = (int)33274L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SEPARATE_SPECULAR_COLOR 33274
+     * }
+     */
+    public static int GL_SEPARATE_SPECULAR_COLOR() {
+        return GL_SEPARATE_SPECULAR_COLOR;
+    }
+    private static final int GL_PACK_SKIP_IMAGES = (int)32875L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_SKIP_IMAGES 32875
+     * }
+     */
+    public static int GL_PACK_SKIP_IMAGES() {
+        return GL_PACK_SKIP_IMAGES;
+    }
+    private static final int GL_PACK_IMAGE_HEIGHT = (int)32876L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PACK_IMAGE_HEIGHT 32876
+     * }
+     */
+    public static int GL_PACK_IMAGE_HEIGHT() {
+        return GL_PACK_IMAGE_HEIGHT;
+    }
+    private static final int GL_UNPACK_SKIP_IMAGES = (int)32877L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_SKIP_IMAGES 32877
+     * }
+     */
+    public static int GL_UNPACK_SKIP_IMAGES() {
+        return GL_UNPACK_SKIP_IMAGES;
+    }
+    private static final int GL_UNPACK_IMAGE_HEIGHT = (int)32878L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_UNPACK_IMAGE_HEIGHT 32878
+     * }
+     */
+    public static int GL_UNPACK_IMAGE_HEIGHT() {
+        return GL_UNPACK_IMAGE_HEIGHT;
+    }
+    private static final int GL_TEXTURE_3D = (int)32879L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_3D 32879
+     * }
+     */
+    public static int GL_TEXTURE_3D() {
+        return GL_TEXTURE_3D;
+    }
+    private static final int GL_PROXY_TEXTURE_3D = (int)32880L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_3D 32880
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_3D() {
+        return GL_PROXY_TEXTURE_3D;
+    }
+    private static final int GL_TEXTURE_DEPTH = (int)32881L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_DEPTH 32881
+     * }
+     */
+    public static int GL_TEXTURE_DEPTH() {
+        return GL_TEXTURE_DEPTH;
+    }
+    private static final int GL_TEXTURE_WRAP_R = (int)32882L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_WRAP_R 32882
+     * }
+     */
+    public static int GL_TEXTURE_WRAP_R() {
+        return GL_TEXTURE_WRAP_R;
+    }
+    private static final int GL_MAX_3D_TEXTURE_SIZE = (int)32883L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_3D_TEXTURE_SIZE 32883
+     * }
+     */
+    public static int GL_MAX_3D_TEXTURE_SIZE() {
+        return GL_MAX_3D_TEXTURE_SIZE;
+    }
+    private static final int GL_CLAMP_TO_EDGE = (int)33071L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP_TO_EDGE 33071
+     * }
+     */
+    public static int GL_CLAMP_TO_EDGE() {
+        return GL_CLAMP_TO_EDGE;
+    }
+    private static final int GL_CLAMP_TO_BORDER = (int)33069L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLAMP_TO_BORDER 33069
+     * }
+     */
+    public static int GL_CLAMP_TO_BORDER() {
+        return GL_CLAMP_TO_BORDER;
+    }
+    private static final int GL_TEXTURE_MIN_LOD = (int)33082L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MIN_LOD 33082
+     * }
+     */
+    public static int GL_TEXTURE_MIN_LOD() {
+        return GL_TEXTURE_MIN_LOD;
+    }
+    private static final int GL_TEXTURE_MAX_LOD = (int)33083L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAX_LOD 33083
+     * }
+     */
+    public static int GL_TEXTURE_MAX_LOD() {
+        return GL_TEXTURE_MAX_LOD;
+    }
+    private static final int GL_TEXTURE_BASE_LEVEL = (int)33084L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BASE_LEVEL 33084
+     * }
+     */
+    public static int GL_TEXTURE_BASE_LEVEL() {
+        return GL_TEXTURE_BASE_LEVEL;
+    }
+    private static final int GL_TEXTURE_MAX_LEVEL = (int)33085L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_MAX_LEVEL 33085
+     * }
+     */
+    public static int GL_TEXTURE_MAX_LEVEL() {
+        return GL_TEXTURE_MAX_LEVEL;
+    }
+    private static final int GL_SMOOTH_POINT_SIZE_RANGE = (int)2834L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH_POINT_SIZE_RANGE 2834
+     * }
+     */
+    public static int GL_SMOOTH_POINT_SIZE_RANGE() {
+        return GL_SMOOTH_POINT_SIZE_RANGE;
+    }
+    private static final int GL_SMOOTH_POINT_SIZE_GRANULARITY = (int)2835L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH_POINT_SIZE_GRANULARITY 2835
+     * }
+     */
+    public static int GL_SMOOTH_POINT_SIZE_GRANULARITY() {
+        return GL_SMOOTH_POINT_SIZE_GRANULARITY;
+    }
+    private static final int GL_SMOOTH_LINE_WIDTH_RANGE = (int)2850L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH_LINE_WIDTH_RANGE 2850
+     * }
+     */
+    public static int GL_SMOOTH_LINE_WIDTH_RANGE() {
+        return GL_SMOOTH_LINE_WIDTH_RANGE;
+    }
+    private static final int GL_SMOOTH_LINE_WIDTH_GRANULARITY = (int)2851L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SMOOTH_LINE_WIDTH_GRANULARITY 2851
+     * }
+     */
+    public static int GL_SMOOTH_LINE_WIDTH_GRANULARITY() {
+        return GL_SMOOTH_LINE_WIDTH_GRANULARITY;
+    }
+    private static final int GL_ALIASED_POINT_SIZE_RANGE = (int)33901L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALIASED_POINT_SIZE_RANGE 33901
+     * }
+     */
+    public static int GL_ALIASED_POINT_SIZE_RANGE() {
+        return GL_ALIASED_POINT_SIZE_RANGE;
+    }
+    private static final int GL_ALIASED_LINE_WIDTH_RANGE = (int)33902L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ALIASED_LINE_WIDTH_RANGE 33902
+     * }
+     */
+    public static int GL_ALIASED_LINE_WIDTH_RANGE() {
+        return GL_ALIASED_LINE_WIDTH_RANGE;
+    }
+    private static final int GL_TEXTURE0 = (int)33984L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE0 33984
+     * }
+     */
+    public static int GL_TEXTURE0() {
+        return GL_TEXTURE0;
+    }
+    private static final int GL_TEXTURE1 = (int)33985L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE1 33985
+     * }
+     */
+    public static int GL_TEXTURE1() {
+        return GL_TEXTURE1;
+    }
+    private static final int GL_TEXTURE2 = (int)33986L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE2 33986
+     * }
+     */
+    public static int GL_TEXTURE2() {
+        return GL_TEXTURE2;
+    }
+    private static final int GL_TEXTURE3 = (int)33987L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE3 33987
+     * }
+     */
+    public static int GL_TEXTURE3() {
+        return GL_TEXTURE3;
+    }
+    private static final int GL_TEXTURE4 = (int)33988L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE4 33988
+     * }
+     */
+    public static int GL_TEXTURE4() {
+        return GL_TEXTURE4;
+    }
+    private static final int GL_TEXTURE5 = (int)33989L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE5 33989
+     * }
+     */
+    public static int GL_TEXTURE5() {
+        return GL_TEXTURE5;
+    }
+    private static final int GL_TEXTURE6 = (int)33990L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE6 33990
+     * }
+     */
+    public static int GL_TEXTURE6() {
+        return GL_TEXTURE6;
+    }
+    private static final int GL_TEXTURE7 = (int)33991L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE7 33991
+     * }
+     */
+    public static int GL_TEXTURE7() {
+        return GL_TEXTURE7;
+    }
+    private static final int GL_TEXTURE8 = (int)33992L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE8 33992
+     * }
+     */
+    public static int GL_TEXTURE8() {
+        return GL_TEXTURE8;
+    }
+    private static final int GL_TEXTURE9 = (int)33993L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE9 33993
+     * }
+     */
+    public static int GL_TEXTURE9() {
+        return GL_TEXTURE9;
+    }
+    private static final int GL_TEXTURE10 = (int)33994L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE10 33994
+     * }
+     */
+    public static int GL_TEXTURE10() {
+        return GL_TEXTURE10;
+    }
+    private static final int GL_TEXTURE11 = (int)33995L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE11 33995
+     * }
+     */
+    public static int GL_TEXTURE11() {
+        return GL_TEXTURE11;
+    }
+    private static final int GL_TEXTURE12 = (int)33996L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE12 33996
+     * }
+     */
+    public static int GL_TEXTURE12() {
+        return GL_TEXTURE12;
+    }
+    private static final int GL_TEXTURE13 = (int)33997L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE13 33997
+     * }
+     */
+    public static int GL_TEXTURE13() {
+        return GL_TEXTURE13;
+    }
+    private static final int GL_TEXTURE14 = (int)33998L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE14 33998
+     * }
+     */
+    public static int GL_TEXTURE14() {
+        return GL_TEXTURE14;
+    }
+    private static final int GL_TEXTURE15 = (int)33999L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE15 33999
+     * }
+     */
+    public static int GL_TEXTURE15() {
+        return GL_TEXTURE15;
+    }
+    private static final int GL_TEXTURE16 = (int)34000L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE16 34000
+     * }
+     */
+    public static int GL_TEXTURE16() {
+        return GL_TEXTURE16;
+    }
+    private static final int GL_TEXTURE17 = (int)34001L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE17 34001
+     * }
+     */
+    public static int GL_TEXTURE17() {
+        return GL_TEXTURE17;
+    }
+    private static final int GL_TEXTURE18 = (int)34002L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE18 34002
+     * }
+     */
+    public static int GL_TEXTURE18() {
+        return GL_TEXTURE18;
+    }
+    private static final int GL_TEXTURE19 = (int)34003L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE19 34003
+     * }
+     */
+    public static int GL_TEXTURE19() {
+        return GL_TEXTURE19;
+    }
+    private static final int GL_TEXTURE20 = (int)34004L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE20 34004
+     * }
+     */
+    public static int GL_TEXTURE20() {
+        return GL_TEXTURE20;
+    }
+    private static final int GL_TEXTURE21 = (int)34005L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE21 34005
+     * }
+     */
+    public static int GL_TEXTURE21() {
+        return GL_TEXTURE21;
+    }
+    private static final int GL_TEXTURE22 = (int)34006L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE22 34006
+     * }
+     */
+    public static int GL_TEXTURE22() {
+        return GL_TEXTURE22;
+    }
+    private static final int GL_TEXTURE23 = (int)34007L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE23 34007
+     * }
+     */
+    public static int GL_TEXTURE23() {
+        return GL_TEXTURE23;
+    }
+    private static final int GL_TEXTURE24 = (int)34008L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE24 34008
+     * }
+     */
+    public static int GL_TEXTURE24() {
+        return GL_TEXTURE24;
+    }
+    private static final int GL_TEXTURE25 = (int)34009L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE25 34009
+     * }
+     */
+    public static int GL_TEXTURE25() {
+        return GL_TEXTURE25;
+    }
+    private static final int GL_TEXTURE26 = (int)34010L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE26 34010
+     * }
+     */
+    public static int GL_TEXTURE26() {
+        return GL_TEXTURE26;
+    }
+    private static final int GL_TEXTURE27 = (int)34011L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE27 34011
+     * }
+     */
+    public static int GL_TEXTURE27() {
+        return GL_TEXTURE27;
+    }
+    private static final int GL_TEXTURE28 = (int)34012L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE28 34012
+     * }
+     */
+    public static int GL_TEXTURE28() {
+        return GL_TEXTURE28;
+    }
+    private static final int GL_TEXTURE29 = (int)34013L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE29 34013
+     * }
+     */
+    public static int GL_TEXTURE29() {
+        return GL_TEXTURE29;
+    }
+    private static final int GL_TEXTURE30 = (int)34014L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE30 34014
+     * }
+     */
+    public static int GL_TEXTURE30() {
+        return GL_TEXTURE30;
+    }
+    private static final int GL_TEXTURE31 = (int)34015L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE31 34015
+     * }
+     */
+    public static int GL_TEXTURE31() {
+        return GL_TEXTURE31;
+    }
+    private static final int GL_ACTIVE_TEXTURE = (int)34016L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACTIVE_TEXTURE 34016
+     * }
+     */
+    public static int GL_ACTIVE_TEXTURE() {
+        return GL_ACTIVE_TEXTURE;
+    }
+    private static final int GL_CLIENT_ACTIVE_TEXTURE = (int)34017L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_ACTIVE_TEXTURE 34017
+     * }
+     */
+    public static int GL_CLIENT_ACTIVE_TEXTURE() {
+        return GL_CLIENT_ACTIVE_TEXTURE;
+    }
+    private static final int GL_MAX_TEXTURE_UNITS = (int)34018L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_UNITS 34018
+     * }
+     */
+    public static int GL_MAX_TEXTURE_UNITS() {
+        return GL_MAX_TEXTURE_UNITS;
+    }
+    private static final int GL_COMBINE = (int)34160L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMBINE 34160
+     * }
+     */
+    public static int GL_COMBINE() {
+        return GL_COMBINE;
+    }
+    private static final int GL_COMBINE_RGB = (int)34161L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMBINE_RGB 34161
+     * }
+     */
+    public static int GL_COMBINE_RGB() {
+        return GL_COMBINE_RGB;
+    }
+    private static final int GL_COMBINE_ALPHA = (int)34162L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMBINE_ALPHA 34162
+     * }
+     */
+    public static int GL_COMBINE_ALPHA() {
+        return GL_COMBINE_ALPHA;
+    }
+    private static final int GL_RGB_SCALE = (int)34163L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_RGB_SCALE 34163
+     * }
+     */
+    public static int GL_RGB_SCALE() {
+        return GL_RGB_SCALE;
+    }
+    private static final int GL_ADD_SIGNED = (int)34164L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ADD_SIGNED 34164
+     * }
+     */
+    public static int GL_ADD_SIGNED() {
+        return GL_ADD_SIGNED;
+    }
+    private static final int GL_INTERPOLATE = (int)34165L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INTERPOLATE 34165
+     * }
+     */
+    public static int GL_INTERPOLATE() {
+        return GL_INTERPOLATE;
+    }
+    private static final int GL_CONSTANT = (int)34166L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CONSTANT 34166
+     * }
+     */
+    public static int GL_CONSTANT() {
+        return GL_CONSTANT;
+    }
+    private static final int GL_PRIMARY_COLOR = (int)34167L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PRIMARY_COLOR 34167
+     * }
+     */
+    public static int GL_PRIMARY_COLOR() {
+        return GL_PRIMARY_COLOR;
+    }
+    private static final int GL_PREVIOUS = (int)34168L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PREVIOUS 34168
+     * }
+     */
+    public static int GL_PREVIOUS() {
+        return GL_PREVIOUS;
+    }
+    private static final int GL_SUBTRACT = (int)34023L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SUBTRACT 34023
+     * }
+     */
+    public static int GL_SUBTRACT() {
+        return GL_SUBTRACT;
+    }
+    private static final int GL_SRC0_RGB = (int)34176L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC0_RGB 34176
+     * }
+     */
+    public static int GL_SRC0_RGB() {
+        return GL_SRC0_RGB;
+    }
+    private static final int GL_SRC1_RGB = (int)34177L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC1_RGB 34177
+     * }
+     */
+    public static int GL_SRC1_RGB() {
+        return GL_SRC1_RGB;
+    }
+    private static final int GL_SRC2_RGB = (int)34178L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC2_RGB 34178
+     * }
+     */
+    public static int GL_SRC2_RGB() {
+        return GL_SRC2_RGB;
+    }
+    private static final int GL_SRC0_ALPHA = (int)34184L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC0_ALPHA 34184
+     * }
+     */
+    public static int GL_SRC0_ALPHA() {
+        return GL_SRC0_ALPHA;
+    }
+    private static final int GL_SRC1_ALPHA = (int)34185L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC1_ALPHA 34185
+     * }
+     */
+    public static int GL_SRC1_ALPHA() {
+        return GL_SRC1_ALPHA;
+    }
+    private static final int GL_SRC2_ALPHA = (int)34186L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SRC2_ALPHA 34186
+     * }
+     */
+    public static int GL_SRC2_ALPHA() {
+        return GL_SRC2_ALPHA;
+    }
+    private static final int GL_SOURCE0_RGB = (int)34176L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE0_RGB 34176
+     * }
+     */
+    public static int GL_SOURCE0_RGB() {
+        return GL_SOURCE0_RGB;
+    }
+    private static final int GL_SOURCE1_RGB = (int)34177L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE1_RGB 34177
+     * }
+     */
+    public static int GL_SOURCE1_RGB() {
+        return GL_SOURCE1_RGB;
+    }
+    private static final int GL_SOURCE2_RGB = (int)34178L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE2_RGB 34178
+     * }
+     */
+    public static int GL_SOURCE2_RGB() {
+        return GL_SOURCE2_RGB;
+    }
+    private static final int GL_SOURCE0_ALPHA = (int)34184L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE0_ALPHA 34184
+     * }
+     */
+    public static int GL_SOURCE0_ALPHA() {
+        return GL_SOURCE0_ALPHA;
+    }
+    private static final int GL_SOURCE1_ALPHA = (int)34185L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE1_ALPHA 34185
+     * }
+     */
+    public static int GL_SOURCE1_ALPHA() {
+        return GL_SOURCE1_ALPHA;
+    }
+    private static final int GL_SOURCE2_ALPHA = (int)34186L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SOURCE2_ALPHA 34186
+     * }
+     */
+    public static int GL_SOURCE2_ALPHA() {
+        return GL_SOURCE2_ALPHA;
+    }
+    private static final int GL_OPERAND0_RGB = (int)34192L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND0_RGB 34192
+     * }
+     */
+    public static int GL_OPERAND0_RGB() {
+        return GL_OPERAND0_RGB;
+    }
+    private static final int GL_OPERAND1_RGB = (int)34193L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND1_RGB 34193
+     * }
+     */
+    public static int GL_OPERAND1_RGB() {
+        return GL_OPERAND1_RGB;
+    }
+    private static final int GL_OPERAND2_RGB = (int)34194L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND2_RGB 34194
+     * }
+     */
+    public static int GL_OPERAND2_RGB() {
+        return GL_OPERAND2_RGB;
+    }
+    private static final int GL_OPERAND0_ALPHA = (int)34200L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND0_ALPHA 34200
+     * }
+     */
+    public static int GL_OPERAND0_ALPHA() {
+        return GL_OPERAND0_ALPHA;
+    }
+    private static final int GL_OPERAND1_ALPHA = (int)34201L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND1_ALPHA 34201
+     * }
+     */
+    public static int GL_OPERAND1_ALPHA() {
+        return GL_OPERAND1_ALPHA;
+    }
+    private static final int GL_OPERAND2_ALPHA = (int)34202L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_OPERAND2_ALPHA 34202
+     * }
+     */
+    public static int GL_OPERAND2_ALPHA() {
+        return GL_OPERAND2_ALPHA;
+    }
+    private static final int GL_DOT3_RGB = (int)34478L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOT3_RGB 34478
+     * }
+     */
+    public static int GL_DOT3_RGB() {
+        return GL_DOT3_RGB;
+    }
+    private static final int GL_DOT3_RGBA = (int)34479L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOT3_RGBA 34479
+     * }
+     */
+    public static int GL_DOT3_RGBA() {
+        return GL_DOT3_RGBA;
+    }
+    private static final int GL_TRANSPOSE_MODELVIEW_MATRIX = (int)34019L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSPOSE_MODELVIEW_MATRIX 34019
+     * }
+     */
+    public static int GL_TRANSPOSE_MODELVIEW_MATRIX() {
+        return GL_TRANSPOSE_MODELVIEW_MATRIX;
+    }
+    private static final int GL_TRANSPOSE_PROJECTION_MATRIX = (int)34020L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSPOSE_PROJECTION_MATRIX 34020
+     * }
+     */
+    public static int GL_TRANSPOSE_PROJECTION_MATRIX() {
+        return GL_TRANSPOSE_PROJECTION_MATRIX;
+    }
+    private static final int GL_TRANSPOSE_TEXTURE_MATRIX = (int)34021L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSPOSE_TEXTURE_MATRIX 34021
+     * }
+     */
+    public static int GL_TRANSPOSE_TEXTURE_MATRIX() {
+        return GL_TRANSPOSE_TEXTURE_MATRIX;
+    }
+    private static final int GL_TRANSPOSE_COLOR_MATRIX = (int)34022L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TRANSPOSE_COLOR_MATRIX 34022
+     * }
+     */
+    public static int GL_TRANSPOSE_COLOR_MATRIX() {
+        return GL_TRANSPOSE_COLOR_MATRIX;
+    }
+    private static final int GL_NORMAL_MAP = (int)34065L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_MAP 34065
+     * }
+     */
+    public static int GL_NORMAL_MAP() {
+        return GL_NORMAL_MAP;
+    }
+    private static final int GL_REFLECTION_MAP = (int)34066L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_REFLECTION_MAP 34066
+     * }
+     */
+    public static int GL_REFLECTION_MAP() {
+        return GL_REFLECTION_MAP;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP = (int)34067L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP 34067
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP() {
+        return GL_TEXTURE_CUBE_MAP;
+    }
+    private static final int GL_TEXTURE_BINDING_CUBE_MAP = (int)34068L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_BINDING_CUBE_MAP 34068
+     * }
+     */
+    public static int GL_TEXTURE_BINDING_CUBE_MAP() {
+        return GL_TEXTURE_BINDING_CUBE_MAP;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_POSITIVE_X = (int)34069L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_POSITIVE_X 34069
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_POSITIVE_X() {
+        return GL_TEXTURE_CUBE_MAP_POSITIVE_X;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_X = (int)34070L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_NEGATIVE_X 34070
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_NEGATIVE_X() {
+        return GL_TEXTURE_CUBE_MAP_NEGATIVE_X;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Y = (int)34071L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_POSITIVE_Y 34071
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_POSITIVE_Y() {
+        return GL_TEXTURE_CUBE_MAP_POSITIVE_Y;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_Y = (int)34072L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_NEGATIVE_Y 34072
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_NEGATIVE_Y() {
+        return GL_TEXTURE_CUBE_MAP_NEGATIVE_Y;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_POSITIVE_Z = (int)34073L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_POSITIVE_Z 34073
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_POSITIVE_Z() {
+        return GL_TEXTURE_CUBE_MAP_POSITIVE_Z;
+    }
+    private static final int GL_TEXTURE_CUBE_MAP_NEGATIVE_Z = (int)34074L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_CUBE_MAP_NEGATIVE_Z 34074
+     * }
+     */
+    public static int GL_TEXTURE_CUBE_MAP_NEGATIVE_Z() {
+        return GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
+    }
+    private static final int GL_PROXY_TEXTURE_CUBE_MAP = (int)34075L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_PROXY_TEXTURE_CUBE_MAP 34075
+     * }
+     */
+    public static int GL_PROXY_TEXTURE_CUBE_MAP() {
+        return GL_PROXY_TEXTURE_CUBE_MAP;
+    }
+    private static final int GL_MAX_CUBE_MAP_TEXTURE_SIZE = (int)34076L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_CUBE_MAP_TEXTURE_SIZE 34076
+     * }
+     */
+    public static int GL_MAX_CUBE_MAP_TEXTURE_SIZE() {
+        return GL_MAX_CUBE_MAP_TEXTURE_SIZE;
+    }
+    private static final int GL_COMPRESSED_ALPHA = (int)34025L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_ALPHA 34025
+     * }
+     */
+    public static int GL_COMPRESSED_ALPHA() {
+        return GL_COMPRESSED_ALPHA;
+    }
+    private static final int GL_COMPRESSED_LUMINANCE = (int)34026L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_LUMINANCE 34026
+     * }
+     */
+    public static int GL_COMPRESSED_LUMINANCE() {
+        return GL_COMPRESSED_LUMINANCE;
+    }
+    private static final int GL_COMPRESSED_LUMINANCE_ALPHA = (int)34027L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_LUMINANCE_ALPHA 34027
+     * }
+     */
+    public static int GL_COMPRESSED_LUMINANCE_ALPHA() {
+        return GL_COMPRESSED_LUMINANCE_ALPHA;
+    }
+    private static final int GL_COMPRESSED_INTENSITY = (int)34028L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_INTENSITY 34028
+     * }
+     */
+    public static int GL_COMPRESSED_INTENSITY() {
+        return GL_COMPRESSED_INTENSITY;
+    }
+    private static final int GL_COMPRESSED_RGB = (int)34029L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_RGB 34029
+     * }
+     */
+    public static int GL_COMPRESSED_RGB() {
+        return GL_COMPRESSED_RGB;
+    }
+    private static final int GL_COMPRESSED_RGBA = (int)34030L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_RGBA 34030
+     * }
+     */
+    public static int GL_COMPRESSED_RGBA() {
+        return GL_COMPRESSED_RGBA;
+    }
+    private static final int GL_TEXTURE_COMPRESSION_HINT = (int)34031L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPRESSION_HINT 34031
+     * }
+     */
+    public static int GL_TEXTURE_COMPRESSION_HINT() {
+        return GL_TEXTURE_COMPRESSION_HINT;
+    }
+    private static final int GL_TEXTURE_COMPRESSED_IMAGE_SIZE = (int)34464L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPRESSED_IMAGE_SIZE 34464
+     * }
+     */
+    public static int GL_TEXTURE_COMPRESSED_IMAGE_SIZE() {
+        return GL_TEXTURE_COMPRESSED_IMAGE_SIZE;
+    }
+    private static final int GL_TEXTURE_COMPRESSED = (int)34465L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPRESSED 34465
+     * }
+     */
+    public static int GL_TEXTURE_COMPRESSED() {
+        return GL_TEXTURE_COMPRESSED;
+    }
+    private static final int GL_NUM_COMPRESSED_TEXTURE_FORMATS = (int)34466L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NUM_COMPRESSED_TEXTURE_FORMATS 34466
+     * }
+     */
+    public static int GL_NUM_COMPRESSED_TEXTURE_FORMATS() {
+        return GL_NUM_COMPRESSED_TEXTURE_FORMATS;
+    }
+    private static final int GL_COMPRESSED_TEXTURE_FORMATS = (int)34467L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPRESSED_TEXTURE_FORMATS 34467
+     * }
+     */
+    public static int GL_COMPRESSED_TEXTURE_FORMATS() {
+        return GL_COMPRESSED_TEXTURE_FORMATS;
+    }
+    private static final int GL_MULTISAMPLE = (int)32925L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MULTISAMPLE 32925
+     * }
+     */
+    public static int GL_MULTISAMPLE() {
+        return GL_MULTISAMPLE;
+    }
+    private static final int GL_SAMPLE_ALPHA_TO_COVERAGE = (int)32926L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_ALPHA_TO_COVERAGE 32926
+     * }
+     */
+    public static int GL_SAMPLE_ALPHA_TO_COVERAGE() {
+        return GL_SAMPLE_ALPHA_TO_COVERAGE;
+    }
+    private static final int GL_SAMPLE_ALPHA_TO_ONE = (int)32927L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_ALPHA_TO_ONE 32927
+     * }
+     */
+    public static int GL_SAMPLE_ALPHA_TO_ONE() {
+        return GL_SAMPLE_ALPHA_TO_ONE;
+    }
+    private static final int GL_SAMPLE_COVERAGE = (int)32928L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_COVERAGE 32928
+     * }
+     */
+    public static int GL_SAMPLE_COVERAGE() {
+        return GL_SAMPLE_COVERAGE;
+    }
+    private static final int GL_SAMPLE_BUFFERS = (int)32936L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_BUFFERS 32936
+     * }
+     */
+    public static int GL_SAMPLE_BUFFERS() {
+        return GL_SAMPLE_BUFFERS;
+    }
+    private static final int GL_SAMPLES = (int)32937L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLES 32937
+     * }
+     */
+    public static int GL_SAMPLES() {
+        return GL_SAMPLES;
+    }
+    private static final int GL_SAMPLE_COVERAGE_VALUE = (int)32938L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_COVERAGE_VALUE 32938
+     * }
+     */
+    public static int GL_SAMPLE_COVERAGE_VALUE() {
+        return GL_SAMPLE_COVERAGE_VALUE;
+    }
+    private static final int GL_SAMPLE_COVERAGE_INVERT = (int)32939L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLE_COVERAGE_INVERT 32939
+     * }
+     */
+    public static int GL_SAMPLE_COVERAGE_INVERT() {
+        return GL_SAMPLE_COVERAGE_INVERT;
+    }
+    private static final int GL_MULTISAMPLE_BIT = (int)536870912L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MULTISAMPLE_BIT 536870912
+     * }
+     */
+    public static int GL_MULTISAMPLE_BIT() {
+        return GL_MULTISAMPLE_BIT;
+    }
+    private static final int GL_DEPTH_COMPONENT16 = (int)33189L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT16 33189
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT16() {
+        return GL_DEPTH_COMPONENT16;
+    }
+    private static final int GL_DEPTH_COMPONENT24 = (int)33190L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT24 33190
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT24() {
+        return GL_DEPTH_COMPONENT24;
+    }
+    private static final int GL_DEPTH_COMPONENT32 = (int)33191L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_COMPONENT32 33191
+     * }
+     */
+    public static int GL_DEPTH_COMPONENT32() {
+        return GL_DEPTH_COMPONENT32;
+    }
+    private static final int GL_TEXTURE_DEPTH_SIZE = (int)34890L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_DEPTH_SIZE 34890
+     * }
+     */
+    public static int GL_TEXTURE_DEPTH_SIZE() {
+        return GL_TEXTURE_DEPTH_SIZE;
+    }
+    private static final int GL_DEPTH_TEXTURE_MODE = (int)34891L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DEPTH_TEXTURE_MODE 34891
+     * }
+     */
+    public static int GL_DEPTH_TEXTURE_MODE() {
+        return GL_DEPTH_TEXTURE_MODE;
+    }
+    private static final int GL_TEXTURE_COMPARE_MODE = (int)34892L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPARE_MODE 34892
+     * }
+     */
+    public static int GL_TEXTURE_COMPARE_MODE() {
+        return GL_TEXTURE_COMPARE_MODE;
+    }
+    private static final int GL_TEXTURE_COMPARE_FUNC = (int)34893L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPARE_FUNC 34893
+     * }
+     */
+    public static int GL_TEXTURE_COMPARE_FUNC() {
+        return GL_TEXTURE_COMPARE_FUNC;
+    }
+    private static final int GL_COMPARE_R_TO_TEXTURE = (int)34894L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPARE_R_TO_TEXTURE 34894
+     * }
+     */
+    public static int GL_COMPARE_R_TO_TEXTURE() {
+        return GL_COMPARE_R_TO_TEXTURE;
+    }
+    private static final int GL_QUERY_COUNTER_BITS = (int)34916L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_COUNTER_BITS 34916
+     * }
+     */
+    public static int GL_QUERY_COUNTER_BITS() {
+        return GL_QUERY_COUNTER_BITS;
+    }
+    private static final int GL_CURRENT_QUERY = (int)34917L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_QUERY 34917
+     * }
+     */
+    public static int GL_CURRENT_QUERY() {
+        return GL_CURRENT_QUERY;
+    }
+    private static final int GL_QUERY_RESULT = (int)34918L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_RESULT 34918
+     * }
+     */
+    public static int GL_QUERY_RESULT() {
+        return GL_QUERY_RESULT;
+    }
+    private static final int GL_QUERY_RESULT_AVAILABLE = (int)34919L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_QUERY_RESULT_AVAILABLE 34919
+     * }
+     */
+    public static int GL_QUERY_RESULT_AVAILABLE() {
+        return GL_QUERY_RESULT_AVAILABLE;
+    }
+    private static final int GL_SAMPLES_PASSED = (int)35092L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLES_PASSED 35092
+     * }
+     */
+    public static int GL_SAMPLES_PASSED() {
+        return GL_SAMPLES_PASSED;
+    }
+    private static final int GL_FOG_COORD_SRC = (int)33872L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_SRC 33872
+     * }
+     */
+    public static int GL_FOG_COORD_SRC() {
+        return GL_FOG_COORD_SRC;
+    }
+    private static final int GL_FOG_COORD = (int)33873L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD 33873
+     * }
+     */
+    public static int GL_FOG_COORD() {
+        return GL_FOG_COORD;
+    }
+    private static final int GL_FRAGMENT_DEPTH = (int)33874L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRAGMENT_DEPTH 33874
+     * }
+     */
+    public static int GL_FRAGMENT_DEPTH() {
+        return GL_FRAGMENT_DEPTH;
+    }
+    private static final int GL_CURRENT_FOG_COORD = (int)33875L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_FOG_COORD 33875
+     * }
+     */
+    public static int GL_CURRENT_FOG_COORD() {
+        return GL_CURRENT_FOG_COORD;
+    }
+    private static final int GL_FOG_COORD_ARRAY_TYPE = (int)33876L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_ARRAY_TYPE 33876
+     * }
+     */
+    public static int GL_FOG_COORD_ARRAY_TYPE() {
+        return GL_FOG_COORD_ARRAY_TYPE;
+    }
+    private static final int GL_FOG_COORD_ARRAY_STRIDE = (int)33877L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_ARRAY_STRIDE 33877
+     * }
+     */
+    public static int GL_FOG_COORD_ARRAY_STRIDE() {
+        return GL_FOG_COORD_ARRAY_STRIDE;
+    }
+    private static final int GL_FOG_COORD_ARRAY_POINTER = (int)33878L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_ARRAY_POINTER 33878
+     * }
+     */
+    public static int GL_FOG_COORD_ARRAY_POINTER() {
+        return GL_FOG_COORD_ARRAY_POINTER;
+    }
+    private static final int GL_FOG_COORD_ARRAY = (int)33879L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_ARRAY 33879
+     * }
+     */
+    public static int GL_FOG_COORD_ARRAY() {
+        return GL_FOG_COORD_ARRAY;
+    }
+    private static final int GL_FOG_COORDINATE_SOURCE = (int)33872L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_SOURCE 33872
+     * }
+     */
+    public static int GL_FOG_COORDINATE_SOURCE() {
+        return GL_FOG_COORDINATE_SOURCE;
+    }
+    private static final int GL_FOG_COORDINATE = (int)33873L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE 33873
+     * }
+     */
+    public static int GL_FOG_COORDINATE() {
+        return GL_FOG_COORDINATE;
+    }
+    private static final int GL_CURRENT_FOG_COORDINATE = (int)33875L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_FOG_COORDINATE 33875
+     * }
+     */
+    public static int GL_CURRENT_FOG_COORDINATE() {
+        return GL_CURRENT_FOG_COORDINATE;
+    }
+    private static final int GL_FOG_COORDINATE_ARRAY_TYPE = (int)33876L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_ARRAY_TYPE 33876
+     * }
+     */
+    public static int GL_FOG_COORDINATE_ARRAY_TYPE() {
+        return GL_FOG_COORDINATE_ARRAY_TYPE;
+    }
+    private static final int GL_FOG_COORDINATE_ARRAY_STRIDE = (int)33877L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_ARRAY_STRIDE 33877
+     * }
+     */
+    public static int GL_FOG_COORDINATE_ARRAY_STRIDE() {
+        return GL_FOG_COORDINATE_ARRAY_STRIDE;
+    }
+    private static final int GL_FOG_COORDINATE_ARRAY_POINTER = (int)33878L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_ARRAY_POINTER 33878
+     * }
+     */
+    public static int GL_FOG_COORDINATE_ARRAY_POINTER() {
+        return GL_FOG_COORDINATE_ARRAY_POINTER;
+    }
+    private static final int GL_FOG_COORDINATE_ARRAY = (int)33879L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_ARRAY 33879
+     * }
+     */
+    public static int GL_FOG_COORDINATE_ARRAY() {
+        return GL_FOG_COORDINATE_ARRAY;
+    }
+    private static final int GL_COLOR_SUM = (int)33880L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_SUM 33880
+     * }
+     */
+    public static int GL_COLOR_SUM() {
+        return GL_COLOR_SUM;
+    }
+    private static final int GL_CURRENT_SECONDARY_COLOR = (int)33881L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_SECONDARY_COLOR 33881
+     * }
+     */
+    public static int GL_CURRENT_SECONDARY_COLOR() {
+        return GL_CURRENT_SECONDARY_COLOR;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY_SIZE = (int)33882L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY_SIZE 33882
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY_SIZE() {
+        return GL_SECONDARY_COLOR_ARRAY_SIZE;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY_TYPE = (int)33883L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY_TYPE 33883
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY_TYPE() {
+        return GL_SECONDARY_COLOR_ARRAY_TYPE;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY_STRIDE = (int)33884L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY_STRIDE 33884
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY_STRIDE() {
+        return GL_SECONDARY_COLOR_ARRAY_STRIDE;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY_POINTER = (int)33885L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY_POINTER 33885
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY_POINTER() {
+        return GL_SECONDARY_COLOR_ARRAY_POINTER;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY = (int)33886L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY 33886
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY() {
+        return GL_SECONDARY_COLOR_ARRAY;
+    }
+    private static final int GL_POINT_SIZE_MIN = (int)33062L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_MIN 33062
+     * }
+     */
+    public static int GL_POINT_SIZE_MIN() {
+        return GL_POINT_SIZE_MIN;
+    }
+    private static final int GL_POINT_SIZE_MAX = (int)33063L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_SIZE_MAX 33063
+     * }
+     */
+    public static int GL_POINT_SIZE_MAX() {
+        return GL_POINT_SIZE_MAX;
+    }
+    private static final int GL_POINT_FADE_THRESHOLD_SIZE = (int)33064L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_FADE_THRESHOLD_SIZE 33064
+     * }
+     */
+    public static int GL_POINT_FADE_THRESHOLD_SIZE() {
+        return GL_POINT_FADE_THRESHOLD_SIZE;
+    }
+    private static final int GL_POINT_DISTANCE_ATTENUATION = (int)33065L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_POINT_DISTANCE_ATTENUATION 33065
+     * }
+     */
+    public static int GL_POINT_DISTANCE_ATTENUATION() {
+        return GL_POINT_DISTANCE_ATTENUATION;
+    }
+    private static final int GL_BLEND_DST_RGB = (int)32968L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_DST_RGB 32968
+     * }
+     */
+    public static int GL_BLEND_DST_RGB() {
+        return GL_BLEND_DST_RGB;
+    }
+    private static final int GL_BLEND_SRC_RGB = (int)32969L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_SRC_RGB 32969
+     * }
+     */
+    public static int GL_BLEND_SRC_RGB() {
+        return GL_BLEND_SRC_RGB;
+    }
+    private static final int GL_BLEND_DST_ALPHA = (int)32970L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_DST_ALPHA 32970
+     * }
+     */
+    public static int GL_BLEND_DST_ALPHA() {
+        return GL_BLEND_DST_ALPHA;
+    }
+    private static final int GL_BLEND_SRC_ALPHA = (int)32971L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BLEND_SRC_ALPHA 32971
+     * }
+     */
+    public static int GL_BLEND_SRC_ALPHA() {
+        return GL_BLEND_SRC_ALPHA;
+    }
+    private static final int GL_GENERATE_MIPMAP = (int)33169L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GENERATE_MIPMAP 33169
+     * }
+     */
+    public static int GL_GENERATE_MIPMAP() {
+        return GL_GENERATE_MIPMAP;
+    }
+    private static final int GL_GENERATE_MIPMAP_HINT = (int)33170L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_GENERATE_MIPMAP_HINT 33170
+     * }
+     */
+    public static int GL_GENERATE_MIPMAP_HINT() {
+        return GL_GENERATE_MIPMAP_HINT;
+    }
+    private static final int GL_INCR_WRAP = (int)34055L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INCR_WRAP 34055
+     * }
+     */
+    public static int GL_INCR_WRAP() {
+        return GL_INCR_WRAP;
+    }
+    private static final int GL_DECR_WRAP = (int)34056L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DECR_WRAP 34056
+     * }
+     */
+    public static int GL_DECR_WRAP() {
+        return GL_DECR_WRAP;
+    }
+    private static final int GL_MIRRORED_REPEAT = (int)33648L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MIRRORED_REPEAT 33648
+     * }
+     */
+    public static int GL_MIRRORED_REPEAT() {
+        return GL_MIRRORED_REPEAT;
+    }
+    private static final int GL_MAX_TEXTURE_LOD_BIAS = (int)34045L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_TEXTURE_LOD_BIAS 34045
+     * }
+     */
+    public static int GL_MAX_TEXTURE_LOD_BIAS() {
+        return GL_MAX_TEXTURE_LOD_BIAS;
+    }
+    private static final int GL_TEXTURE_FILTER_CONTROL = (int)34048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_FILTER_CONTROL 34048
+     * }
+     */
+    public static int GL_TEXTURE_FILTER_CONTROL() {
+        return GL_TEXTURE_FILTER_CONTROL;
+    }
+    private static final int GL_TEXTURE_LOD_BIAS = (int)34049L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_LOD_BIAS 34049
+     * }
+     */
+    public static int GL_TEXTURE_LOD_BIAS() {
+        return GL_TEXTURE_LOD_BIAS;
+    }
+    private static final int GL_ARRAY_BUFFER = (int)34962L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ARRAY_BUFFER 34962
+     * }
+     */
+    public static int GL_ARRAY_BUFFER() {
+        return GL_ARRAY_BUFFER;
+    }
+    private static final int GL_ELEMENT_ARRAY_BUFFER = (int)34963L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ELEMENT_ARRAY_BUFFER 34963
+     * }
+     */
+    public static int GL_ELEMENT_ARRAY_BUFFER() {
+        return GL_ELEMENT_ARRAY_BUFFER;
+    }
+    private static final int GL_ARRAY_BUFFER_BINDING = (int)34964L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ARRAY_BUFFER_BINDING 34964
+     * }
+     */
+    public static int GL_ARRAY_BUFFER_BINDING() {
+        return GL_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_ELEMENT_ARRAY_BUFFER_BINDING = (int)34965L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ELEMENT_ARRAY_BUFFER_BINDING 34965
+     * }
+     */
+    public static int GL_ELEMENT_ARRAY_BUFFER_BINDING() {
+        return GL_ELEMENT_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_VERTEX_ARRAY_BUFFER_BINDING = (int)34966L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ARRAY_BUFFER_BINDING 34966
+     * }
+     */
+    public static int GL_VERTEX_ARRAY_BUFFER_BINDING() {
+        return GL_VERTEX_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_NORMAL_ARRAY_BUFFER_BINDING = (int)34967L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_NORMAL_ARRAY_BUFFER_BINDING 34967
+     * }
+     */
+    public static int GL_NORMAL_ARRAY_BUFFER_BINDING() {
+        return GL_NORMAL_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_COLOR_ARRAY_BUFFER_BINDING = (int)34968L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COLOR_ARRAY_BUFFER_BINDING 34968
+     * }
+     */
+    public static int GL_COLOR_ARRAY_BUFFER_BINDING() {
+        return GL_COLOR_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_INDEX_ARRAY_BUFFER_BINDING = (int)34969L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INDEX_ARRAY_BUFFER_BINDING 34969
+     * }
+     */
+    public static int GL_INDEX_ARRAY_BUFFER_BINDING() {
+        return GL_INDEX_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = (int)34970L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING 34970
+     * }
+     */
+    public static int GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING() {
+        return GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_EDGE_FLAG_ARRAY_BUFFER_BINDING = (int)34971L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_EDGE_FLAG_ARRAY_BUFFER_BINDING 34971
+     * }
+     */
+    public static int GL_EDGE_FLAG_ARRAY_BUFFER_BINDING() {
+        return GL_EDGE_FLAG_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING = (int)34972L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING 34972
+     * }
+     */
+    public static int GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING() {
+        return GL_SECONDARY_COLOR_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_FOG_COORD_ARRAY_BUFFER_BINDING = (int)34973L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORD_ARRAY_BUFFER_BINDING 34973
+     * }
+     */
+    public static int GL_FOG_COORD_ARRAY_BUFFER_BINDING() {
+        return GL_FOG_COORD_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_WEIGHT_ARRAY_BUFFER_BINDING = (int)34974L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WEIGHT_ARRAY_BUFFER_BINDING 34974
+     * }
+     */
+    public static int GL_WEIGHT_ARRAY_BUFFER_BINDING() {
+        return GL_WEIGHT_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = (int)34975L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING 34975
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING() {
+        return GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_STREAM_DRAW = (int)35040L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STREAM_DRAW 35040
+     * }
+     */
+    public static int GL_STREAM_DRAW() {
+        return GL_STREAM_DRAW;
+    }
+    private static final int GL_STREAM_READ = (int)35041L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STREAM_READ 35041
+     * }
+     */
+    public static int GL_STREAM_READ() {
+        return GL_STREAM_READ;
+    }
+    private static final int GL_STREAM_COPY = (int)35042L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STREAM_COPY 35042
+     * }
+     */
+    public static int GL_STREAM_COPY() {
+        return GL_STREAM_COPY;
+    }
+    private static final int GL_STATIC_DRAW = (int)35044L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STATIC_DRAW 35044
+     * }
+     */
+    public static int GL_STATIC_DRAW() {
+        return GL_STATIC_DRAW;
+    }
+    private static final int GL_STATIC_READ = (int)35045L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STATIC_READ 35045
+     * }
+     */
+    public static int GL_STATIC_READ() {
+        return GL_STATIC_READ;
+    }
+    private static final int GL_STATIC_COPY = (int)35046L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_STATIC_COPY 35046
+     * }
+     */
+    public static int GL_STATIC_COPY() {
+        return GL_STATIC_COPY;
+    }
+    private static final int GL_DYNAMIC_DRAW = (int)35048L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DYNAMIC_DRAW 35048
+     * }
+     */
+    public static int GL_DYNAMIC_DRAW() {
+        return GL_DYNAMIC_DRAW;
+    }
+    private static final int GL_DYNAMIC_READ = (int)35049L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DYNAMIC_READ 35049
+     * }
+     */
+    public static int GL_DYNAMIC_READ() {
+        return GL_DYNAMIC_READ;
+    }
+    private static final int GL_DYNAMIC_COPY = (int)35050L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DYNAMIC_COPY 35050
+     * }
+     */
+    public static int GL_DYNAMIC_COPY() {
+        return GL_DYNAMIC_COPY;
+    }
+    private static final int GL_READ_ONLY = (int)35000L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_READ_ONLY 35000
+     * }
+     */
+    public static int GL_READ_ONLY() {
+        return GL_READ_ONLY;
+    }
+    private static final int GL_WRITE_ONLY = (int)35001L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_WRITE_ONLY 35001
+     * }
+     */
+    public static int GL_WRITE_ONLY() {
+        return GL_WRITE_ONLY;
+    }
+    private static final int GL_READ_WRITE = (int)35002L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_READ_WRITE 35002
+     * }
+     */
+    public static int GL_READ_WRITE() {
+        return GL_READ_WRITE;
+    }
+    private static final int GL_BUFFER_SIZE = (int)34660L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_SIZE 34660
+     * }
+     */
+    public static int GL_BUFFER_SIZE() {
+        return GL_BUFFER_SIZE;
+    }
+    private static final int GL_BUFFER_USAGE = (int)34661L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_USAGE 34661
+     * }
+     */
+    public static int GL_BUFFER_USAGE() {
+        return GL_BUFFER_USAGE;
+    }
+    private static final int GL_BUFFER_ACCESS = (int)35003L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_ACCESS 35003
+     * }
+     */
+    public static int GL_BUFFER_ACCESS() {
+        return GL_BUFFER_ACCESS;
+    }
+    private static final int GL_BUFFER_MAPPED = (int)35004L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_MAPPED 35004
+     * }
+     */
+    public static int GL_BUFFER_MAPPED() {
+        return GL_BUFFER_MAPPED;
+    }
+    private static final int GL_BUFFER_MAP_POINTER = (int)35005L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BUFFER_MAP_POINTER 35005
+     * }
+     */
+    public static int GL_BUFFER_MAP_POINTER() {
+        return GL_BUFFER_MAP_POINTER;
+    }
+    private static final int GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING = (int)34973L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING 34973
+     * }
+     */
+    public static int GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING() {
+        return GL_FOG_COORDINATE_ARRAY_BUFFER_BINDING;
+    }
+    private static final int GL_CURRENT_PROGRAM = (int)35725L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CURRENT_PROGRAM 35725
+     * }
+     */
+    public static int GL_CURRENT_PROGRAM() {
+        return GL_CURRENT_PROGRAM;
+    }
+    private static final int GL_SHADER_TYPE = (int)35663L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHADER_TYPE 35663
+     * }
+     */
+    public static int GL_SHADER_TYPE() {
+        return GL_SHADER_TYPE;
+    }
+    private static final int GL_DELETE_STATUS = (int)35712L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DELETE_STATUS 35712
+     * }
+     */
+    public static int GL_DELETE_STATUS() {
+        return GL_DELETE_STATUS;
+    }
+    private static final int GL_COMPILE_STATUS = (int)35713L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_COMPILE_STATUS 35713
+     * }
+     */
+    public static int GL_COMPILE_STATUS() {
+        return GL_COMPILE_STATUS;
+    }
+    private static final int GL_LINK_STATUS = (int)35714L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LINK_STATUS 35714
+     * }
+     */
+    public static int GL_LINK_STATUS() {
+        return GL_LINK_STATUS;
+    }
+    private static final int GL_VALIDATE_STATUS = (int)35715L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VALIDATE_STATUS 35715
+     * }
+     */
+    public static int GL_VALIDATE_STATUS() {
+        return GL_VALIDATE_STATUS;
+    }
+    private static final int GL_INFO_LOG_LENGTH = (int)35716L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INFO_LOG_LENGTH 35716
+     * }
+     */
+    public static int GL_INFO_LOG_LENGTH() {
+        return GL_INFO_LOG_LENGTH;
+    }
+    private static final int GL_ATTACHED_SHADERS = (int)35717L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ATTACHED_SHADERS 35717
+     * }
+     */
+    public static int GL_ATTACHED_SHADERS() {
+        return GL_ATTACHED_SHADERS;
+    }
+    private static final int GL_ACTIVE_UNIFORMS = (int)35718L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACTIVE_UNIFORMS 35718
+     * }
+     */
+    public static int GL_ACTIVE_UNIFORMS() {
+        return GL_ACTIVE_UNIFORMS;
+    }
+    private static final int GL_ACTIVE_UNIFORM_MAX_LENGTH = (int)35719L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACTIVE_UNIFORM_MAX_LENGTH 35719
+     * }
+     */
+    public static int GL_ACTIVE_UNIFORM_MAX_LENGTH() {
+        return GL_ACTIVE_UNIFORM_MAX_LENGTH;
+    }
+    private static final int GL_SHADER_SOURCE_LENGTH = (int)35720L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHADER_SOURCE_LENGTH 35720
+     * }
+     */
+    public static int GL_SHADER_SOURCE_LENGTH() {
+        return GL_SHADER_SOURCE_LENGTH;
+    }
+    private static final int GL_FLOAT_VEC2 = (int)35664L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_VEC2 35664
+     * }
+     */
+    public static int GL_FLOAT_VEC2() {
+        return GL_FLOAT_VEC2;
+    }
+    private static final int GL_FLOAT_VEC3 = (int)35665L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_VEC3 35665
+     * }
+     */
+    public static int GL_FLOAT_VEC3() {
+        return GL_FLOAT_VEC3;
+    }
+    private static final int GL_FLOAT_VEC4 = (int)35666L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_VEC4 35666
+     * }
+     */
+    public static int GL_FLOAT_VEC4() {
+        return GL_FLOAT_VEC4;
+    }
+    private static final int GL_INT_VEC2 = (int)35667L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INT_VEC2 35667
+     * }
+     */
+    public static int GL_INT_VEC2() {
+        return GL_INT_VEC2;
+    }
+    private static final int GL_INT_VEC3 = (int)35668L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INT_VEC3 35668
+     * }
+     */
+    public static int GL_INT_VEC3() {
+        return GL_INT_VEC3;
+    }
+    private static final int GL_INT_VEC4 = (int)35669L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_INT_VEC4 35669
+     * }
+     */
+    public static int GL_INT_VEC4() {
+        return GL_INT_VEC4;
+    }
+    private static final int GL_BOOL = (int)35670L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BOOL 35670
+     * }
+     */
+    public static int GL_BOOL() {
+        return GL_BOOL;
+    }
+    private static final int GL_BOOL_VEC2 = (int)35671L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BOOL_VEC2 35671
+     * }
+     */
+    public static int GL_BOOL_VEC2() {
+        return GL_BOOL_VEC2;
+    }
+    private static final int GL_BOOL_VEC3 = (int)35672L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BOOL_VEC3 35672
+     * }
+     */
+    public static int GL_BOOL_VEC3() {
+        return GL_BOOL_VEC3;
+    }
+    private static final int GL_BOOL_VEC4 = (int)35673L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_BOOL_VEC4 35673
+     * }
+     */
+    public static int GL_BOOL_VEC4() {
+        return GL_BOOL_VEC4;
+    }
+    private static final int GL_FLOAT_MAT2 = (int)35674L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_MAT2 35674
+     * }
+     */
+    public static int GL_FLOAT_MAT2() {
+        return GL_FLOAT_MAT2;
+    }
+    private static final int GL_FLOAT_MAT3 = (int)35675L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_MAT3 35675
+     * }
+     */
+    public static int GL_FLOAT_MAT3() {
+        return GL_FLOAT_MAT3;
+    }
+    private static final int GL_FLOAT_MAT4 = (int)35676L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FLOAT_MAT4 35676
+     * }
+     */
+    public static int GL_FLOAT_MAT4() {
+        return GL_FLOAT_MAT4;
+    }
+    private static final int GL_SAMPLER_1D = (int)35677L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_1D 35677
+     * }
+     */
+    public static int GL_SAMPLER_1D() {
+        return GL_SAMPLER_1D;
+    }
+    private static final int GL_SAMPLER_2D = (int)35678L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_2D 35678
+     * }
+     */
+    public static int GL_SAMPLER_2D() {
+        return GL_SAMPLER_2D;
+    }
+    private static final int GL_SAMPLER_3D = (int)35679L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_3D 35679
+     * }
+     */
+    public static int GL_SAMPLER_3D() {
+        return GL_SAMPLER_3D;
+    }
+    private static final int GL_SAMPLER_CUBE = (int)35680L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_CUBE 35680
+     * }
+     */
+    public static int GL_SAMPLER_CUBE() {
+        return GL_SAMPLER_CUBE;
+    }
+    private static final int GL_SAMPLER_1D_SHADOW = (int)35681L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_1D_SHADOW 35681
+     * }
+     */
+    public static int GL_SAMPLER_1D_SHADOW() {
+        return GL_SAMPLER_1D_SHADOW;
+    }
+    private static final int GL_SAMPLER_2D_SHADOW = (int)35682L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SAMPLER_2D_SHADOW 35682
+     * }
+     */
+    public static int GL_SAMPLER_2D_SHADOW() {
+        return GL_SAMPLER_2D_SHADOW;
+    }
+    private static final int GL_SHADING_LANGUAGE_VERSION = (int)35724L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_SHADING_LANGUAGE_VERSION 35724
+     * }
+     */
+    public static int GL_SHADING_LANGUAGE_VERSION() {
+        return GL_SHADING_LANGUAGE_VERSION;
+    }
+    private static final int GL_VERTEX_SHADER = (int)35633L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_SHADER 35633
+     * }
+     */
+    public static int GL_VERTEX_SHADER() {
+        return GL_VERTEX_SHADER;
+    }
+    private static final int GL_MAX_VERTEX_UNIFORM_COMPONENTS = (int)35658L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VERTEX_UNIFORM_COMPONENTS 35658
+     * }
+     */
+    public static int GL_MAX_VERTEX_UNIFORM_COMPONENTS() {
+        return GL_MAX_VERTEX_UNIFORM_COMPONENTS;
+    }
+    private static final int GL_MAX_VARYING_FLOATS = (int)35659L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VARYING_FLOATS 35659
+     * }
+     */
+    public static int GL_MAX_VARYING_FLOATS() {
+        return GL_MAX_VARYING_FLOATS;
+    }
+    private static final int GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = (int)35660L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS 35660
+     * }
+     */
+    public static int GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS() {
+        return GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS;
+    }
+    private static final int GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = (int)35661L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS 35661
+     * }
+     */
+    public static int GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS() {
+        return GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS;
+    }
+    private static final int GL_ACTIVE_ATTRIBUTES = (int)35721L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACTIVE_ATTRIBUTES 35721
+     * }
+     */
+    public static int GL_ACTIVE_ATTRIBUTES() {
+        return GL_ACTIVE_ATTRIBUTES;
+    }
+    private static final int GL_ACTIVE_ATTRIBUTE_MAX_LENGTH = (int)35722L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_ACTIVE_ATTRIBUTE_MAX_LENGTH 35722
+     * }
+     */
+    public static int GL_ACTIVE_ATTRIBUTE_MAX_LENGTH() {
+        return GL_ACTIVE_ATTRIBUTE_MAX_LENGTH;
+    }
+    private static final int GL_FRAGMENT_SHADER = (int)35632L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRAGMENT_SHADER 35632
+     * }
+     */
+    public static int GL_FRAGMENT_SHADER() {
+        return GL_FRAGMENT_SHADER;
+    }
+    private static final int GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = (int)35657L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_FRAGMENT_UNIFORM_COMPONENTS 35657
+     * }
+     */
+    public static int GL_MAX_FRAGMENT_UNIFORM_COMPONENTS() {
+        return GL_MAX_FRAGMENT_UNIFORM_COMPONENTS;
+    }
+    private static final int GL_FRAGMENT_SHADER_DERIVATIVE_HINT = (int)35723L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_FRAGMENT_SHADER_DERIVATIVE_HINT 35723
+     * }
+     */
+    public static int GL_FRAGMENT_SHADER_DERIVATIVE_HINT() {
+        return GL_FRAGMENT_SHADER_DERIVATIVE_HINT;
+    }
+    private static final int GL_MAX_VERTEX_ATTRIBS = (int)34921L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_MAX_VERTEX_ATTRIBS 34921
+     * }
+     */
+    public static int GL_MAX_VERTEX_ATTRIBS() {
+        return GL_MAX_VERTEX_ATTRIBS;
+    }
+    private static final int GL_VERTEX_ATTRIB_ARRAY_ENABLED = (int)34338L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_ARRAY_ENABLED 34338
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_ARRAY_ENABLED() {
+        return GL_VERTEX_ATTRIB_ARRAY_ENABLED;
+    }
+    private static final int GL_VERTEX_ATTRIB_ARRAY_SIZE = (int)34339L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_VERTEX_ATTRIB_ARRAY_SIZE 34339
+     * }
+     */
+    public static int GL_VERTEX_ATTRIB_ARRAY_SIZE() {
+        return GL_VERTEX_ATTRIB_ARRAY_SIZE;
     }
 }
-
 

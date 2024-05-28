@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _NDR_USER_MARSHAL_INFO {
+ *     unsigned long InformationLevel;
+ *     union {
+ *         NDR_USER_MARSHAL_INFO_LEVEL1 Level1;
+ *     };
+ * } NDR_USER_MARSHAL_INFO
+ * }
+ */
 public class NDR_USER_MARSHAL_INFO extends _NDR_USER_MARSHAL_INFO {
 
+    NDR_USER_MARSHAL_INFO() {
+        // Should not be called directly
+    }
 }
-
 

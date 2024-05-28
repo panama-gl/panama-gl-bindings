@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_DYNAMIC_RELOCATION64_V2 {
+ *     DWORD HeaderSize;
+ *     DWORD FixupInfoSize;
+ *     ULONGLONG Symbol;
+ *     DWORD SymbolGroup;
+ *     DWORD Flags;
+ * }
+ * }
+ */
 public class _IMAGE_DYNAMIC_RELOCATION64_V2 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("HeaderSize"),
-        Constants$root.C_LONG$LAYOUT.withName("FixupInfoSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Symbol"),
-        Constants$root.C_LONG$LAYOUT.withName("SymbolGroup"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags")
-    ).withName("_IMAGE_DYNAMIC_RELOCATION64_V2");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.$struct$LAYOUT;
+    _IMAGE_DYNAMIC_RELOCATION64_V2() {
+        // Should not be called directly
     }
-    static final VarHandle HeaderSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HeaderSize"));
-    public static VarHandle HeaderSize$VH() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.HeaderSize$VH;
-    }
-    public static int HeaderSize$get(MemorySegment seg) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.HeaderSize$VH.get(seg);
-    }
-    public static void HeaderSize$set( MemorySegment seg, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.HeaderSize$VH.set(seg, x);
-    }
-    public static int HeaderSize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.HeaderSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HeaderSize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.HeaderSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FixupInfoSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FixupInfoSize"));
-    public static VarHandle FixupInfoSize$VH() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.FixupInfoSize$VH;
-    }
-    public static int FixupInfoSize$get(MemorySegment seg) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.FixupInfoSize$VH.get(seg);
-    }
-    public static void FixupInfoSize$set( MemorySegment seg, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.FixupInfoSize$VH.set(seg, x);
-    }
-    public static int FixupInfoSize$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.FixupInfoSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FixupInfoSize$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.FixupInfoSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Symbol$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Symbol"));
-    public static VarHandle Symbol$VH() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.Symbol$VH;
-    }
-    public static long Symbol$get(MemorySegment seg) {
-        return (long)_IMAGE_DYNAMIC_RELOCATION64_V2.Symbol$VH.get(seg);
-    }
-    public static void Symbol$set( MemorySegment seg, long x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.Symbol$VH.set(seg, x);
-    }
-    public static long Symbol$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_DYNAMIC_RELOCATION64_V2.Symbol$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Symbol$set(MemorySegment seg, long index, long x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.Symbol$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SymbolGroup$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SymbolGroup"));
-    public static VarHandle SymbolGroup$VH() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.SymbolGroup$VH;
-    }
-    public static int SymbolGroup$get(MemorySegment seg) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.SymbolGroup$VH.get(seg);
-    }
-    public static void SymbolGroup$set( MemorySegment seg, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.SymbolGroup$VH.set(seg, x);
-    }
-    public static int SymbolGroup$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.SymbolGroup$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SymbolGroup$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.SymbolGroup$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _IMAGE_DYNAMIC_RELOCATION64_V2.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_DYNAMIC_RELOCATION64_V2.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _IMAGE_DYNAMIC_RELOCATION64_V2.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("HeaderSize"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("FixupInfoSize"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("Symbol"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("SymbolGroup"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("Flags")
+    ).withName("_IMAGE_DYNAMIC_RELOCATION64_V2");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt HeaderSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HeaderSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static final OfInt HeaderSize$layout() {
+        return HeaderSize$LAYOUT;
+    }
+
+    private static final long HeaderSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static final long HeaderSize$offset() {
+        return HeaderSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static int HeaderSize(MemorySegment struct) {
+        return struct.get(HeaderSize$LAYOUT, HeaderSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static void HeaderSize(MemorySegment struct, int fieldValue) {
+        struct.set(HeaderSize$LAYOUT, HeaderSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FixupInfoSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FixupInfoSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FixupInfoSize
+     * }
+     */
+    public static final OfInt FixupInfoSize$layout() {
+        return FixupInfoSize$LAYOUT;
+    }
+
+    private static final long FixupInfoSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FixupInfoSize
+     * }
+     */
+    public static final long FixupInfoSize$offset() {
+        return FixupInfoSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FixupInfoSize
+     * }
+     */
+    public static int FixupInfoSize(MemorySegment struct) {
+        return struct.get(FixupInfoSize$LAYOUT, FixupInfoSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FixupInfoSize
+     * }
+     */
+    public static void FixupInfoSize(MemorySegment struct, int fieldValue) {
+        struct.set(FixupInfoSize$LAYOUT, FixupInfoSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Symbol$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Symbol"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG Symbol
+     * }
+     */
+    public static final OfLong Symbol$layout() {
+        return Symbol$LAYOUT;
+    }
+
+    private static final long Symbol$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG Symbol
+     * }
+     */
+    public static final long Symbol$offset() {
+        return Symbol$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Symbol
+     * }
+     */
+    public static long Symbol(MemorySegment struct) {
+        return struct.get(Symbol$LAYOUT, Symbol$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG Symbol
+     * }
+     */
+    public static void Symbol(MemorySegment struct, long fieldValue) {
+        struct.set(Symbol$LAYOUT, Symbol$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SymbolGroup$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SymbolGroup"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SymbolGroup
+     * }
+     */
+    public static final OfInt SymbolGroup$layout() {
+        return SymbolGroup$LAYOUT;
+    }
+
+    private static final long SymbolGroup$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SymbolGroup
+     * }
+     */
+    public static final long SymbolGroup$offset() {
+        return SymbolGroup$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SymbolGroup
+     * }
+     */
+    public static int SymbolGroup(MemorySegment struct) {
+        return struct.get(SymbolGroup$LAYOUT, SymbolGroup$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SymbolGroup
+     * }
+     */
+    public static void SymbolGroup(MemorySegment struct, int fieldValue) {
+        struct.set(SymbolGroup$LAYOUT, SymbolGroup$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

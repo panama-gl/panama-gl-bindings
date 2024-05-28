@@ -2,111 +2,312 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_REVOCATION_CRL_INFO {
+ *     DWORD cbSize;
+ *     PCCRL_CONTEXT pBaseCrlContext;
+ *     PCCRL_CONTEXT pDeltaCrlContext;
+ *     PCRL_ENTRY pCrlEntry;
+ *     BOOL fDeltaCrlEntry;
+ * }
+ * }
+ */
 public class _CERT_REVOCATION_CRL_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pBaseCrlContext"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDeltaCrlContext"),
-        Constants$root.C_POINTER$LAYOUT.withName("pCrlEntry"),
-        Constants$root.C_LONG$LAYOUT.withName("fDeltaCrlEntry"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CERT_REVOCATION_CRL_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_REVOCATION_CRL_INFO.$struct$LAYOUT;
+    _CERT_REVOCATION_CRL_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CERT_REVOCATION_CRL_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CERT_REVOCATION_CRL_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CERT_REVOCATION_CRL_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CERT_REVOCATION_CRL_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CERT_REVOCATION_CRL_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pBaseCrlContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pBaseCrlContext"));
-    public static VarHandle pBaseCrlContext$VH() {
-        return _CERT_REVOCATION_CRL_INFO.pBaseCrlContext$VH;
-    }
-    public static MemoryAddress pBaseCrlContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pBaseCrlContext$VH.get(seg);
-    }
-    public static void pBaseCrlContext$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pBaseCrlContext$VH.set(seg, x);
-    }
-    public static MemoryAddress pBaseCrlContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pBaseCrlContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pBaseCrlContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pBaseCrlContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDeltaCrlContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDeltaCrlContext"));
-    public static VarHandle pDeltaCrlContext$VH() {
-        return _CERT_REVOCATION_CRL_INFO.pDeltaCrlContext$VH;
-    }
-    public static MemoryAddress pDeltaCrlContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pDeltaCrlContext$VH.get(seg);
-    }
-    public static void pDeltaCrlContext$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pDeltaCrlContext$VH.set(seg, x);
-    }
-    public static MemoryAddress pDeltaCrlContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pDeltaCrlContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDeltaCrlContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pDeltaCrlContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pCrlEntry$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pCrlEntry"));
-    public static VarHandle pCrlEntry$VH() {
-        return _CERT_REVOCATION_CRL_INFO.pCrlEntry$VH;
-    }
-    public static MemoryAddress pCrlEntry$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pCrlEntry$VH.get(seg);
-    }
-    public static void pCrlEntry$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pCrlEntry$VH.set(seg, x);
-    }
-    public static MemoryAddress pCrlEntry$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_REVOCATION_CRL_INFO.pCrlEntry$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pCrlEntry$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_REVOCATION_CRL_INFO.pCrlEntry$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fDeltaCrlEntry$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fDeltaCrlEntry"));
-    public static VarHandle fDeltaCrlEntry$VH() {
-        return _CERT_REVOCATION_CRL_INFO.fDeltaCrlEntry$VH;
-    }
-    public static int fDeltaCrlEntry$get(MemorySegment seg) {
-        return (int)_CERT_REVOCATION_CRL_INFO.fDeltaCrlEntry$VH.get(seg);
-    }
-    public static void fDeltaCrlEntry$set( MemorySegment seg, int x) {
-        _CERT_REVOCATION_CRL_INFO.fDeltaCrlEntry$VH.set(seg, x);
-    }
-    public static int fDeltaCrlEntry$get(MemorySegment seg, long index) {
-        return (int)_CERT_REVOCATION_CRL_INFO.fDeltaCrlEntry$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fDeltaCrlEntry$set(MemorySegment seg, long index, int x) {
-        _CERT_REVOCATION_CRL_INFO.fDeltaCrlEntry$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pBaseCrlContext"),
+        wgl_h.C_POINTER.withName("pDeltaCrlContext"),
+        wgl_h.C_POINTER.withName("pCrlEntry"),
+        wgl_h.C_INT.withName("fDeltaCrlEntry"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CERT_REVOCATION_CRL_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pBaseCrlContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pBaseCrlContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pBaseCrlContext
+     * }
+     */
+    public static final AddressLayout pBaseCrlContext$layout() {
+        return pBaseCrlContext$LAYOUT;
+    }
+
+    private static final long pBaseCrlContext$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pBaseCrlContext
+     * }
+     */
+    public static final long pBaseCrlContext$offset() {
+        return pBaseCrlContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pBaseCrlContext
+     * }
+     */
+    public static MemorySegment pBaseCrlContext(MemorySegment struct) {
+        return struct.get(pBaseCrlContext$LAYOUT, pBaseCrlContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pBaseCrlContext
+     * }
+     */
+    public static void pBaseCrlContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pBaseCrlContext$LAYOUT, pBaseCrlContext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDeltaCrlContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDeltaCrlContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pDeltaCrlContext
+     * }
+     */
+    public static final AddressLayout pDeltaCrlContext$layout() {
+        return pDeltaCrlContext$LAYOUT;
+    }
+
+    private static final long pDeltaCrlContext$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pDeltaCrlContext
+     * }
+     */
+    public static final long pDeltaCrlContext$offset() {
+        return pDeltaCrlContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pDeltaCrlContext
+     * }
+     */
+    public static MemorySegment pDeltaCrlContext(MemorySegment struct) {
+        return struct.get(pDeltaCrlContext$LAYOUT, pDeltaCrlContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCCRL_CONTEXT pDeltaCrlContext
+     * }
+     */
+    public static void pDeltaCrlContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDeltaCrlContext$LAYOUT, pDeltaCrlContext$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pCrlEntry$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pCrlEntry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRL_ENTRY pCrlEntry
+     * }
+     */
+    public static final AddressLayout pCrlEntry$layout() {
+        return pCrlEntry$LAYOUT;
+    }
+
+    private static final long pCrlEntry$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRL_ENTRY pCrlEntry
+     * }
+     */
+    public static final long pCrlEntry$offset() {
+        return pCrlEntry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRL_ENTRY pCrlEntry
+     * }
+     */
+    public static MemorySegment pCrlEntry(MemorySegment struct) {
+        return struct.get(pCrlEntry$LAYOUT, pCrlEntry$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRL_ENTRY pCrlEntry
+     * }
+     */
+    public static void pCrlEntry(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pCrlEntry$LAYOUT, pCrlEntry$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fDeltaCrlEntry$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fDeltaCrlEntry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fDeltaCrlEntry
+     * }
+     */
+    public static final OfInt fDeltaCrlEntry$layout() {
+        return fDeltaCrlEntry$LAYOUT;
+    }
+
+    private static final long fDeltaCrlEntry$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fDeltaCrlEntry
+     * }
+     */
+    public static final long fDeltaCrlEntry$offset() {
+        return fDeltaCrlEntry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fDeltaCrlEntry
+     * }
+     */
+    public static int fDeltaCrlEntry(MemorySegment struct) {
+        return struct.get(fDeltaCrlEntry$LAYOUT, fDeltaCrlEntry$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fDeltaCrlEntry
+     * }
+     */
+    public static void fDeltaCrlEntry(MemorySegment struct, int fieldValue) {
+        struct.set(fDeltaCrlEntry$LAYOUT, fDeltaCrlEntry$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

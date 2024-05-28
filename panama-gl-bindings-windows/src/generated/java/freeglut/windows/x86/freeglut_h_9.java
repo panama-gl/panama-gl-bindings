@@ -2,5079 +2,9206 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
- class freeglut_h_9 extends freeglut_h_8 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static OfAddress PUINT16 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUINT32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUINT64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfInt LONG32 = Constants$root.C_LONG$LAYOUT;
-    public static OfAddress PLONG32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PULONG32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDWORD32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong INT_PTR = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PINT_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUINT_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong LONG_PTR = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PLONG_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PULONG_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HANDLE64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PHANDLE64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong SHANDLE_PTR = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PUHALF_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfInt HALF_PTR = Constants$root.C_LONG$LAYOUT;
-    public static OfAddress PHALF_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle HandleToULong$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.HandleToULong$MH,"HandleToULong");
-    }
-    public static int HandleToULong ( Addressable h) {
-        var mh$ = HandleToULong$MH();
-        try {
-            return (int)mh$.invokeExact(h);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle HandleToLong$MH() {
-        return RuntimeHelper.requireNonNull(constants$16.HandleToLong$MH,"HandleToLong");
-    }
-    public static int HandleToLong ( Addressable h) {
-        var mh$ = HandleToLong$MH();
-        try {
-            return (int)mh$.invokeExact(h);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ULongToHandle$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.ULongToHandle$MH,"ULongToHandle");
-    }
-    public static MemoryAddress ULongToHandle ( int h) {
-        var mh$ = ULongToHandle$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(h);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle LongToHandle$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.LongToHandle$MH,"LongToHandle");
-    }
-    public static MemoryAddress LongToHandle ( int h) {
-        var mh$ = LongToHandle$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(h);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToUlong$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.PtrToUlong$MH,"PtrToUlong");
-    }
-    public static int PtrToUlong ( Addressable p) {
-        var mh$ = PtrToUlong$MH();
-        try {
-            return (int)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToUint$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.PtrToUint$MH,"PtrToUint");
-    }
-    public static int PtrToUint ( Addressable p) {
-        var mh$ = PtrToUint$MH();
-        try {
-            return (int)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToUshort$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.PtrToUshort$MH,"PtrToUshort");
-    }
-    public static short PtrToUshort ( Addressable p) {
-        var mh$ = PtrToUshort$MH();
-        try {
-            return (short)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToLong$MH() {
-        return RuntimeHelper.requireNonNull(constants$17.PtrToLong$MH,"PtrToLong");
-    }
-    public static int PtrToLong ( Addressable p) {
-        var mh$ = PtrToLong$MH();
-        try {
-            return (int)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToInt$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.PtrToInt$MH,"PtrToInt");
-    }
-    public static int PtrToInt ( Addressable p) {
-        var mh$ = PtrToInt$MH();
-        try {
-            return (int)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToShort$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.PtrToShort$MH,"PtrToShort");
-    }
-    public static short PtrToShort ( Addressable p) {
-        var mh$ = PtrToShort$MH();
-        try {
-            return (short)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle IntToPtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.IntToPtr$MH,"IntToPtr");
-    }
-    public static MemoryAddress IntToPtr ( int i) {
-        var mh$ = IntToPtr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(i);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle UIntToPtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.UIntToPtr$MH,"UIntToPtr");
-    }
-    public static MemoryAddress UIntToPtr ( int ui) {
-        var mh$ = UIntToPtr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(ui);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle LongToPtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.LongToPtr$MH,"LongToPtr");
-    }
-    public static MemoryAddress LongToPtr ( int l) {
-        var mh$ = LongToPtr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(l);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ULongToPtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$18.ULongToPtr$MH,"ULongToPtr");
-    }
-    public static MemoryAddress ULongToPtr ( int ul) {
-        var mh$ = ULongToPtr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(ul);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle Ptr32ToPtr$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.Ptr32ToPtr$MH,"Ptr32ToPtr");
-    }
-    public static MemoryAddress Ptr32ToPtr ( Addressable p) {
-        var mh$ = Ptr32ToPtr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle Handle32ToHandle$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.Handle32ToHandle$MH,"Handle32ToHandle");
-    }
-    public static MemoryAddress Handle32ToHandle ( Addressable h) {
-        var mh$ = Handle32ToHandle$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(h);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle PtrToPtr32$MH() {
-        return RuntimeHelper.requireNonNull(constants$19.PtrToPtr32$MH,"PtrToPtr32");
-    }
-    public static MemoryAddress PtrToPtr32 ( Addressable p) {
-        var mh$ = PtrToPtr32$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(p);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PSIZE_T = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong SSIZE_T = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PSSIZE_T = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDWORD_PTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong LONG64 = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PLONG64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PULONG64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDWORD64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PKAFFINITY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PVOID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PVOID64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfByte CHAR = Constants$root.C_CHAR$LAYOUT;
-    public static OfShort SHORT = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt LONG = Constants$root.C_LONG$LAYOUT;
-    public static OfInt INT = Constants$root.C_LONG$LAYOUT;
-    public static OfAddress PWCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NWPSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZPWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZPWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPUWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZPCWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZPCWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCUWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZZWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZZWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUZZWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUZZWSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNZWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCNZWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUNZWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUNZWCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCWCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCWCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCUWCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUWCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUCSCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUCSCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUCSSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUUCSSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUCSSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUUCSSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUUCSCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUUCSCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress NPSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZPSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZPSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZPCSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZPCSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZZSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZZSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNZCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCNZCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfByte TCHAR = Constants$root.C_CHAR$LAYOUT;
-    public static OfAddress PTCHAR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTBYTE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPUTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCUTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZZTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUZZTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCZZTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUZZTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PZPTSTR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNZTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUNZTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCNZTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCUNZTCH = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSHORT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLONG = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESSOR_NUMBER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PGROUP_AFFINITY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress HANDLE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PHANDLE = Constants$root.C_POINTER$LAYOUT;
-    public static OfInt HRESULT = Constants$root.C_LONG$LAYOUT;
-    public static OfByte CCHAR = Constants$root.C_CHAR$LAYOUT;
-    public static OfAddress PLCID = Constants$root.C_POINTER$LAYOUT;
-    public static int UNSPECIFIED_COMPARTMENT_ID() {
-        return (int)0L;
-    }
-    public static int DEFAULT_COMPARTMENT_ID() {
-        return (int)1L;
-    }
-    public static OfAddress PCOMPARTMENT_ID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PFLOAT128 = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong LONGLONG = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PLONGLONG = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PULONGLONG = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong USN = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PLARGE_INTEGER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PULARGE_INTEGER = Constants$root.C_POINTER$LAYOUT;
-    public static OfLong RTL_REFERENCE_COUNT = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfAddress PRTL_REFERENCE_COUNT = Constants$root.C_POINTER$LAYOUT;
-    public static OfInt RTL_REFERENCE_COUNT32 = Constants$root.C_LONG$LAYOUT;
-    public static OfAddress PRTL_REFERENCE_COUNT32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLUID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDWORDLONG = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle _rotl8$MH() {
-        return RuntimeHelper.requireNonNull(constants$19._rotl8$MH,"_rotl8");
-    }
-    public static byte _rotl8 ( byte Value,  byte Shift) {
-        var mh$ = _rotl8$MH();
-        try {
-            return (byte)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotl16$MH() {
-        return RuntimeHelper.requireNonNull(constants$19._rotl16$MH,"_rotl16");
-    }
-    public static short _rotl16 ( short Value,  byte Shift) {
-        var mh$ = _rotl16$MH();
-        try {
-            return (short)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotr8$MH() {
-        return RuntimeHelper.requireNonNull(constants$19._rotr8$MH,"_rotr8");
-    }
-    public static byte _rotr8 ( byte Value,  byte Shift) {
-        var mh$ = _rotr8$MH();
-        try {
-            return (byte)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotr16$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._rotr16$MH,"_rotr16");
-    }
-    public static short _rotr16 ( short Value,  byte Shift) {
-        var mh$ = _rotr16$MH();
-        try {
-            return (short)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotl$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._rotl$MH,"_rotl");
-    }
-    public static int _rotl ( int Value,  int Shift) {
-        var mh$ = _rotl$MH();
-        try {
-            return (int)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotl64$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._rotl64$MH,"_rotl64");
-    }
-    public static long _rotl64 ( long Value,  int Shift) {
-        var mh$ = _rotl64$MH();
-        try {
-            return (long)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotr$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._rotr$MH,"_rotr");
-    }
-    public static int _rotr ( int Value,  int Shift) {
-        var mh$ = _rotr$MH();
-        try {
-            return (int)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _rotr64$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._rotr64$MH,"_rotr64");
-    }
-    public static long _rotr64 ( long Value,  int Shift) {
-        var mh$ = _rotr64$MH();
-        try {
-            return (long)mh$.invokeExact(Value, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PBOOLEAN = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLIST_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PRLIST_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSINGLE_LIST_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLIST_ENTRY32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLIST_ENTRY64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPGUID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCGUID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPIID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPCLSID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPFMTID = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle _errno$MH() {
-        return RuntimeHelper.requireNonNull(constants$20._errno$MH,"_errno");
-    }
-    public static MemoryAddress _errno () {
-        var mh$ = _errno$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _set_errno$MH() {
-        return RuntimeHelper.requireNonNull(constants$21._set_errno$MH,"_set_errno");
-    }
-    public static int _set_errno ( int _Value) {
-        var mh$ = _set_errno$MH();
-        try {
-            return (int)mh$.invokeExact(_Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _get_errno$MH() {
-        return RuntimeHelper.requireNonNull(constants$21._get_errno$MH,"_get_errno");
-    }
-    public static int _get_errno ( Addressable _Value) {
-        var mh$ = _get_errno$MH();
-        try {
-            return (int)mh$.invokeExact(_Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __doserrno$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.__doserrno$MH,"__doserrno");
-    }
-    public static MemoryAddress __doserrno () {
-        var mh$ = __doserrno$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _set_doserrno$MH() {
-        return RuntimeHelper.requireNonNull(constants$21._set_doserrno$MH,"_set_doserrno");
-    }
-    public static int _set_doserrno ( int _Value) {
-        var mh$ = _set_doserrno$MH();
-        try {
-            return (int)mh$.invokeExact(_Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _get_doserrno$MH() {
-        return RuntimeHelper.requireNonNull(constants$21._get_doserrno$MH,"_get_doserrno");
-    }
-    public static int _get_doserrno ( Addressable _Value) {
-        var mh$ = _get_doserrno$MH();
-        try {
-            return (int)mh$.invokeExact(_Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$21.memchr$MH,"memchr");
-    }
-    public static MemoryAddress memchr ( Addressable _Buf,  int _Val,  long _MaxCount) {
-        var mh$ = memchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Buf, _Val, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memcmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.memcmp$MH,"memcmp");
-    }
-    public static int memcmp ( Addressable _Buf1,  Addressable _Buf2,  long _Size) {
-        var mh$ = memcmp$MH();
-        try {
-            return (int)mh$.invokeExact(_Buf1, _Buf2, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memcpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.memcpy$MH,"memcpy");
-    }
-    public static MemoryAddress memcpy ( Addressable _Dst,  Addressable _Src,  long _Size) {
-        var mh$ = memcpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Dst, _Src, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memmove$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.memmove$MH,"memmove");
-    }
-    public static MemoryAddress memmove ( Addressable _Dst,  Addressable _Src,  long _Size) {
-        var mh$ = memmove$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Dst, _Src, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memset$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.memset$MH,"memset");
-    }
-    public static MemoryAddress memset ( Addressable _Dst,  int _Val,  long _Size) {
-        var mh$ = memset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Dst, _Val, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.strchr$MH,"strchr");
-    }
-    public static MemoryAddress strchr ( Addressable _Str,  int _Val) {
-        var mh$ = strchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _Val);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strrchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$22.strrchr$MH,"strrchr");
-    }
-    public static MemoryAddress strrchr ( Addressable _Str,  int _Ch) {
-        var mh$ = strrchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _Ch);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strstr$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.strstr$MH,"strstr");
-    }
-    public static MemoryAddress strstr ( Addressable _Str,  Addressable _SubStr) {
-        var mh$ = strstr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _SubStr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcschr$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.wcschr$MH,"wcschr");
-    }
-    public static MemoryAddress wcschr ( Addressable _Str,  short _Ch) {
-        var mh$ = wcschr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _Ch);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsrchr$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.wcsrchr$MH,"wcsrchr");
-    }
-    public static MemoryAddress wcsrchr ( Addressable _Str,  short _Ch) {
-        var mh$ = wcsrchr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _Ch);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsstr$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.wcsstr$MH,"wcsstr");
-    }
-    public static MemoryAddress wcsstr ( Addressable _Str,  Addressable _SubStr) {
-        var mh$ = wcsstr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _SubStr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memcpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.memcpy_s$MH,"memcpy_s");
-    }
-    public static int memcpy_s ( Addressable _Destination,  long _DestinationSize,  Addressable _Source,  long _SourceSize) {
-        var mh$ = memcpy_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _DestinationSize, _Source, _SourceSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memmove_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$23.memmove_s$MH,"memmove_s");
-    }
-    public static int memmove_s ( Addressable _Destination,  long _DestinationSize,  Addressable _Source,  long _SourceSize) {
-        var mh$ = memmove_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _DestinationSize, _Source, _SourceSize);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _memicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$24._memicmp$MH,"_memicmp");
-    }
-    public static int _memicmp ( Addressable _Buf1,  Addressable _Buf2,  long _Size) {
-        var mh$ = _memicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_Buf1, _Buf2, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _memicmp_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$24._memicmp_l$MH,"_memicmp_l");
-    }
-    public static int _memicmp_l ( Addressable _Buf1,  Addressable _Buf2,  long _Size,  Addressable _Locale) {
-        var mh$ = _memicmp_l$MH();
-        try {
-            return (int)mh$.invokeExact(_Buf1, _Buf2, _Size, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memccpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.memccpy$MH,"memccpy");
-    }
-    public static MemoryAddress memccpy ( Addressable _Dst,  Addressable _Src,  int _Val,  long _Size) {
-        var mh$ = memccpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Dst, _Src, _Val, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle memicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.memicmp$MH,"memicmp");
-    }
-    public static int memicmp ( Addressable _Buf1,  Addressable _Buf2,  long _Size) {
-        var mh$ = memicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_Buf1, _Buf2, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscat_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.wcscat_s$MH,"wcscat_s");
-    }
-    public static int wcscat_s ( Addressable _Destination,  long _SizeInWords,  Addressable _Source) {
-        var mh$ = wcscat_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$24.wcscpy_s$MH,"wcscpy_s");
-    }
-    public static int wcscpy_s ( Addressable _Destination,  long _SizeInWords,  Addressable _Source) {
-        var mh$ = wcscpy_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsncat_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.wcsncat_s$MH,"wcsncat_s");
-    }
-    public static int wcsncat_s ( Addressable _Destination,  long _SizeInWords,  Addressable _Source,  long _MaxCount) {
-        var mh$ = wcsncat_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsncpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.wcsncpy_s$MH,"wcsncpy_s");
-    }
-    public static int wcsncpy_s ( Addressable _Destination,  long _SizeInWords,  Addressable _Source,  long _MaxCount) {
-        var mh$ = wcsncpy_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcstok_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.wcstok_s$MH,"wcstok_s");
-    }
-    public static MemoryAddress wcstok_s ( Addressable _String,  Addressable _Delimiter,  Addressable _Context) {
-        var mh$ = wcstok_s$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Delimiter, _Context);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsdup$MH() {
-        return RuntimeHelper.requireNonNull(constants$25._wcsdup$MH,"_wcsdup");
-    }
-    public static MemoryAddress _wcsdup ( Addressable _String) {
-        var mh$ = _wcsdup$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscat$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.wcscat$MH,"wcscat");
-    }
-    public static MemoryAddress wcscat ( Addressable _Destination,  Addressable _Source) {
-        var mh$ = wcscat$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$25.wcscmp$MH,"wcscmp");
-    }
-    public static int wcscmp ( Addressable _String1,  Addressable _String2) {
-        var mh$ = wcscmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcscpy$MH,"wcscpy");
-    }
-    public static MemoryAddress wcscpy ( Addressable _Destination,  Addressable _Source) {
-        var mh$ = wcscpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscspn$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcscspn$MH,"wcscspn");
-    }
-    public static long wcscspn ( Addressable _String,  Addressable _Control) {
-        var mh$ = wcscspn$MH();
-        try {
-            return (long)mh$.invokeExact(_String, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcslen$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcslen$MH,"wcslen");
-    }
-    public static long wcslen ( Addressable _String) {
-        var mh$ = wcslen$MH();
-        try {
-            return (long)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsnlen$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcsnlen$MH,"wcsnlen");
-    }
-    public static long wcsnlen ( Addressable _Source,  long _MaxCount) {
-        var mh$ = wcsnlen$MH();
-        try {
-            return (long)mh$.invokeExact(_Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsnlen_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcsnlen_s$MH,"wcsnlen_s");
-    }
-    public static long wcsnlen_s ( Addressable _Source,  long _MaxCount) {
-        var mh$ = wcsnlen_s$MH();
-        try {
-            return (long)mh$.invokeExact(_Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsncat$MH() {
-        return RuntimeHelper.requireNonNull(constants$26.wcsncat$MH,"wcsncat");
-    }
-    public static MemoryAddress wcsncat ( Addressable _Destination,  Addressable _Source,  long _Count) {
-        var mh$ = wcsncat$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsncmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.wcsncmp$MH,"wcsncmp");
-    }
-    public static int wcsncmp ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = wcsncmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsncpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.wcsncpy$MH,"wcsncpy");
-    }
-    public static MemoryAddress wcsncpy ( Addressable _Destination,  Addressable _Source,  long _Count) {
-        var mh$ = wcsncpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcspbrk$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.wcspbrk$MH,"wcspbrk");
-    }
-    public static MemoryAddress wcspbrk ( Addressable _String,  Addressable _Control) {
-        var mh$ = wcspbrk$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsspn$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.wcsspn$MH,"wcsspn");
-    }
-    public static long wcsspn ( Addressable _String,  Addressable _Control) {
-        var mh$ = wcsspn$MH();
-        try {
-            return (long)mh$.invokeExact(_String, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcstok$MH() {
-        return RuntimeHelper.requireNonNull(constants$27.wcstok$MH,"wcstok");
-    }
-    public static MemoryAddress wcstok ( Addressable _String,  Addressable _Delimiter,  Addressable _Context) {
-        var mh$ = wcstok$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Delimiter, _Context);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcstok$MH() {
-        return RuntimeHelper.requireNonNull(constants$27._wcstok$MH,"_wcstok");
-    }
-    public static MemoryAddress _wcstok ( Addressable _String,  Addressable _Delimiter) {
-        var mh$ = _wcstok$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Delimiter);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcserror$MH() {
-        return RuntimeHelper.requireNonNull(constants$28._wcserror$MH,"_wcserror");
-    }
-    public static MemoryAddress _wcserror ( int _ErrorNumber) {
-        var mh$ = _wcserror$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_ErrorNumber);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcserror_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$28._wcserror_s$MH,"_wcserror_s");
-    }
-    public static int _wcserror_s ( Addressable _Buffer,  long _SizeInWords,  int _ErrorNumber) {
-        var mh$ = _wcserror_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Buffer, _SizeInWords, _ErrorNumber);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __wcserror$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.__wcserror$MH,"__wcserror");
-    }
-    public static MemoryAddress __wcserror ( Addressable _String) {
-        var mh$ = __wcserror$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __wcserror_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$28.__wcserror_s$MH,"__wcserror_s");
-    }
-    public static int __wcserror_s ( Addressable _Buffer,  long _SizeInWords,  Addressable _ErrorMessage) {
-        var mh$ = __wcserror_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Buffer, _SizeInWords, _ErrorMessage);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$28._wcsicmp$MH,"_wcsicmp");
-    }
-    public static int _wcsicmp ( Addressable _String1,  Addressable _String2) {
-        var mh$ = _wcsicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsicmp_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$28._wcsicmp_l$MH,"_wcsicmp_l");
-    }
-    public static int _wcsicmp_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _wcsicmp_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsnicmp$MH,"_wcsnicmp");
-    }
-    public static int _wcsnicmp ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _wcsnicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnicmp_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsnicmp_l$MH,"_wcsnicmp_l");
-    }
-    public static int _wcsnicmp_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _wcsnicmp_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnset_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsnset_s$MH,"_wcsnset_s");
-    }
-    public static int _wcsnset_s ( Addressable _Destination,  long _SizeInWords,  short _Value,  long _MaxCount) {
-        var mh$ = _wcsnset_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Value, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnset$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsnset$MH,"_wcsnset");
-    }
-    public static MemoryAddress _wcsnset ( Addressable _String,  short _Value,  long _MaxCount) {
-        var mh$ = _wcsnset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsrev$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsrev$MH,"_wcsrev");
-    }
-    public static MemoryAddress _wcsrev ( Addressable _String) {
-        var mh$ = _wcsrev$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsset_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$29._wcsset_s$MH,"_wcsset_s");
-    }
-    public static int _wcsset_s ( Addressable _Destination,  long _SizeInWords,  short _Value) {
-        var mh$ = _wcsset_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInWords, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsset$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcsset$MH,"_wcsset");
-    }
-    public static MemoryAddress _wcsset ( Addressable _String,  short _Value) {
-        var mh$ = _wcsset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcslwr_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcslwr_s$MH,"_wcslwr_s");
-    }
-    public static int _wcslwr_s ( Addressable _String,  long _SizeInWords) {
-        var mh$ = _wcslwr_s$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _SizeInWords);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcslwr$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcslwr$MH,"_wcslwr");
-    }
-    public static MemoryAddress _wcslwr ( Addressable _String) {
-        var mh$ = _wcslwr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcslwr_s_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcslwr_s_l$MH,"_wcslwr_s_l");
-    }
-    public static int _wcslwr_s_l ( Addressable _String,  long _SizeInWords,  Addressable _Locale) {
-        var mh$ = _wcslwr_s_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _SizeInWords, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcslwr_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcslwr_l$MH,"_wcslwr_l");
-    }
-    public static MemoryAddress _wcslwr_l ( Addressable _String,  Addressable _Locale) {
-        var mh$ = _wcslwr_l$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsupr_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$30._wcsupr_s$MH,"_wcsupr_s");
-    }
-    public static int _wcsupr_s ( Addressable _String,  long _Size) {
-        var mh$ = _wcsupr_s$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsupr$MH() {
-        return RuntimeHelper.requireNonNull(constants$31._wcsupr$MH,"_wcsupr");
-    }
-    public static MemoryAddress _wcsupr ( Addressable _String) {
-        var mh$ = _wcsupr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsupr_s_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$31._wcsupr_s_l$MH,"_wcsupr_s_l");
-    }
-    public static int _wcsupr_s_l ( Addressable _String,  long _Size,  Addressable _Locale) {
-        var mh$ = _wcsupr_s_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsupr_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$31._wcsupr_l$MH,"_wcsupr_l");
-    }
-    public static MemoryAddress _wcsupr_l ( Addressable _String,  Addressable _Locale) {
-        var mh$ = _wcsupr_l$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsxfrm$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.wcsxfrm$MH,"wcsxfrm");
-    }
-    public static long wcsxfrm ( Addressable _Destination,  Addressable _Source,  long _MaxCount) {
-        var mh$ = wcsxfrm$MH();
-        try {
-            return (long)mh$.invokeExact(_Destination, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsxfrm_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$31._wcsxfrm_l$MH,"_wcsxfrm_l");
-    }
-    public static long _wcsxfrm_l ( Addressable _Destination,  Addressable _Source,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _wcsxfrm_l$MH();
-        try {
-            return (long)mh$.invokeExact(_Destination, _Source, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcscoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$31.wcscoll$MH,"wcscoll");
-    }
-    public static int wcscoll ( Addressable _String1,  Addressable _String2) {
-        var mh$ = wcscoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcscoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcscoll_l$MH,"_wcscoll_l");
-    }
-    public static int _wcscoll_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _wcscoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsicoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcsicoll$MH,"_wcsicoll");
-    }
-    public static int _wcsicoll ( Addressable _String1,  Addressable _String2) {
-        var mh$ = _wcsicoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsicoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcsicoll_l$MH,"_wcsicoll_l");
-    }
-    public static int _wcsicoll_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _wcsicoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsncoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcsncoll$MH,"_wcsncoll");
-    }
-    public static int _wcsncoll ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _wcsncoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsncoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcsncoll_l$MH,"_wcsncoll_l");
-    }
-    public static int _wcsncoll_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _wcsncoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnicoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$32._wcsnicoll$MH,"_wcsnicoll");
-    }
-    public static int _wcsnicoll ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _wcsnicoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _wcsnicoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$33._wcsnicoll_l$MH,"_wcsnicoll_l");
-    }
-    public static int _wcsnicoll_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _wcsnicoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsdup$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.wcsdup$MH,"wcsdup");
-    }
-    public static MemoryAddress wcsdup ( Addressable _String) {
-        var mh$ = wcsdup$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.wcsicmp$MH,"wcsicmp");
-    }
-    public static int wcsicmp ( Addressable _String1,  Addressable _String2) {
-        var mh$ = wcsicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsnicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.wcsnicmp$MH,"wcsnicmp");
-    }
-    public static int wcsnicmp ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = wcsnicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsnset$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.wcsnset$MH,"wcsnset");
-    }
-    public static MemoryAddress wcsnset ( Addressable _String,  short _Value,  long _MaxCount) {
-        var mh$ = wcsnset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsrev$MH() {
-        return RuntimeHelper.requireNonNull(constants$33.wcsrev$MH,"wcsrev");
-    }
-    public static MemoryAddress wcsrev ( Addressable _String) {
-        var mh$ = wcsrev$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsset$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.wcsset$MH,"wcsset");
-    }
-    public static MemoryAddress wcsset ( Addressable _String,  short _Value) {
-        var mh$ = wcsset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcslwr$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.wcslwr$MH,"wcslwr");
-    }
-    public static MemoryAddress wcslwr ( Addressable _String) {
-        var mh$ = wcslwr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsupr$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.wcsupr$MH,"wcsupr");
-    }
-    public static MemoryAddress wcsupr ( Addressable _String) {
-        var mh$ = wcsupr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle wcsicoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.wcsicoll$MH,"wcsicoll");
-    }
-    public static int wcsicoll ( Addressable _String1,  Addressable _String2) {
-        var mh$ = wcsicoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.strcpy_s$MH,"strcpy_s");
-    }
-    public static int strcpy_s ( Addressable _Destination,  long _SizeInBytes,  Addressable _Source) {
-        var mh$ = strcpy_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInBytes, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcat_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$34.strcat_s$MH,"strcat_s");
-    }
-    public static int strcat_s ( Addressable _Destination,  long _SizeInBytes,  Addressable _Source) {
-        var mh$ = strcat_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInBytes, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strerror_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.strerror_s$MH,"strerror_s");
-    }
-    public static int strerror_s ( Addressable _Buffer,  long _SizeInBytes,  int _ErrorNumber) {
-        var mh$ = strerror_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Buffer, _SizeInBytes, _ErrorNumber);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strncat_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.strncat_s$MH,"strncat_s");
-    }
-    public static int strncat_s ( Addressable _Destination,  long _SizeInBytes,  Addressable _Source,  long _MaxCount) {
-        var mh$ = strncat_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInBytes, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strncpy_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.strncpy_s$MH,"strncpy_s");
-    }
-    public static int strncpy_s ( Addressable _Destination,  long _SizeInBytes,  Addressable _Source,  long _MaxCount) {
-        var mh$ = strncpy_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _SizeInBytes, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtok_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.strtok_s$MH,"strtok_s");
-    }
-    public static MemoryAddress strtok_s ( Addressable _String,  Addressable _Delimiter,  Addressable _Context) {
-        var mh$ = strtok_s$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Delimiter, _Context);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _memccpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$35._memccpy$MH,"_memccpy");
-    }
-    public static MemoryAddress _memccpy ( Addressable _Dst,  Addressable _Src,  int _Val,  long _MaxCount) {
-        var mh$ = _memccpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Dst, _Src, _Val, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcat$MH() {
-        return RuntimeHelper.requireNonNull(constants$35.strcat$MH,"strcat");
-    }
-    public static MemoryAddress strcat ( Addressable _Destination,  Addressable _Source) {
-        var mh$ = strcat$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.strcmp$MH,"strcmp");
-    }
-    public static int strcmp ( Addressable _Str1,  Addressable _Str2) {
-        var mh$ = strcmp$MH();
-        try {
-            return (int)mh$.invokeExact(_Str1, _Str2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strcmpi$MH() {
-        return RuntimeHelper.requireNonNull(constants$36._strcmpi$MH,"_strcmpi");
-    }
-    public static int _strcmpi ( Addressable _String1,  Addressable _String2) {
-        var mh$ = _strcmpi$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.strcoll$MH,"strcoll");
-    }
-    public static int strcoll ( Addressable _String1,  Addressable _String2) {
-        var mh$ = strcoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strcoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$36._strcoll_l$MH,"_strcoll_l");
-    }
-    public static int _strcoll_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _strcoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.strcpy$MH,"strcpy");
-    }
-    public static MemoryAddress strcpy ( Addressable _Destination,  Addressable _Source) {
-        var mh$ = strcpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcspn$MH() {
-        return RuntimeHelper.requireNonNull(constants$36.strcspn$MH,"strcspn");
-    }
-    public static long strcspn ( Addressable _Str,  Addressable _Control) {
-        var mh$ = strcspn$MH();
-        try {
-            return (long)mh$.invokeExact(_Str, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strdup$MH() {
-        return RuntimeHelper.requireNonNull(constants$37._strdup$MH,"_strdup");
-    }
-    public static MemoryAddress _strdup ( Addressable _Source) {
-        var mh$ = _strdup$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strerror$MH() {
-        return RuntimeHelper.requireNonNull(constants$37._strerror$MH,"_strerror");
-    }
-    public static MemoryAddress _strerror ( Addressable _ErrorMessage) {
-        var mh$ = _strerror$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_ErrorMessage);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strerror_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$37._strerror_s$MH,"_strerror_s");
-    }
-    public static int _strerror_s ( Addressable _Buffer,  long _SizeInBytes,  Addressable _ErrorMessage) {
-        var mh$ = _strerror_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Buffer, _SizeInBytes, _ErrorMessage);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strerror$MH() {
-        return RuntimeHelper.requireNonNull(constants$37.strerror$MH,"strerror");
-    }
-    public static MemoryAddress strerror ( int _ErrorMessage) {
-        var mh$ = strerror$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_ErrorMessage);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _stricmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$37._stricmp$MH,"_stricmp");
-    }
-    public static int _stricmp ( Addressable _String1,  Addressable _String2) {
-        var mh$ = _stricmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _stricoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$37._stricoll$MH,"_stricoll");
-    }
-    public static int _stricoll ( Addressable _String1,  Addressable _String2) {
-        var mh$ = _stricoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _stricoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$38._stricoll_l$MH,"_stricoll_l");
-    }
-    public static int _stricoll_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _stricoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _stricmp_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$38._stricmp_l$MH,"_stricmp_l");
-    }
-    public static int _stricmp_l ( Addressable _String1,  Addressable _String2,  Addressable _Locale) {
-        var mh$ = _stricmp_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strlen$MH() {
-        return RuntimeHelper.requireNonNull(constants$38.strlen$MH,"strlen");
-    }
-    public static long strlen ( Addressable _Str) {
-        var mh$ = strlen$MH();
-        try {
-            return (long)mh$.invokeExact(_Str);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strlwr_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$38._strlwr_s$MH,"_strlwr_s");
-    }
-    public static int _strlwr_s ( Addressable _String,  long _Size) {
-        var mh$ = _strlwr_s$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strlwr$MH() {
-        return RuntimeHelper.requireNonNull(constants$38._strlwr$MH,"_strlwr");
-    }
-    public static MemoryAddress _strlwr ( Addressable _String) {
-        var mh$ = _strlwr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strlwr_s_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$38._strlwr_s_l$MH,"_strlwr_s_l");
-    }
-    public static int _strlwr_s_l ( Addressable _String,  long _Size,  Addressable _Locale) {
-        var mh$ = _strlwr_s_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strlwr_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$39._strlwr_l$MH,"_strlwr_l");
-    }
-    public static MemoryAddress _strlwr_l ( Addressable _String,  Addressable _Locale) {
-        var mh$ = _strlwr_l$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strncat$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.strncat$MH,"strncat");
-    }
-    public static MemoryAddress strncat ( Addressable _Destination,  Addressable _Source,  long _Count) {
-        var mh$ = strncat$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strncmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$39.strncmp$MH,"strncmp");
-    }
-    public static int strncmp ( Addressable _Str1,  Addressable _Str2,  long _MaxCount) {
-        var mh$ = strncmp$MH();
-        try {
-            return (int)mh$.invokeExact(_Str1, _Str2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$39._strnicmp$MH,"_strnicmp");
-    }
-    public static int _strnicmp ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _strnicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnicmp_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$39._strnicmp_l$MH,"_strnicmp_l");
-    }
-    public static int _strnicmp_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _strnicmp_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnicoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$39._strnicoll$MH,"_strnicoll");
-    }
-    public static int _strnicoll ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _strnicoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnicoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$40._strnicoll_l$MH,"_strnicoll_l");
-    }
-    public static int _strnicoll_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _strnicoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strncoll$MH() {
-        return RuntimeHelper.requireNonNull(constants$40._strncoll$MH,"_strncoll");
-    }
-    public static int _strncoll ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = _strncoll$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strncoll_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$40._strncoll_l$MH,"_strncoll_l");
-    }
-    public static int _strncoll_l ( Addressable _String1,  Addressable _String2,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _strncoll_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __strncnt$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.__strncnt$MH,"__strncnt");
-    }
-    public static long __strncnt ( Addressable _String,  long _Count) {
-        var mh$ = __strncnt$MH();
-        try {
-            return (long)mh$.invokeExact(_String, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strncpy$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.strncpy$MH,"strncpy");
-    }
-    public static MemoryAddress strncpy ( Addressable _Destination,  Addressable _Source,  long _Count) {
-        var mh$ = strncpy$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Source, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strnlen$MH() {
-        return RuntimeHelper.requireNonNull(constants$40.strnlen$MH,"strnlen");
-    }
-    public static long strnlen ( Addressable _String,  long _MaxCount) {
-        var mh$ = strnlen$MH();
-        try {
-            return (long)mh$.invokeExact(_String, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strnlen_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.strnlen_s$MH,"strnlen_s");
-    }
-    public static long strnlen_s ( Addressable _String,  long _MaxCount) {
-        var mh$ = strnlen_s$MH();
-        try {
-            return (long)mh$.invokeExact(_String, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnset_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$41._strnset_s$MH,"_strnset_s");
-    }
-    public static int _strnset_s ( Addressable _String,  long _SizeInBytes,  int _Value,  long _MaxCount) {
-        var mh$ = _strnset_s$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _SizeInBytes, _Value, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strnset$MH() {
-        return RuntimeHelper.requireNonNull(constants$41._strnset$MH,"_strnset");
-    }
-    public static MemoryAddress _strnset ( Addressable _Destination,  int _Value,  long _Count) {
-        var mh$ = _strnset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Value, _Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strpbrk$MH() {
-        return RuntimeHelper.requireNonNull(constants$41.strpbrk$MH,"strpbrk");
-    }
-    public static MemoryAddress strpbrk ( Addressable _Str,  Addressable _Control) {
-        var mh$ = strpbrk$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strrev$MH() {
-        return RuntimeHelper.requireNonNull(constants$41._strrev$MH,"_strrev");
-    }
-    public static MemoryAddress _strrev ( Addressable _Str) {
-        var mh$ = _strrev$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Str);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strset_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$41._strset_s$MH,"_strset_s");
-    }
-    public static int _strset_s ( Addressable _Destination,  long _DestinationSize,  int _Value) {
-        var mh$ = _strset_s$MH();
-        try {
-            return (int)mh$.invokeExact(_Destination, _DestinationSize, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strset$MH() {
-        return RuntimeHelper.requireNonNull(constants$42._strset$MH,"_strset");
-    }
-    public static MemoryAddress _strset ( Addressable _Destination,  int _Value) {
-        var mh$ = _strset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_Destination, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strspn$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.strspn$MH,"strspn");
-    }
-    public static long strspn ( Addressable _Str,  Addressable _Control) {
-        var mh$ = strspn$MH();
-        try {
-            return (long)mh$.invokeExact(_Str, _Control);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strtok$MH() {
-        return RuntimeHelper.requireNonNull(constants$42.strtok$MH,"strtok");
-    }
-    public static MemoryAddress strtok ( Addressable _String,  Addressable _Delimiter) {
-        var mh$ = strtok$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Delimiter);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strupr_s$MH() {
-        return RuntimeHelper.requireNonNull(constants$42._strupr_s$MH,"_strupr_s");
-    }
-    public static int _strupr_s ( Addressable _String,  long _Size) {
-        var mh$ = _strupr_s$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strupr$MH() {
-        return RuntimeHelper.requireNonNull(constants$42._strupr$MH,"_strupr");
-    }
-    public static MemoryAddress _strupr ( Addressable _String) {
-        var mh$ = _strupr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strupr_s_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$42._strupr_s_l$MH,"_strupr_s_l");
-    }
-    public static int _strupr_s_l ( Addressable _String,  long _Size,  Addressable _Locale) {
-        var mh$ = _strupr_s_l$MH();
-        try {
-            return (int)mh$.invokeExact(_String, _Size, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strupr_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$43._strupr_l$MH,"_strupr_l");
-    }
-    public static MemoryAddress _strupr_l ( Addressable _String,  Addressable _Locale) {
-        var mh$ = _strupr_l$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strxfrm$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.strxfrm$MH,"strxfrm");
-    }
-    public static long strxfrm ( Addressable _Destination,  Addressable _Source,  long _MaxCount) {
-        var mh$ = strxfrm$MH();
-        try {
-            return (long)mh$.invokeExact(_Destination, _Source, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _strxfrm_l$MH() {
-        return RuntimeHelper.requireNonNull(constants$43._strxfrm_l$MH,"_strxfrm_l");
-    }
-    public static long _strxfrm_l ( Addressable _Destination,  Addressable _Source,  long _MaxCount,  Addressable _Locale) {
-        var mh$ = _strxfrm_l$MH();
-        try {
-            return (long)mh$.invokeExact(_Destination, _Source, _MaxCount, _Locale);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strdup$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.strdup$MH,"strdup");
-    }
-    public static MemoryAddress strdup ( Addressable _String) {
-        var mh$ = strdup$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strcmpi$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.strcmpi$MH,"strcmpi");
-    }
-    public static int strcmpi ( Addressable _String1,  Addressable _String2) {
-        var mh$ = strcmpi$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle stricmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$43.stricmp$MH,"stricmp");
-    }
-    public static int stricmp ( Addressable _String1,  Addressable _String2) {
-        var mh$ = stricmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strlwr$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strlwr$MH,"strlwr");
-    }
-    public static MemoryAddress strlwr ( Addressable _String) {
-        var mh$ = strlwr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strnicmp$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strnicmp$MH,"strnicmp");
-    }
-    public static int strnicmp ( Addressable _String1,  Addressable _String2,  long _MaxCount) {
-        var mh$ = strnicmp$MH();
-        try {
-            return (int)mh$.invokeExact(_String1, _String2, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strnset$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strnset$MH,"strnset");
-    }
-    public static MemoryAddress strnset ( Addressable _String,  int _Value,  long _MaxCount) {
-        var mh$ = strnset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value, _MaxCount);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strrev$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strrev$MH,"strrev");
-    }
-    public static MemoryAddress strrev ( Addressable _String) {
-        var mh$ = strrev$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strset$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strset$MH,"strset");
-    }
-    public static MemoryAddress strset ( Addressable _String,  int _Value) {
-        var mh$ = strset$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle strupr$MH() {
-        return RuntimeHelper.requireNonNull(constants$44.strupr$MH,"strupr");
-    }
-    public static MemoryAddress strupr ( Addressable _String) {
-        var mh$ = strupr$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(_String);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PKSPIN_LOCK = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PM128A = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PXSAVE_FORMAT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PXSAVE_CET_U_FORMAT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PXSAVE_AREA_HEADER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PXSAVE_AREA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PXSTATE_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PKERNEL_CET_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSCOPE_TABLE_AMD64 = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle _bittest$MH() {
-        return RuntimeHelper.requireNonNull(constants$45._bittest$MH,"_bittest");
-    }
-    public static byte _bittest ( Addressable Base,  int Offset) {
-        var mh$ = _bittest$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandcomplement$MH() {
-        return RuntimeHelper.requireNonNull(constants$45._bittestandcomplement$MH,"_bittestandcomplement");
-    }
-    public static byte _bittestandcomplement ( Addressable Base,  int Offset) {
-        var mh$ = _bittestandcomplement$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandset$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._bittestandset$MH,"_bittestandset");
-    }
-    public static byte _bittestandset ( Addressable Base,  int Offset) {
-        var mh$ = _bittestandset$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandreset$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._bittestandreset$MH,"_bittestandreset");
-    }
-    public static byte _bittestandreset ( Addressable Base,  int Offset) {
-        var mh$ = _bittestandreset$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _interlockedbittestandset$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._interlockedbittestandset$MH,"_interlockedbittestandset");
-    }
-    public static byte _interlockedbittestandset ( Addressable Base,  int Offset) {
-        var mh$ = _interlockedbittestandset$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _interlockedbittestandreset$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._interlockedbittestandreset$MH,"_interlockedbittestandreset");
-    }
-    public static byte _interlockedbittestandreset ( Addressable Base,  int Offset) {
-        var mh$ = _interlockedbittestandreset$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittest64$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._bittest64$MH,"_bittest64");
-    }
-    public static byte _bittest64 ( Addressable Base,  long Offset) {
-        var mh$ = _bittest64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandcomplement64$MH() {
-        return RuntimeHelper.requireNonNull(constants$46._bittestandcomplement64$MH,"_bittestandcomplement64");
-    }
-    public static byte _bittestandcomplement64 ( Addressable Base,  long Offset) {
-        var mh$ = _bittestandcomplement64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandset64$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._bittestandset64$MH,"_bittestandset64");
-    }
-    public static byte _bittestandset64 ( Addressable Base,  long Offset) {
-        var mh$ = _bittestandset64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _bittestandreset64$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._bittestandreset64$MH,"_bittestandreset64");
-    }
-    public static byte _bittestandreset64 ( Addressable Base,  long Offset) {
-        var mh$ = _bittestandreset64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _interlockedbittestandset64$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._interlockedbittestandset64$MH,"_interlockedbittestandset64");
-    }
-    public static byte _interlockedbittestandset64 ( Addressable Base,  long Offset) {
-        var mh$ = _interlockedbittestandset64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _interlockedbittestandreset64$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._interlockedbittestandreset64$MH,"_interlockedbittestandreset64");
-    }
-    public static byte _interlockedbittestandreset64 ( Addressable Base,  long Offset) {
-        var mh$ = _interlockedbittestandreset64$MH();
-        try {
-            return (byte)mh$.invokeExact(Base, Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _BitScanForward$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._BitScanForward$MH,"_BitScanForward");
-    }
-    public static byte _BitScanForward ( Addressable Index,  int Mask) {
-        var mh$ = _BitScanForward$MH();
-        try {
-            return (byte)mh$.invokeExact(Index, Mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _BitScanReverse$MH() {
-        return RuntimeHelper.requireNonNull(constants$47._BitScanReverse$MH,"_BitScanReverse");
-    }
-    public static byte _BitScanReverse ( Addressable Index,  int Mask) {
-        var mh$ = _BitScanReverse$MH();
-        try {
-            return (byte)mh$.invokeExact(Index, Mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _BitScanForward64$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._BitScanForward64$MH,"_BitScanForward64");
-    }
-    public static byte _BitScanForward64 ( Addressable Index,  long Mask) {
-        var mh$ = _BitScanForward64$MH();
-        try {
-            return (byte)mh$.invokeExact(Index, Mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _BitScanReverse64$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._BitScanReverse64$MH,"_BitScanReverse64");
-    }
-    public static byte _BitScanReverse64 ( Addressable Index,  long Mask) {
-        var mh$ = _BitScanReverse64$MH();
-        try {
-            return (byte)mh$.invokeExact(Index, Mask);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedIncrement16$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._InterlockedIncrement16$MH,"_InterlockedIncrement16");
-    }
-    public static short _InterlockedIncrement16 ( Addressable Addend) {
-        var mh$ = _InterlockedIncrement16$MH();
-        try {
-            return (short)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedDecrement16$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._InterlockedDecrement16$MH,"_InterlockedDecrement16");
-    }
-    public static short _InterlockedDecrement16 ( Addressable Addend) {
-        var mh$ = _InterlockedDecrement16$MH();
-        try {
-            return (short)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedCompareExchange16$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._InterlockedCompareExchange16$MH,"_InterlockedCompareExchange16");
-    }
-    public static short _InterlockedCompareExchange16 ( Addressable Destination,  short ExChange,  short Comperand) {
-        var mh$ = _InterlockedCompareExchange16$MH();
-        try {
-            return (short)mh$.invokeExact(Destination, ExChange, Comperand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedAnd$MH() {
-        return RuntimeHelper.requireNonNull(constants$48._InterlockedAnd$MH,"_InterlockedAnd");
-    }
-    public static int _InterlockedAnd ( Addressable Destination,  int Value) {
-        var mh$ = _InterlockedAnd$MH();
-        try {
-            return (int)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedOr$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedOr$MH,"_InterlockedOr");
-    }
-    public static int _InterlockedOr ( Addressable Destination,  int Value) {
-        var mh$ = _InterlockedOr$MH();
-        try {
-            return (int)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedXor$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedXor$MH,"_InterlockedXor");
-    }
-    public static int _InterlockedXor ( Addressable Destination,  int Value) {
-        var mh$ = _InterlockedXor$MH();
-        try {
-            return (int)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedAnd64$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedAnd64$MH,"_InterlockedAnd64");
-    }
-    public static long _InterlockedAnd64 ( Addressable Destination,  long Value) {
-        var mh$ = _InterlockedAnd64$MH();
-        try {
-            return (long)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedOr64$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedOr64$MH,"_InterlockedOr64");
-    }
-    public static long _InterlockedOr64 ( Addressable Destination,  long Value) {
-        var mh$ = _InterlockedOr64$MH();
-        try {
-            return (long)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedXor64$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedXor64$MH,"_InterlockedXor64");
-    }
-    public static long _InterlockedXor64 ( Addressable Destination,  long Value) {
-        var mh$ = _InterlockedXor64$MH();
-        try {
-            return (long)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedIncrement$MH() {
-        return RuntimeHelper.requireNonNull(constants$49._InterlockedIncrement$MH,"_InterlockedIncrement");
-    }
-    public static int _InterlockedIncrement ( Addressable Addend) {
-        var mh$ = _InterlockedIncrement$MH();
-        try {
-            return (int)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedDecrement$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InterlockedDecrement$MH,"_InterlockedDecrement");
-    }
-    public static int _InterlockedDecrement ( Addressable Addend) {
-        var mh$ = _InterlockedDecrement$MH();
-        try {
-            return (int)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchange$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InterlockedExchange$MH,"_InterlockedExchange");
-    }
-    public static int _InterlockedExchange ( Addressable Target,  int Value) {
-        var mh$ = _InterlockedExchange$MH();
-        try {
-            return (int)mh$.invokeExact(Target, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchangeAdd$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InterlockedExchangeAdd$MH,"_InterlockedExchangeAdd");
-    }
-    public static int _InterlockedExchangeAdd ( Addressable Addend,  int Value) {
-        var mh$ = _InterlockedExchangeAdd$MH();
-        try {
-            return (int)mh$.invokeExact(Addend, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InlineInterlockedAdd$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InlineInterlockedAdd$MH,"_InlineInterlockedAdd");
-    }
-    public static int _InlineInterlockedAdd ( Addressable Addend,  int Value) {
-        var mh$ = _InlineInterlockedAdd$MH();
-        try {
-            return (int)mh$.invokeExact(Addend, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedCompareExchange$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InterlockedCompareExchange$MH,"_InterlockedCompareExchange");
-    }
-    public static int _InterlockedCompareExchange ( Addressable Destination,  int ExChange,  int Comperand) {
-        var mh$ = _InterlockedCompareExchange$MH();
-        try {
-            return (int)mh$.invokeExact(Destination, ExChange, Comperand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedIncrement64$MH() {
-        return RuntimeHelper.requireNonNull(constants$50._InterlockedIncrement64$MH,"_InterlockedIncrement64");
-    }
-    public static long _InterlockedIncrement64 ( Addressable Addend) {
-        var mh$ = _InterlockedIncrement64$MH();
-        try {
-            return (long)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedDecrement64$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InterlockedDecrement64$MH,"_InterlockedDecrement64");
-    }
-    public static long _InterlockedDecrement64 ( Addressable Addend) {
-        var mh$ = _InterlockedDecrement64$MH();
-        try {
-            return (long)mh$.invokeExact(Addend);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchange64$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InterlockedExchange64$MH,"_InterlockedExchange64");
-    }
-    public static long _InterlockedExchange64 ( Addressable Target,  long Value) {
-        var mh$ = _InterlockedExchange64$MH();
-        try {
-            return (long)mh$.invokeExact(Target, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchangeAdd64$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InterlockedExchangeAdd64$MH,"_InterlockedExchangeAdd64");
-    }
-    public static long _InterlockedExchangeAdd64 ( Addressable Addend,  long Value) {
-        var mh$ = _InterlockedExchangeAdd64$MH();
-        try {
-            return (long)mh$.invokeExact(Addend, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InlineInterlockedAdd64$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InlineInterlockedAdd64$MH,"_InlineInterlockedAdd64");
-    }
-    public static long _InlineInterlockedAdd64 ( Addressable Addend,  long Value) {
-        var mh$ = _InlineInterlockedAdd64$MH();
-        try {
-            return (long)mh$.invokeExact(Addend, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedCompareExchange64$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InterlockedCompareExchange64$MH,"_InterlockedCompareExchange64");
-    }
-    public static long _InterlockedCompareExchange64 ( Addressable Destination,  long ExChange,  long Comperand) {
-        var mh$ = _InterlockedCompareExchange64$MH();
-        try {
-            return (long)mh$.invokeExact(Destination, ExChange, Comperand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedCompareExchange128$MH() {
-        return RuntimeHelper.requireNonNull(constants$51._InterlockedCompareExchange128$MH,"_InterlockedCompareExchange128");
-    }
-    public static byte _InterlockedCompareExchange128 ( Addressable Destination,  long ExchangeHigh,  long ExchangeLow,  Addressable ComparandResult) {
-        var mh$ = _InterlockedCompareExchange128$MH();
-        try {
-            return (byte)mh$.invokeExact(Destination, ExchangeHigh, ExchangeLow, ComparandResult);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedCompareExchangePointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedCompareExchangePointer$MH,"_InterlockedCompareExchangePointer");
-    }
-    public static MemoryAddress _InterlockedCompareExchangePointer ( Addressable Destination,  Addressable Exchange,  Addressable Comperand) {
-        var mh$ = _InterlockedCompareExchangePointer$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Destination, Exchange, Comperand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchangePointer$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedExchangePointer$MH,"_InterlockedExchangePointer");
-    }
-    public static MemoryAddress _InterlockedExchangePointer ( Addressable Target,  Addressable Value) {
-        var mh$ = _InterlockedExchangePointer$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Target, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchange8$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedExchange8$MH,"_InterlockedExchange8");
-    }
-    public static byte _InterlockedExchange8 ( Addressable Target,  byte Value) {
-        var mh$ = _InterlockedExchange8$MH();
-        try {
-            return (byte)mh$.invokeExact(Target, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchange16$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedExchange16$MH,"_InterlockedExchange16");
-    }
-    public static short _InterlockedExchange16 ( Addressable Destination,  short ExChange) {
-        var mh$ = _InterlockedExchange16$MH();
-        try {
-            return (short)mh$.invokeExact(Destination, ExChange);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedExchangeAdd8$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedExchangeAdd8$MH,"_InterlockedExchangeAdd8");
-    }
-    public static byte _InterlockedExchangeAdd8 ( Addressable _Addend,  byte _Value) {
-        var mh$ = _InterlockedExchangeAdd8$MH();
-        try {
-            return (byte)mh$.invokeExact(_Addend, _Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedAnd8$MH() {
-        return RuntimeHelper.requireNonNull(constants$52._InterlockedAnd8$MH,"_InterlockedAnd8");
-    }
-    public static byte _InterlockedAnd8 ( Addressable Destination,  byte Value) {
-        var mh$ = _InterlockedAnd8$MH();
-        try {
-            return (byte)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedOr8$MH() {
-        return RuntimeHelper.requireNonNull(constants$53._InterlockedOr8$MH,"_InterlockedOr8");
-    }
-    public static byte _InterlockedOr8 ( Addressable Destination,  byte Value) {
-        var mh$ = _InterlockedOr8$MH();
-        try {
-            return (byte)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedXor8$MH() {
-        return RuntimeHelper.requireNonNull(constants$53._InterlockedXor8$MH,"_InterlockedXor8");
-    }
-    public static byte _InterlockedXor8 ( Addressable Destination,  byte Value) {
-        var mh$ = _InterlockedXor8$MH();
-        try {
-            return (byte)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedAnd16$MH() {
-        return RuntimeHelper.requireNonNull(constants$53._InterlockedAnd16$MH,"_InterlockedAnd16");
-    }
-    public static short _InterlockedAnd16 ( Addressable Destination,  short Value) {
-        var mh$ = _InterlockedAnd16$MH();
-        try {
-            return (short)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedOr16$MH() {
-        return RuntimeHelper.requireNonNull(constants$53._InterlockedOr16$MH,"_InterlockedOr16");
-    }
-    public static short _InterlockedOr16 ( Addressable Destination,  short Value) {
-        var mh$ = _InterlockedOr16$MH();
-        try {
-            return (short)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _InterlockedXor16$MH() {
-        return RuntimeHelper.requireNonNull(constants$53._InterlockedXor16$MH,"_InterlockedXor16");
-    }
-    public static short _InterlockedXor16 ( Addressable Destination,  short Value) {
-        var mh$ = _InterlockedXor16$MH();
-        try {
-            return (short)mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __cpuidex$MH() {
-        return RuntimeHelper.requireNonNull(constants$53.__cpuidex$MH,"__cpuidex");
-    }
-    public static void __cpuidex ( Addressable CPUInfo,  int Function,  int SubLeaf) {
-        var mh$ = __cpuidex$MH();
-        try {
-            mh$.invokeExact(CPUInfo, Function, SubLeaf);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_clflush$MH() {
-        return RuntimeHelper.requireNonNull(constants$54._mm_clflush$MH,"_mm_clflush");
-    }
-    public static void _mm_clflush ( Addressable Address) {
-        var mh$ = _mm_clflush$MH();
-        try {
-            mh$.invokeExact(Address);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _ReadWriteBarrier$MH() {
-        return RuntimeHelper.requireNonNull(constants$54._ReadWriteBarrier$MH,"_ReadWriteBarrier");
-    }
-    public static void _ReadWriteBarrier () {
-        var mh$ = _ReadWriteBarrier$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __faststorefence$MH() {
-        return RuntimeHelper.requireNonNull(constants$54.__faststorefence$MH,"__faststorefence");
-    }
-    public static void __faststorefence () {
-        var mh$ = __faststorefence$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_lfence$MH() {
-        return RuntimeHelper.requireNonNull(constants$54._mm_lfence$MH,"_mm_lfence");
-    }
-    public static void _mm_lfence () {
-        var mh$ = _mm_lfence$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_mfence$MH() {
-        return RuntimeHelper.requireNonNull(constants$54._mm_mfence$MH,"_mm_mfence");
-    }
-    public static void _mm_mfence () {
-        var mh$ = _mm_mfence$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_sfence$MH() {
-        return RuntimeHelper.requireNonNull(constants$54._mm_sfence$MH,"_mm_sfence");
-    }
-    public static void _mm_sfence () {
-        var mh$ = _mm_sfence$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_pause$MH() {
-        return RuntimeHelper.requireNonNull(constants$55._mm_pause$MH,"_mm_pause");
-    }
-    public static void _mm_pause () {
-        var mh$ = _mm_pause$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_prefetch$MH() {
-        return RuntimeHelper.requireNonNull(constants$55._mm_prefetch$MH,"_mm_prefetch");
-    }
-    public static void _mm_prefetch ( Addressable a,  int sel) {
-        var mh$ = _mm_prefetch$MH();
-        try {
-            mh$.invokeExact(a, sel);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _m_prefetchw$MH() {
-        return RuntimeHelper.requireNonNull(constants$55._m_prefetchw$MH,"_m_prefetchw");
-    }
-    public static void _m_prefetchw ( Addressable Source) {
-        var mh$ = _m_prefetchw$MH();
-        try {
-            mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_getcsr$MH() {
-        return RuntimeHelper.requireNonNull(constants$55._mm_getcsr$MH,"_mm_getcsr");
-    }
-    public static int _mm_getcsr () {
-        var mh$ = _mm_getcsr$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mm_setcsr$MH() {
-        return RuntimeHelper.requireNonNull(constants$55._mm_setcsr$MH,"_mm_setcsr");
-    }
-    public static void _mm_setcsr ( int MxCsr) {
-        var mh$ = _mm_setcsr$MH();
-        try {
-            mh$.invokeExact(MxCsr);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __getcallerseflags$MH() {
-        return RuntimeHelper.requireNonNull(constants$55.__getcallerseflags$MH,"__getcallerseflags");
-    }
-    public static int __getcallerseflags () {
-        var mh$ = __getcallerseflags$MH();
-        try {
-            return (int)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __segmentlimit$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__segmentlimit$MH,"__segmentlimit");
-    }
-    public static int __segmentlimit ( int Selector) {
-        var mh$ = __segmentlimit$MH();
-        try {
-            return (int)mh$.invokeExact(Selector);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __readpmc$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__readpmc$MH,"__readpmc");
-    }
-    public static long __readpmc ( int Counter) {
-        var mh$ = __readpmc$MH();
-        try {
-            return (long)mh$.invokeExact(Counter);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __rdtsc$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__rdtsc$MH,"__rdtsc");
-    }
-    public static long __rdtsc () {
-        var mh$ = __rdtsc$MH();
-        try {
-            return (long)mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __movsb$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__movsb$MH,"__movsb");
-    }
-    public static void __movsb ( Addressable Destination,  Addressable Source,  long Count) {
-        var mh$ = __movsb$MH();
-        try {
-            mh$.invokeExact(Destination, Source, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __movsw$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__movsw$MH,"__movsw");
-    }
-    public static void __movsw ( Addressable Destination,  Addressable Source,  long Count) {
-        var mh$ = __movsw$MH();
-        try {
-            mh$.invokeExact(Destination, Source, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __movsd$MH() {
-        return RuntimeHelper.requireNonNull(constants$56.__movsd$MH,"__movsd");
-    }
-    public static void __movsd ( Addressable Destination,  Addressable Source,  long Count) {
-        var mh$ = __movsd$MH();
-        try {
-            mh$.invokeExact(Destination, Source, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __movsq$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__movsq$MH,"__movsq");
-    }
-    public static void __movsq ( Addressable Destination,  Addressable Source,  long Count) {
-        var mh$ = __movsq$MH();
-        try {
-            mh$.invokeExact(Destination, Source, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __stosb$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__stosb$MH,"__stosb");
-    }
-    public static void __stosb ( Addressable Destination,  byte Value,  long Count) {
-        var mh$ = __stosb$MH();
-        try {
-            mh$.invokeExact(Destination, Value, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __stosw$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__stosw$MH,"__stosw");
-    }
-    public static void __stosw ( Addressable Destination,  short Value,  long Count) {
-        var mh$ = __stosw$MH();
-        try {
-            mh$.invokeExact(Destination, Value, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __stosd$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__stosd$MH,"__stosd");
-    }
-    public static void __stosd ( Addressable Destination,  int Value,  long Count) {
-        var mh$ = __stosd$MH();
-        try {
-            mh$.invokeExact(Destination, Value, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __stosq$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__stosq$MH,"__stosq");
-    }
-    public static void __stosq ( Addressable Destination,  long Value,  long Count) {
-        var mh$ = __stosq$MH();
-        try {
-            mh$.invokeExact(Destination, Value, Count);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __mulh$MH() {
-        return RuntimeHelper.requireNonNull(constants$57.__mulh$MH,"__mulh");
-    }
-    public static long __mulh ( long Multiplier,  long Multiplicand) {
-        var mh$ = __mulh$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __umulh$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.__umulh$MH,"__umulh");
-    }
-    public static long __umulh ( long Multiplier,  long Multiplicand) {
-        var mh$ = __umulh$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __popcnt64$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.__popcnt64$MH,"__popcnt64");
-    }
-    public static long __popcnt64 ( long operand) {
-        var mh$ = __popcnt64$MH();
-        try {
-            return (long)mh$.invokeExact(operand);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __shiftleft128$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.__shiftleft128$MH,"__shiftleft128");
-    }
-    public static long __shiftleft128 ( long LowPart,  long HighPart,  byte Shift) {
-        var mh$ = __shiftleft128$MH();
-        try {
-            return (long)mh$.invokeExact(LowPart, HighPart, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __shiftright128$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.__shiftright128$MH,"__shiftright128");
-    }
-    public static long __shiftright128 ( long LowPart,  long HighPart,  byte Shift) {
-        var mh$ = __shiftright128$MH();
-        try {
-            return (long)mh$.invokeExact(LowPart, HighPart, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _mul128$MH() {
-        return RuntimeHelper.requireNonNull(constants$58._mul128$MH,"_mul128");
-    }
-    public static long _mul128 ( long Multiplier,  long Multiplicand,  Addressable HighProduct) {
-        var mh$ = _mul128$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand, HighProduct);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle UnsignedMultiply128$MH() {
-        return RuntimeHelper.requireNonNull(constants$58.UnsignedMultiply128$MH,"UnsignedMultiply128");
-    }
-    public static long UnsignedMultiply128 ( long Multiplier,  long Multiplicand,  Addressable HighProduct) {
-        var mh$ = UnsignedMultiply128$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand, HighProduct);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle _umul128$MH() {
-        return RuntimeHelper.requireNonNull(constants$59._umul128$MH,"_umul128");
-    }
-    public static long _umul128 ( long Multiplier,  long Multiplicand,  Addressable HighProduct) {
-        var mh$ = _umul128$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand, HighProduct);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle MultiplyExtract128$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.MultiplyExtract128$MH,"MultiplyExtract128");
-    }
-    public static long MultiplyExtract128 ( long Multiplier,  long Multiplicand,  byte Shift) {
-        var mh$ = MultiplyExtract128$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle UnsignedMultiplyExtract128$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.UnsignedMultiplyExtract128$MH,"UnsignedMultiplyExtract128");
-    }
-    public static long UnsignedMultiplyExtract128 ( long Multiplier,  long Multiplicand,  byte Shift) {
-        var mh$ = UnsignedMultiplyExtract128$MH();
-        try {
-            return (long)mh$.invokeExact(Multiplier, Multiplicand, Shift);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __readgsbyte$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.__readgsbyte$MH,"__readgsbyte");
-    }
-    public static byte __readgsbyte ( int Offset) {
-        var mh$ = __readgsbyte$MH();
-        try {
-            return (byte)mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __readgsword$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.__readgsword$MH,"__readgsword");
-    }
-    public static short __readgsword ( int Offset) {
-        var mh$ = __readgsword$MH();
-        try {
-            return (short)mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __readgsdword$MH() {
-        return RuntimeHelper.requireNonNull(constants$59.__readgsdword$MH,"__readgsdword");
-    }
-    public static int __readgsdword ( int Offset) {
-        var mh$ = __readgsdword$MH();
-        try {
-            return (int)mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __readgsqword$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__readgsqword$MH,"__readgsqword");
-    }
-    public static long __readgsqword ( int Offset) {
-        var mh$ = __readgsqword$MH();
-        try {
-            return (long)mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __writegsbyte$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__writegsbyte$MH,"__writegsbyte");
-    }
-    public static void __writegsbyte ( int Offset,  byte Data) {
-        var mh$ = __writegsbyte$MH();
-        try {
-            mh$.invokeExact(Offset, Data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __writegsword$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__writegsword$MH,"__writegsword");
-    }
-    public static void __writegsword ( int Offset,  short Data) {
-        var mh$ = __writegsword$MH();
-        try {
-            mh$.invokeExact(Offset, Data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __writegsdword$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__writegsdword$MH,"__writegsdword");
-    }
-    public static void __writegsdword ( int Offset,  int Data) {
-        var mh$ = __writegsdword$MH();
-        try {
-            mh$.invokeExact(Offset, Data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __writegsqword$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__writegsqword$MH,"__writegsqword");
-    }
-    public static void __writegsqword ( int Offset,  long Data) {
-        var mh$ = __writegsqword$MH();
-        try {
-            mh$.invokeExact(Offset, Data);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __incgsbyte$MH() {
-        return RuntimeHelper.requireNonNull(constants$60.__incgsbyte$MH,"__incgsbyte");
-    }
-    public static void __incgsbyte ( int Offset) {
-        var mh$ = __incgsbyte$MH();
-        try {
-            mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __addgsbyte$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__addgsbyte$MH,"__addgsbyte");
-    }
-    public static void __addgsbyte ( int Offset,  byte Value) {
-        var mh$ = __addgsbyte$MH();
-        try {
-            mh$.invokeExact(Offset, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __incgsword$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__incgsword$MH,"__incgsword");
-    }
-    public static void __incgsword ( int Offset) {
-        var mh$ = __incgsword$MH();
-        try {
-            mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __addgsword$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__addgsword$MH,"__addgsword");
-    }
-    public static void __addgsword ( int Offset,  short Value) {
-        var mh$ = __addgsword$MH();
-        try {
-            mh$.invokeExact(Offset, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __incgsdword$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__incgsdword$MH,"__incgsdword");
-    }
-    public static void __incgsdword ( int Offset) {
-        var mh$ = __incgsdword$MH();
-        try {
-            mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __addgsdword$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__addgsdword$MH,"__addgsdword");
-    }
-    public static void __addgsdword ( int Offset,  int Value) {
-        var mh$ = __addgsdword$MH();
-        try {
-            mh$.invokeExact(Offset, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __incgsqword$MH() {
-        return RuntimeHelper.requireNonNull(constants$61.__incgsqword$MH,"__incgsqword");
-    }
-    public static void __incgsqword ( int Offset) {
-        var mh$ = __incgsqword$MH();
-        try {
-            mh$.invokeExact(Offset);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle __addgsqword$MH() {
-        return RuntimeHelper.requireNonNull(constants$62.__addgsqword$MH,"__addgsqword");
-    }
-    public static void __addgsqword ( int Offset,  long Value) {
-        var mh$ = __addgsqword$MH();
-        try {
-            mh$.invokeExact(Offset, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PXMM_SAVE_AREA32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PRUNTIME_FUNCTION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSCOPE_TABLE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDISPATCHER_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PKNONVOLATILE_CONTEXT_POINTERS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSCOPE_TABLE_ARM = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSCOPE_TABLE_ARM64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PARM64_NT_NEON128 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PARM64_NT_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PARM64EC_NT_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PARM64_RUNTIME_FUNCTION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PDISPATCHER_CONTEXT_ARM64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PKNONVOLATILE_CONTEXT_POINTERS_ARM64 = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle __int2c$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.__int2c$MH,"__int2c");
-    }
-    public static void __int2c () {
-        var mh$ = __int2c$MH();
-        try {
-            mh$.invokeExact();
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PLDT_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static MethodHandle ReadAcquire8$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.ReadAcquire8$MH,"ReadAcquire8");
-    }
-    public static byte ReadAcquire8 ( Addressable Source) {
-        var mh$ = ReadAcquire8$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadNoFence8$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.ReadNoFence8$MH,"ReadNoFence8");
-    }
-    public static byte ReadNoFence8 ( Addressable Source) {
-        var mh$ = ReadNoFence8$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRelease8$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.WriteRelease8$MH,"WriteRelease8");
-    }
-    public static void WriteRelease8 ( Addressable Destination,  byte Value) {
-        var mh$ = WriteRelease8$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteNoFence8$MH() {
-        return RuntimeHelper.requireNonNull(constants$64.WriteNoFence8$MH,"WriteNoFence8");
-    }
-    public static void WriteNoFence8 ( Addressable Destination,  byte Value) {
-        var mh$ = WriteNoFence8$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadAcquire16$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.ReadAcquire16$MH,"ReadAcquire16");
-    }
-    public static short ReadAcquire16 ( Addressable Source) {
-        var mh$ = ReadAcquire16$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadNoFence16$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.ReadNoFence16$MH,"ReadNoFence16");
-    }
-    public static short ReadNoFence16 ( Addressable Source) {
-        var mh$ = ReadNoFence16$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRelease16$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.WriteRelease16$MH,"WriteRelease16");
-    }
-    public static void WriteRelease16 ( Addressable Destination,  short Value) {
-        var mh$ = WriteRelease16$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteNoFence16$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.WriteNoFence16$MH,"WriteNoFence16");
-    }
-    public static void WriteNoFence16 ( Addressable Destination,  short Value) {
-        var mh$ = WriteNoFence16$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.ReadAcquire$MH,"ReadAcquire");
-    }
-    public static int ReadAcquire ( Addressable Source) {
-        var mh$ = ReadAcquire$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$65.ReadNoFence$MH,"ReadNoFence");
-    }
-    public static int ReadNoFence ( Addressable Source) {
-        var mh$ = ReadNoFence$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.WriteRelease$MH,"WriteRelease");
-    }
-    public static void WriteRelease ( Addressable Destination,  int Value) {
-        var mh$ = WriteRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.WriteNoFence$MH,"WriteNoFence");
-    }
-    public static void WriteNoFence ( Addressable Destination,  int Value) {
-        var mh$ = WriteNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadAcquire64$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.ReadAcquire64$MH,"ReadAcquire64");
-    }
-    public static long ReadAcquire64 ( Addressable Source) {
-        var mh$ = ReadAcquire64$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadNoFence64$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.ReadNoFence64$MH,"ReadNoFence64");
-    }
-    public static long ReadNoFence64 ( Addressable Source) {
-        var mh$ = ReadNoFence64$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRelease64$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.WriteRelease64$MH,"WriteRelease64");
-    }
-    public static void WriteRelease64 ( Addressable Destination,  long Value) {
-        var mh$ = WriteRelease64$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteNoFence64$MH() {
-        return RuntimeHelper.requireNonNull(constants$66.WriteNoFence64$MH,"WriteNoFence64");
-    }
-    public static void WriteNoFence64 ( Addressable Destination,  long Value) {
-        var mh$ = WriteNoFence64$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadRaw8$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.ReadRaw8$MH,"ReadRaw8");
-    }
-    public static byte ReadRaw8 ( Addressable Source) {
-        var mh$ = ReadRaw8$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRaw8$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.WriteRaw8$MH,"WriteRaw8");
-    }
-    public static void WriteRaw8 ( Addressable Destination,  byte Value) {
-        var mh$ = WriteRaw8$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadRaw16$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.ReadRaw16$MH,"ReadRaw16");
-    }
-    public static short ReadRaw16 ( Addressable Source) {
-        var mh$ = ReadRaw16$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRaw16$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.WriteRaw16$MH,"WriteRaw16");
-    }
-    public static void WriteRaw16 ( Addressable Destination,  short Value) {
-        var mh$ = WriteRaw16$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.ReadRaw$MH,"ReadRaw");
-    }
-    public static int ReadRaw ( Addressable Source) {
-        var mh$ = ReadRaw$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$67.WriteRaw$MH,"WriteRaw");
-    }
-    public static void WriteRaw ( Addressable Destination,  int Value) {
-        var mh$ = WriteRaw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadRaw64$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.ReadRaw64$MH,"ReadRaw64");
-    }
-    public static long ReadRaw64 ( Addressable Source) {
-        var mh$ = ReadRaw64$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteRaw64$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.WriteRaw64$MH,"WriteRaw64");
-    }
-    public static void WriteRaw64 ( Addressable Destination,  long Value) {
-        var mh$ = WriteRaw64$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUCharAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.ReadUCharAcquire$MH,"ReadUCharAcquire");
-    }
-    public static byte ReadUCharAcquire ( Addressable Source) {
-        var mh$ = ReadUCharAcquire$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUCharNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.ReadUCharNoFence$MH,"ReadUCharNoFence");
-    }
-    public static byte ReadUCharNoFence ( Addressable Source) {
-        var mh$ = ReadUCharNoFence$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadBooleanAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.ReadBooleanAcquire$MH,"ReadBooleanAcquire");
-    }
-    public static byte ReadBooleanAcquire ( Addressable Source) {
-        var mh$ = ReadBooleanAcquire$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadBooleanNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$68.ReadBooleanNoFence$MH,"ReadBooleanNoFence");
-    }
-    public static byte ReadBooleanNoFence ( Addressable Source) {
-        var mh$ = ReadBooleanNoFence$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUCharRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.ReadUCharRaw$MH,"ReadUCharRaw");
-    }
-    public static byte ReadUCharRaw ( Addressable Source) {
-        var mh$ = ReadUCharRaw$MH();
-        try {
-            return (byte)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUCharRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.WriteUCharRelease$MH,"WriteUCharRelease");
-    }
-    public static void WriteUCharRelease ( Addressable Destination,  byte Value) {
-        var mh$ = WriteUCharRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUCharNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.WriteUCharNoFence$MH,"WriteUCharNoFence");
-    }
-    public static void WriteUCharNoFence ( Addressable Destination,  byte Value) {
-        var mh$ = WriteUCharNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteBooleanRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.WriteBooleanRelease$MH,"WriteBooleanRelease");
-    }
-    public static void WriteBooleanRelease ( Addressable Destination,  byte Value) {
-        var mh$ = WriteBooleanRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteBooleanNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.WriteBooleanNoFence$MH,"WriteBooleanNoFence");
-    }
-    public static void WriteBooleanNoFence ( Addressable Destination,  byte Value) {
-        var mh$ = WriteBooleanNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUCharRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$69.WriteUCharRaw$MH,"WriteUCharRaw");
-    }
-    public static void WriteUCharRaw ( Addressable Destination,  byte Value) {
-        var mh$ = WriteUCharRaw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUShortAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.ReadUShortAcquire$MH,"ReadUShortAcquire");
-    }
-    public static short ReadUShortAcquire ( Addressable Source) {
-        var mh$ = ReadUShortAcquire$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUShortNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.ReadUShortNoFence$MH,"ReadUShortNoFence");
-    }
-    public static short ReadUShortNoFence ( Addressable Source) {
-        var mh$ = ReadUShortNoFence$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUShortRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.ReadUShortRaw$MH,"ReadUShortRaw");
-    }
-    public static short ReadUShortRaw ( Addressable Source) {
-        var mh$ = ReadUShortRaw$MH();
-        try {
-            return (short)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUShortRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.WriteUShortRelease$MH,"WriteUShortRelease");
-    }
-    public static void WriteUShortRelease ( Addressable Destination,  short Value) {
-        var mh$ = WriteUShortRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUShortNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.WriteUShortNoFence$MH,"WriteUShortNoFence");
-    }
-    public static void WriteUShortNoFence ( Addressable Destination,  short Value) {
-        var mh$ = WriteUShortNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUShortRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$70.WriteUShortRaw$MH,"WriteUShortRaw");
-    }
-    public static void WriteUShortRaw ( Addressable Destination,  short Value) {
-        var mh$ = WriteUShortRaw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULongAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.ReadULongAcquire$MH,"ReadULongAcquire");
-    }
-    public static int ReadULongAcquire ( Addressable Source) {
-        var mh$ = ReadULongAcquire$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULongNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.ReadULongNoFence$MH,"ReadULongNoFence");
-    }
-    public static int ReadULongNoFence ( Addressable Source) {
-        var mh$ = ReadULongNoFence$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULongRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.ReadULongRaw$MH,"ReadULongRaw");
-    }
-    public static int ReadULongRaw ( Addressable Source) {
-        var mh$ = ReadULongRaw$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULongRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.WriteULongRelease$MH,"WriteULongRelease");
-    }
-    public static void WriteULongRelease ( Addressable Destination,  int Value) {
-        var mh$ = WriteULongRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULongNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.WriteULongNoFence$MH,"WriteULongNoFence");
-    }
-    public static void WriteULongNoFence ( Addressable Destination,  int Value) {
-        var mh$ = WriteULongNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULongRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$71.WriteULongRaw$MH,"WriteULongRaw");
-    }
-    public static void WriteULongRaw ( Addressable Destination,  int Value) {
-        var mh$ = WriteULongRaw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadInt32Acquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.ReadInt32Acquire$MH,"ReadInt32Acquire");
-    }
-    public static int ReadInt32Acquire ( Addressable Source) {
-        var mh$ = ReadInt32Acquire$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadInt32NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.ReadInt32NoFence$MH,"ReadInt32NoFence");
-    }
-    public static int ReadInt32NoFence ( Addressable Source) {
-        var mh$ = ReadInt32NoFence$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadInt32Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.ReadInt32Raw$MH,"ReadInt32Raw");
-    }
-    public static int ReadInt32Raw ( Addressable Source) {
-        var mh$ = ReadInt32Raw$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteInt32Release$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.WriteInt32Release$MH,"WriteInt32Release");
-    }
-    public static void WriteInt32Release ( Addressable Destination,  int Value) {
-        var mh$ = WriteInt32Release$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteInt32NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.WriteInt32NoFence$MH,"WriteInt32NoFence");
-    }
-    public static void WriteInt32NoFence ( Addressable Destination,  int Value) {
-        var mh$ = WriteInt32NoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteInt32Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$72.WriteInt32Raw$MH,"WriteInt32Raw");
-    }
-    public static void WriteInt32Raw ( Addressable Destination,  int Value) {
-        var mh$ = WriteInt32Raw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUInt32Acquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.ReadUInt32Acquire$MH,"ReadUInt32Acquire");
-    }
-    public static int ReadUInt32Acquire ( Addressable Source) {
-        var mh$ = ReadUInt32Acquire$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUInt32NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.ReadUInt32NoFence$MH,"ReadUInt32NoFence");
-    }
-    public static int ReadUInt32NoFence ( Addressable Source) {
-        var mh$ = ReadUInt32NoFence$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadUInt32Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.ReadUInt32Raw$MH,"ReadUInt32Raw");
-    }
-    public static int ReadUInt32Raw ( Addressable Source) {
-        var mh$ = ReadUInt32Raw$MH();
-        try {
-            return (int)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUInt32Release$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.WriteUInt32Release$MH,"WriteUInt32Release");
-    }
-    public static void WriteUInt32Release ( Addressable Destination,  int Value) {
-        var mh$ = WriteUInt32Release$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUInt32NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.WriteUInt32NoFence$MH,"WriteUInt32NoFence");
-    }
-    public static void WriteUInt32NoFence ( Addressable Destination,  int Value) {
-        var mh$ = WriteUInt32NoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteUInt32Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$73.WriteUInt32Raw$MH,"WriteUInt32Raw");
-    }
-    public static void WriteUInt32Raw ( Addressable Destination,  int Value) {
-        var mh$ = WriteUInt32Raw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULong64Acquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.ReadULong64Acquire$MH,"ReadULong64Acquire");
-    }
-    public static long ReadULong64Acquire ( Addressable Source) {
-        var mh$ = ReadULong64Acquire$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULong64NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.ReadULong64NoFence$MH,"ReadULong64NoFence");
-    }
-    public static long ReadULong64NoFence ( Addressable Source) {
-        var mh$ = ReadULong64NoFence$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadULong64Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.ReadULong64Raw$MH,"ReadULong64Raw");
-    }
-    public static long ReadULong64Raw ( Addressable Source) {
-        var mh$ = ReadULong64Raw$MH();
-        try {
-            return (long)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULong64Release$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.WriteULong64Release$MH,"WriteULong64Release");
-    }
-    public static void WriteULong64Release ( Addressable Destination,  long Value) {
-        var mh$ = WriteULong64Release$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULong64NoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.WriteULong64NoFence$MH,"WriteULong64NoFence");
-    }
-    public static void WriteULong64NoFence ( Addressable Destination,  long Value) {
-        var mh$ = WriteULong64NoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WriteULong64Raw$MH() {
-        return RuntimeHelper.requireNonNull(constants$74.WriteULong64Raw$MH,"WriteULong64Raw");
-    }
-    public static void WriteULong64Raw ( Addressable Destination,  long Value) {
-        var mh$ = WriteULong64Raw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadPointerAcquire$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.ReadPointerAcquire$MH,"ReadPointerAcquire");
-    }
-    public static MemoryAddress ReadPointerAcquire ( Addressable Source) {
-        var mh$ = ReadPointerAcquire$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadPointerNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.ReadPointerNoFence$MH,"ReadPointerNoFence");
-    }
-    public static MemoryAddress ReadPointerNoFence ( Addressable Source) {
-        var mh$ = ReadPointerNoFence$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle ReadPointerRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.ReadPointerRaw$MH,"ReadPointerRaw");
-    }
-    public static MemoryAddress ReadPointerRaw ( Addressable Source) {
-        var mh$ = ReadPointerRaw$MH();
-        try {
-            return (java.lang.foreign.MemoryAddress)mh$.invokeExact(Source);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WritePointerRelease$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.WritePointerRelease$MH,"WritePointerRelease");
-    }
-    public static void WritePointerRelease ( Addressable Destination,  Addressable Value) {
-        var mh$ = WritePointerRelease$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WritePointerNoFence$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.WritePointerNoFence$MH,"WritePointerNoFence");
-    }
-    public static void WritePointerNoFence ( Addressable Destination,  Addressable Value) {
-        var mh$ = WritePointerNoFence$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static MethodHandle WritePointerRaw$MH() {
-        return RuntimeHelper.requireNonNull(constants$75.WritePointerRaw$MH,"WritePointerRaw");
-    }
-    public static void WritePointerRaw ( Addressable Destination,  Addressable Value) {
-        var mh$ = WritePointerRaw$MH();
-        try {
-            mh$.invokeExact(Destination, Value);
-        } catch (Throwable ex$) {
-            throw new AssertionError("should not reach here", ex$);
-        }
-    }
-    public static OfAddress PWOW64_FLOATING_SAVE_AREA = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PWOW64_CONTEXT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PWOW64_LDT_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PWOW64_DESCRIPTOR_TABLE_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PEXCEPTION_RECORD = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PEXCEPTION_RECORD32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PEXCEPTION_RECORD64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PEXCEPTION_POINTERS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_TOKEN = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_DESCRIPTOR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIMS_BLOB = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_MASK = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PGENERIC_MAPPING = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLUID_AND_ATTRIBUTES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PLUID_AND_ATTRIBUTES_ARRAY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID_IDENTIFIER_AUTHORITY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PISID = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_SID = Constants$root.C_POINTER$LAYOUT;
-    public static int SidTypeUser() {
-        return (int)1L;
-    }
-    public static int SidTypeGroup() {
-        return (int)2L;
-    }
-    public static int SidTypeDomain() {
-        return (int)3L;
-    }
-    public static int SidTypeAlias() {
-        return (int)4L;
-    }
-    public static int SidTypeWellKnownGroup() {
-        return (int)5L;
-    }
-    public static int SidTypeDeletedAccount() {
-        return (int)6L;
-    }
-    public static int SidTypeInvalid() {
-        return (int)7L;
-    }
-    public static int SidTypeUnknown() {
-        return (int)8L;
-    }
-    public static int SidTypeComputer() {
-        return (int)9L;
-    }
-    public static int SidTypeLabel() {
-        return (int)10L;
-    }
-    public static int SidTypeLogonSession() {
-        return (int)11L;
-    }
-    public static OfAddress PSID_NAME_USE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID_AND_ATTRIBUTES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID_AND_ATTRIBUTES_ARRAY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID_HASH_ENTRY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSID_AND_ATTRIBUTES_HASH = Constants$root.C_POINTER$LAYOUT;
-    public static int WinNullSid() {
-        return (int)0L;
-    }
-    public static int WinWorldSid() {
-        return (int)1L;
-    }
-    public static int WinLocalSid() {
-        return (int)2L;
-    }
-    public static int WinCreatorOwnerSid() {
-        return (int)3L;
-    }
-    public static int WinCreatorGroupSid() {
-        return (int)4L;
-    }
-    public static int WinCreatorOwnerServerSid() {
-        return (int)5L;
-    }
-    public static int WinCreatorGroupServerSid() {
-        return (int)6L;
-    }
-    public static int WinNtAuthoritySid() {
-        return (int)7L;
-    }
-    public static int WinDialupSid() {
-        return (int)8L;
-    }
-    public static int WinNetworkSid() {
-        return (int)9L;
-    }
-    public static int WinBatchSid() {
-        return (int)10L;
-    }
-    public static int WinInteractiveSid() {
-        return (int)11L;
-    }
-    public static int WinServiceSid() {
-        return (int)12L;
-    }
-    public static int WinAnonymousSid() {
-        return (int)13L;
-    }
-    public static int WinProxySid() {
-        return (int)14L;
-    }
-    public static int WinEnterpriseControllersSid() {
-        return (int)15L;
-    }
-    public static int WinSelfSid() {
-        return (int)16L;
-    }
-    public static int WinAuthenticatedUserSid() {
-        return (int)17L;
-    }
-    public static int WinRestrictedCodeSid() {
-        return (int)18L;
-    }
-    public static int WinTerminalServerSid() {
-        return (int)19L;
-    }
-    public static int WinRemoteLogonIdSid() {
-        return (int)20L;
-    }
-    public static int WinLogonIdsSid() {
-        return (int)21L;
-    }
-    public static int WinLocalSystemSid() {
-        return (int)22L;
-    }
-    public static int WinLocalServiceSid() {
-        return (int)23L;
-    }
-    public static int WinNetworkServiceSid() {
-        return (int)24L;
-    }
-    public static int WinBuiltinDomainSid() {
-        return (int)25L;
-    }
-    public static int WinBuiltinAdministratorsSid() {
-        return (int)26L;
-    }
-    public static int WinBuiltinUsersSid() {
-        return (int)27L;
-    }
-    public static int WinBuiltinGuestsSid() {
-        return (int)28L;
-    }
-    public static int WinBuiltinPowerUsersSid() {
-        return (int)29L;
-    }
-    public static int WinBuiltinAccountOperatorsSid() {
-        return (int)30L;
-    }
-    public static int WinBuiltinSystemOperatorsSid() {
-        return (int)31L;
-    }
-    public static int WinBuiltinPrintOperatorsSid() {
-        return (int)32L;
-    }
-    public static int WinBuiltinBackupOperatorsSid() {
-        return (int)33L;
-    }
-    public static int WinBuiltinReplicatorSid() {
-        return (int)34L;
-    }
-    public static int WinBuiltinPreWindows2000CompatibleAccessSid() {
-        return (int)35L;
-    }
-    public static int WinBuiltinRemoteDesktopUsersSid() {
-        return (int)36L;
-    }
-    public static int WinBuiltinNetworkConfigurationOperatorsSid() {
-        return (int)37L;
-    }
-    public static int WinAccountAdministratorSid() {
-        return (int)38L;
-    }
-    public static int WinAccountGuestSid() {
-        return (int)39L;
-    }
-    public static int WinAccountKrbtgtSid() {
-        return (int)40L;
-    }
-    public static int WinAccountDomainAdminsSid() {
-        return (int)41L;
-    }
-    public static int WinAccountDomainUsersSid() {
-        return (int)42L;
-    }
-    public static int WinAccountDomainGuestsSid() {
-        return (int)43L;
-    }
-    public static int WinAccountComputersSid() {
-        return (int)44L;
-    }
-    public static int WinAccountControllersSid() {
-        return (int)45L;
-    }
-    public static int WinAccountCertAdminsSid() {
-        return (int)46L;
-    }
-    public static int WinAccountSchemaAdminsSid() {
-        return (int)47L;
-    }
-    public static int WinAccountEnterpriseAdminsSid() {
-        return (int)48L;
-    }
-    public static int WinAccountPolicyAdminsSid() {
-        return (int)49L;
-    }
-    public static int WinAccountRasAndIasServersSid() {
-        return (int)50L;
-    }
-    public static int WinNTLMAuthenticationSid() {
-        return (int)51L;
-    }
-    public static int WinDigestAuthenticationSid() {
-        return (int)52L;
-    }
-    public static int WinSChannelAuthenticationSid() {
-        return (int)53L;
-    }
-    public static int WinThisOrganizationSid() {
-        return (int)54L;
-    }
-    public static int WinOtherOrganizationSid() {
-        return (int)55L;
-    }
-    public static int WinBuiltinIncomingForestTrustBuildersSid() {
-        return (int)56L;
-    }
-    public static int WinBuiltinPerfMonitoringUsersSid() {
-        return (int)57L;
-    }
-    public static int WinBuiltinPerfLoggingUsersSid() {
-        return (int)58L;
-    }
-    public static int WinBuiltinAuthorizationAccessSid() {
-        return (int)59L;
-    }
-    public static int WinBuiltinTerminalServerLicenseServersSid() {
-        return (int)60L;
-    }
-    public static int WinBuiltinDCOMUsersSid() {
-        return (int)61L;
-    }
-    public static int WinBuiltinIUsersSid() {
-        return (int)62L;
-    }
-    public static int WinIUserSid() {
-        return (int)63L;
-    }
-    public static int WinBuiltinCryptoOperatorsSid() {
-        return (int)64L;
-    }
-    public static int WinUntrustedLabelSid() {
-        return (int)65L;
-    }
-    public static int WinLowLabelSid() {
-        return (int)66L;
-    }
-    public static int WinMediumLabelSid() {
-        return (int)67L;
-    }
-    public static int WinHighLabelSid() {
-        return (int)68L;
-    }
-    public static int WinSystemLabelSid() {
-        return (int)69L;
-    }
-    public static int WinWriteRestrictedCodeSid() {
-        return (int)70L;
-    }
-    public static int WinCreatorOwnerRightsSid() {
-        return (int)71L;
-    }
-    public static int WinCacheablePrincipalsGroupSid() {
-        return (int)72L;
-    }
-    public static int WinNonCacheablePrincipalsGroupSid() {
-        return (int)73L;
-    }
-    public static int WinEnterpriseReadonlyControllersSid() {
-        return (int)74L;
-    }
-    public static int WinAccountReadonlyControllersSid() {
-        return (int)75L;
-    }
-    public static int WinBuiltinEventLogReadersGroup() {
-        return (int)76L;
-    }
-    public static int WinNewEnterpriseReadonlyControllersSid() {
-        return (int)77L;
-    }
-    public static int WinBuiltinCertSvcDComAccessGroup() {
-        return (int)78L;
-    }
-    public static int WinMediumPlusLabelSid() {
-        return (int)79L;
-    }
-    public static int WinLocalLogonSid() {
-        return (int)80L;
-    }
-    public static int WinConsoleLogonSid() {
-        return (int)81L;
-    }
-    public static int WinThisOrganizationCertificateSid() {
-        return (int)82L;
-    }
-    public static int WinApplicationPackageAuthoritySid() {
-        return (int)83L;
-    }
-    public static int WinBuiltinAnyPackageSid() {
-        return (int)84L;
-    }
-    public static int WinCapabilityInternetClientSid() {
-        return (int)85L;
-    }
-    public static int WinCapabilityInternetClientServerSid() {
-        return (int)86L;
-    }
-    public static int WinCapabilityPrivateNetworkClientServerSid() {
-        return (int)87L;
-    }
-    public static int WinCapabilityPicturesLibrarySid() {
-        return (int)88L;
-    }
-    public static int WinCapabilityVideosLibrarySid() {
-        return (int)89L;
-    }
-    public static int WinCapabilityMusicLibrarySid() {
-        return (int)90L;
-    }
-    public static int WinCapabilityDocumentsLibrarySid() {
-        return (int)91L;
-    }
-    public static int WinCapabilitySharedUserCertificatesSid() {
-        return (int)92L;
-    }
-    public static int WinCapabilityEnterpriseAuthenticationSid() {
-        return (int)93L;
-    }
-    public static int WinCapabilityRemovableStorageSid() {
-        return (int)94L;
-    }
-    public static int WinBuiltinRDSRemoteAccessServersSid() {
-        return (int)95L;
-    }
-    public static int WinBuiltinRDSEndpointServersSid() {
-        return (int)96L;
-    }
-    public static int WinBuiltinRDSManagementServersSid() {
-        return (int)97L;
-    }
-    public static int WinUserModeDriversSid() {
-        return (int)98L;
-    }
-    public static int WinBuiltinHyperVAdminsSid() {
-        return (int)99L;
-    }
-    public static int WinAccountCloneableControllersSid() {
-        return (int)100L;
-    }
-    public static int WinBuiltinAccessControlAssistanceOperatorsSid() {
-        return (int)101L;
-    }
-    public static int WinBuiltinRemoteManagementUsersSid() {
-        return (int)102L;
-    }
-    public static int WinAuthenticationAuthorityAssertedSid() {
-        return (int)103L;
-    }
-    public static int WinAuthenticationServiceAssertedSid() {
-        return (int)104L;
-    }
-    public static int WinLocalAccountSid() {
-        return (int)105L;
-    }
-    public static int WinLocalAccountAndAdministratorSid() {
-        return (int)106L;
-    }
-    public static int WinAccountProtectedUsersSid() {
-        return (int)107L;
-    }
-    public static int WinCapabilityAppointmentsSid() {
-        return (int)108L;
-    }
-    public static int WinCapabilityContactsSid() {
-        return (int)109L;
-    }
-    public static int WinAccountDefaultSystemManagedSid() {
-        return (int)110L;
-    }
-    public static int WinBuiltinDefaultSystemManagedGroupSid() {
-        return (int)111L;
-    }
-    public static int WinBuiltinStorageReplicaAdminsSid() {
-        return (int)112L;
-    }
-    public static int WinAccountKeyAdminsSid() {
-        return (int)113L;
-    }
-    public static int WinAccountEnterpriseKeyAdminsSid() {
-        return (int)114L;
-    }
-    public static int WinAuthenticationKeyTrustSid() {
-        return (int)115L;
-    }
-    public static int WinAuthenticationKeyPropertyMFASid() {
-        return (int)116L;
-    }
-    public static int WinAuthenticationKeyPropertyAttestationSid() {
-        return (int)117L;
-    }
-    public static int WinAuthenticationFreshKeyAuthSid() {
-        return (int)118L;
-    }
-    public static int WinBuiltinDeviceOwnersSid() {
-        return (int)119L;
-    }
-    public static OfAddress PACL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACE_HEADER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_ALLOWED_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_DENIED_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_AUDIT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_ALARM_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_RESOURCE_ATTRIBUTE_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_SCOPED_POLICY_ID_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_MANDATORY_LABEL_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_PROCESS_TRUST_LABEL_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_ACCESS_FILTER_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_ALLOWED_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_DENIED_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_AUDIT_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_ALARM_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_ALLOWED_CALLBACK_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_DENIED_CALLBACK_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_AUDIT_CALLBACK_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_ALARM_CALLBACK_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_ALLOWED_CALLBACK_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACCESS_DENIED_CALLBACK_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSYSTEM_ALARM_CALLBACK_OBJECT_ACE = Constants$root.C_POINTER$LAYOUT;
-    public static int AclRevisionInformation() {
-        return (int)1L;
-    }
-    public static int AclSizeInformation() {
-        return (int)2L;
-    }
-    public static OfAddress PACL_REVISION_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PACL_SIZE_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_DESCRIPTOR_CONTROL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PISECURITY_DESCRIPTOR_RELATIVE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PISECURITY_DESCRIPTOR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_OBJECT_AI_PARAMS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress POBJECT_TYPE_LIST = Constants$root.C_POINTER$LAYOUT;
-    public static int AuditEventObjectAccess() {
-        return (int)0L;
-    }
-    public static int AuditEventDirectoryServiceAccess() {
-        return (int)1L;
-    }
-    public static OfAddress PAUDIT_EVENT_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPRIVILEGE_SET = Constants$root.C_POINTER$LAYOUT;
-    public static int AccessReasonNone() {
-        return (int)0L;
-    }
-    public static int AccessReasonAllowedAce() {
-        return (int)65536L;
-    }
-    public static int AccessReasonDeniedAce() {
-        return (int)131072L;
-    }
-    public static int AccessReasonAllowedParentAce() {
-        return (int)196608L;
-    }
-    public static int AccessReasonDeniedParentAce() {
-        return (int)262144L;
-    }
-    public static int AccessReasonNotGrantedByCape() {
-        return (int)327680L;
-    }
-    public static int AccessReasonNotGrantedByParentCape() {
-        return (int)393216L;
-    }
-    public static int AccessReasonNotGrantedToAppContainer() {
-        return (int)458752L;
-    }
-    public static int AccessReasonMissingPrivilege() {
-        return (int)1048576L;
-    }
-    public static int AccessReasonFromPrivilege() {
-        return (int)2097152L;
-    }
-    public static int AccessReasonIntegrityLevel() {
-        return (int)3145728L;
-    }
-    public static int AccessReasonOwnership() {
-        return (int)4194304L;
-    }
-    public static int AccessReasonNullDacl() {
-        return (int)5242880L;
-    }
-    public static int AccessReasonEmptyDacl() {
-        return (int)6291456L;
-    }
-    public static int AccessReasonNoSD() {
-        return (int)7340032L;
-    }
-    public static int AccessReasonNoGrant() {
-        return (int)8388608L;
-    }
-    public static int AccessReasonTrustLabel() {
-        return (int)9437184L;
-    }
-    public static int AccessReasonFilterAce() {
-        return (int)10485760L;
-    }
-    public static OfAddress PACCESS_REASONS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_SECURITY_DESCRIPTOR = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_ACCESS_REQUEST = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_ACCESS_REPLY = Constants$root.C_POINTER$LAYOUT;
-    public static int SecurityAnonymous() {
-        return (int)0L;
-    }
-    public static int SecurityIdentification() {
-        return (int)1L;
-    }
-    public static int SecurityImpersonation() {
-        return (int)2L;
-    }
-    public static int SecurityDelegation() {
-        return (int)3L;
-    }
-    public static OfAddress PSECURITY_IMPERSONATION_LEVEL = Constants$root.C_POINTER$LAYOUT;
-    public static int TokenPrimary() {
-        return (int)1L;
-    }
-    public static int TokenImpersonation() {
-        return (int)2L;
-    }
-    public static OfAddress PTOKEN_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static int TokenElevationTypeDefault() {
-        return (int)1L;
-    }
-    public static int TokenElevationTypeFull() {
-        return (int)2L;
-    }
-    public static int TokenElevationTypeLimited() {
-        return (int)3L;
-    }
-    public static OfAddress PTOKEN_ELEVATION_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static int TokenUser() {
-        return (int)1L;
-    }
-    public static int TokenGroups() {
-        return (int)2L;
-    }
-    public static int TokenPrivileges() {
-        return (int)3L;
-    }
-    public static int TokenOwner() {
-        return (int)4L;
-    }
-    public static int TokenPrimaryGroup() {
-        return (int)5L;
-    }
-    public static int TokenDefaultDacl() {
-        return (int)6L;
-    }
-    public static int TokenSource() {
-        return (int)7L;
-    }
-    public static int TokenType() {
-        return (int)8L;
-    }
-    public static int TokenImpersonationLevel() {
-        return (int)9L;
-    }
-    public static int TokenStatistics() {
-        return (int)10L;
-    }
-    public static int TokenRestrictedSids() {
-        return (int)11L;
-    }
-    public static int TokenSessionId() {
-        return (int)12L;
-    }
-    public static int TokenGroupsAndPrivileges() {
-        return (int)13L;
-    }
-    public static int TokenSessionReference() {
-        return (int)14L;
-    }
-    public static int TokenSandBoxInert() {
-        return (int)15L;
-    }
-    public static int TokenAuditPolicy() {
-        return (int)16L;
-    }
-    public static int TokenOrigin() {
-        return (int)17L;
-    }
-    public static int TokenElevationType() {
-        return (int)18L;
-    }
-    public static int TokenLinkedToken() {
-        return (int)19L;
-    }
-    public static int TokenElevation() {
-        return (int)20L;
-    }
-    public static int TokenHasRestrictions() {
-        return (int)21L;
-    }
-    public static int TokenAccessInformation() {
-        return (int)22L;
-    }
-    public static int TokenVirtualizationAllowed() {
-        return (int)23L;
-    }
-    public static int TokenVirtualizationEnabled() {
-        return (int)24L;
-    }
-    public static int TokenIntegrityLevel() {
-        return (int)25L;
-    }
-    public static int TokenUIAccess() {
-        return (int)26L;
-    }
-    public static int TokenMandatoryPolicy() {
-        return (int)27L;
-    }
-    public static int TokenLogonSid() {
-        return (int)28L;
-    }
-    public static int TokenIsAppContainer() {
-        return (int)29L;
-    }
-    public static int TokenCapabilities() {
-        return (int)30L;
-    }
-    public static int TokenAppContainerSid() {
-        return (int)31L;
-    }
-    public static int TokenAppContainerNumber() {
-        return (int)32L;
-    }
-    public static int TokenUserClaimAttributes() {
-        return (int)33L;
-    }
-    public static int TokenDeviceClaimAttributes() {
-        return (int)34L;
-    }
-    public static int TokenRestrictedUserClaimAttributes() {
-        return (int)35L;
-    }
-    public static int TokenRestrictedDeviceClaimAttributes() {
-        return (int)36L;
-    }
-    public static int TokenDeviceGroups() {
-        return (int)37L;
-    }
-    public static int TokenRestrictedDeviceGroups() {
-        return (int)38L;
-    }
-    public static int TokenSecurityAttributes() {
-        return (int)39L;
-    }
-    public static int TokenIsRestricted() {
-        return (int)40L;
-    }
-    public static int TokenProcessTrustLevel() {
-        return (int)41L;
-    }
-    public static int TokenPrivateNameSpace() {
-        return (int)42L;
-    }
-    public static int TokenSingletonAttributes() {
-        return (int)43L;
-    }
-    public static int TokenBnoIsolation() {
-        return (int)44L;
-    }
-    public static int TokenChildProcessFlags() {
-        return (int)45L;
-    }
-    public static int TokenIsLessPrivilegedAppContainer() {
-        return (int)46L;
-    }
-    public static int TokenIsSandboxed() {
-        return (int)47L;
-    }
-    public static int MaxTokenInfoClass() {
-        return (int)48L;
-    }
-    public static OfAddress PTOKEN_INFORMATION_CLASS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_USER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_GROUPS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_PRIVILEGES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_OWNER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_PRIMARY_GROUP = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_DEFAULT_DACL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_USER_CLAIMS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_DEVICE_CLAIMS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_GROUPS_AND_PRIVILEGES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_LINKED_TOKEN = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_ELEVATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_MANDATORY_LABEL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_MANDATORY_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_ATTRIBUTES_OPAQUE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_ACCESS_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_AUDIT_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_SOURCE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_STATISTICS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_CONTROL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_ORIGIN = Constants$root.C_POINTER$LAYOUT;
-    public static int MandatoryLevelUntrusted() {
-        return (int)0L;
-    }
-    public static int MandatoryLevelLow() {
-        return (int)1L;
-    }
-    public static int MandatoryLevelMedium() {
-        return (int)2L;
-    }
-    public static int MandatoryLevelHigh() {
-        return (int)3L;
-    }
-    public static int MandatoryLevelSystem() {
-        return (int)4L;
-    }
-    public static int MandatoryLevelSecureProcess() {
-        return (int)5L;
-    }
-    public static int MandatoryLevelCount() {
-        return (int)6L;
-    }
-    public static OfAddress PMANDATORY_LEVEL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_APPCONTAINER_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_SID_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PTOKEN_BNO_ISOLATION_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIM_SECURITY_ATTRIBUTE_FQBN_VALUE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIM_SECURITY_ATTRIBUTE_OCTET_STRING_VALUE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIM_SECURITY_ATTRIBUTE_V1 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIM_SECURITY_ATTRIBUTE_RELATIVE_V1 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCLAIM_SECURITY_ATTRIBUTES_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_CONTEXT_TRACKING_MODE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_QUALITY_OF_SERVICE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_IMPERSONATION_STATE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSECURITY_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSE_SIGNING_LEVEL = Constants$root.C_POINTER$LAYOUT;
-    public static int SeImageSignatureNone() {
-        return (int)0L;
-    }
-    public static int SeImageSignatureEmbedded() {
-        return (int)1L;
-    }
-    public static int SeImageSignatureCache() {
-        return (int)2L;
-    }
-    public static int SeImageSignatureCatalogCached() {
-        return (int)3L;
-    }
-    public static int SeImageSignatureCatalogNotCached() {
-        return (int)4L;
-    }
-    public static int SeImageSignatureCatalogHint() {
-        return (int)5L;
-    }
-    public static int SeImageSignaturePackageCatalog() {
-        return (int)6L;
-    }
-    public static int SeImageSignaturePplMitigated() {
-        return (int)7L;
-    }
-    public static OfAddress PSE_IMAGE_SIGNATURE_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static int SeLearningModeInvalidType() {
-        return (int)0L;
-    }
-    public static int SeLearningModeSettings() {
-        return (int)1L;
-    }
-    public static int SeLearningModeMax() {
-        return (int)2L;
-    }
-    public static OfAddress PSECURITY_CAPABILITIES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress LPSECURITY_CAPABILITIES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOB_SET_ARRAY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PEXCEPTION_REGISTRATION_RECORD = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNT_TIB = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNT_TIB32 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PNT_TIB64 = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PUMS_CREATE_THREAD_ATTRIBUTES = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PCOMPONENT_FILTER = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_DYNAMIC_EH_CONTINUATION_TARGET = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_DYNAMIC_EH_CONTINUATION_TARGETS_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_DYNAMIC_ENFORCED_ADDRESS_RANGES_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PQUOTA_LIMITS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PRATE_QUOTA_LIMIT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PQUOTA_LIMITS_EX = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PIO_COUNTERS = Constants$root.C_POINTER$LAYOUT;
-    public static int PMCCounter() {
-        return (int)0L;
-    }
-    public static int MaxHardwareCounterType() {
-        return (int)1L;
-    }
-    public static OfAddress PHARDWARE_COUNTER_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static int ProcessDEPPolicy() {
-        return (int)0L;
-    }
-    public static int ProcessASLRPolicy() {
-        return (int)1L;
-    }
-    public static int ProcessDynamicCodePolicy() {
-        return (int)2L;
-    }
-    public static int ProcessStrictHandleCheckPolicy() {
-        return (int)3L;
-    }
-    public static int ProcessSystemCallDisablePolicy() {
-        return (int)4L;
-    }
-    public static int ProcessMitigationOptionsMask() {
-        return (int)5L;
-    }
-    public static int ProcessExtensionPointDisablePolicy() {
-        return (int)6L;
-    }
-    public static int ProcessControlFlowGuardPolicy() {
-        return (int)7L;
-    }
-    public static int ProcessSignaturePolicy() {
-        return (int)8L;
-    }
-    public static int ProcessFontDisablePolicy() {
-        return (int)9L;
-    }
-    public static int ProcessImageLoadPolicy() {
-        return (int)10L;
-    }
-    public static int ProcessSystemCallFilterPolicy() {
-        return (int)11L;
-    }
-    public static int ProcessPayloadRestrictionPolicy() {
-        return (int)12L;
-    }
-    public static int ProcessChildProcessPolicy() {
-        return (int)13L;
-    }
-    public static int ProcessSideChannelIsolationPolicy() {
-        return (int)14L;
-    }
-    public static int ProcessUserShadowStackPolicy() {
-        return (int)15L;
-    }
-    public static int ProcessRedirectionTrustPolicy() {
-        return (int)16L;
-    }
-    public static int MaxProcessMitigationPolicy() {
-        return (int)17L;
-    }
-    public static OfAddress PPROCESS_MITIGATION_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_ASLR_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_DEP_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_STRICT_HANDLE_CHECK_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_SYSTEM_CALL_DISABLE_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_EXTENSION_POINT_DISABLE_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_DYNAMIC_CODE_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_CONTROL_FLOW_GUARD_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_BINARY_SIGNATURE_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_FONT_DISABLE_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_IMAGE_LOAD_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_SYSTEM_CALL_FILTER_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_PAYLOAD_RESTRICTION_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_CHILD_PROCESS_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_SIDE_CHANNEL_ISOLATION_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_USER_SHADOW_STACK_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PPROCESS_MITIGATION_REDIRECTION_TRUST_POLICY = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_BASIC_ACCOUNTING_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_BASIC_LIMIT_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_EXTENDED_LIMIT_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_BASIC_PROCESS_ID_LIST = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_BASIC_UI_RESTRICTIONS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_SECURITY_LIMIT_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_END_OF_JOB_TIME_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_ASSOCIATE_COMPLETION_PORT = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_BASIC_AND_IO_ACCOUNTING_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_JOBSET_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static int ToleranceLow() {
-        return (int)1L;
-    }
-    public static int ToleranceMedium() {
-        return (int)2L;
-    }
-    public static int ToleranceHigh() {
-        return (int)3L;
-    }
-    public static OfAddress PJOBOBJECT_RATE_CONTROL_TOLERANCE = Constants$root.C_POINTER$LAYOUT;
-    public static int ToleranceIntervalShort() {
-        return (int)1L;
-    }
-    public static int ToleranceIntervalMedium() {
-        return (int)2L;
-    }
-    public static int ToleranceIntervalLong() {
-        return (int)3L;
-    }
-    public static OfAddress PJOBOBJECT_RATE_CONTROL_TOLERANCE_INTERVAL = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_NOTIFICATION_LIMIT_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_LIMIT_VIOLATION_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_CPU_RATE_CONTROL_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static int JOB_OBJECT_NET_RATE_CONTROL_ENABLE() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG() {
-        return (int)4L;
-    }
-    public static int JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS() {
-        return (int)7L;
-    }
-    public static int JOB_OBJECT_IO_RATE_CONTROL_ENABLE() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_IO_RATE_CONTROL_STANDALONE_VOLUME() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ALL() {
-        return (int)4L;
-    }
-    public static int JOB_OBJECT_IO_RATE_CONTROL_FORCE_UNIT_ACCESS_ON_SOFT_CAP() {
-        return (int)8L;
-    }
-    public static int JOB_OBJECT_IO_RATE_CONTROL_VALID_FLAGS() {
-        return (int)15L;
-    }
-    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_ENABLE() {
-        return (int)1L;
-    }
-    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_DISABLE() {
-        return (int)2L;
-    }
-    public static int JOBOBJECT_IO_ATTRIBUTION_CONTROL_VALID_FLAGS() {
-        return (int)3L;
-    }
-    public static OfAddress PJOBOBJECT_IO_ATTRIBUTION_STATS = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PJOBOBJECT_IO_ATTRIBUTION_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static int JobObjectBasicAccountingInformation() {
-        return (int)1L;
-    }
-    public static int JobObjectBasicLimitInformation() {
-        return (int)2L;
-    }
-    public static int JobObjectBasicProcessIdList() {
-        return (int)3L;
-    }
-    public static int JobObjectBasicUIRestrictions() {
-        return (int)4L;
-    }
-    public static int JobObjectSecurityLimitInformation() {
-        return (int)5L;
-    }
-    public static int JobObjectEndOfJobTimeInformation() {
-        return (int)6L;
-    }
-    public static int JobObjectAssociateCompletionPortInformation() {
-        return (int)7L;
-    }
-    public static int JobObjectBasicAndIoAccountingInformation() {
-        return (int)8L;
-    }
-    public static int JobObjectExtendedLimitInformation() {
-        return (int)9L;
-    }
-    public static int JobObjectJobSetInformation() {
-        return (int)10L;
-    }
-    public static int JobObjectGroupInformation() {
-        return (int)11L;
-    }
-    public static int JobObjectNotificationLimitInformation() {
-        return (int)12L;
-    }
-    public static int JobObjectLimitViolationInformation() {
-        return (int)13L;
-    }
-    public static int JobObjectGroupInformationEx() {
-        return (int)14L;
-    }
-    public static int JobObjectCpuRateControlInformation() {
-        return (int)15L;
-    }
-    public static int JobObjectCompletionFilter() {
-        return (int)16L;
-    }
-    public static int JobObjectCompletionCounter() {
-        return (int)17L;
-    }
-    public static int JobObjectReserved1Information() {
-        return (int)18L;
-    }
-    public static int JobObjectReserved2Information() {
-        return (int)19L;
-    }
-    public static int JobObjectReserved3Information() {
-        return (int)20L;
-    }
-    public static int JobObjectReserved4Information() {
-        return (int)21L;
-    }
-    public static int JobObjectReserved5Information() {
-        return (int)22L;
-    }
-    public static int JobObjectReserved6Information() {
-        return (int)23L;
-    }
-    public static int JobObjectReserved7Information() {
-        return (int)24L;
-    }
-    public static int JobObjectReserved8Information() {
-        return (int)25L;
-    }
-    public static int JobObjectReserved9Information() {
-        return (int)26L;
-    }
-    public static int JobObjectReserved10Information() {
-        return (int)27L;
-    }
-    public static int JobObjectReserved11Information() {
-        return (int)28L;
-    }
-    public static int JobObjectReserved12Information() {
-        return (int)29L;
-    }
-    public static int JobObjectReserved13Information() {
-        return (int)30L;
-    }
-    public static int JobObjectReserved14Information() {
-        return (int)31L;
-    }
-    public static int JobObjectNetRateControlInformation() {
-        return (int)32L;
-    }
-    public static int JobObjectNotificationLimitInformation2() {
-        return (int)33L;
-    }
-    public static int JobObjectLimitViolationInformation2() {
-        return (int)34L;
-    }
-    public static int JobObjectCreateSilo() {
-        return (int)35L;
-    }
-    public static int JobObjectSiloBasicInformation() {
-        return (int)36L;
-    }
-    public static int JobObjectReserved15Information() {
-        return (int)37L;
-    }
-    public static int JobObjectReserved16Information() {
-        return (int)38L;
-    }
-    public static int JobObjectReserved17Information() {
-        return (int)39L;
-    }
-    public static int JobObjectReserved18Information() {
-        return (int)40L;
-    }
-    public static int JobObjectReserved19Information() {
-        return (int)41L;
-    }
-    public static int JobObjectReserved20Information() {
-        return (int)42L;
-    }
-    public static int JobObjectReserved21Information() {
-        return (int)43L;
-    }
-    public static int JobObjectReserved22Information() {
-        return (int)44L;
-    }
-    public static int JobObjectReserved23Information() {
-        return (int)45L;
-    }
-    public static int JobObjectReserved24Information() {
-        return (int)46L;
-    }
-    public static int JobObjectReserved25Information() {
-        return (int)47L;
-    }
-    public static int MaxJobObjectInfoClass() {
-        return (int)48L;
-    }
-    public static OfAddress PSILOOBJECT_BASIC_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static int SERVERSILO_INITING() {
-        return (int)0L;
-    }
-    public static int SERVERSILO_STARTED() {
-        return (int)1L;
-    }
-    public static int SERVERSILO_SHUTTING_DOWN() {
-        return (int)2L;
-    }
-    public static int SERVERSILO_TERMINATING() {
-        return (int)3L;
-    }
-    public static int SERVERSILO_TERMINATED() {
-        return (int)4L;
-    }
-    public static OfAddress PSERVERSILO_STATE = Constants$root.C_POINTER$LAYOUT;
-    public static OfAddress PSERVERSILO_BASIC_INFORMATION = Constants$root.C_POINTER$LAYOUT;
-    public static int FirmwareTypeUnknown() {
-        return (int)0L;
-    }
-    public static int FirmwareTypeBios() {
-        return (int)1L;
-    }
-    public static int FirmwareTypeUefi() {
-        return (int)2L;
-    }
-    public static int FirmwareTypeMax() {
-        return (int)3L;
-    }
-    public static OfAddress PFIRMWARE_TYPE = Constants$root.C_POINTER$LAYOUT;
-    public static int RelationProcessorCore() {
-        return (int)0L;
-    }
-    public static int RelationNumaNode() {
-        return (int)1L;
-    }
-    public static int RelationCache() {
-        return (int)2L;
-    }
-    public static int RelationProcessorPackage() {
-        return (int)3L;
-    }
-    public static int RelationGroup() {
-        return (int)4L;
-    }
-    public static int RelationProcessorDie() {
-        return (int)5L;
-    }
-    public static int RelationNumaNodeEx() {
-        return (int)6L;
-    }
-    public static int RelationProcessorModule() {
-        return (int)7L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class freeglut_h_9 extends freeglut_h_10 {
+
+    freeglut_h_9() {
+        // Should not be called directly
+    }
+    private static final int GENERIC_EXECUTE = (int)536870912L;
+    /**
+     * {@snippet lang=c :
+     * #define GENERIC_EXECUTE 536870912
+     * }
+     */
+    public static int GENERIC_EXECUTE() {
+        return GENERIC_EXECUTE;
+    }
+    private static final int GENERIC_ALL = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define GENERIC_ALL 268435456
+     * }
+     */
+    public static int GENERIC_ALL() {
+        return GENERIC_ALL;
+    }
+    private static final int SID_REVISION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SID_REVISION 1
+     * }
+     */
+    public static int SID_REVISION() {
+        return SID_REVISION;
+    }
+    private static final int SID_MAX_SUB_AUTHORITIES = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SID_MAX_SUB_AUTHORITIES 15
+     * }
+     */
+    public static int SID_MAX_SUB_AUTHORITIES() {
+        return SID_MAX_SUB_AUTHORITIES;
+    }
+    private static final int SID_RECOMMENDED_SUB_AUTHORITIES = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SID_RECOMMENDED_SUB_AUTHORITIES 1
+     * }
+     */
+    public static int SID_RECOMMENDED_SUB_AUTHORITIES() {
+        return SID_RECOMMENDED_SUB_AUTHORITIES;
+    }
+    private static final long SECURITY_MAX_SID_SIZE = 68L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MAX_SID_SIZE 68
+     * }
+     */
+    public static long SECURITY_MAX_SID_SIZE() {
+        return SECURITY_MAX_SID_SIZE;
+    }
+    private static final int SECURITY_MAX_SID_STRING_CHARACTERS = (int)187L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MAX_SID_STRING_CHARACTERS 187
+     * }
+     */
+    public static int SECURITY_MAX_SID_STRING_CHARACTERS() {
+        return SECURITY_MAX_SID_STRING_CHARACTERS;
+    }
+    private static final int SECURITY_NULL_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NULL_RID 0
+     * }
+     */
+    public static int SECURITY_NULL_RID() {
+        return SECURITY_NULL_RID;
+    }
+    private static final int SECURITY_WORLD_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WORLD_RID 0
+     * }
+     */
+    public static int SECURITY_WORLD_RID() {
+        return SECURITY_WORLD_RID;
+    }
+    private static final int SECURITY_LOCAL_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_RID 0
+     * }
+     */
+    public static int SECURITY_LOCAL_RID() {
+        return SECURITY_LOCAL_RID;
+    }
+    private static final int SECURITY_LOCAL_LOGON_RID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_LOGON_RID 1
+     * }
+     */
+    public static int SECURITY_LOCAL_LOGON_RID() {
+        return SECURITY_LOCAL_LOGON_RID;
+    }
+    private static final int SECURITY_CREATOR_OWNER_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CREATOR_OWNER_RID 0
+     * }
+     */
+    public static int SECURITY_CREATOR_OWNER_RID() {
+        return SECURITY_CREATOR_OWNER_RID;
+    }
+    private static final int SECURITY_CREATOR_GROUP_RID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CREATOR_GROUP_RID 1
+     * }
+     */
+    public static int SECURITY_CREATOR_GROUP_RID() {
+        return SECURITY_CREATOR_GROUP_RID;
+    }
+    private static final int SECURITY_CREATOR_OWNER_SERVER_RID = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CREATOR_OWNER_SERVER_RID 2
+     * }
+     */
+    public static int SECURITY_CREATOR_OWNER_SERVER_RID() {
+        return SECURITY_CREATOR_OWNER_SERVER_RID;
+    }
+    private static final int SECURITY_CREATOR_GROUP_SERVER_RID = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CREATOR_GROUP_SERVER_RID 3
+     * }
+     */
+    public static int SECURITY_CREATOR_GROUP_SERVER_RID() {
+        return SECURITY_CREATOR_GROUP_SERVER_RID;
+    }
+    private static final int SECURITY_CREATOR_OWNER_RIGHTS_RID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CREATOR_OWNER_RIGHTS_RID 4
+     * }
+     */
+    public static int SECURITY_CREATOR_OWNER_RIGHTS_RID() {
+        return SECURITY_CREATOR_OWNER_RIGHTS_RID;
+    }
+    private static final int SECURITY_DIALUP_RID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DIALUP_RID 1
+     * }
+     */
+    public static int SECURITY_DIALUP_RID() {
+        return SECURITY_DIALUP_RID;
+    }
+    private static final int SECURITY_NETWORK_RID = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NETWORK_RID 2
+     * }
+     */
+    public static int SECURITY_NETWORK_RID() {
+        return SECURITY_NETWORK_RID;
+    }
+    private static final int SECURITY_BATCH_RID = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BATCH_RID 3
+     * }
+     */
+    public static int SECURITY_BATCH_RID() {
+        return SECURITY_BATCH_RID;
+    }
+    private static final int SECURITY_INTERACTIVE_RID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_INTERACTIVE_RID 4
+     * }
+     */
+    public static int SECURITY_INTERACTIVE_RID() {
+        return SECURITY_INTERACTIVE_RID;
+    }
+    private static final int SECURITY_LOGON_IDS_RID = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOGON_IDS_RID 5
+     * }
+     */
+    public static int SECURITY_LOGON_IDS_RID() {
+        return SECURITY_LOGON_IDS_RID;
+    }
+    private static final int SECURITY_LOGON_IDS_RID_COUNT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOGON_IDS_RID_COUNT 3
+     * }
+     */
+    public static int SECURITY_LOGON_IDS_RID_COUNT() {
+        return SECURITY_LOGON_IDS_RID_COUNT;
+    }
+    private static final int SECURITY_SERVICE_RID = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_SERVICE_RID 6
+     * }
+     */
+    public static int SECURITY_SERVICE_RID() {
+        return SECURITY_SERVICE_RID;
+    }
+    private static final int SECURITY_ANONYMOUS_LOGON_RID = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_ANONYMOUS_LOGON_RID 7
+     * }
+     */
+    public static int SECURITY_ANONYMOUS_LOGON_RID() {
+        return SECURITY_ANONYMOUS_LOGON_RID;
+    }
+    private static final int SECURITY_PROXY_RID = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROXY_RID 8
+     * }
+     */
+    public static int SECURITY_PROXY_RID() {
+        return SECURITY_PROXY_RID;
+    }
+    private static final int SECURITY_ENTERPRISE_CONTROLLERS_RID = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_ENTERPRISE_CONTROLLERS_RID 9
+     * }
+     */
+    public static int SECURITY_ENTERPRISE_CONTROLLERS_RID() {
+        return SECURITY_ENTERPRISE_CONTROLLERS_RID;
+    }
+    private static final int SECURITY_SERVER_LOGON_RID = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_SERVER_LOGON_RID 9
+     * }
+     */
+    public static int SECURITY_SERVER_LOGON_RID() {
+        return SECURITY_SERVER_LOGON_RID;
+    }
+    private static final int SECURITY_PRINCIPAL_SELF_RID = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PRINCIPAL_SELF_RID 10
+     * }
+     */
+    public static int SECURITY_PRINCIPAL_SELF_RID() {
+        return SECURITY_PRINCIPAL_SELF_RID;
+    }
+    private static final int SECURITY_AUTHENTICATED_USER_RID = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATED_USER_RID 11
+     * }
+     */
+    public static int SECURITY_AUTHENTICATED_USER_RID() {
+        return SECURITY_AUTHENTICATED_USER_RID;
+    }
+    private static final int SECURITY_RESTRICTED_CODE_RID = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_RESTRICTED_CODE_RID 12
+     * }
+     */
+    public static int SECURITY_RESTRICTED_CODE_RID() {
+        return SECURITY_RESTRICTED_CODE_RID;
+    }
+    private static final int SECURITY_TERMINAL_SERVER_RID = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TERMINAL_SERVER_RID 13
+     * }
+     */
+    public static int SECURITY_TERMINAL_SERVER_RID() {
+        return SECURITY_TERMINAL_SERVER_RID;
+    }
+    private static final int SECURITY_REMOTE_LOGON_RID = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_REMOTE_LOGON_RID 14
+     * }
+     */
+    public static int SECURITY_REMOTE_LOGON_RID() {
+        return SECURITY_REMOTE_LOGON_RID;
+    }
+    private static final int SECURITY_THIS_ORGANIZATION_RID = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_THIS_ORGANIZATION_RID 15
+     * }
+     */
+    public static int SECURITY_THIS_ORGANIZATION_RID() {
+        return SECURITY_THIS_ORGANIZATION_RID;
+    }
+    private static final int SECURITY_IUSER_RID = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_IUSER_RID 17
+     * }
+     */
+    public static int SECURITY_IUSER_RID() {
+        return SECURITY_IUSER_RID;
+    }
+    private static final int SECURITY_LOCAL_SYSTEM_RID = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_SYSTEM_RID 18
+     * }
+     */
+    public static int SECURITY_LOCAL_SYSTEM_RID() {
+        return SECURITY_LOCAL_SYSTEM_RID;
+    }
+    private static final int SECURITY_LOCAL_SERVICE_RID = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_SERVICE_RID 19
+     * }
+     */
+    public static int SECURITY_LOCAL_SERVICE_RID() {
+        return SECURITY_LOCAL_SERVICE_RID;
+    }
+    private static final int SECURITY_NETWORK_SERVICE_RID = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NETWORK_SERVICE_RID 20
+     * }
+     */
+    public static int SECURITY_NETWORK_SERVICE_RID() {
+        return SECURITY_NETWORK_SERVICE_RID;
+    }
+    private static final int SECURITY_NT_NON_UNIQUE = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NT_NON_UNIQUE 21
+     * }
+     */
+    public static int SECURITY_NT_NON_UNIQUE() {
+        return SECURITY_NT_NON_UNIQUE;
+    }
+    private static final int SECURITY_NT_NON_UNIQUE_SUB_AUTH_COUNT = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NT_NON_UNIQUE_SUB_AUTH_COUNT 3
+     * }
+     */
+    public static int SECURITY_NT_NON_UNIQUE_SUB_AUTH_COUNT() {
+        return SECURITY_NT_NON_UNIQUE_SUB_AUTH_COUNT;
+    }
+    private static final int SECURITY_ENTERPRISE_READONLY_CONTROLLERS_RID = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_ENTERPRISE_READONLY_CONTROLLERS_RID 22
+     * }
+     */
+    public static int SECURITY_ENTERPRISE_READONLY_CONTROLLERS_RID() {
+        return SECURITY_ENTERPRISE_READONLY_CONTROLLERS_RID;
+    }
+    private static final int SECURITY_BUILTIN_DOMAIN_RID = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BUILTIN_DOMAIN_RID 32
+     * }
+     */
+    public static int SECURITY_BUILTIN_DOMAIN_RID() {
+        return SECURITY_BUILTIN_DOMAIN_RID;
+    }
+    private static final int SECURITY_WRITE_RESTRICTED_CODE_RID = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WRITE_RESTRICTED_CODE_RID 33
+     * }
+     */
+    public static int SECURITY_WRITE_RESTRICTED_CODE_RID() {
+        return SECURITY_WRITE_RESTRICTED_CODE_RID;
+    }
+    private static final int SECURITY_PACKAGE_BASE_RID = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PACKAGE_BASE_RID 64
+     * }
+     */
+    public static int SECURITY_PACKAGE_BASE_RID() {
+        return SECURITY_PACKAGE_BASE_RID;
+    }
+    private static final int SECURITY_PACKAGE_RID_COUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PACKAGE_RID_COUNT 2
+     * }
+     */
+    public static int SECURITY_PACKAGE_RID_COUNT() {
+        return SECURITY_PACKAGE_RID_COUNT;
+    }
+    private static final int SECURITY_PACKAGE_NTLM_RID = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PACKAGE_NTLM_RID 10
+     * }
+     */
+    public static int SECURITY_PACKAGE_NTLM_RID() {
+        return SECURITY_PACKAGE_NTLM_RID;
+    }
+    private static final int SECURITY_PACKAGE_SCHANNEL_RID = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PACKAGE_SCHANNEL_RID 14
+     * }
+     */
+    public static int SECURITY_PACKAGE_SCHANNEL_RID() {
+        return SECURITY_PACKAGE_SCHANNEL_RID;
+    }
+    private static final int SECURITY_PACKAGE_DIGEST_RID = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PACKAGE_DIGEST_RID 21
+     * }
+     */
+    public static int SECURITY_PACKAGE_DIGEST_RID() {
+        return SECURITY_PACKAGE_DIGEST_RID;
+    }
+    private static final int SECURITY_CRED_TYPE_BASE_RID = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CRED_TYPE_BASE_RID 65
+     * }
+     */
+    public static int SECURITY_CRED_TYPE_BASE_RID() {
+        return SECURITY_CRED_TYPE_BASE_RID;
+    }
+    private static final int SECURITY_CRED_TYPE_RID_COUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CRED_TYPE_RID_COUNT 2
+     * }
+     */
+    public static int SECURITY_CRED_TYPE_RID_COUNT() {
+        return SECURITY_CRED_TYPE_RID_COUNT;
+    }
+    private static final int SECURITY_CRED_TYPE_THIS_ORG_CERT_RID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CRED_TYPE_THIS_ORG_CERT_RID 1
+     * }
+     */
+    public static int SECURITY_CRED_TYPE_THIS_ORG_CERT_RID() {
+        return SECURITY_CRED_TYPE_THIS_ORG_CERT_RID;
+    }
+    private static final int SECURITY_MIN_BASE_RID = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MIN_BASE_RID 80
+     * }
+     */
+    public static int SECURITY_MIN_BASE_RID() {
+        return SECURITY_MIN_BASE_RID;
+    }
+    private static final int SECURITY_SERVICE_ID_BASE_RID = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_SERVICE_ID_BASE_RID 80
+     * }
+     */
+    public static int SECURITY_SERVICE_ID_BASE_RID() {
+        return SECURITY_SERVICE_ID_BASE_RID;
+    }
+    private static final int SECURITY_SERVICE_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_SERVICE_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_SERVICE_ID_RID_COUNT() {
+        return SECURITY_SERVICE_ID_RID_COUNT;
+    }
+    private static final int SECURITY_RESERVED_ID_BASE_RID = (int)81L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_RESERVED_ID_BASE_RID 81
+     * }
+     */
+    public static int SECURITY_RESERVED_ID_BASE_RID() {
+        return SECURITY_RESERVED_ID_BASE_RID;
+    }
+    private static final int SECURITY_APPPOOL_ID_BASE_RID = (int)82L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_APPPOOL_ID_BASE_RID 82
+     * }
+     */
+    public static int SECURITY_APPPOOL_ID_BASE_RID() {
+        return SECURITY_APPPOOL_ID_BASE_RID;
+    }
+    private static final int SECURITY_APPPOOL_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_APPPOOL_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_APPPOOL_ID_RID_COUNT() {
+        return SECURITY_APPPOOL_ID_RID_COUNT;
+    }
+    private static final int SECURITY_VIRTUALSERVER_ID_BASE_RID = (int)83L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_VIRTUALSERVER_ID_BASE_RID 83
+     * }
+     */
+    public static int SECURITY_VIRTUALSERVER_ID_BASE_RID() {
+        return SECURITY_VIRTUALSERVER_ID_BASE_RID;
+    }
+    private static final int SECURITY_VIRTUALSERVER_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_VIRTUALSERVER_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_VIRTUALSERVER_ID_RID_COUNT() {
+        return SECURITY_VIRTUALSERVER_ID_RID_COUNT;
+    }
+    private static final int SECURITY_USERMODEDRIVERHOST_ID_BASE_RID = (int)84L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_USERMODEDRIVERHOST_ID_BASE_RID 84
+     * }
+     */
+    public static int SECURITY_USERMODEDRIVERHOST_ID_BASE_RID() {
+        return SECURITY_USERMODEDRIVERHOST_ID_BASE_RID;
+    }
+    private static final int SECURITY_USERMODEDRIVERHOST_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_USERMODEDRIVERHOST_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_USERMODEDRIVERHOST_ID_RID_COUNT() {
+        return SECURITY_USERMODEDRIVERHOST_ID_RID_COUNT;
+    }
+    private static final int SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_BASE_RID = (int)85L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_BASE_RID 85
+     * }
+     */
+    public static int SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_BASE_RID() {
+        return SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_BASE_RID;
+    }
+    private static final int SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_RID_COUNT() {
+        return SECURITY_CLOUD_INFRASTRUCTURE_SERVICES_ID_RID_COUNT;
+    }
+    private static final int SECURITY_WMIHOST_ID_BASE_RID = (int)86L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WMIHOST_ID_BASE_RID 86
+     * }
+     */
+    public static int SECURITY_WMIHOST_ID_BASE_RID() {
+        return SECURITY_WMIHOST_ID_BASE_RID;
+    }
+    private static final int SECURITY_WMIHOST_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WMIHOST_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_WMIHOST_ID_RID_COUNT() {
+        return SECURITY_WMIHOST_ID_RID_COUNT;
+    }
+    private static final int SECURITY_TASK_ID_BASE_RID = (int)87L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TASK_ID_BASE_RID 87
+     * }
+     */
+    public static int SECURITY_TASK_ID_BASE_RID() {
+        return SECURITY_TASK_ID_BASE_RID;
+    }
+    private static final int SECURITY_NFS_ID_BASE_RID = (int)88L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_NFS_ID_BASE_RID 88
+     * }
+     */
+    public static int SECURITY_NFS_ID_BASE_RID() {
+        return SECURITY_NFS_ID_BASE_RID;
+    }
+    private static final int SECURITY_COM_ID_BASE_RID = (int)89L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_COM_ID_BASE_RID 89
+     * }
+     */
+    public static int SECURITY_COM_ID_BASE_RID() {
+        return SECURITY_COM_ID_BASE_RID;
+    }
+    private static final int SECURITY_WINDOW_MANAGER_BASE_RID = (int)90L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WINDOW_MANAGER_BASE_RID 90
+     * }
+     */
+    public static int SECURITY_WINDOW_MANAGER_BASE_RID() {
+        return SECURITY_WINDOW_MANAGER_BASE_RID;
+    }
+    private static final int SECURITY_RDV_GFX_BASE_RID = (int)91L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_RDV_GFX_BASE_RID 91
+     * }
+     */
+    public static int SECURITY_RDV_GFX_BASE_RID() {
+        return SECURITY_RDV_GFX_BASE_RID;
+    }
+    private static final int SECURITY_DASHOST_ID_BASE_RID = (int)92L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DASHOST_ID_BASE_RID 92
+     * }
+     */
+    public static int SECURITY_DASHOST_ID_BASE_RID() {
+        return SECURITY_DASHOST_ID_BASE_RID;
+    }
+    private static final int SECURITY_DASHOST_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DASHOST_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_DASHOST_ID_RID_COUNT() {
+        return SECURITY_DASHOST_ID_RID_COUNT;
+    }
+    private static final int SECURITY_USERMANAGER_ID_BASE_RID = (int)93L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_USERMANAGER_ID_BASE_RID 93
+     * }
+     */
+    public static int SECURITY_USERMANAGER_ID_BASE_RID() {
+        return SECURITY_USERMANAGER_ID_BASE_RID;
+    }
+    private static final int SECURITY_USERMANAGER_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_USERMANAGER_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_USERMANAGER_ID_RID_COUNT() {
+        return SECURITY_USERMANAGER_ID_RID_COUNT;
+    }
+    private static final int SECURITY_WINRM_ID_BASE_RID = (int)94L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WINRM_ID_BASE_RID 94
+     * }
+     */
+    public static int SECURITY_WINRM_ID_BASE_RID() {
+        return SECURITY_WINRM_ID_BASE_RID;
+    }
+    private static final int SECURITY_WINRM_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WINRM_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_WINRM_ID_RID_COUNT() {
+        return SECURITY_WINRM_ID_RID_COUNT;
+    }
+    private static final int SECURITY_CCG_ID_BASE_RID = (int)95L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CCG_ID_BASE_RID 95
+     * }
+     */
+    public static int SECURITY_CCG_ID_BASE_RID() {
+        return SECURITY_CCG_ID_BASE_RID;
+    }
+    private static final int SECURITY_UMFD_BASE_RID = (int)96L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_UMFD_BASE_RID 96
+     * }
+     */
+    public static int SECURITY_UMFD_BASE_RID() {
+        return SECURITY_UMFD_BASE_RID;
+    }
+    private static final int SECURITY_VIRTUALACCOUNT_ID_RID_COUNT = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_VIRTUALACCOUNT_ID_RID_COUNT 6
+     * }
+     */
+    public static int SECURITY_VIRTUALACCOUNT_ID_RID_COUNT() {
+        return SECURITY_VIRTUALACCOUNT_ID_RID_COUNT;
+    }
+    private static final int SECURITY_MAX_BASE_RID = (int)111L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MAX_BASE_RID 111
+     * }
+     */
+    public static int SECURITY_MAX_BASE_RID() {
+        return SECURITY_MAX_BASE_RID;
+    }
+    private static final int SECURITY_MAX_ALWAYS_FILTERED = (int)999L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MAX_ALWAYS_FILTERED 999
+     * }
+     */
+    public static int SECURITY_MAX_ALWAYS_FILTERED() {
+        return SECURITY_MAX_ALWAYS_FILTERED;
+    }
+    private static final int SECURITY_MIN_NEVER_FILTERED = (int)1000L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MIN_NEVER_FILTERED 1000
+     * }
+     */
+    public static int SECURITY_MIN_NEVER_FILTERED() {
+        return SECURITY_MIN_NEVER_FILTERED;
+    }
+    private static final int SECURITY_OTHER_ORGANIZATION_RID = (int)1000L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_OTHER_ORGANIZATION_RID 1000
+     * }
+     */
+    public static int SECURITY_OTHER_ORGANIZATION_RID() {
+        return SECURITY_OTHER_ORGANIZATION_RID;
+    }
+    private static final int SECURITY_WINDOWSMOBILE_ID_BASE_RID = (int)112L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_WINDOWSMOBILE_ID_BASE_RID 112
+     * }
+     */
+    public static int SECURITY_WINDOWSMOBILE_ID_BASE_RID() {
+        return SECURITY_WINDOWSMOBILE_ID_BASE_RID;
+    }
+    private static final int SECURITY_INSTALLER_GROUP_CAPABILITY_BASE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_INSTALLER_GROUP_CAPABILITY_BASE 32
+     * }
+     */
+    public static int SECURITY_INSTALLER_GROUP_CAPABILITY_BASE() {
+        return SECURITY_INSTALLER_GROUP_CAPABILITY_BASE;
+    }
+    private static final int SECURITY_INSTALLER_GROUP_CAPABILITY_RID_COUNT = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_INSTALLER_GROUP_CAPABILITY_RID_COUNT 9
+     * }
+     */
+    public static int SECURITY_INSTALLER_GROUP_CAPABILITY_RID_COUNT() {
+        return SECURITY_INSTALLER_GROUP_CAPABILITY_RID_COUNT;
+    }
+    private static final int SECURITY_INSTALLER_CAPABILITY_RID_COUNT = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_INSTALLER_CAPABILITY_RID_COUNT 10
+     * }
+     */
+    public static int SECURITY_INSTALLER_CAPABILITY_RID_COUNT() {
+        return SECURITY_INSTALLER_CAPABILITY_RID_COUNT;
+    }
+    private static final int SECURITY_LOCAL_ACCOUNT_RID = (int)113L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_ACCOUNT_RID 113
+     * }
+     */
+    public static int SECURITY_LOCAL_ACCOUNT_RID() {
+        return SECURITY_LOCAL_ACCOUNT_RID;
+    }
+    private static final int SECURITY_LOCAL_ACCOUNT_AND_ADMIN_RID = (int)114L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_LOCAL_ACCOUNT_AND_ADMIN_RID 114
+     * }
+     */
+    public static int SECURITY_LOCAL_ACCOUNT_AND_ADMIN_RID() {
+        return SECURITY_LOCAL_ACCOUNT_AND_ADMIN_RID;
+    }
+    private static final int DOMAIN_GROUP_RID_AUTHORIZATION_DATA_IS_COMPOUNDED = (int)496L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_AUTHORIZATION_DATA_IS_COMPOUNDED 496
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_AUTHORIZATION_DATA_IS_COMPOUNDED() {
+        return DOMAIN_GROUP_RID_AUTHORIZATION_DATA_IS_COMPOUNDED;
+    }
+    private static final int DOMAIN_GROUP_RID_AUTHORIZATION_DATA_CONTAINS_CLAIMS = (int)497L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_AUTHORIZATION_DATA_CONTAINS_CLAIMS 497
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_AUTHORIZATION_DATA_CONTAINS_CLAIMS() {
+        return DOMAIN_GROUP_RID_AUTHORIZATION_DATA_CONTAINS_CLAIMS;
+    }
+    private static final int DOMAIN_GROUP_RID_ENTERPRISE_READONLY_DOMAIN_CONTROLLERS = (int)498L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_ENTERPRISE_READONLY_DOMAIN_CONTROLLERS 498
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_ENTERPRISE_READONLY_DOMAIN_CONTROLLERS() {
+        return DOMAIN_GROUP_RID_ENTERPRISE_READONLY_DOMAIN_CONTROLLERS;
+    }
+    private static final int FOREST_USER_RID_MAX = (int)499L;
+    /**
+     * {@snippet lang=c :
+     * #define FOREST_USER_RID_MAX 499
+     * }
+     */
+    public static int FOREST_USER_RID_MAX() {
+        return FOREST_USER_RID_MAX;
+    }
+    private static final int DOMAIN_USER_RID_ADMIN = (int)500L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_ADMIN 500
+     * }
+     */
+    public static int DOMAIN_USER_RID_ADMIN() {
+        return DOMAIN_USER_RID_ADMIN;
+    }
+    private static final int DOMAIN_USER_RID_GUEST = (int)501L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_GUEST 501
+     * }
+     */
+    public static int DOMAIN_USER_RID_GUEST() {
+        return DOMAIN_USER_RID_GUEST;
+    }
+    private static final int DOMAIN_USER_RID_KRBTGT = (int)502L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_KRBTGT 502
+     * }
+     */
+    public static int DOMAIN_USER_RID_KRBTGT() {
+        return DOMAIN_USER_RID_KRBTGT;
+    }
+    private static final int DOMAIN_USER_RID_DEFAULT_ACCOUNT = (int)503L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_DEFAULT_ACCOUNT 503
+     * }
+     */
+    public static int DOMAIN_USER_RID_DEFAULT_ACCOUNT() {
+        return DOMAIN_USER_RID_DEFAULT_ACCOUNT;
+    }
+    private static final int DOMAIN_USER_RID_WDAG_ACCOUNT = (int)504L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_WDAG_ACCOUNT 504
+     * }
+     */
+    public static int DOMAIN_USER_RID_WDAG_ACCOUNT() {
+        return DOMAIN_USER_RID_WDAG_ACCOUNT;
+    }
+    private static final int DOMAIN_USER_RID_MAX = (int)999L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_USER_RID_MAX 999
+     * }
+     */
+    public static int DOMAIN_USER_RID_MAX() {
+        return DOMAIN_USER_RID_MAX;
+    }
+    private static final int DOMAIN_GROUP_RID_ADMINS = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_ADMINS 512
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_ADMINS() {
+        return DOMAIN_GROUP_RID_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_USERS = (int)513L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_USERS 513
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_USERS() {
+        return DOMAIN_GROUP_RID_USERS;
+    }
+    private static final int DOMAIN_GROUP_RID_GUESTS = (int)514L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_GUESTS 514
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_GUESTS() {
+        return DOMAIN_GROUP_RID_GUESTS;
+    }
+    private static final int DOMAIN_GROUP_RID_COMPUTERS = (int)515L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_COMPUTERS 515
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_COMPUTERS() {
+        return DOMAIN_GROUP_RID_COMPUTERS;
+    }
+    private static final int DOMAIN_GROUP_RID_CONTROLLERS = (int)516L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_CONTROLLERS 516
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_CONTROLLERS() {
+        return DOMAIN_GROUP_RID_CONTROLLERS;
+    }
+    private static final int DOMAIN_GROUP_RID_CERT_ADMINS = (int)517L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_CERT_ADMINS 517
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_CERT_ADMINS() {
+        return DOMAIN_GROUP_RID_CERT_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_SCHEMA_ADMINS = (int)518L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_SCHEMA_ADMINS 518
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_SCHEMA_ADMINS() {
+        return DOMAIN_GROUP_RID_SCHEMA_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_ENTERPRISE_ADMINS = (int)519L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_ENTERPRISE_ADMINS 519
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_ENTERPRISE_ADMINS() {
+        return DOMAIN_GROUP_RID_ENTERPRISE_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_POLICY_ADMINS = (int)520L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_POLICY_ADMINS 520
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_POLICY_ADMINS() {
+        return DOMAIN_GROUP_RID_POLICY_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_READONLY_CONTROLLERS = (int)521L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_READONLY_CONTROLLERS 521
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_READONLY_CONTROLLERS() {
+        return DOMAIN_GROUP_RID_READONLY_CONTROLLERS;
+    }
+    private static final int DOMAIN_GROUP_RID_CLONEABLE_CONTROLLERS = (int)522L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_CLONEABLE_CONTROLLERS 522
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_CLONEABLE_CONTROLLERS() {
+        return DOMAIN_GROUP_RID_CLONEABLE_CONTROLLERS;
+    }
+    private static final int DOMAIN_GROUP_RID_CDC_RESERVED = (int)524L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_CDC_RESERVED 524
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_CDC_RESERVED() {
+        return DOMAIN_GROUP_RID_CDC_RESERVED;
+    }
+    private static final int DOMAIN_GROUP_RID_PROTECTED_USERS = (int)525L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_PROTECTED_USERS 525
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_PROTECTED_USERS() {
+        return DOMAIN_GROUP_RID_PROTECTED_USERS;
+    }
+    private static final int DOMAIN_GROUP_RID_KEY_ADMINS = (int)526L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_KEY_ADMINS 526
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_KEY_ADMINS() {
+        return DOMAIN_GROUP_RID_KEY_ADMINS;
+    }
+    private static final int DOMAIN_GROUP_RID_ENTERPRISE_KEY_ADMINS = (int)527L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_GROUP_RID_ENTERPRISE_KEY_ADMINS 527
+     * }
+     */
+    public static int DOMAIN_GROUP_RID_ENTERPRISE_KEY_ADMINS() {
+        return DOMAIN_GROUP_RID_ENTERPRISE_KEY_ADMINS;
+    }
+    private static final int DOMAIN_ALIAS_RID_ADMINS = (int)544L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_ADMINS 544
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_ADMINS() {
+        return DOMAIN_ALIAS_RID_ADMINS;
+    }
+    private static final int DOMAIN_ALIAS_RID_USERS = (int)545L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_USERS 545
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_USERS() {
+        return DOMAIN_ALIAS_RID_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_GUESTS = (int)546L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_GUESTS 546
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_GUESTS() {
+        return DOMAIN_ALIAS_RID_GUESTS;
+    }
+    private static final int DOMAIN_ALIAS_RID_POWER_USERS = (int)547L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_POWER_USERS 547
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_POWER_USERS() {
+        return DOMAIN_ALIAS_RID_POWER_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_ACCOUNT_OPS = (int)548L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_ACCOUNT_OPS 548
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_ACCOUNT_OPS() {
+        return DOMAIN_ALIAS_RID_ACCOUNT_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_SYSTEM_OPS = (int)549L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_SYSTEM_OPS 549
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_SYSTEM_OPS() {
+        return DOMAIN_ALIAS_RID_SYSTEM_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_PRINT_OPS = (int)550L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_PRINT_OPS 550
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_PRINT_OPS() {
+        return DOMAIN_ALIAS_RID_PRINT_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_BACKUP_OPS = (int)551L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_BACKUP_OPS 551
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_BACKUP_OPS() {
+        return DOMAIN_ALIAS_RID_BACKUP_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_REPLICATOR = (int)552L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_REPLICATOR 552
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_REPLICATOR() {
+        return DOMAIN_ALIAS_RID_REPLICATOR;
+    }
+    private static final int DOMAIN_ALIAS_RID_RAS_SERVERS = (int)553L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_RAS_SERVERS 553
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_RAS_SERVERS() {
+        return DOMAIN_ALIAS_RID_RAS_SERVERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_PREW2KCOMPACCESS = (int)554L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_PREW2KCOMPACCESS 554
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_PREW2KCOMPACCESS() {
+        return DOMAIN_ALIAS_RID_PREW2KCOMPACCESS;
+    }
+    private static final int DOMAIN_ALIAS_RID_REMOTE_DESKTOP_USERS = (int)555L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_REMOTE_DESKTOP_USERS 555
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_REMOTE_DESKTOP_USERS() {
+        return DOMAIN_ALIAS_RID_REMOTE_DESKTOP_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_NETWORK_CONFIGURATION_OPS = (int)556L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_NETWORK_CONFIGURATION_OPS 556
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_NETWORK_CONFIGURATION_OPS() {
+        return DOMAIN_ALIAS_RID_NETWORK_CONFIGURATION_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_INCOMING_FOREST_TRUST_BUILDERS = (int)557L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_INCOMING_FOREST_TRUST_BUILDERS 557
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_INCOMING_FOREST_TRUST_BUILDERS() {
+        return DOMAIN_ALIAS_RID_INCOMING_FOREST_TRUST_BUILDERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_MONITORING_USERS = (int)558L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_MONITORING_USERS 558
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_MONITORING_USERS() {
+        return DOMAIN_ALIAS_RID_MONITORING_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_LOGGING_USERS = (int)559L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_LOGGING_USERS 559
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_LOGGING_USERS() {
+        return DOMAIN_ALIAS_RID_LOGGING_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_AUTHORIZATIONACCESS = (int)560L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_AUTHORIZATIONACCESS 560
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_AUTHORIZATIONACCESS() {
+        return DOMAIN_ALIAS_RID_AUTHORIZATIONACCESS;
+    }
+    private static final int DOMAIN_ALIAS_RID_TS_LICENSE_SERVERS = (int)561L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_TS_LICENSE_SERVERS 561
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_TS_LICENSE_SERVERS() {
+        return DOMAIN_ALIAS_RID_TS_LICENSE_SERVERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_DCOM_USERS = (int)562L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_DCOM_USERS 562
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_DCOM_USERS() {
+        return DOMAIN_ALIAS_RID_DCOM_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_IUSERS = (int)568L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_IUSERS 568
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_IUSERS() {
+        return DOMAIN_ALIAS_RID_IUSERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_CRYPTO_OPERATORS = (int)569L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_CRYPTO_OPERATORS 569
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_CRYPTO_OPERATORS() {
+        return DOMAIN_ALIAS_RID_CRYPTO_OPERATORS;
+    }
+    private static final int DOMAIN_ALIAS_RID_CACHEABLE_PRINCIPALS_GROUP = (int)571L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_CACHEABLE_PRINCIPALS_GROUP 571
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_CACHEABLE_PRINCIPALS_GROUP() {
+        return DOMAIN_ALIAS_RID_CACHEABLE_PRINCIPALS_GROUP;
+    }
+    private static final int DOMAIN_ALIAS_RID_NON_CACHEABLE_PRINCIPALS_GROUP = (int)572L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_NON_CACHEABLE_PRINCIPALS_GROUP 572
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_NON_CACHEABLE_PRINCIPALS_GROUP() {
+        return DOMAIN_ALIAS_RID_NON_CACHEABLE_PRINCIPALS_GROUP;
+    }
+    private static final int DOMAIN_ALIAS_RID_EVENT_LOG_READERS_GROUP = (int)573L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_EVENT_LOG_READERS_GROUP 573
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_EVENT_LOG_READERS_GROUP() {
+        return DOMAIN_ALIAS_RID_EVENT_LOG_READERS_GROUP;
+    }
+    private static final int DOMAIN_ALIAS_RID_CERTSVC_DCOM_ACCESS_GROUP = (int)574L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_CERTSVC_DCOM_ACCESS_GROUP 574
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_CERTSVC_DCOM_ACCESS_GROUP() {
+        return DOMAIN_ALIAS_RID_CERTSVC_DCOM_ACCESS_GROUP;
+    }
+    private static final int DOMAIN_ALIAS_RID_RDS_REMOTE_ACCESS_SERVERS = (int)575L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_RDS_REMOTE_ACCESS_SERVERS 575
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_RDS_REMOTE_ACCESS_SERVERS() {
+        return DOMAIN_ALIAS_RID_RDS_REMOTE_ACCESS_SERVERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_RDS_ENDPOINT_SERVERS = (int)576L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_RDS_ENDPOINT_SERVERS 576
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_RDS_ENDPOINT_SERVERS() {
+        return DOMAIN_ALIAS_RID_RDS_ENDPOINT_SERVERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_RDS_MANAGEMENT_SERVERS = (int)577L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_RDS_MANAGEMENT_SERVERS 577
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_RDS_MANAGEMENT_SERVERS() {
+        return DOMAIN_ALIAS_RID_RDS_MANAGEMENT_SERVERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_HYPER_V_ADMINS = (int)578L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_HYPER_V_ADMINS 578
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_HYPER_V_ADMINS() {
+        return DOMAIN_ALIAS_RID_HYPER_V_ADMINS;
+    }
+    private static final int DOMAIN_ALIAS_RID_ACCESS_CONTROL_ASSISTANCE_OPS = (int)579L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_ACCESS_CONTROL_ASSISTANCE_OPS 579
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_ACCESS_CONTROL_ASSISTANCE_OPS() {
+        return DOMAIN_ALIAS_RID_ACCESS_CONTROL_ASSISTANCE_OPS;
+    }
+    private static final int DOMAIN_ALIAS_RID_REMOTE_MANAGEMENT_USERS = (int)580L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_REMOTE_MANAGEMENT_USERS 580
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_REMOTE_MANAGEMENT_USERS() {
+        return DOMAIN_ALIAS_RID_REMOTE_MANAGEMENT_USERS;
+    }
+    private static final int DOMAIN_ALIAS_RID_DEFAULT_ACCOUNT = (int)581L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_DEFAULT_ACCOUNT 581
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_DEFAULT_ACCOUNT() {
+        return DOMAIN_ALIAS_RID_DEFAULT_ACCOUNT;
+    }
+    private static final int DOMAIN_ALIAS_RID_STORAGE_REPLICA_ADMINS = (int)582L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_STORAGE_REPLICA_ADMINS 582
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_STORAGE_REPLICA_ADMINS() {
+        return DOMAIN_ALIAS_RID_STORAGE_REPLICA_ADMINS;
+    }
+    private static final int DOMAIN_ALIAS_RID_DEVICE_OWNERS = (int)583L;
+    /**
+     * {@snippet lang=c :
+     * #define DOMAIN_ALIAS_RID_DEVICE_OWNERS 583
+     * }
+     */
+    public static int DOMAIN_ALIAS_RID_DEVICE_OWNERS() {
+        return DOMAIN_ALIAS_RID_DEVICE_OWNERS;
+    }
+    private static final int SECURITY_APP_PACKAGE_BASE_RID = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_APP_PACKAGE_BASE_RID 2
+     * }
+     */
+    public static int SECURITY_APP_PACKAGE_BASE_RID() {
+        return SECURITY_APP_PACKAGE_BASE_RID;
+    }
+    private static final int SECURITY_BUILTIN_APP_PACKAGE_RID_COUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BUILTIN_APP_PACKAGE_RID_COUNT 2
+     * }
+     */
+    public static int SECURITY_BUILTIN_APP_PACKAGE_RID_COUNT() {
+        return SECURITY_BUILTIN_APP_PACKAGE_RID_COUNT;
+    }
+    private static final int SECURITY_APP_PACKAGE_RID_COUNT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_APP_PACKAGE_RID_COUNT 8
+     * }
+     */
+    public static int SECURITY_APP_PACKAGE_RID_COUNT() {
+        return SECURITY_APP_PACKAGE_RID_COUNT;
+    }
+    private static final int SECURITY_CAPABILITY_BASE_RID = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_BASE_RID 3
+     * }
+     */
+    public static int SECURITY_CAPABILITY_BASE_RID() {
+        return SECURITY_CAPABILITY_BASE_RID;
+    }
+    private static final int SECURITY_CAPABILITY_APP_RID = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_APP_RID 1024
+     * }
+     */
+    public static int SECURITY_CAPABILITY_APP_RID() {
+        return SECURITY_CAPABILITY_APP_RID;
+    }
+    private static final int SECURITY_BUILTIN_CAPABILITY_RID_COUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BUILTIN_CAPABILITY_RID_COUNT 2
+     * }
+     */
+    public static int SECURITY_BUILTIN_CAPABILITY_RID_COUNT() {
+        return SECURITY_BUILTIN_CAPABILITY_RID_COUNT;
+    }
+    private static final int SECURITY_CAPABILITY_RID_COUNT = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_RID_COUNT 5
+     * }
+     */
+    public static int SECURITY_CAPABILITY_RID_COUNT() {
+        return SECURITY_CAPABILITY_RID_COUNT;
+    }
+    private static final int SECURITY_PARENT_PACKAGE_RID_COUNT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PARENT_PACKAGE_RID_COUNT 8
+     * }
+     */
+    public static int SECURITY_PARENT_PACKAGE_RID_COUNT() {
+        return SECURITY_PARENT_PACKAGE_RID_COUNT;
+    }
+    private static final int SECURITY_CHILD_PACKAGE_RID_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CHILD_PACKAGE_RID_COUNT 12
+     * }
+     */
+    public static int SECURITY_CHILD_PACKAGE_RID_COUNT() {
+        return SECURITY_CHILD_PACKAGE_RID_COUNT;
+    }
+    private static final int SECURITY_BUILTIN_PACKAGE_ANY_PACKAGE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BUILTIN_PACKAGE_ANY_PACKAGE 1
+     * }
+     */
+    public static int SECURITY_BUILTIN_PACKAGE_ANY_PACKAGE() {
+        return SECURITY_BUILTIN_PACKAGE_ANY_PACKAGE;
+    }
+    private static final int SECURITY_BUILTIN_PACKAGE_ANY_RESTRICTED_PACKAGE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_BUILTIN_PACKAGE_ANY_RESTRICTED_PACKAGE 2
+     * }
+     */
+    public static int SECURITY_BUILTIN_PACKAGE_ANY_RESTRICTED_PACKAGE() {
+        return SECURITY_BUILTIN_PACKAGE_ANY_RESTRICTED_PACKAGE;
+    }
+    private static final int SECURITY_CAPABILITY_INTERNET_CLIENT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_INTERNET_CLIENT 1
+     * }
+     */
+    public static int SECURITY_CAPABILITY_INTERNET_CLIENT() {
+        return SECURITY_CAPABILITY_INTERNET_CLIENT;
+    }
+    private static final int SECURITY_CAPABILITY_INTERNET_CLIENT_SERVER = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_INTERNET_CLIENT_SERVER 2
+     * }
+     */
+    public static int SECURITY_CAPABILITY_INTERNET_CLIENT_SERVER() {
+        return SECURITY_CAPABILITY_INTERNET_CLIENT_SERVER;
+    }
+    private static final int SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER 3
+     * }
+     */
+    public static int SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER() {
+        return SECURITY_CAPABILITY_PRIVATE_NETWORK_CLIENT_SERVER;
+    }
+    private static final int SECURITY_CAPABILITY_PICTURES_LIBRARY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_PICTURES_LIBRARY 4
+     * }
+     */
+    public static int SECURITY_CAPABILITY_PICTURES_LIBRARY() {
+        return SECURITY_CAPABILITY_PICTURES_LIBRARY;
+    }
+    private static final int SECURITY_CAPABILITY_VIDEOS_LIBRARY = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_VIDEOS_LIBRARY 5
+     * }
+     */
+    public static int SECURITY_CAPABILITY_VIDEOS_LIBRARY() {
+        return SECURITY_CAPABILITY_VIDEOS_LIBRARY;
+    }
+    private static final int SECURITY_CAPABILITY_MUSIC_LIBRARY = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_MUSIC_LIBRARY 6
+     * }
+     */
+    public static int SECURITY_CAPABILITY_MUSIC_LIBRARY() {
+        return SECURITY_CAPABILITY_MUSIC_LIBRARY;
+    }
+    private static final int SECURITY_CAPABILITY_DOCUMENTS_LIBRARY = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_DOCUMENTS_LIBRARY 7
+     * }
+     */
+    public static int SECURITY_CAPABILITY_DOCUMENTS_LIBRARY() {
+        return SECURITY_CAPABILITY_DOCUMENTS_LIBRARY;
+    }
+    private static final int SECURITY_CAPABILITY_ENTERPRISE_AUTHENTICATION = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_ENTERPRISE_AUTHENTICATION 8
+     * }
+     */
+    public static int SECURITY_CAPABILITY_ENTERPRISE_AUTHENTICATION() {
+        return SECURITY_CAPABILITY_ENTERPRISE_AUTHENTICATION;
+    }
+    private static final int SECURITY_CAPABILITY_SHARED_USER_CERTIFICATES = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_SHARED_USER_CERTIFICATES 9
+     * }
+     */
+    public static int SECURITY_CAPABILITY_SHARED_USER_CERTIFICATES() {
+        return SECURITY_CAPABILITY_SHARED_USER_CERTIFICATES;
+    }
+    private static final int SECURITY_CAPABILITY_REMOVABLE_STORAGE = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_REMOVABLE_STORAGE 10
+     * }
+     */
+    public static int SECURITY_CAPABILITY_REMOVABLE_STORAGE() {
+        return SECURITY_CAPABILITY_REMOVABLE_STORAGE;
+    }
+    private static final int SECURITY_CAPABILITY_APPOINTMENTS = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_APPOINTMENTS 11
+     * }
+     */
+    public static int SECURITY_CAPABILITY_APPOINTMENTS() {
+        return SECURITY_CAPABILITY_APPOINTMENTS;
+    }
+    private static final int SECURITY_CAPABILITY_CONTACTS = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_CONTACTS 12
+     * }
+     */
+    public static int SECURITY_CAPABILITY_CONTACTS() {
+        return SECURITY_CAPABILITY_CONTACTS;
+    }
+    private static final int SECURITY_CAPABILITY_INTERNET_EXPLORER = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_CAPABILITY_INTERNET_EXPLORER 4096
+     * }
+     */
+    public static int SECURITY_CAPABILITY_INTERNET_EXPLORER() {
+        return SECURITY_CAPABILITY_INTERNET_EXPLORER;
+    }
+    private static final int SECURITY_MANDATORY_UNTRUSTED_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_UNTRUSTED_RID 0
+     * }
+     */
+    public static int SECURITY_MANDATORY_UNTRUSTED_RID() {
+        return SECURITY_MANDATORY_UNTRUSTED_RID;
+    }
+    private static final int SECURITY_MANDATORY_LOW_RID = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_LOW_RID 4096
+     * }
+     */
+    public static int SECURITY_MANDATORY_LOW_RID() {
+        return SECURITY_MANDATORY_LOW_RID;
+    }
+    private static final int SECURITY_MANDATORY_MEDIUM_RID = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_MEDIUM_RID 8192
+     * }
+     */
+    public static int SECURITY_MANDATORY_MEDIUM_RID() {
+        return SECURITY_MANDATORY_MEDIUM_RID;
+    }
+    private static final int SECURITY_MANDATORY_MEDIUM_PLUS_RID = (int)8448L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_MEDIUM_PLUS_RID 8448
+     * }
+     */
+    public static int SECURITY_MANDATORY_MEDIUM_PLUS_RID() {
+        return SECURITY_MANDATORY_MEDIUM_PLUS_RID;
+    }
+    private static final int SECURITY_MANDATORY_HIGH_RID = (int)12288L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_HIGH_RID 12288
+     * }
+     */
+    public static int SECURITY_MANDATORY_HIGH_RID() {
+        return SECURITY_MANDATORY_HIGH_RID;
+    }
+    private static final int SECURITY_MANDATORY_SYSTEM_RID = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_SYSTEM_RID 16384
+     * }
+     */
+    public static int SECURITY_MANDATORY_SYSTEM_RID() {
+        return SECURITY_MANDATORY_SYSTEM_RID;
+    }
+    private static final int SECURITY_MANDATORY_PROTECTED_PROCESS_RID = (int)20480L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_PROTECTED_PROCESS_RID 20480
+     * }
+     */
+    public static int SECURITY_MANDATORY_PROTECTED_PROCESS_RID() {
+        return SECURITY_MANDATORY_PROTECTED_PROCESS_RID;
+    }
+    private static final int SECURITY_MANDATORY_MAXIMUM_USER_RID = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MANDATORY_MAXIMUM_USER_RID 16384
+     * }
+     */
+    public static int SECURITY_MANDATORY_MAXIMUM_USER_RID() {
+        return SECURITY_MANDATORY_MAXIMUM_USER_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_AUTHORITY_RID_COUNT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_AUTHORITY_RID_COUNT 1
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_AUTHORITY_RID_COUNT() {
+        return SECURITY_AUTHENTICATION_AUTHORITY_RID_COUNT;
+    }
+    private static final int SECURITY_AUTHENTICATION_AUTHORITY_ASSERTED_RID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_AUTHORITY_ASSERTED_RID 1
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_AUTHORITY_ASSERTED_RID() {
+        return SECURITY_AUTHENTICATION_AUTHORITY_ASSERTED_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_SERVICE_ASSERTED_RID = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_SERVICE_ASSERTED_RID 2
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_SERVICE_ASSERTED_RID() {
+        return SECURITY_AUTHENTICATION_SERVICE_ASSERTED_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_FRESH_KEY_AUTH_RID = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_FRESH_KEY_AUTH_RID 3
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_FRESH_KEY_AUTH_RID() {
+        return SECURITY_AUTHENTICATION_FRESH_KEY_AUTH_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_KEY_TRUST_RID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_KEY_TRUST_RID 4
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_KEY_TRUST_RID() {
+        return SECURITY_AUTHENTICATION_KEY_TRUST_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_KEY_PROPERTY_MFA_RID = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_KEY_PROPERTY_MFA_RID 5
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_KEY_PROPERTY_MFA_RID() {
+        return SECURITY_AUTHENTICATION_KEY_PROPERTY_MFA_RID;
+    }
+    private static final int SECURITY_AUTHENTICATION_KEY_PROPERTY_ATTESTATION_RID = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_AUTHENTICATION_KEY_PROPERTY_ATTESTATION_RID 6
+     * }
+     */
+    public static int SECURITY_AUTHENTICATION_KEY_PROPERTY_ATTESTATION_RID() {
+        return SECURITY_AUTHENTICATION_KEY_PROPERTY_ATTESTATION_RID;
+    }
+    private static final int SECURITY_PROCESS_TRUST_AUTHORITY_RID_COUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_TRUST_AUTHORITY_RID_COUNT 2
+     * }
+     */
+    public static int SECURITY_PROCESS_TRUST_AUTHORITY_RID_COUNT() {
+        return SECURITY_PROCESS_TRUST_AUTHORITY_RID_COUNT;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_TYPE_FULL_RID = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_TYPE_FULL_RID 1024
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_TYPE_FULL_RID() {
+        return SECURITY_PROCESS_PROTECTION_TYPE_FULL_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_TYPE_LITE_RID = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_TYPE_LITE_RID 512
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_TYPE_LITE_RID() {
+        return SECURITY_PROCESS_PROTECTION_TYPE_LITE_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_TYPE_NONE_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_TYPE_NONE_RID 0
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_TYPE_NONE_RID() {
+        return SECURITY_PROCESS_PROTECTION_TYPE_NONE_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_WINTCB_RID = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_WINTCB_RID 8192
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_WINTCB_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_WINTCB_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_WINDOWS_RID = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_WINDOWS_RID 4096
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_WINDOWS_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_WINDOWS_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_APP_RID = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_APP_RID 2048
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_APP_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_APP_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_ANTIMALWARE_RID = (int)1536L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_ANTIMALWARE_RID 1536
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_ANTIMALWARE_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_ANTIMALWARE_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_AUTHENTICODE_RID = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_AUTHENTICODE_RID 1024
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_AUTHENTICODE_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_AUTHENTICODE_RID;
+    }
+    private static final int SECURITY_PROCESS_PROTECTION_LEVEL_NONE_RID = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_PROCESS_PROTECTION_LEVEL_NONE_RID 0
+     * }
+     */
+    public static int SECURITY_PROCESS_PROTECTION_LEVEL_NONE_RID() {
+        return SECURITY_PROCESS_PROTECTION_LEVEL_NONE_RID;
+    }
+    private static final long SECURITY_TRUSTED_INSTALLER_RID2 = 3418522649L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TRUSTED_INSTALLER_RID2 3418522649
+     * }
+     */
+    public static long SECURITY_TRUSTED_INSTALLER_RID2() {
+        return SECURITY_TRUSTED_INSTALLER_RID2;
+    }
+    private static final long SECURITY_TRUSTED_INSTALLER_RID5 = 2271478464L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_TRUSTED_INSTALLER_RID5 2271478464
+     * }
+     */
+    public static long SECURITY_TRUSTED_INSTALLER_RID5() {
+        return SECURITY_TRUSTED_INSTALLER_RID5;
+    }
+    private static final int SE_GROUP_MANDATORY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_MANDATORY 1
+     * }
+     */
+    public static int SE_GROUP_MANDATORY() {
+        return SE_GROUP_MANDATORY;
+    }
+    private static final int SE_GROUP_ENABLED_BY_DEFAULT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_ENABLED_BY_DEFAULT 2
+     * }
+     */
+    public static int SE_GROUP_ENABLED_BY_DEFAULT() {
+        return SE_GROUP_ENABLED_BY_DEFAULT;
+    }
+    private static final int SE_GROUP_ENABLED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_ENABLED 4
+     * }
+     */
+    public static int SE_GROUP_ENABLED() {
+        return SE_GROUP_ENABLED;
+    }
+    private static final int SE_GROUP_OWNER = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_OWNER 8
+     * }
+     */
+    public static int SE_GROUP_OWNER() {
+        return SE_GROUP_OWNER;
+    }
+    private static final int SE_GROUP_USE_FOR_DENY_ONLY = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_USE_FOR_DENY_ONLY 16
+     * }
+     */
+    public static int SE_GROUP_USE_FOR_DENY_ONLY() {
+        return SE_GROUP_USE_FOR_DENY_ONLY;
+    }
+    private static final int SE_GROUP_INTEGRITY = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_INTEGRITY 32
+     * }
+     */
+    public static int SE_GROUP_INTEGRITY() {
+        return SE_GROUP_INTEGRITY;
+    }
+    private static final int SE_GROUP_INTEGRITY_ENABLED = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_INTEGRITY_ENABLED 64
+     * }
+     */
+    public static int SE_GROUP_INTEGRITY_ENABLED() {
+        return SE_GROUP_INTEGRITY_ENABLED;
+    }
+    private static final int SE_GROUP_LOGON_ID = (int)3221225472L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_LOGON_ID 3221225472
+     * }
+     */
+    public static int SE_GROUP_LOGON_ID() {
+        return SE_GROUP_LOGON_ID;
+    }
+    private static final int SE_GROUP_RESOURCE = (int)536870912L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_RESOURCE 536870912
+     * }
+     */
+    public static int SE_GROUP_RESOURCE() {
+        return SE_GROUP_RESOURCE;
+    }
+    private static final int SE_GROUP_VALID_ATTRIBUTES = (int)3758096511L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_VALID_ATTRIBUTES 3758096511
+     * }
+     */
+    public static int SE_GROUP_VALID_ATTRIBUTES() {
+        return SE_GROUP_VALID_ATTRIBUTES;
+    }
+    private static final int ACL_REVISION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION 2
+     * }
+     */
+    public static int ACL_REVISION() {
+        return ACL_REVISION;
+    }
+    private static final int ACL_REVISION_DS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION_DS 4
+     * }
+     */
+    public static int ACL_REVISION_DS() {
+        return ACL_REVISION_DS;
+    }
+    private static final int ACL_REVISION1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION1 1
+     * }
+     */
+    public static int ACL_REVISION1() {
+        return ACL_REVISION1;
+    }
+    private static final int MIN_ACL_REVISION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define MIN_ACL_REVISION 2
+     * }
+     */
+    public static int MIN_ACL_REVISION() {
+        return MIN_ACL_REVISION;
+    }
+    private static final int ACL_REVISION2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION2 2
+     * }
+     */
+    public static int ACL_REVISION2() {
+        return ACL_REVISION2;
+    }
+    private static final int ACL_REVISION3 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION3 3
+     * }
+     */
+    public static int ACL_REVISION3() {
+        return ACL_REVISION3;
+    }
+    private static final int ACL_REVISION4 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACL_REVISION4 4
+     * }
+     */
+    public static int ACL_REVISION4() {
+        return ACL_REVISION4;
+    }
+    private static final int MAX_ACL_REVISION = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define MAX_ACL_REVISION 4
+     * }
+     */
+    public static int MAX_ACL_REVISION() {
+        return MAX_ACL_REVISION;
+    }
+    private static final int ACCESS_MIN_MS_ACE_TYPE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MIN_MS_ACE_TYPE 0
+     * }
+     */
+    public static int ACCESS_MIN_MS_ACE_TYPE() {
+        return ACCESS_MIN_MS_ACE_TYPE;
+    }
+    private static final int ACCESS_ALLOWED_ACE_TYPE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_ALLOWED_ACE_TYPE 0
+     * }
+     */
+    public static int ACCESS_ALLOWED_ACE_TYPE() {
+        return ACCESS_ALLOWED_ACE_TYPE;
+    }
+    private static final int ACCESS_DENIED_ACE_TYPE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DENIED_ACE_TYPE 1
+     * }
+     */
+    public static int ACCESS_DENIED_ACE_TYPE() {
+        return ACCESS_DENIED_ACE_TYPE;
+    }
+    private static final int SYSTEM_AUDIT_ACE_TYPE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_AUDIT_ACE_TYPE 2
+     * }
+     */
+    public static int SYSTEM_AUDIT_ACE_TYPE() {
+        return SYSTEM_AUDIT_ACE_TYPE;
+    }
+    private static final int SYSTEM_ALARM_ACE_TYPE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ALARM_ACE_TYPE 3
+     * }
+     */
+    public static int SYSTEM_ALARM_ACE_TYPE() {
+        return SYSTEM_ALARM_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_V2_ACE_TYPE = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_V2_ACE_TYPE 3
+     * }
+     */
+    public static int ACCESS_MAX_MS_V2_ACE_TYPE() {
+        return ACCESS_MAX_MS_V2_ACE_TYPE;
+    }
+    private static final int ACCESS_ALLOWED_COMPOUND_ACE_TYPE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_ALLOWED_COMPOUND_ACE_TYPE 4
+     * }
+     */
+    public static int ACCESS_ALLOWED_COMPOUND_ACE_TYPE() {
+        return ACCESS_ALLOWED_COMPOUND_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_V3_ACE_TYPE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_V3_ACE_TYPE 4
+     * }
+     */
+    public static int ACCESS_MAX_MS_V3_ACE_TYPE() {
+        return ACCESS_MAX_MS_V3_ACE_TYPE;
+    }
+    private static final int ACCESS_MIN_MS_OBJECT_ACE_TYPE = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MIN_MS_OBJECT_ACE_TYPE 5
+     * }
+     */
+    public static int ACCESS_MIN_MS_OBJECT_ACE_TYPE() {
+        return ACCESS_MIN_MS_OBJECT_ACE_TYPE;
+    }
+    private static final int ACCESS_ALLOWED_OBJECT_ACE_TYPE = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_ALLOWED_OBJECT_ACE_TYPE 5
+     * }
+     */
+    public static int ACCESS_ALLOWED_OBJECT_ACE_TYPE() {
+        return ACCESS_ALLOWED_OBJECT_ACE_TYPE;
+    }
+    private static final int ACCESS_DENIED_OBJECT_ACE_TYPE = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DENIED_OBJECT_ACE_TYPE 6
+     * }
+     */
+    public static int ACCESS_DENIED_OBJECT_ACE_TYPE() {
+        return ACCESS_DENIED_OBJECT_ACE_TYPE;
+    }
+    private static final int SYSTEM_AUDIT_OBJECT_ACE_TYPE = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_AUDIT_OBJECT_ACE_TYPE 7
+     * }
+     */
+    public static int SYSTEM_AUDIT_OBJECT_ACE_TYPE() {
+        return SYSTEM_AUDIT_OBJECT_ACE_TYPE;
+    }
+    private static final int SYSTEM_ALARM_OBJECT_ACE_TYPE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ALARM_OBJECT_ACE_TYPE 8
+     * }
+     */
+    public static int SYSTEM_ALARM_OBJECT_ACE_TYPE() {
+        return SYSTEM_ALARM_OBJECT_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_OBJECT_ACE_TYPE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_OBJECT_ACE_TYPE 8
+     * }
+     */
+    public static int ACCESS_MAX_MS_OBJECT_ACE_TYPE() {
+        return ACCESS_MAX_MS_OBJECT_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_V4_ACE_TYPE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_V4_ACE_TYPE 8
+     * }
+     */
+    public static int ACCESS_MAX_MS_V4_ACE_TYPE() {
+        return ACCESS_MAX_MS_V4_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_ACE_TYPE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_ACE_TYPE 8
+     * }
+     */
+    public static int ACCESS_MAX_MS_ACE_TYPE() {
+        return ACCESS_MAX_MS_ACE_TYPE;
+    }
+    private static final int ACCESS_ALLOWED_CALLBACK_ACE_TYPE = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_ALLOWED_CALLBACK_ACE_TYPE 9
+     * }
+     */
+    public static int ACCESS_ALLOWED_CALLBACK_ACE_TYPE() {
+        return ACCESS_ALLOWED_CALLBACK_ACE_TYPE;
+    }
+    private static final int ACCESS_DENIED_CALLBACK_ACE_TYPE = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DENIED_CALLBACK_ACE_TYPE 10
+     * }
+     */
+    public static int ACCESS_DENIED_CALLBACK_ACE_TYPE() {
+        return ACCESS_DENIED_CALLBACK_ACE_TYPE;
+    }
+    private static final int ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE 11
+     * }
+     */
+    public static int ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE() {
+        return ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE;
+    }
+    private static final int ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE 12
+     * }
+     */
+    public static int ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE() {
+        return ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE;
+    }
+    private static final int SYSTEM_AUDIT_CALLBACK_ACE_TYPE = (int)13L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_AUDIT_CALLBACK_ACE_TYPE 13
+     * }
+     */
+    public static int SYSTEM_AUDIT_CALLBACK_ACE_TYPE() {
+        return SYSTEM_AUDIT_CALLBACK_ACE_TYPE;
+    }
+    private static final int SYSTEM_ALARM_CALLBACK_ACE_TYPE = (int)14L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ALARM_CALLBACK_ACE_TYPE 14
+     * }
+     */
+    public static int SYSTEM_ALARM_CALLBACK_ACE_TYPE() {
+        return SYSTEM_ALARM_CALLBACK_ACE_TYPE;
+    }
+    private static final int SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE 15
+     * }
+     */
+    public static int SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE() {
+        return SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE;
+    }
+    private static final int SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE 16
+     * }
+     */
+    public static int SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE() {
+        return SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE;
+    }
+    private static final int SYSTEM_MANDATORY_LABEL_ACE_TYPE = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_MANDATORY_LABEL_ACE_TYPE 17
+     * }
+     */
+    public static int SYSTEM_MANDATORY_LABEL_ACE_TYPE() {
+        return SYSTEM_MANDATORY_LABEL_ACE_TYPE;
+    }
+    private static final int SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE 18
+     * }
+     */
+    public static int SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE() {
+        return SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE;
+    }
+    private static final int SYSTEM_SCOPED_POLICY_ID_ACE_TYPE = (int)19L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_SCOPED_POLICY_ID_ACE_TYPE 19
+     * }
+     */
+    public static int SYSTEM_SCOPED_POLICY_ID_ACE_TYPE() {
+        return SYSTEM_SCOPED_POLICY_ID_ACE_TYPE;
+    }
+    private static final int SYSTEM_PROCESS_TRUST_LABEL_ACE_TYPE = (int)20L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_PROCESS_TRUST_LABEL_ACE_TYPE 20
+     * }
+     */
+    public static int SYSTEM_PROCESS_TRUST_LABEL_ACE_TYPE() {
+        return SYSTEM_PROCESS_TRUST_LABEL_ACE_TYPE;
+    }
+    private static final int SYSTEM_ACCESS_FILTER_ACE_TYPE = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ACCESS_FILTER_ACE_TYPE 21
+     * }
+     */
+    public static int SYSTEM_ACCESS_FILTER_ACE_TYPE() {
+        return SYSTEM_ACCESS_FILTER_ACE_TYPE;
+    }
+    private static final int ACCESS_MAX_MS_V5_ACE_TYPE = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_MAX_MS_V5_ACE_TYPE 21
+     * }
+     */
+    public static int ACCESS_MAX_MS_V5_ACE_TYPE() {
+        return ACCESS_MAX_MS_V5_ACE_TYPE;
+    }
+    private static final int OBJECT_INHERIT_ACE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define OBJECT_INHERIT_ACE 1
+     * }
+     */
+    public static int OBJECT_INHERIT_ACE() {
+        return OBJECT_INHERIT_ACE;
+    }
+    private static final int CONTAINER_INHERIT_ACE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CONTAINER_INHERIT_ACE 2
+     * }
+     */
+    public static int CONTAINER_INHERIT_ACE() {
+        return CONTAINER_INHERIT_ACE;
+    }
+    private static final int NO_PROPAGATE_INHERIT_ACE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define NO_PROPAGATE_INHERIT_ACE 4
+     * }
+     */
+    public static int NO_PROPAGATE_INHERIT_ACE() {
+        return NO_PROPAGATE_INHERIT_ACE;
+    }
+    private static final int INHERIT_ONLY_ACE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define INHERIT_ONLY_ACE 8
+     * }
+     */
+    public static int INHERIT_ONLY_ACE() {
+        return INHERIT_ONLY_ACE;
+    }
+    private static final int INHERITED_ACE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define INHERITED_ACE 16
+     * }
+     */
+    public static int INHERITED_ACE() {
+        return INHERITED_ACE;
+    }
+    private static final int VALID_INHERIT_FLAGS = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define VALID_INHERIT_FLAGS 31
+     * }
+     */
+    public static int VALID_INHERIT_FLAGS() {
+        return VALID_INHERIT_FLAGS;
+    }
+    private static final int CRITICAL_ACE_FLAG = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define CRITICAL_ACE_FLAG 32
+     * }
+     */
+    public static int CRITICAL_ACE_FLAG() {
+        return CRITICAL_ACE_FLAG;
+    }
+    private static final int SUCCESSFUL_ACCESS_ACE_FLAG = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SUCCESSFUL_ACCESS_ACE_FLAG 64
+     * }
+     */
+    public static int SUCCESSFUL_ACCESS_ACE_FLAG() {
+        return SUCCESSFUL_ACCESS_ACE_FLAG;
+    }
+    private static final int FAILED_ACCESS_ACE_FLAG = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define FAILED_ACCESS_ACE_FLAG 128
+     * }
+     */
+    public static int FAILED_ACCESS_ACE_FLAG() {
+        return FAILED_ACCESS_ACE_FLAG;
+    }
+    private static final int TRUST_PROTECTED_FILTER_ACE_FLAG = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define TRUST_PROTECTED_FILTER_ACE_FLAG 64
+     * }
+     */
+    public static int TRUST_PROTECTED_FILTER_ACE_FLAG() {
+        return TRUST_PROTECTED_FILTER_ACE_FLAG;
+    }
+    private static final int SYSTEM_MANDATORY_LABEL_VALID_MASK = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_MANDATORY_LABEL_VALID_MASK 7
+     * }
+     */
+    public static int SYSTEM_MANDATORY_LABEL_VALID_MASK() {
+        return SYSTEM_MANDATORY_LABEL_VALID_MASK;
+    }
+    private static final int SYSTEM_PROCESS_TRUST_NOCONSTRAINT_MASK = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_PROCESS_TRUST_NOCONSTRAINT_MASK 4294967295
+     * }
+     */
+    public static int SYSTEM_PROCESS_TRUST_NOCONSTRAINT_MASK() {
+        return SYSTEM_PROCESS_TRUST_NOCONSTRAINT_MASK;
+    }
+    private static final int SYSTEM_ACCESS_FILTER_NOCONSTRAINT_MASK = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define SYSTEM_ACCESS_FILTER_NOCONSTRAINT_MASK 4294967295
+     * }
+     */
+    public static int SYSTEM_ACCESS_FILTER_NOCONSTRAINT_MASK() {
+        return SYSTEM_ACCESS_FILTER_NOCONSTRAINT_MASK;
+    }
+    private static final int SECURITY_DESCRIPTOR_REVISION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DESCRIPTOR_REVISION 1
+     * }
+     */
+    public static int SECURITY_DESCRIPTOR_REVISION() {
+        return SECURITY_DESCRIPTOR_REVISION;
+    }
+    private static final int SECURITY_DESCRIPTOR_REVISION1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DESCRIPTOR_REVISION1 1
+     * }
+     */
+    public static int SECURITY_DESCRIPTOR_REVISION1() {
+        return SECURITY_DESCRIPTOR_REVISION1;
+    }
+    private static final long SECURITY_DESCRIPTOR_MIN_LENGTH = 40L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DESCRIPTOR_MIN_LENGTH 40
+     * }
+     */
+    public static long SECURITY_DESCRIPTOR_MIN_LENGTH() {
+        return SECURITY_DESCRIPTOR_MIN_LENGTH;
+    }
+    private static final int SE_OWNER_DEFAULTED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_OWNER_DEFAULTED 1
+     * }
+     */
+    public static int SE_OWNER_DEFAULTED() {
+        return SE_OWNER_DEFAULTED;
+    }
+    private static final int SE_GROUP_DEFAULTED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_GROUP_DEFAULTED 2
+     * }
+     */
+    public static int SE_GROUP_DEFAULTED() {
+        return SE_GROUP_DEFAULTED;
+    }
+    private static final int SE_DACL_PRESENT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_DACL_PRESENT 4
+     * }
+     */
+    public static int SE_DACL_PRESENT() {
+        return SE_DACL_PRESENT;
+    }
+    private static final int SE_DACL_DEFAULTED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_DACL_DEFAULTED 8
+     * }
+     */
+    public static int SE_DACL_DEFAULTED() {
+        return SE_DACL_DEFAULTED;
+    }
+    private static final int SE_SACL_PRESENT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SACL_PRESENT 16
+     * }
+     */
+    public static int SE_SACL_PRESENT() {
+        return SE_SACL_PRESENT;
+    }
+    private static final int SE_SACL_DEFAULTED = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SACL_DEFAULTED 32
+     * }
+     */
+    public static int SE_SACL_DEFAULTED() {
+        return SE_SACL_DEFAULTED;
+    }
+    private static final int SE_DACL_AUTO_INHERIT_REQ = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_DACL_AUTO_INHERIT_REQ 256
+     * }
+     */
+    public static int SE_DACL_AUTO_INHERIT_REQ() {
+        return SE_DACL_AUTO_INHERIT_REQ;
+    }
+    private static final int SE_SACL_AUTO_INHERIT_REQ = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SACL_AUTO_INHERIT_REQ 512
+     * }
+     */
+    public static int SE_SACL_AUTO_INHERIT_REQ() {
+        return SE_SACL_AUTO_INHERIT_REQ;
+    }
+    private static final int SE_DACL_AUTO_INHERITED = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_DACL_AUTO_INHERITED 1024
+     * }
+     */
+    public static int SE_DACL_AUTO_INHERITED() {
+        return SE_DACL_AUTO_INHERITED;
+    }
+    private static final int SE_SACL_AUTO_INHERITED = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SACL_AUTO_INHERITED 2048
+     * }
+     */
+    public static int SE_SACL_AUTO_INHERITED() {
+        return SE_SACL_AUTO_INHERITED;
+    }
+    private static final int SE_DACL_PROTECTED = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_DACL_PROTECTED 4096
+     * }
+     */
+    public static int SE_DACL_PROTECTED() {
+        return SE_DACL_PROTECTED;
+    }
+    private static final int SE_SACL_PROTECTED = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SACL_PROTECTED 8192
+     * }
+     */
+    public static int SE_SACL_PROTECTED() {
+        return SE_SACL_PROTECTED;
+    }
+    private static final int SE_RM_CONTROL_VALID = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_RM_CONTROL_VALID 16384
+     * }
+     */
+    public static int SE_RM_CONTROL_VALID() {
+        return SE_RM_CONTROL_VALID;
+    }
+    private static final int SE_SELF_RELATIVE = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SELF_RELATIVE 32768
+     * }
+     */
+    public static int SE_SELF_RELATIVE() {
+        return SE_SELF_RELATIVE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DS_SOURCE_A "DS"
+     * }
+     */
+    public static MemorySegment ACCESS_DS_SOURCE_A() {
+        class Holder {
+            static final MemorySegment ACCESS_DS_SOURCE_A
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("DS");
+        }
+        return Holder.ACCESS_DS_SOURCE_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DS_SOURCE_W "D"
+     * }
+     */
+    public static MemorySegment ACCESS_DS_SOURCE_W() {
+        class Holder {
+            static final MemorySegment ACCESS_DS_SOURCE_W
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.ACCESS_DS_SOURCE_W;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DS_OBJECT_TYPE_NAME_A "Directory Service Object"
+     * }
+     */
+    public static MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_A() {
+        class Holder {
+            static final MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_A
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("Directory Service Object");
+        }
+        return Holder.ACCESS_DS_OBJECT_TYPE_NAME_A;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_DS_OBJECT_TYPE_NAME_W "D"
+     * }
+     */
+    public static MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_W() {
+        class Holder {
+            static final MemorySegment ACCESS_DS_OBJECT_TYPE_NAME_W
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.ACCESS_DS_OBJECT_TYPE_NAME_W;
+    }
+    private static final int SE_PRIVILEGE_ENABLED_BY_DEFAULT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_PRIVILEGE_ENABLED_BY_DEFAULT 1
+     * }
+     */
+    public static int SE_PRIVILEGE_ENABLED_BY_DEFAULT() {
+        return SE_PRIVILEGE_ENABLED_BY_DEFAULT;
+    }
+    private static final int SE_PRIVILEGE_ENABLED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_PRIVILEGE_ENABLED 2
+     * }
+     */
+    public static int SE_PRIVILEGE_ENABLED() {
+        return SE_PRIVILEGE_ENABLED;
+    }
+    private static final int SE_PRIVILEGE_REMOVED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_PRIVILEGE_REMOVED 4
+     * }
+     */
+    public static int SE_PRIVILEGE_REMOVED() {
+        return SE_PRIVILEGE_REMOVED;
+    }
+    private static final int SE_PRIVILEGE_USED_FOR_ACCESS = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_PRIVILEGE_USED_FOR_ACCESS 2147483648
+     * }
+     */
+    public static int SE_PRIVILEGE_USED_FOR_ACCESS() {
+        return SE_PRIVILEGE_USED_FOR_ACCESS;
+    }
+    private static final int SE_PRIVILEGE_VALID_ATTRIBUTES = (int)2147483655L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_PRIVILEGE_VALID_ATTRIBUTES 2147483655
+     * }
+     */
+    public static int SE_PRIVILEGE_VALID_ATTRIBUTES() {
+        return SE_PRIVILEGE_VALID_ATTRIBUTES;
+    }
+    private static final int PRIVILEGE_SET_ALL_NECESSARY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PRIVILEGE_SET_ALL_NECESSARY 1
+     * }
+     */
+    public static int PRIVILEGE_SET_ALL_NECESSARY() {
+        return PRIVILEGE_SET_ALL_NECESSARY;
+    }
+    private static final int ACCESS_REASON_STAGING_MASK = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_REASON_STAGING_MASK 2147483648
+     * }
+     */
+    public static int ACCESS_REASON_STAGING_MASK() {
+        return ACCESS_REASON_STAGING_MASK;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CREATE_TOKEN_NAME "SeCreateTokenPrivilege"
+     * }
+     */
+    public static MemorySegment SE_CREATE_TOKEN_NAME() {
+        class Holder {
+            static final MemorySegment SE_CREATE_TOKEN_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeCreateTokenPrivilege");
+        }
+        return Holder.SE_CREATE_TOKEN_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_ASSIGNPRIMARYTOKEN_NAME "SeAssignPrimaryTokenPrivilege"
+     * }
+     */
+    public static MemorySegment SE_ASSIGNPRIMARYTOKEN_NAME() {
+        class Holder {
+            static final MemorySegment SE_ASSIGNPRIMARYTOKEN_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeAssignPrimaryTokenPrivilege");
+        }
+        return Holder.SE_ASSIGNPRIMARYTOKEN_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_LOCK_MEMORY_NAME "SeLockMemoryPrivilege"
+     * }
+     */
+    public static MemorySegment SE_LOCK_MEMORY_NAME() {
+        class Holder {
+            static final MemorySegment SE_LOCK_MEMORY_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeLockMemoryPrivilege");
+        }
+        return Holder.SE_LOCK_MEMORY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_INCREASE_QUOTA_NAME "SeIncreaseQuotaPrivilege"
+     * }
+     */
+    public static MemorySegment SE_INCREASE_QUOTA_NAME() {
+        class Holder {
+            static final MemorySegment SE_INCREASE_QUOTA_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeIncreaseQuotaPrivilege");
+        }
+        return Holder.SE_INCREASE_QUOTA_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_UNSOLICITED_INPUT_NAME "SeUnsolicitedInputPrivilege"
+     * }
+     */
+    public static MemorySegment SE_UNSOLICITED_INPUT_NAME() {
+        class Holder {
+            static final MemorySegment SE_UNSOLICITED_INPUT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeUnsolicitedInputPrivilege");
+        }
+        return Holder.SE_UNSOLICITED_INPUT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_MACHINE_ACCOUNT_NAME "SeMachineAccountPrivilege"
+     * }
+     */
+    public static MemorySegment SE_MACHINE_ACCOUNT_NAME() {
+        class Holder {
+            static final MemorySegment SE_MACHINE_ACCOUNT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeMachineAccountPrivilege");
+        }
+        return Holder.SE_MACHINE_ACCOUNT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_TCB_NAME "SeTcbPrivilege"
+     * }
+     */
+    public static MemorySegment SE_TCB_NAME() {
+        class Holder {
+            static final MemorySegment SE_TCB_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeTcbPrivilege");
+        }
+        return Holder.SE_TCB_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SECURITY_NAME "SeSecurityPrivilege"
+     * }
+     */
+    public static MemorySegment SE_SECURITY_NAME() {
+        class Holder {
+            static final MemorySegment SE_SECURITY_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeSecurityPrivilege");
+        }
+        return Holder.SE_SECURITY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_TAKE_OWNERSHIP_NAME "SeTakeOwnershipPrivilege"
+     * }
+     */
+    public static MemorySegment SE_TAKE_OWNERSHIP_NAME() {
+        class Holder {
+            static final MemorySegment SE_TAKE_OWNERSHIP_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeTakeOwnershipPrivilege");
+        }
+        return Holder.SE_TAKE_OWNERSHIP_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_LOAD_DRIVER_NAME "SeLoadDriverPrivilege"
+     * }
+     */
+    public static MemorySegment SE_LOAD_DRIVER_NAME() {
+        class Holder {
+            static final MemorySegment SE_LOAD_DRIVER_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeLoadDriverPrivilege");
+        }
+        return Holder.SE_LOAD_DRIVER_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SYSTEM_PROFILE_NAME "SeSystemProfilePrivilege"
+     * }
+     */
+    public static MemorySegment SE_SYSTEM_PROFILE_NAME() {
+        class Holder {
+            static final MemorySegment SE_SYSTEM_PROFILE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeSystemProfilePrivilege");
+        }
+        return Holder.SE_SYSTEM_PROFILE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SYSTEMTIME_NAME "SeSystemtimePrivilege"
+     * }
+     */
+    public static MemorySegment SE_SYSTEMTIME_NAME() {
+        class Holder {
+            static final MemorySegment SE_SYSTEMTIME_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeSystemtimePrivilege");
+        }
+        return Holder.SE_SYSTEMTIME_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_PROF_SINGLE_PROCESS_NAME "SeProfileSingleProcessPrivilege"
+     * }
+     */
+    public static MemorySegment SE_PROF_SINGLE_PROCESS_NAME() {
+        class Holder {
+            static final MemorySegment SE_PROF_SINGLE_PROCESS_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeProfileSingleProcessPrivilege");
+        }
+        return Holder.SE_PROF_SINGLE_PROCESS_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_INC_BASE_PRIORITY_NAME "SeIncreaseBasePriorityPrivilege"
+     * }
+     */
+    public static MemorySegment SE_INC_BASE_PRIORITY_NAME() {
+        class Holder {
+            static final MemorySegment SE_INC_BASE_PRIORITY_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeIncreaseBasePriorityPrivilege");
+        }
+        return Holder.SE_INC_BASE_PRIORITY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CREATE_PAGEFILE_NAME "SeCreatePagefilePrivilege"
+     * }
+     */
+    public static MemorySegment SE_CREATE_PAGEFILE_NAME() {
+        class Holder {
+            static final MemorySegment SE_CREATE_PAGEFILE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeCreatePagefilePrivilege");
+        }
+        return Holder.SE_CREATE_PAGEFILE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CREATE_PERMANENT_NAME "SeCreatePermanentPrivilege"
+     * }
+     */
+    public static MemorySegment SE_CREATE_PERMANENT_NAME() {
+        class Holder {
+            static final MemorySegment SE_CREATE_PERMANENT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeCreatePermanentPrivilege");
+        }
+        return Holder.SE_CREATE_PERMANENT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_BACKUP_NAME "SeBackupPrivilege"
+     * }
+     */
+    public static MemorySegment SE_BACKUP_NAME() {
+        class Holder {
+            static final MemorySegment SE_BACKUP_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeBackupPrivilege");
+        }
+        return Holder.SE_BACKUP_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_RESTORE_NAME "SeRestorePrivilege"
+     * }
+     */
+    public static MemorySegment SE_RESTORE_NAME() {
+        class Holder {
+            static final MemorySegment SE_RESTORE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeRestorePrivilege");
+        }
+        return Holder.SE_RESTORE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SHUTDOWN_NAME "SeShutdownPrivilege"
+     * }
+     */
+    public static MemorySegment SE_SHUTDOWN_NAME() {
+        class Holder {
+            static final MemorySegment SE_SHUTDOWN_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeShutdownPrivilege");
+        }
+        return Holder.SE_SHUTDOWN_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_DEBUG_NAME "SeDebugPrivilege"
+     * }
+     */
+    public static MemorySegment SE_DEBUG_NAME() {
+        class Holder {
+            static final MemorySegment SE_DEBUG_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeDebugPrivilege");
+        }
+        return Holder.SE_DEBUG_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_AUDIT_NAME "SeAuditPrivilege"
+     * }
+     */
+    public static MemorySegment SE_AUDIT_NAME() {
+        class Holder {
+            static final MemorySegment SE_AUDIT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeAuditPrivilege");
+        }
+        return Holder.SE_AUDIT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SYSTEM_ENVIRONMENT_NAME "SeSystemEnvironmentPrivilege"
+     * }
+     */
+    public static MemorySegment SE_SYSTEM_ENVIRONMENT_NAME() {
+        class Holder {
+            static final MemorySegment SE_SYSTEM_ENVIRONMENT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeSystemEnvironmentPrivilege");
+        }
+        return Holder.SE_SYSTEM_ENVIRONMENT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CHANGE_NOTIFY_NAME "SeChangeNotifyPrivilege"
+     * }
+     */
+    public static MemorySegment SE_CHANGE_NOTIFY_NAME() {
+        class Holder {
+            static final MemorySegment SE_CHANGE_NOTIFY_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeChangeNotifyPrivilege");
+        }
+        return Holder.SE_CHANGE_NOTIFY_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_REMOTE_SHUTDOWN_NAME "SeRemoteShutdownPrivilege"
+     * }
+     */
+    public static MemorySegment SE_REMOTE_SHUTDOWN_NAME() {
+        class Holder {
+            static final MemorySegment SE_REMOTE_SHUTDOWN_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeRemoteShutdownPrivilege");
+        }
+        return Holder.SE_REMOTE_SHUTDOWN_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_UNDOCK_NAME "SeUndockPrivilege"
+     * }
+     */
+    public static MemorySegment SE_UNDOCK_NAME() {
+        class Holder {
+            static final MemorySegment SE_UNDOCK_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeUndockPrivilege");
+        }
+        return Holder.SE_UNDOCK_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SYNC_AGENT_NAME "SeSyncAgentPrivilege"
+     * }
+     */
+    public static MemorySegment SE_SYNC_AGENT_NAME() {
+        class Holder {
+            static final MemorySegment SE_SYNC_AGENT_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeSyncAgentPrivilege");
+        }
+        return Holder.SE_SYNC_AGENT_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_ENABLE_DELEGATION_NAME "SeEnableDelegationPrivilege"
+     * }
+     */
+    public static MemorySegment SE_ENABLE_DELEGATION_NAME() {
+        class Holder {
+            static final MemorySegment SE_ENABLE_DELEGATION_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeEnableDelegationPrivilege");
+        }
+        return Holder.SE_ENABLE_DELEGATION_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_MANAGE_VOLUME_NAME "SeManageVolumePrivilege"
+     * }
+     */
+    public static MemorySegment SE_MANAGE_VOLUME_NAME() {
+        class Holder {
+            static final MemorySegment SE_MANAGE_VOLUME_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeManageVolumePrivilege");
+        }
+        return Holder.SE_MANAGE_VOLUME_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_IMPERSONATE_NAME "SeImpersonatePrivilege"
+     * }
+     */
+    public static MemorySegment SE_IMPERSONATE_NAME() {
+        class Holder {
+            static final MemorySegment SE_IMPERSONATE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeImpersonatePrivilege");
+        }
+        return Holder.SE_IMPERSONATE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CREATE_GLOBAL_NAME "SeCreateGlobalPrivilege"
+     * }
+     */
+    public static MemorySegment SE_CREATE_GLOBAL_NAME() {
+        class Holder {
+            static final MemorySegment SE_CREATE_GLOBAL_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeCreateGlobalPrivilege");
+        }
+        return Holder.SE_CREATE_GLOBAL_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_TRUSTED_CREDMAN_ACCESS_NAME "SeTrustedCredManAccessPrivilege"
+     * }
+     */
+    public static MemorySegment SE_TRUSTED_CREDMAN_ACCESS_NAME() {
+        class Holder {
+            static final MemorySegment SE_TRUSTED_CREDMAN_ACCESS_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeTrustedCredManAccessPrivilege");
+        }
+        return Holder.SE_TRUSTED_CREDMAN_ACCESS_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_RELABEL_NAME "SeRelabelPrivilege"
+     * }
+     */
+    public static MemorySegment SE_RELABEL_NAME() {
+        class Holder {
+            static final MemorySegment SE_RELABEL_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeRelabelPrivilege");
+        }
+        return Holder.SE_RELABEL_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_INC_WORKING_SET_NAME "SeIncreaseWorkingSetPrivilege"
+     * }
+     */
+    public static MemorySegment SE_INC_WORKING_SET_NAME() {
+        class Holder {
+            static final MemorySegment SE_INC_WORKING_SET_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeIncreaseWorkingSetPrivilege");
+        }
+        return Holder.SE_INC_WORKING_SET_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_TIME_ZONE_NAME "SeTimeZonePrivilege"
+     * }
+     */
+    public static MemorySegment SE_TIME_ZONE_NAME() {
+        class Holder {
+            static final MemorySegment SE_TIME_ZONE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeTimeZonePrivilege");
+        }
+        return Holder.SE_TIME_ZONE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CREATE_SYMBOLIC_LINK_NAME "SeCreateSymbolicLinkPrivilege"
+     * }
+     */
+    public static MemorySegment SE_CREATE_SYMBOLIC_LINK_NAME() {
+        class Holder {
+            static final MemorySegment SE_CREATE_SYMBOLIC_LINK_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeCreateSymbolicLinkPrivilege");
+        }
+        return Holder.SE_CREATE_SYMBOLIC_LINK_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME "SeDelegateSessionUserImpersonatePrivilege"
+     * }
+     */
+    public static MemorySegment SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME() {
+        class Holder {
+            static final MemorySegment SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("SeDelegateSessionUserImpersonatePrivilege");
+        }
+        return Holder.SE_DELEGATE_SESSION_USER_IMPERSONATE_NAME;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_ACTIVATE_AS_USER_CAPABILITY "a"
+     * }
+     */
+    public static MemorySegment SE_ACTIVATE_AS_USER_CAPABILITY() {
+        class Holder {
+            static final MemorySegment SE_ACTIVATE_AS_USER_CAPABILITY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("a");
+        }
+        return Holder.SE_ACTIVATE_AS_USER_CAPABILITY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_CONSTRAINED_IMPERSONATION_CAPABILITY "c"
+     * }
+     */
+    public static MemorySegment SE_CONSTRAINED_IMPERSONATION_CAPABILITY() {
+        class Holder {
+            static final MemorySegment SE_CONSTRAINED_IMPERSONATION_CAPABILITY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("c");
+        }
+        return Holder.SE_CONSTRAINED_IMPERSONATION_CAPABILITY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_SESSION_IMPERSONATION_CAPABILITY "s"
+     * }
+     */
+    public static MemorySegment SE_SESSION_IMPERSONATION_CAPABILITY() {
+        class Holder {
+            static final MemorySegment SE_SESSION_IMPERSONATION_CAPABILITY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("s");
+        }
+        return Holder.SE_SESSION_IMPERSONATION_CAPABILITY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_MUMA_CAPABILITY "m"
+     * }
+     */
+    public static MemorySegment SE_MUMA_CAPABILITY() {
+        class Holder {
+            static final MemorySegment SE_MUMA_CAPABILITY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("m");
+        }
+        return Holder.SE_MUMA_CAPABILITY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY "d"
+     * }
+     */
+    public static MemorySegment SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY() {
+        class Holder {
+            static final MemorySegment SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("d");
+        }
+        return Holder.SE_DEVELOPMENT_MODE_NETWORK_CAPABILITY;
+    }
+    private static final int SECURITY_MAX_IMPERSONATION_LEVEL = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MAX_IMPERSONATION_LEVEL 3
+     * }
+     */
+    public static int SECURITY_MAX_IMPERSONATION_LEVEL() {
+        return SECURITY_MAX_IMPERSONATION_LEVEL;
+    }
+    private static final int SECURITY_MIN_IMPERSONATION_LEVEL = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_MIN_IMPERSONATION_LEVEL 0
+     * }
+     */
+    public static int SECURITY_MIN_IMPERSONATION_LEVEL() {
+        return SECURITY_MIN_IMPERSONATION_LEVEL;
+    }
+    private static final int DEFAULT_IMPERSONATION_LEVEL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DEFAULT_IMPERSONATION_LEVEL 2
+     * }
+     */
+    public static int DEFAULT_IMPERSONATION_LEVEL() {
+        return DEFAULT_IMPERSONATION_LEVEL;
+    }
+    private static final int TOKEN_ASSIGN_PRIMARY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ASSIGN_PRIMARY 1
+     * }
+     */
+    public static int TOKEN_ASSIGN_PRIMARY() {
+        return TOKEN_ASSIGN_PRIMARY;
+    }
+    private static final int TOKEN_DUPLICATE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_DUPLICATE 2
+     * }
+     */
+    public static int TOKEN_DUPLICATE() {
+        return TOKEN_DUPLICATE;
+    }
+    private static final int TOKEN_IMPERSONATE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_IMPERSONATE 4
+     * }
+     */
+    public static int TOKEN_IMPERSONATE() {
+        return TOKEN_IMPERSONATE;
+    }
+    private static final int TOKEN_QUERY = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_QUERY 8
+     * }
+     */
+    public static int TOKEN_QUERY() {
+        return TOKEN_QUERY;
+    }
+    private static final int TOKEN_QUERY_SOURCE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_QUERY_SOURCE 16
+     * }
+     */
+    public static int TOKEN_QUERY_SOURCE() {
+        return TOKEN_QUERY_SOURCE;
+    }
+    private static final int TOKEN_ADJUST_PRIVILEGES = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ADJUST_PRIVILEGES 32
+     * }
+     */
+    public static int TOKEN_ADJUST_PRIVILEGES() {
+        return TOKEN_ADJUST_PRIVILEGES;
+    }
+    private static final int TOKEN_ADJUST_GROUPS = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ADJUST_GROUPS 64
+     * }
+     */
+    public static int TOKEN_ADJUST_GROUPS() {
+        return TOKEN_ADJUST_GROUPS;
+    }
+    private static final int TOKEN_ADJUST_DEFAULT = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ADJUST_DEFAULT 128
+     * }
+     */
+    public static int TOKEN_ADJUST_DEFAULT() {
+        return TOKEN_ADJUST_DEFAULT;
+    }
+    private static final int TOKEN_ADJUST_SESSIONID = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ADJUST_SESSIONID 256
+     * }
+     */
+    public static int TOKEN_ADJUST_SESSIONID() {
+        return TOKEN_ADJUST_SESSIONID;
+    }
+    private static final int TOKEN_ALL_ACCESS_P = (int)983295L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ALL_ACCESS_P 983295
+     * }
+     */
+    public static int TOKEN_ALL_ACCESS_P() {
+        return TOKEN_ALL_ACCESS_P;
+    }
+    private static final int TOKEN_ALL_ACCESS = (int)983551L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ALL_ACCESS 983551
+     * }
+     */
+    public static int TOKEN_ALL_ACCESS() {
+        return TOKEN_ALL_ACCESS;
+    }
+    private static final int TOKEN_READ = (int)131080L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_READ 131080
+     * }
+     */
+    public static int TOKEN_READ() {
+        return TOKEN_READ;
+    }
+    private static final int TOKEN_WRITE = (int)131296L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_WRITE 131296
+     * }
+     */
+    public static int TOKEN_WRITE() {
+        return TOKEN_WRITE;
+    }
+    private static final int TOKEN_EXECUTE = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_EXECUTE 131072
+     * }
+     */
+    public static int TOKEN_EXECUTE() {
+        return TOKEN_EXECUTE;
+    }
+    private static final int TOKEN_TRUST_CONSTRAINT_MASK = (int)131096L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_TRUST_CONSTRAINT_MASK 131096
+     * }
+     */
+    public static int TOKEN_TRUST_CONSTRAINT_MASK() {
+        return TOKEN_TRUST_CONSTRAINT_MASK;
+    }
+    private static final int TOKEN_ACCESS_PSEUDO_HANDLE_WIN8 = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ACCESS_PSEUDO_HANDLE_WIN8 24
+     * }
+     */
+    public static int TOKEN_ACCESS_PSEUDO_HANDLE_WIN8() {
+        return TOKEN_ACCESS_PSEUDO_HANDLE_WIN8;
+    }
+    private static final int TOKEN_ACCESS_PSEUDO_HANDLE = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_ACCESS_PSEUDO_HANDLE 24
+     * }
+     */
+    public static int TOKEN_ACCESS_PSEUDO_HANDLE() {
+        return TOKEN_ACCESS_PSEUDO_HANDLE;
+    }
+    private static final long TOKEN_USER_MAX_SIZE = 84L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_USER_MAX_SIZE 84
+     * }
+     */
+    public static long TOKEN_USER_MAX_SIZE() {
+        return TOKEN_USER_MAX_SIZE;
+    }
+    private static final long TOKEN_OWNER_MAX_SIZE = 76L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_OWNER_MAX_SIZE 76
+     * }
+     */
+    public static long TOKEN_OWNER_MAX_SIZE() {
+        return TOKEN_OWNER_MAX_SIZE;
+    }
+    private static final int TOKEN_MANDATORY_POLICY_VALID_MASK = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_MANDATORY_POLICY_VALID_MASK 3
+     * }
+     */
+    public static int TOKEN_MANDATORY_POLICY_VALID_MASK() {
+        return TOKEN_MANDATORY_POLICY_VALID_MASK;
+    }
+    private static final long TOKEN_INTEGRITY_LEVEL_MAX_SIZE = 84L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_INTEGRITY_LEVEL_MAX_SIZE 84
+     * }
+     */
+    public static long TOKEN_INTEGRITY_LEVEL_MAX_SIZE() {
+        return TOKEN_INTEGRITY_LEVEL_MAX_SIZE;
+    }
+    private static final int POLICY_AUDIT_SUBCATEGORY_COUNT = (int)59L;
+    /**
+     * {@snippet lang=c :
+     * #define POLICY_AUDIT_SUBCATEGORY_COUNT 59
+     * }
+     */
+    public static int POLICY_AUDIT_SUBCATEGORY_COUNT() {
+        return POLICY_AUDIT_SUBCATEGORY_COUNT;
+    }
+    private static final long TOKEN_APPCONTAINER_SID_MAX_SIZE = 76L;
+    /**
+     * {@snippet lang=c :
+     * #define TOKEN_APPCONTAINER_SID_MAX_SIZE 76
+     * }
+     */
+    public static long TOKEN_APPCONTAINER_SID_MAX_SIZE() {
+        return TOKEN_APPCONTAINER_SID_MAX_SIZE;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_VALID_FLAGS = (int)63L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_VALID_FLAGS 63
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_VALID_FLAGS() {
+        return CLAIM_SECURITY_ATTRIBUTE_VALID_FLAGS;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTE_CUSTOM_FLAGS = (int)4294901760L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTE_CUSTOM_FLAGS 4294901760
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTE_CUSTOM_FLAGS() {
+        return CLAIM_SECURITY_ATTRIBUTE_CUSTOM_FLAGS;
+    }
+    private static final int CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION 1
+     * }
+     */
+    public static int CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION() {
+        return CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION;
+    }
+    private static final int SECURITY_DYNAMIC_TRACKING = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DYNAMIC_TRACKING 1
+     * }
+     */
+    public static int SECURITY_DYNAMIC_TRACKING() {
+        return SECURITY_DYNAMIC_TRACKING;
+    }
+    private static final int SECURITY_STATIC_TRACKING = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_STATIC_TRACKING 0
+     * }
+     */
+    public static int SECURITY_STATIC_TRACKING() {
+        return SECURITY_STATIC_TRACKING;
+    }
+    private static final int OWNER_SECURITY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define OWNER_SECURITY_INFORMATION 1
+     * }
+     */
+    public static int OWNER_SECURITY_INFORMATION() {
+        return OWNER_SECURITY_INFORMATION;
+    }
+    private static final int GROUP_SECURITY_INFORMATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GROUP_SECURITY_INFORMATION 2
+     * }
+     */
+    public static int GROUP_SECURITY_INFORMATION() {
+        return GROUP_SECURITY_INFORMATION;
+    }
+    private static final int DACL_SECURITY_INFORMATION = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define DACL_SECURITY_INFORMATION 4
+     * }
+     */
+    public static int DACL_SECURITY_INFORMATION() {
+        return DACL_SECURITY_INFORMATION;
+    }
+    private static final int SACL_SECURITY_INFORMATION = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SACL_SECURITY_INFORMATION 8
+     * }
+     */
+    public static int SACL_SECURITY_INFORMATION() {
+        return SACL_SECURITY_INFORMATION;
+    }
+    private static final int LABEL_SECURITY_INFORMATION = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define LABEL_SECURITY_INFORMATION 16
+     * }
+     */
+    public static int LABEL_SECURITY_INFORMATION() {
+        return LABEL_SECURITY_INFORMATION;
+    }
+    private static final int ATTRIBUTE_SECURITY_INFORMATION = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define ATTRIBUTE_SECURITY_INFORMATION 32
+     * }
+     */
+    public static int ATTRIBUTE_SECURITY_INFORMATION() {
+        return ATTRIBUTE_SECURITY_INFORMATION;
+    }
+    private static final int SCOPE_SECURITY_INFORMATION = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SCOPE_SECURITY_INFORMATION 64
+     * }
+     */
+    public static int SCOPE_SECURITY_INFORMATION() {
+        return SCOPE_SECURITY_INFORMATION;
+    }
+    private static final int PROCESS_TRUST_LABEL_SECURITY_INFORMATION = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_TRUST_LABEL_SECURITY_INFORMATION 128
+     * }
+     */
+    public static int PROCESS_TRUST_LABEL_SECURITY_INFORMATION() {
+        return PROCESS_TRUST_LABEL_SECURITY_INFORMATION;
+    }
+    private static final int ACCESS_FILTER_SECURITY_INFORMATION = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define ACCESS_FILTER_SECURITY_INFORMATION 256
+     * }
+     */
+    public static int ACCESS_FILTER_SECURITY_INFORMATION() {
+        return ACCESS_FILTER_SECURITY_INFORMATION;
+    }
+    private static final int BACKUP_SECURITY_INFORMATION = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define BACKUP_SECURITY_INFORMATION 65536
+     * }
+     */
+    public static int BACKUP_SECURITY_INFORMATION() {
+        return BACKUP_SECURITY_INFORMATION;
+    }
+    private static final int PROTECTED_DACL_SECURITY_INFORMATION = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define PROTECTED_DACL_SECURITY_INFORMATION 2147483648
+     * }
+     */
+    public static int PROTECTED_DACL_SECURITY_INFORMATION() {
+        return PROTECTED_DACL_SECURITY_INFORMATION;
+    }
+    private static final int PROTECTED_SACL_SECURITY_INFORMATION = (int)1073741824L;
+    /**
+     * {@snippet lang=c :
+     * #define PROTECTED_SACL_SECURITY_INFORMATION 1073741824
+     * }
+     */
+    public static int PROTECTED_SACL_SECURITY_INFORMATION() {
+        return PROTECTED_SACL_SECURITY_INFORMATION;
+    }
+    private static final int UNPROTECTED_DACL_SECURITY_INFORMATION = (int)536870912L;
+    /**
+     * {@snippet lang=c :
+     * #define UNPROTECTED_DACL_SECURITY_INFORMATION 536870912
+     * }
+     */
+    public static int UNPROTECTED_DACL_SECURITY_INFORMATION() {
+        return UNPROTECTED_DACL_SECURITY_INFORMATION;
+    }
+    private static final int UNPROTECTED_SACL_SECURITY_INFORMATION = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define UNPROTECTED_SACL_SECURITY_INFORMATION 268435456
+     * }
+     */
+    public static int UNPROTECTED_SACL_SECURITY_INFORMATION() {
+        return UNPROTECTED_SACL_SECURITY_INFORMATION;
+    }
+    private static final int SE_SIGNING_LEVEL_DEVELOPER = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_DEVELOPER 3
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_DEVELOPER() {
+        return SE_SIGNING_LEVEL_DEVELOPER;
+    }
+    private static final int SE_SIGNING_LEVEL_ANTIMALWARE = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define SE_SIGNING_LEVEL_ANTIMALWARE 7
+     * }
+     */
+    public static int SE_SIGNING_LEVEL_ANTIMALWARE() {
+        return SE_SIGNING_LEVEL_ANTIMALWARE;
+    }
+    private static final int PROCESS_TERMINATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_TERMINATE 1
+     * }
+     */
+    public static int PROCESS_TERMINATE() {
+        return PROCESS_TERMINATE;
+    }
+    private static final int PROCESS_CREATE_THREAD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_CREATE_THREAD 2
+     * }
+     */
+    public static int PROCESS_CREATE_THREAD() {
+        return PROCESS_CREATE_THREAD;
+    }
+    private static final int PROCESS_SET_SESSIONID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_SET_SESSIONID 4
+     * }
+     */
+    public static int PROCESS_SET_SESSIONID() {
+        return PROCESS_SET_SESSIONID;
+    }
+    private static final int PROCESS_VM_OPERATION = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_VM_OPERATION 8
+     * }
+     */
+    public static int PROCESS_VM_OPERATION() {
+        return PROCESS_VM_OPERATION;
+    }
+    private static final int PROCESS_VM_READ = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_VM_READ 16
+     * }
+     */
+    public static int PROCESS_VM_READ() {
+        return PROCESS_VM_READ;
+    }
+    private static final int PROCESS_VM_WRITE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_VM_WRITE 32
+     * }
+     */
+    public static int PROCESS_VM_WRITE() {
+        return PROCESS_VM_WRITE;
+    }
+    private static final int PROCESS_DUP_HANDLE = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_DUP_HANDLE 64
+     * }
+     */
+    public static int PROCESS_DUP_HANDLE() {
+        return PROCESS_DUP_HANDLE;
+    }
+    private static final int PROCESS_CREATE_PROCESS = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_CREATE_PROCESS 128
+     * }
+     */
+    public static int PROCESS_CREATE_PROCESS() {
+        return PROCESS_CREATE_PROCESS;
+    }
+    private static final int PROCESS_SET_QUOTA = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_SET_QUOTA 256
+     * }
+     */
+    public static int PROCESS_SET_QUOTA() {
+        return PROCESS_SET_QUOTA;
+    }
+    private static final int PROCESS_SET_INFORMATION = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_SET_INFORMATION 512
+     * }
+     */
+    public static int PROCESS_SET_INFORMATION() {
+        return PROCESS_SET_INFORMATION;
+    }
+    private static final int PROCESS_QUERY_INFORMATION = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_QUERY_INFORMATION 1024
+     * }
+     */
+    public static int PROCESS_QUERY_INFORMATION() {
+        return PROCESS_QUERY_INFORMATION;
+    }
+    private static final int PROCESS_SUSPEND_RESUME = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_SUSPEND_RESUME 2048
+     * }
+     */
+    public static int PROCESS_SUSPEND_RESUME() {
+        return PROCESS_SUSPEND_RESUME;
+    }
+    private static final int PROCESS_QUERY_LIMITED_INFORMATION = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_QUERY_LIMITED_INFORMATION 4096
+     * }
+     */
+    public static int PROCESS_QUERY_LIMITED_INFORMATION() {
+        return PROCESS_QUERY_LIMITED_INFORMATION;
+    }
+    private static final int PROCESS_SET_LIMITED_INFORMATION = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_SET_LIMITED_INFORMATION 8192
+     * }
+     */
+    public static int PROCESS_SET_LIMITED_INFORMATION() {
+        return PROCESS_SET_LIMITED_INFORMATION;
+    }
+    private static final int PROCESS_ALL_ACCESS = (int)2097151L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_ALL_ACCESS 2097151
+     * }
+     */
+    public static int PROCESS_ALL_ACCESS() {
+        return PROCESS_ALL_ACCESS;
+    }
+    private static final int THREAD_TERMINATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_TERMINATE 1
+     * }
+     */
+    public static int THREAD_TERMINATE() {
+        return THREAD_TERMINATE;
+    }
+    private static final int THREAD_SUSPEND_RESUME = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_SUSPEND_RESUME 2
+     * }
+     */
+    public static int THREAD_SUSPEND_RESUME() {
+        return THREAD_SUSPEND_RESUME;
+    }
+    private static final int THREAD_GET_CONTEXT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_GET_CONTEXT 8
+     * }
+     */
+    public static int THREAD_GET_CONTEXT() {
+        return THREAD_GET_CONTEXT;
+    }
+    private static final int THREAD_SET_CONTEXT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_SET_CONTEXT 16
+     * }
+     */
+    public static int THREAD_SET_CONTEXT() {
+        return THREAD_SET_CONTEXT;
+    }
+    private static final int THREAD_QUERY_INFORMATION = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_QUERY_INFORMATION 64
+     * }
+     */
+    public static int THREAD_QUERY_INFORMATION() {
+        return THREAD_QUERY_INFORMATION;
+    }
+    private static final int THREAD_SET_INFORMATION = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_SET_INFORMATION 32
+     * }
+     */
+    public static int THREAD_SET_INFORMATION() {
+        return THREAD_SET_INFORMATION;
+    }
+    private static final int THREAD_SET_THREAD_TOKEN = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_SET_THREAD_TOKEN 128
+     * }
+     */
+    public static int THREAD_SET_THREAD_TOKEN() {
+        return THREAD_SET_THREAD_TOKEN;
+    }
+    private static final int THREAD_IMPERSONATE = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_IMPERSONATE 256
+     * }
+     */
+    public static int THREAD_IMPERSONATE() {
+        return THREAD_IMPERSONATE;
+    }
+    private static final int THREAD_DIRECT_IMPERSONATION = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_DIRECT_IMPERSONATION 512
+     * }
+     */
+    public static int THREAD_DIRECT_IMPERSONATION() {
+        return THREAD_DIRECT_IMPERSONATION;
+    }
+    private static final int THREAD_SET_LIMITED_INFORMATION = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_SET_LIMITED_INFORMATION 1024
+     * }
+     */
+    public static int THREAD_SET_LIMITED_INFORMATION() {
+        return THREAD_SET_LIMITED_INFORMATION;
+    }
+    private static final int THREAD_QUERY_LIMITED_INFORMATION = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_QUERY_LIMITED_INFORMATION 2048
+     * }
+     */
+    public static int THREAD_QUERY_LIMITED_INFORMATION() {
+        return THREAD_QUERY_LIMITED_INFORMATION;
+    }
+    private static final int THREAD_RESUME = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_RESUME 4096
+     * }
+     */
+    public static int THREAD_RESUME() {
+        return THREAD_RESUME;
+    }
+    private static final int THREAD_ALL_ACCESS = (int)2097151L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_ALL_ACCESS 2097151
+     * }
+     */
+    public static int THREAD_ALL_ACCESS() {
+        return THREAD_ALL_ACCESS;
+    }
+    private static final int JOB_OBJECT_ASSIGN_PROCESS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_ASSIGN_PROCESS 1
+     * }
+     */
+    public static int JOB_OBJECT_ASSIGN_PROCESS() {
+        return JOB_OBJECT_ASSIGN_PROCESS;
+    }
+    private static final int JOB_OBJECT_SET_ATTRIBUTES = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SET_ATTRIBUTES 2
+     * }
+     */
+    public static int JOB_OBJECT_SET_ATTRIBUTES() {
+        return JOB_OBJECT_SET_ATTRIBUTES;
+    }
+    private static final int JOB_OBJECT_QUERY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_QUERY 4
+     * }
+     */
+    public static int JOB_OBJECT_QUERY() {
+        return JOB_OBJECT_QUERY;
+    }
+    private static final int JOB_OBJECT_TERMINATE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_TERMINATE 8
+     * }
+     */
+    public static int JOB_OBJECT_TERMINATE() {
+        return JOB_OBJECT_TERMINATE;
+    }
+    private static final int JOB_OBJECT_SET_SECURITY_ATTRIBUTES = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_SET_SECURITY_ATTRIBUTES 16
+     * }
+     */
+    public static int JOB_OBJECT_SET_SECURITY_ATTRIBUTES() {
+        return JOB_OBJECT_SET_SECURITY_ATTRIBUTES;
+    }
+    private static final int JOB_OBJECT_IMPERSONATE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_IMPERSONATE 32
+     * }
+     */
+    public static int JOB_OBJECT_IMPERSONATE() {
+        return JOB_OBJECT_IMPERSONATE;
+    }
+    private static final int JOB_OBJECT_ALL_ACCESS = (int)2031679L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_ALL_ACCESS 2031679
+     * }
+     */
+    public static int JOB_OBJECT_ALL_ACCESS() {
+        return JOB_OBJECT_ALL_ACCESS;
+    }
+    private static final int THREAD_BASE_PRIORITY_MIN = (int)-2L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_BASE_PRIORITY_MIN -2
+     * }
+     */
+    public static int THREAD_BASE_PRIORITY_MIN() {
+        return THREAD_BASE_PRIORITY_MIN;
+    }
+    private static final int THREAD_BASE_PRIORITY_IDLE = (int)-15L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_BASE_PRIORITY_IDLE -15
+     * }
+     */
+    public static int THREAD_BASE_PRIORITY_IDLE() {
+        return THREAD_BASE_PRIORITY_IDLE;
+    }
+    private static final int DYNAMIC_EH_CONTINUATION_TARGET_ADD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DYNAMIC_EH_CONTINUATION_TARGET_ADD 1
+     * }
+     */
+    public static int DYNAMIC_EH_CONTINUATION_TARGET_ADD() {
+        return DYNAMIC_EH_CONTINUATION_TARGET_ADD;
+    }
+    private static final int DYNAMIC_EH_CONTINUATION_TARGET_PROCESSED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DYNAMIC_EH_CONTINUATION_TARGET_PROCESSED 2
+     * }
+     */
+    public static int DYNAMIC_EH_CONTINUATION_TARGET_PROCESSED() {
+        return DYNAMIC_EH_CONTINUATION_TARGET_PROCESSED;
+    }
+    private static final int DYNAMIC_ENFORCED_ADDRESS_RANGE_ADD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DYNAMIC_ENFORCED_ADDRESS_RANGE_ADD 1
+     * }
+     */
+    public static int DYNAMIC_ENFORCED_ADDRESS_RANGE_ADD() {
+        return DYNAMIC_ENFORCED_ADDRESS_RANGE_ADD;
+    }
+    private static final int DYNAMIC_ENFORCED_ADDRESS_RANGE_PROCESSED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DYNAMIC_ENFORCED_ADDRESS_RANGE_PROCESSED 2
+     * }
+     */
+    public static int DYNAMIC_ENFORCED_ADDRESS_RANGE_PROCESSED() {
+        return DYNAMIC_ENFORCED_ADDRESS_RANGE_PROCESSED;
+    }
+    private static final int JOB_OBJECT_VALID_COMPLETION_FILTER = (int)16382L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_VALID_COMPLETION_FILTER 16382
+     * }
+     */
+    public static int JOB_OBJECT_VALID_COMPLETION_FILTER() {
+        return JOB_OBJECT_VALID_COMPLETION_FILTER;
+    }
+    private static final int JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH 512
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH() {
+        return JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH;
+    }
+    private static final int JOB_OBJECT_LIMIT_CPU_RATE_CONTROL = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_LIMIT_CPU_RATE_CONTROL 262144
+     * }
+     */
+    public static int JOB_OBJECT_LIMIT_CPU_RATE_CONTROL() {
+        return JOB_OBJECT_LIMIT_CPU_RATE_CONTROL;
+    }
+    private static final int JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = (int)2064900L;
+    /**
+     * {@snippet lang=c :
+     * #define JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS 2064900
+     * }
+     */
+    public static int JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS() {
+        return JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS;
+    }
+    private static final int EVENT_ALL_ACCESS = (int)2031619L;
+    /**
+     * {@snippet lang=c :
+     * #define EVENT_ALL_ACCESS 2031619
+     * }
+     */
+    public static int EVENT_ALL_ACCESS() {
+        return EVENT_ALL_ACCESS;
+    }
+    private static final int MUTANT_ALL_ACCESS = (int)2031617L;
+    /**
+     * {@snippet lang=c :
+     * #define MUTANT_ALL_ACCESS 2031617
+     * }
+     */
+    public static int MUTANT_ALL_ACCESS() {
+        return MUTANT_ALL_ACCESS;
+    }
+    private static final int SEMAPHORE_ALL_ACCESS = (int)2031619L;
+    /**
+     * {@snippet lang=c :
+     * #define SEMAPHORE_ALL_ACCESS 2031619
+     * }
+     */
+    public static int SEMAPHORE_ALL_ACCESS() {
+        return SEMAPHORE_ALL_ACCESS;
+    }
+    private static final int TIMER_ALL_ACCESS = (int)2031619L;
+    /**
+     * {@snippet lang=c :
+     * #define TIMER_ALL_ACCESS 2031619
+     * }
+     */
+    public static int TIMER_ALL_ACCESS() {
+        return TIMER_ALL_ACCESS;
+    }
+    private static final int XSTATE_LEGACY_FLOATING_POINT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_LEGACY_FLOATING_POINT 0
+     * }
+     */
+    public static int XSTATE_LEGACY_FLOATING_POINT() {
+        return XSTATE_LEGACY_FLOATING_POINT;
+    }
+    private static final int XSTATE_LEGACY_SSE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_LEGACY_SSE 1
+     * }
+     */
+    public static int XSTATE_LEGACY_SSE() {
+        return XSTATE_LEGACY_SSE;
+    }
+    private static final int XSTATE_GSSE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_GSSE 2
+     * }
+     */
+    public static int XSTATE_GSSE() {
+        return XSTATE_GSSE;
+    }
+    private static final int XSTATE_AVX = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_AVX 2
+     * }
+     */
+    public static int XSTATE_AVX() {
+        return XSTATE_AVX;
+    }
+    private static final int XSTATE_MPX_BNDREGS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MPX_BNDREGS 3
+     * }
+     */
+    public static int XSTATE_MPX_BNDREGS() {
+        return XSTATE_MPX_BNDREGS;
+    }
+    private static final int XSTATE_MPX_BNDCSR = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MPX_BNDCSR 4
+     * }
+     */
+    public static int XSTATE_MPX_BNDCSR() {
+        return XSTATE_MPX_BNDCSR;
+    }
+    private static final int XSTATE_AVX512_KMASK = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_AVX512_KMASK 5
+     * }
+     */
+    public static int XSTATE_AVX512_KMASK() {
+        return XSTATE_AVX512_KMASK;
+    }
+    private static final int XSTATE_AVX512_ZMM_H = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_AVX512_ZMM_H 6
+     * }
+     */
+    public static int XSTATE_AVX512_ZMM_H() {
+        return XSTATE_AVX512_ZMM_H;
+    }
+    private static final int XSTATE_AVX512_ZMM = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_AVX512_ZMM 7
+     * }
+     */
+    public static int XSTATE_AVX512_ZMM() {
+        return XSTATE_AVX512_ZMM;
+    }
+    private static final int XSTATE_IPT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_IPT 8
+     * }
+     */
+    public static int XSTATE_IPT() {
+        return XSTATE_IPT;
+    }
+    private static final int XSTATE_CET_U = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_CET_U 11
+     * }
+     */
+    public static int XSTATE_CET_U() {
+        return XSTATE_CET_U;
+    }
+    private static final int XSTATE_LWP = (int)62L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_LWP 62
+     * }
+     */
+    public static int XSTATE_LWP() {
+        return XSTATE_LWP;
+    }
+    private static final int MAXIMUM_XSTATE_FEATURES = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXIMUM_XSTATE_FEATURES 64
+     * }
+     */
+    public static int MAXIMUM_XSTATE_FEATURES() {
+        return MAXIMUM_XSTATE_FEATURES;
+    }
+    private static final long XSTATE_MASK_LEGACY_FLOATING_POINT = 1L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_LEGACY_FLOATING_POINT 1
+     * }
+     */
+    public static long XSTATE_MASK_LEGACY_FLOATING_POINT() {
+        return XSTATE_MASK_LEGACY_FLOATING_POINT;
+    }
+    private static final long XSTATE_MASK_LEGACY_SSE = 2L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_LEGACY_SSE 2
+     * }
+     */
+    public static long XSTATE_MASK_LEGACY_SSE() {
+        return XSTATE_MASK_LEGACY_SSE;
+    }
+    private static final long XSTATE_MASK_LEGACY = 3L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_LEGACY 3
+     * }
+     */
+    public static long XSTATE_MASK_LEGACY() {
+        return XSTATE_MASK_LEGACY;
+    }
+    private static final long XSTATE_MASK_GSSE = 4L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_GSSE 4
+     * }
+     */
+    public static long XSTATE_MASK_GSSE() {
+        return XSTATE_MASK_GSSE;
+    }
+    private static final long XSTATE_MASK_AVX = 4L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_AVX 4
+     * }
+     */
+    public static long XSTATE_MASK_AVX() {
+        return XSTATE_MASK_AVX;
+    }
+    private static final long XSTATE_MASK_MPX = 24L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_MPX 24
+     * }
+     */
+    public static long XSTATE_MASK_MPX() {
+        return XSTATE_MASK_MPX;
+    }
+    private static final long XSTATE_MASK_AVX512 = 224L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_AVX512 224
+     * }
+     */
+    public static long XSTATE_MASK_AVX512() {
+        return XSTATE_MASK_AVX512;
+    }
+    private static final long XSTATE_MASK_IPT = 256L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_IPT 256
+     * }
+     */
+    public static long XSTATE_MASK_IPT() {
+        return XSTATE_MASK_IPT;
+    }
+    private static final long XSTATE_MASK_CET_U = 2048L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_CET_U 2048
+     * }
+     */
+    public static long XSTATE_MASK_CET_U() {
+        return XSTATE_MASK_CET_U;
+    }
+    private static final long XSTATE_MASK_LWP = 4611686018427387904L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_LWP 4611686018427387904
+     * }
+     */
+    public static long XSTATE_MASK_LWP() {
+        return XSTATE_MASK_LWP;
+    }
+    private static final long XSTATE_MASK_ALLOWED = 4611686018427390463L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_ALLOWED 4611686018427390463
+     * }
+     */
+    public static long XSTATE_MASK_ALLOWED() {
+        return XSTATE_MASK_ALLOWED;
+    }
+    private static final long XSTATE_MASK_PERSISTENT = 4611686018427387920L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_PERSISTENT 4611686018427387920
+     * }
+     */
+    public static long XSTATE_MASK_PERSISTENT() {
+        return XSTATE_MASK_PERSISTENT;
+    }
+    private static final long XSTATE_MASK_USER_VISIBLE_SUPERVISOR = 2048L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_MASK_USER_VISIBLE_SUPERVISOR 2048
+     * }
+     */
+    public static long XSTATE_MASK_USER_VISIBLE_SUPERVISOR() {
+        return XSTATE_MASK_USER_VISIBLE_SUPERVISOR;
+    }
+    private static final int XSTATE_COMPACTION_ENABLE = (int)63L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_COMPACTION_ENABLE 63
+     * }
+     */
+    public static int XSTATE_COMPACTION_ENABLE() {
+        return XSTATE_COMPACTION_ENABLE;
+    }
+    private static final long XSTATE_COMPACTION_ENABLE_MASK = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_COMPACTION_ENABLE_MASK -9223372036854775808
+     * }
+     */
+    public static long XSTATE_COMPACTION_ENABLE_MASK() {
+        return XSTATE_COMPACTION_ENABLE_MASK;
+    }
+    private static final int XSTATE_ALIGN_BIT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_ALIGN_BIT 1
+     * }
+     */
+    public static int XSTATE_ALIGN_BIT() {
+        return XSTATE_ALIGN_BIT;
+    }
+    private static final long XSTATE_ALIGN_MASK = 2L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_ALIGN_MASK 2
+     * }
+     */
+    public static long XSTATE_ALIGN_MASK() {
+        return XSTATE_ALIGN_MASK;
+    }
+    private static final int XSTATE_CONTROLFLAG_XSAVEOPT_MASK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_CONTROLFLAG_XSAVEOPT_MASK 1
+     * }
+     */
+    public static int XSTATE_CONTROLFLAG_XSAVEOPT_MASK() {
+        return XSTATE_CONTROLFLAG_XSAVEOPT_MASK;
+    }
+    private static final int XSTATE_CONTROLFLAG_XSAVEC_MASK = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_CONTROLFLAG_XSAVEC_MASK 2
+     * }
+     */
+    public static int XSTATE_CONTROLFLAG_XSAVEC_MASK() {
+        return XSTATE_CONTROLFLAG_XSAVEC_MASK;
+    }
+    private static final int XSTATE_CONTROLFLAG_VALID_MASK = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define XSTATE_CONTROLFLAG_VALID_MASK 3
+     * }
+     */
+    public static int XSTATE_CONTROLFLAG_VALID_MASK() {
+        return XSTATE_CONTROLFLAG_VALID_MASK;
+    }
+    private static final int CFG_CALL_TARGET_VALID = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CFG_CALL_TARGET_VALID 1
+     * }
+     */
+    public static int CFG_CALL_TARGET_VALID() {
+        return CFG_CALL_TARGET_VALID;
+    }
+    private static final int CFG_CALL_TARGET_PROCESSED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CFG_CALL_TARGET_PROCESSED 2
+     * }
+     */
+    public static int CFG_CALL_TARGET_PROCESSED() {
+        return CFG_CALL_TARGET_PROCESSED;
+    }
+    private static final int CFG_CALL_TARGET_CONVERT_EXPORT_SUPPRESSED_TO_VALID = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define CFG_CALL_TARGET_CONVERT_EXPORT_SUPPRESSED_TO_VALID 4
+     * }
+     */
+    public static int CFG_CALL_TARGET_CONVERT_EXPORT_SUPPRESSED_TO_VALID() {
+        return CFG_CALL_TARGET_CONVERT_EXPORT_SUPPRESSED_TO_VALID;
+    }
+    private static final int SECTION_ALL_ACCESS = (int)983071L;
+    /**
+     * {@snippet lang=c :
+     * #define SECTION_ALL_ACCESS 983071
+     * }
+     */
+    public static int SECTION_ALL_ACCESS() {
+        return SECTION_ALL_ACCESS;
+    }
+    private static final int SESSION_ALL_ACCESS = (int)983043L;
+    /**
+     * {@snippet lang=c :
+     * #define SESSION_ALL_ACCESS 983043
+     * }
+     */
+    public static int SESSION_ALL_ACCESS() {
+        return SESSION_ALL_ACCESS;
+    }
+    private static final int PAGE_ENCLAVE_THREAD_CONTROL = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define PAGE_ENCLAVE_THREAD_CONTROL 2147483648
+     * }
+     */
+    public static int PAGE_ENCLAVE_THREAD_CONTROL() {
+        return PAGE_ENCLAVE_THREAD_CONTROL;
+    }
+    private static final int PAGE_REVERT_TO_FILE_MAP = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define PAGE_REVERT_TO_FILE_MAP 2147483648
+     * }
+     */
+    public static int PAGE_REVERT_TO_FILE_MAP() {
+        return PAGE_REVERT_TO_FILE_MAP;
+    }
+    private static final int PAGE_ENCLAVE_DECOMMIT = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define PAGE_ENCLAVE_DECOMMIT 268435456
+     * }
+     */
+    public static int PAGE_ENCLAVE_DECOMMIT() {
+        return PAGE_ENCLAVE_DECOMMIT;
+    }
+    private static final int PAGE_ENCLAVE_SS_FIRST = (int)268435457L;
+    /**
+     * {@snippet lang=c :
+     * #define PAGE_ENCLAVE_SS_FIRST 268435457
+     * }
+     */
+    public static int PAGE_ENCLAVE_SS_FIRST() {
+        return PAGE_ENCLAVE_SS_FIRST;
+    }
+    private static final int PAGE_ENCLAVE_SS_REST = (int)268435458L;
+    /**
+     * {@snippet lang=c :
+     * #define PAGE_ENCLAVE_SS_REST 268435458
+     * }
+     */
+    public static int PAGE_ENCLAVE_SS_REST() {
+        return PAGE_ENCLAVE_SS_REST;
+    }
+    private static final int MEM_4MB_PAGES = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define MEM_4MB_PAGES 2147483648
+     * }
+     */
+    public static int MEM_4MB_PAGES() {
+        return MEM_4MB_PAGES;
+    }
+    private static final int MEM_64K_PAGES = (int)541065216L;
+    /**
+     * {@snippet lang=c :
+     * #define MEM_64K_PAGES 541065216
+     * }
+     */
+    public static int MEM_64K_PAGES() {
+        return MEM_64K_PAGES;
+    }
+    private static final long MEM_EXTENDED_PARAMETER_NUMA_NODE_MANDATORY = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define MEM_EXTENDED_PARAMETER_NUMA_NODE_MANDATORY -9223372036854775808
+     * }
+     */
+    public static long MEM_EXTENDED_PARAMETER_NUMA_NODE_MANDATORY() {
+        return MEM_EXTENDED_PARAMETER_NUMA_NODE_MANDATORY;
+    }
+    private static final int SEC_LARGE_PAGES = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define SEC_LARGE_PAGES 2147483648
+     * }
+     */
+    public static int SEC_LARGE_PAGES() {
+        return SEC_LARGE_PAGES;
+    }
+    private static final int SEC_IMAGE_NO_EXECUTE = (int)285212672L;
+    /**
+     * {@snippet lang=c :
+     * #define SEC_IMAGE_NO_EXECUTE 285212672
+     * }
+     */
+    public static int SEC_IMAGE_NO_EXECUTE() {
+        return SEC_IMAGE_NO_EXECUTE;
+    }
+    private static final int FILE_READ_DATA = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_READ_DATA 1
+     * }
+     */
+    public static int FILE_READ_DATA() {
+        return FILE_READ_DATA;
+    }
+    private static final int FILE_LIST_DIRECTORY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_LIST_DIRECTORY 1
+     * }
+     */
+    public static int FILE_LIST_DIRECTORY() {
+        return FILE_LIST_DIRECTORY;
+    }
+    private static final int FILE_WRITE_DATA = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_WRITE_DATA 2
+     * }
+     */
+    public static int FILE_WRITE_DATA() {
+        return FILE_WRITE_DATA;
+    }
+    private static final int FILE_ADD_FILE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_ADD_FILE 2
+     * }
+     */
+    public static int FILE_ADD_FILE() {
+        return FILE_ADD_FILE;
+    }
+    private static final int FILE_APPEND_DATA = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_APPEND_DATA 4
+     * }
+     */
+    public static int FILE_APPEND_DATA() {
+        return FILE_APPEND_DATA;
+    }
+    private static final int FILE_ADD_SUBDIRECTORY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_ADD_SUBDIRECTORY 4
+     * }
+     */
+    public static int FILE_ADD_SUBDIRECTORY() {
+        return FILE_ADD_SUBDIRECTORY;
+    }
+    private static final int FILE_CREATE_PIPE_INSTANCE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_CREATE_PIPE_INSTANCE 4
+     * }
+     */
+    public static int FILE_CREATE_PIPE_INSTANCE() {
+        return FILE_CREATE_PIPE_INSTANCE;
+    }
+    private static final int FILE_READ_EA = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_READ_EA 8
+     * }
+     */
+    public static int FILE_READ_EA() {
+        return FILE_READ_EA;
+    }
+    private static final int FILE_WRITE_EA = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_WRITE_EA 16
+     * }
+     */
+    public static int FILE_WRITE_EA() {
+        return FILE_WRITE_EA;
+    }
+    private static final int FILE_EXECUTE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_EXECUTE 32
+     * }
+     */
+    public static int FILE_EXECUTE() {
+        return FILE_EXECUTE;
+    }
+    private static final int FILE_TRAVERSE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_TRAVERSE 32
+     * }
+     */
+    public static int FILE_TRAVERSE() {
+        return FILE_TRAVERSE;
+    }
+    private static final int FILE_DELETE_CHILD = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_DELETE_CHILD 64
+     * }
+     */
+    public static int FILE_DELETE_CHILD() {
+        return FILE_DELETE_CHILD;
+    }
+    private static final int FILE_READ_ATTRIBUTES = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_READ_ATTRIBUTES 128
+     * }
+     */
+    public static int FILE_READ_ATTRIBUTES() {
+        return FILE_READ_ATTRIBUTES;
+    }
+    private static final int FILE_WRITE_ATTRIBUTES = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_WRITE_ATTRIBUTES 256
+     * }
+     */
+    public static int FILE_WRITE_ATTRIBUTES() {
+        return FILE_WRITE_ATTRIBUTES;
+    }
+    private static final int FILE_ALL_ACCESS = (int)2032127L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_ALL_ACCESS 2032127
+     * }
+     */
+    public static int FILE_ALL_ACCESS() {
+        return FILE_ALL_ACCESS;
+    }
+    private static final int FILE_GENERIC_READ = (int)1179785L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_GENERIC_READ 1179785
+     * }
+     */
+    public static int FILE_GENERIC_READ() {
+        return FILE_GENERIC_READ;
+    }
+    private static final int FILE_GENERIC_WRITE = (int)1179926L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_GENERIC_WRITE 1179926
+     * }
+     */
+    public static int FILE_GENERIC_WRITE() {
+        return FILE_GENERIC_WRITE;
+    }
+    private static final int FILE_GENERIC_EXECUTE = (int)1179808L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_GENERIC_EXECUTE 1179808
+     * }
+     */
+    public static int FILE_GENERIC_EXECUTE() {
+        return FILE_GENERIC_EXECUTE;
+    }
+    private static final int MAILSLOT_NO_MESSAGE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define MAILSLOT_NO_MESSAGE 4294967295
+     * }
+     */
+    public static int MAILSLOT_NO_MESSAGE() {
+        return MAILSLOT_NO_MESSAGE;
+    }
+    private static final int MAILSLOT_WAIT_FOREVER = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define MAILSLOT_WAIT_FOREVER 4294967295
+     * }
+     */
+    public static int MAILSLOT_WAIT_FOREVER() {
+        return MAILSLOT_WAIT_FOREVER;
+    }
+    private static final long FILE_INVALID_FILE_ID = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_INVALID_FILE_ID -1
+     * }
+     */
+    public static long FILE_INVALID_FILE_ID() {
+        return FILE_INVALID_FILE_ID;
+    }
+    private static final int REPARSE_GUID_DATA_BUFFER_HEADER_SIZE = (int)24L;
+    /**
+     * {@snippet lang=c :
+     * #define REPARSE_GUID_DATA_BUFFER_HEADER_SIZE 24
+     * }
+     */
+    public static int REPARSE_GUID_DATA_BUFFER_HEADER_SIZE() {
+        return REPARSE_GUID_DATA_BUFFER_HEADER_SIZE;
+    }
+    private static final int MAXIMUM_REPARSE_DATA_BUFFER_SIZE = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define MAXIMUM_REPARSE_DATA_BUFFER_SIZE 16384
+     * }
+     */
+    public static int MAXIMUM_REPARSE_DATA_BUFFER_SIZE() {
+        return MAXIMUM_REPARSE_DATA_BUFFER_SIZE;
+    }
+    private static final int IO_REPARSE_TAG_RESERVED_ZERO = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_RESERVED_ZERO 0
+     * }
+     */
+    public static int IO_REPARSE_TAG_RESERVED_ZERO() {
+        return IO_REPARSE_TAG_RESERVED_ZERO;
+    }
+    private static final int IO_REPARSE_TAG_RESERVED_ONE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_RESERVED_ONE 1
+     * }
+     */
+    public static int IO_REPARSE_TAG_RESERVED_ONE() {
+        return IO_REPARSE_TAG_RESERVED_ONE;
+    }
+    private static final int IO_REPARSE_TAG_RESERVED_TWO = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_RESERVED_TWO 2
+     * }
+     */
+    public static int IO_REPARSE_TAG_RESERVED_TWO() {
+        return IO_REPARSE_TAG_RESERVED_TWO;
+    }
+    private static final int IO_REPARSE_TAG_RESERVED_RANGE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_RESERVED_RANGE 2
+     * }
+     */
+    public static int IO_REPARSE_TAG_RESERVED_RANGE() {
+        return IO_REPARSE_TAG_RESERVED_RANGE;
+    }
+    private static final int IO_REPARSE_TAG_MOUNT_POINT = (int)2684354563L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_MOUNT_POINT 2684354563
+     * }
+     */
+    public static int IO_REPARSE_TAG_MOUNT_POINT() {
+        return IO_REPARSE_TAG_MOUNT_POINT;
+    }
+    private static final int IO_REPARSE_TAG_HSM = (int)3221225476L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_HSM 3221225476
+     * }
+     */
+    public static int IO_REPARSE_TAG_HSM() {
+        return IO_REPARSE_TAG_HSM;
+    }
+    private static final int IO_REPARSE_TAG_HSM2 = (int)2147483654L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_HSM2 2147483654
+     * }
+     */
+    public static int IO_REPARSE_TAG_HSM2() {
+        return IO_REPARSE_TAG_HSM2;
+    }
+    private static final int IO_REPARSE_TAG_SIS = (int)2147483655L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_SIS 2147483655
+     * }
+     */
+    public static int IO_REPARSE_TAG_SIS() {
+        return IO_REPARSE_TAG_SIS;
+    }
+    private static final int IO_REPARSE_TAG_WIM = (int)2147483656L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WIM 2147483656
+     * }
+     */
+    public static int IO_REPARSE_TAG_WIM() {
+        return IO_REPARSE_TAG_WIM;
+    }
+    private static final int IO_REPARSE_TAG_CSV = (int)2147483657L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CSV 2147483657
+     * }
+     */
+    public static int IO_REPARSE_TAG_CSV() {
+        return IO_REPARSE_TAG_CSV;
+    }
+    private static final int IO_REPARSE_TAG_DFS = (int)2147483658L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_DFS 2147483658
+     * }
+     */
+    public static int IO_REPARSE_TAG_DFS() {
+        return IO_REPARSE_TAG_DFS;
+    }
+    private static final int IO_REPARSE_TAG_SYMLINK = (int)2684354572L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_SYMLINK 2684354572
+     * }
+     */
+    public static int IO_REPARSE_TAG_SYMLINK() {
+        return IO_REPARSE_TAG_SYMLINK;
+    }
+    private static final int IO_REPARSE_TAG_DFSR = (int)2147483666L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_DFSR 2147483666
+     * }
+     */
+    public static int IO_REPARSE_TAG_DFSR() {
+        return IO_REPARSE_TAG_DFSR;
+    }
+    private static final int IO_REPARSE_TAG_DEDUP = (int)2147483667L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_DEDUP 2147483667
+     * }
+     */
+    public static int IO_REPARSE_TAG_DEDUP() {
+        return IO_REPARSE_TAG_DEDUP;
+    }
+    private static final int IO_REPARSE_TAG_NFS = (int)2147483668L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_NFS 2147483668
+     * }
+     */
+    public static int IO_REPARSE_TAG_NFS() {
+        return IO_REPARSE_TAG_NFS;
+    }
+    private static final int IO_REPARSE_TAG_FILE_PLACEHOLDER = (int)2147483669L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_FILE_PLACEHOLDER 2147483669
+     * }
+     */
+    public static int IO_REPARSE_TAG_FILE_PLACEHOLDER() {
+        return IO_REPARSE_TAG_FILE_PLACEHOLDER;
+    }
+    private static final int IO_REPARSE_TAG_WOF = (int)2147483671L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WOF 2147483671
+     * }
+     */
+    public static int IO_REPARSE_TAG_WOF() {
+        return IO_REPARSE_TAG_WOF;
+    }
+    private static final int IO_REPARSE_TAG_WCI = (int)2147483672L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WCI 2147483672
+     * }
+     */
+    public static int IO_REPARSE_TAG_WCI() {
+        return IO_REPARSE_TAG_WCI;
+    }
+    private static final int IO_REPARSE_TAG_WCI_1 = (int)2415923224L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WCI_1 2415923224
+     * }
+     */
+    public static int IO_REPARSE_TAG_WCI_1() {
+        return IO_REPARSE_TAG_WCI_1;
+    }
+    private static final int IO_REPARSE_TAG_GLOBAL_REPARSE = (int)2684354585L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_GLOBAL_REPARSE 2684354585
+     * }
+     */
+    public static int IO_REPARSE_TAG_GLOBAL_REPARSE() {
+        return IO_REPARSE_TAG_GLOBAL_REPARSE;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD = (int)2415919130L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD 2415919130
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD() {
+        return IO_REPARSE_TAG_CLOUD;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_1 = (int)2415923226L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_1 2415923226
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_1() {
+        return IO_REPARSE_TAG_CLOUD_1;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_2 = (int)2415927322L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_2 2415927322
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_2() {
+        return IO_REPARSE_TAG_CLOUD_2;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_3 = (int)2415931418L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_3 2415931418
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_3() {
+        return IO_REPARSE_TAG_CLOUD_3;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_4 = (int)2415935514L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_4 2415935514
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_4() {
+        return IO_REPARSE_TAG_CLOUD_4;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_5 = (int)2415939610L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_5 2415939610
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_5() {
+        return IO_REPARSE_TAG_CLOUD_5;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_6 = (int)2415943706L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_6 2415943706
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_6() {
+        return IO_REPARSE_TAG_CLOUD_6;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_7 = (int)2415947802L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_7 2415947802
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_7() {
+        return IO_REPARSE_TAG_CLOUD_7;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_8 = (int)2415951898L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_8 2415951898
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_8() {
+        return IO_REPARSE_TAG_CLOUD_8;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_9 = (int)2415955994L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_9 2415955994
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_9() {
+        return IO_REPARSE_TAG_CLOUD_9;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_A = (int)2415960090L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_A 2415960090
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_A() {
+        return IO_REPARSE_TAG_CLOUD_A;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_B = (int)2415964186L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_B 2415964186
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_B() {
+        return IO_REPARSE_TAG_CLOUD_B;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_C = (int)2415968282L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_C 2415968282
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_C() {
+        return IO_REPARSE_TAG_CLOUD_C;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_D = (int)2415972378L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_D 2415972378
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_D() {
+        return IO_REPARSE_TAG_CLOUD_D;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_E = (int)2415976474L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_E 2415976474
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_E() {
+        return IO_REPARSE_TAG_CLOUD_E;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_F = (int)2415980570L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_F 2415980570
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_F() {
+        return IO_REPARSE_TAG_CLOUD_F;
+    }
+    private static final int IO_REPARSE_TAG_CLOUD_MASK = (int)61440L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_CLOUD_MASK 61440
+     * }
+     */
+    public static int IO_REPARSE_TAG_CLOUD_MASK() {
+        return IO_REPARSE_TAG_CLOUD_MASK;
+    }
+    private static final int IO_REPARSE_TAG_APPEXECLINK = (int)2147483675L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_APPEXECLINK 2147483675
+     * }
+     */
+    public static int IO_REPARSE_TAG_APPEXECLINK() {
+        return IO_REPARSE_TAG_APPEXECLINK;
+    }
+    private static final int IO_REPARSE_TAG_PROJFS = (int)2415919132L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_PROJFS 2415919132
+     * }
+     */
+    public static int IO_REPARSE_TAG_PROJFS() {
+        return IO_REPARSE_TAG_PROJFS;
+    }
+    private static final int IO_REPARSE_TAG_STORAGE_SYNC = (int)2147483678L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_STORAGE_SYNC 2147483678
+     * }
+     */
+    public static int IO_REPARSE_TAG_STORAGE_SYNC() {
+        return IO_REPARSE_TAG_STORAGE_SYNC;
+    }
+    private static final int IO_REPARSE_TAG_WCI_TOMBSTONE = (int)2684354591L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WCI_TOMBSTONE 2684354591
+     * }
+     */
+    public static int IO_REPARSE_TAG_WCI_TOMBSTONE() {
+        return IO_REPARSE_TAG_WCI_TOMBSTONE;
+    }
+    private static final int IO_REPARSE_TAG_UNHANDLED = (int)2147483680L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_UNHANDLED 2147483680
+     * }
+     */
+    public static int IO_REPARSE_TAG_UNHANDLED() {
+        return IO_REPARSE_TAG_UNHANDLED;
+    }
+    private static final int IO_REPARSE_TAG_ONEDRIVE = (int)2147483681L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_ONEDRIVE 2147483681
+     * }
+     */
+    public static int IO_REPARSE_TAG_ONEDRIVE() {
+        return IO_REPARSE_TAG_ONEDRIVE;
+    }
+    private static final int IO_REPARSE_TAG_PROJFS_TOMBSTONE = (int)2684354594L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_PROJFS_TOMBSTONE 2684354594
+     * }
+     */
+    public static int IO_REPARSE_TAG_PROJFS_TOMBSTONE() {
+        return IO_REPARSE_TAG_PROJFS_TOMBSTONE;
+    }
+    private static final int IO_REPARSE_TAG_AF_UNIX = (int)2147483683L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_AF_UNIX 2147483683
+     * }
+     */
+    public static int IO_REPARSE_TAG_AF_UNIX() {
+        return IO_REPARSE_TAG_AF_UNIX;
+    }
+    private static final int IO_REPARSE_TAG_WCI_LINK = (int)2684354599L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WCI_LINK 2684354599
+     * }
+     */
+    public static int IO_REPARSE_TAG_WCI_LINK() {
+        return IO_REPARSE_TAG_WCI_LINK;
+    }
+    private static final int IO_REPARSE_TAG_WCI_LINK_1 = (int)2684358695L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_REPARSE_TAG_WCI_LINK_1 2684358695
+     * }
+     */
+    public static int IO_REPARSE_TAG_WCI_LINK_1() {
+        return IO_REPARSE_TAG_WCI_LINK_1;
+    }
+    private static final int SHUFFLE_FILE_FLAG_SKIP_INITIALIZING_NEW_CLUSTERS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SHUFFLE_FILE_FLAG_SKIP_INITIALIZING_NEW_CLUSTERS 1
+     * }
+     */
+    public static int SHUFFLE_FILE_FLAG_SKIP_INITIALIZING_NEW_CLUSTERS() {
+        return SHUFFLE_FILE_FLAG_SKIP_INITIALIZING_NEW_CLUSTERS;
+    }
+    private static final int IO_COMPLETION_ALL_ACCESS = (int)2031619L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_COMPLETION_ALL_ACCESS 2031619
+     * }
+     */
+    public static int IO_COMPLETION_ALL_ACCESS() {
+        return IO_COMPLETION_ALL_ACCESS;
+    }
+    private static final long IO_QOS_MAX_RESERVATION = 1000000000L;
+    /**
+     * {@snippet lang=c :
+     * #define IO_QOS_MAX_RESERVATION 1000000000
+     * }
+     */
+    public static long IO_QOS_MAX_RESERVATION() {
+        return IO_QOS_MAX_RESERVATION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SMB_CCF_APP_INSTANCE_EA_NAME "ClusteredApplicationInstance"
+     * }
+     */
+    public static MemorySegment SMB_CCF_APP_INSTANCE_EA_NAME() {
+        class Holder {
+            static final MemorySegment SMB_CCF_APP_INSTANCE_EA_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("ClusteredApplicationInstance");
+        }
+        return Holder.SMB_CCF_APP_INSTANCE_EA_NAME;
+    }
+    private static final int PERFSTATE_POLICY_CHANGE_DECREASE_MAX = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define PERFSTATE_POLICY_CHANGE_DECREASE_MAX 2
+     * }
+     */
+    public static int PERFSTATE_POLICY_CHANGE_DECREASE_MAX() {
+        return PERFSTATE_POLICY_CHANGE_DECREASE_MAX;
+    }
+    private static final int PERFSTATE_POLICY_CHANGE_INCREASE_MAX = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define PERFSTATE_POLICY_CHANGE_INCREASE_MAX 3
+     * }
+     */
+    public static int PERFSTATE_POLICY_CHANGE_INCREASE_MAX() {
+        return PERFSTATE_POLICY_CHANGE_INCREASE_MAX;
+    }
+    private static final int PROCESSOR_PERF_BOOST_MODE_MAX = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESSOR_PERF_BOOST_MODE_MAX 6
+     * }
+     */
+    public static int PROCESSOR_PERF_BOOST_MODE_MAX() {
+        return PROCESSOR_PERF_BOOST_MODE_MAX;
+    }
+    private static final int CORE_PARKING_POLICY_CHANGE_MAX = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CORE_PARKING_POLICY_CHANGE_MAX 3
+     * }
+     */
+    public static int CORE_PARKING_POLICY_CHANGE_MAX() {
+        return CORE_PARKING_POLICY_CHANGE_MAX;
+    }
+    private static final int ES_SYSTEM_REQUIRED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ES_SYSTEM_REQUIRED 1
+     * }
+     */
+    public static int ES_SYSTEM_REQUIRED() {
+        return ES_SYSTEM_REQUIRED;
+    }
+    private static final int ES_DISPLAY_REQUIRED = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ES_DISPLAY_REQUIRED 2
+     * }
+     */
+    public static int ES_DISPLAY_REQUIRED() {
+        return ES_DISPLAY_REQUIRED;
+    }
+    private static final int ES_USER_PRESENT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ES_USER_PRESENT 4
+     * }
+     */
+    public static int ES_USER_PRESENT() {
+        return ES_USER_PRESENT;
+    }
+    private static final int ES_AWAYMODE_REQUIRED = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define ES_AWAYMODE_REQUIRED 64
+     * }
+     */
+    public static int ES_AWAYMODE_REQUIRED() {
+        return ES_AWAYMODE_REQUIRED;
+    }
+    private static final int ES_CONTINUOUS = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define ES_CONTINUOUS 2147483648
+     * }
+     */
+    public static int ES_CONTINUOUS() {
+        return ES_CONTINUOUS;
+    }
+    private static final int DIAGNOSTIC_REASON_NOT_SPECIFIED = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define DIAGNOSTIC_REASON_NOT_SPECIFIED 2147483648
+     * }
+     */
+    public static int DIAGNOSTIC_REASON_NOT_SPECIFIED() {
+        return DIAGNOSTIC_REASON_NOT_SPECIFIED;
+    }
+    private static final int DIAGNOSTIC_REASON_INVALID_FLAGS = (int)2147483640L;
+    /**
+     * {@snippet lang=c :
+     * #define DIAGNOSTIC_REASON_INVALID_FLAGS 2147483640
+     * }
+     */
+    public static int DIAGNOSTIC_REASON_INVALID_FLAGS() {
+        return DIAGNOSTIC_REASON_INVALID_FLAGS;
+    }
+    private static final int POWER_REQUEST_CONTEXT_VERSION = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_REQUEST_CONTEXT_VERSION 0
+     * }
+     */
+    public static int POWER_REQUEST_CONTEXT_VERSION() {
+        return POWER_REQUEST_CONTEXT_VERSION;
+    }
+    private static final int POWER_REQUEST_CONTEXT_SIMPLE_STRING = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_REQUEST_CONTEXT_SIMPLE_STRING 1
+     * }
+     */
+    public static int POWER_REQUEST_CONTEXT_SIMPLE_STRING() {
+        return POWER_REQUEST_CONTEXT_SIMPLE_STRING;
+    }
+    private static final int POWER_REQUEST_CONTEXT_DETAILED_STRING = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_REQUEST_CONTEXT_DETAILED_STRING 2
+     * }
+     */
+    public static int POWER_REQUEST_CONTEXT_DETAILED_STRING() {
+        return POWER_REQUEST_CONTEXT_DETAILED_STRING;
+    }
+    private static final int POWER_SETTING_VALUE_VERSION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_SETTING_VALUE_VERSION 1
+     * }
+     */
+    public static int POWER_SETTING_VALUE_VERSION() {
+        return POWER_SETTING_VALUE_VERSION;
+    }
+    private static final int POWER_PLATFORM_ROLE_V1 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_V1 1
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_V1() {
+        return POWER_PLATFORM_ROLE_V1;
+    }
+    private static final int POWER_PLATFORM_ROLE_V1_MAX = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_V1_MAX 8
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_V1_MAX() {
+        return POWER_PLATFORM_ROLE_V1_MAX;
+    }
+    private static final int POWER_PLATFORM_ROLE_V2 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_V2 2
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_V2() {
+        return POWER_PLATFORM_ROLE_V2;
+    }
+    private static final int POWER_PLATFORM_ROLE_V2_MAX = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_V2_MAX 9
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_V2_MAX() {
+        return POWER_PLATFORM_ROLE_V2_MAX;
+    }
+    private static final int POWER_PLATFORM_ROLE_VERSION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_VERSION 2
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_VERSION() {
+        return POWER_PLATFORM_ROLE_VERSION;
+    }
+    private static final int POWER_PLATFORM_ROLE_VERSION_MAX = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_PLATFORM_ROLE_VERSION_MAX 9
+     * }
+     */
+    public static int POWER_PLATFORM_ROLE_VERSION_MAX() {
+        return POWER_PLATFORM_ROLE_VERSION_MAX;
+    }
+    private static final int POWER_ACTION_CRITICAL = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_ACTION_CRITICAL 2147483648
+     * }
+     */
+    public static int POWER_ACTION_CRITICAL() {
+        return POWER_ACTION_CRITICAL;
+    }
+    private static final int POWER_FORCE_TRIGGER_RESET = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define POWER_FORCE_TRIGGER_RESET 2147483648
+     * }
+     */
+    public static int POWER_FORCE_TRIGGER_RESET() {
+        return POWER_FORCE_TRIGGER_RESET;
+    }
+    private static final int BATTERY_DISCHARGE_FLAGS_ENABLE = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define BATTERY_DISCHARGE_FLAGS_ENABLE 2147483648
+     * }
+     */
+    public static int BATTERY_DISCHARGE_FLAGS_ENABLE() {
+        return BATTERY_DISCHARGE_FLAGS_ENABLE;
+    }
+    private static final int IMAGE_FILE_MACHINE_AXP64 = (int)644L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_FILE_MACHINE_AXP64 644
+     * }
+     */
+    public static int IMAGE_FILE_MACHINE_AXP64() {
+        return IMAGE_FILE_MACHINE_AXP64;
+    }
+    private static final int IMAGE_NT_OPTIONAL_HDR_MAGIC = (int)523L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_NT_OPTIONAL_HDR_MAGIC 523
+     * }
+     */
+    public static int IMAGE_NT_OPTIONAL_HDR_MAGIC() {
+        return IMAGE_NT_OPTIONAL_HDR_MAGIC;
+    }
+    private static final int IMAGE_SCN_MEM_WRITE = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SCN_MEM_WRITE 2147483648
+     * }
+     */
+    public static int IMAGE_SCN_MEM_WRITE() {
+        return IMAGE_SCN_MEM_WRITE;
+    }
+    private static final short IMAGE_SYM_UNDEFINED = (short)0L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SYM_UNDEFINED 0
+     * }
+     */
+    public static short IMAGE_SYM_UNDEFINED() {
+        return IMAGE_SYM_UNDEFINED;
+    }
+    private static final short IMAGE_SYM_ABSOLUTE = (short)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SYM_ABSOLUTE -1
+     * }
+     */
+    public static short IMAGE_SYM_ABSOLUTE() {
+        return IMAGE_SYM_ABSOLUTE;
+    }
+    private static final short IMAGE_SYM_DEBUG = (short)-2L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SYM_DEBUG -2
+     * }
+     */
+    public static short IMAGE_SYM_DEBUG() {
+        return IMAGE_SYM_DEBUG;
+    }
+    private static final int IMAGE_SYM_SECTION_MAX_EX = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SYM_SECTION_MAX_EX 2147483647
+     * }
+     */
+    public static int IMAGE_SYM_SECTION_MAX_EX() {
+        return IMAGE_SYM_SECTION_MAX_EX;
+    }
+    private static final byte IMAGE_SYM_CLASS_END_OF_FUNCTION = (byte)255L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_SYM_CLASS_END_OF_FUNCTION 255
+     * }
+     */
+    public static byte IMAGE_SYM_CLASS_END_OF_FUNCTION() {
+        return IMAGE_SYM_CLASS_END_OF_FUNCTION;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_START "!<arch>
+     * "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_START() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_START
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("!<arch>\n");
+        }
+        return Holder.IMAGE_ARCHIVE_START;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_END "`
+     * "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_END() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_END
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("`\n");
+        }
+        return Holder.IMAGE_ARCHIVE_END;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_PAD "
+     * "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_PAD() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_PAD
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\n");
+        }
+        return Holder.IMAGE_ARCHIVE_PAD;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_LINKER_MEMBER "/               "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_LINKER_MEMBER() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_LINKER_MEMBER
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("/               ");
+        }
+        return Holder.IMAGE_ARCHIVE_LINKER_MEMBER;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_LONGNAMES_MEMBER "//              "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_LONGNAMES_MEMBER() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_LONGNAMES_MEMBER
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("//              ");
+        }
+        return Holder.IMAGE_ARCHIVE_LONGNAMES_MEMBER;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ARCHIVE_HYBRIDMAP_MEMBER "/<HYBRIDMAP>/   "
+     * }
+     */
+    public static MemorySegment IMAGE_ARCHIVE_HYBRIDMAP_MEMBER() {
+        class Holder {
+            static final MemorySegment IMAGE_ARCHIVE_HYBRIDMAP_MEMBER
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("/<HYBRIDMAP>/   ");
+        }
+        return Holder.IMAGE_ARCHIVE_HYBRIDMAP_MEMBER;
+    }
+    private static final long IMAGE_ORDINAL_FLAG64 = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ORDINAL_FLAG64 -9223372036854775808
+     * }
+     */
+    public static long IMAGE_ORDINAL_FLAG64() {
+        return IMAGE_ORDINAL_FLAG64;
+    }
+    private static final int IMAGE_ORDINAL_FLAG32 = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ORDINAL_FLAG32 2147483648
+     * }
+     */
+    public static int IMAGE_ORDINAL_FLAG32() {
+        return IMAGE_ORDINAL_FLAG32;
+    }
+    private static final long IMAGE_ORDINAL_FLAG = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ORDINAL_FLAG -9223372036854775808
+     * }
+     */
+    public static long IMAGE_ORDINAL_FLAG() {
+        return IMAGE_ORDINAL_FLAG;
+    }
+    private static final int IMAGE_RESOURCE_NAME_IS_STRING = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_RESOURCE_NAME_IS_STRING 2147483648
+     * }
+     */
+    public static int IMAGE_RESOURCE_NAME_IS_STRING() {
+        return IMAGE_RESOURCE_NAME_IS_STRING;
+    }
+    private static final int IMAGE_RESOURCE_DATA_IS_DIRECTORY = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_RESOURCE_DATA_IS_DIRECTORY 2147483648
+     * }
+     */
+    public static int IMAGE_RESOURCE_DATA_IS_DIRECTORY() {
+        return IMAGE_RESOURCE_DATA_IS_DIRECTORY;
+    }
+    private static final int IMAGE_HOT_PATCH_CHUNK_INVERSE = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_HOT_PATCH_CHUNK_INVERSE 2147483648
+     * }
+     */
+    public static int IMAGE_HOT_PATCH_CHUNK_INVERSE() {
+        return IMAGE_HOT_PATCH_CHUNK_INVERSE;
+    }
+    private static final int IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK = (int)4026531840L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK 4026531840
+     * }
+     */
+    public static int IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK() {
+        return IMAGE_GUARD_CF_FUNCTION_TABLE_SIZE_MASK;
+    }
+    private static final int IMAGE_ENCLAVE_LONG_ID_LENGTH = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ENCLAVE_LONG_ID_LENGTH 32
+     * }
+     */
+    public static int IMAGE_ENCLAVE_LONG_ID_LENGTH() {
+        return IMAGE_ENCLAVE_LONG_ID_LENGTH;
+    }
+    private static final int IMAGE_ENCLAVE_SHORT_ID_LENGTH = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ENCLAVE_SHORT_ID_LENGTH 16
+     * }
+     */
+    public static int IMAGE_ENCLAVE_SHORT_ID_LENGTH() {
+        return IMAGE_ENCLAVE_SHORT_ID_LENGTH;
+    }
+    private static final int IMAGE_ENCLAVE_MINIMUM_CONFIG_SIZE = (int)76L;
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_ENCLAVE_MINIMUM_CONFIG_SIZE 76
+     * }
+     */
+    public static int IMAGE_ENCLAVE_MINIMUM_CONFIG_SIZE() {
+        return IMAGE_ENCLAVE_MINIMUM_CONFIG_SIZE;
+    }
+    private static final int RTL_RUN_ONCE_CHECK_ONLY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_RUN_ONCE_CHECK_ONLY 1
+     * }
+     */
+    public static int RTL_RUN_ONCE_CHECK_ONLY() {
+        return RTL_RUN_ONCE_CHECK_ONLY;
+    }
+    private static final int RTL_RUN_ONCE_ASYNC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_RUN_ONCE_ASYNC 2
+     * }
+     */
+    public static int RTL_RUN_ONCE_ASYNC() {
+        return RTL_RUN_ONCE_ASYNC;
+    }
+    private static final int RTL_RUN_ONCE_INIT_FAILED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_RUN_ONCE_INIT_FAILED 4
+     * }
+     */
+    public static int RTL_RUN_ONCE_INIT_FAILED() {
+        return RTL_RUN_ONCE_INIT_FAILED;
+    }
+    private static final int FAST_FAIL_INVALID_FAST_FAIL_CODE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define FAST_FAIL_INVALID_FAST_FAIL_CODE 4294967295
+     * }
+     */
+    public static int FAST_FAIL_INVALID_FAST_FAIL_CODE() {
+        return FAST_FAIL_INVALID_FAST_FAIL_CODE;
+    }
+    private static final int COMPRESSION_FORMAT_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_FORMAT_NONE 0
+     * }
+     */
+    public static int COMPRESSION_FORMAT_NONE() {
+        return COMPRESSION_FORMAT_NONE;
+    }
+    private static final int COMPRESSION_FORMAT_DEFAULT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_FORMAT_DEFAULT 1
+     * }
+     */
+    public static int COMPRESSION_FORMAT_DEFAULT() {
+        return COMPRESSION_FORMAT_DEFAULT;
+    }
+    private static final int COMPRESSION_FORMAT_LZNT1 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_FORMAT_LZNT1 2
+     * }
+     */
+    public static int COMPRESSION_FORMAT_LZNT1() {
+        return COMPRESSION_FORMAT_LZNT1;
+    }
+    private static final int COMPRESSION_FORMAT_XPRESS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_FORMAT_XPRESS 3
+     * }
+     */
+    public static int COMPRESSION_FORMAT_XPRESS() {
+        return COMPRESSION_FORMAT_XPRESS;
+    }
+    private static final int COMPRESSION_FORMAT_XPRESS_HUFF = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_FORMAT_XPRESS_HUFF 4
+     * }
+     */
+    public static int COMPRESSION_FORMAT_XPRESS_HUFF() {
+        return COMPRESSION_FORMAT_XPRESS_HUFF;
+    }
+    private static final int COMPRESSION_ENGINE_STANDARD = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_ENGINE_STANDARD 0
+     * }
+     */
+    public static int COMPRESSION_ENGINE_STANDARD() {
+        return COMPRESSION_ENGINE_STANDARD;
+    }
+    private static final int COMPRESSION_ENGINE_MAXIMUM = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_ENGINE_MAXIMUM 256
+     * }
+     */
+    public static int COMPRESSION_ENGINE_MAXIMUM() {
+        return COMPRESSION_ENGINE_MAXIMUM;
+    }
+    private static final int COMPRESSION_ENGINE_HIBER = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define COMPRESSION_ENGINE_HIBER 512
+     * }
+     */
+    public static int COMPRESSION_ENGINE_HIBER() {
+        return COMPRESSION_ENGINE_HIBER;
+    }
+    private static final int SEF_MACL_VALID_FLAGS = (int)1792L;
+    /**
+     * {@snippet lang=c :
+     * #define SEF_MACL_VALID_FLAGS 1792
+     * }
+     */
+    public static int SEF_MACL_VALID_FLAGS() {
+        return SEF_MACL_VALID_FLAGS;
+    }
+    private static final int RTL_UMS_VERSION = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_UMS_VERSION 256
+     * }
+     */
+    public static int RTL_UMS_VERSION() {
+        return RTL_UMS_VERSION;
+    }
+    private static final int VRL_PREDEFINED_CLASS_BEGIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define VRL_PREDEFINED_CLASS_BEGIN 1
+     * }
+     */
+    public static int VRL_PREDEFINED_CLASS_BEGIN() {
+        return VRL_PREDEFINED_CLASS_BEGIN;
+    }
+    private static final int VRL_CUSTOM_CLASS_BEGIN = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define VRL_CUSTOM_CLASS_BEGIN 256
+     * }
+     */
+    public static int VRL_CUSTOM_CLASS_BEGIN() {
+        return VRL_CUSTOM_CLASS_BEGIN;
+    }
+    private static final int VRL_CLASS_CONSISTENCY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define VRL_CLASS_CONSISTENCY 1
+     * }
+     */
+    public static int VRL_CLASS_CONSISTENCY() {
+        return VRL_CLASS_CONSISTENCY;
+    }
+    private static final int VRL_ENABLE_KERNEL_BREAKS = (int)-2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define VRL_ENABLE_KERNEL_BREAKS -2147483648
+     * }
+     */
+    public static int VRL_ENABLE_KERNEL_BREAKS() {
+        return VRL_ENABLE_KERNEL_BREAKS;
+    }
+    private static final int CTMF_INCLUDE_APPCONTAINER = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CTMF_INCLUDE_APPCONTAINER 1
+     * }
+     */
+    public static int CTMF_INCLUDE_APPCONTAINER() {
+        return CTMF_INCLUDE_APPCONTAINER;
+    }
+    private static final int CTMF_INCLUDE_LPAC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define CTMF_INCLUDE_LPAC 2
+     * }
+     */
+    public static int CTMF_INCLUDE_LPAC() {
+        return CTMF_INCLUDE_LPAC;
+    }
+    private static final int CTMF_VALID_FLAGS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define CTMF_VALID_FLAGS 3
+     * }
+     */
+    public static int CTMF_VALID_FLAGS() {
+        return CTMF_VALID_FLAGS;
+    }
+    private static final int FLUSH_NV_MEMORY_IN_FLAG_NO_DRAIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define FLUSH_NV_MEMORY_IN_FLAG_NO_DRAIN 1
+     * }
+     */
+    public static int FLUSH_NV_MEMORY_IN_FLAG_NO_DRAIN() {
+        return FLUSH_NV_MEMORY_IN_FLAG_NO_DRAIN;
+    }
+    private static final long FLUSH_NV_MEMORY_DEFAULT_TOKEN = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define FLUSH_NV_MEMORY_DEFAULT_TOKEN -1
+     * }
+     */
+    public static long FLUSH_NV_MEMORY_DEFAULT_TOKEN() {
+        return FLUSH_NV_MEMORY_DEFAULT_TOKEN;
+    }
+    private static final int WRITE_NV_MEMORY_FLAG_FLUSH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define WRITE_NV_MEMORY_FLAG_FLUSH 1
+     * }
+     */
+    public static int WRITE_NV_MEMORY_FLAG_FLUSH() {
+        return WRITE_NV_MEMORY_FLAG_FLUSH;
+    }
+    private static final int WRITE_NV_MEMORY_FLAG_NON_TEMPORAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define WRITE_NV_MEMORY_FLAG_NON_TEMPORAL 2
+     * }
+     */
+    public static int WRITE_NV_MEMORY_FLAG_NON_TEMPORAL() {
+        return WRITE_NV_MEMORY_FLAG_NON_TEMPORAL;
+    }
+    private static final int WRITE_NV_MEMORY_FLAG_PERSIST = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define WRITE_NV_MEMORY_FLAG_PERSIST 3
+     * }
+     */
+    public static int WRITE_NV_MEMORY_FLAG_PERSIST() {
+        return WRITE_NV_MEMORY_FLAG_PERSIST;
+    }
+    private static final int WRITE_NV_MEMORY_FLAG_NO_DRAIN = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define WRITE_NV_MEMORY_FLAG_NO_DRAIN 256
+     * }
+     */
+    public static int WRITE_NV_MEMORY_FLAG_NO_DRAIN() {
+        return WRITE_NV_MEMORY_FLAG_NO_DRAIN;
+    }
+    private static final int FILL_NV_MEMORY_FLAG_FLUSH = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define FILL_NV_MEMORY_FLAG_FLUSH 1
+     * }
+     */
+    public static int FILL_NV_MEMORY_FLAG_FLUSH() {
+        return FILL_NV_MEMORY_FLAG_FLUSH;
+    }
+    private static final int FILL_NV_MEMORY_FLAG_NON_TEMPORAL = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define FILL_NV_MEMORY_FLAG_NON_TEMPORAL 2
+     * }
+     */
+    public static int FILL_NV_MEMORY_FLAG_NON_TEMPORAL() {
+        return FILL_NV_MEMORY_FLAG_NON_TEMPORAL;
+    }
+    private static final int FILL_NV_MEMORY_FLAG_PERSIST = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define FILL_NV_MEMORY_FLAG_PERSIST 3
+     * }
+     */
+    public static int FILL_NV_MEMORY_FLAG_PERSIST() {
+        return FILL_NV_MEMORY_FLAG_PERSIST;
+    }
+    private static final int FILL_NV_MEMORY_FLAG_NO_DRAIN = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define FILL_NV_MEMORY_FLAG_NO_DRAIN 256
+     * }
+     */
+    public static int FILL_NV_MEMORY_FLAG_NO_DRAIN() {
+        return FILL_NV_MEMORY_FLAG_NO_DRAIN;
+    }
+    private static final byte RTL_CORRELATION_VECTOR_VERSION_1 = (byte)1L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_VERSION_1 1
+     * }
+     */
+    public static byte RTL_CORRELATION_VECTOR_VERSION_1() {
+        return RTL_CORRELATION_VECTOR_VERSION_1;
+    }
+    private static final byte RTL_CORRELATION_VECTOR_VERSION_2 = (byte)2L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_VERSION_2 2
+     * }
+     */
+    public static byte RTL_CORRELATION_VECTOR_VERSION_2() {
+        return RTL_CORRELATION_VECTOR_VERSION_2;
+    }
+    private static final byte RTL_CORRELATION_VECTOR_VERSION_CURRENT = (byte)2L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_VERSION_CURRENT 2
+     * }
+     */
+    public static byte RTL_CORRELATION_VECTOR_VERSION_CURRENT() {
+        return RTL_CORRELATION_VECTOR_VERSION_CURRENT;
+    }
+    private static final int RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH 16
+     * }
+     */
+    public static int RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH() {
+        return RTL_CORRELATION_VECTOR_V1_PREFIX_LENGTH;
+    }
+    private static final int RTL_CORRELATION_VECTOR_V1_LENGTH = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_V1_LENGTH 64
+     * }
+     */
+    public static int RTL_CORRELATION_VECTOR_V1_LENGTH() {
+        return RTL_CORRELATION_VECTOR_V1_LENGTH;
+    }
+    private static final int RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH = (int)22L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH 22
+     * }
+     */
+    public static int RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH() {
+        return RTL_CORRELATION_VECTOR_V2_PREFIX_LENGTH;
+    }
+    private static final int RTL_CORRELATION_VECTOR_V2_LENGTH = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CORRELATION_VECTOR_V2_LENGTH 128
+     * }
+     */
+    public static int RTL_CORRELATION_VECTOR_V2_LENGTH() {
+        return RTL_CORRELATION_VECTOR_V2_LENGTH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define IMAGE_POLICY_SECTION_NAME ".tPolicy"
+     * }
+     */
+    public static MemorySegment IMAGE_POLICY_SECTION_NAME() {
+        class Holder {
+            static final MemorySegment IMAGE_POLICY_SECTION_NAME
+                = freeglut_h.LIBRARY_ARENA.allocateFrom(".tPolicy");
+        }
+        return Holder.IMAGE_POLICY_SECTION_NAME;
+    }
+    private static final int RTL_CRITICAL_SECTION_ALL_FLAG_BITS = (int)4278190080L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CRITICAL_SECTION_ALL_FLAG_BITS 4278190080
+     * }
+     */
+    public static int RTL_CRITICAL_SECTION_ALL_FLAG_BITS() {
+        return RTL_CRITICAL_SECTION_ALL_FLAG_BITS;
+    }
+    private static final int RTL_CRITICAL_SECTION_FLAG_RESERVED = (int)3758096384L;
+    /**
+     * {@snippet lang=c :
+     * #define RTL_CRITICAL_SECTION_FLAG_RESERVED 3758096384
+     * }
+     */
+    public static int RTL_CRITICAL_SECTION_FLAG_RESERVED() {
+        return RTL_CRITICAL_SECTION_FLAG_RESERVED;
+    }
+    private static final int ACTIVATION_CONTEXT_PATH_TYPE_NONE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_PATH_TYPE_NONE 1
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_PATH_TYPE_NONE() {
+        return ACTIVATION_CONTEXT_PATH_TYPE_NONE;
+    }
+    private static final int ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE 2
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE() {
+        return ACTIVATION_CONTEXT_PATH_TYPE_WIN32_FILE;
+    }
+    private static final int ACTIVATION_CONTEXT_PATH_TYPE_URL = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_PATH_TYPE_URL 3
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_PATH_TYPE_URL() {
+        return ACTIVATION_CONTEXT_PATH_TYPE_URL;
+    }
+    private static final int ACTIVATION_CONTEXT_PATH_TYPE_ASSEMBLYREF = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_PATH_TYPE_ASSEMBLYREF 4
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_PATH_TYPE_ASSEMBLYREF() {
+        return ACTIVATION_CONTEXT_PATH_TYPE_ASSEMBLYREF;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define UNIFIEDBUILDREVISION_KEY "\"
+     * }
+     */
+    public static MemorySegment UNIFIEDBUILDREVISION_KEY() {
+        class Holder {
+            static final MemorySegment UNIFIEDBUILDREVISION_KEY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.UNIFIEDBUILDREVISION_KEY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define UNIFIEDBUILDREVISION_VALUE "U"
+     * }
+     */
+    public static MemorySegment UNIFIEDBUILDREVISION_VALUE() {
+        class Holder {
+            static final MemorySegment UNIFIEDBUILDREVISION_VALUE
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("U");
+        }
+        return Holder.UNIFIEDBUILDREVISION_VALUE;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define DEVICEFAMILYDEVICEFORM_KEY "\"
+     * }
+     */
+    public static MemorySegment DEVICEFAMILYDEVICEFORM_KEY() {
+        class Holder {
+            static final MemorySegment DEVICEFAMILYDEVICEFORM_KEY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.DEVICEFAMILYDEVICEFORM_KEY;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define DEVICEFAMILYDEVICEFORM_VALUE "D"
+     * }
+     */
+    public static MemorySegment DEVICEFAMILYDEVICEFORM_VALUE() {
+        class Holder {
+            static final MemorySegment DEVICEFAMILYDEVICEFORM_VALUE
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("D");
+        }
+        return Holder.DEVICEFAMILYDEVICEFORM_VALUE;
+    }
+    private static final int KEY_QUERY_VALUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_QUERY_VALUE 1
+     * }
+     */
+    public static int KEY_QUERY_VALUE() {
+        return KEY_QUERY_VALUE;
+    }
+    private static final int KEY_SET_VALUE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_SET_VALUE 2
+     * }
+     */
+    public static int KEY_SET_VALUE() {
+        return KEY_SET_VALUE;
+    }
+    private static final int KEY_CREATE_SUB_KEY = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_CREATE_SUB_KEY 4
+     * }
+     */
+    public static int KEY_CREATE_SUB_KEY() {
+        return KEY_CREATE_SUB_KEY;
+    }
+    private static final int KEY_ENUMERATE_SUB_KEYS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_ENUMERATE_SUB_KEYS 8
+     * }
+     */
+    public static int KEY_ENUMERATE_SUB_KEYS() {
+        return KEY_ENUMERATE_SUB_KEYS;
+    }
+    private static final int KEY_NOTIFY = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_NOTIFY 16
+     * }
+     */
+    public static int KEY_NOTIFY() {
+        return KEY_NOTIFY;
+    }
+    private static final int KEY_CREATE_LINK = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_CREATE_LINK 32
+     * }
+     */
+    public static int KEY_CREATE_LINK() {
+        return KEY_CREATE_LINK;
+    }
+    private static final int KEY_WOW64_32KEY = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_WOW64_32KEY 512
+     * }
+     */
+    public static int KEY_WOW64_32KEY() {
+        return KEY_WOW64_32KEY;
+    }
+    private static final int KEY_WOW64_64KEY = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_WOW64_64KEY 256
+     * }
+     */
+    public static int KEY_WOW64_64KEY() {
+        return KEY_WOW64_64KEY;
+    }
+    private static final int KEY_WOW64_RES = (int)768L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_WOW64_RES 768
+     * }
+     */
+    public static int KEY_WOW64_RES() {
+        return KEY_WOW64_RES;
+    }
+    private static final int KEY_READ = (int)131097L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_READ 131097
+     * }
+     */
+    public static int KEY_READ() {
+        return KEY_READ;
+    }
+    private static final int KEY_WRITE = (int)131078L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_WRITE 131078
+     * }
+     */
+    public static int KEY_WRITE() {
+        return KEY_WRITE;
+    }
+    private static final int KEY_EXECUTE = (int)131097L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_EXECUTE 131097
+     * }
+     */
+    public static int KEY_EXECUTE() {
+        return KEY_EXECUTE;
+    }
+    private static final int KEY_ALL_ACCESS = (int)983103L;
+    /**
+     * {@snippet lang=c :
+     * #define KEY_ALL_ACCESS 983103
+     * }
+     */
+    public static int KEY_ALL_ACCESS() {
+        return KEY_ALL_ACCESS;
+    }
+    private static final int REG_OPTION_RESERVED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_RESERVED 0
+     * }
+     */
+    public static int REG_OPTION_RESERVED() {
+        return REG_OPTION_RESERVED;
+    }
+    private static final int REG_OPTION_NON_VOLATILE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_NON_VOLATILE 0
+     * }
+     */
+    public static int REG_OPTION_NON_VOLATILE() {
+        return REG_OPTION_NON_VOLATILE;
+    }
+    private static final int REG_OPTION_VOLATILE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_VOLATILE 1
+     * }
+     */
+    public static int REG_OPTION_VOLATILE() {
+        return REG_OPTION_VOLATILE;
+    }
+    private static final int REG_OPTION_CREATE_LINK = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_CREATE_LINK 2
+     * }
+     */
+    public static int REG_OPTION_CREATE_LINK() {
+        return REG_OPTION_CREATE_LINK;
+    }
+    private static final int REG_OPTION_BACKUP_RESTORE = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_BACKUP_RESTORE 4
+     * }
+     */
+    public static int REG_OPTION_BACKUP_RESTORE() {
+        return REG_OPTION_BACKUP_RESTORE;
+    }
+    private static final int REG_OPTION_OPEN_LINK = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_OPEN_LINK 8
+     * }
+     */
+    public static int REG_OPTION_OPEN_LINK() {
+        return REG_OPTION_OPEN_LINK;
+    }
+    private static final int REG_OPTION_DONT_VIRTUALIZE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPTION_DONT_VIRTUALIZE 16
+     * }
+     */
+    public static int REG_OPTION_DONT_VIRTUALIZE() {
+        return REG_OPTION_DONT_VIRTUALIZE;
+    }
+    private static final int REG_LEGAL_OPTION = (int)31L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_LEGAL_OPTION 31
+     * }
+     */
+    public static int REG_LEGAL_OPTION() {
+        return REG_LEGAL_OPTION;
+    }
+    private static final int REG_OPEN_LEGAL_OPTION = (int)28L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPEN_LEGAL_OPTION 28
+     * }
+     */
+    public static int REG_OPEN_LEGAL_OPTION() {
+        return REG_OPEN_LEGAL_OPTION;
+    }
+    private static final int REG_CREATED_NEW_KEY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_CREATED_NEW_KEY 1
+     * }
+     */
+    public static int REG_CREATED_NEW_KEY() {
+        return REG_CREATED_NEW_KEY;
+    }
+    private static final int REG_OPENED_EXISTING_KEY = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPENED_EXISTING_KEY 2
+     * }
+     */
+    public static int REG_OPENED_EXISTING_KEY() {
+        return REG_OPENED_EXISTING_KEY;
+    }
+    private static final int REG_WHOLE_HIVE_VOLATILE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_WHOLE_HIVE_VOLATILE 1
+     * }
+     */
+    public static int REG_WHOLE_HIVE_VOLATILE() {
+        return REG_WHOLE_HIVE_VOLATILE;
+    }
+    private static final int REG_REFRESH_HIVE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_REFRESH_HIVE 2
+     * }
+     */
+    public static int REG_REFRESH_HIVE() {
+        return REG_REFRESH_HIVE;
+    }
+    private static final int REG_NO_LAZY_FLUSH = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NO_LAZY_FLUSH 4
+     * }
+     */
+    public static int REG_NO_LAZY_FLUSH() {
+        return REG_NO_LAZY_FLUSH;
+    }
+    private static final int REG_FORCE_RESTORE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_FORCE_RESTORE 8
+     * }
+     */
+    public static int REG_FORCE_RESTORE() {
+        return REG_FORCE_RESTORE;
+    }
+    private static final int REG_APP_HIVE = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_APP_HIVE 16
+     * }
+     */
+    public static int REG_APP_HIVE() {
+        return REG_APP_HIVE;
+    }
+    private static final int REG_PROCESS_PRIVATE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_PROCESS_PRIVATE 32
+     * }
+     */
+    public static int REG_PROCESS_PRIVATE() {
+        return REG_PROCESS_PRIVATE;
+    }
+    private static final int REG_START_JOURNAL = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_START_JOURNAL 64
+     * }
+     */
+    public static int REG_START_JOURNAL() {
+        return REG_START_JOURNAL;
+    }
+    private static final int REG_HIVE_EXACT_FILE_GROWTH = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_HIVE_EXACT_FILE_GROWTH 128
+     * }
+     */
+    public static int REG_HIVE_EXACT_FILE_GROWTH() {
+        return REG_HIVE_EXACT_FILE_GROWTH;
+    }
+    private static final int REG_HIVE_NO_RM = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_HIVE_NO_RM 256
+     * }
+     */
+    public static int REG_HIVE_NO_RM() {
+        return REG_HIVE_NO_RM;
+    }
+    private static final int REG_HIVE_SINGLE_LOG = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_HIVE_SINGLE_LOG 512
+     * }
+     */
+    public static int REG_HIVE_SINGLE_LOG() {
+        return REG_HIVE_SINGLE_LOG;
+    }
+    private static final int REG_BOOT_HIVE = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_BOOT_HIVE 1024
+     * }
+     */
+    public static int REG_BOOT_HIVE() {
+        return REG_BOOT_HIVE;
+    }
+    private static final int REG_LOAD_HIVE_OPEN_HANDLE = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_LOAD_HIVE_OPEN_HANDLE 2048
+     * }
+     */
+    public static int REG_LOAD_HIVE_OPEN_HANDLE() {
+        return REG_LOAD_HIVE_OPEN_HANDLE;
+    }
+    private static final int REG_FLUSH_HIVE_FILE_GROWTH = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_FLUSH_HIVE_FILE_GROWTH 4096
+     * }
+     */
+    public static int REG_FLUSH_HIVE_FILE_GROWTH() {
+        return REG_FLUSH_HIVE_FILE_GROWTH;
+    }
+    private static final int REG_OPEN_READ_ONLY = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_OPEN_READ_ONLY 8192
+     * }
+     */
+    public static int REG_OPEN_READ_ONLY() {
+        return REG_OPEN_READ_ONLY;
+    }
+    private static final int REG_IMMUTABLE = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_IMMUTABLE 16384
+     * }
+     */
+    public static int REG_IMMUTABLE() {
+        return REG_IMMUTABLE;
+    }
+    private static final int REG_NO_IMPERSONATION_FALLBACK = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NO_IMPERSONATION_FALLBACK 32768
+     * }
+     */
+    public static int REG_NO_IMPERSONATION_FALLBACK() {
+        return REG_NO_IMPERSONATION_FALLBACK;
+    }
+    private static final int REG_APP_HIVE_OPEN_READ_ONLY = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_APP_HIVE_OPEN_READ_ONLY 8192
+     * }
+     */
+    public static int REG_APP_HIVE_OPEN_READ_ONLY() {
+        return REG_APP_HIVE_OPEN_READ_ONLY;
+    }
+    private static final int REG_UNLOAD_LEGAL_FLAGS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_UNLOAD_LEGAL_FLAGS 1
+     * }
+     */
+    public static int REG_UNLOAD_LEGAL_FLAGS() {
+        return REG_UNLOAD_LEGAL_FLAGS;
+    }
+    private static final int REG_NOTIFY_CHANGE_NAME = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NOTIFY_CHANGE_NAME 1
+     * }
+     */
+    public static int REG_NOTIFY_CHANGE_NAME() {
+        return REG_NOTIFY_CHANGE_NAME;
+    }
+    private static final int REG_NOTIFY_CHANGE_ATTRIBUTES = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NOTIFY_CHANGE_ATTRIBUTES 2
+     * }
+     */
+    public static int REG_NOTIFY_CHANGE_ATTRIBUTES() {
+        return REG_NOTIFY_CHANGE_ATTRIBUTES;
+    }
+    private static final int REG_NOTIFY_CHANGE_LAST_SET = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NOTIFY_CHANGE_LAST_SET 4
+     * }
+     */
+    public static int REG_NOTIFY_CHANGE_LAST_SET() {
+        return REG_NOTIFY_CHANGE_LAST_SET;
+    }
+    private static final int REG_NOTIFY_CHANGE_SECURITY = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NOTIFY_CHANGE_SECURITY 8
+     * }
+     */
+    public static int REG_NOTIFY_CHANGE_SECURITY() {
+        return REG_NOTIFY_CHANGE_SECURITY;
+    }
+    private static final int REG_NOTIFY_THREAD_AGNOSTIC = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NOTIFY_THREAD_AGNOSTIC 268435456
+     * }
+     */
+    public static int REG_NOTIFY_THREAD_AGNOSTIC() {
+        return REG_NOTIFY_THREAD_AGNOSTIC;
+    }
+    private static final int REG_LEGAL_CHANGE_FILTER = (int)268435471L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_LEGAL_CHANGE_FILTER 268435471
+     * }
+     */
+    public static int REG_LEGAL_CHANGE_FILTER() {
+        return REG_LEGAL_CHANGE_FILTER;
+    }
+    private static final int REG_NONE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_NONE 0
+     * }
+     */
+    public static int REG_NONE() {
+        return REG_NONE;
+    }
+    private static final int REG_SZ = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_SZ 1
+     * }
+     */
+    public static int REG_SZ() {
+        return REG_SZ;
+    }
+    private static final int REG_EXPAND_SZ = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_EXPAND_SZ 2
+     * }
+     */
+    public static int REG_EXPAND_SZ() {
+        return REG_EXPAND_SZ;
+    }
+    private static final int REG_BINARY = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_BINARY 3
+     * }
+     */
+    public static int REG_BINARY() {
+        return REG_BINARY;
+    }
+    private static final int REG_DWORD = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_DWORD 4
+     * }
+     */
+    public static int REG_DWORD() {
+        return REG_DWORD;
+    }
+    private static final int REG_DWORD_LITTLE_ENDIAN = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_DWORD_LITTLE_ENDIAN 4
+     * }
+     */
+    public static int REG_DWORD_LITTLE_ENDIAN() {
+        return REG_DWORD_LITTLE_ENDIAN;
+    }
+    private static final int REG_DWORD_BIG_ENDIAN = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_DWORD_BIG_ENDIAN 5
+     * }
+     */
+    public static int REG_DWORD_BIG_ENDIAN() {
+        return REG_DWORD_BIG_ENDIAN;
+    }
+    private static final int REG_LINK = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_LINK 6
+     * }
+     */
+    public static int REG_LINK() {
+        return REG_LINK;
+    }
+    private static final int REG_MULTI_SZ = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_MULTI_SZ 7
+     * }
+     */
+    public static int REG_MULTI_SZ() {
+        return REG_MULTI_SZ;
+    }
+    private static final int REG_RESOURCE_LIST = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_RESOURCE_LIST 8
+     * }
+     */
+    public static int REG_RESOURCE_LIST() {
+        return REG_RESOURCE_LIST;
+    }
+    private static final int REG_FULL_RESOURCE_DESCRIPTOR = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_FULL_RESOURCE_DESCRIPTOR 9
+     * }
+     */
+    public static int REG_FULL_RESOURCE_DESCRIPTOR() {
+        return REG_FULL_RESOURCE_DESCRIPTOR;
+    }
+    private static final int REG_RESOURCE_REQUIREMENTS_LIST = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_RESOURCE_REQUIREMENTS_LIST 10
+     * }
+     */
+    public static int REG_RESOURCE_REQUIREMENTS_LIST() {
+        return REG_RESOURCE_REQUIREMENTS_LIST;
+    }
+    private static final int REG_QWORD = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_QWORD 11
+     * }
+     */
+    public static int REG_QWORD() {
+        return REG_QWORD;
+    }
+    private static final int REG_QWORD_LITTLE_ENDIAN = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define REG_QWORD_LITTLE_ENDIAN 11
+     * }
+     */
+    public static int REG_QWORD_LITTLE_ENDIAN() {
+        return REG_QWORD_LITTLE_ENDIAN;
+    }
+    private static final int SERVICE_DRIVER = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_DRIVER 11
+     * }
+     */
+    public static int SERVICE_DRIVER() {
+        return SERVICE_DRIVER;
+    }
+    private static final int SERVICE_WIN32 = (int)48L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_WIN32 48
+     * }
+     */
+    public static int SERVICE_WIN32() {
+        return SERVICE_WIN32;
+    }
+    private static final int SERVICE_USER_SHARE_PROCESS = (int)96L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_USER_SHARE_PROCESS 96
+     * }
+     */
+    public static int SERVICE_USER_SHARE_PROCESS() {
+        return SERVICE_USER_SHARE_PROCESS;
+    }
+    private static final int SERVICE_USER_OWN_PROCESS = (int)80L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_USER_OWN_PROCESS 80
+     * }
+     */
+    public static int SERVICE_USER_OWN_PROCESS() {
+        return SERVICE_USER_OWN_PROCESS;
+    }
+    private static final int SERVICE_TYPE_ALL = (int)1023L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_TYPE_ALL 1023
+     * }
+     */
+    public static int SERVICE_TYPE_ALL() {
+        return SERVICE_TYPE_ALL;
+    }
+    private static final int CM_SERVICE_VALID_PROMOTION_MASK = (int)511L;
+    /**
+     * {@snippet lang=c :
+     * #define CM_SERVICE_VALID_PROMOTION_MASK 511
+     * }
+     */
+    public static int CM_SERVICE_VALID_PROMOTION_MASK() {
+        return CM_SERVICE_VALID_PROMOTION_MASK;
+    }
+    private static final int TAPE_ERASE_SHORT = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_ERASE_SHORT 0
+     * }
+     */
+    public static int TAPE_ERASE_SHORT() {
+        return TAPE_ERASE_SHORT;
+    }
+    private static final int TAPE_ERASE_LONG = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_ERASE_LONG 1
+     * }
+     */
+    public static int TAPE_ERASE_LONG() {
+        return TAPE_ERASE_LONG;
+    }
+    private static final int TAPE_LOAD = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_LOAD 0
+     * }
+     */
+    public static int TAPE_LOAD() {
+        return TAPE_LOAD;
+    }
+    private static final int TAPE_UNLOAD = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_UNLOAD 1
+     * }
+     */
+    public static int TAPE_UNLOAD() {
+        return TAPE_UNLOAD;
+    }
+    private static final int TAPE_TENSION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_TENSION 2
+     * }
+     */
+    public static int TAPE_TENSION() {
+        return TAPE_TENSION;
+    }
+    private static final int TAPE_LOCK = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_LOCK 3
+     * }
+     */
+    public static int TAPE_LOCK() {
+        return TAPE_LOCK;
+    }
+    private static final int TAPE_UNLOCK = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_UNLOCK 4
+     * }
+     */
+    public static int TAPE_UNLOCK() {
+        return TAPE_UNLOCK;
+    }
+    private static final int TAPE_FORMAT = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_FORMAT 5
+     * }
+     */
+    public static int TAPE_FORMAT() {
+        return TAPE_FORMAT;
+    }
+    private static final int TAPE_SETMARKS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SETMARKS 0
+     * }
+     */
+    public static int TAPE_SETMARKS() {
+        return TAPE_SETMARKS;
+    }
+    private static final int TAPE_FILEMARKS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_FILEMARKS 1
+     * }
+     */
+    public static int TAPE_FILEMARKS() {
+        return TAPE_FILEMARKS;
+    }
+    private static final int TAPE_SHORT_FILEMARKS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SHORT_FILEMARKS 2
+     * }
+     */
+    public static int TAPE_SHORT_FILEMARKS() {
+        return TAPE_SHORT_FILEMARKS;
+    }
+    private static final int TAPE_LONG_FILEMARKS = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_LONG_FILEMARKS 3
+     * }
+     */
+    public static int TAPE_LONG_FILEMARKS() {
+        return TAPE_LONG_FILEMARKS;
+    }
+    private static final int TAPE_ABSOLUTE_POSITION = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_ABSOLUTE_POSITION 0
+     * }
+     */
+    public static int TAPE_ABSOLUTE_POSITION() {
+        return TAPE_ABSOLUTE_POSITION;
+    }
+    private static final int TAPE_LOGICAL_POSITION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_LOGICAL_POSITION 1
+     * }
+     */
+    public static int TAPE_LOGICAL_POSITION() {
+        return TAPE_LOGICAL_POSITION;
+    }
+    private static final int TAPE_PSEUDO_LOGICAL_POSITION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_PSEUDO_LOGICAL_POSITION 2
+     * }
+     */
+    public static int TAPE_PSEUDO_LOGICAL_POSITION() {
+        return TAPE_PSEUDO_LOGICAL_POSITION;
+    }
+    private static final int TAPE_REWIND = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_REWIND 0
+     * }
+     */
+    public static int TAPE_REWIND() {
+        return TAPE_REWIND;
+    }
+    private static final int TAPE_ABSOLUTE_BLOCK = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_ABSOLUTE_BLOCK 1
+     * }
+     */
+    public static int TAPE_ABSOLUTE_BLOCK() {
+        return TAPE_ABSOLUTE_BLOCK;
+    }
+    private static final int TAPE_LOGICAL_BLOCK = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_LOGICAL_BLOCK 2
+     * }
+     */
+    public static int TAPE_LOGICAL_BLOCK() {
+        return TAPE_LOGICAL_BLOCK;
+    }
+    private static final int TAPE_PSEUDO_LOGICAL_BLOCK = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_PSEUDO_LOGICAL_BLOCK 3
+     * }
+     */
+    public static int TAPE_PSEUDO_LOGICAL_BLOCK() {
+        return TAPE_PSEUDO_LOGICAL_BLOCK;
+    }
+    private static final int TAPE_SPACE_END_OF_DATA = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_END_OF_DATA 4
+     * }
+     */
+    public static int TAPE_SPACE_END_OF_DATA() {
+        return TAPE_SPACE_END_OF_DATA;
+    }
+    private static final int TAPE_SPACE_RELATIVE_BLOCKS = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_RELATIVE_BLOCKS 5
+     * }
+     */
+    public static int TAPE_SPACE_RELATIVE_BLOCKS() {
+        return TAPE_SPACE_RELATIVE_BLOCKS;
+    }
+    private static final int TAPE_SPACE_FILEMARKS = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_FILEMARKS 6
+     * }
+     */
+    public static int TAPE_SPACE_FILEMARKS() {
+        return TAPE_SPACE_FILEMARKS;
+    }
+    private static final int TAPE_SPACE_SEQUENTIAL_FMKS = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_SEQUENTIAL_FMKS 7
+     * }
+     */
+    public static int TAPE_SPACE_SEQUENTIAL_FMKS() {
+        return TAPE_SPACE_SEQUENTIAL_FMKS;
+    }
+    private static final int TAPE_SPACE_SETMARKS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_SETMARKS 8
+     * }
+     */
+    public static int TAPE_SPACE_SETMARKS() {
+        return TAPE_SPACE_SETMARKS;
+    }
+    private static final int TAPE_SPACE_SEQUENTIAL_SMKS = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SPACE_SEQUENTIAL_SMKS 9
+     * }
+     */
+    public static int TAPE_SPACE_SEQUENTIAL_SMKS() {
+        return TAPE_SPACE_SEQUENTIAL_SMKS;
+    }
+    private static final int TAPE_DRIVE_RESERVED_BIT = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_RESERVED_BIT 2147483648
+     * }
+     */
+    public static int TAPE_DRIVE_RESERVED_BIT() {
+        return TAPE_DRIVE_RESERVED_BIT;
+    }
+    private static final int TAPE_DRIVE_LOAD_UNLOAD = (int)2147483649L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOAD_UNLOAD 2147483649
+     * }
+     */
+    public static int TAPE_DRIVE_LOAD_UNLOAD() {
+        return TAPE_DRIVE_LOAD_UNLOAD;
+    }
+    private static final int TAPE_DRIVE_TENSION = (int)2147483650L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_TENSION 2147483650
+     * }
+     */
+    public static int TAPE_DRIVE_TENSION() {
+        return TAPE_DRIVE_TENSION;
+    }
+    private static final int TAPE_DRIVE_LOCK_UNLOCK = (int)2147483652L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOCK_UNLOCK 2147483652
+     * }
+     */
+    public static int TAPE_DRIVE_LOCK_UNLOCK() {
+        return TAPE_DRIVE_LOCK_UNLOCK;
+    }
+    private static final int TAPE_DRIVE_REWIND_IMMEDIATE = (int)2147483656L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_REWIND_IMMEDIATE 2147483656
+     * }
+     */
+    public static int TAPE_DRIVE_REWIND_IMMEDIATE() {
+        return TAPE_DRIVE_REWIND_IMMEDIATE;
+    }
+    private static final int TAPE_DRIVE_SET_BLOCK_SIZE = (int)2147483664L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SET_BLOCK_SIZE 2147483664
+     * }
+     */
+    public static int TAPE_DRIVE_SET_BLOCK_SIZE() {
+        return TAPE_DRIVE_SET_BLOCK_SIZE;
+    }
+    private static final int TAPE_DRIVE_LOAD_UNLD_IMMED = (int)2147483680L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOAD_UNLD_IMMED 2147483680
+     * }
+     */
+    public static int TAPE_DRIVE_LOAD_UNLD_IMMED() {
+        return TAPE_DRIVE_LOAD_UNLD_IMMED;
+    }
+    private static final int TAPE_DRIVE_TENSION_IMMED = (int)2147483712L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_TENSION_IMMED 2147483712
+     * }
+     */
+    public static int TAPE_DRIVE_TENSION_IMMED() {
+        return TAPE_DRIVE_TENSION_IMMED;
+    }
+    private static final int TAPE_DRIVE_LOCK_UNLK_IMMED = (int)2147483776L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOCK_UNLK_IMMED 2147483776
+     * }
+     */
+    public static int TAPE_DRIVE_LOCK_UNLK_IMMED() {
+        return TAPE_DRIVE_LOCK_UNLK_IMMED;
+    }
+    private static final int TAPE_DRIVE_SET_ECC = (int)2147483904L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SET_ECC 2147483904
+     * }
+     */
+    public static int TAPE_DRIVE_SET_ECC() {
+        return TAPE_DRIVE_SET_ECC;
+    }
+    private static final int TAPE_DRIVE_SET_COMPRESSION = (int)2147484160L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SET_COMPRESSION 2147484160
+     * }
+     */
+    public static int TAPE_DRIVE_SET_COMPRESSION() {
+        return TAPE_DRIVE_SET_COMPRESSION;
+    }
+    private static final int TAPE_DRIVE_SET_PADDING = (int)2147484672L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SET_PADDING 2147484672
+     * }
+     */
+    public static int TAPE_DRIVE_SET_PADDING() {
+        return TAPE_DRIVE_SET_PADDING;
+    }
+    private static final int TAPE_DRIVE_SET_REPORT_SMKS = (int)2147485696L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SET_REPORT_SMKS 2147485696
+     * }
+     */
+    public static int TAPE_DRIVE_SET_REPORT_SMKS() {
+        return TAPE_DRIVE_SET_REPORT_SMKS;
+    }
+    private static final int TAPE_DRIVE_ABSOLUTE_BLK = (int)2147487744L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_ABSOLUTE_BLK 2147487744
+     * }
+     */
+    public static int TAPE_DRIVE_ABSOLUTE_BLK() {
+        return TAPE_DRIVE_ABSOLUTE_BLK;
+    }
+    private static final int TAPE_DRIVE_ABS_BLK_IMMED = (int)2147491840L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_ABS_BLK_IMMED 2147491840
+     * }
+     */
+    public static int TAPE_DRIVE_ABS_BLK_IMMED() {
+        return TAPE_DRIVE_ABS_BLK_IMMED;
+    }
+    private static final int TAPE_DRIVE_LOGICAL_BLK = (int)2147500032L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOGICAL_BLK 2147500032
+     * }
+     */
+    public static int TAPE_DRIVE_LOGICAL_BLK() {
+        return TAPE_DRIVE_LOGICAL_BLK;
+    }
+    private static final int TAPE_DRIVE_LOG_BLK_IMMED = (int)2147516416L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_LOG_BLK_IMMED 2147516416
+     * }
+     */
+    public static int TAPE_DRIVE_LOG_BLK_IMMED() {
+        return TAPE_DRIVE_LOG_BLK_IMMED;
+    }
+    private static final int TAPE_DRIVE_END_OF_DATA = (int)2147549184L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_END_OF_DATA 2147549184
+     * }
+     */
+    public static int TAPE_DRIVE_END_OF_DATA() {
+        return TAPE_DRIVE_END_OF_DATA;
+    }
+    private static final int TAPE_DRIVE_RELATIVE_BLKS = (int)2147614720L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_RELATIVE_BLKS 2147614720
+     * }
+     */
+    public static int TAPE_DRIVE_RELATIVE_BLKS() {
+        return TAPE_DRIVE_RELATIVE_BLKS;
+    }
+    private static final int TAPE_DRIVE_FILEMARKS = (int)2147745792L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_FILEMARKS 2147745792
+     * }
+     */
+    public static int TAPE_DRIVE_FILEMARKS() {
+        return TAPE_DRIVE_FILEMARKS;
+    }
+    private static final int TAPE_DRIVE_SEQUENTIAL_FMKS = (int)2148007936L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SEQUENTIAL_FMKS 2148007936
+     * }
+     */
+    public static int TAPE_DRIVE_SEQUENTIAL_FMKS() {
+        return TAPE_DRIVE_SEQUENTIAL_FMKS;
+    }
+    private static final int TAPE_DRIVE_SETMARKS = (int)2148532224L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SETMARKS 2148532224
+     * }
+     */
+    public static int TAPE_DRIVE_SETMARKS() {
+        return TAPE_DRIVE_SETMARKS;
+    }
+    private static final int TAPE_DRIVE_SEQUENTIAL_SMKS = (int)2149580800L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SEQUENTIAL_SMKS 2149580800
+     * }
+     */
+    public static int TAPE_DRIVE_SEQUENTIAL_SMKS() {
+        return TAPE_DRIVE_SEQUENTIAL_SMKS;
+    }
+    private static final int TAPE_DRIVE_REVERSE_POSITION = (int)2151677952L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_REVERSE_POSITION 2151677952
+     * }
+     */
+    public static int TAPE_DRIVE_REVERSE_POSITION() {
+        return TAPE_DRIVE_REVERSE_POSITION;
+    }
+    private static final int TAPE_DRIVE_SPACE_IMMEDIATE = (int)2155872256L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_SPACE_IMMEDIATE 2155872256
+     * }
+     */
+    public static int TAPE_DRIVE_SPACE_IMMEDIATE() {
+        return TAPE_DRIVE_SPACE_IMMEDIATE;
+    }
+    private static final int TAPE_DRIVE_WRITE_SETMARKS = (int)2164260864L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_WRITE_SETMARKS 2164260864
+     * }
+     */
+    public static int TAPE_DRIVE_WRITE_SETMARKS() {
+        return TAPE_DRIVE_WRITE_SETMARKS;
+    }
+    private static final int TAPE_DRIVE_WRITE_FILEMARKS = (int)2181038080L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_WRITE_FILEMARKS 2181038080
+     * }
+     */
+    public static int TAPE_DRIVE_WRITE_FILEMARKS() {
+        return TAPE_DRIVE_WRITE_FILEMARKS;
+    }
+    private static final int TAPE_DRIVE_WRITE_SHORT_FMKS = (int)2214592512L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_WRITE_SHORT_FMKS 2214592512
+     * }
+     */
+    public static int TAPE_DRIVE_WRITE_SHORT_FMKS() {
+        return TAPE_DRIVE_WRITE_SHORT_FMKS;
+    }
+    private static final int TAPE_DRIVE_WRITE_LONG_FMKS = (int)2281701376L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_WRITE_LONG_FMKS 2281701376
+     * }
+     */
+    public static int TAPE_DRIVE_WRITE_LONG_FMKS() {
+        return TAPE_DRIVE_WRITE_LONG_FMKS;
+    }
+    private static final int TAPE_DRIVE_WRITE_MARK_IMMED = (int)2415919104L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_WRITE_MARK_IMMED 2415919104
+     * }
+     */
+    public static int TAPE_DRIVE_WRITE_MARK_IMMED() {
+        return TAPE_DRIVE_WRITE_MARK_IMMED;
+    }
+    private static final int TAPE_DRIVE_FORMAT = (int)2684354560L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_FORMAT 2684354560
+     * }
+     */
+    public static int TAPE_DRIVE_FORMAT() {
+        return TAPE_DRIVE_FORMAT;
+    }
+    private static final int TAPE_DRIVE_FORMAT_IMMEDIATE = (int)3221225472L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_FORMAT_IMMEDIATE 3221225472
+     * }
+     */
+    public static int TAPE_DRIVE_FORMAT_IMMEDIATE() {
+        return TAPE_DRIVE_FORMAT_IMMEDIATE;
+    }
+    private static final int TAPE_DRIVE_HIGH_FEATURES = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_DRIVE_HIGH_FEATURES 2147483648
+     * }
+     */
+    public static int TAPE_DRIVE_HIGH_FEATURES() {
+        return TAPE_DRIVE_HIGH_FEATURES;
+    }
+    private static final int TAPE_FIXED_PARTITIONS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_FIXED_PARTITIONS 0
+     * }
+     */
+    public static int TAPE_FIXED_PARTITIONS() {
+        return TAPE_FIXED_PARTITIONS;
+    }
+    private static final int TAPE_SELECT_PARTITIONS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_SELECT_PARTITIONS 1
+     * }
+     */
+    public static int TAPE_SELECT_PARTITIONS() {
+        return TAPE_SELECT_PARTITIONS;
+    }
+    private static final int TAPE_INITIATOR_PARTITIONS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_INITIATOR_PARTITIONS 2
+     * }
+     */
+    public static int TAPE_INITIATOR_PARTITIONS() {
+        return TAPE_INITIATOR_PARTITIONS;
+    }
+    private static final int TAPE_QUERY_DRIVE_PARAMETERS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_QUERY_DRIVE_PARAMETERS 0
+     * }
+     */
+    public static int TAPE_QUERY_DRIVE_PARAMETERS() {
+        return TAPE_QUERY_DRIVE_PARAMETERS;
+    }
+    private static final int TAPE_QUERY_MEDIA_CAPACITY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_QUERY_MEDIA_CAPACITY 1
+     * }
+     */
+    public static int TAPE_QUERY_MEDIA_CAPACITY() {
+        return TAPE_QUERY_MEDIA_CAPACITY;
+    }
+    private static final int TAPE_CHECK_FOR_DRIVE_PROBLEM = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_CHECK_FOR_DRIVE_PROBLEM 2
+     * }
+     */
+    public static int TAPE_CHECK_FOR_DRIVE_PROBLEM() {
+        return TAPE_CHECK_FOR_DRIVE_PROBLEM;
+    }
+    private static final int TAPE_QUERY_IO_ERROR_DATA = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_QUERY_IO_ERROR_DATA 3
+     * }
+     */
+    public static int TAPE_QUERY_IO_ERROR_DATA() {
+        return TAPE_QUERY_IO_ERROR_DATA;
+    }
+    private static final int TAPE_QUERY_DEVICE_ERROR_DATA = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TAPE_QUERY_DEVICE_ERROR_DATA 4
+     * }
+     */
+    public static int TAPE_QUERY_DEVICE_ERROR_DATA() {
+        return TAPE_QUERY_DEVICE_ERROR_DATA;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_OBJECT_PATH "\"
+     * }
+     */
+    public static MemorySegment TRANSACTIONMANAGER_OBJECT_PATH() {
+        class Holder {
+            static final MemorySegment TRANSACTIONMANAGER_OBJECT_PATH
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.TRANSACTIONMANAGER_OBJECT_PATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_OBJECT_PATH "\"
+     * }
+     */
+    public static MemorySegment TRANSACTION_OBJECT_PATH() {
+        class Holder {
+            static final MemorySegment TRANSACTION_OBJECT_PATH
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.TRANSACTION_OBJECT_PATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_OBJECT_PATH "\"
+     * }
+     */
+    public static MemorySegment ENLISTMENT_OBJECT_PATH() {
+        class Holder {
+            static final MemorySegment ENLISTMENT_OBJECT_PATH
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.ENLISTMENT_OBJECT_PATH;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_MANAGER_OBJECT_PATH "\"
+     * }
+     */
+    public static MemorySegment RESOURCE_MANAGER_OBJECT_PATH() {
+        class Holder {
+            static final MemorySegment RESOURCE_MANAGER_OBJECT_PATH
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("\\");
+        }
+        return Holder.RESOURCE_MANAGER_OBJECT_PATH;
+    }
+    private static final long TRANSACTIONMANAGER_OBJECT_NAME_LENGTH_IN_BYTES = 118L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_OBJECT_NAME_LENGTH_IN_BYTES 118
+     * }
+     */
+    public static long TRANSACTIONMANAGER_OBJECT_NAME_LENGTH_IN_BYTES() {
+        return TRANSACTIONMANAGER_OBJECT_NAME_LENGTH_IN_BYTES;
+    }
+    private static final long TRANSACTION_OBJECT_NAME_LENGTH_IN_BYTES = 104L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_OBJECT_NAME_LENGTH_IN_BYTES 104
+     * }
+     */
+    public static long TRANSACTION_OBJECT_NAME_LENGTH_IN_BYTES() {
+        return TRANSACTION_OBJECT_NAME_LENGTH_IN_BYTES;
+    }
+    private static final long ENLISTMENT_OBJECT_NAME_LENGTH_IN_BYTES = 102L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_OBJECT_NAME_LENGTH_IN_BYTES 102
+     * }
+     */
+    public static long ENLISTMENT_OBJECT_NAME_LENGTH_IN_BYTES() {
+        return ENLISTMENT_OBJECT_NAME_LENGTH_IN_BYTES;
+    }
+    private static final long RESOURCE_MANAGER_OBJECT_NAME_LENGTH_IN_BYTES = 112L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_MANAGER_OBJECT_NAME_LENGTH_IN_BYTES 112
+     * }
+     */
+    public static long RESOURCE_MANAGER_OBJECT_NAME_LENGTH_IN_BYTES() {
+        return RESOURCE_MANAGER_OBJECT_NAME_LENGTH_IN_BYTES;
+    }
+    private static final int TRANSACTIONMANAGER_QUERY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_QUERY_INFORMATION 1
+     * }
+     */
+    public static int TRANSACTIONMANAGER_QUERY_INFORMATION() {
+        return TRANSACTIONMANAGER_QUERY_INFORMATION;
+    }
+    private static final int TRANSACTIONMANAGER_SET_INFORMATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_SET_INFORMATION 2
+     * }
+     */
+    public static int TRANSACTIONMANAGER_SET_INFORMATION() {
+        return TRANSACTIONMANAGER_SET_INFORMATION;
+    }
+    private static final int TRANSACTIONMANAGER_RECOVER = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_RECOVER 4
+     * }
+     */
+    public static int TRANSACTIONMANAGER_RECOVER() {
+        return TRANSACTIONMANAGER_RECOVER;
+    }
+    private static final int TRANSACTIONMANAGER_RENAME = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_RENAME 8
+     * }
+     */
+    public static int TRANSACTIONMANAGER_RENAME() {
+        return TRANSACTIONMANAGER_RENAME;
+    }
+    private static final int TRANSACTIONMANAGER_CREATE_RM = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_CREATE_RM 16
+     * }
+     */
+    public static int TRANSACTIONMANAGER_CREATE_RM() {
+        return TRANSACTIONMANAGER_CREATE_RM;
+    }
+    private static final int TRANSACTIONMANAGER_BIND_TRANSACTION = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_BIND_TRANSACTION 32
+     * }
+     */
+    public static int TRANSACTIONMANAGER_BIND_TRANSACTION() {
+        return TRANSACTIONMANAGER_BIND_TRANSACTION;
+    }
+    private static final int TRANSACTIONMANAGER_GENERIC_READ = (int)131073L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_GENERIC_READ 131073
+     * }
+     */
+    public static int TRANSACTIONMANAGER_GENERIC_READ() {
+        return TRANSACTIONMANAGER_GENERIC_READ;
+    }
+    private static final int TRANSACTIONMANAGER_GENERIC_WRITE = (int)131102L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_GENERIC_WRITE 131102
+     * }
+     */
+    public static int TRANSACTIONMANAGER_GENERIC_WRITE() {
+        return TRANSACTIONMANAGER_GENERIC_WRITE;
+    }
+    private static final int TRANSACTIONMANAGER_GENERIC_EXECUTE = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_GENERIC_EXECUTE 131072
+     * }
+     */
+    public static int TRANSACTIONMANAGER_GENERIC_EXECUTE() {
+        return TRANSACTIONMANAGER_GENERIC_EXECUTE;
+    }
+    private static final int TRANSACTIONMANAGER_ALL_ACCESS = (int)983103L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTIONMANAGER_ALL_ACCESS 983103
+     * }
+     */
+    public static int TRANSACTIONMANAGER_ALL_ACCESS() {
+        return TRANSACTIONMANAGER_ALL_ACCESS;
+    }
+    private static final int TRANSACTION_QUERY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_QUERY_INFORMATION 1
+     * }
+     */
+    public static int TRANSACTION_QUERY_INFORMATION() {
+        return TRANSACTION_QUERY_INFORMATION;
+    }
+    private static final int TRANSACTION_SET_INFORMATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_SET_INFORMATION 2
+     * }
+     */
+    public static int TRANSACTION_SET_INFORMATION() {
+        return TRANSACTION_SET_INFORMATION;
+    }
+    private static final int TRANSACTION_ENLIST = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_ENLIST 4
+     * }
+     */
+    public static int TRANSACTION_ENLIST() {
+        return TRANSACTION_ENLIST;
+    }
+    private static final int TRANSACTION_COMMIT = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_COMMIT 8
+     * }
+     */
+    public static int TRANSACTION_COMMIT() {
+        return TRANSACTION_COMMIT;
+    }
+    private static final int TRANSACTION_ROLLBACK = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_ROLLBACK 16
+     * }
+     */
+    public static int TRANSACTION_ROLLBACK() {
+        return TRANSACTION_ROLLBACK;
+    }
+    private static final int TRANSACTION_PROPAGATE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_PROPAGATE 32
+     * }
+     */
+    public static int TRANSACTION_PROPAGATE() {
+        return TRANSACTION_PROPAGATE;
+    }
+    private static final int TRANSACTION_RIGHT_RESERVED1 = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_RIGHT_RESERVED1 64
+     * }
+     */
+    public static int TRANSACTION_RIGHT_RESERVED1() {
+        return TRANSACTION_RIGHT_RESERVED1;
+    }
+    private static final int TRANSACTION_GENERIC_READ = (int)1179649L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_GENERIC_READ 1179649
+     * }
+     */
+    public static int TRANSACTION_GENERIC_READ() {
+        return TRANSACTION_GENERIC_READ;
+    }
+    private static final int TRANSACTION_GENERIC_WRITE = (int)1179710L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_GENERIC_WRITE 1179710
+     * }
+     */
+    public static int TRANSACTION_GENERIC_WRITE() {
+        return TRANSACTION_GENERIC_WRITE;
+    }
+    private static final int TRANSACTION_GENERIC_EXECUTE = (int)1179672L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_GENERIC_EXECUTE 1179672
+     * }
+     */
+    public static int TRANSACTION_GENERIC_EXECUTE() {
+        return TRANSACTION_GENERIC_EXECUTE;
+    }
+    private static final int TRANSACTION_ALL_ACCESS = (int)2031679L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_ALL_ACCESS 2031679
+     * }
+     */
+    public static int TRANSACTION_ALL_ACCESS() {
+        return TRANSACTION_ALL_ACCESS;
+    }
+    private static final int TRANSACTION_RESOURCE_MANAGER_RIGHTS = (int)1179703L;
+    /**
+     * {@snippet lang=c :
+     * #define TRANSACTION_RESOURCE_MANAGER_RIGHTS 1179703
+     * }
+     */
+    public static int TRANSACTION_RESOURCE_MANAGER_RIGHTS() {
+        return TRANSACTION_RESOURCE_MANAGER_RIGHTS;
+    }
+    private static final int RESOURCEMANAGER_QUERY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_QUERY_INFORMATION 1
+     * }
+     */
+    public static int RESOURCEMANAGER_QUERY_INFORMATION() {
+        return RESOURCEMANAGER_QUERY_INFORMATION;
+    }
+    private static final int RESOURCEMANAGER_SET_INFORMATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_SET_INFORMATION 2
+     * }
+     */
+    public static int RESOURCEMANAGER_SET_INFORMATION() {
+        return RESOURCEMANAGER_SET_INFORMATION;
+    }
+    private static final int RESOURCEMANAGER_RECOVER = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_RECOVER 4
+     * }
+     */
+    public static int RESOURCEMANAGER_RECOVER() {
+        return RESOURCEMANAGER_RECOVER;
+    }
+    private static final int RESOURCEMANAGER_ENLIST = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_ENLIST 8
+     * }
+     */
+    public static int RESOURCEMANAGER_ENLIST() {
+        return RESOURCEMANAGER_ENLIST;
+    }
+    private static final int RESOURCEMANAGER_GET_NOTIFICATION = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_GET_NOTIFICATION 16
+     * }
+     */
+    public static int RESOURCEMANAGER_GET_NOTIFICATION() {
+        return RESOURCEMANAGER_GET_NOTIFICATION;
+    }
+    private static final int RESOURCEMANAGER_REGISTER_PROTOCOL = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_REGISTER_PROTOCOL 32
+     * }
+     */
+    public static int RESOURCEMANAGER_REGISTER_PROTOCOL() {
+        return RESOURCEMANAGER_REGISTER_PROTOCOL;
+    }
+    private static final int RESOURCEMANAGER_COMPLETE_PROPAGATION = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_COMPLETE_PROPAGATION 64
+     * }
+     */
+    public static int RESOURCEMANAGER_COMPLETE_PROPAGATION() {
+        return RESOURCEMANAGER_COMPLETE_PROPAGATION;
+    }
+    private static final int RESOURCEMANAGER_GENERIC_READ = (int)1179649L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_GENERIC_READ 1179649
+     * }
+     */
+    public static int RESOURCEMANAGER_GENERIC_READ() {
+        return RESOURCEMANAGER_GENERIC_READ;
+    }
+    private static final int RESOURCEMANAGER_GENERIC_WRITE = (int)1179774L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_GENERIC_WRITE 1179774
+     * }
+     */
+    public static int RESOURCEMANAGER_GENERIC_WRITE() {
+        return RESOURCEMANAGER_GENERIC_WRITE;
+    }
+    private static final int RESOURCEMANAGER_GENERIC_EXECUTE = (int)1179740L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_GENERIC_EXECUTE 1179740
+     * }
+     */
+    public static int RESOURCEMANAGER_GENERIC_EXECUTE() {
+        return RESOURCEMANAGER_GENERIC_EXECUTE;
+    }
+    private static final int RESOURCEMANAGER_ALL_ACCESS = (int)2031743L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCEMANAGER_ALL_ACCESS 2031743
+     * }
+     */
+    public static int RESOURCEMANAGER_ALL_ACCESS() {
+        return RESOURCEMANAGER_ALL_ACCESS;
+    }
+    private static final int ENLISTMENT_QUERY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_QUERY_INFORMATION 1
+     * }
+     */
+    public static int ENLISTMENT_QUERY_INFORMATION() {
+        return ENLISTMENT_QUERY_INFORMATION;
+    }
+    private static final int ENLISTMENT_SET_INFORMATION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_SET_INFORMATION 2
+     * }
+     */
+    public static int ENLISTMENT_SET_INFORMATION() {
+        return ENLISTMENT_SET_INFORMATION;
+    }
+    private static final int ENLISTMENT_RECOVER = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_RECOVER 4
+     * }
+     */
+    public static int ENLISTMENT_RECOVER() {
+        return ENLISTMENT_RECOVER;
+    }
+    private static final int ENLISTMENT_SUBORDINATE_RIGHTS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_SUBORDINATE_RIGHTS 8
+     * }
+     */
+    public static int ENLISTMENT_SUBORDINATE_RIGHTS() {
+        return ENLISTMENT_SUBORDINATE_RIGHTS;
+    }
+    private static final int ENLISTMENT_SUPERIOR_RIGHTS = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_SUPERIOR_RIGHTS 16
+     * }
+     */
+    public static int ENLISTMENT_SUPERIOR_RIGHTS() {
+        return ENLISTMENT_SUPERIOR_RIGHTS;
+    }
+    private static final int ENLISTMENT_GENERIC_READ = (int)131073L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_GENERIC_READ 131073
+     * }
+     */
+    public static int ENLISTMENT_GENERIC_READ() {
+        return ENLISTMENT_GENERIC_READ;
+    }
+    private static final int ENLISTMENT_GENERIC_WRITE = (int)131102L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_GENERIC_WRITE 131102
+     * }
+     */
+    public static int ENLISTMENT_GENERIC_WRITE() {
+        return ENLISTMENT_GENERIC_WRITE;
+    }
+    private static final int ENLISTMENT_GENERIC_EXECUTE = (int)131100L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_GENERIC_EXECUTE 131100
+     * }
+     */
+    public static int ENLISTMENT_GENERIC_EXECUTE() {
+        return ENLISTMENT_GENERIC_EXECUTE;
+    }
+    private static final int ENLISTMENT_ALL_ACCESS = (int)983071L;
+    /**
+     * {@snippet lang=c :
+     * #define ENLISTMENT_ALL_ACCESS 983071
+     * }
+     */
+    public static int ENLISTMENT_ALL_ACCESS() {
+        return ENLISTMENT_ALL_ACCESS;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_ASSEMBLY_INFORMATION = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_ASSEMBLY_INFORMATION 1
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_ASSEMBLY_INFORMATION() {
+        return ACTIVATION_CONTEXT_SECTION_ASSEMBLY_INFORMATION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_DLL_REDIRECTION = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_DLL_REDIRECTION 2
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_DLL_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_DLL_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_WINDOW_CLASS_REDIRECTION = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_WINDOW_CLASS_REDIRECTION 3
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_WINDOW_CLASS_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_WINDOW_CLASS_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_COM_SERVER_REDIRECTION = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_COM_SERVER_REDIRECTION 4
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_COM_SERVER_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_COM_SERVER_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_COM_INTERFACE_REDIRECTION = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_COM_INTERFACE_REDIRECTION 5
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_COM_INTERFACE_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_COM_INTERFACE_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_COM_TYPE_LIBRARY_REDIRECTION = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_COM_TYPE_LIBRARY_REDIRECTION 6
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_COM_TYPE_LIBRARY_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_COM_TYPE_LIBRARY_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_COM_PROGID_REDIRECTION = (int)7L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_COM_PROGID_REDIRECTION 7
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_COM_PROGID_REDIRECTION() {
+        return ACTIVATION_CONTEXT_SECTION_COM_PROGID_REDIRECTION;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_GLOBAL_OBJECT_RENAME_TABLE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_GLOBAL_OBJECT_RENAME_TABLE 8
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_GLOBAL_OBJECT_RENAME_TABLE() {
+        return ACTIVATION_CONTEXT_SECTION_GLOBAL_OBJECT_RENAME_TABLE;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_CLR_SURROGATES = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_CLR_SURROGATES 9
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_CLR_SURROGATES() {
+        return ACTIVATION_CONTEXT_SECTION_CLR_SURROGATES;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_APPLICATION_SETTINGS = (int)10L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_APPLICATION_SETTINGS 10
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_APPLICATION_SETTINGS() {
+        return ACTIVATION_CONTEXT_SECTION_APPLICATION_SETTINGS;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_COMPATIBILITY_INFO = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_COMPATIBILITY_INFO 11
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_COMPATIBILITY_INFO() {
+        return ACTIVATION_CONTEXT_SECTION_COMPATIBILITY_INFO;
+    }
+    private static final int ACTIVATION_CONTEXT_SECTION_WINRT_ACTIVATABLE_CLASSES = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define ACTIVATION_CONTEXT_SECTION_WINRT_ACTIVATABLE_CLASSES 12
+     * }
+     */
+    public static int ACTIVATION_CONTEXT_SECTION_WINRT_ACTIVATABLE_CLASSES() {
+        return ACTIVATION_CONTEXT_SECTION_WINRT_ACTIVATABLE_CLASSES;
+    }
+    private static final int HFILE_ERROR = (int)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define HFILE_ERROR -1
+     * }
+     */
+    public static int HFILE_ERROR() {
+        return HFILE_ERROR;
+    }
+    private static final int DM_IN_BUFFER = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define DM_IN_BUFFER 8
+     * }
+     */
+    public static int DM_IN_BUFFER() {
+        return DM_IN_BUFFER;
+    }
+    private static final int DM_IN_PROMPT = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define DM_IN_PROMPT 4
+     * }
+     */
+    public static int DM_IN_PROMPT() {
+        return DM_IN_PROMPT;
+    }
+    private static final int DM_OUT_BUFFER = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DM_OUT_BUFFER 2
+     * }
+     */
+    public static int DM_OUT_BUFFER() {
+        return DM_OUT_BUFFER;
+    }
+    private static final int DM_OUT_DEFAULT = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DM_OUT_DEFAULT 1
+     * }
+     */
+    public static int DM_OUT_DEFAULT() {
+        return DM_OUT_DEFAULT;
+    }
+    private static final MemorySegment DPI_AWARENESS_CONTEXT_UNAWARE = MemorySegment.ofAddress(-1L);
+    /**
+     * {@snippet lang=c :
+     * #define DPI_AWARENESS_CONTEXT_UNAWARE (void*) -1
+     * }
+     */
+    public static MemorySegment DPI_AWARENESS_CONTEXT_UNAWARE() {
+        return DPI_AWARENESS_CONTEXT_UNAWARE;
+    }
+    private static final MemorySegment DPI_AWARENESS_CONTEXT_SYSTEM_AWARE = MemorySegment.ofAddress(-2L);
+    /**
+     * {@snippet lang=c :
+     * #define DPI_AWARENESS_CONTEXT_SYSTEM_AWARE (void*) -2
+     * }
+     */
+    public static MemorySegment DPI_AWARENESS_CONTEXT_SYSTEM_AWARE() {
+        return DPI_AWARENESS_CONTEXT_SYSTEM_AWARE;
+    }
+    private static final MemorySegment DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE = MemorySegment.ofAddress(-3L);
+    /**
+     * {@snippet lang=c :
+     * #define DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE (void*) -3
+     * }
+     */
+    public static MemorySegment DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE() {
+        return DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE;
+    }
+    private static final MemorySegment DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 = MemorySegment.ofAddress(-4L);
+    /**
+     * {@snippet lang=c :
+     * #define DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 (void*) -4
+     * }
+     */
+    public static MemorySegment DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2() {
+        return DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2;
+    }
+    private static final MemorySegment DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = MemorySegment.ofAddress(-5L);
+    /**
+     * {@snippet lang=c :
+     * #define DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED (void*) -5
+     * }
+     */
+    public static MemorySegment DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED() {
+        return DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED;
+    }
+    private static final int STILL_ACTIVE = (int)259L;
+    /**
+     * {@snippet lang=c :
+     * #define STILL_ACTIVE 259
+     * }
+     */
+    public static int STILL_ACTIVE() {
+        return STILL_ACTIVE;
+    }
+    private static final int EXCEPTION_ACCESS_VIOLATION = (int)3221225477L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_ACCESS_VIOLATION 3221225477
+     * }
+     */
+    public static int EXCEPTION_ACCESS_VIOLATION() {
+        return EXCEPTION_ACCESS_VIOLATION;
+    }
+    private static final int EXCEPTION_DATATYPE_MISALIGNMENT = (int)2147483650L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_DATATYPE_MISALIGNMENT 2147483650
+     * }
+     */
+    public static int EXCEPTION_DATATYPE_MISALIGNMENT() {
+        return EXCEPTION_DATATYPE_MISALIGNMENT;
+    }
+    private static final int EXCEPTION_BREAKPOINT = (int)2147483651L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_BREAKPOINT 2147483651
+     * }
+     */
+    public static int EXCEPTION_BREAKPOINT() {
+        return EXCEPTION_BREAKPOINT;
+    }
+    private static final int EXCEPTION_SINGLE_STEP = (int)2147483652L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_SINGLE_STEP 2147483652
+     * }
+     */
+    public static int EXCEPTION_SINGLE_STEP() {
+        return EXCEPTION_SINGLE_STEP;
+    }
+    private static final int EXCEPTION_ARRAY_BOUNDS_EXCEEDED = (int)3221225612L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_ARRAY_BOUNDS_EXCEEDED 3221225612
+     * }
+     */
+    public static int EXCEPTION_ARRAY_BOUNDS_EXCEEDED() {
+        return EXCEPTION_ARRAY_BOUNDS_EXCEEDED;
+    }
+    private static final int EXCEPTION_FLT_DENORMAL_OPERAND = (int)3221225613L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_DENORMAL_OPERAND 3221225613
+     * }
+     */
+    public static int EXCEPTION_FLT_DENORMAL_OPERAND() {
+        return EXCEPTION_FLT_DENORMAL_OPERAND;
+    }
+    private static final int EXCEPTION_FLT_DIVIDE_BY_ZERO = (int)3221225614L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_DIVIDE_BY_ZERO 3221225614
+     * }
+     */
+    public static int EXCEPTION_FLT_DIVIDE_BY_ZERO() {
+        return EXCEPTION_FLT_DIVIDE_BY_ZERO;
+    }
+    private static final int EXCEPTION_FLT_INEXACT_RESULT = (int)3221225615L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_INEXACT_RESULT 3221225615
+     * }
+     */
+    public static int EXCEPTION_FLT_INEXACT_RESULT() {
+        return EXCEPTION_FLT_INEXACT_RESULT;
+    }
+    private static final int EXCEPTION_FLT_INVALID_OPERATION = (int)3221225616L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_INVALID_OPERATION 3221225616
+     * }
+     */
+    public static int EXCEPTION_FLT_INVALID_OPERATION() {
+        return EXCEPTION_FLT_INVALID_OPERATION;
+    }
+    private static final int EXCEPTION_FLT_OVERFLOW = (int)3221225617L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_OVERFLOW 3221225617
+     * }
+     */
+    public static int EXCEPTION_FLT_OVERFLOW() {
+        return EXCEPTION_FLT_OVERFLOW;
+    }
+    private static final int EXCEPTION_FLT_STACK_CHECK = (int)3221225618L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_STACK_CHECK 3221225618
+     * }
+     */
+    public static int EXCEPTION_FLT_STACK_CHECK() {
+        return EXCEPTION_FLT_STACK_CHECK;
+    }
+    private static final int EXCEPTION_FLT_UNDERFLOW = (int)3221225619L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_FLT_UNDERFLOW 3221225619
+     * }
+     */
+    public static int EXCEPTION_FLT_UNDERFLOW() {
+        return EXCEPTION_FLT_UNDERFLOW;
+    }
+    private static final int EXCEPTION_INT_DIVIDE_BY_ZERO = (int)3221225620L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_INT_DIVIDE_BY_ZERO 3221225620
+     * }
+     */
+    public static int EXCEPTION_INT_DIVIDE_BY_ZERO() {
+        return EXCEPTION_INT_DIVIDE_BY_ZERO;
+    }
+    private static final int EXCEPTION_INT_OVERFLOW = (int)3221225621L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_INT_OVERFLOW 3221225621
+     * }
+     */
+    public static int EXCEPTION_INT_OVERFLOW() {
+        return EXCEPTION_INT_OVERFLOW;
+    }
+    private static final int EXCEPTION_PRIV_INSTRUCTION = (int)3221225622L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_PRIV_INSTRUCTION 3221225622
+     * }
+     */
+    public static int EXCEPTION_PRIV_INSTRUCTION() {
+        return EXCEPTION_PRIV_INSTRUCTION;
+    }
+    private static final int EXCEPTION_IN_PAGE_ERROR = (int)3221225478L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_IN_PAGE_ERROR 3221225478
+     * }
+     */
+    public static int EXCEPTION_IN_PAGE_ERROR() {
+        return EXCEPTION_IN_PAGE_ERROR;
+    }
+    private static final int EXCEPTION_ILLEGAL_INSTRUCTION = (int)3221225501L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_ILLEGAL_INSTRUCTION 3221225501
+     * }
+     */
+    public static int EXCEPTION_ILLEGAL_INSTRUCTION() {
+        return EXCEPTION_ILLEGAL_INSTRUCTION;
+    }
+    private static final int EXCEPTION_NONCONTINUABLE_EXCEPTION = (int)3221225509L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_NONCONTINUABLE_EXCEPTION 3221225509
+     * }
+     */
+    public static int EXCEPTION_NONCONTINUABLE_EXCEPTION() {
+        return EXCEPTION_NONCONTINUABLE_EXCEPTION;
+    }
+    private static final int EXCEPTION_STACK_OVERFLOW = (int)3221225725L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_STACK_OVERFLOW 3221225725
+     * }
+     */
+    public static int EXCEPTION_STACK_OVERFLOW() {
+        return EXCEPTION_STACK_OVERFLOW;
+    }
+    private static final int EXCEPTION_INVALID_DISPOSITION = (int)3221225510L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_INVALID_DISPOSITION 3221225510
+     * }
+     */
+    public static int EXCEPTION_INVALID_DISPOSITION() {
+        return EXCEPTION_INVALID_DISPOSITION;
+    }
+    private static final int EXCEPTION_GUARD_PAGE = (int)2147483649L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_GUARD_PAGE 2147483649
+     * }
+     */
+    public static int EXCEPTION_GUARD_PAGE() {
+        return EXCEPTION_GUARD_PAGE;
+    }
+    private static final int EXCEPTION_INVALID_HANDLE = (int)3221225480L;
+    /**
+     * {@snippet lang=c :
+     * #define EXCEPTION_INVALID_HANDLE 3221225480
+     * }
+     */
+    public static int EXCEPTION_INVALID_HANDLE() {
+        return EXCEPTION_INVALID_HANDLE;
+    }
+    private static final int CONTROL_C_EXIT = (int)3221225786L;
+    /**
+     * {@snippet lang=c :
+     * #define CONTROL_C_EXIT 3221225786
+     * }
+     */
+    public static int CONTROL_C_EXIT() {
+        return CONTROL_C_EXIT;
+    }
+    private static final int LHND = (int)66L;
+    /**
+     * {@snippet lang=c :
+     * #define LHND 66
+     * }
+     */
+    public static int LHND() {
+        return LHND;
+    }
+    private static final int LPTR = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define LPTR 64
+     * }
+     */
+    public static int LPTR() {
+        return LPTR;
+    }
+    private static final int NONZEROLHND = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define NONZEROLHND 2
+     * }
+     */
+    public static int NONZEROLHND() {
+        return NONZEROLHND;
+    }
+    private static final int NONZEROLPTR = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define NONZEROLPTR 0
+     * }
+     */
+    public static int NONZEROLPTR() {
+        return NONZEROLPTR;
+    }
+    private static final int NUMA_NO_PREFERRED_NODE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define NUMA_NO_PREFERRED_NODE 4294967295
+     * }
+     */
+    public static int NUMA_NO_PREFERRED_NODE() {
+        return NUMA_NO_PREFERRED_NODE;
+    }
+    private static final int INVALID_FILE_SIZE = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define INVALID_FILE_SIZE 4294967295
+     * }
+     */
+    public static int INVALID_FILE_SIZE() {
+        return INVALID_FILE_SIZE;
+    }
+    private static final int INVALID_SET_FILE_POINTER = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define INVALID_SET_FILE_POINTER 4294967295
+     * }
+     */
+    public static int INVALID_SET_FILE_POINTER() {
+        return INVALID_SET_FILE_POINTER;
+    }
+    private static final int INVALID_FILE_ATTRIBUTES = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define INVALID_FILE_ATTRIBUTES 4294967295
+     * }
+     */
+    public static int INVALID_FILE_ATTRIBUTES() {
+        return INVALID_FILE_ATTRIBUTES;
+    }
+    private static final MemorySegment INVALID_HANDLE_VALUE = MemorySegment.ofAddress(-1L);
+    /**
+     * {@snippet lang=c :
+     * #define INVALID_HANDLE_VALUE (void*) -1
+     * }
+     */
+    public static MemorySegment INVALID_HANDLE_VALUE() {
+        return INVALID_HANDLE_VALUE;
+    }
+    private static final int FLS_OUT_OF_INDEXES = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define FLS_OUT_OF_INDEXES 4294967295
+     * }
+     */
+    public static int FLS_OUT_OF_INDEXES() {
+        return FLS_OUT_OF_INDEXES;
+    }
+    private static final int INIT_ONCE_CHECK_ONLY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define INIT_ONCE_CHECK_ONLY 1
+     * }
+     */
+    public static int INIT_ONCE_CHECK_ONLY() {
+        return INIT_ONCE_CHECK_ONLY;
+    }
+    private static final int INIT_ONCE_ASYNC = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define INIT_ONCE_ASYNC 2
+     * }
+     */
+    public static int INIT_ONCE_ASYNC() {
+        return INIT_ONCE_ASYNC;
+    }
+    private static final int INIT_ONCE_INIT_FAILED = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define INIT_ONCE_INIT_FAILED 4
+     * }
+     */
+    public static int INIT_ONCE_INIT_FAILED() {
+        return INIT_ONCE_INIT_FAILED;
+    }
+    private static final int INIT_ONCE_CTX_RESERVED_BITS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define INIT_ONCE_CTX_RESERVED_BITS 2
+     * }
+     */
+    public static int INIT_ONCE_CTX_RESERVED_BITS() {
+        return INIT_ONCE_CTX_RESERVED_BITS;
+    }
+    private static final int CONDITION_VARIABLE_LOCKMODE_SHARED = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define CONDITION_VARIABLE_LOCKMODE_SHARED 1
+     * }
+     */
+    public static int CONDITION_VARIABLE_LOCKMODE_SHARED() {
+        return CONDITION_VARIABLE_LOCKMODE_SHARED;
+    }
+    private static final int MUTEX_MODIFY_STATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define MUTEX_MODIFY_STATE 1
+     * }
+     */
+    public static int MUTEX_MODIFY_STATE() {
+        return MUTEX_MODIFY_STATE;
+    }
+    private static final int MUTEX_ALL_ACCESS = (int)2031617L;
+    /**
+     * {@snippet lang=c :
+     * #define MUTEX_ALL_ACCESS 2031617
+     * }
+     */
+    public static int MUTEX_ALL_ACCESS() {
+        return MUTEX_ALL_ACCESS;
+    }
+    private static final int TLS_OUT_OF_INDEXES = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define TLS_OUT_OF_INDEXES 4294967295
+     * }
+     */
+    public static int TLS_OUT_OF_INDEXES() {
+        return TLS_OUT_OF_INDEXES;
+    }
+    private static final int PROCESS_AFFINITY_ENABLE_AUTO_UPDATE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_AFFINITY_ENABLE_AUTO_UPDATE 1
+     * }
+     */
+    public static int PROCESS_AFFINITY_ENABLE_AUTO_UPDATE() {
+        return PROCESS_AFFINITY_ENABLE_AUTO_UPDATE;
+    }
+    private static final int THREAD_POWER_THROTTLING_VALID_FLAGS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_POWER_THROTTLING_VALID_FLAGS 1
+     * }
+     */
+    public static int THREAD_POWER_THROTTLING_VALID_FLAGS() {
+        return THREAD_POWER_THROTTLING_VALID_FLAGS;
+    }
+    private static final int PROCESS_POWER_THROTTLING_VALID_FLAGS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_POWER_THROTTLING_VALID_FLAGS 1
+     * }
+     */
+    public static int PROCESS_POWER_THROTTLING_VALID_FLAGS() {
+        return PROCESS_POWER_THROTTLING_VALID_FLAGS;
+    }
+    private static final int PROCESS_LEAP_SECOND_INFO_VALID_FLAGS = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PROCESS_LEAP_SECOND_INFO_VALID_FLAGS 1
+     * }
+     */
+    public static int PROCESS_LEAP_SECOND_INFO_VALID_FLAGS() {
+        return PROCESS_LEAP_SECOND_INFO_VALID_FLAGS;
+    }
+    private static final int FILE_MAP_WRITE = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_MAP_WRITE 2
+     * }
+     */
+    public static int FILE_MAP_WRITE() {
+        return FILE_MAP_WRITE;
+    }
+    private static final int FILE_MAP_READ = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_MAP_READ 4
+     * }
+     */
+    public static int FILE_MAP_READ() {
+        return FILE_MAP_READ;
+    }
+    private static final int FILE_MAP_ALL_ACCESS = (int)983071L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_MAP_ALL_ACCESS 983071
+     * }
+     */
+    public static int FILE_MAP_ALL_ACCESS() {
+        return FILE_MAP_ALL_ACCESS;
+    }
+    private static final int FILE_MAP_EXECUTE = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_MAP_EXECUTE 32
+     * }
+     */
+    public static int FILE_MAP_EXECUTE() {
+        return FILE_MAP_EXECUTE;
+    }
+    private static final int FILE_MAP_RESERVE = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_MAP_RESERVE 2147483648
+     * }
+     */
+    public static int FILE_MAP_RESERVE() {
+        return FILE_MAP_RESERVE;
+    }
+    private static final int FIND_RESOURCE_DIRECTORY_TYPES = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define FIND_RESOURCE_DIRECTORY_TYPES 256
+     * }
+     */
+    public static int FIND_RESOURCE_DIRECTORY_TYPES() {
+        return FIND_RESOURCE_DIRECTORY_TYPES;
+    }
+    private static final int FIND_RESOURCE_DIRECTORY_NAMES = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define FIND_RESOURCE_DIRECTORY_NAMES 512
+     * }
+     */
+    public static int FIND_RESOURCE_DIRECTORY_NAMES() {
+        return FIND_RESOURCE_DIRECTORY_NAMES;
+    }
+    private static final int FIND_RESOURCE_DIRECTORY_LANGUAGES = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define FIND_RESOURCE_DIRECTORY_LANGUAGES 1024
+     * }
+     */
+    public static int FIND_RESOURCE_DIRECTORY_LANGUAGES() {
+        return FIND_RESOURCE_DIRECTORY_LANGUAGES;
+    }
+    private static final int RESOURCE_ENUM_LN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_ENUM_LN 1
+     * }
+     */
+    public static int RESOURCE_ENUM_LN() {
+        return RESOURCE_ENUM_LN;
+    }
+    private static final int RESOURCE_ENUM_MUI = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_ENUM_MUI 2
+     * }
+     */
+    public static int RESOURCE_ENUM_MUI() {
+        return RESOURCE_ENUM_MUI;
+    }
+    private static final int RESOURCE_ENUM_MUI_SYSTEM = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_ENUM_MUI_SYSTEM 4
+     * }
+     */
+    public static int RESOURCE_ENUM_MUI_SYSTEM() {
+        return RESOURCE_ENUM_MUI_SYSTEM;
+    }
+    private static final int RESOURCE_ENUM_VALIDATE = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_ENUM_VALIDATE 8
+     * }
+     */
+    public static int RESOURCE_ENUM_VALIDATE() {
+        return RESOURCE_ENUM_VALIDATE;
+    }
+    private static final int RESOURCE_ENUM_MODULE_EXACT = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define RESOURCE_ENUM_MODULE_EXACT 16
+     * }
+     */
+    public static int RESOURCE_ENUM_MODULE_EXACT() {
+        return RESOURCE_ENUM_MODULE_EXACT;
+    }
+    private static final int GET_MODULE_HANDLE_EX_FLAG_PIN = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GET_MODULE_HANDLE_EX_FLAG_PIN 1
+     * }
+     */
+    public static int GET_MODULE_HANDLE_EX_FLAG_PIN() {
+        return GET_MODULE_HANDLE_EX_FLAG_PIN;
+    }
+    private static final int GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT 2
+     * }
+     */
+    public static int GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT() {
+        return GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT;
+    }
+    private static final int GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS 4
+     * }
+     */
+    public static int GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS() {
+        return GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS;
+    }
+    private static final int WAIT_FAILED = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define WAIT_FAILED 4294967295
+     * }
+     */
+    public static int WAIT_FAILED() {
+        return WAIT_FAILED;
+    }
+    private static final int WAIT_OBJECT_0 = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define WAIT_OBJECT_0 0
+     * }
+     */
+    public static int WAIT_OBJECT_0() {
+        return WAIT_OBJECT_0;
+    }
+    private static final int WAIT_ABANDONED = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define WAIT_ABANDONED 128
+     * }
+     */
+    public static int WAIT_ABANDONED() {
+        return WAIT_ABANDONED;
+    }
+    private static final int WAIT_ABANDONED_0 = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define WAIT_ABANDONED_0 128
+     * }
+     */
+    public static int WAIT_ABANDONED_0() {
+        return WAIT_ABANDONED_0;
+    }
+    private static final int WAIT_IO_COMPLETION = (int)192L;
+    /**
+     * {@snippet lang=c :
+     * #define WAIT_IO_COMPLETION 192
+     * }
+     */
+    public static int WAIT_IO_COMPLETION() {
+        return WAIT_IO_COMPLETION;
+    }
+    private static final int FILE_FLAG_WRITE_THROUGH = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define FILE_FLAG_WRITE_THROUGH 2147483648
+     * }
+     */
+    public static int FILE_FLAG_WRITE_THROUGH() {
+        return FILE_FLAG_WRITE_THROUGH;
+    }
+    private static final int SECURITY_ANONYMOUS = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_ANONYMOUS 0
+     * }
+     */
+    public static int SECURITY_ANONYMOUS() {
+        return SECURITY_ANONYMOUS;
+    }
+    private static final int SECURITY_IDENTIFICATION = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_IDENTIFICATION 65536
+     * }
+     */
+    public static int SECURITY_IDENTIFICATION() {
+        return SECURITY_IDENTIFICATION;
+    }
+    private static final int SECURITY_IMPERSONATION = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_IMPERSONATION 131072
+     * }
+     */
+    public static int SECURITY_IMPERSONATION() {
+        return SECURITY_IMPERSONATION;
+    }
+    private static final int SECURITY_DELEGATION = (int)196608L;
+    /**
+     * {@snippet lang=c :
+     * #define SECURITY_DELEGATION 196608
+     * }
+     */
+    public static int SECURITY_DELEGATION() {
+        return SECURITY_DELEGATION;
+    }
+    private static final int SP_SERIALCOMM = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_SERIALCOMM 1
+     * }
+     */
+    public static int SP_SERIALCOMM() {
+        return SP_SERIALCOMM;
+    }
+    private static final int PST_UNSPECIFIED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_UNSPECIFIED 0
+     * }
+     */
+    public static int PST_UNSPECIFIED() {
+        return PST_UNSPECIFIED;
+    }
+    private static final int PST_RS232 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_RS232 1
+     * }
+     */
+    public static int PST_RS232() {
+        return PST_RS232;
+    }
+    private static final int PST_PARALLELPORT = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_PARALLELPORT 2
+     * }
+     */
+    public static int PST_PARALLELPORT() {
+        return PST_PARALLELPORT;
+    }
+    private static final int PST_RS422 = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_RS422 3
+     * }
+     */
+    public static int PST_RS422() {
+        return PST_RS422;
+    }
+    private static final int PST_RS423 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_RS423 4
+     * }
+     */
+    public static int PST_RS423() {
+        return PST_RS423;
+    }
+    private static final int PST_RS449 = (int)5L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_RS449 5
+     * }
+     */
+    public static int PST_RS449() {
+        return PST_RS449;
+    }
+    private static final int PST_MODEM = (int)6L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_MODEM 6
+     * }
+     */
+    public static int PST_MODEM() {
+        return PST_MODEM;
+    }
+    private static final int PST_FAX = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_FAX 33
+     * }
+     */
+    public static int PST_FAX() {
+        return PST_FAX;
+    }
+    private static final int PST_SCANNER = (int)34L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_SCANNER 34
+     * }
+     */
+    public static int PST_SCANNER() {
+        return PST_SCANNER;
+    }
+    private static final int PST_NETWORK_BRIDGE = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_NETWORK_BRIDGE 256
+     * }
+     */
+    public static int PST_NETWORK_BRIDGE() {
+        return PST_NETWORK_BRIDGE;
+    }
+    private static final int PST_LAT = (int)257L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_LAT 257
+     * }
+     */
+    public static int PST_LAT() {
+        return PST_LAT;
+    }
+    private static final int PST_TCPIP_TELNET = (int)258L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_TCPIP_TELNET 258
+     * }
+     */
+    public static int PST_TCPIP_TELNET() {
+        return PST_TCPIP_TELNET;
+    }
+    private static final int PST_X25 = (int)259L;
+    /**
+     * {@snippet lang=c :
+     * #define PST_X25 259
+     * }
+     */
+    public static int PST_X25() {
+        return PST_X25;
+    }
+    private static final int PCF_DTRDSR = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_DTRDSR 1
+     * }
+     */
+    public static int PCF_DTRDSR() {
+        return PCF_DTRDSR;
+    }
+    private static final int PCF_RTSCTS = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_RTSCTS 2
+     * }
+     */
+    public static int PCF_RTSCTS() {
+        return PCF_RTSCTS;
+    }
+    private static final int PCF_RLSD = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_RLSD 4
+     * }
+     */
+    public static int PCF_RLSD() {
+        return PCF_RLSD;
+    }
+    private static final int PCF_PARITY_CHECK = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_PARITY_CHECK 8
+     * }
+     */
+    public static int PCF_PARITY_CHECK() {
+        return PCF_PARITY_CHECK;
+    }
+    private static final int PCF_XONXOFF = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_XONXOFF 16
+     * }
+     */
+    public static int PCF_XONXOFF() {
+        return PCF_XONXOFF;
+    }
+    private static final int PCF_SETXCHAR = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_SETXCHAR 32
+     * }
+     */
+    public static int PCF_SETXCHAR() {
+        return PCF_SETXCHAR;
+    }
+    private static final int PCF_TOTALTIMEOUTS = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_TOTALTIMEOUTS 64
+     * }
+     */
+    public static int PCF_TOTALTIMEOUTS() {
+        return PCF_TOTALTIMEOUTS;
+    }
+    private static final int PCF_INTTIMEOUTS = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_INTTIMEOUTS 128
+     * }
+     */
+    public static int PCF_INTTIMEOUTS() {
+        return PCF_INTTIMEOUTS;
+    }
+    private static final int PCF_SPECIALCHARS = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_SPECIALCHARS 256
+     * }
+     */
+    public static int PCF_SPECIALCHARS() {
+        return PCF_SPECIALCHARS;
+    }
+    private static final int PCF_16BITMODE = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define PCF_16BITMODE 512
+     * }
+     */
+    public static int PCF_16BITMODE() {
+        return PCF_16BITMODE;
+    }
+    private static final int SP_PARITY = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_PARITY 1
+     * }
+     */
+    public static int SP_PARITY() {
+        return SP_PARITY;
+    }
+    private static final int SP_BAUD = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_BAUD 2
+     * }
+     */
+    public static int SP_BAUD() {
+        return SP_BAUD;
+    }
+    private static final int SP_DATABITS = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_DATABITS 4
+     * }
+     */
+    public static int SP_DATABITS() {
+        return SP_DATABITS;
+    }
+    private static final int SP_STOPBITS = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_STOPBITS 8
+     * }
+     */
+    public static int SP_STOPBITS() {
+        return SP_STOPBITS;
+    }
+    private static final int SP_HANDSHAKING = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_HANDSHAKING 16
+     * }
+     */
+    public static int SP_HANDSHAKING() {
+        return SP_HANDSHAKING;
+    }
+    private static final int SP_PARITY_CHECK = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_PARITY_CHECK 32
+     * }
+     */
+    public static int SP_PARITY_CHECK() {
+        return SP_PARITY_CHECK;
+    }
+    private static final int SP_RLSD = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define SP_RLSD 64
+     * }
+     */
+    public static int SP_RLSD() {
+        return SP_RLSD;
+    }
+    private static final int BAUD_075 = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_075 1
+     * }
+     */
+    public static int BAUD_075() {
+        return BAUD_075;
+    }
+    private static final int BAUD_110 = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_110 2
+     * }
+     */
+    public static int BAUD_110() {
+        return BAUD_110;
+    }
+    private static final int BAUD_134_5 = (int)4L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_134_5 4
+     * }
+     */
+    public static int BAUD_134_5() {
+        return BAUD_134_5;
+    }
+    private static final int BAUD_150 = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_150 8
+     * }
+     */
+    public static int BAUD_150() {
+        return BAUD_150;
+    }
+    private static final int BAUD_300 = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_300 16
+     * }
+     */
+    public static int BAUD_300() {
+        return BAUD_300;
+    }
+    private static final int BAUD_600 = (int)32L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_600 32
+     * }
+     */
+    public static int BAUD_600() {
+        return BAUD_600;
+    }
+    private static final int BAUD_1200 = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_1200 64
+     * }
+     */
+    public static int BAUD_1200() {
+        return BAUD_1200;
+    }
+    private static final int BAUD_1800 = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_1800 128
+     * }
+     */
+    public static int BAUD_1800() {
+        return BAUD_1800;
+    }
+    private static final int BAUD_2400 = (int)256L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_2400 256
+     * }
+     */
+    public static int BAUD_2400() {
+        return BAUD_2400;
+    }
+    private static final int BAUD_4800 = (int)512L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_4800 512
+     * }
+     */
+    public static int BAUD_4800() {
+        return BAUD_4800;
+    }
+    private static final int BAUD_7200 = (int)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_7200 1024
+     * }
+     */
+    public static int BAUD_7200() {
+        return BAUD_7200;
+    }
+    private static final int BAUD_9600 = (int)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_9600 2048
+     * }
+     */
+    public static int BAUD_9600() {
+        return BAUD_9600;
+    }
+    private static final int BAUD_14400 = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_14400 4096
+     * }
+     */
+    public static int BAUD_14400() {
+        return BAUD_14400;
+    }
+    private static final int BAUD_19200 = (int)8192L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_19200 8192
+     * }
+     */
+    public static int BAUD_19200() {
+        return BAUD_19200;
+    }
+    private static final int BAUD_38400 = (int)16384L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_38400 16384
+     * }
+     */
+    public static int BAUD_38400() {
+        return BAUD_38400;
+    }
+    private static final int BAUD_56K = (int)32768L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_56K 32768
+     * }
+     */
+    public static int BAUD_56K() {
+        return BAUD_56K;
+    }
+    private static final int BAUD_128K = (int)65536L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_128K 65536
+     * }
+     */
+    public static int BAUD_128K() {
+        return BAUD_128K;
+    }
+    private static final int BAUD_115200 = (int)131072L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_115200 131072
+     * }
+     */
+    public static int BAUD_115200() {
+        return BAUD_115200;
+    }
+    private static final int BAUD_57600 = (int)262144L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_57600 262144
+     * }
+     */
+    public static int BAUD_57600() {
+        return BAUD_57600;
+    }
+    private static final int BAUD_USER = (int)268435456L;
+    /**
+     * {@snippet lang=c :
+     * #define BAUD_USER 268435456
+     * }
+     */
+    public static int BAUD_USER() {
+        return BAUD_USER;
+    }
+    private static final short DATABITS_5 = (short)1L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_5 1
+     * }
+     */
+    public static short DATABITS_5() {
+        return DATABITS_5;
+    }
+    private static final short DATABITS_6 = (short)2L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_6 2
+     * }
+     */
+    public static short DATABITS_6() {
+        return DATABITS_6;
+    }
+    private static final short DATABITS_7 = (short)4L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_7 4
+     * }
+     */
+    public static short DATABITS_7() {
+        return DATABITS_7;
+    }
+    private static final short DATABITS_8 = (short)8L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_8 8
+     * }
+     */
+    public static short DATABITS_8() {
+        return DATABITS_8;
+    }
+    private static final short DATABITS_16 = (short)16L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_16 16
+     * }
+     */
+    public static short DATABITS_16() {
+        return DATABITS_16;
+    }
+    private static final short DATABITS_16X = (short)32L;
+    /**
+     * {@snippet lang=c :
+     * #define DATABITS_16X 32
+     * }
+     */
+    public static short DATABITS_16X() {
+        return DATABITS_16X;
+    }
+    private static final short STOPBITS_10 = (short)1L;
+    /**
+     * {@snippet lang=c :
+     * #define STOPBITS_10 1
+     * }
+     */
+    public static short STOPBITS_10() {
+        return STOPBITS_10;
+    }
+    private static final short STOPBITS_15 = (short)2L;
+    /**
+     * {@snippet lang=c :
+     * #define STOPBITS_15 2
+     * }
+     */
+    public static short STOPBITS_15() {
+        return STOPBITS_15;
+    }
+    private static final short STOPBITS_20 = (short)4L;
+    /**
+     * {@snippet lang=c :
+     * #define STOPBITS_20 4
+     * }
+     */
+    public static short STOPBITS_20() {
+        return STOPBITS_20;
+    }
+    private static final short PARITY_NONE = (short)256L;
+    /**
+     * {@snippet lang=c :
+     * #define PARITY_NONE 256
+     * }
+     */
+    public static short PARITY_NONE() {
+        return PARITY_NONE;
+    }
+    private static final short PARITY_ODD = (short)512L;
+    /**
+     * {@snippet lang=c :
+     * #define PARITY_ODD 512
+     * }
+     */
+    public static short PARITY_ODD() {
+        return PARITY_ODD;
+    }
+    private static final short PARITY_EVEN = (short)1024L;
+    /**
+     * {@snippet lang=c :
+     * #define PARITY_EVEN 1024
+     * }
+     */
+    public static short PARITY_EVEN() {
+        return PARITY_EVEN;
+    }
+    private static final short PARITY_MARK = (short)2048L;
+    /**
+     * {@snippet lang=c :
+     * #define PARITY_MARK 2048
+     * }
+     */
+    public static short PARITY_MARK() {
+        return PARITY_MARK;
+    }
+    private static final short PARITY_SPACE = (short)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define PARITY_SPACE 4096
+     * }
+     */
+    public static short PARITY_SPACE() {
+        return PARITY_SPACE;
+    }
+    private static final int COMMPROP_INITIALIZED = (int)3879531822L;
+    /**
+     * {@snippet lang=c :
+     * #define COMMPROP_INITIALIZED 3879531822
+     * }
+     */
+    public static int COMMPROP_INITIALIZED() {
+        return COMMPROP_INITIALIZED;
+    }
+    private static final int GMEM_LOWER = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define GMEM_LOWER 4096
+     * }
+     */
+    public static int GMEM_LOWER() {
+        return GMEM_LOWER;
+    }
+    private static final int GHND = (int)66L;
+    /**
+     * {@snippet lang=c :
+     * #define GHND 66
+     * }
+     */
+    public static int GHND() {
+        return GHND;
+    }
+    private static final int GPTR = (int)64L;
+    /**
+     * {@snippet lang=c :
+     * #define GPTR 64
+     * }
+     */
+    public static int GPTR() {
+        return GPTR;
+    }
+    private static final int CREATE_IGNORE_SYSTEM_DEFAULT = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define CREATE_IGNORE_SYSTEM_DEFAULT 2147483648
+     * }
+     */
+    public static int CREATE_IGNORE_SYSTEM_DEFAULT() {
+        return CREATE_IGNORE_SYSTEM_DEFAULT;
+    }
+    private static final int THREAD_PRIORITY_LOWEST = (int)-2L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_LOWEST -2
+     * }
+     */
+    public static int THREAD_PRIORITY_LOWEST() {
+        return THREAD_PRIORITY_LOWEST;
+    }
+    private static final int THREAD_PRIORITY_BELOW_NORMAL = (int)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_BELOW_NORMAL -1
+     * }
+     */
+    public static int THREAD_PRIORITY_BELOW_NORMAL() {
+        return THREAD_PRIORITY_BELOW_NORMAL;
+    }
+    private static final int THREAD_PRIORITY_HIGHEST = (int)2L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_HIGHEST 2
+     * }
+     */
+    public static int THREAD_PRIORITY_HIGHEST() {
+        return THREAD_PRIORITY_HIGHEST;
+    }
+    private static final int THREAD_PRIORITY_ABOVE_NORMAL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_ABOVE_NORMAL 1
+     * }
+     */
+    public static int THREAD_PRIORITY_ABOVE_NORMAL() {
+        return THREAD_PRIORITY_ABOVE_NORMAL;
+    }
+    private static final int THREAD_PRIORITY_ERROR_RETURN = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_ERROR_RETURN 2147483647
+     * }
+     */
+    public static int THREAD_PRIORITY_ERROR_RETURN() {
+        return THREAD_PRIORITY_ERROR_RETURN;
+    }
+    private static final int THREAD_PRIORITY_TIME_CRITICAL = (int)15L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_TIME_CRITICAL 15
+     * }
+     */
+    public static int THREAD_PRIORITY_TIME_CRITICAL() {
+        return THREAD_PRIORITY_TIME_CRITICAL;
+    }
+    private static final int THREAD_PRIORITY_IDLE = (int)-15L;
+    /**
+     * {@snippet lang=c :
+     * #define THREAD_PRIORITY_IDLE -15
+     * }
+     */
+    public static int THREAD_PRIORITY_IDLE() {
+        return THREAD_PRIORITY_IDLE;
+    }
+    private static final int STD_INPUT_HANDLE = (int)4294967286L;
+    /**
+     * {@snippet lang=c :
+     * #define STD_INPUT_HANDLE 4294967286
+     * }
+     */
+    public static int STD_INPUT_HANDLE() {
+        return STD_INPUT_HANDLE;
+    }
+    private static final int STD_OUTPUT_HANDLE = (int)4294967285L;
+    /**
+     * {@snippet lang=c :
+     * #define STD_OUTPUT_HANDLE 4294967285
+     * }
+     */
+    public static int STD_OUTPUT_HANDLE() {
+        return STD_OUTPUT_HANDLE;
     }
 }
-
 

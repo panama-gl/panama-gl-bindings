@@ -2,181 +2,573 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_POWER_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     BOOLEAN DeviceAttentionSupported;
+ *     BOOLEAN AsynchronousNotificationSupported;
+ *     BOOLEAN IdlePowerManagementEnabled;
+ *     BOOLEAN D3ColdEnabled;
+ *     BOOLEAN D3ColdSupported;
+ *     BOOLEAN NoVerifyDuringIdlePower;
+ *     BYTE Reserved[2];
+ *     DWORD IdleTimeoutInMS;
+ * }
+ * }
+ */
 public class _DEVICE_POWER_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_CHAR$LAYOUT.withName("DeviceAttentionSupported"),
-        Constants$root.C_CHAR$LAYOUT.withName("AsynchronousNotificationSupported"),
-        Constants$root.C_CHAR$LAYOUT.withName("IdlePowerManagementEnabled"),
-        Constants$root.C_CHAR$LAYOUT.withName("D3ColdEnabled"),
-        Constants$root.C_CHAR$LAYOUT.withName("D3ColdSupported"),
-        Constants$root.C_CHAR$LAYOUT.withName("NoVerifyDuringIdlePower"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("IdleTimeoutInMS")
-    ).withName("_DEVICE_POWER_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_POWER_DESCRIPTOR.$struct$LAYOUT;
+    _DEVICE_POWER_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _DEVICE_POWER_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _DEVICE_POWER_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _DEVICE_POWER_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _DEVICE_POWER_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DeviceAttentionSupported$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeviceAttentionSupported"));
-    public static VarHandle DeviceAttentionSupported$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.DeviceAttentionSupported$VH;
-    }
-    public static byte DeviceAttentionSupported$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.DeviceAttentionSupported$VH.get(seg);
-    }
-    public static void DeviceAttentionSupported$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.DeviceAttentionSupported$VH.set(seg, x);
-    }
-    public static byte DeviceAttentionSupported$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.DeviceAttentionSupported$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeviceAttentionSupported$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.DeviceAttentionSupported$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AsynchronousNotificationSupported$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsynchronousNotificationSupported"));
-    public static VarHandle AsynchronousNotificationSupported$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.AsynchronousNotificationSupported$VH;
-    }
-    public static byte AsynchronousNotificationSupported$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.AsynchronousNotificationSupported$VH.get(seg);
-    }
-    public static void AsynchronousNotificationSupported$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.AsynchronousNotificationSupported$VH.set(seg, x);
-    }
-    public static byte AsynchronousNotificationSupported$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.AsynchronousNotificationSupported$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AsynchronousNotificationSupported$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.AsynchronousNotificationSupported$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IdlePowerManagementEnabled$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdlePowerManagementEnabled"));
-    public static VarHandle IdlePowerManagementEnabled$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.IdlePowerManagementEnabled$VH;
-    }
-    public static byte IdlePowerManagementEnabled$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.IdlePowerManagementEnabled$VH.get(seg);
-    }
-    public static void IdlePowerManagementEnabled$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.IdlePowerManagementEnabled$VH.set(seg, x);
-    }
-    public static byte IdlePowerManagementEnabled$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.IdlePowerManagementEnabled$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IdlePowerManagementEnabled$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.IdlePowerManagementEnabled$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle D3ColdEnabled$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("D3ColdEnabled"));
-    public static VarHandle D3ColdEnabled$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.D3ColdEnabled$VH;
-    }
-    public static byte D3ColdEnabled$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.D3ColdEnabled$VH.get(seg);
-    }
-    public static void D3ColdEnabled$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.D3ColdEnabled$VH.set(seg, x);
-    }
-    public static byte D3ColdEnabled$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.D3ColdEnabled$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void D3ColdEnabled$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.D3ColdEnabled$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle D3ColdSupported$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("D3ColdSupported"));
-    public static VarHandle D3ColdSupported$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.D3ColdSupported$VH;
-    }
-    public static byte D3ColdSupported$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.D3ColdSupported$VH.get(seg);
-    }
-    public static void D3ColdSupported$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.D3ColdSupported$VH.set(seg, x);
-    }
-    public static byte D3ColdSupported$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.D3ColdSupported$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void D3ColdSupported$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.D3ColdSupported$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NoVerifyDuringIdlePower$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NoVerifyDuringIdlePower"));
-    public static VarHandle NoVerifyDuringIdlePower$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.NoVerifyDuringIdlePower$VH;
-    }
-    public static byte NoVerifyDuringIdlePower$get(MemorySegment seg) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.NoVerifyDuringIdlePower$VH.get(seg);
-    }
-    public static void NoVerifyDuringIdlePower$set( MemorySegment seg, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.NoVerifyDuringIdlePower$VH.set(seg, x);
-    }
-    public static byte NoVerifyDuringIdlePower$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_POWER_DESCRIPTOR.NoVerifyDuringIdlePower$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NoVerifyDuringIdlePower$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_POWER_DESCRIPTOR.NoVerifyDuringIdlePower$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved$slice(MemorySegment seg) {
-        return seg.asSlice(14, 2);
-    }
-    static final VarHandle IdleTimeoutInMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdleTimeoutInMS"));
-    public static VarHandle IdleTimeoutInMS$VH() {
-        return _DEVICE_POWER_DESCRIPTOR.IdleTimeoutInMS$VH;
-    }
-    public static int IdleTimeoutInMS$get(MemorySegment seg) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.IdleTimeoutInMS$VH.get(seg);
-    }
-    public static void IdleTimeoutInMS$set( MemorySegment seg, int x) {
-        _DEVICE_POWER_DESCRIPTOR.IdleTimeoutInMS$VH.set(seg, x);
-    }
-    public static int IdleTimeoutInMS$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_POWER_DESCRIPTOR.IdleTimeoutInMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IdleTimeoutInMS$set(MemorySegment seg, long index, int x) {
-        _DEVICE_POWER_DESCRIPTOR.IdleTimeoutInMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_CHAR.withName("DeviceAttentionSupported"),
+        wgl_h.C_CHAR.withName("AsynchronousNotificationSupported"),
+        wgl_h.C_CHAR.withName("IdlePowerManagementEnabled"),
+        wgl_h.C_CHAR.withName("D3ColdEnabled"),
+        wgl_h.C_CHAR.withName("D3ColdSupported"),
+        wgl_h.C_CHAR.withName("NoVerifyDuringIdlePower"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("Reserved"),
+        wgl_h.C_LONG.withName("IdleTimeoutInMS")
+    ).withName("_DEVICE_POWER_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DeviceAttentionSupported$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DeviceAttentionSupported"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceAttentionSupported
+     * }
+     */
+    public static final OfByte DeviceAttentionSupported$layout() {
+        return DeviceAttentionSupported$LAYOUT;
+    }
+
+    private static final long DeviceAttentionSupported$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceAttentionSupported
+     * }
+     */
+    public static final long DeviceAttentionSupported$offset() {
+        return DeviceAttentionSupported$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceAttentionSupported
+     * }
+     */
+    public static byte DeviceAttentionSupported(MemorySegment struct) {
+        return struct.get(DeviceAttentionSupported$LAYOUT, DeviceAttentionSupported$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceAttentionSupported
+     * }
+     */
+    public static void DeviceAttentionSupported(MemorySegment struct, byte fieldValue) {
+        struct.set(DeviceAttentionSupported$LAYOUT, DeviceAttentionSupported$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AsynchronousNotificationSupported$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AsynchronousNotificationSupported"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN AsynchronousNotificationSupported
+     * }
+     */
+    public static final OfByte AsynchronousNotificationSupported$layout() {
+        return AsynchronousNotificationSupported$LAYOUT;
+    }
+
+    private static final long AsynchronousNotificationSupported$OFFSET = 9;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN AsynchronousNotificationSupported
+     * }
+     */
+    public static final long AsynchronousNotificationSupported$offset() {
+        return AsynchronousNotificationSupported$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AsynchronousNotificationSupported
+     * }
+     */
+    public static byte AsynchronousNotificationSupported(MemorySegment struct) {
+        return struct.get(AsynchronousNotificationSupported$LAYOUT, AsynchronousNotificationSupported$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN AsynchronousNotificationSupported
+     * }
+     */
+    public static void AsynchronousNotificationSupported(MemorySegment struct, byte fieldValue) {
+        struct.set(AsynchronousNotificationSupported$LAYOUT, AsynchronousNotificationSupported$OFFSET, fieldValue);
+    }
+
+    private static final OfByte IdlePowerManagementEnabled$LAYOUT = (OfByte)$LAYOUT.select(groupElement("IdlePowerManagementEnabled"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN IdlePowerManagementEnabled
+     * }
+     */
+    public static final OfByte IdlePowerManagementEnabled$layout() {
+        return IdlePowerManagementEnabled$LAYOUT;
+    }
+
+    private static final long IdlePowerManagementEnabled$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN IdlePowerManagementEnabled
+     * }
+     */
+    public static final long IdlePowerManagementEnabled$offset() {
+        return IdlePowerManagementEnabled$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IdlePowerManagementEnabled
+     * }
+     */
+    public static byte IdlePowerManagementEnabled(MemorySegment struct) {
+        return struct.get(IdlePowerManagementEnabled$LAYOUT, IdlePowerManagementEnabled$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN IdlePowerManagementEnabled
+     * }
+     */
+    public static void IdlePowerManagementEnabled(MemorySegment struct, byte fieldValue) {
+        struct.set(IdlePowerManagementEnabled$LAYOUT, IdlePowerManagementEnabled$OFFSET, fieldValue);
+    }
+
+    private static final OfByte D3ColdEnabled$LAYOUT = (OfByte)$LAYOUT.select(groupElement("D3ColdEnabled"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdEnabled
+     * }
+     */
+    public static final OfByte D3ColdEnabled$layout() {
+        return D3ColdEnabled$LAYOUT;
+    }
+
+    private static final long D3ColdEnabled$OFFSET = 11;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdEnabled
+     * }
+     */
+    public static final long D3ColdEnabled$offset() {
+        return D3ColdEnabled$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdEnabled
+     * }
+     */
+    public static byte D3ColdEnabled(MemorySegment struct) {
+        return struct.get(D3ColdEnabled$LAYOUT, D3ColdEnabled$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdEnabled
+     * }
+     */
+    public static void D3ColdEnabled(MemorySegment struct, byte fieldValue) {
+        struct.set(D3ColdEnabled$LAYOUT, D3ColdEnabled$OFFSET, fieldValue);
+    }
+
+    private static final OfByte D3ColdSupported$LAYOUT = (OfByte)$LAYOUT.select(groupElement("D3ColdSupported"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdSupported
+     * }
+     */
+    public static final OfByte D3ColdSupported$layout() {
+        return D3ColdSupported$LAYOUT;
+    }
+
+    private static final long D3ColdSupported$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdSupported
+     * }
+     */
+    public static final long D3ColdSupported$offset() {
+        return D3ColdSupported$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdSupported
+     * }
+     */
+    public static byte D3ColdSupported(MemorySegment struct) {
+        return struct.get(D3ColdSupported$LAYOUT, D3ColdSupported$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN D3ColdSupported
+     * }
+     */
+    public static void D3ColdSupported(MemorySegment struct, byte fieldValue) {
+        struct.set(D3ColdSupported$LAYOUT, D3ColdSupported$OFFSET, fieldValue);
+    }
+
+    private static final OfByte NoVerifyDuringIdlePower$LAYOUT = (OfByte)$LAYOUT.select(groupElement("NoVerifyDuringIdlePower"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN NoVerifyDuringIdlePower
+     * }
+     */
+    public static final OfByte NoVerifyDuringIdlePower$layout() {
+        return NoVerifyDuringIdlePower$LAYOUT;
+    }
+
+    private static final long NoVerifyDuringIdlePower$OFFSET = 13;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN NoVerifyDuringIdlePower
+     * }
+     */
+    public static final long NoVerifyDuringIdlePower$offset() {
+        return NoVerifyDuringIdlePower$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN NoVerifyDuringIdlePower
+     * }
+     */
+    public static byte NoVerifyDuringIdlePower(MemorySegment struct) {
+        return struct.get(NoVerifyDuringIdlePower$LAYOUT, NoVerifyDuringIdlePower$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN NoVerifyDuringIdlePower
+     * }
+     */
+    public static void NoVerifyDuringIdlePower(MemorySegment struct, byte fieldValue) {
+        struct.set(NoVerifyDuringIdlePower$LAYOUT, NoVerifyDuringIdlePower$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static final SequenceLayout Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static MemorySegment Reserved(MemorySegment struct) {
+        return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static long[] Reserved$dimensions() {
+        return Reserved$DIMS;
+    }
+    private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static byte Reserved(MemorySegment struct, long index0) {
+        return (byte)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved[2]
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt IdleTimeoutInMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IdleTimeoutInMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeoutInMS
+     * }
+     */
+    public static final OfInt IdleTimeoutInMS$layout() {
+        return IdleTimeoutInMS$LAYOUT;
+    }
+
+    private static final long IdleTimeoutInMS$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeoutInMS
+     * }
+     */
+    public static final long IdleTimeoutInMS$offset() {
+        return IdleTimeoutInMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeoutInMS
+     * }
+     */
+    public static int IdleTimeoutInMS(MemorySegment struct) {
+        return struct.get(IdleTimeoutInMS$LAYOUT, IdleTimeoutInMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IdleTimeoutInMS
+     * }
+     */
+    public static void IdleTimeoutInMS(MemorySegment struct, int fieldValue) {
+        struct.set(IdleTimeoutInMS$LAYOUT, IdleTimeoutInMS$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NDR_CS_ROUTINES {
+ *     NDR_CS_SIZE_CONVERT_ROUTINES *pSizeConvertRoutines;
+ *     CS_TAG_GETTING_ROUTINE *pTagGettingRoutines;
+ * }
+ * }
+ */
 public class _NDR_CS_ROUTINES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pSizeConvertRoutines"),
-        Constants$root.C_POINTER$LAYOUT.withName("pTagGettingRoutines")
-    ).withName("_NDR_CS_ROUTINES");
-    public static MemoryLayout $LAYOUT() {
-        return _NDR_CS_ROUTINES.$struct$LAYOUT;
+    _NDR_CS_ROUTINES() {
+        // Should not be called directly
     }
-    static final VarHandle pSizeConvertRoutines$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pSizeConvertRoutines"));
-    public static VarHandle pSizeConvertRoutines$VH() {
-        return _NDR_CS_ROUTINES.pSizeConvertRoutines$VH;
-    }
-    public static MemoryAddress pSizeConvertRoutines$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NDR_CS_ROUTINES.pSizeConvertRoutines$VH.get(seg);
-    }
-    public static void pSizeConvertRoutines$set( MemorySegment seg, MemoryAddress x) {
-        _NDR_CS_ROUTINES.pSizeConvertRoutines$VH.set(seg, x);
-    }
-    public static MemoryAddress pSizeConvertRoutines$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NDR_CS_ROUTINES.pSizeConvertRoutines$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSizeConvertRoutines$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NDR_CS_ROUTINES.pSizeConvertRoutines$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pTagGettingRoutines$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pTagGettingRoutines"));
-    public static VarHandle pTagGettingRoutines$VH() {
-        return _NDR_CS_ROUTINES.pTagGettingRoutines$VH;
-    }
-    public static MemoryAddress pTagGettingRoutines$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NDR_CS_ROUTINES.pTagGettingRoutines$VH.get(seg);
-    }
-    public static void pTagGettingRoutines$set( MemorySegment seg, MemoryAddress x) {
-        _NDR_CS_ROUTINES.pTagGettingRoutines$VH.set(seg, x);
-    }
-    public static MemoryAddress pTagGettingRoutines$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NDR_CS_ROUTINES.pTagGettingRoutines$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pTagGettingRoutines$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NDR_CS_ROUTINES.pTagGettingRoutines$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pSizeConvertRoutines"),
+        wgl_h.C_POINTER.withName("pTagGettingRoutines")
+    ).withName("_NDR_CS_ROUTINES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pSizeConvertRoutines$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pSizeConvertRoutines"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * NDR_CS_SIZE_CONVERT_ROUTINES *pSizeConvertRoutines
+     * }
+     */
+    public static final AddressLayout pSizeConvertRoutines$layout() {
+        return pSizeConvertRoutines$LAYOUT;
+    }
+
+    private static final long pSizeConvertRoutines$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * NDR_CS_SIZE_CONVERT_ROUTINES *pSizeConvertRoutines
+     * }
+     */
+    public static final long pSizeConvertRoutines$offset() {
+        return pSizeConvertRoutines$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * NDR_CS_SIZE_CONVERT_ROUTINES *pSizeConvertRoutines
+     * }
+     */
+    public static MemorySegment pSizeConvertRoutines(MemorySegment struct) {
+        return struct.get(pSizeConvertRoutines$LAYOUT, pSizeConvertRoutines$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * NDR_CS_SIZE_CONVERT_ROUTINES *pSizeConvertRoutines
+     * }
+     */
+    public static void pSizeConvertRoutines(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSizeConvertRoutines$LAYOUT, pSizeConvertRoutines$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pTagGettingRoutines$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pTagGettingRoutines"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CS_TAG_GETTING_ROUTINE *pTagGettingRoutines
+     * }
+     */
+    public static final AddressLayout pTagGettingRoutines$layout() {
+        return pTagGettingRoutines$LAYOUT;
+    }
+
+    private static final long pTagGettingRoutines$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CS_TAG_GETTING_ROUTINE *pTagGettingRoutines
+     * }
+     */
+    public static final long pTagGettingRoutines$offset() {
+        return pTagGettingRoutines$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CS_TAG_GETTING_ROUTINE *pTagGettingRoutines
+     * }
+     */
+    public static MemorySegment pTagGettingRoutines(MemorySegment struct) {
+        return struct.get(pTagGettingRoutines$LAYOUT, pTagGettingRoutines$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CS_TAG_GETTING_ROUTINE *pTagGettingRoutines
+     * }
+     */
+    public static void pTagGettingRoutines(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pTagGettingRoutines$LAYOUT, pTagGettingRoutines$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

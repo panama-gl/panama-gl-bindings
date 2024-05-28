@@ -2,1322 +2,2218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IXMLHttpRequestVtbl {
+ *     HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall));
+ *     ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall));
+ *     HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall));
+ *     HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall));
+ *     HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall));
+ *     HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall));
+ *     HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall));
+ *     HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall));
+ *     HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall));
+ *     HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall));
+ *     HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall));
+ *     HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall));
+ *     HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall));
+ *     HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall));
+ *     HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall));
+ *     HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IXMLHttpRequestVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetTypeInfoCount"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetTypeInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetIDsOfNames"),
-        Constants$root.C_POINTER$LAYOUT.withName("Invoke"),
-        Constants$root.C_POINTER$LAYOUT.withName("open"),
-        Constants$root.C_POINTER$LAYOUT.withName("setRequestHeader"),
-        Constants$root.C_POINTER$LAYOUT.withName("getResponseHeader"),
-        Constants$root.C_POINTER$LAYOUT.withName("getAllResponseHeaders"),
-        Constants$root.C_POINTER$LAYOUT.withName("send"),
-        Constants$root.C_POINTER$LAYOUT.withName("abort"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_status"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_statusText"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_responseXML"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_responseText"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_responseBody"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_responseStream"),
-        Constants$root.C_POINTER$LAYOUT.withName("get_readyState"),
-        Constants$root.C_POINTER$LAYOUT.withName("put_onreadystatechange")
+    IXMLHttpRequestVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetTypeInfoCount"),
+        wgl_h.C_POINTER.withName("GetTypeInfo"),
+        wgl_h.C_POINTER.withName("GetIDsOfNames"),
+        wgl_h.C_POINTER.withName("Invoke"),
+        wgl_h.C_POINTER.withName("open"),
+        wgl_h.C_POINTER.withName("setRequestHeader"),
+        wgl_h.C_POINTER.withName("getResponseHeader"),
+        wgl_h.C_POINTER.withName("getAllResponseHeaders"),
+        wgl_h.C_POINTER.withName("send"),
+        wgl_h.C_POINTER.withName("abort"),
+        wgl_h.C_POINTER.withName("get_status"),
+        wgl_h.C_POINTER.withName("get_statusText"),
+        wgl_h.C_POINTER.withName("get_responseXML"),
+        wgl_h.C_POINTER.withName("get_responseText"),
+        wgl_h.C_POINTER.withName("get_responseBody"),
+        wgl_h.C_POINTER.withName("get_responseStream"),
+        wgl_h.C_POINTER.withName("get_readyState"),
+        wgl_h.C_POINTER.withName("put_onreadystatechange")
     ).withName("IXMLHttpRequestVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IXMLHttpRequestVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IXMLHttpRequestVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IXMLHttpRequestVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IXMLHttpRequestVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IXMLHttpRequestVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IXMLHttpRequestVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IXMLHttpRequestVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetTypeInfoCount$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetTypeInfoCount$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.GetTypeInfoCount$FUNC
-    );
-    public interface GetTypeInfoCount {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetTypeInfoCount fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetTypeInfoCount.class, fi, IXMLHttpRequestVtbl.GetTypeInfoCount$FUNC, session);
-        }
-        static GetTypeInfoCount ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.GetTypeInfoCount$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetTypeInfoCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetTypeInfoCount"));
-    public static VarHandle GetTypeInfoCount$VH() {
-        return IXMLHttpRequestVtbl.GetTypeInfoCount$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetTypeInfoCount$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetTypeInfoCount$VH.get(seg);
-    }
-    public static void GetTypeInfoCount$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetTypeInfoCount$VH.set(seg, x);
-    }
-    public static MemoryAddress GetTypeInfoCount$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetTypeInfoCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetTypeInfoCount$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetTypeInfoCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetTypeInfoCount GetTypeInfoCount (MemorySegment segment, MemorySession session) {
-        return GetTypeInfoCount.ofAddress(GetTypeInfoCount$get(segment), session);
-    }
-    static final FunctionDescriptor GetTypeInfo$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetTypeInfo$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.GetTypeInfo$FUNC
-    );
-    public interface GetTypeInfo {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(GetTypeInfo fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetTypeInfo.class, fi, IXMLHttpRequestVtbl.GetTypeInfo$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IXMLHttpRequest *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static GetTypeInfo ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.GetTypeInfo$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetTypeInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetTypeInfo"));
-    public static VarHandle GetTypeInfo$VH() {
-        return IXMLHttpRequestVtbl.GetTypeInfo$VH;
-    }
-    public static MemoryAddress GetTypeInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetTypeInfo$VH.get(seg);
-    }
-    public static void GetTypeInfo$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetTypeInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress GetTypeInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetTypeInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetTypeInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetTypeInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetTypeInfo GetTypeInfo (MemorySegment segment, MemorySession session) {
-        return GetTypeInfo.ofAddress(GetTypeInfo$get(segment), session);
-    }
-    static final FunctionDescriptor GetIDsOfNames$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetIDsOfNames$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.GetIDsOfNames$FUNC
-    );
-    public interface GetIDsOfNames {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, int _x4, java.lang.foreign.MemoryAddress _x5);
-        static MemorySegment allocate(GetIDsOfNames fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetIDsOfNames.class, fi, IXMLHttpRequestVtbl.GetIDsOfNames$FUNC, session);
-        }
-        static GetIDsOfNames ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, int __x4, java.lang.foreign.MemoryAddress __x5) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.GetIDsOfNames$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, __x4, (java.lang.foreign.Addressable)__x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle GetIDsOfNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetIDsOfNames"));
-    public static VarHandle GetIDsOfNames$VH() {
-        return IXMLHttpRequestVtbl.GetIDsOfNames$VH;
-    }
-    public static MemoryAddress GetIDsOfNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetIDsOfNames$VH.get(seg);
-    }
-    public static void GetIDsOfNames$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetIDsOfNames$VH.set(seg, x);
-    }
-    public static MemoryAddress GetIDsOfNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.GetIDsOfNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetIDsOfNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.GetIDsOfNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetIDsOfNames GetIDsOfNames (MemorySegment segment, MemorySession session) {
-        return GetIDsOfNames.ofAddress(GetIDsOfNames$get(segment), session);
-    }
-    static final FunctionDescriptor Invoke$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_SHORT$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Invoke$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.Invoke$FUNC
-    );
-    public interface Invoke {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, int _x3, short _x4, java.lang.foreign.MemoryAddress _x5, java.lang.foreign.MemoryAddress _x6, java.lang.foreign.MemoryAddress _x7, java.lang.foreign.MemoryAddress _x8);
-        static MemorySegment allocate(Invoke fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Invoke.class, fi, IXMLHttpRequestVtbl.Invoke$FUNC, session);
-        }
-        static Invoke ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, int __x3, short __x4, java.lang.foreign.MemoryAddress __x5, java.lang.foreign.MemoryAddress __x6, java.lang.foreign.MemoryAddress __x7, java.lang.foreign.MemoryAddress __x8) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.Invoke$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, __x3, __x4, (java.lang.foreign.Addressable)__x5, (java.lang.foreign.Addressable)__x6, (java.lang.foreign.Addressable)__x7, (java.lang.foreign.Addressable)__x8);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle Invoke$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Invoke"));
-    public static VarHandle Invoke$VH() {
-        return IXMLHttpRequestVtbl.Invoke$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress Invoke$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.Invoke$VH.get(seg);
-    }
-    public static void Invoke$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.Invoke$VH.set(seg, x);
-    }
-    public static MemoryAddress Invoke$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.Invoke$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Invoke$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.Invoke$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Invoke Invoke (MemorySegment segment, MemorySession session) {
-        return Invoke.ofAddress(Invoke$get(segment), session);
-    }
-    static final FunctionDescriptor open$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT"),
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT"),
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle open$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.open$FUNC
-    );
-    public interface open {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemorySegment _x3, java.lang.foreign.MemorySegment _x4, java.lang.foreign.MemorySegment _x5);
-        static MemorySegment allocate(open fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(open.class, fi, IXMLHttpRequestVtbl.open$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static open ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemorySegment __x3, java.lang.foreign.MemorySegment __x4, java.lang.foreign.MemorySegment __x5) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.open$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle open$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("open"));
-    public static VarHandle open$VH() {
-        return IXMLHttpRequestVtbl.open$VH;
-    }
-    public static MemoryAddress open$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.open$VH.get(seg);
-    }
-    public static void open$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.open$VH.set(seg, x);
-    }
-    public static MemoryAddress open$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.open$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void open$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.open$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static open open (MemorySegment segment, MemorySession session) {
-        return open.ofAddress(open$get(segment), session);
-    }
-    static final FunctionDescriptor setRequestHeader$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle setRequestHeader$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.setRequestHeader$FUNC
-    );
-    public interface setRequestHeader {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(setRequestHeader fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(setRequestHeader.class, fi, IXMLHttpRequestVtbl.setRequestHeader$FUNC, session);
-        }
-        static setRequestHeader ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.setRequestHeader$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle setRequestHeader$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("setRequestHeader"));
-    public static VarHandle setRequestHeader$VH() {
-        return IXMLHttpRequestVtbl.setRequestHeader$VH;
-    }
-    public static MemoryAddress setRequestHeader$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.setRequestHeader$VH.get(seg);
-    }
-    public static void setRequestHeader$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.setRequestHeader$VH.set(seg, x);
-    }
-    public static MemoryAddress setRequestHeader$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.setRequestHeader$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void setRequestHeader$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.setRequestHeader$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static setRequestHeader setRequestHeader (MemorySegment segment, MemorySession session) {
-        return setRequestHeader.ofAddress(setRequestHeader$get(segment), session);
-    }
-    static final FunctionDescriptor getResponseHeader$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle getResponseHeader$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.getResponseHeader$FUNC
-    );
-    public interface getResponseHeader {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(getResponseHeader fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(getResponseHeader.class, fi, IXMLHttpRequestVtbl.getResponseHeader$FUNC, session);
-        }
-        static getResponseHeader ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.getResponseHeader$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle getResponseHeader$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("getResponseHeader"));
-    public static VarHandle getResponseHeader$VH() {
-        return IXMLHttpRequestVtbl.getResponseHeader$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress getResponseHeader$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.getResponseHeader$VH.get(seg);
-    }
-    public static void getResponseHeader$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.getResponseHeader$VH.set(seg, x);
-    }
-    public static MemoryAddress getResponseHeader$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.getResponseHeader$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void getResponseHeader$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.getResponseHeader$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static getResponseHeader getResponseHeader (MemorySegment segment, MemorySession session) {
-        return getResponseHeader.ofAddress(getResponseHeader$get(segment), session);
-    }
-    static final FunctionDescriptor getAllResponseHeaders$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle getAllResponseHeaders$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.getAllResponseHeaders$FUNC
-    );
-    public interface getAllResponseHeaders {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(getAllResponseHeaders fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(getAllResponseHeaders.class, fi, IXMLHttpRequestVtbl.getAllResponseHeaders$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetTypeInfoCount {
+
+        GetTypeInfoCount() {
+            // Should not be called directly
         }
-        static getAllResponseHeaders ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.getAllResponseHeaders$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetTypeInfoCount.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetTypeInfoCount.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle getAllResponseHeaders$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("getAllResponseHeaders"));
-    public static VarHandle getAllResponseHeaders$VH() {
-        return IXMLHttpRequestVtbl.getAllResponseHeaders$VH;
-    }
-    public static MemoryAddress getAllResponseHeaders$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.getAllResponseHeaders$VH.get(seg);
-    }
-    public static void getAllResponseHeaders$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.getAllResponseHeaders$VH.set(seg, x);
-    }
-    public static MemoryAddress getAllResponseHeaders$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.getAllResponseHeaders$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void getAllResponseHeaders$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.getAllResponseHeaders$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static getAllResponseHeaders getAllResponseHeaders (MemorySegment segment, MemorySession session) {
-        return getAllResponseHeaders.ofAddress(getAllResponseHeaders$get(segment), session);
-    }
-    static final FunctionDescriptor send$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved3"),
-                    MemoryLayout.unionLayout(
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("llVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("lVal"),
-                        Constants$root.C_CHAR$LAYOUT.withName("bVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("iVal"),
-                        Constants$root.C_FLOAT$LAYOUT.withName("fltVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("dblVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("boolVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("__OBSOLETE__VARIANT_BOOL"),
-                        Constants$root.C_LONG$LAYOUT.withName("scode"),
-                        MemoryLayout.unionLayout(
-                            MemoryLayout.structLayout(
-                                Constants$root.C_LONG$LAYOUT.withName("Lo"),
-                                Constants$root.C_LONG$LAYOUT.withName("Hi")
-                            ).withName("$anon$0"),
-                            Constants$root.C_LONG_LONG$LAYOUT.withName("int64")
-                        ).withName("cyVal"),
-                        Constants$root.C_DOUBLE$LAYOUT.withName("date"),
-                        Constants$root.C_POINTER$LAYOUT.withName("bstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("punkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("parray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("piVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("plVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pllVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pfltVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdblVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pboolVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("__OBSOLETE__VARIANT_PBOOL"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pscode"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcyVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdate"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pbstrVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppunkVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("ppdispVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pparray"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pvarVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("byref"),
-                        Constants$root.C_CHAR$LAYOUT.withName("cVal"),
-                        Constants$root.C_SHORT$LAYOUT.withName("uiVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("ulVal"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("ullVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("intVal"),
-                        Constants$root.C_LONG$LAYOUT.withName("uintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pdecVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pcVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puiVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pulVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pullVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("pintVal"),
-                        Constants$root.C_POINTER$LAYOUT.withName("puintVal"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_POINTER$LAYOUT.withName("pvRecord"),
-                            Constants$root.C_POINTER$LAYOUT.withName("pRecInfo")
-                        ).withName("$anon$0")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("scale"),
-                            Constants$root.C_CHAR$LAYOUT.withName("sign")
-                        ).withName("$anon$0"),
-                        Constants$root.C_SHORT$LAYOUT.withName("signscale")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("Hi32"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("Lo32"),
-                            Constants$root.C_LONG$LAYOUT.withName("Mid32")
-                        ).withName("$anon$0"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("Lo64")
-                    ).withName("$anon$1")
-                ).withName("decVal")
-            ).withName("$anon$0")
-        ).withName("tagVARIANT")
-    );
-    static final MethodHandle send$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.send$FUNC
-    );
-    public interface send {
+    private static final AddressLayout GetTypeInfoCount$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetTypeInfoCount"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(send fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(send.class, fi, IXMLHttpRequestVtbl.send$FUNC, session);
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetTypeInfoCount$layout() {
+        return GetTypeInfoCount$LAYOUT;
+    }
+
+    private static final long GetTypeInfoCount$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetTypeInfoCount$offset() {
+        return GetTypeInfoCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetTypeInfoCount(MemorySegment struct) {
+        return struct.get(GetTypeInfoCount$LAYOUT, GetTypeInfoCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfoCount)(IXMLHttpRequest *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetTypeInfoCount(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetTypeInfoCount$LAYOUT, GetTypeInfoCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetTypeInfo {
+
+        GetTypeInfo() {
+            // Should not be called directly
         }
-        static send ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.send$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetTypeInfo.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetTypeInfo.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle send$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("send"));
-    public static VarHandle send$VH() {
-        return IXMLHttpRequestVtbl.send$VH;
-    }
-    public static MemoryAddress send$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.send$VH.get(seg);
-    }
-    public static void send$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.send$VH.set(seg, x);
-    }
-    public static MemoryAddress send$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.send$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void send$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.send$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static send send (MemorySegment segment, MemorySession session) {
-        return send.ofAddress(send$get(segment), session);
-    }
-    static final FunctionDescriptor abort$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle abort$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.abort$FUNC
-    );
-    public interface abort {
+    private static final AddressLayout GetTypeInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetTypeInfo"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(abort fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(abort.class, fi, IXMLHttpRequestVtbl.abort$FUNC, session);
-        }
-        static abort ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.abort$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetTypeInfo$layout() {
+        return GetTypeInfo$LAYOUT;
     }
 
-    static final VarHandle abort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("abort"));
-    public static VarHandle abort$VH() {
-        return IXMLHttpRequestVtbl.abort$VH;
-    }
-    public static MemoryAddress abort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.abort$VH.get(seg);
-    }
-    public static void abort$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.abort$VH.set(seg, x);
-    }
-    public static MemoryAddress abort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.abort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void abort$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.abort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static abort abort (MemorySegment segment, MemorySession session) {
-        return abort.ofAddress(abort$get(segment), session);
-    }
-    static final FunctionDescriptor get_status$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_status$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_status$FUNC
-    );
-    public interface get_status {
+    private static final long GetTypeInfo$OFFSET = 32;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_status fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_status.class, fi, IXMLHttpRequestVtbl.get_status$FUNC, session);
-        }
-        static get_status ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_status$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetTypeInfo$offset() {
+        return GetTypeInfo$OFFSET;
     }
 
-    static final VarHandle get_status$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_status"));
-    public static VarHandle get_status$VH() {
-        return IXMLHttpRequestVtbl.get_status$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetTypeInfo(MemorySegment struct) {
+        return struct.get(GetTypeInfo$LAYOUT, GetTypeInfo$OFFSET);
     }
-    public static MemoryAddress get_status$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_status$VH.get(seg);
-    }
-    public static void get_status$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_status$VH.set(seg, x);
-    }
-    public static MemoryAddress get_status$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_status$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_status$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_status$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_status get_status (MemorySegment segment, MemorySession session) {
-        return get_status.ofAddress(get_status$get(segment), session);
-    }
-    static final FunctionDescriptor get_statusText$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_statusText$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_statusText$FUNC
-    );
-    public interface get_statusText {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_statusText fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_statusText.class, fi, IXMLHttpRequestVtbl.get_statusText$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetTypeInfo)(IXMLHttpRequest *, UINT, LCID, ITypeInfo **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetTypeInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetTypeInfo$LAYOUT, GetTypeInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetIDsOfNames {
+
+        GetIDsOfNames() {
+            // Should not be called directly
         }
-        static get_statusText ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_statusText$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, int _x4, MemorySegment _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetIDsOfNames.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetIDsOfNames.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, int _x4, MemorySegment _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle get_statusText$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_statusText"));
-    public static VarHandle get_statusText$VH() {
-        return IXMLHttpRequestVtbl.get_statusText$VH;
-    }
-    public static MemoryAddress get_statusText$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_statusText$VH.get(seg);
-    }
-    public static void get_statusText$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_statusText$VH.set(seg, x);
-    }
-    public static MemoryAddress get_statusText$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_statusText$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_statusText$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_statusText$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_statusText get_statusText (MemorySegment segment, MemorySession session) {
-        return get_statusText.ofAddress(get_statusText$get(segment), session);
-    }
-    static final FunctionDescriptor get_responseXML$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_responseXML$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_responseXML$FUNC
-    );
-    public interface get_responseXML {
+    private static final AddressLayout GetIDsOfNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetIDsOfNames"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_responseXML fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_responseXML.class, fi, IXMLHttpRequestVtbl.get_responseXML$FUNC, session);
-        }
-        static get_responseXML ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_responseXML$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetIDsOfNames$layout() {
+        return GetIDsOfNames$LAYOUT;
     }
 
-    static final VarHandle get_responseXML$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_responseXML"));
-    public static VarHandle get_responseXML$VH() {
-        return IXMLHttpRequestVtbl.get_responseXML$VH;
-    }
-    public static MemoryAddress get_responseXML$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseXML$VH.get(seg);
-    }
-    public static void get_responseXML$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseXML$VH.set(seg, x);
-    }
-    public static MemoryAddress get_responseXML$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseXML$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_responseXML$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseXML$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_responseXML get_responseXML (MemorySegment segment, MemorySession session) {
-        return get_responseXML.ofAddress(get_responseXML$get(segment), session);
-    }
-    static final FunctionDescriptor get_responseText$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_responseText$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_responseText$FUNC
-    );
-    public interface get_responseText {
+    private static final long GetIDsOfNames$OFFSET = 40;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_responseText fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_responseText.class, fi, IXMLHttpRequestVtbl.get_responseText$FUNC, session);
-        }
-        static get_responseText ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_responseText$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetIDsOfNames$offset() {
+        return GetIDsOfNames$OFFSET;
     }
 
-    static final VarHandle get_responseText$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_responseText"));
-    public static VarHandle get_responseText$VH() {
-        return IXMLHttpRequestVtbl.get_responseText$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetIDsOfNames(MemorySegment struct) {
+        return struct.get(GetIDsOfNames$LAYOUT, GetIDsOfNames$OFFSET);
     }
-    public static MemoryAddress get_responseText$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseText$VH.get(seg);
-    }
-    public static void get_responseText$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseText$VH.set(seg, x);
-    }
-    public static MemoryAddress get_responseText$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseText$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_responseText$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseText$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_responseText get_responseText (MemorySegment segment, MemorySession session) {
-        return get_responseText.ofAddress(get_responseText$get(segment), session);
-    }
-    static final FunctionDescriptor get_responseBody$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_responseBody$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_responseBody$FUNC
-    );
-    public interface get_responseBody {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_responseBody fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_responseBody.class, fi, IXMLHttpRequestVtbl.get_responseBody$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetIDsOfNames)(IXMLHttpRequest *, const IID *const, LPOLESTR *, UINT, LCID, DISPID *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetIDsOfNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetIDsOfNames$LAYOUT, GetIDsOfNames$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static class Invoke {
+
+        Invoke() {
+            // Should not be called directly
         }
-        static get_responseBody ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_responseBody$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, short _x4, MemorySegment _x5, MemorySegment _x6, MemorySegment _x7, MemorySegment _x8);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_SHORT,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Invoke.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Invoke.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, int _x3, short _x4, MemorySegment _x5, MemorySegment _x6, MemorySegment _x7, MemorySegment _x8) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle get_responseBody$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_responseBody"));
-    public static VarHandle get_responseBody$VH() {
-        return IXMLHttpRequestVtbl.get_responseBody$VH;
-    }
-    public static MemoryAddress get_responseBody$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseBody$VH.get(seg);
-    }
-    public static void get_responseBody$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseBody$VH.set(seg, x);
-    }
-    public static MemoryAddress get_responseBody$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseBody$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_responseBody$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseBody$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_responseBody get_responseBody (MemorySegment segment, MemorySession session) {
-        return get_responseBody.ofAddress(get_responseBody$get(segment), session);
-    }
-    static final FunctionDescriptor get_responseStream$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_responseStream$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_responseStream$FUNC
-    );
-    public interface get_responseStream {
+    private static final AddressLayout Invoke$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Invoke"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_responseStream fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_responseStream.class, fi, IXMLHttpRequestVtbl.get_responseStream$FUNC, session);
-        }
-        static get_responseStream ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_responseStream$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Invoke$layout() {
+        return Invoke$LAYOUT;
     }
 
-    static final VarHandle get_responseStream$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_responseStream"));
-    public static VarHandle get_responseStream$VH() {
-        return IXMLHttpRequestVtbl.get_responseStream$VH;
-    }
-    public static MemoryAddress get_responseStream$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseStream$VH.get(seg);
-    }
-    public static void get_responseStream$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseStream$VH.set(seg, x);
-    }
-    public static MemoryAddress get_responseStream$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_responseStream$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_responseStream$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_responseStream$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_responseStream get_responseStream (MemorySegment segment, MemorySession session) {
-        return get_responseStream.ofAddress(get_responseStream$get(segment), session);
-    }
-    static final FunctionDescriptor get_readyState$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle get_readyState$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.get_readyState$FUNC
-    );
-    public interface get_readyState {
+    private static final long Invoke$OFFSET = 48;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(get_readyState fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(get_readyState.class, fi, IXMLHttpRequestVtbl.get_readyState$FUNC, session);
-        }
-        static get_readyState ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.get_readyState$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Invoke$offset() {
+        return Invoke$OFFSET;
     }
 
-    static final VarHandle get_readyState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("get_readyState"));
-    public static VarHandle get_readyState$VH() {
-        return IXMLHttpRequestVtbl.get_readyState$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Invoke(MemorySegment struct) {
+        return struct.get(Invoke$LAYOUT, Invoke$OFFSET);
     }
-    public static MemoryAddress get_readyState$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_readyState$VH.get(seg);
-    }
-    public static void get_readyState$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_readyState$VH.set(seg, x);
-    }
-    public static MemoryAddress get_readyState$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.get_readyState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void get_readyState$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.get_readyState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static get_readyState get_readyState (MemorySegment segment, MemorySession session) {
-        return get_readyState.ofAddress(get_readyState$get(segment), session);
-    }
-    static final FunctionDescriptor put_onreadystatechange$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle put_onreadystatechange$MH = RuntimeHelper.downcallHandle(
-        IXMLHttpRequestVtbl.put_onreadystatechange$FUNC
-    );
-    public interface put_onreadystatechange {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(put_onreadystatechange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(put_onreadystatechange.class, fi, IXMLHttpRequestVtbl.put_onreadystatechange$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Invoke)(IXMLHttpRequest *, DISPID, const IID *const, LCID, WORD, DISPPARAMS *, VARIANT *, EXCEPINFO *, UINT *) __attribute__((stdcall))
+     * }
+     */
+    public static void Invoke(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Invoke$LAYOUT, Invoke$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class open {
+
+        open() {
+            // Should not be called directly
         }
-        static put_onreadystatechange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IXMLHttpRequestVtbl.put_onreadystatechange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout(),
+            tagVARIANT.layout(),
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(open.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(open.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle put_onreadystatechange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("put_onreadystatechange"));
-    public static VarHandle put_onreadystatechange$VH() {
-        return IXMLHttpRequestVtbl.put_onreadystatechange$VH;
+    private static final AddressLayout open$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("open"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout open$layout() {
+        return open$LAYOUT;
     }
-    public static MemoryAddress put_onreadystatechange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.put_onreadystatechange$VH.get(seg);
+
+    private static final long open$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long open$offset() {
+        return open$OFFSET;
     }
-    public static void put_onreadystatechange$set( MemorySegment seg, MemoryAddress x) {
-        IXMLHttpRequestVtbl.put_onreadystatechange$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment open(MemorySegment struct) {
+        return struct.get(open$LAYOUT, open$OFFSET);
     }
-    public static MemoryAddress put_onreadystatechange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IXMLHttpRequestVtbl.put_onreadystatechange$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*open)(IXMLHttpRequest *, BSTR, BSTR, VARIANT, VARIANT, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void open(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(open$LAYOUT, open$OFFSET, fieldValue);
     }
-    public static void put_onreadystatechange$set(MemorySegment seg, long index, MemoryAddress x) {
-        IXMLHttpRequestVtbl.put_onreadystatechange$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static class setRequestHeader {
+
+        setRequestHeader() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(setRequestHeader.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(setRequestHeader.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static put_onreadystatechange put_onreadystatechange (MemorySegment segment, MemorySession session) {
-        return put_onreadystatechange.ofAddress(put_onreadystatechange$get(segment), session);
+
+    private static final AddressLayout setRequestHeader$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("setRequestHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout setRequestHeader$layout() {
+        return setRequestHeader$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long setRequestHeader$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long setRequestHeader$offset() {
+        return setRequestHeader$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment setRequestHeader(MemorySegment struct) {
+        return struct.get(setRequestHeader$LAYOUT, setRequestHeader$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*setRequestHeader)(IXMLHttpRequest *, BSTR, BSTR) __attribute__((stdcall))
+     * }
+     */
+    public static void setRequestHeader(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(setRequestHeader$LAYOUT, setRequestHeader$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class getResponseHeader {
+
+        getResponseHeader() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(getResponseHeader.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(getResponseHeader.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout getResponseHeader$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("getResponseHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout getResponseHeader$layout() {
+        return getResponseHeader$LAYOUT;
+    }
+
+    private static final long getResponseHeader$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long getResponseHeader$offset() {
+        return getResponseHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment getResponseHeader(MemorySegment struct) {
+        return struct.get(getResponseHeader$LAYOUT, getResponseHeader$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getResponseHeader)(IXMLHttpRequest *, BSTR, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void getResponseHeader(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(getResponseHeader$LAYOUT, getResponseHeader$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class getAllResponseHeaders {
+
+        getAllResponseHeaders() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(getAllResponseHeaders.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(getAllResponseHeaders.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout getAllResponseHeaders$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("getAllResponseHeaders"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout getAllResponseHeaders$layout() {
+        return getAllResponseHeaders$LAYOUT;
+    }
+
+    private static final long getAllResponseHeaders$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long getAllResponseHeaders$offset() {
+        return getAllResponseHeaders$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment getAllResponseHeaders(MemorySegment struct) {
+        return struct.get(getAllResponseHeaders$LAYOUT, getAllResponseHeaders$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*getAllResponseHeaders)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void getAllResponseHeaders(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(getAllResponseHeaders$LAYOUT, getAllResponseHeaders$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static class send {
+
+        send() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagVARIANT.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(send.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(send.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout send$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("send"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout send$layout() {
+        return send$LAYOUT;
+    }
+
+    private static final long send$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static final long send$offset() {
+        return send$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment send(MemorySegment struct) {
+        return struct.get(send$LAYOUT, send$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*send)(IXMLHttpRequest *, VARIANT) __attribute__((stdcall))
+     * }
+     */
+    public static void send(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(send$LAYOUT, send$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static class abort {
+
+        abort() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(abort.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(abort.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout abort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("abort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout abort$layout() {
+        return abort$LAYOUT;
+    }
+
+    private static final long abort$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static final long abort$offset() {
+        return abort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment abort(MemorySegment struct) {
+        return struct.get(abort$LAYOUT, abort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*abort)(IXMLHttpRequest *) __attribute__((stdcall))
+     * }
+     */
+    public static void abort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(abort$LAYOUT, abort$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_status {
+
+        get_status() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_status.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_status.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_status$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_status"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_status$layout() {
+        return get_status$LAYOUT;
+    }
+
+    private static final long get_status$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_status$offset() {
+        return get_status$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_status(MemorySegment struct) {
+        return struct.get(get_status$LAYOUT, get_status$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_status)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_status(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_status$LAYOUT, get_status$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_statusText {
+
+        get_statusText() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_statusText.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_statusText.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_statusText$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_statusText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_statusText$layout() {
+        return get_statusText$LAYOUT;
+    }
+
+    private static final long get_statusText$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_statusText$offset() {
+        return get_statusText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_statusText(MemorySegment struct) {
+        return struct.get(get_statusText$LAYOUT, get_statusText$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_statusText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_statusText(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_statusText$LAYOUT, get_statusText$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall))
+     * }
+     */
+    public static class get_responseXML {
+
+        get_responseXML() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_responseXML.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_responseXML.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_responseXML$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_responseXML"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_responseXML$layout() {
+        return get_responseXML$LAYOUT;
+    }
+
+    private static final long get_responseXML$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_responseXML$offset() {
+        return get_responseXML$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_responseXML(MemorySegment struct) {
+        return struct.get(get_responseXML$LAYOUT, get_responseXML$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseXML)(IXMLHttpRequest *, IDispatch **) __attribute__((stdcall))
+     * }
+     */
+    public static void get_responseXML(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_responseXML$LAYOUT, get_responseXML$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_responseText {
+
+        get_responseText() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_responseText.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_responseText.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_responseText$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_responseText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_responseText$layout() {
+        return get_responseText$LAYOUT;
+    }
+
+    private static final long get_responseText$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_responseText$offset() {
+        return get_responseText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_responseText(MemorySegment struct) {
+        return struct.get(get_responseText$LAYOUT, get_responseText$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseText)(IXMLHttpRequest *, BSTR *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_responseText(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_responseText$LAYOUT, get_responseText$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_responseBody {
+
+        get_responseBody() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_responseBody.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_responseBody.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_responseBody$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_responseBody"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_responseBody$layout() {
+        return get_responseBody$LAYOUT;
+    }
+
+    private static final long get_responseBody$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_responseBody$offset() {
+        return get_responseBody$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_responseBody(MemorySegment struct) {
+        return struct.get(get_responseBody$LAYOUT, get_responseBody$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseBody)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_responseBody(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_responseBody$LAYOUT, get_responseBody$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_responseStream {
+
+        get_responseStream() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_responseStream.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_responseStream.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_responseStream$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_responseStream"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_responseStream$layout() {
+        return get_responseStream$LAYOUT;
+    }
+
+    private static final long get_responseStream$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_responseStream$offset() {
+        return get_responseStream$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_responseStream(MemorySegment struct) {
+        return struct.get(get_responseStream$LAYOUT, get_responseStream$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_responseStream)(IXMLHttpRequest *, VARIANT *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_responseStream(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_responseStream$LAYOUT, get_responseStream$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static class get_readyState {
+
+        get_readyState() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(get_readyState.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(get_readyState.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout get_readyState$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("get_readyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout get_readyState$layout() {
+        return get_readyState$LAYOUT;
+    }
+
+    private static final long get_readyState$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static final long get_readyState$offset() {
+        return get_readyState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment get_readyState(MemorySegment struct) {
+        return struct.get(get_readyState$LAYOUT, get_readyState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*get_readyState)(IXMLHttpRequest *, long *) __attribute__((stdcall))
+     * }
+     */
+    public static void get_readyState(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(get_readyState$LAYOUT, get_readyState$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall))
+     * }
+     */
+    public static class put_onreadystatechange {
+
+        put_onreadystatechange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(put_onreadystatechange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(put_onreadystatechange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout put_onreadystatechange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("put_onreadystatechange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout put_onreadystatechange$layout() {
+        return put_onreadystatechange$LAYOUT;
+    }
+
+    private static final long put_onreadystatechange$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall))
+     * }
+     */
+    public static final long put_onreadystatechange$offset() {
+        return put_onreadystatechange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment put_onreadystatechange(MemorySegment struct) {
+        return struct.get(put_onreadystatechange$LAYOUT, put_onreadystatechange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*put_onreadystatechange)(IXMLHttpRequest *, IDispatch *) __attribute__((stdcall))
+     * }
+     */
+    public static void put_onreadystatechange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(put_onreadystatechange$LAYOUT, put_onreadystatechange$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

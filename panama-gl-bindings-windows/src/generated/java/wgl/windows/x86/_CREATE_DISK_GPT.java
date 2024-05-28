@@ -2,50 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CREATE_DISK_GPT {
+ *     GUID DiskId;
+ *     DWORD MaxPartitionCount;
+ * }
+ * }
+ */
 public class _CREATE_DISK_GPT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("DiskId"),
-        Constants$root.C_LONG$LAYOUT.withName("MaxPartitionCount")
-    ).withName("_CREATE_DISK_GPT");
-    public static MemoryLayout $LAYOUT() {
-        return _CREATE_DISK_GPT.$struct$LAYOUT;
+    _CREATE_DISK_GPT() {
+        // Should not be called directly
     }
-    public static MemorySegment DiskId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle MaxPartitionCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaxPartitionCount"));
-    public static VarHandle MaxPartitionCount$VH() {
-        return _CREATE_DISK_GPT.MaxPartitionCount$VH;
-    }
-    public static int MaxPartitionCount$get(MemorySegment seg) {
-        return (int)_CREATE_DISK_GPT.MaxPartitionCount$VH.get(seg);
-    }
-    public static void MaxPartitionCount$set( MemorySegment seg, int x) {
-        _CREATE_DISK_GPT.MaxPartitionCount$VH.set(seg, x);
-    }
-    public static int MaxPartitionCount$get(MemorySegment seg, long index) {
-        return (int)_CREATE_DISK_GPT.MaxPartitionCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaxPartitionCount$set(MemorySegment seg, long index, int x) {
-        _CREATE_DISK_GPT.MaxPartitionCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("DiskId"),
+        wgl_h.C_LONG.withName("MaxPartitionCount")
+    ).withName("_CREATE_DISK_GPT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout DiskId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DiskId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID DiskId
+     * }
+     */
+    public static final GroupLayout DiskId$layout() {
+        return DiskId$LAYOUT;
+    }
+
+    private static final long DiskId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID DiskId
+     * }
+     */
+    public static final long DiskId$offset() {
+        return DiskId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID DiskId
+     * }
+     */
+    public static MemorySegment DiskId(MemorySegment struct) {
+        return struct.asSlice(DiskId$OFFSET, DiskId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID DiskId
+     * }
+     */
+    public static void DiskId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DiskId$OFFSET, DiskId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt MaxPartitionCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MaxPartitionCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MaxPartitionCount
+     * }
+     */
+    public static final OfInt MaxPartitionCount$layout() {
+        return MaxPartitionCount$LAYOUT;
+    }
+
+    private static final long MaxPartitionCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MaxPartitionCount
+     * }
+     */
+    public static final long MaxPartitionCount$offset() {
+        return MaxPartitionCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MaxPartitionCount
+     * }
+     */
+    public static int MaxPartitionCount(MemorySegment struct) {
+        return struct.get(MaxPartitionCount$LAYOUT, MaxPartitionCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MaxPartitionCount
+     * }
+     */
+    public static void MaxPartitionCount(MemorySegment struct, int fieldValue) {
+        struct.set(MaxPartitionCount$LAYOUT, MaxPartitionCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

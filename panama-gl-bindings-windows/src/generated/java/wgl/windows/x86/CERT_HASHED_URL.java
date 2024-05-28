@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_HASHED_URL {
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     CRYPT_HASH_BLOB Hash;
+ *     LPWSTR pwszUrl;
+ * } CERT_HASHED_URL
+ * }
+ */
 public class CERT_HASHED_URL extends _CERT_HASHED_URL {
 
+    CERT_HASHED_URL() {
+        // Should not be called directly
+    }
 }
-
 

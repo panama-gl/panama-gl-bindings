@@ -2,27 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLSWAPBUFFERSMSCOMLPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    long apply(java.lang.foreign.MemoryAddress hdc, long target_msc, long divisor, long remainder);
-    static MemorySegment allocate(PFNWGLSWAPBUFFERSMSCOMLPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLSWAPBUFFERSMSCOMLPROC.class, fi, constants$1415.PFNWGLSWAPBUFFERSMSCOMLPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef INT64 (*PFNWGLSWAPBUFFERSMSCOMLPROC)(HDC, INT64, INT64, INT64) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLSWAPBUFFERSMSCOMLPROC {
+
+    PFNWGLSWAPBUFFERSMSCOMLPROC() {
+        // Should not be called directly
     }
-    static PFNWGLSWAPBUFFERSMSCOMLPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hdc, long _target_msc, long _divisor, long _remainder) -> {
-            try {
-                return (long)constants$1415.PFNWGLSWAPBUFFERSMSCOMLPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hdc, _target_msc, _divisor, _remainder);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        long apply(MemorySegment hdc, long target_msc, long divisor, long remainder);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_LONG_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLSWAPBUFFERSMSCOMLPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLSWAPBUFFERSMSCOMLPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static long invoke(MemorySegment funcPtr,MemorySegment hdc, long target_msc, long divisor, long remainder) {
+        try {
+            return (long) DOWN$MH.invokeExact(funcPtr, hdc, target_msc, divisor, remainder);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

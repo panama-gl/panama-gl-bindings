@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRL_DIST_POINTS_INFO {
+ *     DWORD cDistPoint;
+ *     PCRL_DIST_POINT rgDistPoint;
+ * }
+ * }
+ */
 public class _CRL_DIST_POINTS_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cDistPoint"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgDistPoint")
-    ).withName("_CRL_DIST_POINTS_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRL_DIST_POINTS_INFO.$struct$LAYOUT;
+    _CRL_DIST_POINTS_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cDistPoint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cDistPoint"));
-    public static VarHandle cDistPoint$VH() {
-        return _CRL_DIST_POINTS_INFO.cDistPoint$VH;
-    }
-    public static int cDistPoint$get(MemorySegment seg) {
-        return (int)_CRL_DIST_POINTS_INFO.cDistPoint$VH.get(seg);
-    }
-    public static void cDistPoint$set( MemorySegment seg, int x) {
-        _CRL_DIST_POINTS_INFO.cDistPoint$VH.set(seg, x);
-    }
-    public static int cDistPoint$get(MemorySegment seg, long index) {
-        return (int)_CRL_DIST_POINTS_INFO.cDistPoint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cDistPoint$set(MemorySegment seg, long index, int x) {
-        _CRL_DIST_POINTS_INFO.cDistPoint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgDistPoint$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgDistPoint"));
-    public static VarHandle rgDistPoint$VH() {
-        return _CRL_DIST_POINTS_INFO.rgDistPoint$VH;
-    }
-    public static MemoryAddress rgDistPoint$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRL_DIST_POINTS_INFO.rgDistPoint$VH.get(seg);
-    }
-    public static void rgDistPoint$set( MemorySegment seg, MemoryAddress x) {
-        _CRL_DIST_POINTS_INFO.rgDistPoint$VH.set(seg, x);
-    }
-    public static MemoryAddress rgDistPoint$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRL_DIST_POINTS_INFO.rgDistPoint$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgDistPoint$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRL_DIST_POINTS_INFO.rgDistPoint$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cDistPoint"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgDistPoint")
+    ).withName("_CRL_DIST_POINTS_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cDistPoint$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cDistPoint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cDistPoint
+     * }
+     */
+    public static final OfInt cDistPoint$layout() {
+        return cDistPoint$LAYOUT;
+    }
+
+    private static final long cDistPoint$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cDistPoint
+     * }
+     */
+    public static final long cDistPoint$offset() {
+        return cDistPoint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cDistPoint
+     * }
+     */
+    public static int cDistPoint(MemorySegment struct) {
+        return struct.get(cDistPoint$LAYOUT, cDistPoint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cDistPoint
+     * }
+     */
+    public static void cDistPoint(MemorySegment struct, int fieldValue) {
+        struct.set(cDistPoint$LAYOUT, cDistPoint$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgDistPoint$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgDistPoint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRL_DIST_POINT rgDistPoint
+     * }
+     */
+    public static final AddressLayout rgDistPoint$layout() {
+        return rgDistPoint$LAYOUT;
+    }
+
+    private static final long rgDistPoint$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRL_DIST_POINT rgDistPoint
+     * }
+     */
+    public static final long rgDistPoint$offset() {
+        return rgDistPoint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRL_DIST_POINT rgDistPoint
+     * }
+     */
+    public static MemorySegment rgDistPoint(MemorySegment struct) {
+        return struct.get(rgDistPoint$LAYOUT, rgDistPoint$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRL_DIST_POINT rgDistPoint
+     * }
+     */
+    public static void rgDistPoint(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgDistPoint$LAYOUT, rgDistPoint$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

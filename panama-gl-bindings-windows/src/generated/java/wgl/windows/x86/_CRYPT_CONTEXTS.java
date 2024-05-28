@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_CONTEXTS {
+ *     ULONG cContexts;
+ *     PWSTR *rgpszContexts;
+ * }
+ * }
+ */
 public class _CRYPT_CONTEXTS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cContexts"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpszContexts")
-    ).withName("_CRYPT_CONTEXTS");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_CONTEXTS.$struct$LAYOUT;
+    _CRYPT_CONTEXTS() {
+        // Should not be called directly
     }
-    static final VarHandle cContexts$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cContexts"));
-    public static VarHandle cContexts$VH() {
-        return _CRYPT_CONTEXTS.cContexts$VH;
-    }
-    public static int cContexts$get(MemorySegment seg) {
-        return (int)_CRYPT_CONTEXTS.cContexts$VH.get(seg);
-    }
-    public static void cContexts$set( MemorySegment seg, int x) {
-        _CRYPT_CONTEXTS.cContexts$VH.set(seg, x);
-    }
-    public static int cContexts$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_CONTEXTS.cContexts$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cContexts$set(MemorySegment seg, long index, int x) {
-        _CRYPT_CONTEXTS.cContexts$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpszContexts$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpszContexts"));
-    public static VarHandle rgpszContexts$VH() {
-        return _CRYPT_CONTEXTS.rgpszContexts$VH;
-    }
-    public static MemoryAddress rgpszContexts$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_CONTEXTS.rgpszContexts$VH.get(seg);
-    }
-    public static void rgpszContexts$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_CONTEXTS.rgpszContexts$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpszContexts$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_CONTEXTS.rgpszContexts$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpszContexts$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_CONTEXTS.rgpszContexts$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cContexts"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpszContexts")
+    ).withName("_CRYPT_CONTEXTS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cContexts$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cContexts"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cContexts
+     * }
+     */
+    public static final OfInt cContexts$layout() {
+        return cContexts$LAYOUT;
+    }
+
+    private static final long cContexts$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cContexts
+     * }
+     */
+    public static final long cContexts$offset() {
+        return cContexts$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cContexts
+     * }
+     */
+    public static int cContexts(MemorySegment struct) {
+        return struct.get(cContexts$LAYOUT, cContexts$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cContexts
+     * }
+     */
+    public static void cContexts(MemorySegment struct, int fieldValue) {
+        struct.set(cContexts$LAYOUT, cContexts$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpszContexts$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpszContexts"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszContexts
+     * }
+     */
+    public static final AddressLayout rgpszContexts$layout() {
+        return rgpszContexts$LAYOUT;
+    }
+
+    private static final long rgpszContexts$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszContexts
+     * }
+     */
+    public static final long rgpszContexts$offset() {
+        return rgpszContexts$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszContexts
+     * }
+     */
+    public static MemorySegment rgpszContexts(MemorySegment struct) {
+        return struct.get(rgpszContexts$LAYOUT, rgpszContexts$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszContexts
+     * }
+     */
+    public static void rgpszContexts(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpszContexts$LAYOUT, rgpszContexts$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

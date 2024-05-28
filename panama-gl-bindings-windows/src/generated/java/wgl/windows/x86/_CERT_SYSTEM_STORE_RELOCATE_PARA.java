@@ -2,113 +2,318 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_SYSTEM_STORE_RELOCATE_PARA {
+ *     union {
+ *         HKEY hKeyBase;
+ *         void *pvBase;
+ *     };
+ *     union {
+ *         void *pvSystemStore;
+ *         LPCSTR pszSystemStore;
+ *         LPCWSTR pwszSystemStore;
+ *     };
+ * }
+ * }
+ */
 public class _CERT_SYSTEM_STORE_RELOCATE_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hKeyBase"),
-            Constants$root.C_POINTER$LAYOUT.withName("pvBase")
-        ).withName("$anon$0"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pvSystemStore"),
-            Constants$root.C_POINTER$LAYOUT.withName("pszSystemStore"),
-            Constants$root.C_POINTER$LAYOUT.withName("pwszSystemStore")
-        ).withName("$anon$1")
-    ).withName("_CERT_SYSTEM_STORE_RELOCATE_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.$struct$LAYOUT;
+    _CERT_SYSTEM_STORE_RELOCATE_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle hKeyBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hKeyBase"));
-    public static VarHandle hKeyBase$VH() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.hKeyBase$VH;
-    }
-    public static MemoryAddress hKeyBase$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.hKeyBase$VH.get(seg);
-    }
-    public static void hKeyBase$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.hKeyBase$VH.set(seg, x);
-    }
-    public static MemoryAddress hKeyBase$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.hKeyBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hKeyBase$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.hKeyBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pvBase"));
-    public static VarHandle pvBase$VH() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.pvBase$VH;
-    }
-    public static MemoryAddress pvBase$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pvBase$VH.get(seg);
-    }
-    public static void pvBase$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pvBase$VH.set(seg, x);
-    }
-    public static MemoryAddress pvBase$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pvBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvBase$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pvBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pvSystemStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("pvSystemStore"));
-    public static VarHandle pvSystemStore$VH() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.pvSystemStore$VH;
-    }
-    public static MemoryAddress pvSystemStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pvSystemStore$VH.get(seg);
-    }
-    public static void pvSystemStore$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pvSystemStore$VH.set(seg, x);
-    }
-    public static MemoryAddress pvSystemStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pvSystemStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvSystemStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pvSystemStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszSystemStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("pszSystemStore"));
-    public static VarHandle pszSystemStore$VH() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.pszSystemStore$VH;
-    }
-    public static MemoryAddress pszSystemStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pszSystemStore$VH.get(seg);
-    }
-    public static void pszSystemStore$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pszSystemStore$VH.set(seg, x);
-    }
-    public static MemoryAddress pszSystemStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pszSystemStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszSystemStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pszSystemStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszSystemStore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("pwszSystemStore"));
-    public static VarHandle pwszSystemStore$VH() {
-        return _CERT_SYSTEM_STORE_RELOCATE_PARA.pwszSystemStore$VH;
-    }
-    public static MemoryAddress pwszSystemStore$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pwszSystemStore$VH.get(seg);
-    }
-    public static void pwszSystemStore$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pwszSystemStore$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszSystemStore$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_SYSTEM_STORE_RELOCATE_PARA.pwszSystemStore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszSystemStore$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_SYSTEM_STORE_RELOCATE_PARA.pwszSystemStore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("hKeyBase"),
+            wgl_h.C_POINTER.withName("pvBase")
+        ).withName("$anon$9483:5"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pvSystemStore"),
+            wgl_h.C_POINTER.withName("pszSystemStore"),
+            wgl_h.C_POINTER.withName("pwszSystemStore")
+        ).withName("$anon$9487:5")
+    ).withName("_CERT_SYSTEM_STORE_RELOCATE_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hKeyBase$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$9483:5"), groupElement("hKeyBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HKEY hKeyBase
+     * }
+     */
+    public static final AddressLayout hKeyBase$layout() {
+        return hKeyBase$LAYOUT;
+    }
+
+    private static final long hKeyBase$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HKEY hKeyBase
+     * }
+     */
+    public static final long hKeyBase$offset() {
+        return hKeyBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HKEY hKeyBase
+     * }
+     */
+    public static MemorySegment hKeyBase(MemorySegment struct) {
+        return struct.get(hKeyBase$LAYOUT, hKeyBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HKEY hKeyBase
+     * }
+     */
+    public static void hKeyBase(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hKeyBase$LAYOUT, hKeyBase$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvBase$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$9483:5"), groupElement("pvBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvBase
+     * }
+     */
+    public static final AddressLayout pvBase$layout() {
+        return pvBase$LAYOUT;
+    }
+
+    private static final long pvBase$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvBase
+     * }
+     */
+    public static final long pvBase$offset() {
+        return pvBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvBase
+     * }
+     */
+    public static MemorySegment pvBase(MemorySegment struct) {
+        return struct.get(pvBase$LAYOUT, pvBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvBase
+     * }
+     */
+    public static void pvBase(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvBase$LAYOUT, pvBase$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvSystemStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$9487:5"), groupElement("pvSystemStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvSystemStore
+     * }
+     */
+    public static final AddressLayout pvSystemStore$layout() {
+        return pvSystemStore$LAYOUT;
+    }
+
+    private static final long pvSystemStore$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvSystemStore
+     * }
+     */
+    public static final long pvSystemStore$offset() {
+        return pvSystemStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvSystemStore
+     * }
+     */
+    public static MemorySegment pvSystemStore(MemorySegment struct) {
+        return struct.get(pvSystemStore$LAYOUT, pvSystemStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvSystemStore
+     * }
+     */
+    public static void pvSystemStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvSystemStore$LAYOUT, pvSystemStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszSystemStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$9487:5"), groupElement("pszSystemStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR pszSystemStore
+     * }
+     */
+    public static final AddressLayout pszSystemStore$layout() {
+        return pszSystemStore$LAYOUT;
+    }
+
+    private static final long pszSystemStore$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR pszSystemStore
+     * }
+     */
+    public static final long pszSystemStore$offset() {
+        return pszSystemStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszSystemStore
+     * }
+     */
+    public static MemorySegment pszSystemStore(MemorySegment struct) {
+        return struct.get(pszSystemStore$LAYOUT, pszSystemStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR pszSystemStore
+     * }
+     */
+    public static void pszSystemStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszSystemStore$LAYOUT, pszSystemStore$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszSystemStore$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$9487:5"), groupElement("pwszSystemStore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCWSTR pwszSystemStore
+     * }
+     */
+    public static final AddressLayout pwszSystemStore$layout() {
+        return pwszSystemStore$LAYOUT;
+    }
+
+    private static final long pwszSystemStore$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCWSTR pwszSystemStore
+     * }
+     */
+    public static final long pwszSystemStore$offset() {
+        return pwszSystemStore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCWSTR pwszSystemStore
+     * }
+     */
+    public static MemorySegment pwszSystemStore(MemorySegment struct) {
+        return struct.get(pwszSystemStore$LAYOUT, pwszSystemStore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCWSTR pwszSystemStore
+     * }
+     */
+    public static void pwszSystemStore(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszSystemStore$LAYOUT, pwszSystemStore$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

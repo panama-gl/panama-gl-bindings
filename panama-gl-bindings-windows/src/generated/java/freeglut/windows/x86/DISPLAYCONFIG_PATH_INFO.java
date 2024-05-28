@@ -2,90 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISPLAYCONFIG_PATH_INFO {
+ *     DISPLAYCONFIG_PATH_SOURCE_INFO sourceInfo;
+ *     DISPLAYCONFIG_PATH_TARGET_INFO targetInfo;
+ *     UINT32 flags;
+ * }
+ * }
+ */
 public class DISPLAYCONFIG_PATH_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("adapterId"),
-            Constants$root.C_LONG$LAYOUT.withName("id"),
-            MemoryLayout.unionLayout(
-                Constants$root.C_LONG$LAYOUT.withName("modeInfoIdx"),
-                MemoryLayout.structLayout(
-                    MemoryLayout.structLayout(
-                        MemoryLayout.paddingLayout(16).withName("cloneGroupId"),
-                        MemoryLayout.paddingLayout(16).withName("sourceModeInfoIdx")
-                    )
-                ).withName("$anon$0")
-            ).withName("$anon$0"),
-            Constants$root.C_LONG$LAYOUT.withName("statusFlags")
-        ).withName("sourceInfo"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("adapterId"),
-            Constants$root.C_LONG$LAYOUT.withName("id"),
-            MemoryLayout.unionLayout(
-                Constants$root.C_LONG$LAYOUT.withName("modeInfoIdx"),
-                MemoryLayout.structLayout(
-                    MemoryLayout.structLayout(
-                        MemoryLayout.paddingLayout(16).withName("desktopModeInfoIdx"),
-                        MemoryLayout.paddingLayout(16).withName("targetModeInfoIdx")
-                    )
-                ).withName("$anon$0")
-            ).withName("$anon$0"),
-            Constants$root.C_LONG$LAYOUT.withName("outputTechnology"),
-            Constants$root.C_LONG$LAYOUT.withName("rotation"),
-            Constants$root.C_LONG$LAYOUT.withName("scaling"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Numerator"),
-                Constants$root.C_LONG$LAYOUT.withName("Denominator")
-            ).withName("refreshRate"),
-            Constants$root.C_LONG$LAYOUT.withName("scanLineOrdering"),
-            Constants$root.C_LONG$LAYOUT.withName("targetAvailable"),
-            Constants$root.C_LONG$LAYOUT.withName("statusFlags")
-        ).withName("targetInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("flags")
-    ).withName("DISPLAYCONFIG_PATH_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return DISPLAYCONFIG_PATH_INFO.$struct$LAYOUT;
+    DISPLAYCONFIG_PATH_INFO() {
+        // Should not be called directly
     }
-    public static MemorySegment sourceInfo$slice(MemorySegment seg) {
-        return seg.asSlice(0, 20);
-    }
-    public static MemorySegment targetInfo$slice(MemorySegment seg) {
-        return seg.asSlice(20, 48);
-    }
-    static final VarHandle flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("flags"));
-    public static VarHandle flags$VH() {
-        return DISPLAYCONFIG_PATH_INFO.flags$VH;
-    }
-    public static int flags$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_PATH_INFO.flags$VH.get(seg);
-    }
-    public static void flags$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_PATH_INFO.flags$VH.set(seg, x);
-    }
-    public static int flags$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_PATH_INFO.flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void flags$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_PATH_INFO.flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        DISPLAYCONFIG_PATH_SOURCE_INFO.layout().withName("sourceInfo"),
+        DISPLAYCONFIG_PATH_TARGET_INFO.layout().withName("targetInfo"),
+        freeglut_h.C_INT.withName("flags")
+    ).withName("DISPLAYCONFIG_PATH_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout sourceInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("sourceInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_SOURCE_INFO sourceInfo
+     * }
+     */
+    public static final GroupLayout sourceInfo$layout() {
+        return sourceInfo$LAYOUT;
+    }
+
+    private static final long sourceInfo$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_SOURCE_INFO sourceInfo
+     * }
+     */
+    public static final long sourceInfo$offset() {
+        return sourceInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_SOURCE_INFO sourceInfo
+     * }
+     */
+    public static MemorySegment sourceInfo(MemorySegment struct) {
+        return struct.asSlice(sourceInfo$OFFSET, sourceInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_SOURCE_INFO sourceInfo
+     * }
+     */
+    public static void sourceInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, sourceInfo$OFFSET, sourceInfo$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout targetInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("targetInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_TARGET_INFO targetInfo
+     * }
+     */
+    public static final GroupLayout targetInfo$layout() {
+        return targetInfo$LAYOUT;
+    }
+
+    private static final long targetInfo$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_TARGET_INFO targetInfo
+     * }
+     */
+    public static final long targetInfo$offset() {
+        return targetInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_TARGET_INFO targetInfo
+     * }
+     */
+    public static MemorySegment targetInfo(MemorySegment struct) {
+        return struct.asSlice(targetInfo$OFFSET, targetInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_PATH_TARGET_INFO targetInfo
+     * }
+     */
+    public static void targetInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, targetInfo$OFFSET, targetInfo$LAYOUT.byteSize());
+    }
+
+    private static final OfInt flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 flags
+     * }
+     */
+    public static final OfInt flags$layout() {
+        return flags$LAYOUT;
+    }
+
+    private static final long flags$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 flags
+     * }
+     */
+    public static final long flags$offset() {
+        return flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 flags
+     * }
+     */
+    public static int flags(MemorySegment struct) {
+        return struct.get(flags$LAYOUT, flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 flags
+     * }
+     */
+    public static void flags(MemorySegment struct, int fieldValue) {
+        struct.set(flags$LAYOUT, flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

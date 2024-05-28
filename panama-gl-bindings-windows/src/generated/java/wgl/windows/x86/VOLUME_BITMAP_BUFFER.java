@@ -2,57 +2,252 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     LARGE_INTEGER StartingLcn;
+ *     LARGE_INTEGER BitmapSize;
+ *     BYTE Buffer[1];
+ * }
+ * }
+ */
 public class VOLUME_BITMAP_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("StartingLcn"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("BitmapSize"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("Buffer"),
-        MemoryLayout.paddingLayout(56)
-    );
-    public static MemoryLayout $LAYOUT() {
-        return VOLUME_BITMAP_BUFFER.$struct$LAYOUT;
+    VOLUME_BITMAP_BUFFER() {
+        // Should not be called directly
     }
-    public static MemorySegment StartingLcn$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment BitmapSize$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment Buffer$slice(MemorySegment seg) {
-        return seg.asSlice(16, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("StartingLcn"),
+        _LARGE_INTEGER.layout().withName("BitmapSize"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("Buffer"),
+        MemoryLayout.paddingLayout(7)
+    ).withName("$anon$10554:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout StartingLcn$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingLcn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingLcn
+     * }
+     */
+    public static final GroupLayout StartingLcn$layout() {
+        return StartingLcn$LAYOUT;
+    }
+
+    private static final long StartingLcn$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingLcn
+     * }
+     */
+    public static final long StartingLcn$offset() {
+        return StartingLcn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingLcn
+     * }
+     */
+    public static MemorySegment StartingLcn(MemorySegment struct) {
+        return struct.asSlice(StartingLcn$OFFSET, StartingLcn$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER StartingLcn
+     * }
+     */
+    public static void StartingLcn(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingLcn$OFFSET, StartingLcn$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout BitmapSize$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("BitmapSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BitmapSize
+     * }
+     */
+    public static final GroupLayout BitmapSize$layout() {
+        return BitmapSize$LAYOUT;
+    }
+
+    private static final long BitmapSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BitmapSize
+     * }
+     */
+    public static final long BitmapSize$offset() {
+        return BitmapSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BitmapSize
+     * }
+     */
+    public static MemorySegment BitmapSize(MemorySegment struct) {
+        return struct.asSlice(BitmapSize$OFFSET, BitmapSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER BitmapSize
+     * }
+     */
+    public static void BitmapSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BitmapSize$OFFSET, BitmapSize$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout Buffer$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Buffer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static final SequenceLayout Buffer$layout() {
+        return Buffer$LAYOUT;
+    }
+
+    private static final long Buffer$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static final long Buffer$offset() {
+        return Buffer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static MemorySegment Buffer(MemorySegment struct) {
+        return struct.asSlice(Buffer$OFFSET, Buffer$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static void Buffer(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Buffer$OFFSET, Buffer$LAYOUT.byteSize());
+    }
+
+    private static long[] Buffer$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static long[] Buffer$dimensions() {
+        return Buffer$DIMS;
+    }
+    private static final VarHandle Buffer$ELEM_HANDLE = Buffer$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static byte Buffer(MemorySegment struct, long index0) {
+        return (byte)Buffer$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Buffer[1]
+     * }
+     */
+    public static void Buffer(MemorySegment struct, long index0, byte fieldValue) {
+        Buffer$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

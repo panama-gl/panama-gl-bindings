@@ -2,80 +2,297 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _EVENTSFORLOGFILE {
+ *     DWORD ulSize;
+ *     WCHAR szLogicalLogFile[256];
+ *     DWORD ulNumRecords;
+ *     EVENTLOGRECORD pEventLogRecords[];
+ * }
+ * }
+ */
 public class _EVENTSFORLOGFILE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ulSize"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("szLogicalLogFile"),
-        Constants$root.C_LONG$LAYOUT.withName("ulNumRecords"),
-        MemoryLayout.sequenceLayout(0, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Length"),
-            Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-            Constants$root.C_LONG$LAYOUT.withName("RecordNumber"),
-            Constants$root.C_LONG$LAYOUT.withName("TimeGenerated"),
-            Constants$root.C_LONG$LAYOUT.withName("TimeWritten"),
-            Constants$root.C_LONG$LAYOUT.withName("EventID"),
-            Constants$root.C_SHORT$LAYOUT.withName("EventType"),
-            Constants$root.C_SHORT$LAYOUT.withName("NumStrings"),
-            Constants$root.C_SHORT$LAYOUT.withName("EventCategory"),
-            Constants$root.C_SHORT$LAYOUT.withName("ReservedFlags"),
-            Constants$root.C_LONG$LAYOUT.withName("ClosingRecordNumber"),
-            Constants$root.C_LONG$LAYOUT.withName("StringOffset"),
-            Constants$root.C_LONG$LAYOUT.withName("UserSidLength"),
-            Constants$root.C_LONG$LAYOUT.withName("UserSidOffset"),
-            Constants$root.C_LONG$LAYOUT.withName("DataLength"),
-            Constants$root.C_LONG$LAYOUT.withName("DataOffset")
-        ).withName("_EVENTLOGRECORD")).withName("pEventLogRecords")
-    ).withName("_EVENTSFORLOGFILE");
-    public static MemoryLayout $LAYOUT() {
-        return _EVENTSFORLOGFILE.$struct$LAYOUT;
+    _EVENTSFORLOGFILE() {
+        // Should not be called directly
     }
-    static final VarHandle ulSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulSize"));
-    public static VarHandle ulSize$VH() {
-        return _EVENTSFORLOGFILE.ulSize$VH;
-    }
-    public static int ulSize$get(MemorySegment seg) {
-        return (int)_EVENTSFORLOGFILE.ulSize$VH.get(seg);
-    }
-    public static void ulSize$set( MemorySegment seg, int x) {
-        _EVENTSFORLOGFILE.ulSize$VH.set(seg, x);
-    }
-    public static int ulSize$get(MemorySegment seg, long index) {
-        return (int)_EVENTSFORLOGFILE.ulSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulSize$set(MemorySegment seg, long index, int x) {
-        _EVENTSFORLOGFILE.ulSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szLogicalLogFile$slice(MemorySegment seg) {
-        return seg.asSlice(4, 512);
-    }
-    static final VarHandle ulNumRecords$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ulNumRecords"));
-    public static VarHandle ulNumRecords$VH() {
-        return _EVENTSFORLOGFILE.ulNumRecords$VH;
-    }
-    public static int ulNumRecords$get(MemorySegment seg) {
-        return (int)_EVENTSFORLOGFILE.ulNumRecords$VH.get(seg);
-    }
-    public static void ulNumRecords$set( MemorySegment seg, int x) {
-        _EVENTSFORLOGFILE.ulNumRecords$VH.set(seg, x);
-    }
-    public static int ulNumRecords$get(MemorySegment seg, long index) {
-        return (int)_EVENTSFORLOGFILE.ulNumRecords$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ulNumRecords$set(MemorySegment seg, long index, int x) {
-        _EVENTSFORLOGFILE.ulNumRecords$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ulSize"),
+        MemoryLayout.sequenceLayout(256, freeglut_h.C_SHORT).withName("szLogicalLogFile"),
+        freeglut_h.C_LONG.withName("ulNumRecords"),
+        MemoryLayout.sequenceLayout(0, _EVENTLOGRECORD.layout()).withName("pEventLogRecords")
+    ).withName("_EVENTSFORLOGFILE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ulSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static final OfInt ulSize$layout() {
+        return ulSize$LAYOUT;
+    }
+
+    private static final long ulSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static final long ulSize$offset() {
+        return ulSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static int ulSize(MemorySegment struct) {
+        return struct.get(ulSize$LAYOUT, ulSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulSize
+     * }
+     */
+    public static void ulSize(MemorySegment struct, int fieldValue) {
+        struct.set(ulSize$LAYOUT, ulSize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szLogicalLogFile$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szLogicalLogFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static final SequenceLayout szLogicalLogFile$layout() {
+        return szLogicalLogFile$LAYOUT;
+    }
+
+    private static final long szLogicalLogFile$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static final long szLogicalLogFile$offset() {
+        return szLogicalLogFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static MemorySegment szLogicalLogFile(MemorySegment struct) {
+        return struct.asSlice(szLogicalLogFile$OFFSET, szLogicalLogFile$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static void szLogicalLogFile(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szLogicalLogFile$OFFSET, szLogicalLogFile$LAYOUT.byteSize());
+    }
+
+    private static long[] szLogicalLogFile$DIMS = { 256 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static long[] szLogicalLogFile$dimensions() {
+        return szLogicalLogFile$DIMS;
+    }
+    private static final VarHandle szLogicalLogFile$ELEM_HANDLE = szLogicalLogFile$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static short szLogicalLogFile(MemorySegment struct, long index0) {
+        return (short)szLogicalLogFile$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR szLogicalLogFile[256]
+     * }
+     */
+    public static void szLogicalLogFile(MemorySegment struct, long index0, short fieldValue) {
+        szLogicalLogFile$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt ulNumRecords$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ulNumRecords"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ulNumRecords
+     * }
+     */
+    public static final OfInt ulNumRecords$layout() {
+        return ulNumRecords$LAYOUT;
+    }
+
+    private static final long ulNumRecords$OFFSET = 516;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ulNumRecords
+     * }
+     */
+    public static final long ulNumRecords$offset() {
+        return ulNumRecords$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ulNumRecords
+     * }
+     */
+    public static int ulNumRecords(MemorySegment struct) {
+        return struct.get(ulNumRecords$LAYOUT, ulNumRecords$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ulNumRecords
+     * }
+     */
+    public static void ulNumRecords(MemorySegment struct, int fieldValue) {
+        struct.set(ulNumRecords$LAYOUT, ulNumRecords$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout pEventLogRecords$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("pEventLogRecords"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EVENTLOGRECORD pEventLogRecords[]
+     * }
+     */
+    public static final SequenceLayout pEventLogRecords$layout() {
+        return pEventLogRecords$LAYOUT;
+    }
+
+    private static final long pEventLogRecords$OFFSET = 520;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EVENTLOGRECORD pEventLogRecords[]
+     * }
+     */
+    public static final long pEventLogRecords$offset() {
+        return pEventLogRecords$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EVENTLOGRECORD pEventLogRecords[]
+     * }
+     */
+    public static MemorySegment pEventLogRecords(MemorySegment struct) {
+        return struct.asSlice(pEventLogRecords$OFFSET, pEventLogRecords$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EVENTLOGRECORD pEventLogRecords[]
+     * }
+     */
+    public static void pEventLogRecords(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pEventLogRecords$OFFSET, pEventLogRecords$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,794 +2,1746 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IInternetSecurityManagerEx2Vtbl {
+ *     HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall));
+ *     ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall));
+ *     HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall));
+ *     HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall));
+ *     HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall));
+ *     HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall));
+ *     HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall));
+ *     HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall));
+ *     HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall));
+ *     HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall));
+ *     HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall));
+ *     HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IInternetSecurityManagerEx2Vtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetSecuritySite"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetSecuritySite"),
-        Constants$root.C_POINTER$LAYOUT.withName("MapUrlToZone"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetSecurityId"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProcessUrlAction"),
-        Constants$root.C_POINTER$LAYOUT.withName("QueryCustomPolicy"),
-        Constants$root.C_POINTER$LAYOUT.withName("SetZoneMapping"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetZoneMappings"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProcessUrlActionEx"),
-        Constants$root.C_POINTER$LAYOUT.withName("MapUrlToZoneEx2"),
-        Constants$root.C_POINTER$LAYOUT.withName("ProcessUrlActionEx2"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetSecurityIdEx2"),
-        Constants$root.C_POINTER$LAYOUT.withName("QueryCustomPolicyEx2")
+    IInternetSecurityManagerEx2Vtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("SetSecuritySite"),
+        wgl_h.C_POINTER.withName("GetSecuritySite"),
+        wgl_h.C_POINTER.withName("MapUrlToZone"),
+        wgl_h.C_POINTER.withName("GetSecurityId"),
+        wgl_h.C_POINTER.withName("ProcessUrlAction"),
+        wgl_h.C_POINTER.withName("QueryCustomPolicy"),
+        wgl_h.C_POINTER.withName("SetZoneMapping"),
+        wgl_h.C_POINTER.withName("GetZoneMappings"),
+        wgl_h.C_POINTER.withName("ProcessUrlActionEx"),
+        wgl_h.C_POINTER.withName("MapUrlToZoneEx2"),
+        wgl_h.C_POINTER.withName("ProcessUrlActionEx2"),
+        wgl_h.C_POINTER.withName("GetSecurityIdEx2"),
+        wgl_h.C_POINTER.withName("QueryCustomPolicyEx2")
     ).withName("IInternetSecurityManagerEx2Vtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IInternetSecurityManagerEx2Vtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IInternetSecurityManagerEx2Vtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IInternetSecurityManagerEx2Vtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IInternetSecurityManagerEx2Vtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IInternetSecurityManagerEx2Vtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IInternetSecurityManagerEx2Vtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IInternetSecurityManagerEx2Vtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor SetSecuritySite$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle SetSecuritySite$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.SetSecuritySite$FUNC
-    );
-    public interface SetSecuritySite {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(SetSecuritySite fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetSecuritySite.class, fi, IInternetSecurityManagerEx2Vtbl.SetSecuritySite$FUNC, session);
-        }
-        static SetSecuritySite ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.SetSecuritySite$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle SetSecuritySite$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetSecuritySite"));
-    public static VarHandle SetSecuritySite$VH() {
-        return IInternetSecurityManagerEx2Vtbl.SetSecuritySite$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress SetSecuritySite$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.SetSecuritySite$VH.get(seg);
-    }
-    public static void SetSecuritySite$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.SetSecuritySite$VH.set(seg, x);
-    }
-    public static MemoryAddress SetSecuritySite$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.SetSecuritySite$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetSecuritySite$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.SetSecuritySite$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetSecuritySite SetSecuritySite (MemorySegment segment, MemorySession session) {
-        return SetSecuritySite.ofAddress(SetSecuritySite$get(segment), session);
-    }
-    static final FunctionDescriptor GetSecuritySite$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetSecuritySite$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.GetSecuritySite$FUNC
-    );
-    public interface GetSecuritySite {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetSecuritySite fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetSecuritySite.class, fi, IInternetSecurityManagerEx2Vtbl.GetSecuritySite$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetSecurityManagerEx2 *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static GetSecuritySite ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.GetSecuritySite$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetSecuritySite$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetSecuritySite"));
-    public static VarHandle GetSecuritySite$VH() {
-        return IInternetSecurityManagerEx2Vtbl.GetSecuritySite$VH;
-    }
-    public static MemoryAddress GetSecuritySite$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecuritySite$VH.get(seg);
-    }
-    public static void GetSecuritySite$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecuritySite$VH.set(seg, x);
-    }
-    public static MemoryAddress GetSecuritySite$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecuritySite$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetSecuritySite$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecuritySite$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetSecuritySite GetSecuritySite (MemorySegment segment, MemorySession session) {
-        return GetSecuritySite.ofAddress(GetSecuritySite$get(segment), session);
-    }
-    static final FunctionDescriptor MapUrlToZone$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle MapUrlToZone$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZone$FUNC
-    );
-    public interface MapUrlToZone {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3);
-        static MemorySegment allocate(MapUrlToZone fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(MapUrlToZone.class, fi, IInternetSecurityManagerEx2Vtbl.MapUrlToZone$FUNC, session);
-        }
-        static MapUrlToZone ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.MapUrlToZone$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle MapUrlToZone$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MapUrlToZone"));
-    public static VarHandle MapUrlToZone$VH() {
-        return IInternetSecurityManagerEx2Vtbl.MapUrlToZone$VH;
-    }
-    public static MemoryAddress MapUrlToZone$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.MapUrlToZone$VH.get(seg);
-    }
-    public static void MapUrlToZone$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZone$VH.set(seg, x);
-    }
-    public static MemoryAddress MapUrlToZone$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.MapUrlToZone$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MapUrlToZone$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZone$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MapUrlToZone MapUrlToZone (MemorySegment segment, MemorySession session) {
-        return MapUrlToZone.ofAddress(MapUrlToZone$get(segment), session);
-    }
-    static final FunctionDescriptor GetSecurityId$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle GetSecurityId$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.GetSecurityId$FUNC
-    );
-    public interface GetSecurityId {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, long _x4);
-        static MemorySegment allocate(GetSecurityId fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetSecurityId.class, fi, IInternetSecurityManagerEx2Vtbl.GetSecurityId$FUNC, session);
-        }
-        static GetSecurityId ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, long __x4) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.GetSecurityId$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle GetSecurityId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetSecurityId"));
-    public static VarHandle GetSecurityId$VH() {
-        return IInternetSecurityManagerEx2Vtbl.GetSecurityId$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress GetSecurityId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecurityId$VH.get(seg);
-    }
-    public static void GetSecurityId$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecurityId$VH.set(seg, x);
-    }
-    public static MemoryAddress GetSecurityId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecurityId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetSecurityId$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecurityId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetSecurityId GetSecurityId (MemorySegment segment, MemorySession session) {
-        return GetSecurityId.ofAddress(GetSecurityId$get(segment), session);
-    }
-    static final FunctionDescriptor ProcessUrlAction$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ProcessUrlAction$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$FUNC
-    );
-    public interface ProcessUrlAction {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2, java.lang.foreign.MemoryAddress _x3, int _x4, java.lang.foreign.MemoryAddress _x5, int _x6, int _x7, int _x8);
-        static MemorySegment allocate(ProcessUrlAction fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ProcessUrlAction.class, fi, IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static ProcessUrlAction ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2, java.lang.foreign.MemoryAddress __x3, int __x4, java.lang.foreign.MemoryAddress __x5, int __x6, int __x7, int __x8) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3, __x4, (java.lang.foreign.Addressable)__x5, __x6, __x7, __x8);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ProcessUrlAction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessUrlAction"));
-    public static VarHandle ProcessUrlAction$VH() {
-        return IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$VH;
-    }
-    public static MemoryAddress ProcessUrlAction$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$VH.get(seg);
-    }
-    public static void ProcessUrlAction$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$VH.set(seg, x);
-    }
-    public static MemoryAddress ProcessUrlAction$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcessUrlAction$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlAction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ProcessUrlAction ProcessUrlAction (MemorySegment segment, MemorySession session) {
-        return ProcessUrlAction.ofAddress(ProcessUrlAction$get(segment), session);
-    }
-    static final FunctionDescriptor QueryCustomPolicy$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle QueryCustomPolicy$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$FUNC
-    );
-    public interface QueryCustomPolicy {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, java.lang.foreign.MemoryAddress _x5, int _x6, int _x7);
-        static MemorySegment allocate(QueryCustomPolicy fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryCustomPolicy.class, fi, IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$FUNC, session);
-        }
-        static QueryCustomPolicy ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, java.lang.foreign.MemoryAddress __x5, int __x6, int __x7) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, (java.lang.foreign.Addressable)__x5, __x6, __x7);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle QueryCustomPolicy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryCustomPolicy"));
-    public static VarHandle QueryCustomPolicy$VH() {
-        return IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$VH;
-    }
-    public static MemoryAddress QueryCustomPolicy$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$VH.get(seg);
-    }
-    public static void QueryCustomPolicy$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryCustomPolicy$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryCustomPolicy$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryCustomPolicy QueryCustomPolicy (MemorySegment segment, MemorySession session) {
-        return QueryCustomPolicy.ofAddress(QueryCustomPolicy$get(segment), session);
-    }
-    static final FunctionDescriptor SetZoneMapping$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle SetZoneMapping$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.SetZoneMapping$FUNC
-    );
-    public interface SetZoneMapping {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, int _x3);
-        static MemorySegment allocate(SetZoneMapping fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(SetZoneMapping.class, fi, IInternetSecurityManagerEx2Vtbl.SetZoneMapping$FUNC, session);
-        }
-        static SetZoneMapping ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, int __x3) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.SetZoneMapping$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle SetZoneMapping$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SetZoneMapping"));
-    public static VarHandle SetZoneMapping$VH() {
-        return IInternetSecurityManagerEx2Vtbl.SetZoneMapping$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress SetZoneMapping$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.SetZoneMapping$VH.get(seg);
-    }
-    public static void SetZoneMapping$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.SetZoneMapping$VH.set(seg, x);
-    }
-    public static MemoryAddress SetZoneMapping$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.SetZoneMapping$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetZoneMapping$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.SetZoneMapping$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static SetZoneMapping SetZoneMapping (MemorySegment segment, MemorySession session) {
-        return SetZoneMapping.ofAddress(SetZoneMapping$get(segment), session);
-    }
-    static final FunctionDescriptor GetZoneMappings$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle GetZoneMappings$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.GetZoneMappings$FUNC
-    );
-    public interface GetZoneMappings {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, java.lang.foreign.MemoryAddress _x2, int _x3);
-        static MemorySegment allocate(GetZoneMappings fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetZoneMappings.class, fi, IInternetSecurityManagerEx2Vtbl.GetZoneMappings$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetSecurityManagerEx2 *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class SetSecuritySite {
+
+        SetSecuritySite() {
+            // Should not be called directly
         }
-        static GetZoneMappings ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, java.lang.foreign.MemoryAddress __x2, int __x3) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.GetZoneMappings$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, (java.lang.foreign.Addressable)__x2, __x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetSecuritySite.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetSecuritySite.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle GetZoneMappings$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetZoneMappings"));
-    public static VarHandle GetZoneMappings$VH() {
-        return IInternetSecurityManagerEx2Vtbl.GetZoneMappings$VH;
-    }
-    public static MemoryAddress GetZoneMappings$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetZoneMappings$VH.get(seg);
-    }
-    public static void GetZoneMappings$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetZoneMappings$VH.set(seg, x);
-    }
-    public static MemoryAddress GetZoneMappings$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetZoneMappings$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetZoneMappings$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetZoneMappings$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetZoneMappings GetZoneMappings (MemorySegment segment, MemorySession session) {
-        return GetZoneMappings.ofAddress(GetZoneMappings$get(segment), session);
-    }
-    static final FunctionDescriptor ProcessUrlActionEx$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ProcessUrlActionEx$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$FUNC
-    );
-    public interface ProcessUrlActionEx {
+    private static final AddressLayout SetSecuritySite$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetSecuritySite"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2, java.lang.foreign.MemoryAddress _x3, int _x4, java.lang.foreign.MemoryAddress _x5, int _x6, int _x7, int _x8, java.lang.foreign.MemoryAddress _x9);
-        static MemorySegment allocate(ProcessUrlActionEx fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ProcessUrlActionEx.class, fi, IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$FUNC, session);
-        }
-        static ProcessUrlActionEx ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2, java.lang.foreign.MemoryAddress __x3, int __x4, java.lang.foreign.MemoryAddress __x5, int __x6, int __x7, int __x8, java.lang.foreign.MemoryAddress __x9) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3, __x4, (java.lang.foreign.Addressable)__x5, __x6, __x7, __x8, (java.lang.foreign.Addressable)__x9);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetSecuritySite$layout() {
+        return SetSecuritySite$LAYOUT;
     }
 
-    static final VarHandle ProcessUrlActionEx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessUrlActionEx"));
-    public static VarHandle ProcessUrlActionEx$VH() {
-        return IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$VH;
-    }
-    public static MemoryAddress ProcessUrlActionEx$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$VH.get(seg);
-    }
-    public static void ProcessUrlActionEx$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$VH.set(seg, x);
-    }
-    public static MemoryAddress ProcessUrlActionEx$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcessUrlActionEx$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ProcessUrlActionEx ProcessUrlActionEx (MemorySegment segment, MemorySession session) {
-        return ProcessUrlActionEx.ofAddress(ProcessUrlActionEx$get(segment), session);
-    }
-    static final FunctionDescriptor MapUrlToZoneEx2$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle MapUrlToZoneEx2$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$FUNC
-    );
-    public interface MapUrlToZoneEx2 {
+    private static final long SetSecuritySite$OFFSET = 24;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, int _x3, java.lang.foreign.MemoryAddress _x4, java.lang.foreign.MemoryAddress _x5);
-        static MemorySegment allocate(MapUrlToZoneEx2 fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(MapUrlToZoneEx2.class, fi, IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$FUNC, session);
-        }
-        static MapUrlToZoneEx2 ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, int __x3, java.lang.foreign.MemoryAddress __x4, java.lang.foreign.MemoryAddress __x5) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, __x3, (java.lang.foreign.Addressable)__x4, (java.lang.foreign.Addressable)__x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetSecuritySite$offset() {
+        return SetSecuritySite$OFFSET;
     }
 
-    static final VarHandle MapUrlToZoneEx2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MapUrlToZoneEx2"));
-    public static VarHandle MapUrlToZoneEx2$VH() {
-        return IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetSecuritySite(MemorySegment struct) {
+        return struct.get(SetSecuritySite$LAYOUT, SetSecuritySite$OFFSET);
     }
-    public static MemoryAddress MapUrlToZoneEx2$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$VH.get(seg);
-    }
-    public static void MapUrlToZoneEx2$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$VH.set(seg, x);
-    }
-    public static MemoryAddress MapUrlToZoneEx2$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MapUrlToZoneEx2$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.MapUrlToZoneEx2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MapUrlToZoneEx2 MapUrlToZoneEx2 (MemorySegment segment, MemorySession session) {
-        return MapUrlToZoneEx2.ofAddress(MapUrlToZoneEx2$get(segment), session);
-    }
-    static final FunctionDescriptor ProcessUrlActionEx2$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle ProcessUrlActionEx2$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$FUNC
-    );
-    public interface ProcessUrlActionEx2 {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2, java.lang.foreign.MemoryAddress _x3, int _x4, java.lang.foreign.MemoryAddress _x5, int _x6, int _x7, long _x8, java.lang.foreign.MemoryAddress _x9);
-        static MemorySegment allocate(ProcessUrlActionEx2 fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ProcessUrlActionEx2.class, fi, IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void SetSecuritySite(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetSecuritySite$LAYOUT, SetSecuritySite$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall))
+     * }
+     */
+    public static class GetSecuritySite {
+
+        GetSecuritySite() {
+            // Should not be called directly
         }
-        static ProcessUrlActionEx2 ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2, java.lang.foreign.MemoryAddress __x3, int __x4, java.lang.foreign.MemoryAddress __x5, int __x6, int __x7, long __x8, java.lang.foreign.MemoryAddress __x9) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3, __x4, (java.lang.foreign.Addressable)__x5, __x6, __x7, __x8, (java.lang.foreign.Addressable)__x9);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetSecuritySite.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetSecuritySite.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ProcessUrlActionEx2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProcessUrlActionEx2"));
-    public static VarHandle ProcessUrlActionEx2$VH() {
-        return IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$VH;
-    }
-    public static MemoryAddress ProcessUrlActionEx2$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$VH.get(seg);
-    }
-    public static void ProcessUrlActionEx2$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$VH.set(seg, x);
-    }
-    public static MemoryAddress ProcessUrlActionEx2$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProcessUrlActionEx2$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.ProcessUrlActionEx2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ProcessUrlActionEx2 ProcessUrlActionEx2 (MemorySegment segment, MemorySession session) {
-        return ProcessUrlActionEx2.ofAddress(ProcessUrlActionEx2$get(segment), session);
-    }
-    static final FunctionDescriptor GetSecurityIdEx2$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle GetSecurityIdEx2$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$FUNC
-    );
-    public interface GetSecurityIdEx2 {
+    private static final AddressLayout GetSecuritySite$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetSecuritySite"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, long _x4);
-        static MemorySegment allocate(GetSecurityIdEx2 fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetSecurityIdEx2.class, fi, IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$FUNC, session);
-        }
-        static GetSecurityIdEx2 ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, long __x4) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetSecuritySite$layout() {
+        return GetSecuritySite$LAYOUT;
     }
 
-    static final VarHandle GetSecurityIdEx2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetSecurityIdEx2"));
-    public static VarHandle GetSecurityIdEx2$VH() {
-        return IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$VH;
-    }
-    public static MemoryAddress GetSecurityIdEx2$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$VH.get(seg);
-    }
-    public static void GetSecurityIdEx2$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$VH.set(seg, x);
-    }
-    public static MemoryAddress GetSecurityIdEx2$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetSecurityIdEx2$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.GetSecurityIdEx2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetSecurityIdEx2 GetSecurityIdEx2 (MemorySegment segment, MemorySession session) {
-        return GetSecurityIdEx2.ofAddress(GetSecurityIdEx2$get(segment), session);
-    }
-    static final FunctionDescriptor QueryCustomPolicyEx2$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle QueryCustomPolicyEx2$MH = RuntimeHelper.downcallHandle(
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$FUNC
-    );
-    public interface QueryCustomPolicyEx2 {
+    private static final long GetSecuritySite$OFFSET = 32;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, java.lang.foreign.MemoryAddress _x5, int _x6, long _x7);
-        static MemorySegment allocate(QueryCustomPolicyEx2 fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryCustomPolicyEx2.class, fi, IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$FUNC, session);
-        }
-        static QueryCustomPolicyEx2 ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, java.lang.foreign.MemoryAddress __x5, int __x6, long __x7) -> {
-                try {
-                    return (int)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, (java.lang.foreign.Addressable)__x5, __x6, __x7);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetSecuritySite$offset() {
+        return GetSecuritySite$OFFSET;
     }
 
-    static final VarHandle QueryCustomPolicyEx2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryCustomPolicyEx2"));
-    public static VarHandle QueryCustomPolicyEx2$VH() {
-        return IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetSecuritySite(MemorySegment struct) {
+        return struct.get(GetSecuritySite$LAYOUT, GetSecuritySite$OFFSET);
     }
-    public static MemoryAddress QueryCustomPolicyEx2$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecuritySite)(IInternetSecurityManagerEx2 *, IInternetSecurityMgrSite **) __attribute__((stdcall))
+     * }
+     */
+    public static void GetSecuritySite(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetSecuritySite$LAYOUT, GetSecuritySite$OFFSET, fieldValue);
     }
-    public static void QueryCustomPolicyEx2$set( MemorySegment seg, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$VH.set(seg, x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class MapUrlToZone {
+
+        MapUrlToZone() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(MapUrlToZone.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(MapUrlToZone.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static MemoryAddress QueryCustomPolicyEx2$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final AddressLayout MapUrlToZone$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("MapUrlToZone"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout MapUrlToZone$layout() {
+        return MapUrlToZone$LAYOUT;
     }
-    public static void QueryCustomPolicyEx2$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetSecurityManagerEx2Vtbl.QueryCustomPolicyEx2$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MapUrlToZone$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long MapUrlToZone$offset() {
+        return MapUrlToZone$OFFSET;
     }
-    public static QueryCustomPolicyEx2 QueryCustomPolicyEx2 (MemorySegment segment, MemorySession session) {
-        return QueryCustomPolicyEx2.ofAddress(QueryCustomPolicyEx2$get(segment), session);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment MapUrlToZone(MemorySegment struct) {
+        return struct.get(MapUrlToZone$LAYOUT, MapUrlToZone$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZone)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void MapUrlToZone(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(MapUrlToZone$LAYOUT, MapUrlToZone$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static class GetSecurityId {
+
+        GetSecurityId() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, long _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetSecurityId.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetSecurityId.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, long _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetSecurityId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetSecurityId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetSecurityId$layout() {
+        return GetSecurityId$LAYOUT;
+    }
+
+    private static final long GetSecurityId$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetSecurityId$offset() {
+        return GetSecurityId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetSecurityId(MemorySegment struct) {
+        return struct.get(GetSecurityId$LAYOUT, GetSecurityId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityId)(IInternetSecurityManagerEx2 *, LPCWSTR, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static void GetSecurityId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetSecurityId$LAYOUT, GetSecurityId$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class ProcessUrlAction {
+
+        ProcessUrlAction() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, int _x8);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ProcessUrlAction.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ProcessUrlAction.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, int _x8) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ProcessUrlAction$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProcessUrlAction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ProcessUrlAction$layout() {
+        return ProcessUrlAction$LAYOUT;
+    }
+
+    private static final long ProcessUrlAction$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long ProcessUrlAction$offset() {
+        return ProcessUrlAction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ProcessUrlAction(MemorySegment struct) {
+        return struct.get(ProcessUrlAction$LAYOUT, ProcessUrlAction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlAction)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void ProcessUrlAction(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProcessUrlAction$LAYOUT, ProcessUrlAction$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryCustomPolicy {
+
+        QueryCustomPolicy() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6, int _x7);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryCustomPolicy.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryCustomPolicy.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6, int _x7) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout QueryCustomPolicy$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryCustomPolicy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryCustomPolicy$layout() {
+        return QueryCustomPolicy$LAYOUT;
+    }
+
+    private static final long QueryCustomPolicy$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryCustomPolicy$offset() {
+        return QueryCustomPolicy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryCustomPolicy(MemorySegment struct) {
+        return struct.get(QueryCustomPolicy$LAYOUT, QueryCustomPolicy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicy)(IInternetSecurityManagerEx2 *, LPCWSTR, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryCustomPolicy(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryCustomPolicy$LAYOUT, QueryCustomPolicy$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class SetZoneMapping {
+
+        SetZoneMapping() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(SetZoneMapping.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(SetZoneMapping.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout SetZoneMapping$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetZoneMapping"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout SetZoneMapping$layout() {
+        return SetZoneMapping$LAYOUT;
+    }
+
+    private static final long SetZoneMapping$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long SetZoneMapping$offset() {
+        return SetZoneMapping$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment SetZoneMapping(MemorySegment struct) {
+        return struct.get(SetZoneMapping$LAYOUT, SetZoneMapping$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*SetZoneMapping)(IInternetSecurityManagerEx2 *, DWORD, LPCWSTR, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void SetZoneMapping(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetZoneMapping$LAYOUT, SetZoneMapping$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class GetZoneMappings {
+
+        GetZoneMappings() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, MemorySegment _x2, int _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetZoneMappings.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetZoneMappings.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, MemorySegment _x2, int _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetZoneMappings$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetZoneMappings"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetZoneMappings$layout() {
+        return GetZoneMappings$LAYOUT;
+    }
+
+    private static final long GetZoneMappings$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetZoneMappings$offset() {
+        return GetZoneMappings$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetZoneMappings(MemorySegment struct) {
+        return struct.get(GetZoneMappings$LAYOUT, GetZoneMappings$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetZoneMappings)(IInternetSecurityManagerEx2 *, DWORD, IEnumString **, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void GetZoneMappings(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetZoneMappings$LAYOUT, GetZoneMappings$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class ProcessUrlActionEx {
+
+        ProcessUrlActionEx() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, int _x8, MemorySegment _x9);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ProcessUrlActionEx.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ProcessUrlActionEx.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, int _x8, MemorySegment _x9) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ProcessUrlActionEx$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProcessUrlActionEx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ProcessUrlActionEx$layout() {
+        return ProcessUrlActionEx$LAYOUT;
+    }
+
+    private static final long ProcessUrlActionEx$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ProcessUrlActionEx$offset() {
+        return ProcessUrlActionEx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ProcessUrlActionEx(MemorySegment struct) {
+        return struct.get(ProcessUrlActionEx$LAYOUT, ProcessUrlActionEx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx)(IInternetSecurityManagerEx2 *, LPCWSTR, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void ProcessUrlActionEx(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProcessUrlActionEx$LAYOUT, ProcessUrlActionEx$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class MapUrlToZoneEx2 {
+
+        MapUrlToZoneEx2() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, MemorySegment _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(MapUrlToZoneEx2.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(MapUrlToZoneEx2.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, int _x3, MemorySegment _x4, MemorySegment _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout MapUrlToZoneEx2$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("MapUrlToZoneEx2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout MapUrlToZoneEx2$layout() {
+        return MapUrlToZoneEx2$LAYOUT;
+    }
+
+    private static final long MapUrlToZoneEx2$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long MapUrlToZoneEx2$offset() {
+        return MapUrlToZoneEx2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment MapUrlToZoneEx2(MemorySegment struct) {
+        return struct.get(MapUrlToZoneEx2$LAYOUT, MapUrlToZoneEx2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*MapUrlToZoneEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD *, DWORD, LPWSTR *, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void MapUrlToZoneEx2(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(MapUrlToZoneEx2$LAYOUT, MapUrlToZoneEx2$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static class ProcessUrlActionEx2 {
+
+        ProcessUrlActionEx2() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, long _x8, MemorySegment _x9);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ProcessUrlActionEx2.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ProcessUrlActionEx2.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3, int _x4, MemorySegment _x5, int _x6, int _x7, long _x8, MemorySegment _x9) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout ProcessUrlActionEx2$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ProcessUrlActionEx2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ProcessUrlActionEx2$layout() {
+        return ProcessUrlActionEx2$LAYOUT;
+    }
+
+    private static final long ProcessUrlActionEx2$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static final long ProcessUrlActionEx2$offset() {
+        return ProcessUrlActionEx2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ProcessUrlActionEx2(MemorySegment struct) {
+        return struct.get(ProcessUrlActionEx2$LAYOUT, ProcessUrlActionEx2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ProcessUrlActionEx2)(IInternetSecurityManagerEx2 *, IUri *, DWORD, BYTE *, DWORD, BYTE *, DWORD, DWORD, DWORD_PTR, DWORD *) __attribute__((stdcall))
+     * }
+     */
+    public static void ProcessUrlActionEx2(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ProcessUrlActionEx2$LAYOUT, ProcessUrlActionEx2$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static class GetSecurityIdEx2 {
+
+        GetSecurityIdEx2() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, long _x4);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetSecurityIdEx2.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetSecurityIdEx2.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, long _x4) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetSecurityIdEx2$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetSecurityIdEx2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetSecurityIdEx2$layout() {
+        return GetSecurityIdEx2$LAYOUT;
+    }
+
+    private static final long GetSecurityIdEx2$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetSecurityIdEx2$offset() {
+        return GetSecurityIdEx2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetSecurityIdEx2(MemorySegment struct) {
+        return struct.get(GetSecurityIdEx2$LAYOUT, GetSecurityIdEx2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetSecurityIdEx2)(IInternetSecurityManagerEx2 *, IUri *, BYTE *, DWORD *, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static void GetSecurityIdEx2(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetSecurityIdEx2$LAYOUT, GetSecurityIdEx2$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryCustomPolicyEx2 {
+
+        QueryCustomPolicyEx2() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6, long _x7);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryCustomPolicyEx2.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryCustomPolicyEx2.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5, int _x6, long _x7) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5, _x6, _x7);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout QueryCustomPolicyEx2$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryCustomPolicyEx2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryCustomPolicyEx2$layout() {
+        return QueryCustomPolicyEx2$LAYOUT;
+    }
+
+    private static final long QueryCustomPolicyEx2$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryCustomPolicyEx2$offset() {
+        return QueryCustomPolicyEx2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryCustomPolicyEx2(MemorySegment struct) {
+        return struct.get(QueryCustomPolicyEx2$LAYOUT, QueryCustomPolicyEx2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryCustomPolicyEx2)(IInternetSecurityManagerEx2 *, IUri *, const GUID *const, BYTE **, DWORD *, BYTE *, DWORD, DWORD_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryCustomPolicyEx2(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryCustomPolicyEx2$LAYOUT, QueryCustomPolicyEx2$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

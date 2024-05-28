@@ -2,92 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
+ *     WORD Flags;
+ *     WORD Catalog;
+ *     DWORD CatalogOffset;
+ *     DWORD Reserved;
+ * }
+ * }
+ */
 public class _IMAGE_LOAD_CONFIG_CODE_INTEGRITY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        Constants$root.C_SHORT$LAYOUT.withName("Catalog"),
-        Constants$root.C_LONG$LAYOUT.withName("CatalogOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved")
-    ).withName("_IMAGE_LOAD_CONFIG_CODE_INTEGRITY");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.$struct$LAYOUT;
+    _IMAGE_LOAD_CONFIG_CODE_INTEGRITY() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Catalog$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Catalog"));
-    public static VarHandle Catalog$VH() {
-        return _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Catalog$VH;
-    }
-    public static short Catalog$get(MemorySegment seg) {
-        return (short)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Catalog$VH.get(seg);
-    }
-    public static void Catalog$set( MemorySegment seg, short x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Catalog$VH.set(seg, x);
-    }
-    public static short Catalog$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Catalog$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Catalog$set(MemorySegment seg, long index, short x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Catalog$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CatalogOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CatalogOffset"));
-    public static VarHandle CatalogOffset$VH() {
-        return _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.CatalogOffset$VH;
-    }
-    public static int CatalogOffset$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.CatalogOffset$VH.get(seg);
-    }
-    public static void CatalogOffset$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.CatalogOffset$VH.set(seg, x);
-    }
-    public static int CatalogOffset$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.CatalogOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CatalogOffset$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.CatalogOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _IMAGE_LOAD_CONFIG_CODE_INTEGRITY.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("Flags"),
+        freeglut_h.C_SHORT.withName("Catalog"),
+        freeglut_h.C_LONG.withName("CatalogOffset"),
+        freeglut_h.C_LONG.withName("Reserved")
+    ).withName("_IMAGE_LOAD_CONFIG_CODE_INTEGRITY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Catalog$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Catalog"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Catalog
+     * }
+     */
+    public static final OfShort Catalog$layout() {
+        return Catalog$LAYOUT;
+    }
+
+    private static final long Catalog$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Catalog
+     * }
+     */
+    public static final long Catalog$offset() {
+        return Catalog$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Catalog
+     * }
+     */
+    public static short Catalog(MemorySegment struct) {
+        return struct.get(Catalog$LAYOUT, Catalog$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Catalog
+     * }
+     */
+    public static void Catalog(MemorySegment struct, short fieldValue) {
+        struct.set(Catalog$LAYOUT, Catalog$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CatalogOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CatalogOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CatalogOffset
+     * }
+     */
+    public static final OfInt CatalogOffset$layout() {
+        return CatalogOffset$LAYOUT;
+    }
+
+    private static final long CatalogOffset$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CatalogOffset
+     * }
+     */
+    public static final long CatalogOffset$offset() {
+        return CatalogOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CatalogOffset
+     * }
+     */
+    public static int CatalogOffset(MemorySegment struct) {
+        return struct.get(CatalogOffset$LAYOUT, CatalogOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CatalogOffset
+     * }
+     */
+    public static void CatalogOffset(MemorySegment struct, int fieldValue) {
+        struct.set(CatalogOffset$LAYOUT, CatalogOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

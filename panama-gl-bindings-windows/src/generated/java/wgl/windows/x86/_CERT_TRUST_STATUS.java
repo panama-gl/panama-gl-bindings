@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_TRUST_STATUS {
+ *     DWORD dwErrorStatus;
+ *     DWORD dwInfoStatus;
+ * }
+ * }
+ */
 public class _CERT_TRUST_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwErrorStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("dwInfoStatus")
-    ).withName("_CERT_TRUST_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_TRUST_STATUS.$struct$LAYOUT;
+    _CERT_TRUST_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle dwErrorStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwErrorStatus"));
-    public static VarHandle dwErrorStatus$VH() {
-        return _CERT_TRUST_STATUS.dwErrorStatus$VH;
-    }
-    public static int dwErrorStatus$get(MemorySegment seg) {
-        return (int)_CERT_TRUST_STATUS.dwErrorStatus$VH.get(seg);
-    }
-    public static void dwErrorStatus$set( MemorySegment seg, int x) {
-        _CERT_TRUST_STATUS.dwErrorStatus$VH.set(seg, x);
-    }
-    public static int dwErrorStatus$get(MemorySegment seg, long index) {
-        return (int)_CERT_TRUST_STATUS.dwErrorStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwErrorStatus$set(MemorySegment seg, long index, int x) {
-        _CERT_TRUST_STATUS.dwErrorStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwInfoStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwInfoStatus"));
-    public static VarHandle dwInfoStatus$VH() {
-        return _CERT_TRUST_STATUS.dwInfoStatus$VH;
-    }
-    public static int dwInfoStatus$get(MemorySegment seg) {
-        return (int)_CERT_TRUST_STATUS.dwInfoStatus$VH.get(seg);
-    }
-    public static void dwInfoStatus$set( MemorySegment seg, int x) {
-        _CERT_TRUST_STATUS.dwInfoStatus$VH.set(seg, x);
-    }
-    public static int dwInfoStatus$get(MemorySegment seg, long index) {
-        return (int)_CERT_TRUST_STATUS.dwInfoStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwInfoStatus$set(MemorySegment seg, long index, int x) {
-        _CERT_TRUST_STATUS.dwInfoStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwErrorStatus"),
+        wgl_h.C_LONG.withName("dwInfoStatus")
+    ).withName("_CERT_TRUST_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwErrorStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwErrorStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorStatus
+     * }
+     */
+    public static final OfInt dwErrorStatus$layout() {
+        return dwErrorStatus$LAYOUT;
+    }
+
+    private static final long dwErrorStatus$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorStatus
+     * }
+     */
+    public static final long dwErrorStatus$offset() {
+        return dwErrorStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorStatus
+     * }
+     */
+    public static int dwErrorStatus(MemorySegment struct) {
+        return struct.get(dwErrorStatus$LAYOUT, dwErrorStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwErrorStatus
+     * }
+     */
+    public static void dwErrorStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwErrorStatus$LAYOUT, dwErrorStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwInfoStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwInfoStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoStatus
+     * }
+     */
+    public static final OfInt dwInfoStatus$layout() {
+        return dwInfoStatus$LAYOUT;
+    }
+
+    private static final long dwInfoStatus$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoStatus
+     * }
+     */
+    public static final long dwInfoStatus$offset() {
+        return dwInfoStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoStatus
+     * }
+     */
+    public static int dwInfoStatus(MemorySegment struct) {
+        return struct.get(dwInfoStatus$LAYOUT, dwInfoStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwInfoStatus
+     * }
+     */
+    public static void dwInfoStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwInfoStatus$LAYOUT, dwInfoStatus$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_OFFLOAD_WRITE_OUTPUT {
+ *     DWORD OffloadWriteFlags;
+ *     DWORD Reserved;
+ *     DWORDLONG LengthCopied;
+ * } STORAGE_OFFLOAD_WRITE_OUTPUT
+ * }
+ */
 public class STORAGE_OFFLOAD_WRITE_OUTPUT extends _STORAGE_OFFLOAD_WRITE_OUTPUT {
 
+    STORAGE_OFFLOAD_WRITE_OUTPUT() {
+        // Should not be called directly
+    }
 }
-
 

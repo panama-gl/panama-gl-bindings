@@ -2,198 +2,619 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCRYPTED_DATA_INFO {
+ *     DWORDLONG StartingFileOffset;
+ *     DWORD OutputBufferOffset;
+ *     DWORD BytesWithinFileSize;
+ *     DWORD BytesWithinValidDataLength;
+ *     WORD CompressionFormat;
+ *     BYTE DataUnitShift;
+ *     BYTE ChunkShift;
+ *     BYTE ClusterShift;
+ *     BYTE EncryptionFormat;
+ *     WORD NumberOfDataBlocks;
+ *     DWORD DataBlockSize[1];
+ * }
+ * }
+ */
 public class _ENCRYPTED_DATA_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("StartingFileOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("OutputBufferOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesWithinFileSize"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesWithinValidDataLength"),
-        Constants$root.C_SHORT$LAYOUT.withName("CompressionFormat"),
-        Constants$root.C_CHAR$LAYOUT.withName("DataUnitShift"),
-        Constants$root.C_CHAR$LAYOUT.withName("ChunkShift"),
-        Constants$root.C_CHAR$LAYOUT.withName("ClusterShift"),
-        Constants$root.C_CHAR$LAYOUT.withName("EncryptionFormat"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfDataBlocks"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("DataBlockSize")
-    ).withName("_ENCRYPTED_DATA_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCRYPTED_DATA_INFO.$struct$LAYOUT;
+    _ENCRYPTED_DATA_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle StartingFileOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartingFileOffset"));
-    public static VarHandle StartingFileOffset$VH() {
-        return _ENCRYPTED_DATA_INFO.StartingFileOffset$VH;
-    }
-    public static long StartingFileOffset$get(MemorySegment seg) {
-        return (long)_ENCRYPTED_DATA_INFO.StartingFileOffset$VH.get(seg);
-    }
-    public static void StartingFileOffset$set( MemorySegment seg, long x) {
-        _ENCRYPTED_DATA_INFO.StartingFileOffset$VH.set(seg, x);
-    }
-    public static long StartingFileOffset$get(MemorySegment seg, long index) {
-        return (long)_ENCRYPTED_DATA_INFO.StartingFileOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartingFileOffset$set(MemorySegment seg, long index, long x) {
-        _ENCRYPTED_DATA_INFO.StartingFileOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OutputBufferOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OutputBufferOffset"));
-    public static VarHandle OutputBufferOffset$VH() {
-        return _ENCRYPTED_DATA_INFO.OutputBufferOffset$VH;
-    }
-    public static int OutputBufferOffset$get(MemorySegment seg) {
-        return (int)_ENCRYPTED_DATA_INFO.OutputBufferOffset$VH.get(seg);
-    }
-    public static void OutputBufferOffset$set( MemorySegment seg, int x) {
-        _ENCRYPTED_DATA_INFO.OutputBufferOffset$VH.set(seg, x);
-    }
-    public static int OutputBufferOffset$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTED_DATA_INFO.OutputBufferOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OutputBufferOffset$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTED_DATA_INFO.OutputBufferOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesWithinFileSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesWithinFileSize"));
-    public static VarHandle BytesWithinFileSize$VH() {
-        return _ENCRYPTED_DATA_INFO.BytesWithinFileSize$VH;
-    }
-    public static int BytesWithinFileSize$get(MemorySegment seg) {
-        return (int)_ENCRYPTED_DATA_INFO.BytesWithinFileSize$VH.get(seg);
-    }
-    public static void BytesWithinFileSize$set( MemorySegment seg, int x) {
-        _ENCRYPTED_DATA_INFO.BytesWithinFileSize$VH.set(seg, x);
-    }
-    public static int BytesWithinFileSize$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTED_DATA_INFO.BytesWithinFileSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesWithinFileSize$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTED_DATA_INFO.BytesWithinFileSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesWithinValidDataLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesWithinValidDataLength"));
-    public static VarHandle BytesWithinValidDataLength$VH() {
-        return _ENCRYPTED_DATA_INFO.BytesWithinValidDataLength$VH;
-    }
-    public static int BytesWithinValidDataLength$get(MemorySegment seg) {
-        return (int)_ENCRYPTED_DATA_INFO.BytesWithinValidDataLength$VH.get(seg);
-    }
-    public static void BytesWithinValidDataLength$set( MemorySegment seg, int x) {
-        _ENCRYPTED_DATA_INFO.BytesWithinValidDataLength$VH.set(seg, x);
-    }
-    public static int BytesWithinValidDataLength$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTED_DATA_INFO.BytesWithinValidDataLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesWithinValidDataLength$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTED_DATA_INFO.BytesWithinValidDataLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompressionFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompressionFormat"));
-    public static VarHandle CompressionFormat$VH() {
-        return _ENCRYPTED_DATA_INFO.CompressionFormat$VH;
-    }
-    public static short CompressionFormat$get(MemorySegment seg) {
-        return (short)_ENCRYPTED_DATA_INFO.CompressionFormat$VH.get(seg);
-    }
-    public static void CompressionFormat$set( MemorySegment seg, short x) {
-        _ENCRYPTED_DATA_INFO.CompressionFormat$VH.set(seg, x);
-    }
-    public static short CompressionFormat$get(MemorySegment seg, long index) {
-        return (short)_ENCRYPTED_DATA_INFO.CompressionFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompressionFormat$set(MemorySegment seg, long index, short x) {
-        _ENCRYPTED_DATA_INFO.CompressionFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataUnitShift$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataUnitShift"));
-    public static VarHandle DataUnitShift$VH() {
-        return _ENCRYPTED_DATA_INFO.DataUnitShift$VH;
-    }
-    public static byte DataUnitShift$get(MemorySegment seg) {
-        return (byte)_ENCRYPTED_DATA_INFO.DataUnitShift$VH.get(seg);
-    }
-    public static void DataUnitShift$set( MemorySegment seg, byte x) {
-        _ENCRYPTED_DATA_INFO.DataUnitShift$VH.set(seg, x);
-    }
-    public static byte DataUnitShift$get(MemorySegment seg, long index) {
-        return (byte)_ENCRYPTED_DATA_INFO.DataUnitShift$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataUnitShift$set(MemorySegment seg, long index, byte x) {
-        _ENCRYPTED_DATA_INFO.DataUnitShift$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ChunkShift$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ChunkShift"));
-    public static VarHandle ChunkShift$VH() {
-        return _ENCRYPTED_DATA_INFO.ChunkShift$VH;
-    }
-    public static byte ChunkShift$get(MemorySegment seg) {
-        return (byte)_ENCRYPTED_DATA_INFO.ChunkShift$VH.get(seg);
-    }
-    public static void ChunkShift$set( MemorySegment seg, byte x) {
-        _ENCRYPTED_DATA_INFO.ChunkShift$VH.set(seg, x);
-    }
-    public static byte ChunkShift$get(MemorySegment seg, long index) {
-        return (byte)_ENCRYPTED_DATA_INFO.ChunkShift$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ChunkShift$set(MemorySegment seg, long index, byte x) {
-        _ENCRYPTED_DATA_INFO.ChunkShift$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ClusterShift$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ClusterShift"));
-    public static VarHandle ClusterShift$VH() {
-        return _ENCRYPTED_DATA_INFO.ClusterShift$VH;
-    }
-    public static byte ClusterShift$get(MemorySegment seg) {
-        return (byte)_ENCRYPTED_DATA_INFO.ClusterShift$VH.get(seg);
-    }
-    public static void ClusterShift$set( MemorySegment seg, byte x) {
-        _ENCRYPTED_DATA_INFO.ClusterShift$VH.set(seg, x);
-    }
-    public static byte ClusterShift$get(MemorySegment seg, long index) {
-        return (byte)_ENCRYPTED_DATA_INFO.ClusterShift$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ClusterShift$set(MemorySegment seg, long index, byte x) {
-        _ENCRYPTED_DATA_INFO.ClusterShift$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EncryptionFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EncryptionFormat"));
-    public static VarHandle EncryptionFormat$VH() {
-        return _ENCRYPTED_DATA_INFO.EncryptionFormat$VH;
-    }
-    public static byte EncryptionFormat$get(MemorySegment seg) {
-        return (byte)_ENCRYPTED_DATA_INFO.EncryptionFormat$VH.get(seg);
-    }
-    public static void EncryptionFormat$set( MemorySegment seg, byte x) {
-        _ENCRYPTED_DATA_INFO.EncryptionFormat$VH.set(seg, x);
-    }
-    public static byte EncryptionFormat$get(MemorySegment seg, long index) {
-        return (byte)_ENCRYPTED_DATA_INFO.EncryptionFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EncryptionFormat$set(MemorySegment seg, long index, byte x) {
-        _ENCRYPTED_DATA_INFO.EncryptionFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfDataBlocks$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfDataBlocks"));
-    public static VarHandle NumberOfDataBlocks$VH() {
-        return _ENCRYPTED_DATA_INFO.NumberOfDataBlocks$VH;
-    }
-    public static short NumberOfDataBlocks$get(MemorySegment seg) {
-        return (short)_ENCRYPTED_DATA_INFO.NumberOfDataBlocks$VH.get(seg);
-    }
-    public static void NumberOfDataBlocks$set( MemorySegment seg, short x) {
-        _ENCRYPTED_DATA_INFO.NumberOfDataBlocks$VH.set(seg, x);
-    }
-    public static short NumberOfDataBlocks$get(MemorySegment seg, long index) {
-        return (short)_ENCRYPTED_DATA_INFO.NumberOfDataBlocks$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfDataBlocks$set(MemorySegment seg, long index, short x) {
-        _ENCRYPTED_DATA_INFO.NumberOfDataBlocks$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DataBlockSize$slice(MemorySegment seg) {
-        return seg.asSlice(28, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("StartingFileOffset"),
+        wgl_h.C_LONG.withName("OutputBufferOffset"),
+        wgl_h.C_LONG.withName("BytesWithinFileSize"),
+        wgl_h.C_LONG.withName("BytesWithinValidDataLength"),
+        wgl_h.C_SHORT.withName("CompressionFormat"),
+        wgl_h.C_CHAR.withName("DataUnitShift"),
+        wgl_h.C_CHAR.withName("ChunkShift"),
+        wgl_h.C_CHAR.withName("ClusterShift"),
+        wgl_h.C_CHAR.withName("EncryptionFormat"),
+        wgl_h.C_SHORT.withName("NumberOfDataBlocks"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_LONG).withName("DataBlockSize")
+    ).withName("_ENCRYPTED_DATA_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong StartingFileOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("StartingFileOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartingFileOffset
+     * }
+     */
+    public static final OfLong StartingFileOffset$layout() {
+        return StartingFileOffset$LAYOUT;
+    }
+
+    private static final long StartingFileOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartingFileOffset
+     * }
+     */
+    public static final long StartingFileOffset$offset() {
+        return StartingFileOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartingFileOffset
+     * }
+     */
+    public static long StartingFileOffset(MemorySegment struct) {
+        return struct.get(StartingFileOffset$LAYOUT, StartingFileOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG StartingFileOffset
+     * }
+     */
+    public static void StartingFileOffset(MemorySegment struct, long fieldValue) {
+        struct.set(StartingFileOffset$LAYOUT, StartingFileOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OutputBufferOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OutputBufferOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OutputBufferOffset
+     * }
+     */
+    public static final OfInt OutputBufferOffset$layout() {
+        return OutputBufferOffset$LAYOUT;
+    }
+
+    private static final long OutputBufferOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OutputBufferOffset
+     * }
+     */
+    public static final long OutputBufferOffset$offset() {
+        return OutputBufferOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBufferOffset
+     * }
+     */
+    public static int OutputBufferOffset(MemorySegment struct) {
+        return struct.get(OutputBufferOffset$LAYOUT, OutputBufferOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBufferOffset
+     * }
+     */
+    public static void OutputBufferOffset(MemorySegment struct, int fieldValue) {
+        struct.set(OutputBufferOffset$LAYOUT, OutputBufferOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesWithinFileSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesWithinFileSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinFileSize
+     * }
+     */
+    public static final OfInt BytesWithinFileSize$layout() {
+        return BytesWithinFileSize$LAYOUT;
+    }
+
+    private static final long BytesWithinFileSize$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinFileSize
+     * }
+     */
+    public static final long BytesWithinFileSize$offset() {
+        return BytesWithinFileSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinFileSize
+     * }
+     */
+    public static int BytesWithinFileSize(MemorySegment struct) {
+        return struct.get(BytesWithinFileSize$LAYOUT, BytesWithinFileSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinFileSize
+     * }
+     */
+    public static void BytesWithinFileSize(MemorySegment struct, int fieldValue) {
+        struct.set(BytesWithinFileSize$LAYOUT, BytesWithinFileSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesWithinValidDataLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesWithinValidDataLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinValidDataLength
+     * }
+     */
+    public static final OfInt BytesWithinValidDataLength$layout() {
+        return BytesWithinValidDataLength$LAYOUT;
+    }
+
+    private static final long BytesWithinValidDataLength$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinValidDataLength
+     * }
+     */
+    public static final long BytesWithinValidDataLength$offset() {
+        return BytesWithinValidDataLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinValidDataLength
+     * }
+     */
+    public static int BytesWithinValidDataLength(MemorySegment struct) {
+        return struct.get(BytesWithinValidDataLength$LAYOUT, BytesWithinValidDataLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesWithinValidDataLength
+     * }
+     */
+    public static void BytesWithinValidDataLength(MemorySegment struct, int fieldValue) {
+        struct.set(BytesWithinValidDataLength$LAYOUT, BytesWithinValidDataLength$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CompressionFormat$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CompressionFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CompressionFormat
+     * }
+     */
+    public static final OfShort CompressionFormat$layout() {
+        return CompressionFormat$LAYOUT;
+    }
+
+    private static final long CompressionFormat$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CompressionFormat
+     * }
+     */
+    public static final long CompressionFormat$offset() {
+        return CompressionFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CompressionFormat
+     * }
+     */
+    public static short CompressionFormat(MemorySegment struct) {
+        return struct.get(CompressionFormat$LAYOUT, CompressionFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CompressionFormat
+     * }
+     */
+    public static void CompressionFormat(MemorySegment struct, short fieldValue) {
+        struct.set(CompressionFormat$LAYOUT, CompressionFormat$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DataUnitShift$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DataUnitShift"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE DataUnitShift
+     * }
+     */
+    public static final OfByte DataUnitShift$layout() {
+        return DataUnitShift$LAYOUT;
+    }
+
+    private static final long DataUnitShift$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE DataUnitShift
+     * }
+     */
+    public static final long DataUnitShift$offset() {
+        return DataUnitShift$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE DataUnitShift
+     * }
+     */
+    public static byte DataUnitShift(MemorySegment struct) {
+        return struct.get(DataUnitShift$LAYOUT, DataUnitShift$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE DataUnitShift
+     * }
+     */
+    public static void DataUnitShift(MemorySegment struct, byte fieldValue) {
+        struct.set(DataUnitShift$LAYOUT, DataUnitShift$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ChunkShift$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ChunkShift"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ChunkShift
+     * }
+     */
+    public static final OfByte ChunkShift$layout() {
+        return ChunkShift$LAYOUT;
+    }
+
+    private static final long ChunkShift$OFFSET = 23;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ChunkShift
+     * }
+     */
+    public static final long ChunkShift$offset() {
+        return ChunkShift$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ChunkShift
+     * }
+     */
+    public static byte ChunkShift(MemorySegment struct) {
+        return struct.get(ChunkShift$LAYOUT, ChunkShift$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ChunkShift
+     * }
+     */
+    public static void ChunkShift(MemorySegment struct, byte fieldValue) {
+        struct.set(ChunkShift$LAYOUT, ChunkShift$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ClusterShift$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ClusterShift"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ClusterShift
+     * }
+     */
+    public static final OfByte ClusterShift$layout() {
+        return ClusterShift$LAYOUT;
+    }
+
+    private static final long ClusterShift$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ClusterShift
+     * }
+     */
+    public static final long ClusterShift$offset() {
+        return ClusterShift$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ClusterShift
+     * }
+     */
+    public static byte ClusterShift(MemorySegment struct) {
+        return struct.get(ClusterShift$LAYOUT, ClusterShift$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ClusterShift
+     * }
+     */
+    public static void ClusterShift(MemorySegment struct, byte fieldValue) {
+        struct.set(ClusterShift$LAYOUT, ClusterShift$OFFSET, fieldValue);
+    }
+
+    private static final OfByte EncryptionFormat$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EncryptionFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE EncryptionFormat
+     * }
+     */
+    public static final OfByte EncryptionFormat$layout() {
+        return EncryptionFormat$LAYOUT;
+    }
+
+    private static final long EncryptionFormat$OFFSET = 25;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE EncryptionFormat
+     * }
+     */
+    public static final long EncryptionFormat$offset() {
+        return EncryptionFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE EncryptionFormat
+     * }
+     */
+    public static byte EncryptionFormat(MemorySegment struct) {
+        return struct.get(EncryptionFormat$LAYOUT, EncryptionFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE EncryptionFormat
+     * }
+     */
+    public static void EncryptionFormat(MemorySegment struct, byte fieldValue) {
+        struct.set(EncryptionFormat$LAYOUT, EncryptionFormat$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberOfDataBlocks$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfDataBlocks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDataBlocks
+     * }
+     */
+    public static final OfShort NumberOfDataBlocks$layout() {
+        return NumberOfDataBlocks$LAYOUT;
+    }
+
+    private static final long NumberOfDataBlocks$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDataBlocks
+     * }
+     */
+    public static final long NumberOfDataBlocks$offset() {
+        return NumberOfDataBlocks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDataBlocks
+     * }
+     */
+    public static short NumberOfDataBlocks(MemorySegment struct) {
+        return struct.get(NumberOfDataBlocks$LAYOUT, NumberOfDataBlocks$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfDataBlocks
+     * }
+     */
+    public static void NumberOfDataBlocks(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfDataBlocks$LAYOUT, NumberOfDataBlocks$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout DataBlockSize$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("DataBlockSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static final SequenceLayout DataBlockSize$layout() {
+        return DataBlockSize$LAYOUT;
+    }
+
+    private static final long DataBlockSize$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static final long DataBlockSize$offset() {
+        return DataBlockSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static MemorySegment DataBlockSize(MemorySegment struct) {
+        return struct.asSlice(DataBlockSize$OFFSET, DataBlockSize$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static void DataBlockSize(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DataBlockSize$OFFSET, DataBlockSize$LAYOUT.byteSize());
+    }
+
+    private static long[] DataBlockSize$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static long[] DataBlockSize$dimensions() {
+        return DataBlockSize$DIMS;
+    }
+    private static final VarHandle DataBlockSize$ELEM_HANDLE = DataBlockSize$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static int DataBlockSize(MemorySegment struct, long index0) {
+        return (int)DataBlockSize$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD DataBlockSize[1]
+     * }
+     */
+    public static void DataBlockSize(MemorySegment struct, long index0, int fieldValue) {
+        DataBlockSize$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

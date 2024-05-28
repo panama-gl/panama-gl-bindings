@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagDRAWTEXTPARAMS {
+ *     UINT cbSize;
+ *     int iTabLength;
+ *     int iLeftMargin;
+ *     int iRightMargin;
+ *     UINT uiLengthDrawn;
+ * }
+ * }
+ */
 public class tagDRAWTEXTPARAMS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("iTabLength"),
-        Constants$root.C_LONG$LAYOUT.withName("iLeftMargin"),
-        Constants$root.C_LONG$LAYOUT.withName("iRightMargin"),
-        Constants$root.C_LONG$LAYOUT.withName("uiLengthDrawn")
-    ).withName("tagDRAWTEXTPARAMS");
-    public static MemoryLayout $LAYOUT() {
-        return tagDRAWTEXTPARAMS.$struct$LAYOUT;
+    tagDRAWTEXTPARAMS() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagDRAWTEXTPARAMS.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagDRAWTEXTPARAMS.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagDRAWTEXTPARAMS.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagDRAWTEXTPARAMS.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagDRAWTEXTPARAMS.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iTabLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iTabLength"));
-    public static VarHandle iTabLength$VH() {
-        return tagDRAWTEXTPARAMS.iTabLength$VH;
-    }
-    public static int iTabLength$get(MemorySegment seg) {
-        return (int)tagDRAWTEXTPARAMS.iTabLength$VH.get(seg);
-    }
-    public static void iTabLength$set( MemorySegment seg, int x) {
-        tagDRAWTEXTPARAMS.iTabLength$VH.set(seg, x);
-    }
-    public static int iTabLength$get(MemorySegment seg, long index) {
-        return (int)tagDRAWTEXTPARAMS.iTabLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iTabLength$set(MemorySegment seg, long index, int x) {
-        tagDRAWTEXTPARAMS.iTabLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iLeftMargin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iLeftMargin"));
-    public static VarHandle iLeftMargin$VH() {
-        return tagDRAWTEXTPARAMS.iLeftMargin$VH;
-    }
-    public static int iLeftMargin$get(MemorySegment seg) {
-        return (int)tagDRAWTEXTPARAMS.iLeftMargin$VH.get(seg);
-    }
-    public static void iLeftMargin$set( MemorySegment seg, int x) {
-        tagDRAWTEXTPARAMS.iLeftMargin$VH.set(seg, x);
-    }
-    public static int iLeftMargin$get(MemorySegment seg, long index) {
-        return (int)tagDRAWTEXTPARAMS.iLeftMargin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iLeftMargin$set(MemorySegment seg, long index, int x) {
-        tagDRAWTEXTPARAMS.iLeftMargin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iRightMargin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iRightMargin"));
-    public static VarHandle iRightMargin$VH() {
-        return tagDRAWTEXTPARAMS.iRightMargin$VH;
-    }
-    public static int iRightMargin$get(MemorySegment seg) {
-        return (int)tagDRAWTEXTPARAMS.iRightMargin$VH.get(seg);
-    }
-    public static void iRightMargin$set( MemorySegment seg, int x) {
-        tagDRAWTEXTPARAMS.iRightMargin$VH.set(seg, x);
-    }
-    public static int iRightMargin$get(MemorySegment seg, long index) {
-        return (int)tagDRAWTEXTPARAMS.iRightMargin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iRightMargin$set(MemorySegment seg, long index, int x) {
-        tagDRAWTEXTPARAMS.iRightMargin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle uiLengthDrawn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uiLengthDrawn"));
-    public static VarHandle uiLengthDrawn$VH() {
-        return tagDRAWTEXTPARAMS.uiLengthDrawn$VH;
-    }
-    public static int uiLengthDrawn$get(MemorySegment seg) {
-        return (int)tagDRAWTEXTPARAMS.uiLengthDrawn$VH.get(seg);
-    }
-    public static void uiLengthDrawn$set( MemorySegment seg, int x) {
-        tagDRAWTEXTPARAMS.uiLengthDrawn$VH.set(seg, x);
-    }
-    public static int uiLengthDrawn$get(MemorySegment seg, long index) {
-        return (int)tagDRAWTEXTPARAMS.uiLengthDrawn$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uiLengthDrawn$set(MemorySegment seg, long index, int x) {
-        tagDRAWTEXTPARAMS.uiLengthDrawn$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cbSize"),
+        wgl_h.C_INT.withName("iTabLength"),
+        wgl_h.C_INT.withName("iLeftMargin"),
+        wgl_h.C_INT.withName("iRightMargin"),
+        wgl_h.C_INT.withName("uiLengthDrawn")
+    ).withName("tagDRAWTEXTPARAMS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iTabLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iTabLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iTabLength
+     * }
+     */
+    public static final OfInt iTabLength$layout() {
+        return iTabLength$LAYOUT;
+    }
+
+    private static final long iTabLength$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iTabLength
+     * }
+     */
+    public static final long iTabLength$offset() {
+        return iTabLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iTabLength
+     * }
+     */
+    public static int iTabLength(MemorySegment struct) {
+        return struct.get(iTabLength$LAYOUT, iTabLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iTabLength
+     * }
+     */
+    public static void iTabLength(MemorySegment struct, int fieldValue) {
+        struct.set(iTabLength$LAYOUT, iTabLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iLeftMargin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iLeftMargin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iLeftMargin
+     * }
+     */
+    public static final OfInt iLeftMargin$layout() {
+        return iLeftMargin$LAYOUT;
+    }
+
+    private static final long iLeftMargin$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iLeftMargin
+     * }
+     */
+    public static final long iLeftMargin$offset() {
+        return iLeftMargin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iLeftMargin
+     * }
+     */
+    public static int iLeftMargin(MemorySegment struct) {
+        return struct.get(iLeftMargin$LAYOUT, iLeftMargin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iLeftMargin
+     * }
+     */
+    public static void iLeftMargin(MemorySegment struct, int fieldValue) {
+        struct.set(iLeftMargin$LAYOUT, iLeftMargin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iRightMargin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iRightMargin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iRightMargin
+     * }
+     */
+    public static final OfInt iRightMargin$layout() {
+        return iRightMargin$LAYOUT;
+    }
+
+    private static final long iRightMargin$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iRightMargin
+     * }
+     */
+    public static final long iRightMargin$offset() {
+        return iRightMargin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iRightMargin
+     * }
+     */
+    public static int iRightMargin(MemorySegment struct) {
+        return struct.get(iRightMargin$LAYOUT, iRightMargin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iRightMargin
+     * }
+     */
+    public static void iRightMargin(MemorySegment struct, int fieldValue) {
+        struct.set(iRightMargin$LAYOUT, iRightMargin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt uiLengthDrawn$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uiLengthDrawn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uiLengthDrawn
+     * }
+     */
+    public static final OfInt uiLengthDrawn$layout() {
+        return uiLengthDrawn$LAYOUT;
+    }
+
+    private static final long uiLengthDrawn$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uiLengthDrawn
+     * }
+     */
+    public static final long uiLengthDrawn$offset() {
+        return uiLengthDrawn$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uiLengthDrawn
+     * }
+     */
+    public static int uiLengthDrawn(MemorySegment struct) {
+        return struct.get(uiLengthDrawn$LAYOUT, uiLengthDrawn$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uiLengthDrawn
+     * }
+     */
+    public static void uiLengthDrawn(MemorySegment struct, int fieldValue) {
+        struct.set(uiLengthDrawn$LAYOUT, uiLengthDrawn$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

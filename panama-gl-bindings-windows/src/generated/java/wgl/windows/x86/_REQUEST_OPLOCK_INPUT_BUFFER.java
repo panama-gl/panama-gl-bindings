@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REQUEST_OPLOCK_INPUT_BUFFER {
+ *     WORD StructureVersion;
+ *     WORD StructureLength;
+ *     DWORD RequestedOplockLevel;
+ *     DWORD Flags;
+ * }
+ * }
+ */
 public class _REQUEST_OPLOCK_INPUT_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("StructureVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("StructureLength"),
-        Constants$root.C_LONG$LAYOUT.withName("RequestedOplockLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags")
-    ).withName("_REQUEST_OPLOCK_INPUT_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return _REQUEST_OPLOCK_INPUT_BUFFER.$struct$LAYOUT;
+    _REQUEST_OPLOCK_INPUT_BUFFER() {
+        // Should not be called directly
     }
-    static final VarHandle StructureVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StructureVersion"));
-    public static VarHandle StructureVersion$VH() {
-        return _REQUEST_OPLOCK_INPUT_BUFFER.StructureVersion$VH;
-    }
-    public static short StructureVersion$get(MemorySegment seg) {
-        return (short)_REQUEST_OPLOCK_INPUT_BUFFER.StructureVersion$VH.get(seg);
-    }
-    public static void StructureVersion$set( MemorySegment seg, short x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.StructureVersion$VH.set(seg, x);
-    }
-    public static short StructureVersion$get(MemorySegment seg, long index) {
-        return (short)_REQUEST_OPLOCK_INPUT_BUFFER.StructureVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StructureVersion$set(MemorySegment seg, long index, short x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.StructureVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StructureLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StructureLength"));
-    public static VarHandle StructureLength$VH() {
-        return _REQUEST_OPLOCK_INPUT_BUFFER.StructureLength$VH;
-    }
-    public static short StructureLength$get(MemorySegment seg) {
-        return (short)_REQUEST_OPLOCK_INPUT_BUFFER.StructureLength$VH.get(seg);
-    }
-    public static void StructureLength$set( MemorySegment seg, short x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.StructureLength$VH.set(seg, x);
-    }
-    public static short StructureLength$get(MemorySegment seg, long index) {
-        return (short)_REQUEST_OPLOCK_INPUT_BUFFER.StructureLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StructureLength$set(MemorySegment seg, long index, short x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.StructureLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RequestedOplockLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RequestedOplockLevel"));
-    public static VarHandle RequestedOplockLevel$VH() {
-        return _REQUEST_OPLOCK_INPUT_BUFFER.RequestedOplockLevel$VH;
-    }
-    public static int RequestedOplockLevel$get(MemorySegment seg) {
-        return (int)_REQUEST_OPLOCK_INPUT_BUFFER.RequestedOplockLevel$VH.get(seg);
-    }
-    public static void RequestedOplockLevel$set( MemorySegment seg, int x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.RequestedOplockLevel$VH.set(seg, x);
-    }
-    public static int RequestedOplockLevel$get(MemorySegment seg, long index) {
-        return (int)_REQUEST_OPLOCK_INPUT_BUFFER.RequestedOplockLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RequestedOplockLevel$set(MemorySegment seg, long index, int x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.RequestedOplockLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _REQUEST_OPLOCK_INPUT_BUFFER.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_REQUEST_OPLOCK_INPUT_BUFFER.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_REQUEST_OPLOCK_INPUT_BUFFER.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _REQUEST_OPLOCK_INPUT_BUFFER.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("StructureVersion"),
+        wgl_h.C_SHORT.withName("StructureLength"),
+        wgl_h.C_LONG.withName("RequestedOplockLevel"),
+        wgl_h.C_LONG.withName("Flags")
+    ).withName("_REQUEST_OPLOCK_INPUT_BUFFER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort StructureVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("StructureVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD StructureVersion
+     * }
+     */
+    public static final OfShort StructureVersion$layout() {
+        return StructureVersion$LAYOUT;
+    }
+
+    private static final long StructureVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD StructureVersion
+     * }
+     */
+    public static final long StructureVersion$offset() {
+        return StructureVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD StructureVersion
+     * }
+     */
+    public static short StructureVersion(MemorySegment struct) {
+        return struct.get(StructureVersion$LAYOUT, StructureVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD StructureVersion
+     * }
+     */
+    public static void StructureVersion(MemorySegment struct, short fieldValue) {
+        struct.set(StructureVersion$LAYOUT, StructureVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort StructureLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("StructureLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD StructureLength
+     * }
+     */
+    public static final OfShort StructureLength$layout() {
+        return StructureLength$LAYOUT;
+    }
+
+    private static final long StructureLength$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD StructureLength
+     * }
+     */
+    public static final long StructureLength$offset() {
+        return StructureLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD StructureLength
+     * }
+     */
+    public static short StructureLength(MemorySegment struct) {
+        return struct.get(StructureLength$LAYOUT, StructureLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD StructureLength
+     * }
+     */
+    public static void StructureLength(MemorySegment struct, short fieldValue) {
+        struct.set(StructureLength$LAYOUT, StructureLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RequestedOplockLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RequestedOplockLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RequestedOplockLevel
+     * }
+     */
+    public static final OfInt RequestedOplockLevel$layout() {
+        return RequestedOplockLevel$LAYOUT;
+    }
+
+    private static final long RequestedOplockLevel$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RequestedOplockLevel
+     * }
+     */
+    public static final long RequestedOplockLevel$offset() {
+        return RequestedOplockLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RequestedOplockLevel
+     * }
+     */
+    public static int RequestedOplockLevel(MemorySegment struct) {
+        return struct.get(RequestedOplockLevel$LAYOUT, RequestedOplockLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RequestedOplockLevel
+     * }
+     */
+    public static void RequestedOplockLevel(MemorySegment struct, int fieldValue) {
+        struct.set(RequestedOplockLevel$LAYOUT, RequestedOplockLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

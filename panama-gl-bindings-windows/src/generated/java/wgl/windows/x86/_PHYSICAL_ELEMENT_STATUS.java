@@ -2,139 +2,439 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PHYSICAL_ELEMENT_STATUS {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD DescriptorCount;
+ *     DWORD ReturnedDescriptorCount;
+ *     DWORD ElementIdentifierBeingDepoped;
+ *     DWORD Reserved;
+ *     PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1];
+ * }
+ * }
+ */
 public class _PHYSICAL_ELEMENT_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("DescriptorCount"),
-        Constants$root.C_LONG$LAYOUT.withName("ReturnedDescriptorCount"),
-        Constants$root.C_LONG$LAYOUT.withName("ElementIdentifierBeingDepoped"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Version"),
-            Constants$root.C_LONG$LAYOUT.withName("Size"),
-            Constants$root.C_LONG$LAYOUT.withName("ElementIdentifier"),
-            Constants$root.C_CHAR$LAYOUT.withName("PhysicalElementType"),
-            Constants$root.C_CHAR$LAYOUT.withName("PhysicalElementHealth"),
-            MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Reserved1"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("AssociatedCapacity"),
-            MemoryLayout.sequenceLayout(4, Constants$root.C_LONG$LAYOUT).withName("Reserved2")
-        ).withName("_PHYSICAL_ELEMENT_STATUS_DESCRIPTOR")).withName("Descriptors")
-    ).withName("_PHYSICAL_ELEMENT_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _PHYSICAL_ELEMENT_STATUS.$struct$LAYOUT;
+    _PHYSICAL_ELEMENT_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DescriptorCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DescriptorCount"));
-    public static VarHandle DescriptorCount$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.DescriptorCount$VH;
-    }
-    public static int DescriptorCount$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.DescriptorCount$VH.get(seg);
-    }
-    public static void DescriptorCount$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.DescriptorCount$VH.set(seg, x);
-    }
-    public static int DescriptorCount$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.DescriptorCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DescriptorCount$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.DescriptorCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ReturnedDescriptorCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ReturnedDescriptorCount"));
-    public static VarHandle ReturnedDescriptorCount$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.ReturnedDescriptorCount$VH;
-    }
-    public static int ReturnedDescriptorCount$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.ReturnedDescriptorCount$VH.get(seg);
-    }
-    public static void ReturnedDescriptorCount$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.ReturnedDescriptorCount$VH.set(seg, x);
-    }
-    public static int ReturnedDescriptorCount$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.ReturnedDescriptorCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ReturnedDescriptorCount$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.ReturnedDescriptorCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ElementIdentifierBeingDepoped$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ElementIdentifierBeingDepoped"));
-    public static VarHandle ElementIdentifierBeingDepoped$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.ElementIdentifierBeingDepoped$VH;
-    }
-    public static int ElementIdentifierBeingDepoped$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.ElementIdentifierBeingDepoped$VH.get(seg);
-    }
-    public static void ElementIdentifierBeingDepoped$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.ElementIdentifierBeingDepoped$VH.set(seg, x);
-    }
-    public static int ElementIdentifierBeingDepoped$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.ElementIdentifierBeingDepoped$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ElementIdentifierBeingDepoped$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.ElementIdentifierBeingDepoped$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _PHYSICAL_ELEMENT_STATUS.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_PHYSICAL_ELEMENT_STATUS.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _PHYSICAL_ELEMENT_STATUS.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Descriptors$slice(MemorySegment seg) {
-        return seg.asSlice(24, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("DescriptorCount"),
+        wgl_h.C_LONG.withName("ReturnedDescriptorCount"),
+        wgl_h.C_LONG.withName("ElementIdentifierBeingDepoped"),
+        wgl_h.C_LONG.withName("Reserved"),
+        MemoryLayout.sequenceLayout(1, _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.layout()).withName("Descriptors")
+    ).withName("_PHYSICAL_ELEMENT_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DescriptorCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DescriptorCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DescriptorCount
+     * }
+     */
+    public static final OfInt DescriptorCount$layout() {
+        return DescriptorCount$LAYOUT;
+    }
+
+    private static final long DescriptorCount$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DescriptorCount
+     * }
+     */
+    public static final long DescriptorCount$offset() {
+        return DescriptorCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DescriptorCount
+     * }
+     */
+    public static int DescriptorCount(MemorySegment struct) {
+        return struct.get(DescriptorCount$LAYOUT, DescriptorCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DescriptorCount
+     * }
+     */
+    public static void DescriptorCount(MemorySegment struct, int fieldValue) {
+        struct.set(DescriptorCount$LAYOUT, DescriptorCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ReturnedDescriptorCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ReturnedDescriptorCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ReturnedDescriptorCount
+     * }
+     */
+    public static final OfInt ReturnedDescriptorCount$layout() {
+        return ReturnedDescriptorCount$LAYOUT;
+    }
+
+    private static final long ReturnedDescriptorCount$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ReturnedDescriptorCount
+     * }
+     */
+    public static final long ReturnedDescriptorCount$offset() {
+        return ReturnedDescriptorCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ReturnedDescriptorCount
+     * }
+     */
+    public static int ReturnedDescriptorCount(MemorySegment struct) {
+        return struct.get(ReturnedDescriptorCount$LAYOUT, ReturnedDescriptorCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ReturnedDescriptorCount
+     * }
+     */
+    public static void ReturnedDescriptorCount(MemorySegment struct, int fieldValue) {
+        struct.set(ReturnedDescriptorCount$LAYOUT, ReturnedDescriptorCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ElementIdentifierBeingDepoped$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ElementIdentifierBeingDepoped"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifierBeingDepoped
+     * }
+     */
+    public static final OfInt ElementIdentifierBeingDepoped$layout() {
+        return ElementIdentifierBeingDepoped$LAYOUT;
+    }
+
+    private static final long ElementIdentifierBeingDepoped$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifierBeingDepoped
+     * }
+     */
+    public static final long ElementIdentifierBeingDepoped$offset() {
+        return ElementIdentifierBeingDepoped$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifierBeingDepoped
+     * }
+     */
+    public static int ElementIdentifierBeingDepoped(MemorySegment struct) {
+        return struct.get(ElementIdentifierBeingDepoped$LAYOUT, ElementIdentifierBeingDepoped$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ElementIdentifierBeingDepoped
+     * }
+     */
+    public static void ElementIdentifierBeingDepoped(MemorySegment struct, int fieldValue) {
+        struct.set(ElementIdentifierBeingDepoped$LAYOUT, ElementIdentifierBeingDepoped$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Descriptors$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Descriptors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static final SequenceLayout Descriptors$layout() {
+        return Descriptors$LAYOUT;
+    }
+
+    private static final long Descriptors$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static final long Descriptors$offset() {
+        return Descriptors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static MemorySegment Descriptors(MemorySegment struct) {
+        return struct.asSlice(Descriptors$OFFSET, Descriptors$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static void Descriptors(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Descriptors$OFFSET, Descriptors$LAYOUT.byteSize());
+    }
+
+    private static long[] Descriptors$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static long[] Descriptors$dimensions() {
+        return Descriptors$DIMS;
+    }
+    private static final MethodHandle Descriptors$ELEM_HANDLE = Descriptors$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static MemorySegment Descriptors(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Descriptors$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * PHYSICAL_ELEMENT_STATUS_DESCRIPTOR Descriptors[1]
+     * }
+     */
+    public static void Descriptors(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Descriptors(struct, index0), 0L, _PHYSICAL_ELEMENT_STATUS_DESCRIPTOR.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

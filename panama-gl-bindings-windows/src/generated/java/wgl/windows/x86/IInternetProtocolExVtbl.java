@@ -2,673 +2,1503 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IInternetProtocolExVtbl {
+ *     HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall));
+ *     ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall));
+ *     HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall));
+ *     HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall));
+ *     HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall));
+ *     HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall));
+ *     HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall));
+ *     HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall));
+ *     HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall));
+ *     HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall));
+ *     HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall));
+ *     HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IInternetProtocolExVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("Start"),
-        Constants$root.C_POINTER$LAYOUT.withName("Continue"),
-        Constants$root.C_POINTER$LAYOUT.withName("Abort"),
-        Constants$root.C_POINTER$LAYOUT.withName("Terminate"),
-        Constants$root.C_POINTER$LAYOUT.withName("Suspend"),
-        Constants$root.C_POINTER$LAYOUT.withName("Resume"),
-        Constants$root.C_POINTER$LAYOUT.withName("Read"),
-        Constants$root.C_POINTER$LAYOUT.withName("Seek"),
-        Constants$root.C_POINTER$LAYOUT.withName("LockRequest"),
-        Constants$root.C_POINTER$LAYOUT.withName("UnlockRequest"),
-        Constants$root.C_POINTER$LAYOUT.withName("StartEx")
+    IInternetProtocolExVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("Start"),
+        wgl_h.C_POINTER.withName("Continue"),
+        wgl_h.C_POINTER.withName("Abort"),
+        wgl_h.C_POINTER.withName("Terminate"),
+        wgl_h.C_POINTER.withName("Suspend"),
+        wgl_h.C_POINTER.withName("Resume"),
+        wgl_h.C_POINTER.withName("Read"),
+        wgl_h.C_POINTER.withName("Seek"),
+        wgl_h.C_POINTER.withName("LockRequest"),
+        wgl_h.C_POINTER.withName("UnlockRequest"),
+        wgl_h.C_POINTER.withName("StartEx")
     ).withName("IInternetProtocolExVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IInternetProtocolExVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IInternetProtocolExVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IInternetProtocolExVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IInternetProtocolExVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IInternetProtocolExVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IInternetProtocolExVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IInternetProtocolExVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor Start$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle Start$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Start$FUNC
-    );
-    public interface Start {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4, long _x5);
-        static MemorySegment allocate(Start fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Start.class, fi, IInternetProtocolExVtbl.Start$FUNC, session);
-        }
-        static Start ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4, long __x5) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Start$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle Start$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Start"));
-    public static VarHandle Start$VH() {
-        return IInternetProtocolExVtbl.Start$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress Start$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Start$VH.get(seg);
-    }
-    public static void Start$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Start$VH.set(seg, x);
-    }
-    public static MemoryAddress Start$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Start$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Start$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Start$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Start Start (MemorySegment segment, MemorySession session) {
-        return Start.ofAddress(Start$get(segment), session);
-    }
-    static final FunctionDescriptor Continue$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Continue$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Continue$FUNC
-    );
-    public interface Continue {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(Continue fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Continue.class, fi, IInternetProtocolExVtbl.Continue$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IInternetProtocolEx *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static Continue ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Continue$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Continue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Continue"));
-    public static VarHandle Continue$VH() {
-        return IInternetProtocolExVtbl.Continue$VH;
-    }
-    public static MemoryAddress Continue$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Continue$VH.get(seg);
-    }
-    public static void Continue$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Continue$VH.set(seg, x);
-    }
-    public static MemoryAddress Continue$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Continue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Continue$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Continue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Continue Continue (MemorySegment segment, MemorySession session) {
-        return Continue.ofAddress(Continue$get(segment), session);
-    }
-    static final FunctionDescriptor Abort$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle Abort$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Abort$FUNC
-    );
-    public interface Abort {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1, int _x2);
-        static MemorySegment allocate(Abort fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Abort.class, fi, IInternetProtocolExVtbl.Abort$FUNC, session);
-        }
-        static Abort ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1, int __x2) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Abort$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle Abort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Abort"));
-    public static VarHandle Abort$VH() {
-        return IInternetProtocolExVtbl.Abort$VH;
-    }
-    public static MemoryAddress Abort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Abort$VH.get(seg);
-    }
-    public static void Abort$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Abort$VH.set(seg, x);
-    }
-    public static MemoryAddress Abort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Abort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Abort$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Abort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Abort Abort (MemorySegment segment, MemorySession session) {
-        return Abort.ofAddress(Abort$get(segment), session);
-    }
-    static final FunctionDescriptor Terminate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle Terminate$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Terminate$FUNC
-    );
-    public interface Terminate {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(Terminate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Terminate.class, fi, IInternetProtocolExVtbl.Terminate$FUNC, session);
-        }
-        static Terminate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Terminate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle Terminate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Terminate"));
-    public static VarHandle Terminate$VH() {
-        return IInternetProtocolExVtbl.Terminate$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress Terminate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Terminate$VH.get(seg);
-    }
-    public static void Terminate$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Terminate$VH.set(seg, x);
-    }
-    public static MemoryAddress Terminate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Terminate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Terminate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Terminate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Terminate Terminate (MemorySegment segment, MemorySession session) {
-        return Terminate.ofAddress(Terminate$get(segment), session);
-    }
-    static final FunctionDescriptor Suspend$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Suspend$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Suspend$FUNC
-    );
-    public interface Suspend {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Suspend fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Suspend.class, fi, IInternetProtocolExVtbl.Suspend$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static Suspend ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Suspend$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Suspend$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Suspend"));
-    public static VarHandle Suspend$VH() {
-        return IInternetProtocolExVtbl.Suspend$VH;
-    }
-    public static MemoryAddress Suspend$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Suspend$VH.get(seg);
-    }
-    public static void Suspend$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Suspend$VH.set(seg, x);
-    }
-    public static MemoryAddress Suspend$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Suspend$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Suspend$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Suspend$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Suspend Suspend (MemorySegment segment, MemorySession session) {
-        return Suspend.ofAddress(Suspend$get(segment), session);
-    }
-    static final FunctionDescriptor Resume$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Resume$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Resume$FUNC
-    );
-    public interface Resume {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Resume fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Resume.class, fi, IInternetProtocolExVtbl.Resume$FUNC, session);
-        }
-        static Resume ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Resume$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle Resume$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Resume"));
-    public static VarHandle Resume$VH() {
-        return IInternetProtocolExVtbl.Resume$VH;
-    }
-    public static MemoryAddress Resume$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Resume$VH.get(seg);
-    }
-    public static void Resume$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Resume$VH.set(seg, x);
-    }
-    public static MemoryAddress Resume$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Resume$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Resume$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Resume$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Resume Resume (MemorySegment segment, MemorySession session) {
-        return Resume.ofAddress(Resume$get(segment), session);
-    }
-    static final FunctionDescriptor Read$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Read$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Read$FUNC
-    );
-    public interface Read {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(Read fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Read.class, fi, IInternetProtocolExVtbl.Read$FUNC, session);
-        }
-        static Read ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Read$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle Read$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Read"));
-    public static VarHandle Read$VH() {
-        return IInternetProtocolExVtbl.Read$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress Read$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Read$VH.get(seg);
-    }
-    public static void Read$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Read$VH.set(seg, x);
-    }
-    public static MemoryAddress Read$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Read$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Read$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Read$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Read Read (MemorySegment segment, MemorySession session) {
-        return Read.ofAddress(Read$get(segment), session);
-    }
-    static final FunctionDescriptor Seek$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("_LARGE_INTEGER"),
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Seek$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.Seek$FUNC
-    );
-    public interface Seek {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1, int _x2, java.lang.foreign.MemoryAddress _x3);
-        static MemorySegment allocate(Seek fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Seek.class, fi, IInternetProtocolExVtbl.Seek$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static class Start {
+
+        Start() {
+            // Should not be called directly
         }
-        static Seek ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1, int __x2, java.lang.foreign.MemoryAddress __x3) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.Seek$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1, __x2, (java.lang.foreign.Addressable)__x3);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, long _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Start.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Start.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, long _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle Seek$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Seek"));
-    public static VarHandle Seek$VH() {
-        return IInternetProtocolExVtbl.Seek$VH;
-    }
-    public static MemoryAddress Seek$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Seek$VH.get(seg);
-    }
-    public static void Seek$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.Seek$VH.set(seg, x);
-    }
-    public static MemoryAddress Seek$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.Seek$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Seek$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.Seek$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Seek Seek (MemorySegment segment, MemorySession session) {
-        return Seek.ofAddress(Seek$get(segment), session);
-    }
-    static final FunctionDescriptor LockRequest$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle LockRequest$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.LockRequest$FUNC
-    );
-    public interface LockRequest {
+    private static final AddressLayout Start$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Start"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(LockRequest fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(LockRequest.class, fi, IInternetProtocolExVtbl.LockRequest$FUNC, session);
-        }
-        static LockRequest ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.LockRequest$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Start$layout() {
+        return Start$LAYOUT;
     }
 
-    static final VarHandle LockRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LockRequest"));
-    public static VarHandle LockRequest$VH() {
-        return IInternetProtocolExVtbl.LockRequest$VH;
-    }
-    public static MemoryAddress LockRequest$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.LockRequest$VH.get(seg);
-    }
-    public static void LockRequest$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.LockRequest$VH.set(seg, x);
-    }
-    public static MemoryAddress LockRequest$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.LockRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LockRequest$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.LockRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LockRequest LockRequest (MemorySegment segment, MemorySession session) {
-        return LockRequest.ofAddress(LockRequest$get(segment), session);
-    }
-    static final FunctionDescriptor UnlockRequest$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle UnlockRequest$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.UnlockRequest$FUNC
-    );
-    public interface UnlockRequest {
+    private static final long Start$OFFSET = 24;
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(UnlockRequest fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(UnlockRequest.class, fi, IInternetProtocolExVtbl.UnlockRequest$FUNC, session);
-        }
-        static UnlockRequest ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.UnlockRequest$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long Start$offset() {
+        return Start$OFFSET;
     }
 
-    static final VarHandle UnlockRequest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnlockRequest"));
-    public static VarHandle UnlockRequest$VH() {
-        return IInternetProtocolExVtbl.UnlockRequest$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Start(MemorySegment struct) {
+        return struct.get(Start$LAYOUT, Start$OFFSET);
     }
-    public static MemoryAddress UnlockRequest$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.UnlockRequest$VH.get(seg);
-    }
-    public static void UnlockRequest$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.UnlockRequest$VH.set(seg, x);
-    }
-    public static MemoryAddress UnlockRequest$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.UnlockRequest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnlockRequest$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.UnlockRequest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static UnlockRequest UnlockRequest (MemorySegment segment, MemorySession session) {
-        return UnlockRequest.ofAddress(UnlockRequest$get(segment), session);
-    }
-    static final FunctionDescriptor StartEx$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_LONG_LONG$LAYOUT
-    );
-    static final MethodHandle StartEx$MH = RuntimeHelper.downcallHandle(
-        IInternetProtocolExVtbl.StartEx$FUNC
-    );
-    public interface StartEx {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, int _x4, long _x5);
-        static MemorySegment allocate(StartEx fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(StartEx.class, fi, IInternetProtocolExVtbl.StartEx$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Start)(IInternetProtocolEx *, LPCWSTR, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static void Start(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Start$LAYOUT, Start$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall))
+     * }
+     */
+    public static class Continue {
+
+        Continue() {
+            // Should not be called directly
         }
-        static StartEx ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, int __x4, long __x5) -> {
-                try {
-                    return (int)IInternetProtocolExVtbl.StartEx$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, __x4, __x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Continue.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Continue.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle StartEx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartEx"));
-    public static VarHandle StartEx$VH() {
-        return IInternetProtocolExVtbl.StartEx$VH;
+    private static final AddressLayout Continue$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Continue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Continue$layout() {
+        return Continue$LAYOUT;
     }
-    public static MemoryAddress StartEx$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.StartEx$VH.get(seg);
+
+    private static final long Continue$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Continue$offset() {
+        return Continue$OFFSET;
     }
-    public static void StartEx$set( MemorySegment seg, MemoryAddress x) {
-        IInternetProtocolExVtbl.StartEx$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Continue(MemorySegment struct) {
+        return struct.get(Continue$LAYOUT, Continue$OFFSET);
     }
-    public static MemoryAddress StartEx$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IInternetProtocolExVtbl.StartEx$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Continue)(IInternetProtocolEx *, PROTOCOLDATA *) __attribute__((stdcall))
+     * }
+     */
+    public static void Continue(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Continue$LAYOUT, Continue$OFFSET, fieldValue);
     }
-    public static void StartEx$set(MemorySegment seg, long index, MemoryAddress x) {
-        IInternetProtocolExVtbl.StartEx$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class Abort {
+
+        Abort() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1, int _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Abort.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Abort.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1, int _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static StartEx StartEx (MemorySegment segment, MemorySession session) {
-        return StartEx.ofAddress(StartEx$get(segment), session);
+
+    private static final AddressLayout Abort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Abort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Abort$layout() {
+        return Abort$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Abort$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long Abort$offset() {
+        return Abort$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Abort(MemorySegment struct) {
+        return struct.get(Abort$LAYOUT, Abort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Abort)(IInternetProtocolEx *, HRESULT, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void Abort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Abort$LAYOUT, Abort$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class Terminate {
+
+        Terminate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Terminate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Terminate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Terminate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Terminate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Terminate$layout() {
+        return Terminate$LAYOUT;
+    }
+
+    private static final long Terminate$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long Terminate$offset() {
+        return Terminate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Terminate(MemorySegment struct) {
+        return struct.get(Terminate$LAYOUT, Terminate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Terminate)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void Terminate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Terminate$LAYOUT, Terminate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static class Suspend {
+
+        Suspend() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Suspend.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Suspend.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Suspend$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Suspend"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Suspend$layout() {
+        return Suspend$LAYOUT;
+    }
+
+    private static final long Suspend$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Suspend$offset() {
+        return Suspend$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Suspend(MemorySegment struct) {
+        return struct.get(Suspend$LAYOUT, Suspend$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Suspend)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static void Suspend(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Suspend$LAYOUT, Suspend$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static class Resume {
+
+        Resume() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Resume.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Resume.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Resume$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Resume"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Resume$layout() {
+        return Resume$LAYOUT;
+    }
+
+    private static final long Resume$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Resume$offset() {
+        return Resume$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Resume(MemorySegment struct) {
+        return struct.get(Resume$LAYOUT, Resume$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Resume)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static void Resume(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Resume$LAYOUT, Resume$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static class Read {
+
+        Read() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Read.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Read.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Read$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Read"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Read$layout() {
+        return Read$LAYOUT;
+    }
+
+    private static final long Read$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Read$offset() {
+        return Read$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Read(MemorySegment struct) {
+        return struct.get(Read$LAYOUT, Read$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Read)(IInternetProtocolEx *, void *, ULONG, ULONG *) __attribute__((stdcall))
+     * }
+     */
+    public static void Read(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Read$LAYOUT, Read$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall))
+     * }
+     */
+    public static class Seek {
+
+        Seek() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            _LARGE_INTEGER.layout(),
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Seek.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Seek.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, int _x2, MemorySegment _x3) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Seek$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Seek"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Seek$layout() {
+        return Seek$LAYOUT;
+    }
+
+    private static final long Seek$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Seek$offset() {
+        return Seek$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Seek(MemorySegment struct) {
+        return struct.get(Seek$LAYOUT, Seek$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Seek)(IInternetProtocolEx *, LARGE_INTEGER, DWORD, ULARGE_INTEGER *) __attribute__((stdcall))
+     * }
+     */
+    public static void Seek(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Seek$LAYOUT, Seek$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static class LockRequest {
+
+        LockRequest() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(LockRequest.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(LockRequest.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout LockRequest$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LockRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout LockRequest$layout() {
+        return LockRequest$LAYOUT;
+    }
+
+    private static final long LockRequest$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static final long LockRequest$offset() {
+        return LockRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment LockRequest(MemorySegment struct) {
+        return struct.get(LockRequest$LAYOUT, LockRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*LockRequest)(IInternetProtocolEx *, DWORD) __attribute__((stdcall))
+     * }
+     */
+    public static void LockRequest(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LockRequest$LAYOUT, LockRequest$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static class UnlockRequest {
+
+        UnlockRequest() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(UnlockRequest.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(UnlockRequest.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout UnlockRequest$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UnlockRequest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout UnlockRequest$layout() {
+        return UnlockRequest$LAYOUT;
+    }
+
+    private static final long UnlockRequest$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static final long UnlockRequest$offset() {
+        return UnlockRequest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment UnlockRequest(MemorySegment struct) {
+        return struct.get(UnlockRequest$LAYOUT, UnlockRequest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*UnlockRequest)(IInternetProtocolEx *) __attribute__((stdcall))
+     * }
+     */
+    public static void UnlockRequest(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UnlockRequest$LAYOUT, UnlockRequest$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static class StartEx {
+
+        StartEx() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, long _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_LONG,
+            wgl_h.C_LONG_LONG
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(StartEx.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(StartEx.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, int _x4, long _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout StartEx$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("StartEx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout StartEx$layout() {
+        return StartEx$LAYOUT;
+    }
+
+    private static final long StartEx$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static final long StartEx$offset() {
+        return StartEx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment StartEx(MemorySegment struct) {
+        return struct.get(StartEx$LAYOUT, StartEx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*StartEx)(IInternetProtocolEx *, IUri *, IInternetProtocolSink *, IInternetBindInfo *, DWORD, HANDLE_PTR) __attribute__((stdcall))
+     * }
+     */
+    public static void StartEx(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(StartEx$LAYOUT, StartEx$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

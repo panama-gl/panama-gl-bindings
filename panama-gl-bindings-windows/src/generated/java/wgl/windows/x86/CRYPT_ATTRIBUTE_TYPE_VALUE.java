@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_ATTRIBUTE_TYPE_VALUE {
+ *     LPSTR pszObjId;
+ *     CRYPT_OBJID_BLOB Value;
+ * } CRYPT_ATTRIBUTE_TYPE_VALUE
+ * }
+ */
 public class CRYPT_ATTRIBUTE_TYPE_VALUE extends _CRYPT_ATTRIBUTE_TYPE_VALUE {
 
+    CRYPT_ATTRIBUTE_TYPE_VALUE() {
+        // Should not be called directly
+    }
 }
-
 

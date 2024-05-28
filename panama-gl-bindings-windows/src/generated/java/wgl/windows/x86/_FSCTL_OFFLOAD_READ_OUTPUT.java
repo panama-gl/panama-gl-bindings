@@ -2,79 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FSCTL_OFFLOAD_READ_OUTPUT {
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     DWORDLONG TransferLength;
+ *     BYTE Token[512];
+ * }
+ * }
+ */
 public class _FSCTL_OFFLOAD_READ_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TransferLength"),
-        MemoryLayout.sequenceLayout(512, Constants$root.C_CHAR$LAYOUT).withName("Token")
-    ).withName("_FSCTL_OFFLOAD_READ_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _FSCTL_OFFLOAD_READ_OUTPUT.$struct$LAYOUT;
+    _FSCTL_OFFLOAD_READ_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _FSCTL_OFFLOAD_READ_OUTPUT.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_OUTPUT.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_OUTPUT.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _FSCTL_OFFLOAD_READ_OUTPUT.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_OUTPUT.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_OUTPUT.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TransferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransferLength"));
-    public static VarHandle TransferLength$VH() {
-        return _FSCTL_OFFLOAD_READ_OUTPUT.TransferLength$VH;
-    }
-    public static long TransferLength$get(MemorySegment seg) {
-        return (long)_FSCTL_OFFLOAD_READ_OUTPUT.TransferLength$VH.get(seg);
-    }
-    public static void TransferLength$set( MemorySegment seg, long x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.TransferLength$VH.set(seg, x);
-    }
-    public static long TransferLength$get(MemorySegment seg, long index) {
-        return (long)_FSCTL_OFFLOAD_READ_OUTPUT.TransferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TransferLength$set(MemorySegment seg, long index, long x) {
-        _FSCTL_OFFLOAD_READ_OUTPUT.TransferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Token$slice(MemorySegment seg) {
-        return seg.asSlice(16, 512);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG_LONG.withName("TransferLength"),
+        MemoryLayout.sequenceLayout(512, wgl_h.C_CHAR).withName("Token")
+    ).withName("_FSCTL_OFFLOAD_READ_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TransferLength$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TransferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG TransferLength
+     * }
+     */
+    public static final OfLong TransferLength$layout() {
+        return TransferLength$LAYOUT;
+    }
+
+    private static final long TransferLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG TransferLength
+     * }
+     */
+    public static final long TransferLength$offset() {
+        return TransferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG TransferLength
+     * }
+     */
+    public static long TransferLength(MemorySegment struct) {
+        return struct.get(TransferLength$LAYOUT, TransferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG TransferLength
+     * }
+     */
+    public static void TransferLength(MemorySegment struct, long fieldValue) {
+        struct.set(TransferLength$LAYOUT, TransferLength$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Token$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Token"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static final SequenceLayout Token$layout() {
+        return Token$LAYOUT;
+    }
+
+    private static final long Token$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static final long Token$offset() {
+        return Token$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static MemorySegment Token(MemorySegment struct) {
+        return struct.asSlice(Token$OFFSET, Token$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static void Token(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Token$OFFSET, Token$LAYOUT.byteSize());
+    }
+
+    private static long[] Token$DIMS = { 512 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static long[] Token$dimensions() {
+        return Token$DIMS;
+    }
+    private static final VarHandle Token$ELEM_HANDLE = Token$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static byte Token(MemorySegment struct, long index0) {
+        return (byte)Token$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Token[512]
+     * }
+     */
+    public static void Token(MemorySegment struct, long index0, byte fieldValue) {
+        Token$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

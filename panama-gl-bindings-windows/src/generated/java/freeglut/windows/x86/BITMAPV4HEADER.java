@@ -2,367 +2,1000 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD bV4Size;
+ *     LONG bV4Width;
+ *     LONG bV4Height;
+ *     WORD bV4Planes;
+ *     WORD bV4BitCount;
+ *     DWORD bV4V4Compression;
+ *     DWORD bV4SizeImage;
+ *     LONG bV4XPelsPerMeter;
+ *     LONG bV4YPelsPerMeter;
+ *     DWORD bV4ClrUsed;
+ *     DWORD bV4ClrImportant;
+ *     DWORD bV4RedMask;
+ *     DWORD bV4GreenMask;
+ *     DWORD bV4BlueMask;
+ *     DWORD bV4AlphaMask;
+ *     DWORD bV4CSType;
+ *     CIEXYZTRIPLE bV4Endpoints;
+ *     DWORD bV4GammaRed;
+ *     DWORD bV4GammaGreen;
+ *     DWORD bV4GammaBlue;
+ * }
+ * }
+ */
 public class BITMAPV4HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("bV4Size"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4Width"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4Height"),
-        Constants$root.C_SHORT$LAYOUT.withName("bV4Planes"),
-        Constants$root.C_SHORT$LAYOUT.withName("bV4BitCount"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4V4Compression"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4SizeImage"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4XPelsPerMeter"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4YPelsPerMeter"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4ClrUsed"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4ClrImportant"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4RedMask"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4GreenMask"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4BlueMask"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4AlphaMask"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4CSType"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzRed"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzGreen"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzBlue")
-        ).withName("bV4Endpoints"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4GammaRed"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4GammaGreen"),
-        Constants$root.C_LONG$LAYOUT.withName("bV4GammaBlue")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return BITMAPV4HEADER.$struct$LAYOUT;
+    BITMAPV4HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle bV4Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4Size"));
-    public static VarHandle bV4Size$VH() {
-        return BITMAPV4HEADER.bV4Size$VH;
-    }
-    public static int bV4Size$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4Size$VH.get(seg);
-    }
-    public static void bV4Size$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4Size$VH.set(seg, x);
-    }
-    public static int bV4Size$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4Size$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4Width$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4Width"));
-    public static VarHandle bV4Width$VH() {
-        return BITMAPV4HEADER.bV4Width$VH;
-    }
-    public static int bV4Width$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4Width$VH.get(seg);
-    }
-    public static void bV4Width$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4Width$VH.set(seg, x);
-    }
-    public static int bV4Width$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4Width$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4Width$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4Width$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4Height$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4Height"));
-    public static VarHandle bV4Height$VH() {
-        return BITMAPV4HEADER.bV4Height$VH;
-    }
-    public static int bV4Height$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4Height$VH.get(seg);
-    }
-    public static void bV4Height$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4Height$VH.set(seg, x);
-    }
-    public static int bV4Height$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4Height$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4Height$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4Height$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4Planes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4Planes"));
-    public static VarHandle bV4Planes$VH() {
-        return BITMAPV4HEADER.bV4Planes$VH;
-    }
-    public static short bV4Planes$get(MemorySegment seg) {
-        return (short)BITMAPV4HEADER.bV4Planes$VH.get(seg);
-    }
-    public static void bV4Planes$set( MemorySegment seg, short x) {
-        BITMAPV4HEADER.bV4Planes$VH.set(seg, x);
-    }
-    public static short bV4Planes$get(MemorySegment seg, long index) {
-        return (short)BITMAPV4HEADER.bV4Planes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4Planes$set(MemorySegment seg, long index, short x) {
-        BITMAPV4HEADER.bV4Planes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4BitCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4BitCount"));
-    public static VarHandle bV4BitCount$VH() {
-        return BITMAPV4HEADER.bV4BitCount$VH;
-    }
-    public static short bV4BitCount$get(MemorySegment seg) {
-        return (short)BITMAPV4HEADER.bV4BitCount$VH.get(seg);
-    }
-    public static void bV4BitCount$set( MemorySegment seg, short x) {
-        BITMAPV4HEADER.bV4BitCount$VH.set(seg, x);
-    }
-    public static short bV4BitCount$get(MemorySegment seg, long index) {
-        return (short)BITMAPV4HEADER.bV4BitCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4BitCount$set(MemorySegment seg, long index, short x) {
-        BITMAPV4HEADER.bV4BitCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4V4Compression$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4V4Compression"));
-    public static VarHandle bV4V4Compression$VH() {
-        return BITMAPV4HEADER.bV4V4Compression$VH;
-    }
-    public static int bV4V4Compression$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4V4Compression$VH.get(seg);
-    }
-    public static void bV4V4Compression$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4V4Compression$VH.set(seg, x);
-    }
-    public static int bV4V4Compression$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4V4Compression$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4V4Compression$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4V4Compression$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4SizeImage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4SizeImage"));
-    public static VarHandle bV4SizeImage$VH() {
-        return BITMAPV4HEADER.bV4SizeImage$VH;
-    }
-    public static int bV4SizeImage$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4SizeImage$VH.get(seg);
-    }
-    public static void bV4SizeImage$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4SizeImage$VH.set(seg, x);
-    }
-    public static int bV4SizeImage$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4SizeImage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4SizeImage$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4SizeImage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4XPelsPerMeter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4XPelsPerMeter"));
-    public static VarHandle bV4XPelsPerMeter$VH() {
-        return BITMAPV4HEADER.bV4XPelsPerMeter$VH;
-    }
-    public static int bV4XPelsPerMeter$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4XPelsPerMeter$VH.get(seg);
-    }
-    public static void bV4XPelsPerMeter$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4XPelsPerMeter$VH.set(seg, x);
-    }
-    public static int bV4XPelsPerMeter$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4XPelsPerMeter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4XPelsPerMeter$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4XPelsPerMeter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4YPelsPerMeter$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4YPelsPerMeter"));
-    public static VarHandle bV4YPelsPerMeter$VH() {
-        return BITMAPV4HEADER.bV4YPelsPerMeter$VH;
-    }
-    public static int bV4YPelsPerMeter$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4YPelsPerMeter$VH.get(seg);
-    }
-    public static void bV4YPelsPerMeter$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4YPelsPerMeter$VH.set(seg, x);
-    }
-    public static int bV4YPelsPerMeter$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4YPelsPerMeter$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4YPelsPerMeter$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4YPelsPerMeter$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4ClrUsed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4ClrUsed"));
-    public static VarHandle bV4ClrUsed$VH() {
-        return BITMAPV4HEADER.bV4ClrUsed$VH;
-    }
-    public static int bV4ClrUsed$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4ClrUsed$VH.get(seg);
-    }
-    public static void bV4ClrUsed$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4ClrUsed$VH.set(seg, x);
-    }
-    public static int bV4ClrUsed$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4ClrUsed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4ClrUsed$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4ClrUsed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4ClrImportant$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4ClrImportant"));
-    public static VarHandle bV4ClrImportant$VH() {
-        return BITMAPV4HEADER.bV4ClrImportant$VH;
-    }
-    public static int bV4ClrImportant$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4ClrImportant$VH.get(seg);
-    }
-    public static void bV4ClrImportant$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4ClrImportant$VH.set(seg, x);
-    }
-    public static int bV4ClrImportant$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4ClrImportant$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4ClrImportant$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4ClrImportant$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4RedMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4RedMask"));
-    public static VarHandle bV4RedMask$VH() {
-        return BITMAPV4HEADER.bV4RedMask$VH;
-    }
-    public static int bV4RedMask$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4RedMask$VH.get(seg);
-    }
-    public static void bV4RedMask$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4RedMask$VH.set(seg, x);
-    }
-    public static int bV4RedMask$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4RedMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4RedMask$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4RedMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4GreenMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4GreenMask"));
-    public static VarHandle bV4GreenMask$VH() {
-        return BITMAPV4HEADER.bV4GreenMask$VH;
-    }
-    public static int bV4GreenMask$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4GreenMask$VH.get(seg);
-    }
-    public static void bV4GreenMask$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4GreenMask$VH.set(seg, x);
-    }
-    public static int bV4GreenMask$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4GreenMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4GreenMask$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4GreenMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4BlueMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4BlueMask"));
-    public static VarHandle bV4BlueMask$VH() {
-        return BITMAPV4HEADER.bV4BlueMask$VH;
-    }
-    public static int bV4BlueMask$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4BlueMask$VH.get(seg);
-    }
-    public static void bV4BlueMask$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4BlueMask$VH.set(seg, x);
-    }
-    public static int bV4BlueMask$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4BlueMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4BlueMask$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4BlueMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4AlphaMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4AlphaMask"));
-    public static VarHandle bV4AlphaMask$VH() {
-        return BITMAPV4HEADER.bV4AlphaMask$VH;
-    }
-    public static int bV4AlphaMask$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4AlphaMask$VH.get(seg);
-    }
-    public static void bV4AlphaMask$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4AlphaMask$VH.set(seg, x);
-    }
-    public static int bV4AlphaMask$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4AlphaMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4AlphaMask$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4AlphaMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4CSType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4CSType"));
-    public static VarHandle bV4CSType$VH() {
-        return BITMAPV4HEADER.bV4CSType$VH;
-    }
-    public static int bV4CSType$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4CSType$VH.get(seg);
-    }
-    public static void bV4CSType$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4CSType$VH.set(seg, x);
-    }
-    public static int bV4CSType$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4CSType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4CSType$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4CSType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment bV4Endpoints$slice(MemorySegment seg) {
-        return seg.asSlice(60, 36);
-    }
-    static final VarHandle bV4GammaRed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4GammaRed"));
-    public static VarHandle bV4GammaRed$VH() {
-        return BITMAPV4HEADER.bV4GammaRed$VH;
-    }
-    public static int bV4GammaRed$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4GammaRed$VH.get(seg);
-    }
-    public static void bV4GammaRed$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4GammaRed$VH.set(seg, x);
-    }
-    public static int bV4GammaRed$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4GammaRed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4GammaRed$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4GammaRed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4GammaGreen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4GammaGreen"));
-    public static VarHandle bV4GammaGreen$VH() {
-        return BITMAPV4HEADER.bV4GammaGreen$VH;
-    }
-    public static int bV4GammaGreen$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4GammaGreen$VH.get(seg);
-    }
-    public static void bV4GammaGreen$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4GammaGreen$VH.set(seg, x);
-    }
-    public static int bV4GammaGreen$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4GammaGreen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4GammaGreen$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4GammaGreen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bV4GammaBlue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bV4GammaBlue"));
-    public static VarHandle bV4GammaBlue$VH() {
-        return BITMAPV4HEADER.bV4GammaBlue$VH;
-    }
-    public static int bV4GammaBlue$get(MemorySegment seg) {
-        return (int)BITMAPV4HEADER.bV4GammaBlue$VH.get(seg);
-    }
-    public static void bV4GammaBlue$set( MemorySegment seg, int x) {
-        BITMAPV4HEADER.bV4GammaBlue$VH.set(seg, x);
-    }
-    public static int bV4GammaBlue$get(MemorySegment seg, long index) {
-        return (int)BITMAPV4HEADER.bV4GammaBlue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bV4GammaBlue$set(MemorySegment seg, long index, int x) {
-        BITMAPV4HEADER.bV4GammaBlue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("bV4Size"),
+        freeglut_h.C_LONG.withName("bV4Width"),
+        freeglut_h.C_LONG.withName("bV4Height"),
+        freeglut_h.C_SHORT.withName("bV4Planes"),
+        freeglut_h.C_SHORT.withName("bV4BitCount"),
+        freeglut_h.C_LONG.withName("bV4V4Compression"),
+        freeglut_h.C_LONG.withName("bV4SizeImage"),
+        freeglut_h.C_LONG.withName("bV4XPelsPerMeter"),
+        freeglut_h.C_LONG.withName("bV4YPelsPerMeter"),
+        freeglut_h.C_LONG.withName("bV4ClrUsed"),
+        freeglut_h.C_LONG.withName("bV4ClrImportant"),
+        freeglut_h.C_LONG.withName("bV4RedMask"),
+        freeglut_h.C_LONG.withName("bV4GreenMask"),
+        freeglut_h.C_LONG.withName("bV4BlueMask"),
+        freeglut_h.C_LONG.withName("bV4AlphaMask"),
+        freeglut_h.C_LONG.withName("bV4CSType"),
+        tagICEXYZTRIPLE.layout().withName("bV4Endpoints"),
+        freeglut_h.C_LONG.withName("bV4GammaRed"),
+        freeglut_h.C_LONG.withName("bV4GammaGreen"),
+        freeglut_h.C_LONG.withName("bV4GammaBlue")
+    ).withName("$anon$834:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt bV4Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4Size
+     * }
+     */
+    public static final OfInt bV4Size$layout() {
+        return bV4Size$LAYOUT;
+    }
+
+    private static final long bV4Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4Size
+     * }
+     */
+    public static final long bV4Size$offset() {
+        return bV4Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4Size
+     * }
+     */
+    public static int bV4Size(MemorySegment struct) {
+        return struct.get(bV4Size$LAYOUT, bV4Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4Size
+     * }
+     */
+    public static void bV4Size(MemorySegment struct, int fieldValue) {
+        struct.set(bV4Size$LAYOUT, bV4Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4Width$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4Width"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG bV4Width
+     * }
+     */
+    public static final OfInt bV4Width$layout() {
+        return bV4Width$LAYOUT;
+    }
+
+    private static final long bV4Width$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG bV4Width
+     * }
+     */
+    public static final long bV4Width$offset() {
+        return bV4Width$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG bV4Width
+     * }
+     */
+    public static int bV4Width(MemorySegment struct) {
+        return struct.get(bV4Width$LAYOUT, bV4Width$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG bV4Width
+     * }
+     */
+    public static void bV4Width(MemorySegment struct, int fieldValue) {
+        struct.set(bV4Width$LAYOUT, bV4Width$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4Height$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4Height"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG bV4Height
+     * }
+     */
+    public static final OfInt bV4Height$layout() {
+        return bV4Height$LAYOUT;
+    }
+
+    private static final long bV4Height$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG bV4Height
+     * }
+     */
+    public static final long bV4Height$offset() {
+        return bV4Height$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG bV4Height
+     * }
+     */
+    public static int bV4Height(MemorySegment struct) {
+        return struct.get(bV4Height$LAYOUT, bV4Height$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG bV4Height
+     * }
+     */
+    public static void bV4Height(MemorySegment struct, int fieldValue) {
+        struct.set(bV4Height$LAYOUT, bV4Height$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bV4Planes$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bV4Planes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bV4Planes
+     * }
+     */
+    public static final OfShort bV4Planes$layout() {
+        return bV4Planes$LAYOUT;
+    }
+
+    private static final long bV4Planes$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bV4Planes
+     * }
+     */
+    public static final long bV4Planes$offset() {
+        return bV4Planes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bV4Planes
+     * }
+     */
+    public static short bV4Planes(MemorySegment struct) {
+        return struct.get(bV4Planes$LAYOUT, bV4Planes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bV4Planes
+     * }
+     */
+    public static void bV4Planes(MemorySegment struct, short fieldValue) {
+        struct.set(bV4Planes$LAYOUT, bV4Planes$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bV4BitCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bV4BitCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bV4BitCount
+     * }
+     */
+    public static final OfShort bV4BitCount$layout() {
+        return bV4BitCount$LAYOUT;
+    }
+
+    private static final long bV4BitCount$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bV4BitCount
+     * }
+     */
+    public static final long bV4BitCount$offset() {
+        return bV4BitCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bV4BitCount
+     * }
+     */
+    public static short bV4BitCount(MemorySegment struct) {
+        return struct.get(bV4BitCount$LAYOUT, bV4BitCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bV4BitCount
+     * }
+     */
+    public static void bV4BitCount(MemorySegment struct, short fieldValue) {
+        struct.set(bV4BitCount$LAYOUT, bV4BitCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4V4Compression$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4V4Compression"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4V4Compression
+     * }
+     */
+    public static final OfInt bV4V4Compression$layout() {
+        return bV4V4Compression$LAYOUT;
+    }
+
+    private static final long bV4V4Compression$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4V4Compression
+     * }
+     */
+    public static final long bV4V4Compression$offset() {
+        return bV4V4Compression$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4V4Compression
+     * }
+     */
+    public static int bV4V4Compression(MemorySegment struct) {
+        return struct.get(bV4V4Compression$LAYOUT, bV4V4Compression$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4V4Compression
+     * }
+     */
+    public static void bV4V4Compression(MemorySegment struct, int fieldValue) {
+        struct.set(bV4V4Compression$LAYOUT, bV4V4Compression$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4SizeImage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4SizeImage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4SizeImage
+     * }
+     */
+    public static final OfInt bV4SizeImage$layout() {
+        return bV4SizeImage$LAYOUT;
+    }
+
+    private static final long bV4SizeImage$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4SizeImage
+     * }
+     */
+    public static final long bV4SizeImage$offset() {
+        return bV4SizeImage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4SizeImage
+     * }
+     */
+    public static int bV4SizeImage(MemorySegment struct) {
+        return struct.get(bV4SizeImage$LAYOUT, bV4SizeImage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4SizeImage
+     * }
+     */
+    public static void bV4SizeImage(MemorySegment struct, int fieldValue) {
+        struct.set(bV4SizeImage$LAYOUT, bV4SizeImage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4XPelsPerMeter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4XPelsPerMeter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG bV4XPelsPerMeter
+     * }
+     */
+    public static final OfInt bV4XPelsPerMeter$layout() {
+        return bV4XPelsPerMeter$LAYOUT;
+    }
+
+    private static final long bV4XPelsPerMeter$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG bV4XPelsPerMeter
+     * }
+     */
+    public static final long bV4XPelsPerMeter$offset() {
+        return bV4XPelsPerMeter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG bV4XPelsPerMeter
+     * }
+     */
+    public static int bV4XPelsPerMeter(MemorySegment struct) {
+        return struct.get(bV4XPelsPerMeter$LAYOUT, bV4XPelsPerMeter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG bV4XPelsPerMeter
+     * }
+     */
+    public static void bV4XPelsPerMeter(MemorySegment struct, int fieldValue) {
+        struct.set(bV4XPelsPerMeter$LAYOUT, bV4XPelsPerMeter$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4YPelsPerMeter$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4YPelsPerMeter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG bV4YPelsPerMeter
+     * }
+     */
+    public static final OfInt bV4YPelsPerMeter$layout() {
+        return bV4YPelsPerMeter$LAYOUT;
+    }
+
+    private static final long bV4YPelsPerMeter$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG bV4YPelsPerMeter
+     * }
+     */
+    public static final long bV4YPelsPerMeter$offset() {
+        return bV4YPelsPerMeter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG bV4YPelsPerMeter
+     * }
+     */
+    public static int bV4YPelsPerMeter(MemorySegment struct) {
+        return struct.get(bV4YPelsPerMeter$LAYOUT, bV4YPelsPerMeter$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG bV4YPelsPerMeter
+     * }
+     */
+    public static void bV4YPelsPerMeter(MemorySegment struct, int fieldValue) {
+        struct.set(bV4YPelsPerMeter$LAYOUT, bV4YPelsPerMeter$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4ClrUsed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4ClrUsed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrUsed
+     * }
+     */
+    public static final OfInt bV4ClrUsed$layout() {
+        return bV4ClrUsed$LAYOUT;
+    }
+
+    private static final long bV4ClrUsed$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrUsed
+     * }
+     */
+    public static final long bV4ClrUsed$offset() {
+        return bV4ClrUsed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrUsed
+     * }
+     */
+    public static int bV4ClrUsed(MemorySegment struct) {
+        return struct.get(bV4ClrUsed$LAYOUT, bV4ClrUsed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrUsed
+     * }
+     */
+    public static void bV4ClrUsed(MemorySegment struct, int fieldValue) {
+        struct.set(bV4ClrUsed$LAYOUT, bV4ClrUsed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4ClrImportant$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4ClrImportant"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrImportant
+     * }
+     */
+    public static final OfInt bV4ClrImportant$layout() {
+        return bV4ClrImportant$LAYOUT;
+    }
+
+    private static final long bV4ClrImportant$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrImportant
+     * }
+     */
+    public static final long bV4ClrImportant$offset() {
+        return bV4ClrImportant$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrImportant
+     * }
+     */
+    public static int bV4ClrImportant(MemorySegment struct) {
+        return struct.get(bV4ClrImportant$LAYOUT, bV4ClrImportant$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4ClrImportant
+     * }
+     */
+    public static void bV4ClrImportant(MemorySegment struct, int fieldValue) {
+        struct.set(bV4ClrImportant$LAYOUT, bV4ClrImportant$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4RedMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4RedMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4RedMask
+     * }
+     */
+    public static final OfInt bV4RedMask$layout() {
+        return bV4RedMask$LAYOUT;
+    }
+
+    private static final long bV4RedMask$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4RedMask
+     * }
+     */
+    public static final long bV4RedMask$offset() {
+        return bV4RedMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4RedMask
+     * }
+     */
+    public static int bV4RedMask(MemorySegment struct) {
+        return struct.get(bV4RedMask$LAYOUT, bV4RedMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4RedMask
+     * }
+     */
+    public static void bV4RedMask(MemorySegment struct, int fieldValue) {
+        struct.set(bV4RedMask$LAYOUT, bV4RedMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4GreenMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4GreenMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4GreenMask
+     * }
+     */
+    public static final OfInt bV4GreenMask$layout() {
+        return bV4GreenMask$LAYOUT;
+    }
+
+    private static final long bV4GreenMask$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4GreenMask
+     * }
+     */
+    public static final long bV4GreenMask$offset() {
+        return bV4GreenMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GreenMask
+     * }
+     */
+    public static int bV4GreenMask(MemorySegment struct) {
+        return struct.get(bV4GreenMask$LAYOUT, bV4GreenMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GreenMask
+     * }
+     */
+    public static void bV4GreenMask(MemorySegment struct, int fieldValue) {
+        struct.set(bV4GreenMask$LAYOUT, bV4GreenMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4BlueMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4BlueMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4BlueMask
+     * }
+     */
+    public static final OfInt bV4BlueMask$layout() {
+        return bV4BlueMask$LAYOUT;
+    }
+
+    private static final long bV4BlueMask$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4BlueMask
+     * }
+     */
+    public static final long bV4BlueMask$offset() {
+        return bV4BlueMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4BlueMask
+     * }
+     */
+    public static int bV4BlueMask(MemorySegment struct) {
+        return struct.get(bV4BlueMask$LAYOUT, bV4BlueMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4BlueMask
+     * }
+     */
+    public static void bV4BlueMask(MemorySegment struct, int fieldValue) {
+        struct.set(bV4BlueMask$LAYOUT, bV4BlueMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4AlphaMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4AlphaMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4AlphaMask
+     * }
+     */
+    public static final OfInt bV4AlphaMask$layout() {
+        return bV4AlphaMask$LAYOUT;
+    }
+
+    private static final long bV4AlphaMask$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4AlphaMask
+     * }
+     */
+    public static final long bV4AlphaMask$offset() {
+        return bV4AlphaMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4AlphaMask
+     * }
+     */
+    public static int bV4AlphaMask(MemorySegment struct) {
+        return struct.get(bV4AlphaMask$LAYOUT, bV4AlphaMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4AlphaMask
+     * }
+     */
+    public static void bV4AlphaMask(MemorySegment struct, int fieldValue) {
+        struct.set(bV4AlphaMask$LAYOUT, bV4AlphaMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4CSType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4CSType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4CSType
+     * }
+     */
+    public static final OfInt bV4CSType$layout() {
+        return bV4CSType$LAYOUT;
+    }
+
+    private static final long bV4CSType$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4CSType
+     * }
+     */
+    public static final long bV4CSType$offset() {
+        return bV4CSType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4CSType
+     * }
+     */
+    public static int bV4CSType(MemorySegment struct) {
+        return struct.get(bV4CSType$LAYOUT, bV4CSType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4CSType
+     * }
+     */
+    public static void bV4CSType(MemorySegment struct, int fieldValue) {
+        struct.set(bV4CSType$LAYOUT, bV4CSType$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout bV4Endpoints$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("bV4Endpoints"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE bV4Endpoints
+     * }
+     */
+    public static final GroupLayout bV4Endpoints$layout() {
+        return bV4Endpoints$LAYOUT;
+    }
+
+    private static final long bV4Endpoints$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE bV4Endpoints
+     * }
+     */
+    public static final long bV4Endpoints$offset() {
+        return bV4Endpoints$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE bV4Endpoints
+     * }
+     */
+    public static MemorySegment bV4Endpoints(MemorySegment struct) {
+        return struct.asSlice(bV4Endpoints$OFFSET, bV4Endpoints$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE bV4Endpoints
+     * }
+     */
+    public static void bV4Endpoints(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, bV4Endpoints$OFFSET, bV4Endpoints$LAYOUT.byteSize());
+    }
+
+    private static final OfInt bV4GammaRed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4GammaRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaRed
+     * }
+     */
+    public static final OfInt bV4GammaRed$layout() {
+        return bV4GammaRed$LAYOUT;
+    }
+
+    private static final long bV4GammaRed$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaRed
+     * }
+     */
+    public static final long bV4GammaRed$offset() {
+        return bV4GammaRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaRed
+     * }
+     */
+    public static int bV4GammaRed(MemorySegment struct) {
+        return struct.get(bV4GammaRed$LAYOUT, bV4GammaRed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaRed
+     * }
+     */
+    public static void bV4GammaRed(MemorySegment struct, int fieldValue) {
+        struct.set(bV4GammaRed$LAYOUT, bV4GammaRed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4GammaGreen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4GammaGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaGreen
+     * }
+     */
+    public static final OfInt bV4GammaGreen$layout() {
+        return bV4GammaGreen$LAYOUT;
+    }
+
+    private static final long bV4GammaGreen$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaGreen
+     * }
+     */
+    public static final long bV4GammaGreen$offset() {
+        return bV4GammaGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaGreen
+     * }
+     */
+    public static int bV4GammaGreen(MemorySegment struct) {
+        return struct.get(bV4GammaGreen$LAYOUT, bV4GammaGreen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaGreen
+     * }
+     */
+    public static void bV4GammaGreen(MemorySegment struct, int fieldValue) {
+        struct.set(bV4GammaGreen$LAYOUT, bV4GammaGreen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bV4GammaBlue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bV4GammaBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaBlue
+     * }
+     */
+    public static final OfInt bV4GammaBlue$layout() {
+        return bV4GammaBlue$LAYOUT;
+    }
+
+    private static final long bV4GammaBlue$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaBlue
+     * }
+     */
+    public static final long bV4GammaBlue$offset() {
+        return bV4GammaBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaBlue
+     * }
+     */
+    public static int bV4GammaBlue(MemorySegment struct) {
+        return struct.get(bV4GammaBlue$LAYOUT, bV4GammaBlue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bV4GammaBlue
+     * }
+     */
+    public static void bV4GammaBlue(MemorySegment struct, int fieldValue) {
+        struct.set(bV4GammaBlue$LAYOUT, bV4GammaBlue$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

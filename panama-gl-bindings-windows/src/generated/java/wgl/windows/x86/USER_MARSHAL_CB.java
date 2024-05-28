@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _USER_MARSHAL_CB {
+ *     unsigned long Flags;
+ *     PMIDL_STUB_MESSAGE pStubMsg;
+ *     PFORMAT_STRING pReserve;
+ *     unsigned long Signature;
+ *     USER_MARSHAL_CB_TYPE CBType;
+ *     PFORMAT_STRING pFormat;
+ *     PFORMAT_STRING pTypeFormat;
+ * } USER_MARSHAL_CB
+ * }
+ */
 public class USER_MARSHAL_CB extends _USER_MARSHAL_CB {
 
+    USER_MARSHAL_CB() {
+        // Should not be called directly
+    }
 }
-
 

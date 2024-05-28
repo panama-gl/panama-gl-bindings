@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct ASSOCIATIONELEMENT {
+ *     ASSOCCLASS ac;
+ *     HKEY hkClass;
+ *     PCWSTR pszClass;
+ * }
+ * }
+ */
 public class ASSOCIATIONELEMENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ac"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hkClass"),
-        Constants$root.C_POINTER$LAYOUT.withName("pszClass")
-    ).withName("ASSOCIATIONELEMENT");
-    public static MemoryLayout $LAYOUT() {
-        return ASSOCIATIONELEMENT.$struct$LAYOUT;
+    ASSOCIATIONELEMENT() {
+        // Should not be called directly
     }
-    static final VarHandle ac$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ac"));
-    public static VarHandle ac$VH() {
-        return ASSOCIATIONELEMENT.ac$VH;
-    }
-    public static int ac$get(MemorySegment seg) {
-        return (int)ASSOCIATIONELEMENT.ac$VH.get(seg);
-    }
-    public static void ac$set( MemorySegment seg, int x) {
-        ASSOCIATIONELEMENT.ac$VH.set(seg, x);
-    }
-    public static int ac$get(MemorySegment seg, long index) {
-        return (int)ASSOCIATIONELEMENT.ac$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ac$set(MemorySegment seg, long index, int x) {
-        ASSOCIATIONELEMENT.ac$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hkClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hkClass"));
-    public static VarHandle hkClass$VH() {
-        return ASSOCIATIONELEMENT.hkClass$VH;
-    }
-    public static MemoryAddress hkClass$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ASSOCIATIONELEMENT.hkClass$VH.get(seg);
-    }
-    public static void hkClass$set( MemorySegment seg, MemoryAddress x) {
-        ASSOCIATIONELEMENT.hkClass$VH.set(seg, x);
-    }
-    public static MemoryAddress hkClass$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ASSOCIATIONELEMENT.hkClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hkClass$set(MemorySegment seg, long index, MemoryAddress x) {
-        ASSOCIATIONELEMENT.hkClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszClass"));
-    public static VarHandle pszClass$VH() {
-        return ASSOCIATIONELEMENT.pszClass$VH;
-    }
-    public static MemoryAddress pszClass$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)ASSOCIATIONELEMENT.pszClass$VH.get(seg);
-    }
-    public static void pszClass$set( MemorySegment seg, MemoryAddress x) {
-        ASSOCIATIONELEMENT.pszClass$VH.set(seg, x);
-    }
-    public static MemoryAddress pszClass$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)ASSOCIATIONELEMENT.pszClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszClass$set(MemorySegment seg, long index, MemoryAddress x) {
-        ASSOCIATIONELEMENT.pszClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("ac"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hkClass"),
+        wgl_h.C_POINTER.withName("pszClass")
+    ).withName("ASSOCIATIONELEMENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ac$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ac"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ASSOCCLASS ac
+     * }
+     */
+    public static final OfInt ac$layout() {
+        return ac$LAYOUT;
+    }
+
+    private static final long ac$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ASSOCCLASS ac
+     * }
+     */
+    public static final long ac$offset() {
+        return ac$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ASSOCCLASS ac
+     * }
+     */
+    public static int ac(MemorySegment struct) {
+        return struct.get(ac$LAYOUT, ac$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ASSOCCLASS ac
+     * }
+     */
+    public static void ac(MemorySegment struct, int fieldValue) {
+        struct.set(ac$LAYOUT, ac$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hkClass$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hkClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HKEY hkClass
+     * }
+     */
+    public static final AddressLayout hkClass$layout() {
+        return hkClass$LAYOUT;
+    }
+
+    private static final long hkClass$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HKEY hkClass
+     * }
+     */
+    public static final long hkClass$offset() {
+        return hkClass$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HKEY hkClass
+     * }
+     */
+    public static MemorySegment hkClass(MemorySegment struct) {
+        return struct.get(hkClass$LAYOUT, hkClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HKEY hkClass
+     * }
+     */
+    public static void hkClass(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hkClass$LAYOUT, hkClass$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszClass$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCWSTR pszClass
+     * }
+     */
+    public static final AddressLayout pszClass$layout() {
+        return pszClass$LAYOUT;
+    }
+
+    private static final long pszClass$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCWSTR pszClass
+     * }
+     */
+    public static final long pszClass$offset() {
+        return pszClass$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCWSTR pszClass
+     * }
+     */
+    public static MemorySegment pszClass(MemorySegment struct) {
+        return struct.get(pszClass$LAYOUT, pszClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCWSTR pszClass
+     * }
+     */
+    public static void pszClass(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszClass$LAYOUT, pszClass$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

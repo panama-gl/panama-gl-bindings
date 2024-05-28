@@ -2,119 +2,457 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     WORD Revision;
+ *     union {
+ *         WORD AsWORD;
+ *         struct {
+ *             WORD AllowScaling : 1;
+ *             WORD Disabled : 1;
+ *             WORD Reserved : 14;
+ *         };
+ *     } Flags;
+ *     DWORD PolicyCount;
+ *     PROCESSOR_IDLESTATE_INFO Policy[3];
+ * }
+ * }
+ */
 public class PROCESSOR_IDLESTATE_POLICY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Revision"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("AsWORD"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("AllowScaling"),
-                    MemoryLayout.paddingLayout(1).withName("Disabled"),
-                    MemoryLayout.paddingLayout(14).withName("Reserved")
-                )
-            ).withName("$anon$0")
-        ).withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("PolicyCount"),
-        MemoryLayout.sequenceLayout(3, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("TimeCheck"),
-            Constants$root.C_CHAR$LAYOUT.withName("DemotePercent"),
-            Constants$root.C_CHAR$LAYOUT.withName("PromotePercent"),
-            MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("Spare")
-        )).withName("Policy")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PROCESSOR_IDLESTATE_POLICY.$struct$LAYOUT;
+    PROCESSOR_IDLESTATE_POLICY() {
+        // Should not be called directly
     }
-    static final VarHandle Revision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Revision"));
-    public static VarHandle Revision$VH() {
-        return PROCESSOR_IDLESTATE_POLICY.Revision$VH;
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Revision"),
+        PROCESSOR_IDLESTATE_POLICY.Flags.layout().withName("Flags"),
+        wgl_h.C_LONG.withName("PolicyCount"),
+        MemoryLayout.sequenceLayout(3, PROCESSOR_IDLESTATE_INFO.layout()).withName("Policy")
+    ).withName("$anon$16635:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    public static short Revision$get(MemorySegment seg) {
-        return (short)PROCESSOR_IDLESTATE_POLICY.Revision$VH.get(seg);
+
+    private static final OfShort Revision$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Revision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Revision
+     * }
+     */
+    public static final OfShort Revision$layout() {
+        return Revision$LAYOUT;
     }
-    public static void Revision$set( MemorySegment seg, short x) {
-        PROCESSOR_IDLESTATE_POLICY.Revision$VH.set(seg, x);
+
+    private static final long Revision$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Revision
+     * }
+     */
+    public static final long Revision$offset() {
+        return Revision$OFFSET;
     }
-    public static short Revision$get(MemorySegment seg, long index) {
-        return (short)PROCESSOR_IDLESTATE_POLICY.Revision$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Revision
+     * }
+     */
+    public static short Revision(MemorySegment struct) {
+        return struct.get(Revision$LAYOUT, Revision$OFFSET);
     }
-    public static void Revision$set(MemorySegment seg, long index, short x) {
-        PROCESSOR_IDLESTATE_POLICY.Revision$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Revision
+     * }
+     */
+    public static void Revision(MemorySegment struct, short fieldValue) {
+        struct.set(Revision$LAYOUT, Revision$OFFSET, fieldValue);
     }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     WORD AsWORD;
+     *     struct {
+     *         WORD AllowScaling : 1;
+     *         WORD Disabled : 1;
+     *         WORD Reserved : 14;
+     *     };
+     * }
+     * }
+     */
     public static class Flags {
 
-        static final  GroupLayout Flags$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("AsWORD"),
+        Flags() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_SHORT.withName("AsWORD"),
             MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("AllowScaling"),
-                    MemoryLayout.paddingLayout(1).withName("Disabled"),
-                    MemoryLayout.paddingLayout(14).withName("Reserved")
-                )
-            ).withName("$anon$0")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Flags.Flags$union$LAYOUT;
+                MemoryLayout.paddingLayout(2)
+            ).withName("$anon$16639:9")
+        ).withName("$anon$16637:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        static final VarHandle AsWORD$VH = Flags$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsWORD"));
-        public static VarHandle AsWORD$VH() {
-            return Flags.AsWORD$VH;
+
+        private static final OfShort AsWORD$LAYOUT = (OfShort)$LAYOUT.select(groupElement("AsWORD"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WORD AsWORD
+         * }
+         */
+        public static final OfShort AsWORD$layout() {
+            return AsWORD$LAYOUT;
         }
-        public static short AsWORD$get(MemorySegment seg) {
-            return (short)Flags.AsWORD$VH.get(seg);
+
+        private static final long AsWORD$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WORD AsWORD
+         * }
+         */
+        public static final long AsWORD$offset() {
+            return AsWORD$OFFSET;
         }
-        public static void AsWORD$set( MemorySegment seg, short x) {
-            Flags.AsWORD$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WORD AsWORD
+         * }
+         */
+        public static short AsWORD(MemorySegment union) {
+            return union.get(AsWORD$LAYOUT, AsWORD$OFFSET);
         }
-        public static short AsWORD$get(MemorySegment seg, long index) {
-            return (short)Flags.AsWORD$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WORD AsWORD
+         * }
+         */
+        public static void AsWORD(MemorySegment union, short fieldValue) {
+            union.set(AsWORD$LAYOUT, AsWORD$OFFSET, fieldValue);
         }
-        public static void AsWORD$set(MemorySegment seg, long index, short x) {
-            Flags.AsWORD$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Flags$slice(MemorySegment seg) {
-        return seg.asSlice(2, 2);
+    private static final GroupLayout Flags$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     WORD AsWORD;
+     *     struct {
+     *         WORD AllowScaling : 1;
+     *         WORD Disabled : 1;
+     *         WORD Reserved : 14;
+     *     };
+     * } Flags
+     * }
+     */
+    public static final GroupLayout Flags$layout() {
+        return Flags$LAYOUT;
     }
-    static final VarHandle PolicyCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PolicyCount"));
-    public static VarHandle PolicyCount$VH() {
-        return PROCESSOR_IDLESTATE_POLICY.PolicyCount$VH;
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     WORD AsWORD;
+     *     struct {
+     *         WORD AllowScaling : 1;
+     *         WORD Disabled : 1;
+     *         WORD Reserved : 14;
+     *     };
+     * } Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    public static int PolicyCount$get(MemorySegment seg) {
-        return (int)PROCESSOR_IDLESTATE_POLICY.PolicyCount$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WORD AsWORD;
+     *     struct {
+     *         WORD AllowScaling : 1;
+     *         WORD Disabled : 1;
+     *         WORD Reserved : 14;
+     *     };
+     * } Flags
+     * }
+     */
+    public static MemorySegment Flags(MemorySegment struct) {
+        return struct.asSlice(Flags$OFFSET, Flags$LAYOUT.byteSize());
     }
-    public static void PolicyCount$set( MemorySegment seg, int x) {
-        PROCESSOR_IDLESTATE_POLICY.PolicyCount$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WORD AsWORD;
+     *     struct {
+     *         WORD AllowScaling : 1;
+     *         WORD Disabled : 1;
+     *         WORD Reserved : 14;
+     *     };
+     * } Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Flags$OFFSET, Flags$LAYOUT.byteSize());
     }
-    public static int PolicyCount$get(MemorySegment seg, long index) {
-        return (int)PROCESSOR_IDLESTATE_POLICY.PolicyCount$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt PolicyCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PolicyCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PolicyCount
+     * }
+     */
+    public static final OfInt PolicyCount$layout() {
+        return PolicyCount$LAYOUT;
     }
-    public static void PolicyCount$set(MemorySegment seg, long index, int x) {
-        PROCESSOR_IDLESTATE_POLICY.PolicyCount$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long PolicyCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PolicyCount
+     * }
+     */
+    public static final long PolicyCount$offset() {
+        return PolicyCount$OFFSET;
     }
-    public static MemorySegment Policy$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PolicyCount
+     * }
+     */
+    public static int PolicyCount(MemorySegment struct) {
+        return struct.get(PolicyCount$LAYOUT, PolicyCount$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PolicyCount
+     * }
+     */
+    public static void PolicyCount(MemorySegment struct, int fieldValue) {
+        struct.set(PolicyCount$LAYOUT, PolicyCount$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    private static final SequenceLayout Policy$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Policy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static final SequenceLayout Policy$layout() {
+        return Policy$LAYOUT;
+    }
+
+    private static final long Policy$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static final long Policy$offset() {
+        return Policy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static MemorySegment Policy(MemorySegment struct) {
+        return struct.asSlice(Policy$OFFSET, Policy$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static void Policy(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Policy$OFFSET, Policy$LAYOUT.byteSize());
+    }
+
+    private static long[] Policy$DIMS = { 3 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static long[] Policy$dimensions() {
+        return Policy$DIMS;
+    }
+    private static final MethodHandle Policy$ELEM_HANDLE = Policy$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static MemorySegment Policy(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Policy$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * PROCESSOR_IDLESTATE_INFO Policy[3]
+     * }
+     */
+    public static void Policy(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Policy(struct, index0), 0L, PROCESSOR_IDLESTATE_INFO.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

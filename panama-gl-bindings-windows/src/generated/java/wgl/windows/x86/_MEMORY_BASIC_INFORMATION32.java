@@ -2,143 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MEMORY_BASIC_INFORMATION32 {
+ *     DWORD BaseAddress;
+ *     DWORD AllocationBase;
+ *     DWORD AllocationProtect;
+ *     DWORD RegionSize;
+ *     DWORD State;
+ *     DWORD Protect;
+ *     DWORD Type;
+ * }
+ * }
+ */
 public class _MEMORY_BASIC_INFORMATION32 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("BaseAddress"),
-        Constants$root.C_LONG$LAYOUT.withName("AllocationBase"),
-        Constants$root.C_LONG$LAYOUT.withName("AllocationProtect"),
-        Constants$root.C_LONG$LAYOUT.withName("RegionSize"),
-        Constants$root.C_LONG$LAYOUT.withName("State"),
-        Constants$root.C_LONG$LAYOUT.withName("Protect"),
-        Constants$root.C_LONG$LAYOUT.withName("Type")
-    ).withName("_MEMORY_BASIC_INFORMATION32");
-    public static MemoryLayout $LAYOUT() {
-        return _MEMORY_BASIC_INFORMATION32.$struct$LAYOUT;
+    _MEMORY_BASIC_INFORMATION32() {
+        // Should not be called directly
     }
-    static final VarHandle BaseAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseAddress"));
-    public static VarHandle BaseAddress$VH() {
-        return _MEMORY_BASIC_INFORMATION32.BaseAddress$VH;
-    }
-    public static int BaseAddress$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.BaseAddress$VH.get(seg);
-    }
-    public static void BaseAddress$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.BaseAddress$VH.set(seg, x);
-    }
-    public static int BaseAddress$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.BaseAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseAddress$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.BaseAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AllocationBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllocationBase"));
-    public static VarHandle AllocationBase$VH() {
-        return _MEMORY_BASIC_INFORMATION32.AllocationBase$VH;
-    }
-    public static int AllocationBase$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.AllocationBase$VH.get(seg);
-    }
-    public static void AllocationBase$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.AllocationBase$VH.set(seg, x);
-    }
-    public static int AllocationBase$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.AllocationBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllocationBase$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.AllocationBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AllocationProtect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllocationProtect"));
-    public static VarHandle AllocationProtect$VH() {
-        return _MEMORY_BASIC_INFORMATION32.AllocationProtect$VH;
-    }
-    public static int AllocationProtect$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.AllocationProtect$VH.get(seg);
-    }
-    public static void AllocationProtect$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.AllocationProtect$VH.set(seg, x);
-    }
-    public static int AllocationProtect$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.AllocationProtect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllocationProtect$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.AllocationProtect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RegionSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegionSize"));
-    public static VarHandle RegionSize$VH() {
-        return _MEMORY_BASIC_INFORMATION32.RegionSize$VH;
-    }
-    public static int RegionSize$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.RegionSize$VH.get(seg);
-    }
-    public static void RegionSize$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.RegionSize$VH.set(seg, x);
-    }
-    public static int RegionSize$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.RegionSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegionSize$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.RegionSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle State$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("State"));
-    public static VarHandle State$VH() {
-        return _MEMORY_BASIC_INFORMATION32.State$VH;
-    }
-    public static int State$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.State$VH.get(seg);
-    }
-    public static void State$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.State$VH.set(seg, x);
-    }
-    public static int State$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.State$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void State$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.State$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Protect$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Protect"));
-    public static VarHandle Protect$VH() {
-        return _MEMORY_BASIC_INFORMATION32.Protect$VH;
-    }
-    public static int Protect$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.Protect$VH.get(seg);
-    }
-    public static void Protect$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.Protect$VH.set(seg, x);
-    }
-    public static int Protect$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.Protect$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Protect$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.Protect$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return _MEMORY_BASIC_INFORMATION32.Type$VH;
-    }
-    public static int Type$get(MemorySegment seg) {
-        return (int)_MEMORY_BASIC_INFORMATION32.Type$VH.get(seg);
-    }
-    public static void Type$set( MemorySegment seg, int x) {
-        _MEMORY_BASIC_INFORMATION32.Type$VH.set(seg, x);
-    }
-    public static int Type$get(MemorySegment seg, long index) {
-        return (int)_MEMORY_BASIC_INFORMATION32.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, int x) {
-        _MEMORY_BASIC_INFORMATION32.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("BaseAddress"),
+        wgl_h.C_LONG.withName("AllocationBase"),
+        wgl_h.C_LONG.withName("AllocationProtect"),
+        wgl_h.C_LONG.withName("RegionSize"),
+        wgl_h.C_LONG.withName("State"),
+        wgl_h.C_LONG.withName("Protect"),
+        wgl_h.C_LONG.withName("Type")
+    ).withName("_MEMORY_BASIC_INFORMATION32");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt BaseAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BaseAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BaseAddress
+     * }
+     */
+    public static final OfInt BaseAddress$layout() {
+        return BaseAddress$LAYOUT;
+    }
+
+    private static final long BaseAddress$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BaseAddress
+     * }
+     */
+    public static final long BaseAddress$offset() {
+        return BaseAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BaseAddress
+     * }
+     */
+    public static int BaseAddress(MemorySegment struct) {
+        return struct.get(BaseAddress$LAYOUT, BaseAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BaseAddress
+     * }
+     */
+    public static void BaseAddress(MemorySegment struct, int fieldValue) {
+        struct.set(BaseAddress$LAYOUT, BaseAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AllocationBase$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AllocationBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AllocationBase
+     * }
+     */
+    public static final OfInt AllocationBase$layout() {
+        return AllocationBase$LAYOUT;
+    }
+
+    private static final long AllocationBase$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AllocationBase
+     * }
+     */
+    public static final long AllocationBase$offset() {
+        return AllocationBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AllocationBase
+     * }
+     */
+    public static int AllocationBase(MemorySegment struct) {
+        return struct.get(AllocationBase$LAYOUT, AllocationBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AllocationBase
+     * }
+     */
+    public static void AllocationBase(MemorySegment struct, int fieldValue) {
+        struct.set(AllocationBase$LAYOUT, AllocationBase$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AllocationProtect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AllocationProtect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AllocationProtect
+     * }
+     */
+    public static final OfInt AllocationProtect$layout() {
+        return AllocationProtect$LAYOUT;
+    }
+
+    private static final long AllocationProtect$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AllocationProtect
+     * }
+     */
+    public static final long AllocationProtect$offset() {
+        return AllocationProtect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AllocationProtect
+     * }
+     */
+    public static int AllocationProtect(MemorySegment struct) {
+        return struct.get(AllocationProtect$LAYOUT, AllocationProtect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AllocationProtect
+     * }
+     */
+    public static void AllocationProtect(MemorySegment struct, int fieldValue) {
+        struct.set(AllocationProtect$LAYOUT, AllocationProtect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt RegionSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RegionSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RegionSize
+     * }
+     */
+    public static final OfInt RegionSize$layout() {
+        return RegionSize$LAYOUT;
+    }
+
+    private static final long RegionSize$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RegionSize
+     * }
+     */
+    public static final long RegionSize$offset() {
+        return RegionSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RegionSize
+     * }
+     */
+    public static int RegionSize(MemorySegment struct) {
+        return struct.get(RegionSize$LAYOUT, RegionSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RegionSize
+     * }
+     */
+    public static void RegionSize(MemorySegment struct, int fieldValue) {
+        struct.set(RegionSize$LAYOUT, RegionSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt State$LAYOUT = (OfInt)$LAYOUT.select(groupElement("State"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static final OfInt State$layout() {
+        return State$LAYOUT;
+    }
+
+    private static final long State$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static final long State$offset() {
+        return State$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static int State(MemorySegment struct) {
+        return struct.get(State$LAYOUT, State$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static void State(MemorySegment struct, int fieldValue) {
+        struct.set(State$LAYOUT, State$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Protect$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Protect"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Protect
+     * }
+     */
+    public static final OfInt Protect$layout() {
+        return Protect$LAYOUT;
+    }
+
+    private static final long Protect$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Protect
+     * }
+     */
+    public static final long Protect$offset() {
+        return Protect$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Protect
+     * }
+     */
+    public static int Protect(MemorySegment struct) {
+        return struct.get(Protect$LAYOUT, Protect$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Protect
+     * }
+     */
+    public static void Protect(MemorySegment struct, int fieldValue) {
+        struct.set(Protect$LAYOUT, Protect$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static final OfInt Type$layout() {
+        return Type$LAYOUT;
+    }
+
+    private static final long Type$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static int Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Type
+     * }
+     */
+    public static void Type(MemorySegment struct, int fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

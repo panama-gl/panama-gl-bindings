@@ -2,278 +2,739 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DCB {
+ *     DWORD DCBlength;
+ *     DWORD BaudRate;
+ *     DWORD fBinary : 1;
+ *     DWORD fParity : 1;
+ *     DWORD fOutxCtsFlow : 1;
+ *     DWORD fOutxDsrFlow : 1;
+ *     DWORD fDtrControl : 2;
+ *     DWORD fDsrSensitivity : 1;
+ *     DWORD fTXContinueOnXoff : 1;
+ *     DWORD fOutX : 1;
+ *     DWORD fInX : 1;
+ *     DWORD fErrorChar : 1;
+ *     DWORD fNull : 1;
+ *     DWORD fRtsControl : 2;
+ *     DWORD fAbortOnError : 1;
+ *     DWORD fDummy2 : 17;
+ *     WORD wReserved;
+ *     WORD XonLim;
+ *     WORD XoffLim;
+ *     BYTE ByteSize;
+ *     BYTE Parity;
+ *     BYTE StopBits;
+ *     char XonChar;
+ *     char XoffChar;
+ *     char ErrorChar;
+ *     char EofChar;
+ *     char EvtChar;
+ *     WORD wReserved1;
+ * }
+ * }
+ */
 public class _DCB {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("DCBlength"),
-        Constants$root.C_LONG$LAYOUT.withName("BaudRate"),
-        MemoryLayout.structLayout(
-            MemoryLayout.paddingLayout(1).withName("fBinary"),
-            MemoryLayout.paddingLayout(1).withName("fParity"),
-            MemoryLayout.paddingLayout(1).withName("fOutxCtsFlow"),
-            MemoryLayout.paddingLayout(1).withName("fOutxDsrFlow"),
-            MemoryLayout.paddingLayout(2).withName("fDtrControl"),
-            MemoryLayout.paddingLayout(1).withName("fDsrSensitivity"),
-            MemoryLayout.paddingLayout(1).withName("fTXContinueOnXoff"),
-            MemoryLayout.paddingLayout(1).withName("fOutX"),
-            MemoryLayout.paddingLayout(1).withName("fInX"),
-            MemoryLayout.paddingLayout(1).withName("fErrorChar"),
-            MemoryLayout.paddingLayout(1).withName("fNull"),
-            MemoryLayout.paddingLayout(2).withName("fRtsControl"),
-            MemoryLayout.paddingLayout(1).withName("fAbortOnError"),
-            MemoryLayout.paddingLayout(17).withName("fDummy2")
-        ),
-        Constants$root.C_SHORT$LAYOUT.withName("wReserved"),
-        Constants$root.C_SHORT$LAYOUT.withName("XonLim"),
-        Constants$root.C_SHORT$LAYOUT.withName("XoffLim"),
-        Constants$root.C_CHAR$LAYOUT.withName("ByteSize"),
-        Constants$root.C_CHAR$LAYOUT.withName("Parity"),
-        Constants$root.C_CHAR$LAYOUT.withName("StopBits"),
-        Constants$root.C_CHAR$LAYOUT.withName("XonChar"),
-        Constants$root.C_CHAR$LAYOUT.withName("XoffChar"),
-        Constants$root.C_CHAR$LAYOUT.withName("ErrorChar"),
-        Constants$root.C_CHAR$LAYOUT.withName("EofChar"),
-        Constants$root.C_CHAR$LAYOUT.withName("EvtChar"),
-        Constants$root.C_SHORT$LAYOUT.withName("wReserved1")
-    ).withName("_DCB");
-    public static MemoryLayout $LAYOUT() {
-        return _DCB.$struct$LAYOUT;
+    _DCB() {
+        // Should not be called directly
     }
-    static final VarHandle DCBlength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DCBlength"));
-    public static VarHandle DCBlength$VH() {
-        return _DCB.DCBlength$VH;
-    }
-    public static int DCBlength$get(MemorySegment seg) {
-        return (int)_DCB.DCBlength$VH.get(seg);
-    }
-    public static void DCBlength$set( MemorySegment seg, int x) {
-        _DCB.DCBlength$VH.set(seg, x);
-    }
-    public static int DCBlength$get(MemorySegment seg, long index) {
-        return (int)_DCB.DCBlength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DCBlength$set(MemorySegment seg, long index, int x) {
-        _DCB.DCBlength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BaudRate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaudRate"));
-    public static VarHandle BaudRate$VH() {
-        return _DCB.BaudRate$VH;
-    }
-    public static int BaudRate$get(MemorySegment seg) {
-        return (int)_DCB.BaudRate$VH.get(seg);
-    }
-    public static void BaudRate$set( MemorySegment seg, int x) {
-        _DCB.BaudRate$VH.set(seg, x);
-    }
-    public static int BaudRate$get(MemorySegment seg, long index) {
-        return (int)_DCB.BaudRate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaudRate$set(MemorySegment seg, long index, int x) {
-        _DCB.BaudRate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wReserved"));
-    public static VarHandle wReserved$VH() {
-        return _DCB.wReserved$VH;
-    }
-    public static short wReserved$get(MemorySegment seg) {
-        return (short)_DCB.wReserved$VH.get(seg);
-    }
-    public static void wReserved$set( MemorySegment seg, short x) {
-        _DCB.wReserved$VH.set(seg, x);
-    }
-    public static short wReserved$get(MemorySegment seg, long index) {
-        return (short)_DCB.wReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved$set(MemorySegment seg, long index, short x) {
-        _DCB.wReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle XonLim$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("XonLim"));
-    public static VarHandle XonLim$VH() {
-        return _DCB.XonLim$VH;
-    }
-    public static short XonLim$get(MemorySegment seg) {
-        return (short)_DCB.XonLim$VH.get(seg);
-    }
-    public static void XonLim$set( MemorySegment seg, short x) {
-        _DCB.XonLim$VH.set(seg, x);
-    }
-    public static short XonLim$get(MemorySegment seg, long index) {
-        return (short)_DCB.XonLim$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void XonLim$set(MemorySegment seg, long index, short x) {
-        _DCB.XonLim$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle XoffLim$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("XoffLim"));
-    public static VarHandle XoffLim$VH() {
-        return _DCB.XoffLim$VH;
-    }
-    public static short XoffLim$get(MemorySegment seg) {
-        return (short)_DCB.XoffLim$VH.get(seg);
-    }
-    public static void XoffLim$set( MemorySegment seg, short x) {
-        _DCB.XoffLim$VH.set(seg, x);
-    }
-    public static short XoffLim$get(MemorySegment seg, long index) {
-        return (short)_DCB.XoffLim$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void XoffLim$set(MemorySegment seg, long index, short x) {
-        _DCB.XoffLim$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ByteSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ByteSize"));
-    public static VarHandle ByteSize$VH() {
-        return _DCB.ByteSize$VH;
-    }
-    public static byte ByteSize$get(MemorySegment seg) {
-        return (byte)_DCB.ByteSize$VH.get(seg);
-    }
-    public static void ByteSize$set( MemorySegment seg, byte x) {
-        _DCB.ByteSize$VH.set(seg, x);
-    }
-    public static byte ByteSize$get(MemorySegment seg, long index) {
-        return (byte)_DCB.ByteSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ByteSize$set(MemorySegment seg, long index, byte x) {
-        _DCB.ByteSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Parity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Parity"));
-    public static VarHandle Parity$VH() {
-        return _DCB.Parity$VH;
-    }
-    public static byte Parity$get(MemorySegment seg) {
-        return (byte)_DCB.Parity$VH.get(seg);
-    }
-    public static void Parity$set( MemorySegment seg, byte x) {
-        _DCB.Parity$VH.set(seg, x);
-    }
-    public static byte Parity$get(MemorySegment seg, long index) {
-        return (byte)_DCB.Parity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Parity$set(MemorySegment seg, long index, byte x) {
-        _DCB.Parity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StopBits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StopBits"));
-    public static VarHandle StopBits$VH() {
-        return _DCB.StopBits$VH;
-    }
-    public static byte StopBits$get(MemorySegment seg) {
-        return (byte)_DCB.StopBits$VH.get(seg);
-    }
-    public static void StopBits$set( MemorySegment seg, byte x) {
-        _DCB.StopBits$VH.set(seg, x);
-    }
-    public static byte StopBits$get(MemorySegment seg, long index) {
-        return (byte)_DCB.StopBits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StopBits$set(MemorySegment seg, long index, byte x) {
-        _DCB.StopBits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle XonChar$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("XonChar"));
-    public static VarHandle XonChar$VH() {
-        return _DCB.XonChar$VH;
-    }
-    public static byte XonChar$get(MemorySegment seg) {
-        return (byte)_DCB.XonChar$VH.get(seg);
-    }
-    public static void XonChar$set( MemorySegment seg, byte x) {
-        _DCB.XonChar$VH.set(seg, x);
-    }
-    public static byte XonChar$get(MemorySegment seg, long index) {
-        return (byte)_DCB.XonChar$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void XonChar$set(MemorySegment seg, long index, byte x) {
-        _DCB.XonChar$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle XoffChar$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("XoffChar"));
-    public static VarHandle XoffChar$VH() {
-        return _DCB.XoffChar$VH;
-    }
-    public static byte XoffChar$get(MemorySegment seg) {
-        return (byte)_DCB.XoffChar$VH.get(seg);
-    }
-    public static void XoffChar$set( MemorySegment seg, byte x) {
-        _DCB.XoffChar$VH.set(seg, x);
-    }
-    public static byte XoffChar$get(MemorySegment seg, long index) {
-        return (byte)_DCB.XoffChar$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void XoffChar$set(MemorySegment seg, long index, byte x) {
-        _DCB.XoffChar$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ErrorChar$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ErrorChar"));
-    public static VarHandle ErrorChar$VH() {
-        return _DCB.ErrorChar$VH;
-    }
-    public static byte ErrorChar$get(MemorySegment seg) {
-        return (byte)_DCB.ErrorChar$VH.get(seg);
-    }
-    public static void ErrorChar$set( MemorySegment seg, byte x) {
-        _DCB.ErrorChar$VH.set(seg, x);
-    }
-    public static byte ErrorChar$get(MemorySegment seg, long index) {
-        return (byte)_DCB.ErrorChar$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ErrorChar$set(MemorySegment seg, long index, byte x) {
-        _DCB.ErrorChar$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EofChar$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EofChar"));
-    public static VarHandle EofChar$VH() {
-        return _DCB.EofChar$VH;
-    }
-    public static byte EofChar$get(MemorySegment seg) {
-        return (byte)_DCB.EofChar$VH.get(seg);
-    }
-    public static void EofChar$set( MemorySegment seg, byte x) {
-        _DCB.EofChar$VH.set(seg, x);
-    }
-    public static byte EofChar$get(MemorySegment seg, long index) {
-        return (byte)_DCB.EofChar$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EofChar$set(MemorySegment seg, long index, byte x) {
-        _DCB.EofChar$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EvtChar$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EvtChar"));
-    public static VarHandle EvtChar$VH() {
-        return _DCB.EvtChar$VH;
-    }
-    public static byte EvtChar$get(MemorySegment seg) {
-        return (byte)_DCB.EvtChar$VH.get(seg);
-    }
-    public static void EvtChar$set( MemorySegment seg, byte x) {
-        _DCB.EvtChar$VH.set(seg, x);
-    }
-    public static byte EvtChar$get(MemorySegment seg, long index) {
-        return (byte)_DCB.EvtChar$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EvtChar$set(MemorySegment seg, long index, byte x) {
-        _DCB.EvtChar$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wReserved1"));
-    public static VarHandle wReserved1$VH() {
-        return _DCB.wReserved1$VH;
-    }
-    public static short wReserved1$get(MemorySegment seg) {
-        return (short)_DCB.wReserved1$VH.get(seg);
-    }
-    public static void wReserved1$set( MemorySegment seg, short x) {
-        _DCB.wReserved1$VH.set(seg, x);
-    }
-    public static short wReserved1$get(MemorySegment seg, long index) {
-        return (short)_DCB.wReserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved1$set(MemorySegment seg, long index, short x) {
-        _DCB.wReserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("DCBlength"),
+        freeglut_h.C_LONG.withName("BaudRate"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_SHORT.withName("wReserved"),
+        freeglut_h.C_SHORT.withName("XonLim"),
+        freeglut_h.C_SHORT.withName("XoffLim"),
+        freeglut_h.C_CHAR.withName("ByteSize"),
+        freeglut_h.C_CHAR.withName("Parity"),
+        freeglut_h.C_CHAR.withName("StopBits"),
+        freeglut_h.C_CHAR.withName("XonChar"),
+        freeglut_h.C_CHAR.withName("XoffChar"),
+        freeglut_h.C_CHAR.withName("ErrorChar"),
+        freeglut_h.C_CHAR.withName("EofChar"),
+        freeglut_h.C_CHAR.withName("EvtChar"),
+        freeglut_h.C_SHORT.withName("wReserved1")
+    ).withName("_DCB");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt DCBlength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DCBlength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DCBlength
+     * }
+     */
+    public static final OfInt DCBlength$layout() {
+        return DCBlength$LAYOUT;
+    }
+
+    private static final long DCBlength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DCBlength
+     * }
+     */
+    public static final long DCBlength$offset() {
+        return DCBlength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DCBlength
+     * }
+     */
+    public static int DCBlength(MemorySegment struct) {
+        return struct.get(DCBlength$LAYOUT, DCBlength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DCBlength
+     * }
+     */
+    public static void DCBlength(MemorySegment struct, int fieldValue) {
+        struct.set(DCBlength$LAYOUT, DCBlength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BaudRate$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BaudRate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BaudRate
+     * }
+     */
+    public static final OfInt BaudRate$layout() {
+        return BaudRate$LAYOUT;
+    }
+
+    private static final long BaudRate$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BaudRate
+     * }
+     */
+    public static final long BaudRate$offset() {
+        return BaudRate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BaudRate
+     * }
+     */
+    public static int BaudRate(MemorySegment struct) {
+        return struct.get(BaudRate$LAYOUT, BaudRate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BaudRate
+     * }
+     */
+    public static void BaudRate(MemorySegment struct, int fieldValue) {
+        struct.set(BaudRate$LAYOUT, BaudRate$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static final OfShort wReserved$layout() {
+        return wReserved$LAYOUT;
+    }
+
+    private static final long wReserved$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static final long wReserved$offset() {
+        return wReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static short wReserved(MemorySegment struct) {
+        return struct.get(wReserved$LAYOUT, wReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static void wReserved(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved$LAYOUT, wReserved$OFFSET, fieldValue);
+    }
+
+    private static final OfShort XonLim$LAYOUT = (OfShort)$LAYOUT.select(groupElement("XonLim"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD XonLim
+     * }
+     */
+    public static final OfShort XonLim$layout() {
+        return XonLim$LAYOUT;
+    }
+
+    private static final long XonLim$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD XonLim
+     * }
+     */
+    public static final long XonLim$offset() {
+        return XonLim$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD XonLim
+     * }
+     */
+    public static short XonLim(MemorySegment struct) {
+        return struct.get(XonLim$LAYOUT, XonLim$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD XonLim
+     * }
+     */
+    public static void XonLim(MemorySegment struct, short fieldValue) {
+        struct.set(XonLim$LAYOUT, XonLim$OFFSET, fieldValue);
+    }
+
+    private static final OfShort XoffLim$LAYOUT = (OfShort)$LAYOUT.select(groupElement("XoffLim"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD XoffLim
+     * }
+     */
+    public static final OfShort XoffLim$layout() {
+        return XoffLim$LAYOUT;
+    }
+
+    private static final long XoffLim$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD XoffLim
+     * }
+     */
+    public static final long XoffLim$offset() {
+        return XoffLim$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD XoffLim
+     * }
+     */
+    public static short XoffLim(MemorySegment struct) {
+        return struct.get(XoffLim$LAYOUT, XoffLim$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD XoffLim
+     * }
+     */
+    public static void XoffLim(MemorySegment struct, short fieldValue) {
+        struct.set(XoffLim$LAYOUT, XoffLim$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ByteSize$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ByteSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ByteSize
+     * }
+     */
+    public static final OfByte ByteSize$layout() {
+        return ByteSize$LAYOUT;
+    }
+
+    private static final long ByteSize$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ByteSize
+     * }
+     */
+    public static final long ByteSize$offset() {
+        return ByteSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ByteSize
+     * }
+     */
+    public static byte ByteSize(MemorySegment struct) {
+        return struct.get(ByteSize$LAYOUT, ByteSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ByteSize
+     * }
+     */
+    public static void ByteSize(MemorySegment struct, byte fieldValue) {
+        struct.set(ByteSize$LAYOUT, ByteSize$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Parity$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Parity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Parity
+     * }
+     */
+    public static final OfByte Parity$layout() {
+        return Parity$LAYOUT;
+    }
+
+    private static final long Parity$OFFSET = 19;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Parity
+     * }
+     */
+    public static final long Parity$offset() {
+        return Parity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Parity
+     * }
+     */
+    public static byte Parity(MemorySegment struct) {
+        return struct.get(Parity$LAYOUT, Parity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Parity
+     * }
+     */
+    public static void Parity(MemorySegment struct, byte fieldValue) {
+        struct.set(Parity$LAYOUT, Parity$OFFSET, fieldValue);
+    }
+
+    private static final OfByte StopBits$LAYOUT = (OfByte)$LAYOUT.select(groupElement("StopBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE StopBits
+     * }
+     */
+    public static final OfByte StopBits$layout() {
+        return StopBits$LAYOUT;
+    }
+
+    private static final long StopBits$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE StopBits
+     * }
+     */
+    public static final long StopBits$offset() {
+        return StopBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE StopBits
+     * }
+     */
+    public static byte StopBits(MemorySegment struct) {
+        return struct.get(StopBits$LAYOUT, StopBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE StopBits
+     * }
+     */
+    public static void StopBits(MemorySegment struct, byte fieldValue) {
+        struct.set(StopBits$LAYOUT, StopBits$OFFSET, fieldValue);
+    }
+
+    private static final OfByte XonChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("XonChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * char XonChar
+     * }
+     */
+    public static final OfByte XonChar$layout() {
+        return XonChar$LAYOUT;
+    }
+
+    private static final long XonChar$OFFSET = 21;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * char XonChar
+     * }
+     */
+    public static final long XonChar$offset() {
+        return XonChar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * char XonChar
+     * }
+     */
+    public static byte XonChar(MemorySegment struct) {
+        return struct.get(XonChar$LAYOUT, XonChar$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * char XonChar
+     * }
+     */
+    public static void XonChar(MemorySegment struct, byte fieldValue) {
+        struct.set(XonChar$LAYOUT, XonChar$OFFSET, fieldValue);
+    }
+
+    private static final OfByte XoffChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("XoffChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * char XoffChar
+     * }
+     */
+    public static final OfByte XoffChar$layout() {
+        return XoffChar$LAYOUT;
+    }
+
+    private static final long XoffChar$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * char XoffChar
+     * }
+     */
+    public static final long XoffChar$offset() {
+        return XoffChar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * char XoffChar
+     * }
+     */
+    public static byte XoffChar(MemorySegment struct) {
+        return struct.get(XoffChar$LAYOUT, XoffChar$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * char XoffChar
+     * }
+     */
+    public static void XoffChar(MemorySegment struct, byte fieldValue) {
+        struct.set(XoffChar$LAYOUT, XoffChar$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ErrorChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ErrorChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * char ErrorChar
+     * }
+     */
+    public static final OfByte ErrorChar$layout() {
+        return ErrorChar$LAYOUT;
+    }
+
+    private static final long ErrorChar$OFFSET = 23;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * char ErrorChar
+     * }
+     */
+    public static final long ErrorChar$offset() {
+        return ErrorChar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * char ErrorChar
+     * }
+     */
+    public static byte ErrorChar(MemorySegment struct) {
+        return struct.get(ErrorChar$LAYOUT, ErrorChar$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * char ErrorChar
+     * }
+     */
+    public static void ErrorChar(MemorySegment struct, byte fieldValue) {
+        struct.set(ErrorChar$LAYOUT, ErrorChar$OFFSET, fieldValue);
+    }
+
+    private static final OfByte EofChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EofChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * char EofChar
+     * }
+     */
+    public static final OfByte EofChar$layout() {
+        return EofChar$LAYOUT;
+    }
+
+    private static final long EofChar$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * char EofChar
+     * }
+     */
+    public static final long EofChar$offset() {
+        return EofChar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * char EofChar
+     * }
+     */
+    public static byte EofChar(MemorySegment struct) {
+        return struct.get(EofChar$LAYOUT, EofChar$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * char EofChar
+     * }
+     */
+    public static void EofChar(MemorySegment struct, byte fieldValue) {
+        struct.set(EofChar$LAYOUT, EofChar$OFFSET, fieldValue);
+    }
+
+    private static final OfByte EvtChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EvtChar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * char EvtChar
+     * }
+     */
+    public static final OfByte EvtChar$layout() {
+        return EvtChar$LAYOUT;
+    }
+
+    private static final long EvtChar$OFFSET = 25;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * char EvtChar
+     * }
+     */
+    public static final long EvtChar$offset() {
+        return EvtChar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * char EvtChar
+     * }
+     */
+    public static byte EvtChar(MemorySegment struct) {
+        return struct.get(EvtChar$LAYOUT, EvtChar$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * char EvtChar
+     * }
+     */
+    public static void EvtChar(MemorySegment struct, byte fieldValue) {
+        struct.set(EvtChar$LAYOUT, EvtChar$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved1$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wReserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wReserved1
+     * }
+     */
+    public static final OfShort wReserved1$layout() {
+        return wReserved1$LAYOUT;
+    }
+
+    private static final long wReserved1$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wReserved1
+     * }
+     */
+    public static final long wReserved1$offset() {
+        return wReserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wReserved1
+     * }
+     */
+    public static short wReserved1(MemorySegment struct) {
+        return struct.get(wReserved1$LAYOUT, wReserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wReserved1
+     * }
+     */
+    public static void wReserved1(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved1$LAYOUT, wReserved1$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

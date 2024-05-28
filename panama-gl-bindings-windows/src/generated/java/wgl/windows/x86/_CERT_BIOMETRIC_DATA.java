@@ -2,97 +2,269 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_BIOMETRIC_DATA {
+ *     DWORD dwTypeOfBiometricDataChoice;
+ *     union {
+ *         DWORD dwPredefined;
+ *         LPSTR pszObjId;
+ *     };
+ *     CERT_HASHED_URL HashedUrl;
+ * }
+ * }
+ */
 public class _CERT_BIOMETRIC_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwTypeOfBiometricDataChoice"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwPredefined"),
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId")
-        ).withName("$anon$0"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Parameters")
-            ).withName("HashAlgorithm"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("Hash"),
-            Constants$root.C_POINTER$LAYOUT.withName("pwszUrl")
-        ).withName("HashedUrl")
-    ).withName("_CERT_BIOMETRIC_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_BIOMETRIC_DATA.$struct$LAYOUT;
+    _CERT_BIOMETRIC_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle dwTypeOfBiometricDataChoice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTypeOfBiometricDataChoice"));
-    public static VarHandle dwTypeOfBiometricDataChoice$VH() {
-        return _CERT_BIOMETRIC_DATA.dwTypeOfBiometricDataChoice$VH;
-    }
-    public static int dwTypeOfBiometricDataChoice$get(MemorySegment seg) {
-        return (int)_CERT_BIOMETRIC_DATA.dwTypeOfBiometricDataChoice$VH.get(seg);
-    }
-    public static void dwTypeOfBiometricDataChoice$set( MemorySegment seg, int x) {
-        _CERT_BIOMETRIC_DATA.dwTypeOfBiometricDataChoice$VH.set(seg, x);
-    }
-    public static int dwTypeOfBiometricDataChoice$get(MemorySegment seg, long index) {
-        return (int)_CERT_BIOMETRIC_DATA.dwTypeOfBiometricDataChoice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTypeOfBiometricDataChoice$set(MemorySegment seg, long index, int x) {
-        _CERT_BIOMETRIC_DATA.dwTypeOfBiometricDataChoice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPredefined$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dwPredefined"));
-    public static VarHandle dwPredefined$VH() {
-        return _CERT_BIOMETRIC_DATA.dwPredefined$VH;
-    }
-    public static int dwPredefined$get(MemorySegment seg) {
-        return (int)_CERT_BIOMETRIC_DATA.dwPredefined$VH.get(seg);
-    }
-    public static void dwPredefined$set( MemorySegment seg, int x) {
-        _CERT_BIOMETRIC_DATA.dwPredefined$VH.set(seg, x);
-    }
-    public static int dwPredefined$get(MemorySegment seg, long index) {
-        return (int)_CERT_BIOMETRIC_DATA.dwPredefined$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPredefined$set(MemorySegment seg, long index, int x) {
-        _CERT_BIOMETRIC_DATA.dwPredefined$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszObjId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pszObjId"));
-    public static VarHandle pszObjId$VH() {
-        return _CERT_BIOMETRIC_DATA.pszObjId$VH;
-    }
-    public static MemoryAddress pszObjId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_BIOMETRIC_DATA.pszObjId$VH.get(seg);
-    }
-    public static void pszObjId$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_BIOMETRIC_DATA.pszObjId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszObjId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_BIOMETRIC_DATA.pszObjId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszObjId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_BIOMETRIC_DATA.pszObjId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment HashedUrl$slice(MemorySegment seg) {
-        return seg.asSlice(16, 48);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwTypeOfBiometricDataChoice"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("dwPredefined"),
+            wgl_h.C_POINTER.withName("pszObjId")
+        ).withName("$anon$5553:5"),
+        _CERT_HASHED_URL.layout().withName("HashedUrl")
+    ).withName("_CERT_BIOMETRIC_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwTypeOfBiometricDataChoice$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTypeOfBiometricDataChoice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeOfBiometricDataChoice
+     * }
+     */
+    public static final OfInt dwTypeOfBiometricDataChoice$layout() {
+        return dwTypeOfBiometricDataChoice$LAYOUT;
+    }
+
+    private static final long dwTypeOfBiometricDataChoice$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeOfBiometricDataChoice
+     * }
+     */
+    public static final long dwTypeOfBiometricDataChoice$offset() {
+        return dwTypeOfBiometricDataChoice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeOfBiometricDataChoice
+     * }
+     */
+    public static int dwTypeOfBiometricDataChoice(MemorySegment struct) {
+        return struct.get(dwTypeOfBiometricDataChoice$LAYOUT, dwTypeOfBiometricDataChoice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTypeOfBiometricDataChoice
+     * }
+     */
+    public static void dwTypeOfBiometricDataChoice(MemorySegment struct, int fieldValue) {
+        struct.set(dwTypeOfBiometricDataChoice$LAYOUT, dwTypeOfBiometricDataChoice$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPredefined$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$5553:5"), groupElement("dwPredefined"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPredefined
+     * }
+     */
+    public static final OfInt dwPredefined$layout() {
+        return dwPredefined$LAYOUT;
+    }
+
+    private static final long dwPredefined$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPredefined
+     * }
+     */
+    public static final long dwPredefined$offset() {
+        return dwPredefined$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPredefined
+     * }
+     */
+    public static int dwPredefined(MemorySegment struct) {
+        return struct.get(dwPredefined$LAYOUT, dwPredefined$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPredefined
+     * }
+     */
+    public static void dwPredefined(MemorySegment struct, int fieldValue) {
+        struct.set(dwPredefined$LAYOUT, dwPredefined$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszObjId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$5553:5"), groupElement("pszObjId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static final AddressLayout pszObjId$layout() {
+        return pszObjId$LAYOUT;
+    }
+
+    private static final long pszObjId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static final long pszObjId$offset() {
+        return pszObjId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static MemorySegment pszObjId(MemorySegment struct) {
+        return struct.get(pszObjId$LAYOUT, pszObjId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszObjId
+     * }
+     */
+    public static void pszObjId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszObjId$LAYOUT, pszObjId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout HashedUrl$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("HashedUrl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_HASHED_URL HashedUrl
+     * }
+     */
+    public static final GroupLayout HashedUrl$layout() {
+        return HashedUrl$LAYOUT;
+    }
+
+    private static final long HashedUrl$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_HASHED_URL HashedUrl
+     * }
+     */
+    public static final long HashedUrl$offset() {
+        return HashedUrl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_HASHED_URL HashedUrl
+     * }
+     */
+    public static MemorySegment HashedUrl(MemorySegment struct) {
+        return struct.asSlice(HashedUrl$OFFSET, HashedUrl$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_HASHED_URL HashedUrl
+     * }
+     */
+    public static void HashedUrl(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, HashedUrl$OFFSET, HashedUrl$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

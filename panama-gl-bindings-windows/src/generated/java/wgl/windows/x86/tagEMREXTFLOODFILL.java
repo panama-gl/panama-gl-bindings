@@ -2,72 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMREXTFLOODFILL {
+ *     EMR emr;
+ *     POINTL ptlStart;
+ *     COLORREF crColor;
+ *     DWORD iMode;
+ * }
+ * }
+ */
 public class tagEMREXTFLOODFILL {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("ptlStart"),
-        Constants$root.C_LONG$LAYOUT.withName("crColor"),
-        Constants$root.C_LONG$LAYOUT.withName("iMode")
-    ).withName("tagEMREXTFLOODFILL");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMREXTFLOODFILL.$struct$LAYOUT;
+    tagEMREXTFLOODFILL() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment ptlStart$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle crColor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("crColor"));
-    public static VarHandle crColor$VH() {
-        return tagEMREXTFLOODFILL.crColor$VH;
-    }
-    public static int crColor$get(MemorySegment seg) {
-        return (int)tagEMREXTFLOODFILL.crColor$VH.get(seg);
-    }
-    public static void crColor$set( MemorySegment seg, int x) {
-        tagEMREXTFLOODFILL.crColor$VH.set(seg, x);
-    }
-    public static int crColor$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTFLOODFILL.crColor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void crColor$set(MemorySegment seg, long index, int x) {
-        tagEMREXTFLOODFILL.crColor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iMode"));
-    public static VarHandle iMode$VH() {
-        return tagEMREXTFLOODFILL.iMode$VH;
-    }
-    public static int iMode$get(MemorySegment seg) {
-        return (int)tagEMREXTFLOODFILL.iMode$VH.get(seg);
-    }
-    public static void iMode$set( MemorySegment seg, int x) {
-        tagEMREXTFLOODFILL.iMode$VH.set(seg, x);
-    }
-    public static int iMode$get(MemorySegment seg, long index) {
-        return (int)tagEMREXTFLOODFILL.iMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iMode$set(MemorySegment seg, long index, int x) {
-        tagEMREXTFLOODFILL.iMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        _POINTL.layout().withName("ptlStart"),
+        wgl_h.C_LONG.withName("crColor"),
+        wgl_h.C_LONG.withName("iMode")
+    ).withName("tagEMREXTFLOODFILL");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ptlStart$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ptlStart"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTL ptlStart
+     * }
+     */
+    public static final GroupLayout ptlStart$layout() {
+        return ptlStart$LAYOUT;
+    }
+
+    private static final long ptlStart$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTL ptlStart
+     * }
+     */
+    public static final long ptlStart$offset() {
+        return ptlStart$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTL ptlStart
+     * }
+     */
+    public static MemorySegment ptlStart(MemorySegment struct) {
+        return struct.asSlice(ptlStart$OFFSET, ptlStart$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTL ptlStart
+     * }
+     */
+    public static void ptlStart(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ptlStart$OFFSET, ptlStart$LAYOUT.byteSize());
+    }
+
+    private static final OfInt crColor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("crColor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COLORREF crColor
+     * }
+     */
+    public static final OfInt crColor$layout() {
+        return crColor$LAYOUT;
+    }
+
+    private static final long crColor$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COLORREF crColor
+     * }
+     */
+    public static final long crColor$offset() {
+        return crColor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COLORREF crColor
+     * }
+     */
+    public static int crColor(MemorySegment struct) {
+        return struct.get(crColor$LAYOUT, crColor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COLORREF crColor
+     * }
+     */
+    public static void crColor(MemorySegment struct, int fieldValue) {
+        struct.set(crColor$LAYOUT, crColor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iMode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD iMode
+     * }
+     */
+    public static final OfInt iMode$layout() {
+        return iMode$LAYOUT;
+    }
+
+    private static final long iMode$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD iMode
+     * }
+     */
+    public static final long iMode$offset() {
+        return iMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD iMode
+     * }
+     */
+    public static int iMode(MemorySegment struct) {
+        return struct.get(iMode$LAYOUT, iMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD iMode
+     * }
+     */
+    public static void iMode(MemorySegment struct, int fieldValue) {
+        struct.set(iMode$LAYOUT, iMode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

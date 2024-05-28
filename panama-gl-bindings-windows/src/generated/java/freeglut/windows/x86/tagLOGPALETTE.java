@@ -2,67 +2,255 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagLOGPALETTE {
+ *     WORD palVersion;
+ *     WORD palNumEntries;
+ *     PALETTEENTRY palPalEntry[1];
+ * }
+ * }
+ */
 public class tagLOGPALETTE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("palVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("palNumEntries"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("peRed"),
-            Constants$root.C_CHAR$LAYOUT.withName("peGreen"),
-            Constants$root.C_CHAR$LAYOUT.withName("peBlue"),
-            Constants$root.C_CHAR$LAYOUT.withName("peFlags")
-        ).withName("tagPALETTEENTRY")).withName("palPalEntry")
-    ).withName("tagLOGPALETTE");
-    public static MemoryLayout $LAYOUT() {
-        return tagLOGPALETTE.$struct$LAYOUT;
+    tagLOGPALETTE() {
+        // Should not be called directly
     }
-    static final VarHandle palVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("palVersion"));
-    public static VarHandle palVersion$VH() {
-        return tagLOGPALETTE.palVersion$VH;
-    }
-    public static short palVersion$get(MemorySegment seg) {
-        return (short)tagLOGPALETTE.palVersion$VH.get(seg);
-    }
-    public static void palVersion$set( MemorySegment seg, short x) {
-        tagLOGPALETTE.palVersion$VH.set(seg, x);
-    }
-    public static short palVersion$get(MemorySegment seg, long index) {
-        return (short)tagLOGPALETTE.palVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void palVersion$set(MemorySegment seg, long index, short x) {
-        tagLOGPALETTE.palVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle palNumEntries$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("palNumEntries"));
-    public static VarHandle palNumEntries$VH() {
-        return tagLOGPALETTE.palNumEntries$VH;
-    }
-    public static short palNumEntries$get(MemorySegment seg) {
-        return (short)tagLOGPALETTE.palNumEntries$VH.get(seg);
-    }
-    public static void palNumEntries$set( MemorySegment seg, short x) {
-        tagLOGPALETTE.palNumEntries$VH.set(seg, x);
-    }
-    public static short palNumEntries$get(MemorySegment seg, long index) {
-        return (short)tagLOGPALETTE.palNumEntries$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void palNumEntries$set(MemorySegment seg, long index, short x) {
-        tagLOGPALETTE.palNumEntries$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment palPalEntry$slice(MemorySegment seg) {
-        return seg.asSlice(4, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("palVersion"),
+        freeglut_h.C_SHORT.withName("palNumEntries"),
+        MemoryLayout.sequenceLayout(1, tagPALETTEENTRY.layout()).withName("palPalEntry")
+    ).withName("tagLOGPALETTE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort palVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("palVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD palVersion
+     * }
+     */
+    public static final OfShort palVersion$layout() {
+        return palVersion$LAYOUT;
+    }
+
+    private static final long palVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD palVersion
+     * }
+     */
+    public static final long palVersion$offset() {
+        return palVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD palVersion
+     * }
+     */
+    public static short palVersion(MemorySegment struct) {
+        return struct.get(palVersion$LAYOUT, palVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD palVersion
+     * }
+     */
+    public static void palVersion(MemorySegment struct, short fieldValue) {
+        struct.set(palVersion$LAYOUT, palVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort palNumEntries$LAYOUT = (OfShort)$LAYOUT.select(groupElement("palNumEntries"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD palNumEntries
+     * }
+     */
+    public static final OfShort palNumEntries$layout() {
+        return palNumEntries$LAYOUT;
+    }
+
+    private static final long palNumEntries$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD palNumEntries
+     * }
+     */
+    public static final long palNumEntries$offset() {
+        return palNumEntries$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD palNumEntries
+     * }
+     */
+    public static short palNumEntries(MemorySegment struct) {
+        return struct.get(palNumEntries$LAYOUT, palNumEntries$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD palNumEntries
+     * }
+     */
+    public static void palNumEntries(MemorySegment struct, short fieldValue) {
+        struct.set(palNumEntries$LAYOUT, palNumEntries$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout palPalEntry$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("palPalEntry"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static final SequenceLayout palPalEntry$layout() {
+        return palPalEntry$LAYOUT;
+    }
+
+    private static final long palPalEntry$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static final long palPalEntry$offset() {
+        return palPalEntry$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static MemorySegment palPalEntry(MemorySegment struct) {
+        return struct.asSlice(palPalEntry$OFFSET, palPalEntry$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static void palPalEntry(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, palPalEntry$OFFSET, palPalEntry$LAYOUT.byteSize());
+    }
+
+    private static long[] palPalEntry$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static long[] palPalEntry$dimensions() {
+        return palPalEntry$DIMS;
+    }
+    private static final MethodHandle palPalEntry$ELEM_HANDLE = palPalEntry$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static MemorySegment palPalEntry(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)palPalEntry$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * PALETTEENTRY palPalEntry[1]
+     * }
+     */
+    public static void palPalEntry(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, palPalEntry(struct, index0), 0L, tagPALETTEENTRY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

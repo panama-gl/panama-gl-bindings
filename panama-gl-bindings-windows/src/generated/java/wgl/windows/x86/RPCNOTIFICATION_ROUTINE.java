@@ -2,27 +2,80 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface RPCNOTIFICATION_ROUTINE {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress pAsync, java.lang.foreign.MemoryAddress Context, int Event);
-    static MemorySegment allocate(RPCNOTIFICATION_ROUTINE fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(RPCNOTIFICATION_ROUTINE.class, fi, constants$704.RPCNOTIFICATION_ROUTINE$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (RPCNOTIFICATION_ROUTINE)(struct _RPC_ASYNC_STATE {
+ *     unsigned int Size;
+ *     unsigned long Signature;
+ *     long Lock;
+ *     unsigned long Flags;
+ *     void *StubInfo;
+ *     void *UserInfo;
+ *     void *RuntimeInfo;
+ *     RPC_ASYNC_EVENT Event;
+ *     RPC_NOTIFICATION_TYPES NotificationType;
+ *     RPC_ASYNC_NOTIFICATION_INFO u;
+ *     LONG_PTR Reserved[4];
+ * } *, void *, RPC_ASYNC_EVENT) __attribute__((stdcall))
+ * }
+ */
+public class RPCNOTIFICATION_ROUTINE {
+
+    RPCNOTIFICATION_ROUTINE() {
+        // Should not be called directly
     }
-    static RPCNOTIFICATION_ROUTINE ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pAsync, java.lang.foreign.MemoryAddress _Context, int _Event) -> {
-            try {
-                constants$704.RPCNOTIFICATION_ROUTINE$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pAsync, (java.lang.foreign.Addressable)_Context, _Event);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment pAsync, MemorySegment Context, int Event);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(RPCNOTIFICATION_ROUTINE.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(RPCNOTIFICATION_ROUTINE.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment pAsync, MemorySegment Context, int Event) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, pAsync, Context, Event);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

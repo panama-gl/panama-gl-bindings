@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_REGION_OUTPUT {
+ *     DWORD Flags;
+ *     DWORD TotalRegionEntryCount;
+ *     DWORD RegionEntryCount;
+ *     DWORD Reserved;
+ *     FILE_REGION_INFO Region[1];
+ * } FILE_REGION_OUTPUT
+ * }
+ */
 public class FILE_REGION_OUTPUT extends _FILE_REGION_OUTPUT {
 
+    FILE_REGION_OUTPUT() {
+        // Should not be called directly
+    }
 }
-
 

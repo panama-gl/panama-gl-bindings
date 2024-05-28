@@ -2,40 +2,205 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISPLAYCONFIG_SOURCE_DEVICE_NAME {
+ *     DISPLAYCONFIG_DEVICE_INFO_HEADER header;
+ *     WCHAR viewGdiDeviceName[32];
+ * }
+ * }
+ */
 public class DISPLAYCONFIG_SOURCE_DEVICE_NAME {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("type"),
-            Constants$root.C_LONG$LAYOUT.withName("size"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("adapterId"),
-            Constants$root.C_LONG$LAYOUT.withName("id")
-        ).withName("header"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_SHORT$LAYOUT).withName("viewGdiDeviceName")
-    ).withName("DISPLAYCONFIG_SOURCE_DEVICE_NAME");
-    public static MemoryLayout $LAYOUT() {
-        return DISPLAYCONFIG_SOURCE_DEVICE_NAME.$struct$LAYOUT;
+    DISPLAYCONFIG_SOURCE_DEVICE_NAME() {
+        // Should not be called directly
     }
-    public static MemorySegment header$slice(MemorySegment seg) {
-        return seg.asSlice(0, 20);
-    }
-    public static MemorySegment viewGdiDeviceName$slice(MemorySegment seg) {
-        return seg.asSlice(20, 64);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        DISPLAYCONFIG_DEVICE_INFO_HEADER.layout().withName("header"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_SHORT).withName("viewGdiDeviceName")
+    ).withName("DISPLAYCONFIG_SOURCE_DEVICE_NAME");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout header$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_HEADER header
+     * }
+     */
+    public static final GroupLayout header$layout() {
+        return header$LAYOUT;
+    }
+
+    private static final long header$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_HEADER header
+     * }
+     */
+    public static final long header$offset() {
+        return header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_HEADER header
+     * }
+     */
+    public static MemorySegment header(MemorySegment struct) {
+        return struct.asSlice(header$OFFSET, header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DEVICE_INFO_HEADER header
+     * }
+     */
+    public static void header(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, header$OFFSET, header$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout viewGdiDeviceName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("viewGdiDeviceName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static final SequenceLayout viewGdiDeviceName$layout() {
+        return viewGdiDeviceName$LAYOUT;
+    }
+
+    private static final long viewGdiDeviceName$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static final long viewGdiDeviceName$offset() {
+        return viewGdiDeviceName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static MemorySegment viewGdiDeviceName(MemorySegment struct) {
+        return struct.asSlice(viewGdiDeviceName$OFFSET, viewGdiDeviceName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static void viewGdiDeviceName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, viewGdiDeviceName$OFFSET, viewGdiDeviceName$LAYOUT.byteSize());
+    }
+
+    private static long[] viewGdiDeviceName$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static long[] viewGdiDeviceName$dimensions() {
+        return viewGdiDeviceName$DIMS;
+    }
+    private static final VarHandle viewGdiDeviceName$ELEM_HANDLE = viewGdiDeviceName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static short viewGdiDeviceName(MemorySegment struct, long index0) {
+        return (short)viewGdiDeviceName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR viewGdiDeviceName[32]
+     * }
+     */
+    public static void viewGdiDeviceName(MemorySegment struct, long index0, short fieldValue) {
+        viewGdiDeviceName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

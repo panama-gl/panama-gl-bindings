@@ -2,128 +2,360 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_IMPORT_DESCRIPTOR {
+ *     union {
+ *         DWORD Characteristics;
+ *         DWORD OriginalFirstThunk;
+ *     };
+ *     DWORD TimeDateStamp;
+ *     DWORD ForwarderChain;
+ *     DWORD Name;
+ *     DWORD FirstThunk;
+ * }
+ * }
+ */
 public class _IMAGE_IMPORT_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Characteristics"),
-            Constants$root.C_LONG$LAYOUT.withName("OriginalFirstThunk")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeDateStamp"),
-        Constants$root.C_LONG$LAYOUT.withName("ForwarderChain"),
-        Constants$root.C_LONG$LAYOUT.withName("Name"),
-        Constants$root.C_LONG$LAYOUT.withName("FirstThunk")
-    ).withName("_IMAGE_IMPORT_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_IMPORT_DESCRIPTOR.$struct$LAYOUT;
+    _IMAGE_IMPORT_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Characteristics$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("Characteristics"));
-    public static VarHandle Characteristics$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.Characteristics$VH;
-    }
-    public static int Characteristics$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.Characteristics$VH.get(seg);
-    }
-    public static void Characteristics$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.Characteristics$VH.set(seg, x);
-    }
-    public static int Characteristics$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.Characteristics$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Characteristics$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.Characteristics$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OriginalFirstThunk$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("OriginalFirstThunk"));
-    public static VarHandle OriginalFirstThunk$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.OriginalFirstThunk$VH;
-    }
-    public static int OriginalFirstThunk$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.OriginalFirstThunk$VH.get(seg);
-    }
-    public static void OriginalFirstThunk$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.OriginalFirstThunk$VH.set(seg, x);
-    }
-    public static int OriginalFirstThunk$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.OriginalFirstThunk$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OriginalFirstThunk$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.OriginalFirstThunk$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeDateStamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeDateStamp"));
-    public static VarHandle TimeDateStamp$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp$VH;
-    }
-    public static int TimeDateStamp$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp$VH.get(seg);
-    }
-    public static void TimeDateStamp$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp$VH.set(seg, x);
-    }
-    public static int TimeDateStamp$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeDateStamp$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.TimeDateStamp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ForwarderChain$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ForwarderChain"));
-    public static VarHandle ForwarderChain$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.ForwarderChain$VH;
-    }
-    public static int ForwarderChain$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.ForwarderChain$VH.get(seg);
-    }
-    public static void ForwarderChain$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.ForwarderChain$VH.set(seg, x);
-    }
-    public static int ForwarderChain$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.ForwarderChain$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ForwarderChain$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.ForwarderChain$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Name$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Name"));
-    public static VarHandle Name$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.Name$VH;
-    }
-    public static int Name$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.Name$VH.get(seg);
-    }
-    public static void Name$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.Name$VH.set(seg, x);
-    }
-    public static int Name$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.Name$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Name$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.Name$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FirstThunk$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FirstThunk"));
-    public static VarHandle FirstThunk$VH() {
-        return _IMAGE_IMPORT_DESCRIPTOR.FirstThunk$VH;
-    }
-    public static int FirstThunk$get(MemorySegment seg) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.FirstThunk$VH.get(seg);
-    }
-    public static void FirstThunk$set( MemorySegment seg, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.FirstThunk$VH.set(seg, x);
-    }
-    public static int FirstThunk$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_IMPORT_DESCRIPTOR.FirstThunk$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FirstThunk$set(MemorySegment seg, long index, int x) {
-        _IMAGE_IMPORT_DESCRIPTOR.FirstThunk$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("Characteristics"),
+            wgl_h.C_LONG.withName("OriginalFirstThunk")
+        ).withName("$anon$18298:5"),
+        wgl_h.C_LONG.withName("TimeDateStamp"),
+        wgl_h.C_LONG.withName("ForwarderChain"),
+        wgl_h.C_LONG.withName("Name"),
+        wgl_h.C_LONG.withName("FirstThunk")
+    ).withName("_IMAGE_IMPORT_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Characteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$18298:5"), groupElement("Characteristics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final OfInt Characteristics$layout() {
+        return Characteristics$LAYOUT;
+    }
+
+    private static final long Characteristics$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final long Characteristics$offset() {
+        return Characteristics$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static int Characteristics(MemorySegment struct) {
+        return struct.get(Characteristics$LAYOUT, Characteristics$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static void Characteristics(MemorySegment struct, int fieldValue) {
+        struct.set(Characteristics$LAYOUT, Characteristics$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OriginalFirstThunk$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$18298:5"), groupElement("OriginalFirstThunk"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OriginalFirstThunk
+     * }
+     */
+    public static final OfInt OriginalFirstThunk$layout() {
+        return OriginalFirstThunk$LAYOUT;
+    }
+
+    private static final long OriginalFirstThunk$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OriginalFirstThunk
+     * }
+     */
+    public static final long OriginalFirstThunk$offset() {
+        return OriginalFirstThunk$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OriginalFirstThunk
+     * }
+     */
+    public static int OriginalFirstThunk(MemorySegment struct) {
+        return struct.get(OriginalFirstThunk$LAYOUT, OriginalFirstThunk$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OriginalFirstThunk
+     * }
+     */
+    public static void OriginalFirstThunk(MemorySegment struct, int fieldValue) {
+        struct.set(OriginalFirstThunk$LAYOUT, OriginalFirstThunk$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeDateStamp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeDateStamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final OfInt TimeDateStamp$layout() {
+        return TimeDateStamp$LAYOUT;
+    }
+
+    private static final long TimeDateStamp$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final long TimeDateStamp$offset() {
+        return TimeDateStamp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static int TimeDateStamp(MemorySegment struct) {
+        return struct.get(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static void TimeDateStamp(MemorySegment struct, int fieldValue) {
+        struct.set(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ForwarderChain$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ForwarderChain"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ForwarderChain
+     * }
+     */
+    public static final OfInt ForwarderChain$layout() {
+        return ForwarderChain$LAYOUT;
+    }
+
+    private static final long ForwarderChain$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ForwarderChain
+     * }
+     */
+    public static final long ForwarderChain$offset() {
+        return ForwarderChain$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ForwarderChain
+     * }
+     */
+    public static int ForwarderChain(MemorySegment struct) {
+        return struct.get(ForwarderChain$LAYOUT, ForwarderChain$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ForwarderChain
+     * }
+     */
+    public static void ForwarderChain(MemorySegment struct, int fieldValue) {
+        struct.set(ForwarderChain$LAYOUT, ForwarderChain$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Name$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Name
+     * }
+     */
+    public static final OfInt Name$layout() {
+        return Name$LAYOUT;
+    }
+
+    private static final long Name$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Name
+     * }
+     */
+    public static final long Name$offset() {
+        return Name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Name
+     * }
+     */
+    public static int Name(MemorySegment struct) {
+        return struct.get(Name$LAYOUT, Name$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Name
+     * }
+     */
+    public static void Name(MemorySegment struct, int fieldValue) {
+        struct.set(Name$LAYOUT, Name$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FirstThunk$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FirstThunk"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FirstThunk
+     * }
+     */
+    public static final OfInt FirstThunk$layout() {
+        return FirstThunk$LAYOUT;
+    }
+
+    private static final long FirstThunk$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FirstThunk
+     * }
+     */
+    public static final long FirstThunk$offset() {
+        return FirstThunk$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FirstThunk
+     * }
+     */
+    public static int FirstThunk(MemorySegment struct) {
+        return struct.get(FirstThunk$LAYOUT, FirstThunk$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FirstThunk
+     * }
+     */
+    public static void FirstThunk(MemorySegment struct, int fieldValue) {
+        struct.set(FirstThunk$LAYOUT, FirstThunk$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

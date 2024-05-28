@@ -2,317 +2,1155 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMIXERLINEA {
+ *     DWORD cbStruct;
+ *     DWORD dwDestination;
+ *     DWORD dwSource;
+ *     DWORD dwLineID;
+ *     DWORD fdwLine;
+ *     DWORD_PTR dwUser;
+ *     DWORD dwComponentType;
+ *     DWORD cChannels;
+ *     DWORD cConnections;
+ *     DWORD cControls;
+ *     CHAR szShortName[16];
+ *     CHAR szName[64];
+ *     struct {
+ *         DWORD dwType;
+ *         DWORD dwDeviceID;
+ *         WORD wMid;
+ *         WORD wPid;
+ *         MMVERSION vDriverVersion;
+ *         CHAR szPname[32];
+ *     } Target;
+ * }
+ * }
+ */
 public class tagMIXERLINEA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbStruct"),
-        Constants$root.C_LONG$LAYOUT.withName("dwDestination"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSource"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLineID"),
-        Constants$root.C_LONG$LAYOUT.withName("fdwLine"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwUser"),
-        Constants$root.C_LONG$LAYOUT.withName("dwComponentType"),
-        Constants$root.C_LONG$LAYOUT.withName("cChannels"),
-        Constants$root.C_LONG$LAYOUT.withName("cConnections"),
-        Constants$root.C_LONG$LAYOUT.withName("cControls"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("szShortName"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_CHAR$LAYOUT).withName("szName"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwType"),
-            Constants$root.C_LONG$LAYOUT.withName("dwDeviceID"),
-            Constants$root.C_SHORT$LAYOUT.withName("wMid"),
-            Constants$root.C_SHORT$LAYOUT.withName("wPid"),
-            Constants$root.C_LONG$LAYOUT.withName("vDriverVersion"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("szPname")
-        ).withName("Target")
+    tagMIXERLINEA() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cbStruct"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwDestination"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwSource"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwLineID"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("fdwLine"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("dwUser"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwComponentType"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cChannels"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cConnections"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("cControls"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("szShortName"),
+        MemoryLayout.sequenceLayout(64, wgl_h.C_CHAR).withName("szName"),
+        tagMIXERLINEA.Target.layout().withName("Target")
     ).withName("tagMIXERLINEA");
-    public static MemoryLayout $LAYOUT() {
-        return tagMIXERLINEA.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle cbStruct$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbStruct"));
-    public static VarHandle cbStruct$VH() {
-        return tagMIXERLINEA.cbStruct$VH;
+
+    private static final OfInt cbStruct$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbStruct"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static final OfInt cbStruct$layout() {
+        return cbStruct$LAYOUT;
     }
-    public static int cbStruct$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.cbStruct$VH.get(seg);
+
+    private static final long cbStruct$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static final long cbStruct$offset() {
+        return cbStruct$OFFSET;
     }
-    public static void cbStruct$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.cbStruct$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static int cbStruct(MemorySegment struct) {
+        return struct.get(cbStruct$LAYOUT, cbStruct$OFFSET);
     }
-    public static int cbStruct$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.cbStruct$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbStruct
+     * }
+     */
+    public static void cbStruct(MemorySegment struct, int fieldValue) {
+        struct.set(cbStruct$LAYOUT, cbStruct$OFFSET, fieldValue);
     }
-    public static void cbStruct$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.cbStruct$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt dwDestination$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDestination"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwDestination
+     * }
+     */
+    public static final OfInt dwDestination$layout() {
+        return dwDestination$LAYOUT;
     }
-    static final VarHandle dwDestination$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDestination"));
-    public static VarHandle dwDestination$VH() {
-        return tagMIXERLINEA.dwDestination$VH;
+
+    private static final long dwDestination$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwDestination
+     * }
+     */
+    public static final long dwDestination$offset() {
+        return dwDestination$OFFSET;
     }
-    public static int dwDestination$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.dwDestination$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwDestination
+     * }
+     */
+    public static int dwDestination(MemorySegment struct) {
+        return struct.get(dwDestination$LAYOUT, dwDestination$OFFSET);
     }
-    public static void dwDestination$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.dwDestination$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwDestination
+     * }
+     */
+    public static void dwDestination(MemorySegment struct, int fieldValue) {
+        struct.set(dwDestination$LAYOUT, dwDestination$OFFSET, fieldValue);
     }
-    public static int dwDestination$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.dwDestination$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt dwSource$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSource"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSource
+     * }
+     */
+    public static final OfInt dwSource$layout() {
+        return dwSource$LAYOUT;
     }
-    public static void dwDestination$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.dwDestination$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long dwSource$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSource
+     * }
+     */
+    public static final long dwSource$offset() {
+        return dwSource$OFFSET;
     }
-    static final VarHandle dwSource$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSource"));
-    public static VarHandle dwSource$VH() {
-        return tagMIXERLINEA.dwSource$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSource
+     * }
+     */
+    public static int dwSource(MemorySegment struct) {
+        return struct.get(dwSource$LAYOUT, dwSource$OFFSET);
     }
-    public static int dwSource$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.dwSource$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSource
+     * }
+     */
+    public static void dwSource(MemorySegment struct, int fieldValue) {
+        struct.set(dwSource$LAYOUT, dwSource$OFFSET, fieldValue);
     }
-    public static void dwSource$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.dwSource$VH.set(seg, x);
+
+    private static final OfInt dwLineID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLineID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static final OfInt dwLineID$layout() {
+        return dwLineID$LAYOUT;
     }
-    public static int dwSource$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.dwSource$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long dwLineID$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static final long dwLineID$offset() {
+        return dwLineID$OFFSET;
     }
-    public static void dwSource$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.dwSource$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static int dwLineID(MemorySegment struct) {
+        return struct.get(dwLineID$LAYOUT, dwLineID$OFFSET);
     }
-    static final VarHandle dwLineID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLineID"));
-    public static VarHandle dwLineID$VH() {
-        return tagMIXERLINEA.dwLineID$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLineID
+     * }
+     */
+    public static void dwLineID(MemorySegment struct, int fieldValue) {
+        struct.set(dwLineID$LAYOUT, dwLineID$OFFSET, fieldValue);
     }
-    public static int dwLineID$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.dwLineID$VH.get(seg);
+
+    private static final OfInt fdwLine$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fdwLine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD fdwLine
+     * }
+     */
+    public static final OfInt fdwLine$layout() {
+        return fdwLine$LAYOUT;
     }
-    public static void dwLineID$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.dwLineID$VH.set(seg, x);
+
+    private static final long fdwLine$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD fdwLine
+     * }
+     */
+    public static final long fdwLine$offset() {
+        return fdwLine$OFFSET;
     }
-    public static int dwLineID$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.dwLineID$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD fdwLine
+     * }
+     */
+    public static int fdwLine(MemorySegment struct) {
+        return struct.get(fdwLine$LAYOUT, fdwLine$OFFSET);
     }
-    public static void dwLineID$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.dwLineID$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD fdwLine
+     * }
+     */
+    public static void fdwLine(MemorySegment struct, int fieldValue) {
+        struct.set(fdwLine$LAYOUT, fdwLine$OFFSET, fieldValue);
     }
-    static final VarHandle fdwLine$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fdwLine"));
-    public static VarHandle fdwLine$VH() {
-        return tagMIXERLINEA.fdwLine$VH;
+
+    private static final OfLong dwUser$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwUser"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static final OfLong dwUser$layout() {
+        return dwUser$LAYOUT;
     }
-    public static int fdwLine$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.fdwLine$VH.get(seg);
+
+    private static final long dwUser$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static final long dwUser$offset() {
+        return dwUser$OFFSET;
     }
-    public static void fdwLine$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.fdwLine$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static long dwUser(MemorySegment struct) {
+        return struct.get(dwUser$LAYOUT, dwUser$OFFSET);
     }
-    public static int fdwLine$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.fdwLine$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static void dwUser(MemorySegment struct, long fieldValue) {
+        struct.set(dwUser$LAYOUT, dwUser$OFFSET, fieldValue);
     }
-    public static void fdwLine$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.fdwLine$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt dwComponentType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwComponentType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwComponentType
+     * }
+     */
+    public static final OfInt dwComponentType$layout() {
+        return dwComponentType$LAYOUT;
     }
-    static final VarHandle dwUser$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUser"));
-    public static VarHandle dwUser$VH() {
-        return tagMIXERLINEA.dwUser$VH;
+
+    private static final long dwComponentType$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwComponentType
+     * }
+     */
+    public static final long dwComponentType$offset() {
+        return dwComponentType$OFFSET;
     }
-    public static long dwUser$get(MemorySegment seg) {
-        return (long)tagMIXERLINEA.dwUser$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwComponentType
+     * }
+     */
+    public static int dwComponentType(MemorySegment struct) {
+        return struct.get(dwComponentType$LAYOUT, dwComponentType$OFFSET);
     }
-    public static void dwUser$set( MemorySegment seg, long x) {
-        tagMIXERLINEA.dwUser$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwComponentType
+     * }
+     */
+    public static void dwComponentType(MemorySegment struct, int fieldValue) {
+        struct.set(dwComponentType$LAYOUT, dwComponentType$OFFSET, fieldValue);
     }
-    public static long dwUser$get(MemorySegment seg, long index) {
-        return (long)tagMIXERLINEA.dwUser$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt cChannels$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cChannels"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cChannels
+     * }
+     */
+    public static final OfInt cChannels$layout() {
+        return cChannels$LAYOUT;
     }
-    public static void dwUser$set(MemorySegment seg, long index, long x) {
-        tagMIXERLINEA.dwUser$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long cChannels$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cChannels
+     * }
+     */
+    public static final long cChannels$offset() {
+        return cChannels$OFFSET;
     }
-    static final VarHandle dwComponentType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwComponentType"));
-    public static VarHandle dwComponentType$VH() {
-        return tagMIXERLINEA.dwComponentType$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cChannels
+     * }
+     */
+    public static int cChannels(MemorySegment struct) {
+        return struct.get(cChannels$LAYOUT, cChannels$OFFSET);
     }
-    public static int dwComponentType$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.dwComponentType$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cChannels
+     * }
+     */
+    public static void cChannels(MemorySegment struct, int fieldValue) {
+        struct.set(cChannels$LAYOUT, cChannels$OFFSET, fieldValue);
     }
-    public static void dwComponentType$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.dwComponentType$VH.set(seg, x);
+
+    private static final OfInt cConnections$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cConnections"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cConnections
+     * }
+     */
+    public static final OfInt cConnections$layout() {
+        return cConnections$LAYOUT;
     }
-    public static int dwComponentType$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.dwComponentType$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long cConnections$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cConnections
+     * }
+     */
+    public static final long cConnections$offset() {
+        return cConnections$OFFSET;
     }
-    public static void dwComponentType$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.dwComponentType$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cConnections
+     * }
+     */
+    public static int cConnections(MemorySegment struct) {
+        return struct.get(cConnections$LAYOUT, cConnections$OFFSET);
     }
-    static final VarHandle cChannels$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cChannels"));
-    public static VarHandle cChannels$VH() {
-        return tagMIXERLINEA.cChannels$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cConnections
+     * }
+     */
+    public static void cConnections(MemorySegment struct, int fieldValue) {
+        struct.set(cConnections$LAYOUT, cConnections$OFFSET, fieldValue);
     }
-    public static int cChannels$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.cChannels$VH.get(seg);
+
+    private static final OfInt cControls$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cControls"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static final OfInt cControls$layout() {
+        return cControls$LAYOUT;
     }
-    public static void cChannels$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.cChannels$VH.set(seg, x);
+
+    private static final long cControls$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static final long cControls$offset() {
+        return cControls$OFFSET;
     }
-    public static int cChannels$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.cChannels$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static int cControls(MemorySegment struct) {
+        return struct.get(cControls$LAYOUT, cControls$OFFSET);
     }
-    public static void cChannels$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.cChannels$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cControls
+     * }
+     */
+    public static void cControls(MemorySegment struct, int fieldValue) {
+        struct.set(cControls$LAYOUT, cControls$OFFSET, fieldValue);
     }
-    static final VarHandle cConnections$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cConnections"));
-    public static VarHandle cConnections$VH() {
-        return tagMIXERLINEA.cConnections$VH;
+
+    private static final SequenceLayout szShortName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szShortName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static final SequenceLayout szShortName$layout() {
+        return szShortName$LAYOUT;
     }
-    public static int cConnections$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.cConnections$VH.get(seg);
+
+    private static final long szShortName$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static final long szShortName$offset() {
+        return szShortName$OFFSET;
     }
-    public static void cConnections$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.cConnections$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static MemorySegment szShortName(MemorySegment struct) {
+        return struct.asSlice(szShortName$OFFSET, szShortName$LAYOUT.byteSize());
     }
-    public static int cConnections$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.cConnections$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static void szShortName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szShortName$OFFSET, szShortName$LAYOUT.byteSize());
     }
-    public static void cConnections$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.cConnections$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static long[] szShortName$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static long[] szShortName$dimensions() {
+        return szShortName$DIMS;
     }
-    static final VarHandle cControls$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cControls"));
-    public static VarHandle cControls$VH() {
-        return tagMIXERLINEA.cControls$VH;
+    private static final VarHandle szShortName$ELEM_HANDLE = szShortName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static byte szShortName(MemorySegment struct, long index0) {
+        return (byte)szShortName$ELEM_HANDLE.get(struct, 0L, index0);
     }
-    public static int cControls$get(MemorySegment seg) {
-        return (int)tagMIXERLINEA.cControls$VH.get(seg);
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szShortName[16]
+     * }
+     */
+    public static void szShortName(MemorySegment struct, long index0, byte fieldValue) {
+        szShortName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
     }
-    public static void cControls$set( MemorySegment seg, int x) {
-        tagMIXERLINEA.cControls$VH.set(seg, x);
+
+    private static final SequenceLayout szName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static final SequenceLayout szName$layout() {
+        return szName$LAYOUT;
     }
-    public static int cControls$get(MemorySegment seg, long index) {
-        return (int)tagMIXERLINEA.cControls$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long szName$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static final long szName$offset() {
+        return szName$OFFSET;
     }
-    public static void cControls$set(MemorySegment seg, long index, int x) {
-        tagMIXERLINEA.cControls$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static MemorySegment szName(MemorySegment struct) {
+        return struct.asSlice(szName$OFFSET, szName$LAYOUT.byteSize());
     }
-    public static MemorySegment szShortName$slice(MemorySegment seg) {
-        return seg.asSlice(44, 16);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static void szName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szName$OFFSET, szName$LAYOUT.byteSize());
     }
-    public static MemorySegment szName$slice(MemorySegment seg) {
-        return seg.asSlice(60, 64);
+
+    private static long[] szName$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static long[] szName$dimensions() {
+        return szName$DIMS;
     }
+    private static final VarHandle szName$ELEM_HANDLE = szName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static byte szName(MemorySegment struct, long index0) {
+        return (byte)szName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR szName[64]
+     * }
+     */
+    public static void szName(MemorySegment struct, long index0, byte fieldValue) {
+        szName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD dwType;
+     *     DWORD dwDeviceID;
+     *     WORD wMid;
+     *     WORD wPid;
+     *     MMVERSION vDriverVersion;
+     *     CHAR szPname[32];
+     * }
+     * }
+     */
     public static class Target {
 
-        static final  GroupLayout Target$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwType"),
-            Constants$root.C_LONG$LAYOUT.withName("dwDeviceID"),
-            Constants$root.C_SHORT$LAYOUT.withName("wMid"),
-            Constants$root.C_SHORT$LAYOUT.withName("wPid"),
-            Constants$root.C_LONG$LAYOUT.withName("vDriverVersion"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("szPname")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Target.Target$struct$LAYOUT;
+        Target() {
+            // Should not be called directly
         }
-        static final VarHandle dwType$VH = Target$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwType"));
-        public static VarHandle dwType$VH() {
-            return Target.dwType$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.align(wgl_h.C_LONG, 1).withName("dwType"),
+            wgl_h.align(wgl_h.C_LONG, 1).withName("dwDeviceID"),
+            wgl_h.align(wgl_h.C_SHORT, 1).withName("wMid"),
+            wgl_h.align(wgl_h.C_SHORT, 1).withName("wPid"),
+            wgl_h.align(wgl_h.C_INT, 1).withName("vDriverVersion"),
+            MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("szPname")
+        ).withName("$anon$1909:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int dwType$get(MemorySegment seg) {
-            return (int)Target.dwType$VH.get(seg);
+
+        private static final OfInt dwType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwType"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD dwType
+         * }
+         */
+        public static final OfInt dwType$layout() {
+            return dwType$LAYOUT;
         }
-        public static void dwType$set( MemorySegment seg, int x) {
-            Target.dwType$VH.set(seg, x);
+
+        private static final long dwType$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD dwType
+         * }
+         */
+        public static final long dwType$offset() {
+            return dwType$OFFSET;
         }
-        public static int dwType$get(MemorySegment seg, long index) {
-            return (int)Target.dwType$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD dwType
+         * }
+         */
+        public static int dwType(MemorySegment struct) {
+            return struct.get(dwType$LAYOUT, dwType$OFFSET);
         }
-        public static void dwType$set(MemorySegment seg, long index, int x) {
-            Target.dwType$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD dwType
+         * }
+         */
+        public static void dwType(MemorySegment struct, int fieldValue) {
+            struct.set(dwType$LAYOUT, dwType$OFFSET, fieldValue);
         }
-        static final VarHandle dwDeviceID$VH = Target$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDeviceID"));
-        public static VarHandle dwDeviceID$VH() {
-            return Target.dwDeviceID$VH;
+
+        private static final OfInt dwDeviceID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDeviceID"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD dwDeviceID
+         * }
+         */
+        public static final OfInt dwDeviceID$layout() {
+            return dwDeviceID$LAYOUT;
         }
-        public static int dwDeviceID$get(MemorySegment seg) {
-            return (int)Target.dwDeviceID$VH.get(seg);
+
+        private static final long dwDeviceID$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD dwDeviceID
+         * }
+         */
+        public static final long dwDeviceID$offset() {
+            return dwDeviceID$OFFSET;
         }
-        public static void dwDeviceID$set( MemorySegment seg, int x) {
-            Target.dwDeviceID$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD dwDeviceID
+         * }
+         */
+        public static int dwDeviceID(MemorySegment struct) {
+            return struct.get(dwDeviceID$LAYOUT, dwDeviceID$OFFSET);
         }
-        public static int dwDeviceID$get(MemorySegment seg, long index) {
-            return (int)Target.dwDeviceID$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD dwDeviceID
+         * }
+         */
+        public static void dwDeviceID(MemorySegment struct, int fieldValue) {
+            struct.set(dwDeviceID$LAYOUT, dwDeviceID$OFFSET, fieldValue);
         }
-        public static void dwDeviceID$set(MemorySegment seg, long index, int x) {
-            Target.dwDeviceID$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfShort wMid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wMid"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WORD wMid
+         * }
+         */
+        public static final OfShort wMid$layout() {
+            return wMid$LAYOUT;
         }
-        static final VarHandle wMid$VH = Target$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wMid"));
-        public static VarHandle wMid$VH() {
-            return Target.wMid$VH;
+
+        private static final long wMid$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WORD wMid
+         * }
+         */
+        public static final long wMid$offset() {
+            return wMid$OFFSET;
         }
-        public static short wMid$get(MemorySegment seg) {
-            return (short)Target.wMid$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WORD wMid
+         * }
+         */
+        public static short wMid(MemorySegment struct) {
+            return struct.get(wMid$LAYOUT, wMid$OFFSET);
         }
-        public static void wMid$set( MemorySegment seg, short x) {
-            Target.wMid$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WORD wMid
+         * }
+         */
+        public static void wMid(MemorySegment struct, short fieldValue) {
+            struct.set(wMid$LAYOUT, wMid$OFFSET, fieldValue);
         }
-        public static short wMid$get(MemorySegment seg, long index) {
-            return (short)Target.wMid$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfShort wPid$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wPid"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WORD wPid
+         * }
+         */
+        public static final OfShort wPid$layout() {
+            return wPid$LAYOUT;
         }
-        public static void wMid$set(MemorySegment seg, long index, short x) {
-            Target.wMid$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long wPid$OFFSET = 10;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WORD wPid
+         * }
+         */
+        public static final long wPid$offset() {
+            return wPid$OFFSET;
         }
-        static final VarHandle wPid$VH = Target$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wPid"));
-        public static VarHandle wPid$VH() {
-            return Target.wPid$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WORD wPid
+         * }
+         */
+        public static short wPid(MemorySegment struct) {
+            return struct.get(wPid$LAYOUT, wPid$OFFSET);
         }
-        public static short wPid$get(MemorySegment seg) {
-            return (short)Target.wPid$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WORD wPid
+         * }
+         */
+        public static void wPid(MemorySegment struct, short fieldValue) {
+            struct.set(wPid$LAYOUT, wPid$OFFSET, fieldValue);
         }
-        public static void wPid$set( MemorySegment seg, short x) {
-            Target.wPid$VH.set(seg, x);
+
+        private static final OfInt vDriverVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("vDriverVersion"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * MMVERSION vDriverVersion
+         * }
+         */
+        public static final OfInt vDriverVersion$layout() {
+            return vDriverVersion$LAYOUT;
         }
-        public static short wPid$get(MemorySegment seg, long index) {
-            return (short)Target.wPid$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long vDriverVersion$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * MMVERSION vDriverVersion
+         * }
+         */
+        public static final long vDriverVersion$offset() {
+            return vDriverVersion$OFFSET;
         }
-        public static void wPid$set(MemorySegment seg, long index, short x) {
-            Target.wPid$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * MMVERSION vDriverVersion
+         * }
+         */
+        public static int vDriverVersion(MemorySegment struct) {
+            return struct.get(vDriverVersion$LAYOUT, vDriverVersion$OFFSET);
         }
-        static final VarHandle vDriverVersion$VH = Target$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vDriverVersion"));
-        public static VarHandle vDriverVersion$VH() {
-            return Target.vDriverVersion$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * MMVERSION vDriverVersion
+         * }
+         */
+        public static void vDriverVersion(MemorySegment struct, int fieldValue) {
+            struct.set(vDriverVersion$LAYOUT, vDriverVersion$OFFSET, fieldValue);
         }
-        public static int vDriverVersion$get(MemorySegment seg) {
-            return (int)Target.vDriverVersion$VH.get(seg);
+
+        private static final SequenceLayout szPname$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szPname"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static final SequenceLayout szPname$layout() {
+            return szPname$LAYOUT;
         }
-        public static void vDriverVersion$set( MemorySegment seg, int x) {
-            Target.vDriverVersion$VH.set(seg, x);
+
+        private static final long szPname$OFFSET = 16;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static final long szPname$offset() {
+            return szPname$OFFSET;
         }
-        public static int vDriverVersion$get(MemorySegment seg, long index) {
-            return (int)Target.vDriverVersion$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static MemorySegment szPname(MemorySegment struct) {
+            return struct.asSlice(szPname$OFFSET, szPname$LAYOUT.byteSize());
         }
-        public static void vDriverVersion$set(MemorySegment seg, long index, int x) {
-            Target.vDriverVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static void szPname(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, szPname$OFFSET, szPname$LAYOUT.byteSize());
         }
-        public static MemorySegment szPname$slice(MemorySegment seg) {
-            return seg.asSlice(16, 32);
+
+        private static long[] szPname$DIMS = { 32 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static long[] szPname$dimensions() {
+            return szPname$DIMS;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+        private static final VarHandle szPname$ELEM_HANDLE = szPname$LAYOUT.varHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static byte szPname(MemorySegment struct, long index0) {
+            return (byte)szPname$ELEM_HANDLE.get(struct, 0L, index0);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * CHAR szPname[32]
+         * }
+         */
+        public static void szPname(MemorySegment struct, long index0, byte fieldValue) {
+            szPname$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Target$slice(MemorySegment seg) {
-        return seg.asSlice(124, 48);
+    private static final GroupLayout Target$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Target"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD dwType;
+     *     DWORD dwDeviceID;
+     *     WORD wMid;
+     *     WORD wPid;
+     *     MMVERSION vDriverVersion;
+     *     CHAR szPname[32];
+     * } Target
+     * }
+     */
+    public static final GroupLayout Target$layout() {
+        return Target$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long Target$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD dwType;
+     *     DWORD dwDeviceID;
+     *     WORD wMid;
+     *     WORD wPid;
+     *     MMVERSION vDriverVersion;
+     *     CHAR szPname[32];
+     * } Target
+     * }
+     */
+    public static final long Target$offset() {
+        return Target$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD dwType;
+     *     DWORD dwDeviceID;
+     *     WORD wMid;
+     *     WORD wPid;
+     *     MMVERSION vDriverVersion;
+     *     CHAR szPname[32];
+     * } Target
+     * }
+     */
+    public static MemorySegment Target(MemorySegment struct) {
+        return struct.asSlice(Target$OFFSET, Target$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD dwType;
+     *     DWORD dwDeviceID;
+     *     WORD wMid;
+     *     WORD wPid;
+     *     MMVERSION vDriverVersion;
+     *     CHAR szPname[32];
+     * } Target
+     * }
+     */
+    public static void Target(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Target$OFFSET, Target$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

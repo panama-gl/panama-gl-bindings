@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagServerInformation {
+ *     DWORD dwServerPid;
+ *     DWORD dwServerTid;
+ *     UINT64 ui64ServerAddress;
+ * }
+ * }
+ */
 public class tagServerInformation {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwServerPid"),
-        Constants$root.C_LONG$LAYOUT.withName("dwServerTid"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ui64ServerAddress")
-    ).withName("tagServerInformation");
-    public static MemoryLayout $LAYOUT() {
-        return tagServerInformation.$struct$LAYOUT;
+    tagServerInformation() {
+        // Should not be called directly
     }
-    static final VarHandle dwServerPid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwServerPid"));
-    public static VarHandle dwServerPid$VH() {
-        return tagServerInformation.dwServerPid$VH;
-    }
-    public static int dwServerPid$get(MemorySegment seg) {
-        return (int)tagServerInformation.dwServerPid$VH.get(seg);
-    }
-    public static void dwServerPid$set( MemorySegment seg, int x) {
-        tagServerInformation.dwServerPid$VH.set(seg, x);
-    }
-    public static int dwServerPid$get(MemorySegment seg, long index) {
-        return (int)tagServerInformation.dwServerPid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwServerPid$set(MemorySegment seg, long index, int x) {
-        tagServerInformation.dwServerPid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwServerTid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwServerTid"));
-    public static VarHandle dwServerTid$VH() {
-        return tagServerInformation.dwServerTid$VH;
-    }
-    public static int dwServerTid$get(MemorySegment seg) {
-        return (int)tagServerInformation.dwServerTid$VH.get(seg);
-    }
-    public static void dwServerTid$set( MemorySegment seg, int x) {
-        tagServerInformation.dwServerTid$VH.set(seg, x);
-    }
-    public static int dwServerTid$get(MemorySegment seg, long index) {
-        return (int)tagServerInformation.dwServerTid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwServerTid$set(MemorySegment seg, long index, int x) {
-        tagServerInformation.dwServerTid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ui64ServerAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ui64ServerAddress"));
-    public static VarHandle ui64ServerAddress$VH() {
-        return tagServerInformation.ui64ServerAddress$VH;
-    }
-    public static long ui64ServerAddress$get(MemorySegment seg) {
-        return (long)tagServerInformation.ui64ServerAddress$VH.get(seg);
-    }
-    public static void ui64ServerAddress$set( MemorySegment seg, long x) {
-        tagServerInformation.ui64ServerAddress$VH.set(seg, x);
-    }
-    public static long ui64ServerAddress$get(MemorySegment seg, long index) {
-        return (long)tagServerInformation.ui64ServerAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ui64ServerAddress$set(MemorySegment seg, long index, long x) {
-        tagServerInformation.ui64ServerAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwServerPid"),
+        wgl_h.C_LONG.withName("dwServerTid"),
+        wgl_h.C_LONG_LONG.withName("ui64ServerAddress")
+    ).withName("tagServerInformation");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwServerPid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwServerPid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static final OfInt dwServerPid$layout() {
+        return dwServerPid$LAYOUT;
+    }
+
+    private static final long dwServerPid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static final long dwServerPid$offset() {
+        return dwServerPid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static int dwServerPid(MemorySegment struct) {
+        return struct.get(dwServerPid$LAYOUT, dwServerPid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerPid
+     * }
+     */
+    public static void dwServerPid(MemorySegment struct, int fieldValue) {
+        struct.set(dwServerPid$LAYOUT, dwServerPid$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwServerTid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwServerTid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwServerTid
+     * }
+     */
+    public static final OfInt dwServerTid$layout() {
+        return dwServerTid$LAYOUT;
+    }
+
+    private static final long dwServerTid$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwServerTid
+     * }
+     */
+    public static final long dwServerTid$offset() {
+        return dwServerTid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerTid
+     * }
+     */
+    public static int dwServerTid(MemorySegment struct) {
+        return struct.get(dwServerTid$LAYOUT, dwServerTid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwServerTid
+     * }
+     */
+    public static void dwServerTid(MemorySegment struct, int fieldValue) {
+        struct.set(dwServerTid$LAYOUT, dwServerTid$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ui64ServerAddress$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ui64ServerAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT64 ui64ServerAddress
+     * }
+     */
+    public static final OfLong ui64ServerAddress$layout() {
+        return ui64ServerAddress$LAYOUT;
+    }
+
+    private static final long ui64ServerAddress$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT64 ui64ServerAddress
+     * }
+     */
+    public static final long ui64ServerAddress$offset() {
+        return ui64ServerAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT64 ui64ServerAddress
+     * }
+     */
+    public static long ui64ServerAddress(MemorySegment struct) {
+        return struct.get(ui64ServerAddress$LAYOUT, ui64ServerAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT64 ui64ServerAddress
+     * }
+     */
+    public static void ui64ServerAddress(MemorySegment struct, long fieldValue) {
+        struct.set(ui64ServerAddress$LAYOUT, ui64ServerAddress$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

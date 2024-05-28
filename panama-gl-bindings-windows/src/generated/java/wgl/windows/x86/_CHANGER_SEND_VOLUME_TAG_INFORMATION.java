@@ -2,52 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CHANGER_SEND_VOLUME_TAG_INFORMATION {
+ *     CHANGER_ELEMENT StartingElement;
+ *     DWORD ActionCode;
+ *     BYTE VolumeIDTemplate[40];
+ * }
+ * }
+ */
 public class _CHANGER_SEND_VOLUME_TAG_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ElementType"),
-            Constants$root.C_LONG$LAYOUT.withName("ElementAddress")
-        ).withName("StartingElement"),
-        Constants$root.C_LONG$LAYOUT.withName("ActionCode"),
-        MemoryLayout.sequenceLayout(40, Constants$root.C_CHAR$LAYOUT).withName("VolumeIDTemplate")
-    ).withName("_CHANGER_SEND_VOLUME_TAG_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _CHANGER_SEND_VOLUME_TAG_INFORMATION.$struct$LAYOUT;
+    _CHANGER_SEND_VOLUME_TAG_INFORMATION() {
+        // Should not be called directly
     }
-    public static MemorySegment StartingElement$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle ActionCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActionCode"));
-    public static VarHandle ActionCode$VH() {
-        return _CHANGER_SEND_VOLUME_TAG_INFORMATION.ActionCode$VH;
-    }
-    public static int ActionCode$get(MemorySegment seg) {
-        return (int)_CHANGER_SEND_VOLUME_TAG_INFORMATION.ActionCode$VH.get(seg);
-    }
-    public static void ActionCode$set( MemorySegment seg, int x) {
-        _CHANGER_SEND_VOLUME_TAG_INFORMATION.ActionCode$VH.set(seg, x);
-    }
-    public static int ActionCode$get(MemorySegment seg, long index) {
-        return (int)_CHANGER_SEND_VOLUME_TAG_INFORMATION.ActionCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActionCode$set(MemorySegment seg, long index, int x) {
-        _CHANGER_SEND_VOLUME_TAG_INFORMATION.ActionCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment VolumeIDTemplate$slice(MemorySegment seg) {
-        return seg.asSlice(12, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CHANGER_ELEMENT.layout().withName("StartingElement"),
+        wgl_h.C_LONG.withName("ActionCode"),
+        MemoryLayout.sequenceLayout(40, wgl_h.C_CHAR).withName("VolumeIDTemplate")
+    ).withName("_CHANGER_SEND_VOLUME_TAG_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout StartingElement$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StartingElement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT StartingElement
+     * }
+     */
+    public static final GroupLayout StartingElement$layout() {
+        return StartingElement$LAYOUT;
+    }
+
+    private static final long StartingElement$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT StartingElement
+     * }
+     */
+    public static final long StartingElement$offset() {
+        return StartingElement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT StartingElement
+     * }
+     */
+    public static MemorySegment StartingElement(MemorySegment struct) {
+        return struct.asSlice(StartingElement$OFFSET, StartingElement$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHANGER_ELEMENT StartingElement
+     * }
+     */
+    public static void StartingElement(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StartingElement$OFFSET, StartingElement$LAYOUT.byteSize());
+    }
+
+    private static final OfInt ActionCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ActionCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static final OfInt ActionCode$layout() {
+        return ActionCode$LAYOUT;
+    }
+
+    private static final long ActionCode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static final long ActionCode$offset() {
+        return ActionCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static int ActionCode(MemorySegment struct) {
+        return struct.get(ActionCode$LAYOUT, ActionCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static void ActionCode(MemorySegment struct, int fieldValue) {
+        struct.set(ActionCode$LAYOUT, ActionCode$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout VolumeIDTemplate$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("VolumeIDTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static final SequenceLayout VolumeIDTemplate$layout() {
+        return VolumeIDTemplate$LAYOUT;
+    }
+
+    private static final long VolumeIDTemplate$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static final long VolumeIDTemplate$offset() {
+        return VolumeIDTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static MemorySegment VolumeIDTemplate(MemorySegment struct) {
+        return struct.asSlice(VolumeIDTemplate$OFFSET, VolumeIDTemplate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static void VolumeIDTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VolumeIDTemplate$OFFSET, VolumeIDTemplate$LAYOUT.byteSize());
+    }
+
+    private static long[] VolumeIDTemplate$DIMS = { 40 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static long[] VolumeIDTemplate$dimensions() {
+        return VolumeIDTemplate$DIMS;
+    }
+    private static final VarHandle VolumeIDTemplate$ELEM_HANDLE = VolumeIDTemplate$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static byte VolumeIDTemplate(MemorySegment struct, long index0) {
+        return (byte)VolumeIDTemplate$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE VolumeIDTemplate[40]
+     * }
+     */
+    public static void VolumeIDTemplate(MemorySegment struct, long index0, byte fieldValue) {
+        VolumeIDTemplate$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

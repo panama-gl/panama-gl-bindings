@@ -2,100 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMS_DH_KEY_INFO {
+ *     DWORD dwVersion;
+ *     ALG_ID Algid;
+ *     LPSTR pszContentEncObjId;
+ *     CRYPT_DATA_BLOB PubInfo;
+ *     void *pReserved;
+ * }
+ * }
+ */
 public class _CMS_DH_KEY_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("Algid"),
-        Constants$root.C_POINTER$LAYOUT.withName("pszContentEncObjId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("PubInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pReserved")
-    ).withName("_CMS_DH_KEY_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMS_DH_KEY_INFO.$struct$LAYOUT;
+    _CMS_DH_KEY_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _CMS_DH_KEY_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_CMS_DH_KEY_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _CMS_DH_KEY_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_CMS_DH_KEY_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _CMS_DH_KEY_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Algid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Algid"));
-    public static VarHandle Algid$VH() {
-        return _CMS_DH_KEY_INFO.Algid$VH;
-    }
-    public static int Algid$get(MemorySegment seg) {
-        return (int)_CMS_DH_KEY_INFO.Algid$VH.get(seg);
-    }
-    public static void Algid$set( MemorySegment seg, int x) {
-        _CMS_DH_KEY_INFO.Algid$VH.set(seg, x);
-    }
-    public static int Algid$get(MemorySegment seg, long index) {
-        return (int)_CMS_DH_KEY_INFO.Algid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Algid$set(MemorySegment seg, long index, int x) {
-        _CMS_DH_KEY_INFO.Algid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszContentEncObjId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszContentEncObjId"));
-    public static VarHandle pszContentEncObjId$VH() {
-        return _CMS_DH_KEY_INFO.pszContentEncObjId$VH;
-    }
-    public static MemoryAddress pszContentEncObjId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMS_DH_KEY_INFO.pszContentEncObjId$VH.get(seg);
-    }
-    public static void pszContentEncObjId$set( MemorySegment seg, MemoryAddress x) {
-        _CMS_DH_KEY_INFO.pszContentEncObjId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszContentEncObjId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMS_DH_KEY_INFO.pszContentEncObjId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszContentEncObjId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMS_DH_KEY_INFO.pszContentEncObjId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PubInfo$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    static final VarHandle pReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pReserved"));
-    public static VarHandle pReserved$VH() {
-        return _CMS_DH_KEY_INFO.pReserved$VH;
-    }
-    public static MemoryAddress pReserved$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMS_DH_KEY_INFO.pReserved$VH.get(seg);
-    }
-    public static void pReserved$set( MemorySegment seg, MemoryAddress x) {
-        _CMS_DH_KEY_INFO.pReserved$VH.set(seg, x);
-    }
-    public static MemoryAddress pReserved$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMS_DH_KEY_INFO.pReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pReserved$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMS_DH_KEY_INFO.pReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_INT.withName("Algid"),
+        wgl_h.C_POINTER.withName("pszContentEncObjId"),
+        _CRYPTOAPI_BLOB.layout().withName("PubInfo"),
+        wgl_h.C_POINTER.withName("pReserved")
+    ).withName("_CMS_DH_KEY_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Algid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Algid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ALG_ID Algid
+     * }
+     */
+    public static final OfInt Algid$layout() {
+        return Algid$LAYOUT;
+    }
+
+    private static final long Algid$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ALG_ID Algid
+     * }
+     */
+    public static final long Algid$offset() {
+        return Algid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ALG_ID Algid
+     * }
+     */
+    public static int Algid(MemorySegment struct) {
+        return struct.get(Algid$LAYOUT, Algid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ALG_ID Algid
+     * }
+     */
+    public static void Algid(MemorySegment struct, int fieldValue) {
+        struct.set(Algid$LAYOUT, Algid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszContentEncObjId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszContentEncObjId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncObjId
+     * }
+     */
+    public static final AddressLayout pszContentEncObjId$layout() {
+        return pszContentEncObjId$LAYOUT;
+    }
+
+    private static final long pszContentEncObjId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncObjId
+     * }
+     */
+    public static final long pszContentEncObjId$offset() {
+        return pszContentEncObjId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncObjId
+     * }
+     */
+    public static MemorySegment pszContentEncObjId(MemorySegment struct) {
+        return struct.get(pszContentEncObjId$LAYOUT, pszContentEncObjId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncObjId
+     * }
+     */
+    public static void pszContentEncObjId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszContentEncObjId$LAYOUT, pszContentEncObjId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout PubInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PubInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static final GroupLayout PubInfo$layout() {
+        return PubInfo$LAYOUT;
+    }
+
+    private static final long PubInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static final long PubInfo$offset() {
+        return PubInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static MemorySegment PubInfo(MemorySegment struct) {
+        return struct.asSlice(PubInfo$OFFSET, PubInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static void PubInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PubInfo$OFFSET, PubInfo$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pReserved$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pReserved
+     * }
+     */
+    public static final AddressLayout pReserved$layout() {
+        return pReserved$LAYOUT;
+    }
+
+    private static final long pReserved$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pReserved
+     * }
+     */
+    public static final long pReserved$offset() {
+        return pReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pReserved
+     * }
+     */
+    public static MemorySegment pReserved(MemorySegment struct) {
+        return struct.get(pReserved$LAYOUT, pReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pReserved
+     * }
+     */
+    public static void pReserved(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pReserved$LAYOUT, pReserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

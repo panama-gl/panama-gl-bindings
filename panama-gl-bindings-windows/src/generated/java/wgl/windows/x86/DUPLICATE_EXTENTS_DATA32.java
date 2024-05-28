@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DUPLICATE_EXTENTS_DATA32 {
+ *     UINT32 FileHandle;
+ *     LARGE_INTEGER SourceFileOffset;
+ *     LARGE_INTEGER TargetFileOffset;
+ *     LARGE_INTEGER ByteCount;
+ * } DUPLICATE_EXTENTS_DATA32
+ * }
+ */
 public class DUPLICATE_EXTENTS_DATA32 extends _DUPLICATE_EXTENTS_DATA32 {
 
+    DUPLICATE_EXTENTS_DATA32() {
+        // Should not be called directly
+    }
 }
-
 

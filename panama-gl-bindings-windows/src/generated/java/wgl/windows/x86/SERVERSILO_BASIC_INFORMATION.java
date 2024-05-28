@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SERVERSILO_BASIC_INFORMATION {
+ *     DWORD ServiceSessionId;
+ *     SERVERSILO_STATE State;
+ *     DWORD ExitStatus;
+ *     BOOLEAN IsDownlevelContainer;
+ *     PVOID ApiSetSchema;
+ *     PVOID HostApiSetSchema;
+ * } SERVERSILO_BASIC_INFORMATION
+ * }
+ */
 public class SERVERSILO_BASIC_INFORMATION extends _SERVERSILO_BASIC_INFORMATION {
 
+    SERVERSILO_BASIC_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_LB_PROVISIONING_MAP_RESOURCES {
+ *     DWORD Size;
+ *     DWORD Version;
+ *     BYTE AvailableMappingResourcesValid : 1;
+ *     BYTE UsedMappingResourcesValid : 1;
+ *     BYTE Reserved0 : 6;
+ *     BYTE Reserved1[3];
+ *     BYTE AvailableMappingResourcesScope : 2;
+ *     BYTE UsedMappingResourcesScope : 2;
+ *     BYTE Reserved2 : 4;
+ *     BYTE Reserved3[3];
+ *     DWORDLONG AvailableMappingResources;
+ *     DWORDLONG UsedMappingResources;
+ * } STORAGE_LB_PROVISIONING_MAP_RESOURCES
+ * }
+ */
 public class STORAGE_LB_PROVISIONING_MAP_RESOURCES extends _STORAGE_LB_PROVISIONING_MAP_RESOURCES {
 
+    STORAGE_LB_PROVISIONING_MAP_RESOURCES() {
+        // Should not be called directly
+    }
 }
-
 

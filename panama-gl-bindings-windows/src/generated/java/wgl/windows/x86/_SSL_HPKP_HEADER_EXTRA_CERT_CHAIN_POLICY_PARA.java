@@ -2,79 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwReserved;
+ *     LPWSTR pwszServerName;
+ *     LPSTR rgpszHpkpValue[2];
+ * }
+ * }
+ */
 public class _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved"),
-        Constants$root.C_POINTER$LAYOUT.withName("pwszServerName"),
-        MemoryLayout.sequenceLayout(2, Constants$root.C_POINTER$LAYOUT).withName("rgpszHpkpValue")
-    ).withName("_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA");
-    public static MemoryLayout $LAYOUT() {
-        return _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.$struct$LAYOUT;
+    _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved"));
-    public static VarHandle dwReserved$VH() {
-        return _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.dwReserved$VH;
-    }
-    public static int dwReserved$get(MemorySegment seg) {
-        return (int)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.dwReserved$VH.get(seg);
-    }
-    public static void dwReserved$set( MemorySegment seg, int x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.dwReserved$VH.set(seg, x);
-    }
-    public static int dwReserved$get(MemorySegment seg, long index) {
-        return (int)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.dwReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved$set(MemorySegment seg, long index, int x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.dwReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszServerName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszServerName"));
-    public static VarHandle pwszServerName$VH() {
-        return _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.pwszServerName$VH;
-    }
-    public static MemoryAddress pwszServerName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.pwszServerName$VH.get(seg);
-    }
-    public static void pwszServerName$set( MemorySegment seg, MemoryAddress x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.pwszServerName$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszServerName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.pwszServerName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszServerName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA.pwszServerName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgpszHpkpValue$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwReserved"),
+        wgl_h.C_POINTER.withName("pwszServerName"),
+        MemoryLayout.sequenceLayout(2, wgl_h.C_POINTER).withName("rgpszHpkpValue")
+    ).withName("_SSL_HPKP_HEADER_EXTRA_CERT_CHAIN_POLICY_PARA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final OfInt dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static int dwReserved(MemorySegment struct) {
+        return struct.get(dwReserved$LAYOUT, dwReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved$LAYOUT, dwReserved$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszServerName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszServerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszServerName
+     * }
+     */
+    public static final AddressLayout pwszServerName$layout() {
+        return pwszServerName$LAYOUT;
+    }
+
+    private static final long pwszServerName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszServerName
+     * }
+     */
+    public static final long pwszServerName$offset() {
+        return pwszServerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszServerName
+     * }
+     */
+    public static MemorySegment pwszServerName(MemorySegment struct) {
+        return struct.get(pwszServerName$LAYOUT, pwszServerName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszServerName
+     * }
+     */
+    public static void pwszServerName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszServerName$LAYOUT, pwszServerName$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgpszHpkpValue$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgpszHpkpValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static final SequenceLayout rgpszHpkpValue$layout() {
+        return rgpszHpkpValue$LAYOUT;
+    }
+
+    private static final long rgpszHpkpValue$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static final long rgpszHpkpValue$offset() {
+        return rgpszHpkpValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static MemorySegment rgpszHpkpValue(MemorySegment struct) {
+        return struct.asSlice(rgpszHpkpValue$OFFSET, rgpszHpkpValue$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static void rgpszHpkpValue(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgpszHpkpValue$OFFSET, rgpszHpkpValue$LAYOUT.byteSize());
+    }
+
+    private static long[] rgpszHpkpValue$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static long[] rgpszHpkpValue$dimensions() {
+        return rgpszHpkpValue$DIMS;
+    }
+    private static final VarHandle rgpszHpkpValue$ELEM_HANDLE = rgpszHpkpValue$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static MemorySegment rgpszHpkpValue(MemorySegment struct, long index0) {
+        return (MemorySegment)rgpszHpkpValue$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * LPSTR rgpszHpkpValue[2]
+     * }
+     */
+    public static void rgpszHpkpValue(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        rgpszHpkpValue$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

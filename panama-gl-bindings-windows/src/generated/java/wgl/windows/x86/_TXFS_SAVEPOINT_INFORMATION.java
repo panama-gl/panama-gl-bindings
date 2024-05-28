@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TXFS_SAVEPOINT_INFORMATION {
+ *     HANDLE KtmTransaction;
+ *     DWORD ActionCode;
+ *     DWORD SavepointId;
+ * }
+ * }
+ */
 public class _TXFS_SAVEPOINT_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("KtmTransaction"),
-        Constants$root.C_LONG$LAYOUT.withName("ActionCode"),
-        Constants$root.C_LONG$LAYOUT.withName("SavepointId")
-    ).withName("_TXFS_SAVEPOINT_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _TXFS_SAVEPOINT_INFORMATION.$struct$LAYOUT;
+    _TXFS_SAVEPOINT_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle KtmTransaction$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("KtmTransaction"));
-    public static VarHandle KtmTransaction$VH() {
-        return _TXFS_SAVEPOINT_INFORMATION.KtmTransaction$VH;
-    }
-    public static MemoryAddress KtmTransaction$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TXFS_SAVEPOINT_INFORMATION.KtmTransaction$VH.get(seg);
-    }
-    public static void KtmTransaction$set( MemorySegment seg, MemoryAddress x) {
-        _TXFS_SAVEPOINT_INFORMATION.KtmTransaction$VH.set(seg, x);
-    }
-    public static MemoryAddress KtmTransaction$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TXFS_SAVEPOINT_INFORMATION.KtmTransaction$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void KtmTransaction$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TXFS_SAVEPOINT_INFORMATION.KtmTransaction$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ActionCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActionCode"));
-    public static VarHandle ActionCode$VH() {
-        return _TXFS_SAVEPOINT_INFORMATION.ActionCode$VH;
-    }
-    public static int ActionCode$get(MemorySegment seg) {
-        return (int)_TXFS_SAVEPOINT_INFORMATION.ActionCode$VH.get(seg);
-    }
-    public static void ActionCode$set( MemorySegment seg, int x) {
-        _TXFS_SAVEPOINT_INFORMATION.ActionCode$VH.set(seg, x);
-    }
-    public static int ActionCode$get(MemorySegment seg, long index) {
-        return (int)_TXFS_SAVEPOINT_INFORMATION.ActionCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActionCode$set(MemorySegment seg, long index, int x) {
-        _TXFS_SAVEPOINT_INFORMATION.ActionCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SavepointId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SavepointId"));
-    public static VarHandle SavepointId$VH() {
-        return _TXFS_SAVEPOINT_INFORMATION.SavepointId$VH;
-    }
-    public static int SavepointId$get(MemorySegment seg) {
-        return (int)_TXFS_SAVEPOINT_INFORMATION.SavepointId$VH.get(seg);
-    }
-    public static void SavepointId$set( MemorySegment seg, int x) {
-        _TXFS_SAVEPOINT_INFORMATION.SavepointId$VH.set(seg, x);
-    }
-    public static int SavepointId$get(MemorySegment seg, long index) {
-        return (int)_TXFS_SAVEPOINT_INFORMATION.SavepointId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SavepointId$set(MemorySegment seg, long index, int x) {
-        _TXFS_SAVEPOINT_INFORMATION.SavepointId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("KtmTransaction"),
+        wgl_h.C_LONG.withName("ActionCode"),
+        wgl_h.C_LONG.withName("SavepointId")
+    ).withName("_TXFS_SAVEPOINT_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout KtmTransaction$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("KtmTransaction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE KtmTransaction
+     * }
+     */
+    public static final AddressLayout KtmTransaction$layout() {
+        return KtmTransaction$LAYOUT;
+    }
+
+    private static final long KtmTransaction$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE KtmTransaction
+     * }
+     */
+    public static final long KtmTransaction$offset() {
+        return KtmTransaction$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE KtmTransaction
+     * }
+     */
+    public static MemorySegment KtmTransaction(MemorySegment struct) {
+        return struct.get(KtmTransaction$LAYOUT, KtmTransaction$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE KtmTransaction
+     * }
+     */
+    public static void KtmTransaction(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(KtmTransaction$LAYOUT, KtmTransaction$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ActionCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ActionCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static final OfInt ActionCode$layout() {
+        return ActionCode$LAYOUT;
+    }
+
+    private static final long ActionCode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static final long ActionCode$offset() {
+        return ActionCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static int ActionCode(MemorySegment struct) {
+        return struct.get(ActionCode$LAYOUT, ActionCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ActionCode
+     * }
+     */
+    public static void ActionCode(MemorySegment struct, int fieldValue) {
+        struct.set(ActionCode$LAYOUT, ActionCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SavepointId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SavepointId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SavepointId
+     * }
+     */
+    public static final OfInt SavepointId$layout() {
+        return SavepointId$LAYOUT;
+    }
+
+    private static final long SavepointId$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SavepointId
+     * }
+     */
+    public static final long SavepointId$offset() {
+        return SavepointId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SavepointId
+     * }
+     */
+    public static int SavepointId(MemorySegment struct) {
+        return struct.get(SavepointId$LAYOUT, SavepointId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SavepointId
+     * }
+     */
+    public static void SavepointId(MemorySegment struct, int fieldValue) {
+        struct.set(SavepointId$LAYOUT, SavepointId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

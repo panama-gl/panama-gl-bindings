@@ -2,232 +2,640 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_INFO {
+ *     union {
+ *         DWORD dwOemId;
+ *         struct {
+ *             WORD wProcessorArchitecture;
+ *             WORD wReserved;
+ *         };
+ *     };
+ *     DWORD dwPageSize;
+ *     LPVOID lpMinimumApplicationAddress;
+ *     LPVOID lpMaximumApplicationAddress;
+ *     DWORD_PTR dwActiveProcessorMask;
+ *     DWORD dwNumberOfProcessors;
+ *     DWORD dwProcessorType;
+ *     DWORD dwAllocationGranularity;
+ *     WORD wProcessorLevel;
+ *     WORD wProcessorRevision;
+ * }
+ * }
+ */
 public class _SYSTEM_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwOemId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("wProcessorArchitecture"),
-                Constants$root.C_SHORT$LAYOUT.withName("wReserved")
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("dwPageSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpMinimumApplicationAddress"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpMaximumApplicationAddress"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwActiveProcessorMask"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNumberOfProcessors"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProcessorType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAllocationGranularity"),
-        Constants$root.C_SHORT$LAYOUT.withName("wProcessorLevel"),
-        Constants$root.C_SHORT$LAYOUT.withName("wProcessorRevision")
-    ).withName("_SYSTEM_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_INFO.$struct$LAYOUT;
+    _SYSTEM_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwOemId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("dwOemId"));
-    public static VarHandle dwOemId$VH() {
-        return _SYSTEM_INFO.dwOemId$VH;
-    }
-    public static int dwOemId$get(MemorySegment seg) {
-        return (int)_SYSTEM_INFO.dwOemId$VH.get(seg);
-    }
-    public static void dwOemId$set( MemorySegment seg, int x) {
-        _SYSTEM_INFO.dwOemId$VH.set(seg, x);
-    }
-    public static int dwOemId$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_INFO.dwOemId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwOemId$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_INFO.dwOemId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wProcessorArchitecture$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("wProcessorArchitecture"));
-    public static VarHandle wProcessorArchitecture$VH() {
-        return _SYSTEM_INFO.wProcessorArchitecture$VH;
-    }
-    public static short wProcessorArchitecture$get(MemorySegment seg) {
-        return (short)_SYSTEM_INFO.wProcessorArchitecture$VH.get(seg);
-    }
-    public static void wProcessorArchitecture$set( MemorySegment seg, short x) {
-        _SYSTEM_INFO.wProcessorArchitecture$VH.set(seg, x);
-    }
-    public static short wProcessorArchitecture$get(MemorySegment seg, long index) {
-        return (short)_SYSTEM_INFO.wProcessorArchitecture$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wProcessorArchitecture$set(MemorySegment seg, long index, short x) {
-        _SYSTEM_INFO.wProcessorArchitecture$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("wReserved"));
-    public static VarHandle wReserved$VH() {
-        return _SYSTEM_INFO.wReserved$VH;
-    }
-    public static short wReserved$get(MemorySegment seg) {
-        return (short)_SYSTEM_INFO.wReserved$VH.get(seg);
-    }
-    public static void wReserved$set( MemorySegment seg, short x) {
-        _SYSTEM_INFO.wReserved$VH.set(seg, x);
-    }
-    public static short wReserved$get(MemorySegment seg, long index) {
-        return (short)_SYSTEM_INFO.wReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wReserved$set(MemorySegment seg, long index, short x) {
-        _SYSTEM_INFO.wReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwPageSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwPageSize"));
-    public static VarHandle dwPageSize$VH() {
-        return _SYSTEM_INFO.dwPageSize$VH;
-    }
-    public static int dwPageSize$get(MemorySegment seg) {
-        return (int)_SYSTEM_INFO.dwPageSize$VH.get(seg);
-    }
-    public static void dwPageSize$set( MemorySegment seg, int x) {
-        _SYSTEM_INFO.dwPageSize$VH.set(seg, x);
-    }
-    public static int dwPageSize$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_INFO.dwPageSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwPageSize$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_INFO.dwPageSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpMinimumApplicationAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpMinimumApplicationAddress"));
-    public static VarHandle lpMinimumApplicationAddress$VH() {
-        return _SYSTEM_INFO.lpMinimumApplicationAddress$VH;
-    }
-    public static MemoryAddress lpMinimumApplicationAddress$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SYSTEM_INFO.lpMinimumApplicationAddress$VH.get(seg);
-    }
-    public static void lpMinimumApplicationAddress$set( MemorySegment seg, MemoryAddress x) {
-        _SYSTEM_INFO.lpMinimumApplicationAddress$VH.set(seg, x);
-    }
-    public static MemoryAddress lpMinimumApplicationAddress$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SYSTEM_INFO.lpMinimumApplicationAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpMinimumApplicationAddress$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SYSTEM_INFO.lpMinimumApplicationAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpMaximumApplicationAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpMaximumApplicationAddress"));
-    public static VarHandle lpMaximumApplicationAddress$VH() {
-        return _SYSTEM_INFO.lpMaximumApplicationAddress$VH;
-    }
-    public static MemoryAddress lpMaximumApplicationAddress$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SYSTEM_INFO.lpMaximumApplicationAddress$VH.get(seg);
-    }
-    public static void lpMaximumApplicationAddress$set( MemorySegment seg, MemoryAddress x) {
-        _SYSTEM_INFO.lpMaximumApplicationAddress$VH.set(seg, x);
-    }
-    public static MemoryAddress lpMaximumApplicationAddress$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SYSTEM_INFO.lpMaximumApplicationAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpMaximumApplicationAddress$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SYSTEM_INFO.lpMaximumApplicationAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwActiveProcessorMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwActiveProcessorMask"));
-    public static VarHandle dwActiveProcessorMask$VH() {
-        return _SYSTEM_INFO.dwActiveProcessorMask$VH;
-    }
-    public static long dwActiveProcessorMask$get(MemorySegment seg) {
-        return (long)_SYSTEM_INFO.dwActiveProcessorMask$VH.get(seg);
-    }
-    public static void dwActiveProcessorMask$set( MemorySegment seg, long x) {
-        _SYSTEM_INFO.dwActiveProcessorMask$VH.set(seg, x);
-    }
-    public static long dwActiveProcessorMask$get(MemorySegment seg, long index) {
-        return (long)_SYSTEM_INFO.dwActiveProcessorMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwActiveProcessorMask$set(MemorySegment seg, long index, long x) {
-        _SYSTEM_INFO.dwActiveProcessorMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNumberOfProcessors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNumberOfProcessors"));
-    public static VarHandle dwNumberOfProcessors$VH() {
-        return _SYSTEM_INFO.dwNumberOfProcessors$VH;
-    }
-    public static int dwNumberOfProcessors$get(MemorySegment seg) {
-        return (int)_SYSTEM_INFO.dwNumberOfProcessors$VH.get(seg);
-    }
-    public static void dwNumberOfProcessors$set( MemorySegment seg, int x) {
-        _SYSTEM_INFO.dwNumberOfProcessors$VH.set(seg, x);
-    }
-    public static int dwNumberOfProcessors$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_INFO.dwNumberOfProcessors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNumberOfProcessors$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_INFO.dwNumberOfProcessors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProcessorType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProcessorType"));
-    public static VarHandle dwProcessorType$VH() {
-        return _SYSTEM_INFO.dwProcessorType$VH;
-    }
-    public static int dwProcessorType$get(MemorySegment seg) {
-        return (int)_SYSTEM_INFO.dwProcessorType$VH.get(seg);
-    }
-    public static void dwProcessorType$set( MemorySegment seg, int x) {
-        _SYSTEM_INFO.dwProcessorType$VH.set(seg, x);
-    }
-    public static int dwProcessorType$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_INFO.dwProcessorType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProcessorType$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_INFO.dwProcessorType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAllocationGranularity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAllocationGranularity"));
-    public static VarHandle dwAllocationGranularity$VH() {
-        return _SYSTEM_INFO.dwAllocationGranularity$VH;
-    }
-    public static int dwAllocationGranularity$get(MemorySegment seg) {
-        return (int)_SYSTEM_INFO.dwAllocationGranularity$VH.get(seg);
-    }
-    public static void dwAllocationGranularity$set( MemorySegment seg, int x) {
-        _SYSTEM_INFO.dwAllocationGranularity$VH.set(seg, x);
-    }
-    public static int dwAllocationGranularity$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_INFO.dwAllocationGranularity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAllocationGranularity$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_INFO.dwAllocationGranularity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wProcessorLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wProcessorLevel"));
-    public static VarHandle wProcessorLevel$VH() {
-        return _SYSTEM_INFO.wProcessorLevel$VH;
-    }
-    public static short wProcessorLevel$get(MemorySegment seg) {
-        return (short)_SYSTEM_INFO.wProcessorLevel$VH.get(seg);
-    }
-    public static void wProcessorLevel$set( MemorySegment seg, short x) {
-        _SYSTEM_INFO.wProcessorLevel$VH.set(seg, x);
-    }
-    public static short wProcessorLevel$get(MemorySegment seg, long index) {
-        return (short)_SYSTEM_INFO.wProcessorLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wProcessorLevel$set(MemorySegment seg, long index, short x) {
-        _SYSTEM_INFO.wProcessorLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wProcessorRevision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wProcessorRevision"));
-    public static VarHandle wProcessorRevision$VH() {
-        return _SYSTEM_INFO.wProcessorRevision$VH;
-    }
-    public static short wProcessorRevision$get(MemorySegment seg) {
-        return (short)_SYSTEM_INFO.wProcessorRevision$VH.get(seg);
-    }
-    public static void wProcessorRevision$set( MemorySegment seg, short x) {
-        _SYSTEM_INFO.wProcessorRevision$VH.set(seg, x);
-    }
-    public static short wProcessorRevision$get(MemorySegment seg, long index) {
-        return (short)_SYSTEM_INFO.wProcessorRevision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wProcessorRevision$set(MemorySegment seg, long index, short x) {
-        _SYSTEM_INFO.wProcessorRevision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("dwOemId"),
+            MemoryLayout.structLayout(
+                freeglut_h.C_SHORT.withName("wProcessorArchitecture"),
+                freeglut_h.C_SHORT.withName("wReserved")
+            ).withName("$anon$50:9")
+        ).withName("$anon$48:5"),
+        freeglut_h.C_LONG.withName("dwPageSize"),
+        freeglut_h.C_POINTER.withName("lpMinimumApplicationAddress"),
+        freeglut_h.C_POINTER.withName("lpMaximumApplicationAddress"),
+        freeglut_h.C_LONG_LONG.withName("dwActiveProcessorMask"),
+        freeglut_h.C_LONG.withName("dwNumberOfProcessors"),
+        freeglut_h.C_LONG.withName("dwProcessorType"),
+        freeglut_h.C_LONG.withName("dwAllocationGranularity"),
+        freeglut_h.C_SHORT.withName("wProcessorLevel"),
+        freeglut_h.C_SHORT.withName("wProcessorRevision")
+    ).withName("_SYSTEM_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwOemId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$48:5"), groupElement("dwOemId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwOemId
+     * }
+     */
+    public static final OfInt dwOemId$layout() {
+        return dwOemId$LAYOUT;
+    }
+
+    private static final long dwOemId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwOemId
+     * }
+     */
+    public static final long dwOemId$offset() {
+        return dwOemId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwOemId
+     * }
+     */
+    public static int dwOemId(MemorySegment struct) {
+        return struct.get(dwOemId$LAYOUT, dwOemId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwOemId
+     * }
+     */
+    public static void dwOemId(MemorySegment struct, int fieldValue) {
+        struct.set(dwOemId$LAYOUT, dwOemId$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wProcessorArchitecture$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$48:5"), groupElement("$anon$50:9"), groupElement("wProcessorArchitecture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wProcessorArchitecture
+     * }
+     */
+    public static final OfShort wProcessorArchitecture$layout() {
+        return wProcessorArchitecture$LAYOUT;
+    }
+
+    private static final long wProcessorArchitecture$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wProcessorArchitecture
+     * }
+     */
+    public static final long wProcessorArchitecture$offset() {
+        return wProcessorArchitecture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorArchitecture
+     * }
+     */
+    public static short wProcessorArchitecture(MemorySegment struct) {
+        return struct.get(wProcessorArchitecture$LAYOUT, wProcessorArchitecture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorArchitecture
+     * }
+     */
+    public static void wProcessorArchitecture(MemorySegment struct, short fieldValue) {
+        struct.set(wProcessorArchitecture$LAYOUT, wProcessorArchitecture$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wReserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$48:5"), groupElement("$anon$50:9"), groupElement("wReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static final OfShort wReserved$layout() {
+        return wReserved$LAYOUT;
+    }
+
+    private static final long wReserved$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static final long wReserved$offset() {
+        return wReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static short wReserved(MemorySegment struct) {
+        return struct.get(wReserved$LAYOUT, wReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wReserved
+     * }
+     */
+    public static void wReserved(MemorySegment struct, short fieldValue) {
+        struct.set(wReserved$LAYOUT, wReserved$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwPageSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwPageSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwPageSize
+     * }
+     */
+    public static final OfInt dwPageSize$layout() {
+        return dwPageSize$LAYOUT;
+    }
+
+    private static final long dwPageSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwPageSize
+     * }
+     */
+    public static final long dwPageSize$offset() {
+        return dwPageSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwPageSize
+     * }
+     */
+    public static int dwPageSize(MemorySegment struct) {
+        return struct.get(dwPageSize$LAYOUT, dwPageSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwPageSize
+     * }
+     */
+    public static void dwPageSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwPageSize$LAYOUT, dwPageSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpMinimumApplicationAddress$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpMinimumApplicationAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpMinimumApplicationAddress
+     * }
+     */
+    public static final AddressLayout lpMinimumApplicationAddress$layout() {
+        return lpMinimumApplicationAddress$LAYOUT;
+    }
+
+    private static final long lpMinimumApplicationAddress$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpMinimumApplicationAddress
+     * }
+     */
+    public static final long lpMinimumApplicationAddress$offset() {
+        return lpMinimumApplicationAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpMinimumApplicationAddress
+     * }
+     */
+    public static MemorySegment lpMinimumApplicationAddress(MemorySegment struct) {
+        return struct.get(lpMinimumApplicationAddress$LAYOUT, lpMinimumApplicationAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpMinimumApplicationAddress
+     * }
+     */
+    public static void lpMinimumApplicationAddress(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpMinimumApplicationAddress$LAYOUT, lpMinimumApplicationAddress$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpMaximumApplicationAddress$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpMaximumApplicationAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpMaximumApplicationAddress
+     * }
+     */
+    public static final AddressLayout lpMaximumApplicationAddress$layout() {
+        return lpMaximumApplicationAddress$LAYOUT;
+    }
+
+    private static final long lpMaximumApplicationAddress$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpMaximumApplicationAddress
+     * }
+     */
+    public static final long lpMaximumApplicationAddress$offset() {
+        return lpMaximumApplicationAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpMaximumApplicationAddress
+     * }
+     */
+    public static MemorySegment lpMaximumApplicationAddress(MemorySegment struct) {
+        return struct.get(lpMaximumApplicationAddress$LAYOUT, lpMaximumApplicationAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpMaximumApplicationAddress
+     * }
+     */
+    public static void lpMaximumApplicationAddress(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpMaximumApplicationAddress$LAYOUT, lpMaximumApplicationAddress$OFFSET, fieldValue);
+    }
+
+    private static final OfLong dwActiveProcessorMask$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwActiveProcessorMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwActiveProcessorMask
+     * }
+     */
+    public static final OfLong dwActiveProcessorMask$layout() {
+        return dwActiveProcessorMask$LAYOUT;
+    }
+
+    private static final long dwActiveProcessorMask$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwActiveProcessorMask
+     * }
+     */
+    public static final long dwActiveProcessorMask$offset() {
+        return dwActiveProcessorMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwActiveProcessorMask
+     * }
+     */
+    public static long dwActiveProcessorMask(MemorySegment struct) {
+        return struct.get(dwActiveProcessorMask$LAYOUT, dwActiveProcessorMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwActiveProcessorMask
+     * }
+     */
+    public static void dwActiveProcessorMask(MemorySegment struct, long fieldValue) {
+        struct.set(dwActiveProcessorMask$LAYOUT, dwActiveProcessorMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNumberOfProcessors$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNumberOfProcessors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfProcessors
+     * }
+     */
+    public static final OfInt dwNumberOfProcessors$layout() {
+        return dwNumberOfProcessors$LAYOUT;
+    }
+
+    private static final long dwNumberOfProcessors$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfProcessors
+     * }
+     */
+    public static final long dwNumberOfProcessors$offset() {
+        return dwNumberOfProcessors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfProcessors
+     * }
+     */
+    public static int dwNumberOfProcessors(MemorySegment struct) {
+        return struct.get(dwNumberOfProcessors$LAYOUT, dwNumberOfProcessors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNumberOfProcessors
+     * }
+     */
+    public static void dwNumberOfProcessors(MemorySegment struct, int fieldValue) {
+        struct.set(dwNumberOfProcessors$LAYOUT, dwNumberOfProcessors$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProcessorType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProcessorType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessorType
+     * }
+     */
+    public static final OfInt dwProcessorType$layout() {
+        return dwProcessorType$LAYOUT;
+    }
+
+    private static final long dwProcessorType$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessorType
+     * }
+     */
+    public static final long dwProcessorType$offset() {
+        return dwProcessorType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessorType
+     * }
+     */
+    public static int dwProcessorType(MemorySegment struct) {
+        return struct.get(dwProcessorType$LAYOUT, dwProcessorType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProcessorType
+     * }
+     */
+    public static void dwProcessorType(MemorySegment struct, int fieldValue) {
+        struct.set(dwProcessorType$LAYOUT, dwProcessorType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAllocationGranularity$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAllocationGranularity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAllocationGranularity
+     * }
+     */
+    public static final OfInt dwAllocationGranularity$layout() {
+        return dwAllocationGranularity$LAYOUT;
+    }
+
+    private static final long dwAllocationGranularity$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAllocationGranularity
+     * }
+     */
+    public static final long dwAllocationGranularity$offset() {
+        return dwAllocationGranularity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAllocationGranularity
+     * }
+     */
+    public static int dwAllocationGranularity(MemorySegment struct) {
+        return struct.get(dwAllocationGranularity$LAYOUT, dwAllocationGranularity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAllocationGranularity
+     * }
+     */
+    public static void dwAllocationGranularity(MemorySegment struct, int fieldValue) {
+        struct.set(dwAllocationGranularity$LAYOUT, dwAllocationGranularity$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wProcessorLevel$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wProcessorLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wProcessorLevel
+     * }
+     */
+    public static final OfShort wProcessorLevel$layout() {
+        return wProcessorLevel$LAYOUT;
+    }
+
+    private static final long wProcessorLevel$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wProcessorLevel
+     * }
+     */
+    public static final long wProcessorLevel$offset() {
+        return wProcessorLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorLevel
+     * }
+     */
+    public static short wProcessorLevel(MemorySegment struct) {
+        return struct.get(wProcessorLevel$LAYOUT, wProcessorLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorLevel
+     * }
+     */
+    public static void wProcessorLevel(MemorySegment struct, short fieldValue) {
+        struct.set(wProcessorLevel$LAYOUT, wProcessorLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wProcessorRevision$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wProcessorRevision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wProcessorRevision
+     * }
+     */
+    public static final OfShort wProcessorRevision$layout() {
+        return wProcessorRevision$LAYOUT;
+    }
+
+    private static final long wProcessorRevision$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wProcessorRevision
+     * }
+     */
+    public static final long wProcessorRevision$offset() {
+        return wProcessorRevision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorRevision
+     * }
+     */
+    public static short wProcessorRevision(MemorySegment struct) {
+        return struct.get(wProcessorRevision$LAYOUT, wProcessorRevision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wProcessorRevision
+     * }
+     */
+    public static void wProcessorRevision(MemorySegment struct, short fieldValue) {
+        struct.set(wProcessorRevision$LAYOUT, wProcessorRevision$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

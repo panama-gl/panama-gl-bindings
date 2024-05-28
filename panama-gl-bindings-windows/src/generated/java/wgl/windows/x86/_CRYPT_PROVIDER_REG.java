@@ -2,93 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_PROVIDER_REG {
+ *     ULONG cAliases;
+ *     PWSTR *rgpszAliases;
+ *     PCRYPT_IMAGE_REG pUM;
+ *     PCRYPT_IMAGE_REG pKM;
+ * }
+ * }
+ */
 public class _CRYPT_PROVIDER_REG {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cAliases"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpszAliases"),
-        Constants$root.C_POINTER$LAYOUT.withName("pUM"),
-        Constants$root.C_POINTER$LAYOUT.withName("pKM")
-    ).withName("_CRYPT_PROVIDER_REG");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_PROVIDER_REG.$struct$LAYOUT;
+    _CRYPT_PROVIDER_REG() {
+        // Should not be called directly
     }
-    static final VarHandle cAliases$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cAliases"));
-    public static VarHandle cAliases$VH() {
-        return _CRYPT_PROVIDER_REG.cAliases$VH;
-    }
-    public static int cAliases$get(MemorySegment seg) {
-        return (int)_CRYPT_PROVIDER_REG.cAliases$VH.get(seg);
-    }
-    public static void cAliases$set( MemorySegment seg, int x) {
-        _CRYPT_PROVIDER_REG.cAliases$VH.set(seg, x);
-    }
-    public static int cAliases$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_PROVIDER_REG.cAliases$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cAliases$set(MemorySegment seg, long index, int x) {
-        _CRYPT_PROVIDER_REG.cAliases$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpszAliases$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpszAliases"));
-    public static VarHandle rgpszAliases$VH() {
-        return _CRYPT_PROVIDER_REG.rgpszAliases$VH;
-    }
-    public static MemoryAddress rgpszAliases$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.rgpszAliases$VH.get(seg);
-    }
-    public static void rgpszAliases$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.rgpszAliases$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpszAliases$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.rgpszAliases$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpszAliases$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.rgpszAliases$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pUM$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pUM"));
-    public static VarHandle pUM$VH() {
-        return _CRYPT_PROVIDER_REG.pUM$VH;
-    }
-    public static MemoryAddress pUM$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.pUM$VH.get(seg);
-    }
-    public static void pUM$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.pUM$VH.set(seg, x);
-    }
-    public static MemoryAddress pUM$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.pUM$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pUM$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.pUM$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pKM$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pKM"));
-    public static VarHandle pKM$VH() {
-        return _CRYPT_PROVIDER_REG.pKM$VH;
-    }
-    public static MemoryAddress pKM$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.pKM$VH.get(seg);
-    }
-    public static void pKM$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.pKM$VH.set(seg, x);
-    }
-    public static MemoryAddress pKM$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_PROVIDER_REG.pKM$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pKM$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_PROVIDER_REG.pKM$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cAliases"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpszAliases"),
+        wgl_h.C_POINTER.withName("pUM"),
+        wgl_h.C_POINTER.withName("pKM")
+    ).withName("_CRYPT_PROVIDER_REG");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cAliases$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cAliases"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cAliases
+     * }
+     */
+    public static final OfInt cAliases$layout() {
+        return cAliases$LAYOUT;
+    }
+
+    private static final long cAliases$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cAliases
+     * }
+     */
+    public static final long cAliases$offset() {
+        return cAliases$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cAliases
+     * }
+     */
+    public static int cAliases(MemorySegment struct) {
+        return struct.get(cAliases$LAYOUT, cAliases$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cAliases
+     * }
+     */
+    public static void cAliases(MemorySegment struct, int fieldValue) {
+        struct.set(cAliases$LAYOUT, cAliases$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpszAliases$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpszAliases"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszAliases
+     * }
+     */
+    public static final AddressLayout rgpszAliases$layout() {
+        return rgpszAliases$LAYOUT;
+    }
+
+    private static final long rgpszAliases$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszAliases
+     * }
+     */
+    public static final long rgpszAliases$offset() {
+        return rgpszAliases$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszAliases
+     * }
+     */
+    public static MemorySegment rgpszAliases(MemorySegment struct) {
+        return struct.get(rgpszAliases$LAYOUT, rgpszAliases$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PWSTR *rgpszAliases
+     * }
+     */
+    public static void rgpszAliases(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpszAliases$LAYOUT, rgpszAliases$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pUM$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pUM"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pUM
+     * }
+     */
+    public static final AddressLayout pUM$layout() {
+        return pUM$LAYOUT;
+    }
+
+    private static final long pUM$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pUM
+     * }
+     */
+    public static final long pUM$offset() {
+        return pUM$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pUM
+     * }
+     */
+    public static MemorySegment pUM(MemorySegment struct) {
+        return struct.get(pUM$LAYOUT, pUM$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pUM
+     * }
+     */
+    public static void pUM(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pUM$LAYOUT, pUM$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pKM$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pKM"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pKM
+     * }
+     */
+    public static final AddressLayout pKM$layout() {
+        return pKM$LAYOUT;
+    }
+
+    private static final long pKM$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pKM
+     * }
+     */
+    public static final long pKM$offset() {
+        return pKM$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pKM
+     * }
+     */
+    public static MemorySegment pKM(MemorySegment struct) {
+        return struct.get(pKM$LAYOUT, pKM$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_IMAGE_REG pKM
+     * }
+     */
+    public static void pKM(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pKM$LAYOUT, pKM$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

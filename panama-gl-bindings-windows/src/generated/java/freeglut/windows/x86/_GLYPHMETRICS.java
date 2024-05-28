@@ -2,99 +2,310 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GLYPHMETRICS {
+ *     UINT gmBlackBoxX;
+ *     UINT gmBlackBoxY;
+ *     POINT gmptGlyphOrigin;
+ *     short gmCellIncX;
+ *     short gmCellIncY;
+ * }
+ * }
+ */
 public class _GLYPHMETRICS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("gmBlackBoxX"),
-        Constants$root.C_LONG$LAYOUT.withName("gmBlackBoxY"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("gmptGlyphOrigin"),
-        Constants$root.C_SHORT$LAYOUT.withName("gmCellIncX"),
-        Constants$root.C_SHORT$LAYOUT.withName("gmCellIncY")
-    ).withName("_GLYPHMETRICS");
-    public static MemoryLayout $LAYOUT() {
-        return _GLYPHMETRICS.$struct$LAYOUT;
+    _GLYPHMETRICS() {
+        // Should not be called directly
     }
-    static final VarHandle gmBlackBoxX$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gmBlackBoxX"));
-    public static VarHandle gmBlackBoxX$VH() {
-        return _GLYPHMETRICS.gmBlackBoxX$VH;
-    }
-    public static int gmBlackBoxX$get(MemorySegment seg) {
-        return (int)_GLYPHMETRICS.gmBlackBoxX$VH.get(seg);
-    }
-    public static void gmBlackBoxX$set( MemorySegment seg, int x) {
-        _GLYPHMETRICS.gmBlackBoxX$VH.set(seg, x);
-    }
-    public static int gmBlackBoxX$get(MemorySegment seg, long index) {
-        return (int)_GLYPHMETRICS.gmBlackBoxX$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void gmBlackBoxX$set(MemorySegment seg, long index, int x) {
-        _GLYPHMETRICS.gmBlackBoxX$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle gmBlackBoxY$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gmBlackBoxY"));
-    public static VarHandle gmBlackBoxY$VH() {
-        return _GLYPHMETRICS.gmBlackBoxY$VH;
-    }
-    public static int gmBlackBoxY$get(MemorySegment seg) {
-        return (int)_GLYPHMETRICS.gmBlackBoxY$VH.get(seg);
-    }
-    public static void gmBlackBoxY$set( MemorySegment seg, int x) {
-        _GLYPHMETRICS.gmBlackBoxY$VH.set(seg, x);
-    }
-    public static int gmBlackBoxY$get(MemorySegment seg, long index) {
-        return (int)_GLYPHMETRICS.gmBlackBoxY$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void gmBlackBoxY$set(MemorySegment seg, long index, int x) {
-        _GLYPHMETRICS.gmBlackBoxY$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment gmptGlyphOrigin$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle gmCellIncX$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gmCellIncX"));
-    public static VarHandle gmCellIncX$VH() {
-        return _GLYPHMETRICS.gmCellIncX$VH;
-    }
-    public static short gmCellIncX$get(MemorySegment seg) {
-        return (short)_GLYPHMETRICS.gmCellIncX$VH.get(seg);
-    }
-    public static void gmCellIncX$set( MemorySegment seg, short x) {
-        _GLYPHMETRICS.gmCellIncX$VH.set(seg, x);
-    }
-    public static short gmCellIncX$get(MemorySegment seg, long index) {
-        return (short)_GLYPHMETRICS.gmCellIncX$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void gmCellIncX$set(MemorySegment seg, long index, short x) {
-        _GLYPHMETRICS.gmCellIncX$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle gmCellIncY$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("gmCellIncY"));
-    public static VarHandle gmCellIncY$VH() {
-        return _GLYPHMETRICS.gmCellIncY$VH;
-    }
-    public static short gmCellIncY$get(MemorySegment seg) {
-        return (short)_GLYPHMETRICS.gmCellIncY$VH.get(seg);
-    }
-    public static void gmCellIncY$set( MemorySegment seg, short x) {
-        _GLYPHMETRICS.gmCellIncY$VH.set(seg, x);
-    }
-    public static short gmCellIncY$get(MemorySegment seg, long index) {
-        return (short)_GLYPHMETRICS.gmCellIncY$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void gmCellIncY$set(MemorySegment seg, long index, short x) {
-        _GLYPHMETRICS.gmCellIncY$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("gmBlackBoxX"),
+        freeglut_h.C_INT.withName("gmBlackBoxY"),
+        tagPOINT.layout().withName("gmptGlyphOrigin"),
+        freeglut_h.C_SHORT.withName("gmCellIncX"),
+        freeglut_h.C_SHORT.withName("gmCellIncY")
+    ).withName("_GLYPHMETRICS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt gmBlackBoxX$LAYOUT = (OfInt)$LAYOUT.select(groupElement("gmBlackBoxX"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxX
+     * }
+     */
+    public static final OfInt gmBlackBoxX$layout() {
+        return gmBlackBoxX$LAYOUT;
+    }
+
+    private static final long gmBlackBoxX$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxX
+     * }
+     */
+    public static final long gmBlackBoxX$offset() {
+        return gmBlackBoxX$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxX
+     * }
+     */
+    public static int gmBlackBoxX(MemorySegment struct) {
+        return struct.get(gmBlackBoxX$LAYOUT, gmBlackBoxX$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxX
+     * }
+     */
+    public static void gmBlackBoxX(MemorySegment struct, int fieldValue) {
+        struct.set(gmBlackBoxX$LAYOUT, gmBlackBoxX$OFFSET, fieldValue);
+    }
+
+    private static final OfInt gmBlackBoxY$LAYOUT = (OfInt)$LAYOUT.select(groupElement("gmBlackBoxY"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxY
+     * }
+     */
+    public static final OfInt gmBlackBoxY$layout() {
+        return gmBlackBoxY$LAYOUT;
+    }
+
+    private static final long gmBlackBoxY$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxY
+     * }
+     */
+    public static final long gmBlackBoxY$offset() {
+        return gmBlackBoxY$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxY
+     * }
+     */
+    public static int gmBlackBoxY(MemorySegment struct) {
+        return struct.get(gmBlackBoxY$LAYOUT, gmBlackBoxY$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT gmBlackBoxY
+     * }
+     */
+    public static void gmBlackBoxY(MemorySegment struct, int fieldValue) {
+        struct.set(gmBlackBoxY$LAYOUT, gmBlackBoxY$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout gmptGlyphOrigin$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("gmptGlyphOrigin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT gmptGlyphOrigin
+     * }
+     */
+    public static final GroupLayout gmptGlyphOrigin$layout() {
+        return gmptGlyphOrigin$LAYOUT;
+    }
+
+    private static final long gmptGlyphOrigin$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT gmptGlyphOrigin
+     * }
+     */
+    public static final long gmptGlyphOrigin$offset() {
+        return gmptGlyphOrigin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT gmptGlyphOrigin
+     * }
+     */
+    public static MemorySegment gmptGlyphOrigin(MemorySegment struct) {
+        return struct.asSlice(gmptGlyphOrigin$OFFSET, gmptGlyphOrigin$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT gmptGlyphOrigin
+     * }
+     */
+    public static void gmptGlyphOrigin(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, gmptGlyphOrigin$OFFSET, gmptGlyphOrigin$LAYOUT.byteSize());
+    }
+
+    private static final OfShort gmCellIncX$LAYOUT = (OfShort)$LAYOUT.select(groupElement("gmCellIncX"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short gmCellIncX
+     * }
+     */
+    public static final OfShort gmCellIncX$layout() {
+        return gmCellIncX$LAYOUT;
+    }
+
+    private static final long gmCellIncX$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short gmCellIncX
+     * }
+     */
+    public static final long gmCellIncX$offset() {
+        return gmCellIncX$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short gmCellIncX
+     * }
+     */
+    public static short gmCellIncX(MemorySegment struct) {
+        return struct.get(gmCellIncX$LAYOUT, gmCellIncX$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short gmCellIncX
+     * }
+     */
+    public static void gmCellIncX(MemorySegment struct, short fieldValue) {
+        struct.set(gmCellIncX$LAYOUT, gmCellIncX$OFFSET, fieldValue);
+    }
+
+    private static final OfShort gmCellIncY$LAYOUT = (OfShort)$LAYOUT.select(groupElement("gmCellIncY"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * short gmCellIncY
+     * }
+     */
+    public static final OfShort gmCellIncY$layout() {
+        return gmCellIncY$LAYOUT;
+    }
+
+    private static final long gmCellIncY$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * short gmCellIncY
+     * }
+     */
+    public static final long gmCellIncY$offset() {
+        return gmCellIncY$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * short gmCellIncY
+     * }
+     */
+    public static short gmCellIncY(MemorySegment struct) {
+        return struct.get(gmCellIncY$LAYOUT, gmCellIncY$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * short gmCellIncY
+     * }
+     */
+    public static void gmCellIncY(MemorySegment struct, short fieldValue) {
+        struct.set(gmCellIncY$LAYOUT, gmCellIncY$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

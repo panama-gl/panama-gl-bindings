@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _wireBRECORD {
+ *     ULONG fFlags;
+ *     ULONG clSize;
+ *     IRecordInfo *pRecInfo;
+ *     byte *pRecord;
+ * }
+ * }
+ */
 public class _wireBRECORD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("fFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("clSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("pRecInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pRecord")
-    ).withName("_wireBRECORD");
-    public static MemoryLayout $LAYOUT() {
-        return _wireBRECORD.$struct$LAYOUT;
+    _wireBRECORD() {
+        // Should not be called directly
     }
-    static final VarHandle fFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fFlags"));
-    public static VarHandle fFlags$VH() {
-        return _wireBRECORD.fFlags$VH;
-    }
-    public static int fFlags$get(MemorySegment seg) {
-        return (int)_wireBRECORD.fFlags$VH.get(seg);
-    }
-    public static void fFlags$set( MemorySegment seg, int x) {
-        _wireBRECORD.fFlags$VH.set(seg, x);
-    }
-    public static int fFlags$get(MemorySegment seg, long index) {
-        return (int)_wireBRECORD.fFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fFlags$set(MemorySegment seg, long index, int x) {
-        _wireBRECORD.fFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle clSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("clSize"));
-    public static VarHandle clSize$VH() {
-        return _wireBRECORD.clSize$VH;
-    }
-    public static int clSize$get(MemorySegment seg) {
-        return (int)_wireBRECORD.clSize$VH.get(seg);
-    }
-    public static void clSize$set( MemorySegment seg, int x) {
-        _wireBRECORD.clSize$VH.set(seg, x);
-    }
-    public static int clSize$get(MemorySegment seg, long index) {
-        return (int)_wireBRECORD.clSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void clSize$set(MemorySegment seg, long index, int x) {
-        _wireBRECORD.clSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pRecInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pRecInfo"));
-    public static VarHandle pRecInfo$VH() {
-        return _wireBRECORD.pRecInfo$VH;
-    }
-    public static MemoryAddress pRecInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_wireBRECORD.pRecInfo$VH.get(seg);
-    }
-    public static void pRecInfo$set( MemorySegment seg, MemoryAddress x) {
-        _wireBRECORD.pRecInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pRecInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_wireBRECORD.pRecInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pRecInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _wireBRECORD.pRecInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pRecord$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pRecord"));
-    public static VarHandle pRecord$VH() {
-        return _wireBRECORD.pRecord$VH;
-    }
-    public static MemoryAddress pRecord$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_wireBRECORD.pRecord$VH.get(seg);
-    }
-    public static void pRecord$set( MemorySegment seg, MemoryAddress x) {
-        _wireBRECORD.pRecord$VH.set(seg, x);
-    }
-    public static MemoryAddress pRecord$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_wireBRECORD.pRecord$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pRecord$set(MemorySegment seg, long index, MemoryAddress x) {
-        _wireBRECORD.pRecord$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("fFlags"),
+        wgl_h.C_LONG.withName("clSize"),
+        wgl_h.C_POINTER.withName("pRecInfo"),
+        wgl_h.C_POINTER.withName("pRecord")
+    ).withName("_wireBRECORD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt fFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static final OfInt fFlags$layout() {
+        return fFlags$LAYOUT;
+    }
+
+    private static final long fFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static final long fFlags$offset() {
+        return fFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static int fFlags(MemorySegment struct) {
+        return struct.get(fFlags$LAYOUT, fFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG fFlags
+     * }
+     */
+    public static void fFlags(MemorySegment struct, int fieldValue) {
+        struct.set(fFlags$LAYOUT, fFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt clSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("clSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static final OfInt clSize$layout() {
+        return clSize$LAYOUT;
+    }
+
+    private static final long clSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static final long clSize$offset() {
+        return clSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static int clSize(MemorySegment struct) {
+        return struct.get(clSize$LAYOUT, clSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG clSize
+     * }
+     */
+    public static void clSize(MemorySegment struct, int fieldValue) {
+        struct.set(clSize$LAYOUT, clSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pRecInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pRecInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IRecordInfo *pRecInfo
+     * }
+     */
+    public static final AddressLayout pRecInfo$layout() {
+        return pRecInfo$LAYOUT;
+    }
+
+    private static final long pRecInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IRecordInfo *pRecInfo
+     * }
+     */
+    public static final long pRecInfo$offset() {
+        return pRecInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IRecordInfo *pRecInfo
+     * }
+     */
+    public static MemorySegment pRecInfo(MemorySegment struct) {
+        return struct.get(pRecInfo$LAYOUT, pRecInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IRecordInfo *pRecInfo
+     * }
+     */
+    public static void pRecInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pRecInfo$LAYOUT, pRecInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pRecord$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pRecord"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * byte *pRecord
+     * }
+     */
+    public static final AddressLayout pRecord$layout() {
+        return pRecord$LAYOUT;
+    }
+
+    private static final long pRecord$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * byte *pRecord
+     * }
+     */
+    public static final long pRecord$offset() {
+        return pRecord$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * byte *pRecord
+     * }
+     */
+    public static MemorySegment pRecord(MemorySegment struct) {
+        return struct.get(pRecord$LAYOUT, pRecord$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * byte *pRecord
+     * }
+     */
+    public static void pRecord(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pRecord$LAYOUT, pRecord$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

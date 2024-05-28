@@ -2,50 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PSHNOTIFY {
+ *     NMHDR hdr;
+ *     LPARAM lParam;
+ * }
+ * }
+ */
 public class _PSHNOTIFY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("hwndFrom"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("idFrom"),
-            Constants$root.C_LONG$LAYOUT.withName("code"),
-            MemoryLayout.paddingLayout(32)
-        ).withName("hdr"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("lParam")
-    ).withName("_PSHNOTIFY");
-    public static MemoryLayout $LAYOUT() {
-        return _PSHNOTIFY.$struct$LAYOUT;
+    _PSHNOTIFY() {
+        // Should not be called directly
     }
-    public static MemorySegment hdr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    static final VarHandle lParam$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lParam"));
-    public static VarHandle lParam$VH() {
-        return _PSHNOTIFY.lParam$VH;
-    }
-    public static long lParam$get(MemorySegment seg) {
-        return (long)_PSHNOTIFY.lParam$VH.get(seg);
-    }
-    public static void lParam$set( MemorySegment seg, long x) {
-        _PSHNOTIFY.lParam$VH.set(seg, x);
-    }
-    public static long lParam$get(MemorySegment seg, long index) {
-        return (long)_PSHNOTIFY.lParam$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lParam$set(MemorySegment seg, long index, long x) {
-        _PSHNOTIFY.lParam$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagNMHDR.layout().withName("hdr"),
+        wgl_h.C_LONG_LONG.withName("lParam")
+    ).withName("_PSHNOTIFY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout hdr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("hdr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static final GroupLayout hdr$layout() {
+        return hdr$LAYOUT;
+    }
+
+    private static final long hdr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static final long hdr$offset() {
+        return hdr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static MemorySegment hdr(MemorySegment struct) {
+        return struct.asSlice(hdr$OFFSET, hdr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * NMHDR hdr
+     * }
+     */
+    public static void hdr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, hdr$OFFSET, hdr$LAYOUT.byteSize());
+    }
+
+    private static final OfLong lParam$LAYOUT = (OfLong)$LAYOUT.select(groupElement("lParam"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPARAM lParam
+     * }
+     */
+    public static final OfLong lParam$layout() {
+        return lParam$LAYOUT;
+    }
+
+    private static final long lParam$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPARAM lParam
+     * }
+     */
+    public static final long lParam$offset() {
+        return lParam$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPARAM lParam
+     * }
+     */
+    public static long lParam(MemorySegment struct) {
+        return struct.get(lParam$LAYOUT, lParam$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPARAM lParam
+     * }
+     */
+    public static void lParam(MemorySegment struct, long fieldValue) {
+        struct.set(lParam$LAYOUT, lParam$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

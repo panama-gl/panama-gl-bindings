@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISK_EXTENT {
+ *     DWORD DiskNumber;
+ *     LARGE_INTEGER StartingOffset;
+ *     LARGE_INTEGER ExtentLength;
+ * } DISK_EXTENT
+ * }
+ */
 public class DISK_EXTENT extends _DISK_EXTENT {
 
+    DISK_EXTENT() {
+        // Should not be called directly
+    }
 }
-
 

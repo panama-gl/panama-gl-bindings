@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ACE_HEADER {
+ *     BYTE AceType;
+ *     BYTE AceFlags;
+ *     WORD AceSize;
+ * }
+ * }
+ */
 public class _ACE_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("AceType"),
-        Constants$root.C_CHAR$LAYOUT.withName("AceFlags"),
-        Constants$root.C_SHORT$LAYOUT.withName("AceSize")
-    ).withName("_ACE_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _ACE_HEADER.$struct$LAYOUT;
+    _ACE_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle AceType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AceType"));
-    public static VarHandle AceType$VH() {
-        return _ACE_HEADER.AceType$VH;
-    }
-    public static byte AceType$get(MemorySegment seg) {
-        return (byte)_ACE_HEADER.AceType$VH.get(seg);
-    }
-    public static void AceType$set( MemorySegment seg, byte x) {
-        _ACE_HEADER.AceType$VH.set(seg, x);
-    }
-    public static byte AceType$get(MemorySegment seg, long index) {
-        return (byte)_ACE_HEADER.AceType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AceType$set(MemorySegment seg, long index, byte x) {
-        _ACE_HEADER.AceType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AceFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AceFlags"));
-    public static VarHandle AceFlags$VH() {
-        return _ACE_HEADER.AceFlags$VH;
-    }
-    public static byte AceFlags$get(MemorySegment seg) {
-        return (byte)_ACE_HEADER.AceFlags$VH.get(seg);
-    }
-    public static void AceFlags$set( MemorySegment seg, byte x) {
-        _ACE_HEADER.AceFlags$VH.set(seg, x);
-    }
-    public static byte AceFlags$get(MemorySegment seg, long index) {
-        return (byte)_ACE_HEADER.AceFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AceFlags$set(MemorySegment seg, long index, byte x) {
-        _ACE_HEADER.AceFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AceSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AceSize"));
-    public static VarHandle AceSize$VH() {
-        return _ACE_HEADER.AceSize$VH;
-    }
-    public static short AceSize$get(MemorySegment seg) {
-        return (short)_ACE_HEADER.AceSize$VH.get(seg);
-    }
-    public static void AceSize$set( MemorySegment seg, short x) {
-        _ACE_HEADER.AceSize$VH.set(seg, x);
-    }
-    public static short AceSize$get(MemorySegment seg, long index) {
-        return (short)_ACE_HEADER.AceSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AceSize$set(MemorySegment seg, long index, short x) {
-        _ACE_HEADER.AceSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("AceType"),
+        wgl_h.C_CHAR.withName("AceFlags"),
+        wgl_h.C_SHORT.withName("AceSize")
+    ).withName("_ACE_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte AceType$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AceType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE AceType
+     * }
+     */
+    public static final OfByte AceType$layout() {
+        return AceType$LAYOUT;
+    }
+
+    private static final long AceType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE AceType
+     * }
+     */
+    public static final long AceType$offset() {
+        return AceType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE AceType
+     * }
+     */
+    public static byte AceType(MemorySegment struct) {
+        return struct.get(AceType$LAYOUT, AceType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE AceType
+     * }
+     */
+    public static void AceType(MemorySegment struct, byte fieldValue) {
+        struct.set(AceType$LAYOUT, AceType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AceFlags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AceFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE AceFlags
+     * }
+     */
+    public static final OfByte AceFlags$layout() {
+        return AceFlags$LAYOUT;
+    }
+
+    private static final long AceFlags$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE AceFlags
+     * }
+     */
+    public static final long AceFlags$offset() {
+        return AceFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE AceFlags
+     * }
+     */
+    public static byte AceFlags(MemorySegment struct) {
+        return struct.get(AceFlags$LAYOUT, AceFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE AceFlags
+     * }
+     */
+    public static void AceFlags(MemorySegment struct, byte fieldValue) {
+        struct.set(AceFlags$LAYOUT, AceFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort AceSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("AceSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD AceSize
+     * }
+     */
+    public static final OfShort AceSize$layout() {
+        return AceSize$LAYOUT;
+    }
+
+    private static final long AceSize$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD AceSize
+     * }
+     */
+    public static final long AceSize$offset() {
+        return AceSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD AceSize
+     * }
+     */
+    public static short AceSize(MemorySegment struct) {
+        return struct.get(AceSize$LAYOUT, AceSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD AceSize
+     * }
+     */
+    public static void AceSize(MemorySegment struct, short fieldValue) {
+        struct.set(AceSize$LAYOUT, AceSize$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

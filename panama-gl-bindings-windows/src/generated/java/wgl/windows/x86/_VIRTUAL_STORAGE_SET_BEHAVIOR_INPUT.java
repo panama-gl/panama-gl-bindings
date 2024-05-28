@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT {
+ *     DWORD Size;
+ *     VIRTUAL_STORAGE_BEHAVIOR_CODE BehaviorCode;
+ * }
+ * }
+ */
 public class _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("BehaviorCode")
-    ).withName("_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.$struct$LAYOUT;
+    _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BehaviorCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BehaviorCode"));
-    public static VarHandle BehaviorCode$VH() {
-        return _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.BehaviorCode$VH;
-    }
-    public static int BehaviorCode$get(MemorySegment seg) {
-        return (int)_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.BehaviorCode$VH.get(seg);
-    }
-    public static void BehaviorCode$set( MemorySegment seg, int x) {
-        _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.BehaviorCode$VH.set(seg, x);
-    }
-    public static int BehaviorCode$get(MemorySegment seg, long index) {
-        return (int)_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.BehaviorCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BehaviorCode$set(MemorySegment seg, long index, int x) {
-        _VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT.BehaviorCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("BehaviorCode")
+    ).withName("_VIRTUAL_STORAGE_SET_BEHAVIOR_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BehaviorCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BehaviorCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_BEHAVIOR_CODE BehaviorCode
+     * }
+     */
+    public static final OfInt BehaviorCode$layout() {
+        return BehaviorCode$LAYOUT;
+    }
+
+    private static final long BehaviorCode$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_BEHAVIOR_CODE BehaviorCode
+     * }
+     */
+    public static final long BehaviorCode$offset() {
+        return BehaviorCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_BEHAVIOR_CODE BehaviorCode
+     * }
+     */
+    public static int BehaviorCode(MemorySegment struct) {
+        return struct.get(BehaviorCode$LAYOUT, BehaviorCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VIRTUAL_STORAGE_BEHAVIOR_CODE BehaviorCode
+     * }
+     */
+    public static void BehaviorCode(MemorySegment struct, int fieldValue) {
+        struct.set(BehaviorCode$LAYOUT, BehaviorCode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

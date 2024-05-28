@@ -2,62 +2,298 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRINVERTRGN {
+ *     EMR emr;
+ *     RECTL rclBounds;
+ *     DWORD cbRgnData;
+ *     BYTE RgnData[1];
+ * }
+ * }
+ */
 public class tagEMRINVERTRGN {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rclBounds"),
-        Constants$root.C_LONG$LAYOUT.withName("cbRgnData"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("RgnData"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("tagEMRINVERTRGN");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRINVERTRGN.$struct$LAYOUT;
+    tagEMRINVERTRGN() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment rclBounds$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    static final VarHandle cbRgnData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbRgnData"));
-    public static VarHandle cbRgnData$VH() {
-        return tagEMRINVERTRGN.cbRgnData$VH;
-    }
-    public static int cbRgnData$get(MemorySegment seg) {
-        return (int)tagEMRINVERTRGN.cbRgnData$VH.get(seg);
-    }
-    public static void cbRgnData$set( MemorySegment seg, int x) {
-        tagEMRINVERTRGN.cbRgnData$VH.set(seg, x);
-    }
-    public static int cbRgnData$get(MemorySegment seg, long index) {
-        return (int)tagEMRINVERTRGN.cbRgnData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbRgnData$set(MemorySegment seg, long index, int x) {
-        tagEMRINVERTRGN.cbRgnData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment RgnData$slice(MemorySegment seg) {
-        return seg.asSlice(28, 1);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        _RECTL.layout().withName("rclBounds"),
+        wgl_h.C_LONG.withName("cbRgnData"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_CHAR).withName("RgnData"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("tagEMRINVERTRGN");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout rclBounds$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rclBounds"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final GroupLayout rclBounds$layout() {
+        return rclBounds$LAYOUT;
+    }
+
+    private static final long rclBounds$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static final long rclBounds$offset() {
+        return rclBounds$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static MemorySegment rclBounds(MemorySegment struct) {
+        return struct.asSlice(rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECTL rclBounds
+     * }
+     */
+    public static void rclBounds(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rclBounds$OFFSET, rclBounds$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cbRgnData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbRgnData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbRgnData
+     * }
+     */
+    public static final OfInt cbRgnData$layout() {
+        return cbRgnData$LAYOUT;
+    }
+
+    private static final long cbRgnData$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbRgnData
+     * }
+     */
+    public static final long cbRgnData$offset() {
+        return cbRgnData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbRgnData
+     * }
+     */
+    public static int cbRgnData(MemorySegment struct) {
+        return struct.get(cbRgnData$LAYOUT, cbRgnData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbRgnData
+     * }
+     */
+    public static void cbRgnData(MemorySegment struct, int fieldValue) {
+        struct.set(cbRgnData$LAYOUT, cbRgnData$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout RgnData$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("RgnData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static final SequenceLayout RgnData$layout() {
+        return RgnData$LAYOUT;
+    }
+
+    private static final long RgnData$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static final long RgnData$offset() {
+        return RgnData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static MemorySegment RgnData(MemorySegment struct) {
+        return struct.asSlice(RgnData$OFFSET, RgnData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static void RgnData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RgnData$OFFSET, RgnData$LAYOUT.byteSize());
+    }
+
+    private static long[] RgnData$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static long[] RgnData$dimensions() {
+        return RgnData$DIMS;
+    }
+    private static final VarHandle RgnData$ELEM_HANDLE = RgnData$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static byte RgnData(MemorySegment struct, long index0) {
+        return (byte)RgnData$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE RgnData[1]
+     * }
+     */
+    public static void RgnData(MemorySegment struct, long index0, byte fieldValue) {
+        RgnData$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

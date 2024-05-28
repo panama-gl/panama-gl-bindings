@@ -2,27 +2,68 @@
 
 package opengl.macos.arm;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface glutKeyboardFunc$func {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(byte _x0, int _x1, int _x2);
-    static MemorySegment allocate(glutKeyboardFunc$func fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(glutKeyboardFunc$func.class, fi, constants$185.glutKeyboardFunc$func$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * void (*func)(unsigned char, int, int)
+ * }
+ */
+public class glutKeyboardFunc$func {
+
+    glutKeyboardFunc$func() {
+        // Should not be called directly
     }
-    static glutKeyboardFunc$func ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (byte __x0, int __x1, int __x2) -> {
-            try {
-                constants$186.glutKeyboardFunc$func$MH.invokeExact((Addressable)symbol, __x0, __x1, __x2);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(byte _x0, int _x1, int _x2);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        glut_h.C_CHAR,
+        glut_h.C_INT,
+        glut_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = glut_h.upcallHandle(glutKeyboardFunc$func.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(glutKeyboardFunc$func.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,byte _x0, int _x1, int _x2) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

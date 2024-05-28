@@ -2,27 +2,68 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PIMAGE_TLS_CALLBACK {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress DllHandle, int Reason, java.lang.foreign.MemoryAddress Reserved);
-    static MemorySegment allocate(PIMAGE_TLS_CALLBACK fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PIMAGE_TLS_CALLBACK.class, fi, constants$112.PIMAGE_TLS_CALLBACK$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PIMAGE_TLS_CALLBACK)(PVOID, DWORD, PVOID) __attribute__((stdcall))
+ * }
+ */
+public class PIMAGE_TLS_CALLBACK {
+
+    PIMAGE_TLS_CALLBACK() {
+        // Should not be called directly
     }
-    static PIMAGE_TLS_CALLBACK ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _DllHandle, int _Reason, java.lang.foreign.MemoryAddress _Reserved) -> {
-            try {
-                constants$112.PIMAGE_TLS_CALLBACK$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_DllHandle, _Reason, (java.lang.foreign.Addressable)_Reserved);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment DllHandle, int Reason, MemorySegment Reserved);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PIMAGE_TLS_CALLBACK.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PIMAGE_TLS_CALLBACK.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment DllHandle, int Reason, MemorySegment Reserved) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, DllHandle, Reason, Reserved);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

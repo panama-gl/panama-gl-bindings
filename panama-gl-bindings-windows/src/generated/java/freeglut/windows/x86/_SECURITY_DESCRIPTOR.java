@@ -2,144 +2,403 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SECURITY_DESCRIPTOR {
+ *     BYTE Revision;
+ *     BYTE Sbz1;
+ *     SECURITY_DESCRIPTOR_CONTROL Control;
+ *     PSID Owner;
+ *     PSID Group;
+ *     PACL Sacl;
+ *     PACL Dacl;
+ * }
+ * }
+ */
 public class _SECURITY_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Revision"),
-        Constants$root.C_CHAR$LAYOUT.withName("Sbz1"),
-        Constants$root.C_SHORT$LAYOUT.withName("Control"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Owner"),
-        Constants$root.C_POINTER$LAYOUT.withName("Group"),
-        Constants$root.C_POINTER$LAYOUT.withName("Sacl"),
-        Constants$root.C_POINTER$LAYOUT.withName("Dacl")
-    ).withName("_SECURITY_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _SECURITY_DESCRIPTOR.$struct$LAYOUT;
+    _SECURITY_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Revision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Revision"));
-    public static VarHandle Revision$VH() {
-        return _SECURITY_DESCRIPTOR.Revision$VH;
-    }
-    public static byte Revision$get(MemorySegment seg) {
-        return (byte)_SECURITY_DESCRIPTOR.Revision$VH.get(seg);
-    }
-    public static void Revision$set( MemorySegment seg, byte x) {
-        _SECURITY_DESCRIPTOR.Revision$VH.set(seg, x);
-    }
-    public static byte Revision$get(MemorySegment seg, long index) {
-        return (byte)_SECURITY_DESCRIPTOR.Revision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Revision$set(MemorySegment seg, long index, byte x) {
-        _SECURITY_DESCRIPTOR.Revision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Sbz1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Sbz1"));
-    public static VarHandle Sbz1$VH() {
-        return _SECURITY_DESCRIPTOR.Sbz1$VH;
-    }
-    public static byte Sbz1$get(MemorySegment seg) {
-        return (byte)_SECURITY_DESCRIPTOR.Sbz1$VH.get(seg);
-    }
-    public static void Sbz1$set( MemorySegment seg, byte x) {
-        _SECURITY_DESCRIPTOR.Sbz1$VH.set(seg, x);
-    }
-    public static byte Sbz1$get(MemorySegment seg, long index) {
-        return (byte)_SECURITY_DESCRIPTOR.Sbz1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Sbz1$set(MemorySegment seg, long index, byte x) {
-        _SECURITY_DESCRIPTOR.Sbz1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Control$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Control"));
-    public static VarHandle Control$VH() {
-        return _SECURITY_DESCRIPTOR.Control$VH;
-    }
-    public static short Control$get(MemorySegment seg) {
-        return (short)_SECURITY_DESCRIPTOR.Control$VH.get(seg);
-    }
-    public static void Control$set( MemorySegment seg, short x) {
-        _SECURITY_DESCRIPTOR.Control$VH.set(seg, x);
-    }
-    public static short Control$get(MemorySegment seg, long index) {
-        return (short)_SECURITY_DESCRIPTOR.Control$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Control$set(MemorySegment seg, long index, short x) {
-        _SECURITY_DESCRIPTOR.Control$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Owner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Owner"));
-    public static VarHandle Owner$VH() {
-        return _SECURITY_DESCRIPTOR.Owner$VH;
-    }
-    public static MemoryAddress Owner$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Owner$VH.get(seg);
-    }
-    public static void Owner$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Owner$VH.set(seg, x);
-    }
-    public static MemoryAddress Owner$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Owner$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Owner$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Owner$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Group$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Group"));
-    public static VarHandle Group$VH() {
-        return _SECURITY_DESCRIPTOR.Group$VH;
-    }
-    public static MemoryAddress Group$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Group$VH.get(seg);
-    }
-    public static void Group$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Group$VH.set(seg, x);
-    }
-    public static MemoryAddress Group$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Group$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Group$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Group$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Sacl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Sacl"));
-    public static VarHandle Sacl$VH() {
-        return _SECURITY_DESCRIPTOR.Sacl$VH;
-    }
-    public static MemoryAddress Sacl$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Sacl$VH.get(seg);
-    }
-    public static void Sacl$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Sacl$VH.set(seg, x);
-    }
-    public static MemoryAddress Sacl$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Sacl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Sacl$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Sacl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dacl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dacl"));
-    public static VarHandle Dacl$VH() {
-        return _SECURITY_DESCRIPTOR.Dacl$VH;
-    }
-    public static MemoryAddress Dacl$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Dacl$VH.get(seg);
-    }
-    public static void Dacl$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Dacl$VH.set(seg, x);
-    }
-    public static MemoryAddress Dacl$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_DESCRIPTOR.Dacl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dacl$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_DESCRIPTOR.Dacl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_CHAR.withName("Revision"),
+        freeglut_h.C_CHAR.withName("Sbz1"),
+        freeglut_h.C_SHORT.withName("Control"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_POINTER.withName("Owner"),
+        freeglut_h.C_POINTER.withName("Group"),
+        freeglut_h.C_POINTER.withName("Sacl"),
+        freeglut_h.C_POINTER.withName("Dacl")
+    ).withName("_SECURITY_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Revision$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Revision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static final OfByte Revision$layout() {
+        return Revision$LAYOUT;
+    }
+
+    private static final long Revision$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static final long Revision$offset() {
+        return Revision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static byte Revision(MemorySegment struct) {
+        return struct.get(Revision$LAYOUT, Revision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static void Revision(MemorySegment struct, byte fieldValue) {
+        struct.set(Revision$LAYOUT, Revision$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Sbz1$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Sbz1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Sbz1
+     * }
+     */
+    public static final OfByte Sbz1$layout() {
+        return Sbz1$LAYOUT;
+    }
+
+    private static final long Sbz1$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Sbz1
+     * }
+     */
+    public static final long Sbz1$offset() {
+        return Sbz1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Sbz1
+     * }
+     */
+    public static byte Sbz1(MemorySegment struct) {
+        return struct.get(Sbz1$LAYOUT, Sbz1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Sbz1
+     * }
+     */
+    public static void Sbz1(MemorySegment struct, byte fieldValue) {
+        struct.set(Sbz1$LAYOUT, Sbz1$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Control$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Control"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SECURITY_DESCRIPTOR_CONTROL Control
+     * }
+     */
+    public static final OfShort Control$layout() {
+        return Control$LAYOUT;
+    }
+
+    private static final long Control$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SECURITY_DESCRIPTOR_CONTROL Control
+     * }
+     */
+    public static final long Control$offset() {
+        return Control$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SECURITY_DESCRIPTOR_CONTROL Control
+     * }
+     */
+    public static short Control(MemorySegment struct) {
+        return struct.get(Control$LAYOUT, Control$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SECURITY_DESCRIPTOR_CONTROL Control
+     * }
+     */
+    public static void Control(MemorySegment struct, short fieldValue) {
+        struct.set(Control$LAYOUT, Control$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Owner$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Owner"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID Owner
+     * }
+     */
+    public static final AddressLayout Owner$layout() {
+        return Owner$LAYOUT;
+    }
+
+    private static final long Owner$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID Owner
+     * }
+     */
+    public static final long Owner$offset() {
+        return Owner$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID Owner
+     * }
+     */
+    public static MemorySegment Owner(MemorySegment struct) {
+        return struct.get(Owner$LAYOUT, Owner$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID Owner
+     * }
+     */
+    public static void Owner(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Owner$LAYOUT, Owner$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Group$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Group"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID Group
+     * }
+     */
+    public static final AddressLayout Group$layout() {
+        return Group$LAYOUT;
+    }
+
+    private static final long Group$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID Group
+     * }
+     */
+    public static final long Group$offset() {
+        return Group$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID Group
+     * }
+     */
+    public static MemorySegment Group(MemorySegment struct) {
+        return struct.get(Group$LAYOUT, Group$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID Group
+     * }
+     */
+    public static void Group(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Group$LAYOUT, Group$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Sacl$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Sacl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PACL Sacl
+     * }
+     */
+    public static final AddressLayout Sacl$layout() {
+        return Sacl$LAYOUT;
+    }
+
+    private static final long Sacl$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PACL Sacl
+     * }
+     */
+    public static final long Sacl$offset() {
+        return Sacl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PACL Sacl
+     * }
+     */
+    public static MemorySegment Sacl(MemorySegment struct) {
+        return struct.get(Sacl$LAYOUT, Sacl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PACL Sacl
+     * }
+     */
+    public static void Sacl(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Sacl$LAYOUT, Sacl$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Dacl$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Dacl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PACL Dacl
+     * }
+     */
+    public static final AddressLayout Dacl$layout() {
+        return Dacl$LAYOUT;
+    }
+
+    private static final long Dacl$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PACL Dacl
+     * }
+     */
+    public static final long Dacl$offset() {
+        return Dacl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PACL Dacl
+     * }
+     */
+    public static MemorySegment Dacl(MemorySegment struct) {
+        return struct.get(Dacl$LAYOUT, Dacl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PACL Dacl
+     * }
+     */
+    public static void Dacl(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Dacl$LAYOUT, Dacl$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

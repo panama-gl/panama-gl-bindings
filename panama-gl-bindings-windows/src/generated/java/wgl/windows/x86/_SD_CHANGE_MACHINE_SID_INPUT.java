@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SD_CHANGE_MACHINE_SID_INPUT {
+ *     WORD CurrentMachineSIDOffset;
+ *     WORD CurrentMachineSIDLength;
+ *     WORD NewMachineSIDOffset;
+ *     WORD NewMachineSIDLength;
+ * }
+ * }
+ */
 public class _SD_CHANGE_MACHINE_SID_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("CurrentMachineSIDOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("CurrentMachineSIDLength"),
-        Constants$root.C_SHORT$LAYOUT.withName("NewMachineSIDOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("NewMachineSIDLength")
-    ).withName("_SD_CHANGE_MACHINE_SID_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _SD_CHANGE_MACHINE_SID_INPUT.$struct$LAYOUT;
+    _SD_CHANGE_MACHINE_SID_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle CurrentMachineSIDOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CurrentMachineSIDOffset"));
-    public static VarHandle CurrentMachineSIDOffset$VH() {
-        return _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDOffset$VH;
-    }
-    public static short CurrentMachineSIDOffset$get(MemorySegment seg) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDOffset$VH.get(seg);
-    }
-    public static void CurrentMachineSIDOffset$set( MemorySegment seg, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDOffset$VH.set(seg, x);
-    }
-    public static short CurrentMachineSIDOffset$get(MemorySegment seg, long index) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CurrentMachineSIDOffset$set(MemorySegment seg, long index, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CurrentMachineSIDLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CurrentMachineSIDLength"));
-    public static VarHandle CurrentMachineSIDLength$VH() {
-        return _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDLength$VH;
-    }
-    public static short CurrentMachineSIDLength$get(MemorySegment seg) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDLength$VH.get(seg);
-    }
-    public static void CurrentMachineSIDLength$set( MemorySegment seg, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDLength$VH.set(seg, x);
-    }
-    public static short CurrentMachineSIDLength$get(MemorySegment seg, long index) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CurrentMachineSIDLength$set(MemorySegment seg, long index, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.CurrentMachineSIDLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NewMachineSIDOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NewMachineSIDOffset"));
-    public static VarHandle NewMachineSIDOffset$VH() {
-        return _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDOffset$VH;
-    }
-    public static short NewMachineSIDOffset$get(MemorySegment seg) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDOffset$VH.get(seg);
-    }
-    public static void NewMachineSIDOffset$set( MemorySegment seg, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDOffset$VH.set(seg, x);
-    }
-    public static short NewMachineSIDOffset$get(MemorySegment seg, long index) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NewMachineSIDOffset$set(MemorySegment seg, long index, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NewMachineSIDLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NewMachineSIDLength"));
-    public static VarHandle NewMachineSIDLength$VH() {
-        return _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDLength$VH;
-    }
-    public static short NewMachineSIDLength$get(MemorySegment seg) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDLength$VH.get(seg);
-    }
-    public static void NewMachineSIDLength$set( MemorySegment seg, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDLength$VH.set(seg, x);
-    }
-    public static short NewMachineSIDLength$get(MemorySegment seg, long index) {
-        return (short)_SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NewMachineSIDLength$set(MemorySegment seg, long index, short x) {
-        _SD_CHANGE_MACHINE_SID_INPUT.NewMachineSIDLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("CurrentMachineSIDOffset"),
+        wgl_h.C_SHORT.withName("CurrentMachineSIDLength"),
+        wgl_h.C_SHORT.withName("NewMachineSIDOffset"),
+        wgl_h.C_SHORT.withName("NewMachineSIDLength")
+    ).withName("_SD_CHANGE_MACHINE_SID_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort CurrentMachineSIDOffset$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CurrentMachineSIDOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDOffset
+     * }
+     */
+    public static final OfShort CurrentMachineSIDOffset$layout() {
+        return CurrentMachineSIDOffset$LAYOUT;
+    }
+
+    private static final long CurrentMachineSIDOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDOffset
+     * }
+     */
+    public static final long CurrentMachineSIDOffset$offset() {
+        return CurrentMachineSIDOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDOffset
+     * }
+     */
+    public static short CurrentMachineSIDOffset(MemorySegment struct) {
+        return struct.get(CurrentMachineSIDOffset$LAYOUT, CurrentMachineSIDOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDOffset
+     * }
+     */
+    public static void CurrentMachineSIDOffset(MemorySegment struct, short fieldValue) {
+        struct.set(CurrentMachineSIDOffset$LAYOUT, CurrentMachineSIDOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort CurrentMachineSIDLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("CurrentMachineSIDLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDLength
+     * }
+     */
+    public static final OfShort CurrentMachineSIDLength$layout() {
+        return CurrentMachineSIDLength$LAYOUT;
+    }
+
+    private static final long CurrentMachineSIDLength$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDLength
+     * }
+     */
+    public static final long CurrentMachineSIDLength$offset() {
+        return CurrentMachineSIDLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDLength
+     * }
+     */
+    public static short CurrentMachineSIDLength(MemorySegment struct) {
+        return struct.get(CurrentMachineSIDLength$LAYOUT, CurrentMachineSIDLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD CurrentMachineSIDLength
+     * }
+     */
+    public static void CurrentMachineSIDLength(MemorySegment struct, short fieldValue) {
+        struct.set(CurrentMachineSIDLength$LAYOUT, CurrentMachineSIDLength$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NewMachineSIDOffset$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NewMachineSIDOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDOffset
+     * }
+     */
+    public static final OfShort NewMachineSIDOffset$layout() {
+        return NewMachineSIDOffset$LAYOUT;
+    }
+
+    private static final long NewMachineSIDOffset$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDOffset
+     * }
+     */
+    public static final long NewMachineSIDOffset$offset() {
+        return NewMachineSIDOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDOffset
+     * }
+     */
+    public static short NewMachineSIDOffset(MemorySegment struct) {
+        return struct.get(NewMachineSIDOffset$LAYOUT, NewMachineSIDOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDOffset
+     * }
+     */
+    public static void NewMachineSIDOffset(MemorySegment struct, short fieldValue) {
+        struct.set(NewMachineSIDOffset$LAYOUT, NewMachineSIDOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NewMachineSIDLength$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NewMachineSIDLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDLength
+     * }
+     */
+    public static final OfShort NewMachineSIDLength$layout() {
+        return NewMachineSIDLength$LAYOUT;
+    }
+
+    private static final long NewMachineSIDLength$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDLength
+     * }
+     */
+    public static final long NewMachineSIDLength$offset() {
+        return NewMachineSIDLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDLength
+     * }
+     */
+    public static short NewMachineSIDLength(MemorySegment struct) {
+        return struct.get(NewMachineSIDLength$LAYOUT, NewMachineSIDLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NewMachineSIDLength
+     * }
+     */
+    public static void NewMachineSIDLength(MemorySegment struct, short fieldValue) {
+        struct.set(NewMachineSIDLength$LAYOUT, NewMachineSIDLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

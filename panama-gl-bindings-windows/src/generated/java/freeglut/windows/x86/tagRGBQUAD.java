@@ -2,92 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRGBQUAD {
+ *     BYTE rgbBlue;
+ *     BYTE rgbGreen;
+ *     BYTE rgbRed;
+ *     BYTE rgbReserved;
+ * }
+ * }
+ */
 public class tagRGBQUAD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("rgbBlue"),
-        Constants$root.C_CHAR$LAYOUT.withName("rgbGreen"),
-        Constants$root.C_CHAR$LAYOUT.withName("rgbRed"),
-        Constants$root.C_CHAR$LAYOUT.withName("rgbReserved")
-    ).withName("tagRGBQUAD");
-    public static MemoryLayout $LAYOUT() {
-        return tagRGBQUAD.$struct$LAYOUT;
+    tagRGBQUAD() {
+        // Should not be called directly
     }
-    static final VarHandle rgbBlue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbBlue"));
-    public static VarHandle rgbBlue$VH() {
-        return tagRGBQUAD.rgbBlue$VH;
-    }
-    public static byte rgbBlue$get(MemorySegment seg) {
-        return (byte)tagRGBQUAD.rgbBlue$VH.get(seg);
-    }
-    public static void rgbBlue$set( MemorySegment seg, byte x) {
-        tagRGBQUAD.rgbBlue$VH.set(seg, x);
-    }
-    public static byte rgbBlue$get(MemorySegment seg, long index) {
-        return (byte)tagRGBQUAD.rgbBlue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbBlue$set(MemorySegment seg, long index, byte x) {
-        tagRGBQUAD.rgbBlue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgbGreen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbGreen"));
-    public static VarHandle rgbGreen$VH() {
-        return tagRGBQUAD.rgbGreen$VH;
-    }
-    public static byte rgbGreen$get(MemorySegment seg) {
-        return (byte)tagRGBQUAD.rgbGreen$VH.get(seg);
-    }
-    public static void rgbGreen$set( MemorySegment seg, byte x) {
-        tagRGBQUAD.rgbGreen$VH.set(seg, x);
-    }
-    public static byte rgbGreen$get(MemorySegment seg, long index) {
-        return (byte)tagRGBQUAD.rgbGreen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbGreen$set(MemorySegment seg, long index, byte x) {
-        tagRGBQUAD.rgbGreen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgbRed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbRed"));
-    public static VarHandle rgbRed$VH() {
-        return tagRGBQUAD.rgbRed$VH;
-    }
-    public static byte rgbRed$get(MemorySegment seg) {
-        return (byte)tagRGBQUAD.rgbRed$VH.get(seg);
-    }
-    public static void rgbRed$set( MemorySegment seg, byte x) {
-        tagRGBQUAD.rgbRed$VH.set(seg, x);
-    }
-    public static byte rgbRed$get(MemorySegment seg, long index) {
-        return (byte)tagRGBQUAD.rgbRed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbRed$set(MemorySegment seg, long index, byte x) {
-        tagRGBQUAD.rgbRed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgbReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbReserved"));
-    public static VarHandle rgbReserved$VH() {
-        return tagRGBQUAD.rgbReserved$VH;
-    }
-    public static byte rgbReserved$get(MemorySegment seg) {
-        return (byte)tagRGBQUAD.rgbReserved$VH.get(seg);
-    }
-    public static void rgbReserved$set( MemorySegment seg, byte x) {
-        tagRGBQUAD.rgbReserved$VH.set(seg, x);
-    }
-    public static byte rgbReserved$get(MemorySegment seg, long index) {
-        return (byte)tagRGBQUAD.rgbReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbReserved$set(MemorySegment seg, long index, byte x) {
-        tagRGBQUAD.rgbReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_CHAR.withName("rgbBlue"),
+        freeglut_h.C_CHAR.withName("rgbGreen"),
+        freeglut_h.C_CHAR.withName("rgbRed"),
+        freeglut_h.C_CHAR.withName("rgbReserved")
+    ).withName("tagRGBQUAD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte rgbBlue$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbBlue
+     * }
+     */
+    public static final OfByte rgbBlue$layout() {
+        return rgbBlue$LAYOUT;
+    }
+
+    private static final long rgbBlue$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbBlue
+     * }
+     */
+    public static final long rgbBlue$offset() {
+        return rgbBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbBlue
+     * }
+     */
+    public static byte rgbBlue(MemorySegment struct) {
+        return struct.get(rgbBlue$LAYOUT, rgbBlue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbBlue
+     * }
+     */
+    public static void rgbBlue(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbBlue$LAYOUT, rgbBlue$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rgbGreen$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbGreen
+     * }
+     */
+    public static final OfByte rgbGreen$layout() {
+        return rgbGreen$LAYOUT;
+    }
+
+    private static final long rgbGreen$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbGreen
+     * }
+     */
+    public static final long rgbGreen$offset() {
+        return rgbGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbGreen
+     * }
+     */
+    public static byte rgbGreen(MemorySegment struct) {
+        return struct.get(rgbGreen$LAYOUT, rgbGreen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbGreen
+     * }
+     */
+    public static void rgbGreen(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbGreen$LAYOUT, rgbGreen$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rgbRed$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbRed
+     * }
+     */
+    public static final OfByte rgbRed$layout() {
+        return rgbRed$LAYOUT;
+    }
+
+    private static final long rgbRed$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbRed
+     * }
+     */
+    public static final long rgbRed$offset() {
+        return rgbRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbRed
+     * }
+     */
+    public static byte rgbRed(MemorySegment struct) {
+        return struct.get(rgbRed$LAYOUT, rgbRed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbRed
+     * }
+     */
+    public static void rgbRed(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbRed$LAYOUT, rgbRed$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rgbReserved$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved
+     * }
+     */
+    public static final OfByte rgbReserved$layout() {
+        return rgbReserved$LAYOUT;
+    }
+
+    private static final long rgbReserved$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved
+     * }
+     */
+    public static final long rgbReserved$offset() {
+        return rgbReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved
+     * }
+     */
+    public static byte rgbReserved(MemorySegment struct) {
+        return struct.get(rgbReserved$LAYOUT, rgbReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved
+     * }
+     */
+    public static void rgbReserved(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbReserved$LAYOUT, rgbReserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

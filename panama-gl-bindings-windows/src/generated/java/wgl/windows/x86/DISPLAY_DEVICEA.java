@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISPLAY_DEVICEA {
+ *     DWORD cb;
+ *     CHAR DeviceName[32];
+ *     CHAR DeviceString[128];
+ *     DWORD StateFlags;
+ *     CHAR DeviceID[128];
+ *     CHAR DeviceKey[128];
+ * } DISPLAY_DEVICEA
+ * }
+ */
 public class DISPLAY_DEVICEA extends _DISPLAY_DEVICEA {
 
+    DISPLAY_DEVICEA() {
+        // Should not be called directly
+    }
 }
-
 

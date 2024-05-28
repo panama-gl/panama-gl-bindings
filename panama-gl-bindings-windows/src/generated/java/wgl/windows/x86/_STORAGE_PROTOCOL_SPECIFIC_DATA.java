@@ -2,194 +2,540 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_PROTOCOL_SPECIFIC_DATA {
+ *     STORAGE_PROTOCOL_TYPE ProtocolType;
+ *     DWORD DataType;
+ *     DWORD ProtocolDataRequestValue;
+ *     DWORD ProtocolDataRequestSubValue;
+ *     DWORD ProtocolDataOffset;
+ *     DWORD ProtocolDataLength;
+ *     DWORD FixedProtocolReturnData;
+ *     DWORD ProtocolDataRequestSubValue2;
+ *     DWORD ProtocolDataRequestSubValue3;
+ *     DWORD Reserved;
+ * }
+ * }
+ */
 public class _STORAGE_PROTOCOL_SPECIFIC_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolType"),
-        Constants$root.C_LONG$LAYOUT.withName("DataType"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataRequestValue"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataRequestSubValue"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataLength"),
-        Constants$root.C_LONG$LAYOUT.withName("FixedProtocolReturnData"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataRequestSubValue2"),
-        Constants$root.C_LONG$LAYOUT.withName("ProtocolDataRequestSubValue3"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved")
-    ).withName("_STORAGE_PROTOCOL_SPECIFIC_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.$struct$LAYOUT;
+    _STORAGE_PROTOCOL_SPECIFIC_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle ProtocolType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolType"));
-    public static VarHandle ProtocolType$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolType$VH;
-    }
-    public static int ProtocolType$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolType$VH.get(seg);
-    }
-    public static void ProtocolType$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolType$VH.set(seg, x);
-    }
-    public static int ProtocolType$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolType$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DataType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DataType"));
-    public static VarHandle DataType$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.DataType$VH;
-    }
-    public static int DataType$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.DataType$VH.get(seg);
-    }
-    public static void DataType$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.DataType$VH.set(seg, x);
-    }
-    public static int DataType$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.DataType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DataType$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.DataType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataRequestValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataRequestValue"));
-    public static VarHandle ProtocolDataRequestValue$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestValue$VH;
-    }
-    public static int ProtocolDataRequestValue$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestValue$VH.get(seg);
-    }
-    public static void ProtocolDataRequestValue$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestValue$VH.set(seg, x);
-    }
-    public static int ProtocolDataRequestValue$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataRequestValue$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataRequestSubValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataRequestSubValue"));
-    public static VarHandle ProtocolDataRequestSubValue$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue$VH;
-    }
-    public static int ProtocolDataRequestSubValue$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue$VH.get(seg);
-    }
-    public static void ProtocolDataRequestSubValue$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue$VH.set(seg, x);
-    }
-    public static int ProtocolDataRequestSubValue$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataRequestSubValue$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataOffset"));
-    public static VarHandle ProtocolDataOffset$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataOffset$VH;
-    }
-    public static int ProtocolDataOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataOffset$VH.get(seg);
-    }
-    public static void ProtocolDataOffset$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataOffset$VH.set(seg, x);
-    }
-    public static int ProtocolDataOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataLength"));
-    public static VarHandle ProtocolDataLength$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataLength$VH;
-    }
-    public static int ProtocolDataLength$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataLength$VH.get(seg);
-    }
-    public static void ProtocolDataLength$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataLength$VH.set(seg, x);
-    }
-    public static int ProtocolDataLength$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataLength$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FixedProtocolReturnData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FixedProtocolReturnData"));
-    public static VarHandle FixedProtocolReturnData$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.FixedProtocolReturnData$VH;
-    }
-    public static int FixedProtocolReturnData$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.FixedProtocolReturnData$VH.get(seg);
-    }
-    public static void FixedProtocolReturnData$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.FixedProtocolReturnData$VH.set(seg, x);
-    }
-    public static int FixedProtocolReturnData$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.FixedProtocolReturnData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FixedProtocolReturnData$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.FixedProtocolReturnData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataRequestSubValue2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataRequestSubValue2"));
-    public static VarHandle ProtocolDataRequestSubValue2$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue2$VH;
-    }
-    public static int ProtocolDataRequestSubValue2$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue2$VH.get(seg);
-    }
-    public static void ProtocolDataRequestSubValue2$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue2$VH.set(seg, x);
-    }
-    public static int ProtocolDataRequestSubValue2$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataRequestSubValue2$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ProtocolDataRequestSubValue3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolDataRequestSubValue3"));
-    public static VarHandle ProtocolDataRequestSubValue3$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue3$VH;
-    }
-    public static int ProtocolDataRequestSubValue3$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue3$VH.get(seg);
-    }
-    public static void ProtocolDataRequestSubValue3$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue3$VH.set(seg, x);
-    }
-    public static int ProtocolDataRequestSubValue3$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ProtocolDataRequestSubValue3$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.ProtocolDataRequestSubValue3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _STORAGE_PROTOCOL_SPECIFIC_DATA.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_PROTOCOL_SPECIFIC_DATA.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _STORAGE_PROTOCOL_SPECIFIC_DATA.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("ProtocolType"),
+        wgl_h.C_LONG.withName("DataType"),
+        wgl_h.C_LONG.withName("ProtocolDataRequestValue"),
+        wgl_h.C_LONG.withName("ProtocolDataRequestSubValue"),
+        wgl_h.C_LONG.withName("ProtocolDataOffset"),
+        wgl_h.C_LONG.withName("ProtocolDataLength"),
+        wgl_h.C_LONG.withName("FixedProtocolReturnData"),
+        wgl_h.C_LONG.withName("ProtocolDataRequestSubValue2"),
+        wgl_h.C_LONG.withName("ProtocolDataRequestSubValue3"),
+        wgl_h.C_LONG.withName("Reserved")
+    ).withName("_STORAGE_PROTOCOL_SPECIFIC_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ProtocolType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE ProtocolType
+     * }
+     */
+    public static final OfInt ProtocolType$layout() {
+        return ProtocolType$LAYOUT;
+    }
+
+    private static final long ProtocolType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE ProtocolType
+     * }
+     */
+    public static final long ProtocolType$offset() {
+        return ProtocolType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE ProtocolType
+     * }
+     */
+    public static int ProtocolType(MemorySegment struct) {
+        return struct.get(ProtocolType$LAYOUT, ProtocolType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_PROTOCOL_TYPE ProtocolType
+     * }
+     */
+    public static void ProtocolType(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolType$LAYOUT, ProtocolType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DataType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DataType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DataType
+     * }
+     */
+    public static final OfInt DataType$layout() {
+        return DataType$LAYOUT;
+    }
+
+    private static final long DataType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DataType
+     * }
+     */
+    public static final long DataType$offset() {
+        return DataType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DataType
+     * }
+     */
+    public static int DataType(MemorySegment struct) {
+        return struct.get(DataType$LAYOUT, DataType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DataType
+     * }
+     */
+    public static void DataType(MemorySegment struct, int fieldValue) {
+        struct.set(DataType$LAYOUT, DataType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataRequestValue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataRequestValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestValue
+     * }
+     */
+    public static final OfInt ProtocolDataRequestValue$layout() {
+        return ProtocolDataRequestValue$LAYOUT;
+    }
+
+    private static final long ProtocolDataRequestValue$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestValue
+     * }
+     */
+    public static final long ProtocolDataRequestValue$offset() {
+        return ProtocolDataRequestValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestValue
+     * }
+     */
+    public static int ProtocolDataRequestValue(MemorySegment struct) {
+        return struct.get(ProtocolDataRequestValue$LAYOUT, ProtocolDataRequestValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestValue
+     * }
+     */
+    public static void ProtocolDataRequestValue(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataRequestValue$LAYOUT, ProtocolDataRequestValue$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataRequestSubValue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataRequestSubValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue
+     * }
+     */
+    public static final OfInt ProtocolDataRequestSubValue$layout() {
+        return ProtocolDataRequestSubValue$LAYOUT;
+    }
+
+    private static final long ProtocolDataRequestSubValue$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue
+     * }
+     */
+    public static final long ProtocolDataRequestSubValue$offset() {
+        return ProtocolDataRequestSubValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue
+     * }
+     */
+    public static int ProtocolDataRequestSubValue(MemorySegment struct) {
+        return struct.get(ProtocolDataRequestSubValue$LAYOUT, ProtocolDataRequestSubValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue
+     * }
+     */
+    public static void ProtocolDataRequestSubValue(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataRequestSubValue$LAYOUT, ProtocolDataRequestSubValue$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataOffset
+     * }
+     */
+    public static final OfInt ProtocolDataOffset$layout() {
+        return ProtocolDataOffset$LAYOUT;
+    }
+
+    private static final long ProtocolDataOffset$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataOffset
+     * }
+     */
+    public static final long ProtocolDataOffset$offset() {
+        return ProtocolDataOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataOffset
+     * }
+     */
+    public static int ProtocolDataOffset(MemorySegment struct) {
+        return struct.get(ProtocolDataOffset$LAYOUT, ProtocolDataOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataOffset
+     * }
+     */
+    public static void ProtocolDataOffset(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataOffset$LAYOUT, ProtocolDataOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataLength
+     * }
+     */
+    public static final OfInt ProtocolDataLength$layout() {
+        return ProtocolDataLength$LAYOUT;
+    }
+
+    private static final long ProtocolDataLength$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataLength
+     * }
+     */
+    public static final long ProtocolDataLength$offset() {
+        return ProtocolDataLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataLength
+     * }
+     */
+    public static int ProtocolDataLength(MemorySegment struct) {
+        return struct.get(ProtocolDataLength$LAYOUT, ProtocolDataLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataLength
+     * }
+     */
+    public static void ProtocolDataLength(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataLength$LAYOUT, ProtocolDataLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt FixedProtocolReturnData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("FixedProtocolReturnData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD FixedProtocolReturnData
+     * }
+     */
+    public static final OfInt FixedProtocolReturnData$layout() {
+        return FixedProtocolReturnData$LAYOUT;
+    }
+
+    private static final long FixedProtocolReturnData$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD FixedProtocolReturnData
+     * }
+     */
+    public static final long FixedProtocolReturnData$offset() {
+        return FixedProtocolReturnData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD FixedProtocolReturnData
+     * }
+     */
+    public static int FixedProtocolReturnData(MemorySegment struct) {
+        return struct.get(FixedProtocolReturnData$LAYOUT, FixedProtocolReturnData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD FixedProtocolReturnData
+     * }
+     */
+    public static void FixedProtocolReturnData(MemorySegment struct, int fieldValue) {
+        struct.set(FixedProtocolReturnData$LAYOUT, FixedProtocolReturnData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataRequestSubValue2$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataRequestSubValue2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue2
+     * }
+     */
+    public static final OfInt ProtocolDataRequestSubValue2$layout() {
+        return ProtocolDataRequestSubValue2$LAYOUT;
+    }
+
+    private static final long ProtocolDataRequestSubValue2$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue2
+     * }
+     */
+    public static final long ProtocolDataRequestSubValue2$offset() {
+        return ProtocolDataRequestSubValue2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue2
+     * }
+     */
+    public static int ProtocolDataRequestSubValue2(MemorySegment struct) {
+        return struct.get(ProtocolDataRequestSubValue2$LAYOUT, ProtocolDataRequestSubValue2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue2
+     * }
+     */
+    public static void ProtocolDataRequestSubValue2(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataRequestSubValue2$LAYOUT, ProtocolDataRequestSubValue2$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ProtocolDataRequestSubValue3$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ProtocolDataRequestSubValue3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue3
+     * }
+     */
+    public static final OfInt ProtocolDataRequestSubValue3$layout() {
+        return ProtocolDataRequestSubValue3$LAYOUT;
+    }
+
+    private static final long ProtocolDataRequestSubValue3$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue3
+     * }
+     */
+    public static final long ProtocolDataRequestSubValue3$offset() {
+        return ProtocolDataRequestSubValue3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue3
+     * }
+     */
+    public static int ProtocolDataRequestSubValue3(MemorySegment struct) {
+        return struct.get(ProtocolDataRequestSubValue3$LAYOUT, ProtocolDataRequestSubValue3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ProtocolDataRequestSubValue3
+     * }
+     */
+    public static void ProtocolDataRequestSubValue3(MemorySegment struct, int fieldValue) {
+        struct.set(ProtocolDataRequestSubValue3$LAYOUT, ProtocolDataRequestSubValue3$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

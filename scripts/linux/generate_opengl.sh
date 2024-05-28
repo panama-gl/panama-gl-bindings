@@ -1,12 +1,11 @@
 
 
-JEXTRACT=/usr/lib/jvm/jextract-19/bin/jextract
+JEXTRACT=/usr/lib/jvm/jextract-22/jextract
 
 # Generate OpenGL Binding
 $JEXTRACT \
-  --target-package opengl.ubuntu.v20 \
+  --target-package opengl.linux.x86 \
   --output ../../panama-gl-bindings-linux/src/generated/java/ \
-  --source \
   --header-class-name glut_h \
   -lGL \
   -lglut \

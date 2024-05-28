@@ -2,340 +2,1439 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILE_REMOTE_PROTOCOL_INFO {
+ *     USHORT StructureVersion;
+ *     USHORT StructureSize;
+ *     ULONG Protocol;
+ *     USHORT ProtocolMajorVersion;
+ *     USHORT ProtocolMinorVersion;
+ *     USHORT ProtocolRevision;
+ *     USHORT Reserved;
+ *     ULONG Flags;
+ *     struct {
+ *         ULONG Reserved[8];
+ *     } GenericReserved;
+ *     union {
+ *         struct {
+ *             struct {
+ *                 ULONG Capabilities;
+ *             } Server;
+ *             struct {
+ *                 ULONG Capabilities;
+ *                 ULONG CachingFlags;
+ *             } Share;
+ *         } Smb2;
+ *         ULONG Reserved[16];
+ *     } ProtocolSpecific;
+ * }
+ * }
+ */
 public class _FILE_REMOTE_PROTOCOL_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("StructureVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("StructureSize"),
-        Constants$root.C_LONG$LAYOUT.withName("Protocol"),
-        Constants$root.C_SHORT$LAYOUT.withName("ProtocolMajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("ProtocolMinorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("ProtocolRevision"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(8, Constants$root.C_LONG$LAYOUT).withName("Reserved")
-        ).withName("GenericReserved"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities")
-                ).withName("Server"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities"),
-                    Constants$root.C_LONG$LAYOUT.withName("CachingFlags")
-                ).withName("Share")
-            ).withName("Smb2"),
-            MemoryLayout.sequenceLayout(16, Constants$root.C_LONG$LAYOUT).withName("Reserved")
-        ).withName("ProtocolSpecific")
+    _FILE_REMOTE_PROTOCOL_INFO() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("StructureVersion"),
+        wgl_h.C_SHORT.withName("StructureSize"),
+        wgl_h.C_LONG.withName("Protocol"),
+        wgl_h.C_SHORT.withName("ProtocolMajorVersion"),
+        wgl_h.C_SHORT.withName("ProtocolMinorVersion"),
+        wgl_h.C_SHORT.withName("ProtocolRevision"),
+        wgl_h.C_SHORT.withName("Reserved"),
+        wgl_h.C_LONG.withName("Flags"),
+        _FILE_REMOTE_PROTOCOL_INFO.GenericReserved.layout().withName("GenericReserved"),
+        _FILE_REMOTE_PROTOCOL_INFO.ProtocolSpecific.layout().withName("ProtocolSpecific")
     ).withName("_FILE_REMOTE_PROTOCOL_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _FILE_REMOTE_PROTOCOL_INFO.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle StructureVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StructureVersion"));
-    public static VarHandle StructureVersion$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.StructureVersion$VH;
+
+    private static final OfShort StructureVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("StructureVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT StructureVersion
+     * }
+     */
+    public static final OfShort StructureVersion$layout() {
+        return StructureVersion$LAYOUT;
     }
-    public static short StructureVersion$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.StructureVersion$VH.get(seg);
+
+    private static final long StructureVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT StructureVersion
+     * }
+     */
+    public static final long StructureVersion$offset() {
+        return StructureVersion$OFFSET;
     }
-    public static void StructureVersion$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.StructureVersion$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT StructureVersion
+     * }
+     */
+    public static short StructureVersion(MemorySegment struct) {
+        return struct.get(StructureVersion$LAYOUT, StructureVersion$OFFSET);
     }
-    public static short StructureVersion$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.StructureVersion$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT StructureVersion
+     * }
+     */
+    public static void StructureVersion(MemorySegment struct, short fieldValue) {
+        struct.set(StructureVersion$LAYOUT, StructureVersion$OFFSET, fieldValue);
     }
-    public static void StructureVersion$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.StructureVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort StructureSize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("StructureSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT StructureSize
+     * }
+     */
+    public static final OfShort StructureSize$layout() {
+        return StructureSize$LAYOUT;
     }
-    static final VarHandle StructureSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StructureSize"));
-    public static VarHandle StructureSize$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.StructureSize$VH;
+
+    private static final long StructureSize$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT StructureSize
+     * }
+     */
+    public static final long StructureSize$offset() {
+        return StructureSize$OFFSET;
     }
-    public static short StructureSize$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.StructureSize$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT StructureSize
+     * }
+     */
+    public static short StructureSize(MemorySegment struct) {
+        return struct.get(StructureSize$LAYOUT, StructureSize$OFFSET);
     }
-    public static void StructureSize$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.StructureSize$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT StructureSize
+     * }
+     */
+    public static void StructureSize(MemorySegment struct, short fieldValue) {
+        struct.set(StructureSize$LAYOUT, StructureSize$OFFSET, fieldValue);
     }
-    public static short StructureSize$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.StructureSize$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt Protocol$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Protocol"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Protocol
+     * }
+     */
+    public static final OfInt Protocol$layout() {
+        return Protocol$LAYOUT;
     }
-    public static void StructureSize$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.StructureSize$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Protocol$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Protocol
+     * }
+     */
+    public static final long Protocol$offset() {
+        return Protocol$OFFSET;
     }
-    static final VarHandle Protocol$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Protocol"));
-    public static VarHandle Protocol$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.Protocol$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Protocol
+     * }
+     */
+    public static int Protocol(MemorySegment struct) {
+        return struct.get(Protocol$LAYOUT, Protocol$OFFSET);
     }
-    public static int Protocol$get(MemorySegment seg) {
-        return (int)_FILE_REMOTE_PROTOCOL_INFO.Protocol$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Protocol
+     * }
+     */
+    public static void Protocol(MemorySegment struct, int fieldValue) {
+        struct.set(Protocol$LAYOUT, Protocol$OFFSET, fieldValue);
     }
-    public static void Protocol$set( MemorySegment seg, int x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Protocol$VH.set(seg, x);
+
+    private static final OfShort ProtocolMajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ProtocolMajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMajorVersion
+     * }
+     */
+    public static final OfShort ProtocolMajorVersion$layout() {
+        return ProtocolMajorVersion$LAYOUT;
     }
-    public static int Protocol$get(MemorySegment seg, long index) {
-        return (int)_FILE_REMOTE_PROTOCOL_INFO.Protocol$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long ProtocolMajorVersion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMajorVersion
+     * }
+     */
+    public static final long ProtocolMajorVersion$offset() {
+        return ProtocolMajorVersion$OFFSET;
     }
-    public static void Protocol$set(MemorySegment seg, long index, int x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Protocol$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMajorVersion
+     * }
+     */
+    public static short ProtocolMajorVersion(MemorySegment struct) {
+        return struct.get(ProtocolMajorVersion$LAYOUT, ProtocolMajorVersion$OFFSET);
     }
-    static final VarHandle ProtocolMajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolMajorVersion"));
-    public static VarHandle ProtocolMajorVersion$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.ProtocolMajorVersion$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMajorVersion
+     * }
+     */
+    public static void ProtocolMajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(ProtocolMajorVersion$LAYOUT, ProtocolMajorVersion$OFFSET, fieldValue);
     }
-    public static short ProtocolMajorVersion$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolMajorVersion$VH.get(seg);
+
+    private static final OfShort ProtocolMinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ProtocolMinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMinorVersion
+     * }
+     */
+    public static final OfShort ProtocolMinorVersion$layout() {
+        return ProtocolMinorVersion$LAYOUT;
     }
-    public static void ProtocolMajorVersion$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolMajorVersion$VH.set(seg, x);
+
+    private static final long ProtocolMinorVersion$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMinorVersion
+     * }
+     */
+    public static final long ProtocolMinorVersion$offset() {
+        return ProtocolMinorVersion$OFFSET;
     }
-    public static short ProtocolMajorVersion$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolMajorVersion$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMinorVersion
+     * }
+     */
+    public static short ProtocolMinorVersion(MemorySegment struct) {
+        return struct.get(ProtocolMinorVersion$LAYOUT, ProtocolMinorVersion$OFFSET);
     }
-    public static void ProtocolMajorVersion$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolMajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolMinorVersion
+     * }
+     */
+    public static void ProtocolMinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(ProtocolMinorVersion$LAYOUT, ProtocolMinorVersion$OFFSET, fieldValue);
     }
-    static final VarHandle ProtocolMinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolMinorVersion"));
-    public static VarHandle ProtocolMinorVersion$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.ProtocolMinorVersion$VH;
+
+    private static final OfShort ProtocolRevision$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ProtocolRevision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolRevision
+     * }
+     */
+    public static final OfShort ProtocolRevision$layout() {
+        return ProtocolRevision$LAYOUT;
     }
-    public static short ProtocolMinorVersion$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolMinorVersion$VH.get(seg);
+
+    private static final long ProtocolRevision$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolRevision
+     * }
+     */
+    public static final long ProtocolRevision$offset() {
+        return ProtocolRevision$OFFSET;
     }
-    public static void ProtocolMinorVersion$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolMinorVersion$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolRevision
+     * }
+     */
+    public static short ProtocolRevision(MemorySegment struct) {
+        return struct.get(ProtocolRevision$LAYOUT, ProtocolRevision$OFFSET);
     }
-    public static short ProtocolMinorVersion$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolMinorVersion$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT ProtocolRevision
+     * }
+     */
+    public static void ProtocolRevision(MemorySegment struct, short fieldValue) {
+        struct.set(ProtocolRevision$LAYOUT, ProtocolRevision$OFFSET, fieldValue);
     }
-    public static void ProtocolMinorVersion$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolMinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
     }
-    static final VarHandle ProtocolRevision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ProtocolRevision"));
-    public static VarHandle ProtocolRevision$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.ProtocolRevision$VH;
+
+    private static final long Reserved$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
     }
-    public static short ProtocolRevision$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolRevision$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
     }
-    public static void ProtocolRevision$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolRevision$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
     }
-    public static short ProtocolRevision$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.ProtocolRevision$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
     }
-    public static void ProtocolRevision$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.ProtocolRevision$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Flags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.Reserved$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
     }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.Reserved$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
     }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Reserved$VH.set(seg, x);
-    }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)_FILE_REMOTE_PROTOCOL_INFO.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _FILE_REMOTE_PROTOCOL_INFO.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_FILE_REMOTE_PROTOCOL_INFO.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_FILE_REMOTE_PROTOCOL_INFO.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _FILE_REMOTE_PROTOCOL_INFO.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     ULONG Reserved[8];
+     * }
+     * }
+     */
     public static class GenericReserved {
 
-        static final  GroupLayout GenericReserved$struct$LAYOUT = MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(8, Constants$root.C_LONG$LAYOUT).withName("Reserved")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return GenericReserved.GenericReserved$struct$LAYOUT;
+        GenericReserved() {
+            // Should not be called directly
         }
-        public static MemorySegment Reserved$slice(MemorySegment seg) {
-            return seg.asSlice(0, 32);
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            MemoryLayout.sequenceLayout(8, wgl_h.C_LONG).withName("Reserved")
+        ).withName("$anon$9077:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static final SequenceLayout Reserved$layout() {
+            return Reserved$LAYOUT;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        private static final long Reserved$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static final long Reserved$offset() {
+            return Reserved$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static MemorySegment Reserved(MemorySegment struct) {
+            return struct.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static void Reserved(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+        }
+
+        private static long[] Reserved$DIMS = { 8 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static long[] Reserved$dimensions() {
+            return Reserved$DIMS;
+        }
+        private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static int Reserved(MemorySegment struct, long index0) {
+            return (int)Reserved$ELEM_HANDLE.get(struct, 0L, index0);
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[8]
+         * }
+         */
+        public static void Reserved(MemorySegment struct, long index0, int fieldValue) {
+            Reserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment GenericReserved$slice(MemorySegment seg) {
-        return seg.asSlice(20, 32);
+    private static final GroupLayout GenericReserved$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("GenericReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     ULONG Reserved[8];
+     * } GenericReserved
+     * }
+     */
+    public static final GroupLayout GenericReserved$layout() {
+        return GenericReserved$LAYOUT;
     }
+
+    private static final long GenericReserved$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     ULONG Reserved[8];
+     * } GenericReserved
+     * }
+     */
+    public static final long GenericReserved$offset() {
+        return GenericReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     ULONG Reserved[8];
+     * } GenericReserved
+     * }
+     */
+    public static MemorySegment GenericReserved(MemorySegment struct) {
+        return struct.asSlice(GenericReserved$OFFSET, GenericReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     ULONG Reserved[8];
+     * } GenericReserved
+     * }
+     */
+    public static void GenericReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, GenericReserved$OFFSET, GenericReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         struct {
+     *             ULONG Capabilities;
+     *         } Server;
+     *         struct {
+     *             ULONG Capabilities;
+     *             ULONG CachingFlags;
+     *         } Share;
+     *     } Smb2;
+     *     ULONG Reserved[16];
+     * }
+     * }
+     */
     public static class ProtocolSpecific {
 
-        static final  GroupLayout ProtocolSpecific$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities")
-                ).withName("Server"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities"),
-                    Constants$root.C_LONG$LAYOUT.withName("CachingFlags")
-                ).withName("Share")
-            ).withName("Smb2"),
-            MemoryLayout.sequenceLayout(16, Constants$root.C_LONG$LAYOUT).withName("Reserved")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return ProtocolSpecific.ProtocolSpecific$union$LAYOUT;
+        ProtocolSpecific() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _FILE_REMOTE_PROTOCOL_INFO.ProtocolSpecific.Smb2.layout().withName("Smb2"),
+            MemoryLayout.sequenceLayout(16, wgl_h.C_LONG).withName("Reserved")
+        ).withName("$anon$9090:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     struct {
+         *         ULONG Capabilities;
+         *     } Server;
+         *     struct {
+         *         ULONG Capabilities;
+         *         ULONG CachingFlags;
+         *     } Share;
+         * }
+         * }
+         */
         public static class Smb2 {
 
-            static final  GroupLayout ProtocolSpecific$Smb2$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities")
-                ).withName("Server"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities"),
-                    Constants$root.C_LONG$LAYOUT.withName("CachingFlags")
-                ).withName("Share")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return Smb2.ProtocolSpecific$Smb2$struct$LAYOUT;
+            Smb2() {
+                // Should not be called directly
             }
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                _FILE_REMOTE_PROTOCOL_INFO.ProtocolSpecific.Smb2.Server.layout().withName("Server"),
+                _FILE_REMOTE_PROTOCOL_INFO.ProtocolSpecific.Smb2.Share.layout().withName("Share")
+            ).withName("$anon$9092:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
+            }
+
+            /**
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             * }
+             * }
+             */
             public static class Server {
 
-                static final  GroupLayout ProtocolSpecific$Smb2$Server$struct$LAYOUT = MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities")
-                );
-                public static MemoryLayout $LAYOUT() {
-                    return Server.ProtocolSpecific$Smb2$Server$struct$LAYOUT;
+                Server() {
+                    // Should not be called directly
                 }
-                static final VarHandle Capabilities$VH = ProtocolSpecific$Smb2$Server$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Capabilities"));
-                public static VarHandle Capabilities$VH() {
-                    return Server.Capabilities$VH;
+
+                private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                    wgl_h.C_LONG.withName("Capabilities")
+                ).withName("$anon$9094:13");
+
+                /**
+                 * The layout of this struct
+                 */
+                public static final GroupLayout layout() {
+                    return $LAYOUT;
                 }
-                public static int Capabilities$get(MemorySegment seg) {
-                    return (int)Server.Capabilities$VH.get(seg);
+
+                private static final OfInt Capabilities$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Capabilities"));
+
+                /**
+                 * Layout for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static final OfInt Capabilities$layout() {
+                    return Capabilities$LAYOUT;
                 }
-                public static void Capabilities$set( MemorySegment seg, int x) {
-                    Server.Capabilities$VH.set(seg, x);
+
+                private static final long Capabilities$OFFSET = 0;
+
+                /**
+                 * Offset for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static final long Capabilities$offset() {
+                    return Capabilities$OFFSET;
                 }
-                public static int Capabilities$get(MemorySegment seg, long index) {
-                    return (int)Server.Capabilities$VH.get(seg.asSlice(index*sizeof()));
+
+                /**
+                 * Getter for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static int Capabilities(MemorySegment struct) {
+                    return struct.get(Capabilities$LAYOUT, Capabilities$OFFSET);
                 }
-                public static void Capabilities$set(MemorySegment seg, long index, int x) {
-                    Server.Capabilities$VH.set(seg.asSlice(index*sizeof()), x);
+
+                /**
+                 * Setter for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static void Capabilities(MemorySegment struct, int fieldValue) {
+                    struct.set(Capabilities$LAYOUT, Capabilities$OFFSET, fieldValue);
                 }
-                public static long sizeof() { return $LAYOUT().byteSize(); }
-                public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-                public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                    return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+                /**
+                 * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+                 * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+                 */
+                public static MemorySegment asSlice(MemorySegment array, long index) {
+                    return array.asSlice(layout().byteSize() * index);
                 }
-                public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+                /**
+                 * The size (in bytes) of this struct
+                 */
+                public static long sizeof() { return layout().byteSize(); }
+
+                /**
+                 * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+                 */
+                public static MemorySegment allocate(SegmentAllocator allocator) {
+                    return allocator.allocate(layout());
+                }
+
+                /**
+                 * Allocate an array of size {@code elementCount} using {@code allocator}.
+                 * The returned segment has size {@code elementCount * layout().byteSize()}.
+                 */
+                public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                    return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return reinterpret(addr, 1, arena, cleanup);
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code elementCount * layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+                }
             }
 
-            public static MemorySegment Server$slice(MemorySegment seg) {
-                return seg.asSlice(0, 4);
+            private static final GroupLayout Server$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Server"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             * } Server
+             * }
+             */
+            public static final GroupLayout Server$layout() {
+                return Server$LAYOUT;
             }
+
+            private static final long Server$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             * } Server
+             * }
+             */
+            public static final long Server$offset() {
+                return Server$OFFSET;
+            }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             * } Server
+             * }
+             */
+            public static MemorySegment Server(MemorySegment struct) {
+                return struct.asSlice(Server$OFFSET, Server$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             * } Server
+             * }
+             */
+            public static void Server(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, Server$OFFSET, Server$LAYOUT.byteSize());
+            }
+
+            /**
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             *     ULONG CachingFlags;
+             * }
+             * }
+             */
             public static class Share {
 
-                static final  GroupLayout ProtocolSpecific$Smb2$Share$struct$LAYOUT = MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Capabilities"),
-                    Constants$root.C_LONG$LAYOUT.withName("CachingFlags")
-                );
-                public static MemoryLayout $LAYOUT() {
-                    return Share.ProtocolSpecific$Smb2$Share$struct$LAYOUT;
+                Share() {
+                    // Should not be called directly
                 }
-                static final VarHandle Capabilities$VH = ProtocolSpecific$Smb2$Share$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Capabilities"));
-                public static VarHandle Capabilities$VH() {
-                    return Share.Capabilities$VH;
+
+                private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                    wgl_h.C_LONG.withName("Capabilities"),
+                    wgl_h.C_LONG.withName("CachingFlags")
+                ).withName("$anon$9098:13");
+
+                /**
+                 * The layout of this struct
+                 */
+                public static final GroupLayout layout() {
+                    return $LAYOUT;
                 }
-                public static int Capabilities$get(MemorySegment seg) {
-                    return (int)Share.Capabilities$VH.get(seg);
+
+                private static final OfInt Capabilities$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Capabilities"));
+
+                /**
+                 * Layout for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static final OfInt Capabilities$layout() {
+                    return Capabilities$LAYOUT;
                 }
-                public static void Capabilities$set( MemorySegment seg, int x) {
-                    Share.Capabilities$VH.set(seg, x);
+
+                private static final long Capabilities$OFFSET = 0;
+
+                /**
+                 * Offset for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static final long Capabilities$offset() {
+                    return Capabilities$OFFSET;
                 }
-                public static int Capabilities$get(MemorySegment seg, long index) {
-                    return (int)Share.Capabilities$VH.get(seg.asSlice(index*sizeof()));
+
+                /**
+                 * Getter for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static int Capabilities(MemorySegment struct) {
+                    return struct.get(Capabilities$LAYOUT, Capabilities$OFFSET);
                 }
-                public static void Capabilities$set(MemorySegment seg, long index, int x) {
-                    Share.Capabilities$VH.set(seg.asSlice(index*sizeof()), x);
+
+                /**
+                 * Setter for field:
+                 * {@snippet lang=c :
+                 * ULONG Capabilities
+                 * }
+                 */
+                public static void Capabilities(MemorySegment struct, int fieldValue) {
+                    struct.set(Capabilities$LAYOUT, Capabilities$OFFSET, fieldValue);
                 }
-                static final VarHandle CachingFlags$VH = ProtocolSpecific$Smb2$Share$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CachingFlags"));
-                public static VarHandle CachingFlags$VH() {
-                    return Share.CachingFlags$VH;
+
+                private static final OfInt CachingFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CachingFlags"));
+
+                /**
+                 * Layout for field:
+                 * {@snippet lang=c :
+                 * ULONG CachingFlags
+                 * }
+                 */
+                public static final OfInt CachingFlags$layout() {
+                    return CachingFlags$LAYOUT;
                 }
-                public static int CachingFlags$get(MemorySegment seg) {
-                    return (int)Share.CachingFlags$VH.get(seg);
+
+                private static final long CachingFlags$OFFSET = 4;
+
+                /**
+                 * Offset for field:
+                 * {@snippet lang=c :
+                 * ULONG CachingFlags
+                 * }
+                 */
+                public static final long CachingFlags$offset() {
+                    return CachingFlags$OFFSET;
                 }
-                public static void CachingFlags$set( MemorySegment seg, int x) {
-                    Share.CachingFlags$VH.set(seg, x);
+
+                /**
+                 * Getter for field:
+                 * {@snippet lang=c :
+                 * ULONG CachingFlags
+                 * }
+                 */
+                public static int CachingFlags(MemorySegment struct) {
+                    return struct.get(CachingFlags$LAYOUT, CachingFlags$OFFSET);
                 }
-                public static int CachingFlags$get(MemorySegment seg, long index) {
-                    return (int)Share.CachingFlags$VH.get(seg.asSlice(index*sizeof()));
+
+                /**
+                 * Setter for field:
+                 * {@snippet lang=c :
+                 * ULONG CachingFlags
+                 * }
+                 */
+                public static void CachingFlags(MemorySegment struct, int fieldValue) {
+                    struct.set(CachingFlags$LAYOUT, CachingFlags$OFFSET, fieldValue);
                 }
-                public static void CachingFlags$set(MemorySegment seg, long index, int x) {
-                    Share.CachingFlags$VH.set(seg.asSlice(index*sizeof()), x);
+
+                /**
+                 * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+                 * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+                 */
+                public static MemorySegment asSlice(MemorySegment array, long index) {
+                    return array.asSlice(layout().byteSize() * index);
                 }
-                public static long sizeof() { return $LAYOUT().byteSize(); }
-                public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-                public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                    return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+                /**
+                 * The size (in bytes) of this struct
+                 */
+                public static long sizeof() { return layout().byteSize(); }
+
+                /**
+                 * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+                 */
+                public static MemorySegment allocate(SegmentAllocator allocator) {
+                    return allocator.allocate(layout());
                 }
-                public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+                /**
+                 * Allocate an array of size {@code elementCount} using {@code allocator}.
+                 * The returned segment has size {@code elementCount * layout().byteSize()}.
+                 */
+                public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                    return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return reinterpret(addr, 1, arena, cleanup);
+                }
+
+                /**
+                 * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+                 * The returned segment has size {@code elementCount * layout().byteSize()}
+                 */
+                public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                    return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+                }
             }
 
-            public static MemorySegment Share$slice(MemorySegment seg) {
-                return seg.asSlice(4, 8);
+            private static final GroupLayout Share$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Share"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             *     ULONG CachingFlags;
+             * } Share
+             * }
+             */
+            public static final GroupLayout Share$layout() {
+                return Share$LAYOUT;
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final long Share$OFFSET = 4;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             *     ULONG CachingFlags;
+             * } Share
+             * }
+             */
+            public static final long Share$offset() {
+                return Share$OFFSET;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             *     ULONG CachingFlags;
+             * } Share
+             * }
+             */
+            public static MemorySegment Share(MemorySegment struct) {
+                return struct.asSlice(Share$OFFSET, Share$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * struct {
+             *     ULONG Capabilities;
+             *     ULONG CachingFlags;
+             * } Share
+             * }
+             */
+            public static void Share(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, Share$OFFSET, Share$LAYOUT.byteSize());
+            }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment Smb2$slice(MemorySegment seg) {
-            return seg.asSlice(0, 12);
+        private static final GroupLayout Smb2$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Smb2"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     struct {
+         *         ULONG Capabilities;
+         *     } Server;
+         *     struct {
+         *         ULONG Capabilities;
+         *         ULONG CachingFlags;
+         *     } Share;
+         * } Smb2
+         * }
+         */
+        public static final GroupLayout Smb2$layout() {
+            return Smb2$LAYOUT;
         }
-        public static MemorySegment Reserved$slice(MemorySegment seg) {
-            return seg.asSlice(0, 64);
+
+        private static final long Smb2$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     struct {
+         *         ULONG Capabilities;
+         *     } Server;
+         *     struct {
+         *         ULONG Capabilities;
+         *         ULONG CachingFlags;
+         *     } Share;
+         * } Smb2
+         * }
+         */
+        public static final long Smb2$offset() {
+            return Smb2$OFFSET;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     struct {
+         *         ULONG Capabilities;
+         *     } Server;
+         *     struct {
+         *         ULONG Capabilities;
+         *         ULONG CachingFlags;
+         *     } Share;
+         * } Smb2
+         * }
+         */
+        public static MemorySegment Smb2(MemorySegment union) {
+            return union.asSlice(Smb2$OFFSET, Smb2$LAYOUT.byteSize());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     struct {
+         *         ULONG Capabilities;
+         *     } Server;
+         *     struct {
+         *         ULONG Capabilities;
+         *         ULONG CachingFlags;
+         *     } Share;
+         * } Smb2
+         * }
+         */
+        public static void Smb2(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Smb2$OFFSET, Smb2$LAYOUT.byteSize());
+        }
+
+        private static final SequenceLayout Reserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static final SequenceLayout Reserved$layout() {
+            return Reserved$LAYOUT;
+        }
+
+        private static final long Reserved$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static final long Reserved$offset() {
+            return Reserved$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static MemorySegment Reserved(MemorySegment union) {
+            return union.asSlice(Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static void Reserved(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, Reserved$OFFSET, Reserved$LAYOUT.byteSize());
+        }
+
+        private static long[] Reserved$DIMS = { 16 };
+
+        /**
+         * Dimensions for array field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static long[] Reserved$dimensions() {
+            return Reserved$DIMS;
+        }
+        private static final VarHandle Reserved$ELEM_HANDLE = Reserved$LAYOUT.varHandle(sequenceElement());
+
+        /**
+         * Indexed getter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static int Reserved(MemorySegment union, long index0) {
+            return (int)Reserved$ELEM_HANDLE.get(union, 0L, index0);
+        }
+
+        /**
+         * Indexed setter for field:
+         * {@snippet lang=c :
+         * ULONG Reserved[16]
+         * }
+         */
+        public static void Reserved(MemorySegment union, long index0, int fieldValue) {
+            Reserved$ELEM_HANDLE.set(union, 0L, index0, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment ProtocolSpecific$slice(MemorySegment seg) {
-        return seg.asSlice(52, 64);
+    private static final GroupLayout ProtocolSpecific$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ProtocolSpecific"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         struct {
+     *             ULONG Capabilities;
+     *         } Server;
+     *         struct {
+     *             ULONG Capabilities;
+     *             ULONG CachingFlags;
+     *         } Share;
+     *     } Smb2;
+     *     ULONG Reserved[16];
+     * } ProtocolSpecific
+     * }
+     */
+    public static final GroupLayout ProtocolSpecific$layout() {
+        return ProtocolSpecific$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long ProtocolSpecific$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         struct {
+     *             ULONG Capabilities;
+     *         } Server;
+     *         struct {
+     *             ULONG Capabilities;
+     *             ULONG CachingFlags;
+     *         } Share;
+     *     } Smb2;
+     *     ULONG Reserved[16];
+     * } ProtocolSpecific
+     * }
+     */
+    public static final long ProtocolSpecific$offset() {
+        return ProtocolSpecific$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         struct {
+     *             ULONG Capabilities;
+     *         } Server;
+     *         struct {
+     *             ULONG Capabilities;
+     *             ULONG CachingFlags;
+     *         } Share;
+     *     } Smb2;
+     *     ULONG Reserved[16];
+     * } ProtocolSpecific
+     * }
+     */
+    public static MemorySegment ProtocolSpecific(MemorySegment struct) {
+        return struct.asSlice(ProtocolSpecific$OFFSET, ProtocolSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         struct {
+     *             ULONG Capabilities;
+     *         } Server;
+     *         struct {
+     *             ULONG Capabilities;
+     *             ULONG CachingFlags;
+     *         } Share;
+     *     } Smb2;
+     *     ULONG Reserved[16];
+     * } ProtocolSpecific
+     * }
+     */
+    public static void ProtocolSpecific(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ProtocolSpecific$OFFSET, ProtocolSpecific$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

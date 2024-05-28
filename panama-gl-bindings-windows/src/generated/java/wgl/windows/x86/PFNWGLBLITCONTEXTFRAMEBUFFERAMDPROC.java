@@ -2,27 +2,76 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress dstCtx, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter);
-    static MemorySegment allocate(PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC.class, fi, constants$1386.PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC)(HGLRC, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLint, GLbitfield, GLenum) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC {
+
+    PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC() {
+        // Should not be called directly
     }
-    static PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _dstCtx, int _srcX0, int _srcY0, int _srcX1, int _srcY1, int _dstX0, int _dstY0, int _dstX1, int _dstY1, int _mask, int _filter) -> {
-            try {
-                constants$1386.PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_dstCtx, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment dstCtx, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLBLITCONTEXTFRAMEBUFFERAMDPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment dstCtx, int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, int mask, int filter) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, dstCtx, srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -2,101 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _nlsversioninfoex {
+ *     DWORD dwNLSVersionInfoSize;
+ *     DWORD dwNLSVersion;
+ *     DWORD dwDefinedVersion;
+ *     DWORD dwEffectiveId;
+ *     GUID guidCustomVersion;
+ * }
+ * }
+ */
 public class _nlsversioninfoex {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwNLSVersionInfoSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwNLSVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwDefinedVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwEffectiveId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("guidCustomVersion")
-    ).withName("_nlsversioninfoex");
-    public static MemoryLayout $LAYOUT() {
-        return _nlsversioninfoex.$struct$LAYOUT;
+    _nlsversioninfoex() {
+        // Should not be called directly
     }
-    static final VarHandle dwNLSVersionInfoSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNLSVersionInfoSize"));
-    public static VarHandle dwNLSVersionInfoSize$VH() {
-        return _nlsversioninfoex.dwNLSVersionInfoSize$VH;
-    }
-    public static int dwNLSVersionInfoSize$get(MemorySegment seg) {
-        return (int)_nlsversioninfoex.dwNLSVersionInfoSize$VH.get(seg);
-    }
-    public static void dwNLSVersionInfoSize$set( MemorySegment seg, int x) {
-        _nlsversioninfoex.dwNLSVersionInfoSize$VH.set(seg, x);
-    }
-    public static int dwNLSVersionInfoSize$get(MemorySegment seg, long index) {
-        return (int)_nlsversioninfoex.dwNLSVersionInfoSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNLSVersionInfoSize$set(MemorySegment seg, long index, int x) {
-        _nlsversioninfoex.dwNLSVersionInfoSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwNLSVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwNLSVersion"));
-    public static VarHandle dwNLSVersion$VH() {
-        return _nlsversioninfoex.dwNLSVersion$VH;
-    }
-    public static int dwNLSVersion$get(MemorySegment seg) {
-        return (int)_nlsversioninfoex.dwNLSVersion$VH.get(seg);
-    }
-    public static void dwNLSVersion$set( MemorySegment seg, int x) {
-        _nlsversioninfoex.dwNLSVersion$VH.set(seg, x);
-    }
-    public static int dwNLSVersion$get(MemorySegment seg, long index) {
-        return (int)_nlsversioninfoex.dwNLSVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwNLSVersion$set(MemorySegment seg, long index, int x) {
-        _nlsversioninfoex.dwNLSVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwDefinedVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDefinedVersion"));
-    public static VarHandle dwDefinedVersion$VH() {
-        return _nlsversioninfoex.dwDefinedVersion$VH;
-    }
-    public static int dwDefinedVersion$get(MemorySegment seg) {
-        return (int)_nlsversioninfoex.dwDefinedVersion$VH.get(seg);
-    }
-    public static void dwDefinedVersion$set( MemorySegment seg, int x) {
-        _nlsversioninfoex.dwDefinedVersion$VH.set(seg, x);
-    }
-    public static int dwDefinedVersion$get(MemorySegment seg, long index) {
-        return (int)_nlsversioninfoex.dwDefinedVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwDefinedVersion$set(MemorySegment seg, long index, int x) {
-        _nlsversioninfoex.dwDefinedVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwEffectiveId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwEffectiveId"));
-    public static VarHandle dwEffectiveId$VH() {
-        return _nlsversioninfoex.dwEffectiveId$VH;
-    }
-    public static int dwEffectiveId$get(MemorySegment seg) {
-        return (int)_nlsversioninfoex.dwEffectiveId$VH.get(seg);
-    }
-    public static void dwEffectiveId$set( MemorySegment seg, int x) {
-        _nlsversioninfoex.dwEffectiveId$VH.set(seg, x);
-    }
-    public static int dwEffectiveId$get(MemorySegment seg, long index) {
-        return (int)_nlsversioninfoex.dwEffectiveId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwEffectiveId$set(MemorySegment seg, long index, int x) {
-        _nlsversioninfoex.dwEffectiveId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment guidCustomVersion$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwNLSVersionInfoSize"),
+        wgl_h.C_LONG.withName("dwNLSVersion"),
+        wgl_h.C_LONG.withName("dwDefinedVersion"),
+        wgl_h.C_LONG.withName("dwEffectiveId"),
+        _GUID.layout().withName("guidCustomVersion")
+    ).withName("_nlsversioninfoex");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwNLSVersionInfoSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNLSVersionInfoSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersionInfoSize
+     * }
+     */
+    public static final OfInt dwNLSVersionInfoSize$layout() {
+        return dwNLSVersionInfoSize$LAYOUT;
+    }
+
+    private static final long dwNLSVersionInfoSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersionInfoSize
+     * }
+     */
+    public static final long dwNLSVersionInfoSize$offset() {
+        return dwNLSVersionInfoSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersionInfoSize
+     * }
+     */
+    public static int dwNLSVersionInfoSize(MemorySegment struct) {
+        return struct.get(dwNLSVersionInfoSize$LAYOUT, dwNLSVersionInfoSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersionInfoSize
+     * }
+     */
+    public static void dwNLSVersionInfoSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwNLSVersionInfoSize$LAYOUT, dwNLSVersionInfoSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwNLSVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwNLSVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersion
+     * }
+     */
+    public static final OfInt dwNLSVersion$layout() {
+        return dwNLSVersion$LAYOUT;
+    }
+
+    private static final long dwNLSVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersion
+     * }
+     */
+    public static final long dwNLSVersion$offset() {
+        return dwNLSVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersion
+     * }
+     */
+    public static int dwNLSVersion(MemorySegment struct) {
+        return struct.get(dwNLSVersion$LAYOUT, dwNLSVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwNLSVersion
+     * }
+     */
+    public static void dwNLSVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwNLSVersion$LAYOUT, dwNLSVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwDefinedVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDefinedVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwDefinedVersion
+     * }
+     */
+    public static final OfInt dwDefinedVersion$layout() {
+        return dwDefinedVersion$LAYOUT;
+    }
+
+    private static final long dwDefinedVersion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwDefinedVersion
+     * }
+     */
+    public static final long dwDefinedVersion$offset() {
+        return dwDefinedVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwDefinedVersion
+     * }
+     */
+    public static int dwDefinedVersion(MemorySegment struct) {
+        return struct.get(dwDefinedVersion$LAYOUT, dwDefinedVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwDefinedVersion
+     * }
+     */
+    public static void dwDefinedVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwDefinedVersion$LAYOUT, dwDefinedVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwEffectiveId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwEffectiveId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwEffectiveId
+     * }
+     */
+    public static final OfInt dwEffectiveId$layout() {
+        return dwEffectiveId$LAYOUT;
+    }
+
+    private static final long dwEffectiveId$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwEffectiveId
+     * }
+     */
+    public static final long dwEffectiveId$offset() {
+        return dwEffectiveId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwEffectiveId
+     * }
+     */
+    public static int dwEffectiveId(MemorySegment struct) {
+        return struct.get(dwEffectiveId$LAYOUT, dwEffectiveId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwEffectiveId
+     * }
+     */
+    public static void dwEffectiveId(MemorySegment struct, int fieldValue) {
+        struct.set(dwEffectiveId$LAYOUT, dwEffectiveId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout guidCustomVersion$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("guidCustomVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID guidCustomVersion
+     * }
+     */
+    public static final GroupLayout guidCustomVersion$layout() {
+        return guidCustomVersion$LAYOUT;
+    }
+
+    private static final long guidCustomVersion$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID guidCustomVersion
+     * }
+     */
+    public static final long guidCustomVersion$offset() {
+        return guidCustomVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID guidCustomVersion
+     * }
+     */
+    public static MemorySegment guidCustomVersion(MemorySegment struct) {
+        return struct.asSlice(guidCustomVersion$OFFSET, guidCustomVersion$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID guidCustomVersion
+     * }
+     */
+    public static void guidCustomVersion(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, guidCustomVersion$OFFSET, guidCustomVersion$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

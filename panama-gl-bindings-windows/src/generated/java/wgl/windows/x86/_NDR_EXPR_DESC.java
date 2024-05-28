@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NDR_EXPR_DESC {
+ *     const unsigned short *pOffset;
+ *     PFORMAT_STRING pFormatExpr;
+ * }
+ * }
+ */
 public class _NDR_EXPR_DESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pOffset"),
-        Constants$root.C_POINTER$LAYOUT.withName("pFormatExpr")
-    ).withName("_NDR_EXPR_DESC");
-    public static MemoryLayout $LAYOUT() {
-        return _NDR_EXPR_DESC.$struct$LAYOUT;
+    _NDR_EXPR_DESC() {
+        // Should not be called directly
     }
-    static final VarHandle pOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pOffset"));
-    public static VarHandle pOffset$VH() {
-        return _NDR_EXPR_DESC.pOffset$VH;
-    }
-    public static MemoryAddress pOffset$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NDR_EXPR_DESC.pOffset$VH.get(seg);
-    }
-    public static void pOffset$set( MemorySegment seg, MemoryAddress x) {
-        _NDR_EXPR_DESC.pOffset$VH.set(seg, x);
-    }
-    public static MemoryAddress pOffset$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NDR_EXPR_DESC.pOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pOffset$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NDR_EXPR_DESC.pOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pFormatExpr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFormatExpr"));
-    public static VarHandle pFormatExpr$VH() {
-        return _NDR_EXPR_DESC.pFormatExpr$VH;
-    }
-    public static MemoryAddress pFormatExpr$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_NDR_EXPR_DESC.pFormatExpr$VH.get(seg);
-    }
-    public static void pFormatExpr$set( MemorySegment seg, MemoryAddress x) {
-        _NDR_EXPR_DESC.pFormatExpr$VH.set(seg, x);
-    }
-    public static MemoryAddress pFormatExpr$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_NDR_EXPR_DESC.pFormatExpr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pFormatExpr$set(MemorySegment seg, long index, MemoryAddress x) {
-        _NDR_EXPR_DESC.pFormatExpr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pOffset"),
+        wgl_h.C_POINTER.withName("pFormatExpr")
+    ).withName("_NDR_EXPR_DESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pOffset$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * const unsigned short *pOffset
+     * }
+     */
+    public static final AddressLayout pOffset$layout() {
+        return pOffset$LAYOUT;
+    }
+
+    private static final long pOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * const unsigned short *pOffset
+     * }
+     */
+    public static final long pOffset$offset() {
+        return pOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * const unsigned short *pOffset
+     * }
+     */
+    public static MemorySegment pOffset(MemorySegment struct) {
+        return struct.get(pOffset$LAYOUT, pOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * const unsigned short *pOffset
+     * }
+     */
+    public static void pOffset(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pOffset$LAYOUT, pOffset$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pFormatExpr$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFormatExpr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING pFormatExpr
+     * }
+     */
+    public static final AddressLayout pFormatExpr$layout() {
+        return pFormatExpr$LAYOUT;
+    }
+
+    private static final long pFormatExpr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING pFormatExpr
+     * }
+     */
+    public static final long pFormatExpr$offset() {
+        return pFormatExpr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING pFormatExpr
+     * }
+     */
+    public static MemorySegment pFormatExpr(MemorySegment struct) {
+        return struct.get(pFormatExpr$LAYOUT, pFormatExpr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFORMAT_STRING pFormatExpr
+     * }
+     */
+    public static void pFormatExpr(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pFormatExpr$LAYOUT, pFormatExpr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

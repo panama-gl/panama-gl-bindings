@@ -2,126 +2,356 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRAWKEYBOARD {
+ *     USHORT MakeCode;
+ *     USHORT Flags;
+ *     USHORT Reserved;
+ *     USHORT VKey;
+ *     UINT Message;
+ *     ULONG ExtraInformation;
+ * }
+ * }
+ */
 public class tagRAWKEYBOARD {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("MakeCode"),
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-        Constants$root.C_SHORT$LAYOUT.withName("VKey"),
-        Constants$root.C_LONG$LAYOUT.withName("Message"),
-        Constants$root.C_LONG$LAYOUT.withName("ExtraInformation")
-    ).withName("tagRAWKEYBOARD");
-    public static MemoryLayout $LAYOUT() {
-        return tagRAWKEYBOARD.$struct$LAYOUT;
+    tagRAWKEYBOARD() {
+        // Should not be called directly
     }
-    static final VarHandle MakeCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MakeCode"));
-    public static VarHandle MakeCode$VH() {
-        return tagRAWKEYBOARD.MakeCode$VH;
-    }
-    public static short MakeCode$get(MemorySegment seg) {
-        return (short)tagRAWKEYBOARD.MakeCode$VH.get(seg);
-    }
-    public static void MakeCode$set( MemorySegment seg, short x) {
-        tagRAWKEYBOARD.MakeCode$VH.set(seg, x);
-    }
-    public static short MakeCode$get(MemorySegment seg, long index) {
-        return (short)tagRAWKEYBOARD.MakeCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MakeCode$set(MemorySegment seg, long index, short x) {
-        tagRAWKEYBOARD.MakeCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return tagRAWKEYBOARD.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)tagRAWKEYBOARD.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        tagRAWKEYBOARD.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)tagRAWKEYBOARD.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        tagRAWKEYBOARD.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return tagRAWKEYBOARD.Reserved$VH;
-    }
-    public static short Reserved$get(MemorySegment seg) {
-        return (short)tagRAWKEYBOARD.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, short x) {
-        tagRAWKEYBOARD.Reserved$VH.set(seg, x);
-    }
-    public static short Reserved$get(MemorySegment seg, long index) {
-        return (short)tagRAWKEYBOARD.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, short x) {
-        tagRAWKEYBOARD.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VKey"));
-    public static VarHandle VKey$VH() {
-        return tagRAWKEYBOARD.VKey$VH;
-    }
-    public static short VKey$get(MemorySegment seg) {
-        return (short)tagRAWKEYBOARD.VKey$VH.get(seg);
-    }
-    public static void VKey$set( MemorySegment seg, short x) {
-        tagRAWKEYBOARD.VKey$VH.set(seg, x);
-    }
-    public static short VKey$get(MemorySegment seg, long index) {
-        return (short)tagRAWKEYBOARD.VKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VKey$set(MemorySegment seg, long index, short x) {
-        tagRAWKEYBOARD.VKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Message$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Message"));
-    public static VarHandle Message$VH() {
-        return tagRAWKEYBOARD.Message$VH;
-    }
-    public static int Message$get(MemorySegment seg) {
-        return (int)tagRAWKEYBOARD.Message$VH.get(seg);
-    }
-    public static void Message$set( MemorySegment seg, int x) {
-        tagRAWKEYBOARD.Message$VH.set(seg, x);
-    }
-    public static int Message$get(MemorySegment seg, long index) {
-        return (int)tagRAWKEYBOARD.Message$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Message$set(MemorySegment seg, long index, int x) {
-        tagRAWKEYBOARD.Message$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExtraInformation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExtraInformation"));
-    public static VarHandle ExtraInformation$VH() {
-        return tagRAWKEYBOARD.ExtraInformation$VH;
-    }
-    public static int ExtraInformation$get(MemorySegment seg) {
-        return (int)tagRAWKEYBOARD.ExtraInformation$VH.get(seg);
-    }
-    public static void ExtraInformation$set( MemorySegment seg, int x) {
-        tagRAWKEYBOARD.ExtraInformation$VH.set(seg, x);
-    }
-    public static int ExtraInformation$get(MemorySegment seg, long index) {
-        return (int)tagRAWKEYBOARD.ExtraInformation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExtraInformation$set(MemorySegment seg, long index, int x) {
-        tagRAWKEYBOARD.ExtraInformation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("MakeCode"),
+        freeglut_h.C_SHORT.withName("Flags"),
+        freeglut_h.C_SHORT.withName("Reserved"),
+        freeglut_h.C_SHORT.withName("VKey"),
+        freeglut_h.C_INT.withName("Message"),
+        freeglut_h.C_LONG.withName("ExtraInformation")
+    ).withName("tagRAWKEYBOARD");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort MakeCode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MakeCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT MakeCode
+     * }
+     */
+    public static final OfShort MakeCode$layout() {
+        return MakeCode$LAYOUT;
+    }
+
+    private static final long MakeCode$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT MakeCode
+     * }
+     */
+    public static final long MakeCode$offset() {
+        return MakeCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT MakeCode
+     * }
+     */
+    public static short MakeCode(MemorySegment struct) {
+        return struct.get(MakeCode$LAYOUT, MakeCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT MakeCode
+     * }
+     */
+    public static void MakeCode(MemorySegment struct, short fieldValue) {
+        struct.set(MakeCode$LAYOUT, MakeCode$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Reserved$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static final OfShort Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static short Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, short fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfShort VKey$LAYOUT = (OfShort)$LAYOUT.select(groupElement("VKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * USHORT VKey
+     * }
+     */
+    public static final OfShort VKey$layout() {
+        return VKey$LAYOUT;
+    }
+
+    private static final long VKey$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * USHORT VKey
+     * }
+     */
+    public static final long VKey$offset() {
+        return VKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * USHORT VKey
+     * }
+     */
+    public static short VKey(MemorySegment struct) {
+        return struct.get(VKey$LAYOUT, VKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * USHORT VKey
+     * }
+     */
+    public static void VKey(MemorySegment struct, short fieldValue) {
+        struct.set(VKey$LAYOUT, VKey$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Message$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Message"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT Message
+     * }
+     */
+    public static final OfInt Message$layout() {
+        return Message$LAYOUT;
+    }
+
+    private static final long Message$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT Message
+     * }
+     */
+    public static final long Message$offset() {
+        return Message$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT Message
+     * }
+     */
+    public static int Message(MemorySegment struct) {
+        return struct.get(Message$LAYOUT, Message$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT Message
+     * }
+     */
+    public static void Message(MemorySegment struct, int fieldValue) {
+        struct.set(Message$LAYOUT, Message$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ExtraInformation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ExtraInformation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG ExtraInformation
+     * }
+     */
+    public static final OfInt ExtraInformation$layout() {
+        return ExtraInformation$LAYOUT;
+    }
+
+    private static final long ExtraInformation$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG ExtraInformation
+     * }
+     */
+    public static final long ExtraInformation$offset() {
+        return ExtraInformation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG ExtraInformation
+     * }
+     */
+    public static int ExtraInformation(MemorySegment struct) {
+        return struct.get(ExtraInformation$LAYOUT, ExtraInformation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG ExtraInformation
+     * }
+     */
+    public static void ExtraInformation(MemorySegment struct, int fieldValue) {
+        struct.set(ExtraInformation$LAYOUT, ExtraInformation$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,41 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagMCI_WAVE_SET_PARMS {
+ *     DWORD_PTR dwCallback;
+ *     DWORD dwTimeFormat;
+ *     DWORD dwAudio;
+ *     UINT wInput;
+ *     UINT wOutput;
+ *     WORD wFormatTag;
+ *     WORD wReserved2;
+ *     WORD nChannels;
+ *     WORD wReserved3;
+ *     DWORD nSamplesPerSec;
+ *     DWORD nAvgBytesPerSec;
+ *     WORD nBlockAlign;
+ *     WORD wReserved4;
+ *     WORD wBitsPerSample;
+ *     WORD wReserved5;
+ * } MCI_WAVE_SET_PARMS
+ * }
+ */
 public class MCI_WAVE_SET_PARMS extends tagMCI_WAVE_SET_PARMS {
 
+    MCI_WAVE_SET_PARMS() {
+        // Should not be called directly
+    }
 }
-
 

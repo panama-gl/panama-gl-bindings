@@ -2,136 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagCONVCONTEXT {
+ *     UINT cb;
+ *     UINT wFlags;
+ *     UINT wCountryID;
+ *     int iCodePage;
+ *     DWORD dwLangID;
+ *     DWORD dwSecurity;
+ *     SECURITY_QUALITY_OF_SERVICE qos;
+ * }
+ * }
+ */
 public class tagCONVCONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cb"),
-        Constants$root.C_LONG$LAYOUT.withName("wFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("wCountryID"),
-        Constants$root.C_LONG$LAYOUT.withName("iCodePage"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLangID"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSecurity"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Length"),
-            Constants$root.C_LONG$LAYOUT.withName("ImpersonationLevel"),
-            Constants$root.C_CHAR$LAYOUT.withName("ContextTrackingMode"),
-            Constants$root.C_CHAR$LAYOUT.withName("EffectiveOnly"),
-            MemoryLayout.paddingLayout(16)
-        ).withName("qos")
-    ).withName("tagCONVCONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return tagCONVCONTEXT.$struct$LAYOUT;
+    tagCONVCONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle cb$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cb"));
-    public static VarHandle cb$VH() {
-        return tagCONVCONTEXT.cb$VH;
-    }
-    public static int cb$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.cb$VH.get(seg);
-    }
-    public static void cb$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.cb$VH.set(seg, x);
-    }
-    public static int cb$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.cb$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cb$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.cb$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFlags"));
-    public static VarHandle wFlags$VH() {
-        return tagCONVCONTEXT.wFlags$VH;
-    }
-    public static int wFlags$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.wFlags$VH.get(seg);
-    }
-    public static void wFlags$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.wFlags$VH.set(seg, x);
-    }
-    public static int wFlags$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.wFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFlags$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.wFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wCountryID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wCountryID"));
-    public static VarHandle wCountryID$VH() {
-        return tagCONVCONTEXT.wCountryID$VH;
-    }
-    public static int wCountryID$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.wCountryID$VH.get(seg);
-    }
-    public static void wCountryID$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.wCountryID$VH.set(seg, x);
-    }
-    public static int wCountryID$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.wCountryID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wCountryID$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.wCountryID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iCodePage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iCodePage"));
-    public static VarHandle iCodePage$VH() {
-        return tagCONVCONTEXT.iCodePage$VH;
-    }
-    public static int iCodePage$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.iCodePage$VH.get(seg);
-    }
-    public static void iCodePage$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.iCodePage$VH.set(seg, x);
-    }
-    public static int iCodePage$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.iCodePage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iCodePage$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.iCodePage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwLangID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLangID"));
-    public static VarHandle dwLangID$VH() {
-        return tagCONVCONTEXT.dwLangID$VH;
-    }
-    public static int dwLangID$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.dwLangID$VH.get(seg);
-    }
-    public static void dwLangID$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.dwLangID$VH.set(seg, x);
-    }
-    public static int dwLangID$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.dwLangID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLangID$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.dwLangID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwSecurity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSecurity"));
-    public static VarHandle dwSecurity$VH() {
-        return tagCONVCONTEXT.dwSecurity$VH;
-    }
-    public static int dwSecurity$get(MemorySegment seg) {
-        return (int)tagCONVCONTEXT.dwSecurity$VH.get(seg);
-    }
-    public static void dwSecurity$set( MemorySegment seg, int x) {
-        tagCONVCONTEXT.dwSecurity$VH.set(seg, x);
-    }
-    public static int dwSecurity$get(MemorySegment seg, long index) {
-        return (int)tagCONVCONTEXT.dwSecurity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSecurity$set(MemorySegment seg, long index, int x) {
-        tagCONVCONTEXT.dwSecurity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment qos$slice(MemorySegment seg) {
-        return seg.asSlice(24, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cb"),
+        wgl_h.C_INT.withName("wFlags"),
+        wgl_h.C_INT.withName("wCountryID"),
+        wgl_h.C_INT.withName("iCodePage"),
+        wgl_h.C_LONG.withName("dwLangID"),
+        wgl_h.C_LONG.withName("dwSecurity"),
+        _SECURITY_QUALITY_OF_SERVICE.layout().withName("qos")
+    ).withName("tagCONVCONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cb$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final OfInt cb$layout() {
+        return cb$LAYOUT;
+    }
+
+    private static final long cb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static final long cb$offset() {
+        return cb$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static int cb(MemorySegment struct) {
+        return struct.get(cb$LAYOUT, cb$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cb
+     * }
+     */
+    public static void cb(MemorySegment struct, int fieldValue) {
+        struct.set(cb$LAYOUT, cb$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wFlags
+     * }
+     */
+    public static final OfInt wFlags$layout() {
+        return wFlags$LAYOUT;
+    }
+
+    private static final long wFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wFlags
+     * }
+     */
+    public static final long wFlags$offset() {
+        return wFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wFlags
+     * }
+     */
+    public static int wFlags(MemorySegment struct) {
+        return struct.get(wFlags$LAYOUT, wFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wFlags
+     * }
+     */
+    public static void wFlags(MemorySegment struct, int fieldValue) {
+        struct.set(wFlags$LAYOUT, wFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wCountryID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wCountryID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wCountryID
+     * }
+     */
+    public static final OfInt wCountryID$layout() {
+        return wCountryID$LAYOUT;
+    }
+
+    private static final long wCountryID$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wCountryID
+     * }
+     */
+    public static final long wCountryID$offset() {
+        return wCountryID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wCountryID
+     * }
+     */
+    public static int wCountryID(MemorySegment struct) {
+        return struct.get(wCountryID$LAYOUT, wCountryID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wCountryID
+     * }
+     */
+    public static void wCountryID(MemorySegment struct, int fieldValue) {
+        struct.set(wCountryID$LAYOUT, wCountryID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt iCodePage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("iCodePage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * int iCodePage
+     * }
+     */
+    public static final OfInt iCodePage$layout() {
+        return iCodePage$LAYOUT;
+    }
+
+    private static final long iCodePage$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * int iCodePage
+     * }
+     */
+    public static final long iCodePage$offset() {
+        return iCodePage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * int iCodePage
+     * }
+     */
+    public static int iCodePage(MemorySegment struct) {
+        return struct.get(iCodePage$LAYOUT, iCodePage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * int iCodePage
+     * }
+     */
+    public static void iCodePage(MemorySegment struct, int fieldValue) {
+        struct.set(iCodePage$LAYOUT, iCodePage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwLangID$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLangID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLangID
+     * }
+     */
+    public static final OfInt dwLangID$layout() {
+        return dwLangID$LAYOUT;
+    }
+
+    private static final long dwLangID$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLangID
+     * }
+     */
+    public static final long dwLangID$offset() {
+        return dwLangID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLangID
+     * }
+     */
+    public static int dwLangID(MemorySegment struct) {
+        return struct.get(dwLangID$LAYOUT, dwLangID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLangID
+     * }
+     */
+    public static void dwLangID(MemorySegment struct, int fieldValue) {
+        struct.set(dwLangID$LAYOUT, dwLangID$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwSecurity$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSecurity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSecurity
+     * }
+     */
+    public static final OfInt dwSecurity$layout() {
+        return dwSecurity$LAYOUT;
+    }
+
+    private static final long dwSecurity$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSecurity
+     * }
+     */
+    public static final long dwSecurity$offset() {
+        return dwSecurity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSecurity
+     * }
+     */
+    public static int dwSecurity(MemorySegment struct) {
+        return struct.get(dwSecurity$LAYOUT, dwSecurity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSecurity
+     * }
+     */
+    public static void dwSecurity(MemorySegment struct, int fieldValue) {
+        struct.set(dwSecurity$LAYOUT, dwSecurity$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout qos$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("qos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SECURITY_QUALITY_OF_SERVICE qos
+     * }
+     */
+    public static final GroupLayout qos$layout() {
+        return qos$LAYOUT;
+    }
+
+    private static final long qos$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SECURITY_QUALITY_OF_SERVICE qos
+     * }
+     */
+    public static final long qos$offset() {
+        return qos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SECURITY_QUALITY_OF_SERVICE qos
+     * }
+     */
+    public static MemorySegment qos(MemorySegment struct) {
+        return struct.asSlice(qos$OFFSET, qos$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SECURITY_QUALITY_OF_SERVICE qos
+     * }
+     */
+    public static void qos(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, qos$OFFSET, qos$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

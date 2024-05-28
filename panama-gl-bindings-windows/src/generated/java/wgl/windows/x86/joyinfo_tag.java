@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct joyinfo_tag {
+ *     UINT wXpos;
+ *     UINT wYpos;
+ *     UINT wZpos;
+ *     UINT wButtons;
+ * }
+ * }
+ */
 public class joyinfo_tag {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("wXpos"),
-        Constants$root.C_LONG$LAYOUT.withName("wYpos"),
-        Constants$root.C_LONG$LAYOUT.withName("wZpos"),
-        Constants$root.C_LONG$LAYOUT.withName("wButtons")
-    ).withName("joyinfo_tag");
-    public static MemoryLayout $LAYOUT() {
-        return joyinfo_tag.$struct$LAYOUT;
+    joyinfo_tag() {
+        // Should not be called directly
     }
-    static final VarHandle wXpos$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wXpos"));
-    public static VarHandle wXpos$VH() {
-        return joyinfo_tag.wXpos$VH;
-    }
-    public static int wXpos$get(MemorySegment seg) {
-        return (int)joyinfo_tag.wXpos$VH.get(seg);
-    }
-    public static void wXpos$set( MemorySegment seg, int x) {
-        joyinfo_tag.wXpos$VH.set(seg, x);
-    }
-    public static int wXpos$get(MemorySegment seg, long index) {
-        return (int)joyinfo_tag.wXpos$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wXpos$set(MemorySegment seg, long index, int x) {
-        joyinfo_tag.wXpos$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wYpos$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wYpos"));
-    public static VarHandle wYpos$VH() {
-        return joyinfo_tag.wYpos$VH;
-    }
-    public static int wYpos$get(MemorySegment seg) {
-        return (int)joyinfo_tag.wYpos$VH.get(seg);
-    }
-    public static void wYpos$set( MemorySegment seg, int x) {
-        joyinfo_tag.wYpos$VH.set(seg, x);
-    }
-    public static int wYpos$get(MemorySegment seg, long index) {
-        return (int)joyinfo_tag.wYpos$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wYpos$set(MemorySegment seg, long index, int x) {
-        joyinfo_tag.wYpos$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wZpos$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wZpos"));
-    public static VarHandle wZpos$VH() {
-        return joyinfo_tag.wZpos$VH;
-    }
-    public static int wZpos$get(MemorySegment seg) {
-        return (int)joyinfo_tag.wZpos$VH.get(seg);
-    }
-    public static void wZpos$set( MemorySegment seg, int x) {
-        joyinfo_tag.wZpos$VH.set(seg, x);
-    }
-    public static int wZpos$get(MemorySegment seg, long index) {
-        return (int)joyinfo_tag.wZpos$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wZpos$set(MemorySegment seg, long index, int x) {
-        joyinfo_tag.wZpos$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wButtons$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wButtons"));
-    public static VarHandle wButtons$VH() {
-        return joyinfo_tag.wButtons$VH;
-    }
-    public static int wButtons$get(MemorySegment seg) {
-        return (int)joyinfo_tag.wButtons$VH.get(seg);
-    }
-    public static void wButtons$set( MemorySegment seg, int x) {
-        joyinfo_tag.wButtons$VH.set(seg, x);
-    }
-    public static int wButtons$get(MemorySegment seg, long index) {
-        return (int)joyinfo_tag.wButtons$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wButtons$set(MemorySegment seg, long index, int x) {
-        joyinfo_tag.wButtons$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_INT, 1).withName("wXpos"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wYpos"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wZpos"),
+        wgl_h.align(wgl_h.C_INT, 1).withName("wButtons")
+    ).withName("joyinfo_tag");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt wXpos$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wXpos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wXpos
+     * }
+     */
+    public static final OfInt wXpos$layout() {
+        return wXpos$LAYOUT;
+    }
+
+    private static final long wXpos$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wXpos
+     * }
+     */
+    public static final long wXpos$offset() {
+        return wXpos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wXpos
+     * }
+     */
+    public static int wXpos(MemorySegment struct) {
+        return struct.get(wXpos$LAYOUT, wXpos$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wXpos
+     * }
+     */
+    public static void wXpos(MemorySegment struct, int fieldValue) {
+        struct.set(wXpos$LAYOUT, wXpos$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wYpos$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wYpos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wYpos
+     * }
+     */
+    public static final OfInt wYpos$layout() {
+        return wYpos$LAYOUT;
+    }
+
+    private static final long wYpos$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wYpos
+     * }
+     */
+    public static final long wYpos$offset() {
+        return wYpos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wYpos
+     * }
+     */
+    public static int wYpos(MemorySegment struct) {
+        return struct.get(wYpos$LAYOUT, wYpos$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wYpos
+     * }
+     */
+    public static void wYpos(MemorySegment struct, int fieldValue) {
+        struct.set(wYpos$LAYOUT, wYpos$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wZpos$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wZpos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wZpos
+     * }
+     */
+    public static final OfInt wZpos$layout() {
+        return wZpos$LAYOUT;
+    }
+
+    private static final long wZpos$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wZpos
+     * }
+     */
+    public static final long wZpos$offset() {
+        return wZpos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wZpos
+     * }
+     */
+    public static int wZpos(MemorySegment struct) {
+        return struct.get(wZpos$LAYOUT, wZpos$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wZpos
+     * }
+     */
+    public static void wZpos(MemorySegment struct, int fieldValue) {
+        struct.set(wZpos$LAYOUT, wZpos$OFFSET, fieldValue);
+    }
+
+    private static final OfInt wButtons$LAYOUT = (OfInt)$LAYOUT.select(groupElement("wButtons"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT wButtons
+     * }
+     */
+    public static final OfInt wButtons$layout() {
+        return wButtons$LAYOUT;
+    }
+
+    private static final long wButtons$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT wButtons
+     * }
+     */
+    public static final long wButtons$offset() {
+        return wButtons$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT wButtons
+     * }
+     */
+    public static int wButtons(MemorySegment struct) {
+        return struct.get(wButtons$LAYOUT, wButtons$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT wButtons
+     * }
+     */
+    public static void wButtons(MemorySegment struct, int fieldValue) {
+        struct.set(wButtons$LAYOUT, wButtons$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     WORD mtOption;
+ *     WORD mtID;
+ *     WCHAR mtString[1];
+ * }
+ * }
+ */
 public class MENUITEMTEMPLATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("mtOption"),
-        Constants$root.C_SHORT$LAYOUT.withName("mtID"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_SHORT$LAYOUT).withName("mtString")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return MENUITEMTEMPLATE.$struct$LAYOUT;
+    MENUITEMTEMPLATE() {
+        // Should not be called directly
     }
-    static final VarHandle mtOption$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mtOption"));
-    public static VarHandle mtOption$VH() {
-        return MENUITEMTEMPLATE.mtOption$VH;
-    }
-    public static short mtOption$get(MemorySegment seg) {
-        return (short)MENUITEMTEMPLATE.mtOption$VH.get(seg);
-    }
-    public static void mtOption$set( MemorySegment seg, short x) {
-        MENUITEMTEMPLATE.mtOption$VH.set(seg, x);
-    }
-    public static short mtOption$get(MemorySegment seg, long index) {
-        return (short)MENUITEMTEMPLATE.mtOption$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void mtOption$set(MemorySegment seg, long index, short x) {
-        MENUITEMTEMPLATE.mtOption$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle mtID$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("mtID"));
-    public static VarHandle mtID$VH() {
-        return MENUITEMTEMPLATE.mtID$VH;
-    }
-    public static short mtID$get(MemorySegment seg) {
-        return (short)MENUITEMTEMPLATE.mtID$VH.get(seg);
-    }
-    public static void mtID$set( MemorySegment seg, short x) {
-        MENUITEMTEMPLATE.mtID$VH.set(seg, x);
-    }
-    public static short mtID$get(MemorySegment seg, long index) {
-        return (short)MENUITEMTEMPLATE.mtID$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void mtID$set(MemorySegment seg, long index, short x) {
-        MENUITEMTEMPLATE.mtID$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment mtString$slice(MemorySegment seg) {
-        return seg.asSlice(4, 2);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("mtOption"),
+        wgl_h.C_SHORT.withName("mtID"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_SHORT).withName("mtString")
+    ).withName("$anon$10448:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort mtOption$LAYOUT = (OfShort)$LAYOUT.select(groupElement("mtOption"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD mtOption
+     * }
+     */
+    public static final OfShort mtOption$layout() {
+        return mtOption$LAYOUT;
+    }
+
+    private static final long mtOption$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD mtOption
+     * }
+     */
+    public static final long mtOption$offset() {
+        return mtOption$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD mtOption
+     * }
+     */
+    public static short mtOption(MemorySegment struct) {
+        return struct.get(mtOption$LAYOUT, mtOption$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD mtOption
+     * }
+     */
+    public static void mtOption(MemorySegment struct, short fieldValue) {
+        struct.set(mtOption$LAYOUT, mtOption$OFFSET, fieldValue);
+    }
+
+    private static final OfShort mtID$LAYOUT = (OfShort)$LAYOUT.select(groupElement("mtID"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD mtID
+     * }
+     */
+    public static final OfShort mtID$layout() {
+        return mtID$LAYOUT;
+    }
+
+    private static final long mtID$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD mtID
+     * }
+     */
+    public static final long mtID$offset() {
+        return mtID$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD mtID
+     * }
+     */
+    public static short mtID(MemorySegment struct) {
+        return struct.get(mtID$LAYOUT, mtID$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD mtID
+     * }
+     */
+    public static void mtID(MemorySegment struct, short fieldValue) {
+        struct.set(mtID$LAYOUT, mtID$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout mtString$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("mtString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static final SequenceLayout mtString$layout() {
+        return mtString$LAYOUT;
+    }
+
+    private static final long mtString$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static final long mtString$offset() {
+        return mtString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static MemorySegment mtString(MemorySegment struct) {
+        return struct.asSlice(mtString$OFFSET, mtString$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static void mtString(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, mtString$OFFSET, mtString$LAYOUT.byteSize());
+    }
+
+    private static long[] mtString$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static long[] mtString$dimensions() {
+        return mtString$DIMS;
+    }
+    private static final VarHandle mtString$ELEM_HANDLE = mtString$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static short mtString(MemorySegment struct, long index0) {
+        return (short)mtString$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR mtString[1]
+     * }
+     */
+    public static void mtString(MemorySegment struct, long index0, short fieldValue) {
+        mtString$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

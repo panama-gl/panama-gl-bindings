@@ -2,27 +2,71 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNGLCOLORSUBTABLEEXTPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int target, int start, int count, int format, int type, java.lang.foreign.MemoryAddress data);
-    static MemorySegment allocate(PFNGLCOLORSUBTABLEEXTPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLCOLORSUBTABLEEXTPROC.class, fi, constants$699.PFNGLCOLORSUBTABLEEXTPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFNGLCOLORSUBTABLEEXTPROC)(GLenum, GLsizei, GLsizei, GLenum, GLenum, const GLvoid *) __attribute__((stdcall))
+ * }
+ */
+public class PFNGLCOLORSUBTABLEEXTPROC {
+
+    PFNGLCOLORSUBTABLEEXTPROC() {
+        // Should not be called directly
     }
-    static PFNGLCOLORSUBTABLEEXTPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _target, int _start, int _count, int _format, int _type, java.lang.foreign.MemoryAddress _data) -> {
-            try {
-                constants$700.PFNGLCOLORSUBTABLEEXTPROC$MH.invokeExact((Addressable)symbol, _target, _start, _count, _format, _type, (java.lang.foreign.Addressable)_data);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int target, int start, int count, int format, int type, MemorySegment data);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_INT,
+        freeglut_h.C_INT,
+        freeglut_h.C_INT,
+        freeglut_h.C_INT,
+        freeglut_h.C_INT,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PFNGLCOLORSUBTABLEEXTPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNGLCOLORSUBTABLEEXTPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int target, int start, int count, int format, int type, MemorySegment data) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, target, start, count, format, type, data);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

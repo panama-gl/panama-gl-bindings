@@ -2,100 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DRAGINFOA {
+ *     UINT uSize;
+ *     POINT pt;
+ *     BOOL fNC;
+ *     PZZSTR lpFileList;
+ *     DWORD grfKeyState;
+ * }
+ * }
+ */
 public class _DRAGINFOA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("uSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("pt"),
-        Constants$root.C_LONG$LAYOUT.withName("fNC"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpFileList"),
-        Constants$root.C_LONG$LAYOUT.withName("grfKeyState"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_DRAGINFOA");
-    public static MemoryLayout $LAYOUT() {
-        return _DRAGINFOA.$struct$LAYOUT;
+    _DRAGINFOA() {
+        // Should not be called directly
     }
-    static final VarHandle uSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("uSize"));
-    public static VarHandle uSize$VH() {
-        return _DRAGINFOA.uSize$VH;
-    }
-    public static int uSize$get(MemorySegment seg) {
-        return (int)_DRAGINFOA.uSize$VH.get(seg);
-    }
-    public static void uSize$set( MemorySegment seg, int x) {
-        _DRAGINFOA.uSize$VH.set(seg, x);
-    }
-    public static int uSize$get(MemorySegment seg, long index) {
-        return (int)_DRAGINFOA.uSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void uSize$set(MemorySegment seg, long index, int x) {
-        _DRAGINFOA.uSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment pt$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    static final VarHandle fNC$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fNC"));
-    public static VarHandle fNC$VH() {
-        return _DRAGINFOA.fNC$VH;
-    }
-    public static int fNC$get(MemorySegment seg) {
-        return (int)_DRAGINFOA.fNC$VH.get(seg);
-    }
-    public static void fNC$set( MemorySegment seg, int x) {
-        _DRAGINFOA.fNC$VH.set(seg, x);
-    }
-    public static int fNC$get(MemorySegment seg, long index) {
-        return (int)_DRAGINFOA.fNC$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fNC$set(MemorySegment seg, long index, int x) {
-        _DRAGINFOA.fNC$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpFileList$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpFileList"));
-    public static VarHandle lpFileList$VH() {
-        return _DRAGINFOA.lpFileList$VH;
-    }
-    public static MemoryAddress lpFileList$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DRAGINFOA.lpFileList$VH.get(seg);
-    }
-    public static void lpFileList$set( MemorySegment seg, MemoryAddress x) {
-        _DRAGINFOA.lpFileList$VH.set(seg, x);
-    }
-    public static MemoryAddress lpFileList$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DRAGINFOA.lpFileList$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpFileList$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DRAGINFOA.lpFileList$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle grfKeyState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("grfKeyState"));
-    public static VarHandle grfKeyState$VH() {
-        return _DRAGINFOA.grfKeyState$VH;
-    }
-    public static int grfKeyState$get(MemorySegment seg) {
-        return (int)_DRAGINFOA.grfKeyState$VH.get(seg);
-    }
-    public static void grfKeyState$set( MemorySegment seg, int x) {
-        _DRAGINFOA.grfKeyState$VH.set(seg, x);
-    }
-    public static int grfKeyState$get(MemorySegment seg, long index) {
-        return (int)_DRAGINFOA.grfKeyState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void grfKeyState$set(MemorySegment seg, long index, int x) {
-        _DRAGINFOA.grfKeyState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("uSize"),
+        tagPOINT.layout().withName("pt"),
+        wgl_h.C_INT.withName("fNC"),
+        wgl_h.C_POINTER.withName("lpFileList"),
+        wgl_h.C_LONG.withName("grfKeyState"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_DRAGINFOA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt uSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("uSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT uSize
+     * }
+     */
+    public static final OfInt uSize$layout() {
+        return uSize$LAYOUT;
+    }
+
+    private static final long uSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT uSize
+     * }
+     */
+    public static final long uSize$offset() {
+        return uSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT uSize
+     * }
+     */
+    public static int uSize(MemorySegment struct) {
+        return struct.get(uSize$LAYOUT, uSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT uSize
+     * }
+     */
+    public static void uSize(MemorySegment struct, int fieldValue) {
+        struct.set(uSize$LAYOUT, uSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout pt$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("pt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT pt
+     * }
+     */
+    public static final GroupLayout pt$layout() {
+        return pt$LAYOUT;
+    }
+
+    private static final long pt$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT pt
+     * }
+     */
+    public static final long pt$offset() {
+        return pt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT pt
+     * }
+     */
+    public static MemorySegment pt(MemorySegment struct) {
+        return struct.asSlice(pt$OFFSET, pt$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT pt
+     * }
+     */
+    public static void pt(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, pt$OFFSET, pt$LAYOUT.byteSize());
+    }
+
+    private static final OfInt fNC$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fNC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fNC
+     * }
+     */
+    public static final OfInt fNC$layout() {
+        return fNC$LAYOUT;
+    }
+
+    private static final long fNC$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fNC
+     * }
+     */
+    public static final long fNC$offset() {
+        return fNC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fNC
+     * }
+     */
+    public static int fNC(MemorySegment struct) {
+        return struct.get(fNC$LAYOUT, fNC$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fNC
+     * }
+     */
+    public static void fNC(MemorySegment struct, int fieldValue) {
+        struct.set(fNC$LAYOUT, fNC$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpFileList$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpFileList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PZZSTR lpFileList
+     * }
+     */
+    public static final AddressLayout lpFileList$layout() {
+        return lpFileList$LAYOUT;
+    }
+
+    private static final long lpFileList$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PZZSTR lpFileList
+     * }
+     */
+    public static final long lpFileList$offset() {
+        return lpFileList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PZZSTR lpFileList
+     * }
+     */
+    public static MemorySegment lpFileList(MemorySegment struct) {
+        return struct.get(lpFileList$LAYOUT, lpFileList$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PZZSTR lpFileList
+     * }
+     */
+    public static void lpFileList(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpFileList$LAYOUT, lpFileList$OFFSET, fieldValue);
+    }
+
+    private static final OfInt grfKeyState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("grfKeyState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD grfKeyState
+     * }
+     */
+    public static final OfInt grfKeyState$layout() {
+        return grfKeyState$LAYOUT;
+    }
+
+    private static final long grfKeyState$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD grfKeyState
+     * }
+     */
+    public static final long grfKeyState$offset() {
+        return grfKeyState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD grfKeyState
+     * }
+     */
+    public static int grfKeyState(MemorySegment struct) {
+        return struct.get(grfKeyState$LAYOUT, grfKeyState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD grfKeyState
+     * }
+     */
+    public static void grfKeyState(MemorySegment struct, int fieldValue) {
+        struct.set(grfKeyState$LAYOUT, grfKeyState$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

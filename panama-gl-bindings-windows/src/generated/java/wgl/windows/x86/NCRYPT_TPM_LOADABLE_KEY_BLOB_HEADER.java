@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER {
+ *     DWORD magic;
+ *     DWORD cbHeader;
+ *     DWORD cbPublic;
+ *     DWORD cbPrivate;
+ *     DWORD cbName;
+ * }
+ * }
+ */
 public class NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("magic"),
-        Constants$root.C_LONG$LAYOUT.withName("cbHeader"),
-        Constants$root.C_LONG$LAYOUT.withName("cbPublic"),
-        Constants$root.C_LONG$LAYOUT.withName("cbPrivate"),
-        Constants$root.C_LONG$LAYOUT.withName("cbName")
-    ).withName("NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.$struct$LAYOUT;
+    NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle magic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("magic"));
-    public static VarHandle magic$VH() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.magic$VH;
-    }
-    public static int magic$get(MemorySegment seg) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.magic$VH.get(seg);
-    }
-    public static void magic$set( MemorySegment seg, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.magic$VH.set(seg, x);
-    }
-    public static int magic$get(MemorySegment seg, long index) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.magic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void magic$set(MemorySegment seg, long index, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.magic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbHeader$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbHeader"));
-    public static VarHandle cbHeader$VH() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbHeader$VH;
-    }
-    public static int cbHeader$get(MemorySegment seg) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbHeader$VH.get(seg);
-    }
-    public static void cbHeader$set( MemorySegment seg, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbHeader$VH.set(seg, x);
-    }
-    public static int cbHeader$get(MemorySegment seg, long index) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbHeader$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbHeader$set(MemorySegment seg, long index, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbHeader$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbPublic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbPublic"));
-    public static VarHandle cbPublic$VH() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPublic$VH;
-    }
-    public static int cbPublic$get(MemorySegment seg) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPublic$VH.get(seg);
-    }
-    public static void cbPublic$set( MemorySegment seg, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPublic$VH.set(seg, x);
-    }
-    public static int cbPublic$get(MemorySegment seg, long index) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPublic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbPublic$set(MemorySegment seg, long index, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPublic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbPrivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbPrivate"));
-    public static VarHandle cbPrivate$VH() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPrivate$VH;
-    }
-    public static int cbPrivate$get(MemorySegment seg) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPrivate$VH.get(seg);
-    }
-    public static void cbPrivate$set( MemorySegment seg, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPrivate$VH.set(seg, x);
-    }
-    public static int cbPrivate$get(MemorySegment seg, long index) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPrivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbPrivate$set(MemorySegment seg, long index, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbPrivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbName"));
-    public static VarHandle cbName$VH() {
-        return NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbName$VH;
-    }
-    public static int cbName$get(MemorySegment seg) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbName$VH.get(seg);
-    }
-    public static void cbName$set( MemorySegment seg, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbName$VH.set(seg, x);
-    }
-    public static int cbName$get(MemorySegment seg, long index) {
-        return (int)NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbName$set(MemorySegment seg, long index, int x) {
-        NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER.cbName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("magic"),
+        wgl_h.C_LONG.withName("cbHeader"),
+        wgl_h.C_LONG.withName("cbPublic"),
+        wgl_h.C_LONG.withName("cbPrivate"),
+        wgl_h.C_LONG.withName("cbName")
+    ).withName("NCRYPT_TPM_LOADABLE_KEY_BLOB_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt magic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("magic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD magic
+     * }
+     */
+    public static final OfInt magic$layout() {
+        return magic$LAYOUT;
+    }
+
+    private static final long magic$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD magic
+     * }
+     */
+    public static final long magic$offset() {
+        return magic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD magic
+     * }
+     */
+    public static int magic(MemorySegment struct) {
+        return struct.get(magic$LAYOUT, magic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD magic
+     * }
+     */
+    public static void magic(MemorySegment struct, int fieldValue) {
+        struct.set(magic$LAYOUT, magic$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbHeader$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbHeader
+     * }
+     */
+    public static final OfInt cbHeader$layout() {
+        return cbHeader$LAYOUT;
+    }
+
+    private static final long cbHeader$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbHeader
+     * }
+     */
+    public static final long cbHeader$offset() {
+        return cbHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbHeader
+     * }
+     */
+    public static int cbHeader(MemorySegment struct) {
+        return struct.get(cbHeader$LAYOUT, cbHeader$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbHeader
+     * }
+     */
+    public static void cbHeader(MemorySegment struct, int fieldValue) {
+        struct.set(cbHeader$LAYOUT, cbHeader$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbPublic$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbPublic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbPublic
+     * }
+     */
+    public static final OfInt cbPublic$layout() {
+        return cbPublic$LAYOUT;
+    }
+
+    private static final long cbPublic$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbPublic
+     * }
+     */
+    public static final long cbPublic$offset() {
+        return cbPublic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbPublic
+     * }
+     */
+    public static int cbPublic(MemorySegment struct) {
+        return struct.get(cbPublic$LAYOUT, cbPublic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbPublic
+     * }
+     */
+    public static void cbPublic(MemorySegment struct, int fieldValue) {
+        struct.set(cbPublic$LAYOUT, cbPublic$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbPrivate$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbPrivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbPrivate
+     * }
+     */
+    public static final OfInt cbPrivate$layout() {
+        return cbPrivate$LAYOUT;
+    }
+
+    private static final long cbPrivate$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbPrivate
+     * }
+     */
+    public static final long cbPrivate$offset() {
+        return cbPrivate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbPrivate
+     * }
+     */
+    public static int cbPrivate(MemorySegment struct) {
+        return struct.get(cbPrivate$LAYOUT, cbPrivate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbPrivate
+     * }
+     */
+    public static void cbPrivate(MemorySegment struct, int fieldValue) {
+        struct.set(cbPrivate$LAYOUT, cbPrivate$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbName$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbName
+     * }
+     */
+    public static final OfInt cbName$layout() {
+        return cbName$LAYOUT;
+    }
+
+    private static final long cbName$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbName
+     * }
+     */
+    public static final long cbName$offset() {
+        return cbName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbName
+     * }
+     */
+    public static int cbName(MemorySegment struct) {
+        return struct.get(cbName$LAYOUT, cbName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbName
+     * }
+     */
+    public static void cbName(MemorySegment struct, int fieldValue) {
+        struct.set(cbName$LAYOUT, cbName$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

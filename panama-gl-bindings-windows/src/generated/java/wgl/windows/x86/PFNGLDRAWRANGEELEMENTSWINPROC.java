@@ -2,27 +2,71 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNGLDRAWRANGEELEMENTSWINPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int mode, int start, int end, int count, int type, java.lang.foreign.MemoryAddress indices);
-    static MemorySegment allocate(PFNGLDRAWRANGEELEMENTSWINPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNGLDRAWRANGEELEMENTSWINPROC.class, fi, constants$1351.PFNGLDRAWRANGEELEMENTSWINPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFNGLDRAWRANGEELEMENTSWINPROC)(GLenum, GLuint, GLuint, GLsizei, GLenum, const GLvoid *) __attribute__((stdcall))
+ * }
+ */
+public class PFNGLDRAWRANGEELEMENTSWINPROC {
+
+    PFNGLDRAWRANGEELEMENTSWINPROC() {
+        // Should not be called directly
     }
-    static PFNGLDRAWRANGEELEMENTSWINPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _mode, int _start, int _end, int _count, int _type, java.lang.foreign.MemoryAddress _indices) -> {
-            try {
-                constants$1351.PFNGLDRAWRANGEELEMENTSWINPROC$MH.invokeExact((Addressable)symbol, _mode, _start, _end, _count, _type, (java.lang.foreign.Addressable)_indices);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int mode, int start, int end, int count, int type, MemorySegment indices);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_INT,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNGLDRAWRANGEELEMENTSWINPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNGLDRAWRANGEELEMENTSWINPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int mode, int start, int end, int count, int type, MemorySegment indices) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, mode, start, end, count, type, indices);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

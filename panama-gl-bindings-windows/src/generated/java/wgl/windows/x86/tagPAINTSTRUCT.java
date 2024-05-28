@@ -2,106 +2,390 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPAINTSTRUCT {
+ *     HDC hdc;
+ *     BOOL fErase;
+ *     RECT rcPaint;
+ *     BOOL fRestore;
+ *     BOOL fIncUpdate;
+ *     BYTE rgbReserved[32];
+ * }
+ * }
+ */
 public class tagPAINTSTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hdc"),
-        Constants$root.C_LONG$LAYOUT.withName("fErase"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rcPaint"),
-        Constants$root.C_LONG$LAYOUT.withName("fRestore"),
-        Constants$root.C_LONG$LAYOUT.withName("fIncUpdate"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("rgbReserved"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagPAINTSTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return tagPAINTSTRUCT.$struct$LAYOUT;
+    tagPAINTSTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle hdc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hdc"));
-    public static VarHandle hdc$VH() {
-        return tagPAINTSTRUCT.hdc$VH;
-    }
-    public static MemoryAddress hdc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPAINTSTRUCT.hdc$VH.get(seg);
-    }
-    public static void hdc$set( MemorySegment seg, MemoryAddress x) {
-        tagPAINTSTRUCT.hdc$VH.set(seg, x);
-    }
-    public static MemoryAddress hdc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPAINTSTRUCT.hdc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hdc$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPAINTSTRUCT.hdc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fErase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fErase"));
-    public static VarHandle fErase$VH() {
-        return tagPAINTSTRUCT.fErase$VH;
-    }
-    public static int fErase$get(MemorySegment seg) {
-        return (int)tagPAINTSTRUCT.fErase$VH.get(seg);
-    }
-    public static void fErase$set( MemorySegment seg, int x) {
-        tagPAINTSTRUCT.fErase$VH.set(seg, x);
-    }
-    public static int fErase$get(MemorySegment seg, long index) {
-        return (int)tagPAINTSTRUCT.fErase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fErase$set(MemorySegment seg, long index, int x) {
-        tagPAINTSTRUCT.fErase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rcPaint$slice(MemorySegment seg) {
-        return seg.asSlice(12, 16);
-    }
-    static final VarHandle fRestore$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fRestore"));
-    public static VarHandle fRestore$VH() {
-        return tagPAINTSTRUCT.fRestore$VH;
-    }
-    public static int fRestore$get(MemorySegment seg) {
-        return (int)tagPAINTSTRUCT.fRestore$VH.get(seg);
-    }
-    public static void fRestore$set( MemorySegment seg, int x) {
-        tagPAINTSTRUCT.fRestore$VH.set(seg, x);
-    }
-    public static int fRestore$get(MemorySegment seg, long index) {
-        return (int)tagPAINTSTRUCT.fRestore$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fRestore$set(MemorySegment seg, long index, int x) {
-        tagPAINTSTRUCT.fRestore$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fIncUpdate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fIncUpdate"));
-    public static VarHandle fIncUpdate$VH() {
-        return tagPAINTSTRUCT.fIncUpdate$VH;
-    }
-    public static int fIncUpdate$get(MemorySegment seg) {
-        return (int)tagPAINTSTRUCT.fIncUpdate$VH.get(seg);
-    }
-    public static void fIncUpdate$set( MemorySegment seg, int x) {
-        tagPAINTSTRUCT.fIncUpdate$VH.set(seg, x);
-    }
-    public static int fIncUpdate$get(MemorySegment seg, long index) {
-        return (int)tagPAINTSTRUCT.fIncUpdate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fIncUpdate$set(MemorySegment seg, long index, int x) {
-        tagPAINTSTRUCT.fIncUpdate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbReserved$slice(MemorySegment seg) {
-        return seg.asSlice(36, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("hdc"),
+        wgl_h.C_INT.withName("fErase"),
+        tagRECT.layout().withName("rcPaint"),
+        wgl_h.C_INT.withName("fRestore"),
+        wgl_h.C_INT.withName("fIncUpdate"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("rgbReserved"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagPAINTSTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hdc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hdc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HDC hdc
+     * }
+     */
+    public static final AddressLayout hdc$layout() {
+        return hdc$LAYOUT;
+    }
+
+    private static final long hdc$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HDC hdc
+     * }
+     */
+    public static final long hdc$offset() {
+        return hdc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HDC hdc
+     * }
+     */
+    public static MemorySegment hdc(MemorySegment struct) {
+        return struct.get(hdc$LAYOUT, hdc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HDC hdc
+     * }
+     */
+    public static void hdc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hdc$LAYOUT, hdc$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fErase$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fErase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fErase
+     * }
+     */
+    public static final OfInt fErase$layout() {
+        return fErase$LAYOUT;
+    }
+
+    private static final long fErase$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fErase
+     * }
+     */
+    public static final long fErase$offset() {
+        return fErase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fErase
+     * }
+     */
+    public static int fErase(MemorySegment struct) {
+        return struct.get(fErase$LAYOUT, fErase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fErase
+     * }
+     */
+    public static void fErase(MemorySegment struct, int fieldValue) {
+        struct.set(fErase$LAYOUT, fErase$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout rcPaint$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rcPaint"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rcPaint
+     * }
+     */
+    public static final GroupLayout rcPaint$layout() {
+        return rcPaint$LAYOUT;
+    }
+
+    private static final long rcPaint$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rcPaint
+     * }
+     */
+    public static final long rcPaint$offset() {
+        return rcPaint$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rcPaint
+     * }
+     */
+    public static MemorySegment rcPaint(MemorySegment struct) {
+        return struct.asSlice(rcPaint$OFFSET, rcPaint$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rcPaint
+     * }
+     */
+    public static void rcPaint(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rcPaint$OFFSET, rcPaint$LAYOUT.byteSize());
+    }
+
+    private static final OfInt fRestore$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fRestore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fRestore
+     * }
+     */
+    public static final OfInt fRestore$layout() {
+        return fRestore$LAYOUT;
+    }
+
+    private static final long fRestore$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fRestore
+     * }
+     */
+    public static final long fRestore$offset() {
+        return fRestore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fRestore
+     * }
+     */
+    public static int fRestore(MemorySegment struct) {
+        return struct.get(fRestore$LAYOUT, fRestore$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fRestore
+     * }
+     */
+    public static void fRestore(MemorySegment struct, int fieldValue) {
+        struct.set(fRestore$LAYOUT, fRestore$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fIncUpdate$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fIncUpdate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fIncUpdate
+     * }
+     */
+    public static final OfInt fIncUpdate$layout() {
+        return fIncUpdate$LAYOUT;
+    }
+
+    private static final long fIncUpdate$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fIncUpdate
+     * }
+     */
+    public static final long fIncUpdate$offset() {
+        return fIncUpdate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fIncUpdate
+     * }
+     */
+    public static int fIncUpdate(MemorySegment struct) {
+        return struct.get(fIncUpdate$LAYOUT, fIncUpdate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fIncUpdate
+     * }
+     */
+    public static void fIncUpdate(MemorySegment struct, int fieldValue) {
+        struct.set(fIncUpdate$LAYOUT, fIncUpdate$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbReserved$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static final SequenceLayout rgbReserved$layout() {
+        return rgbReserved$LAYOUT;
+    }
+
+    private static final long rgbReserved$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static final long rgbReserved$offset() {
+        return rgbReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static MemorySegment rgbReserved(MemorySegment struct) {
+        return struct.asSlice(rgbReserved$OFFSET, rgbReserved$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static void rgbReserved(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbReserved$OFFSET, rgbReserved$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbReserved$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static long[] rgbReserved$dimensions() {
+        return rgbReserved$DIMS;
+    }
+    private static final VarHandle rgbReserved$ELEM_HANDLE = rgbReserved$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static byte rgbReserved(MemorySegment struct, long index0) {
+        return (byte)rgbReserved$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbReserved[32]
+     * }
+     */
+    public static void rgbReserved(MemorySegment struct, long index0, byte fieldValue) {
+        rgbReserved$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

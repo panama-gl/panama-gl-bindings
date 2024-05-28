@@ -2,83 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_RSA_SSA_PSS_PARAMETERS {
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     CRYPT_MASK_GEN_ALGORITHM MaskGenAlgorithm;
+ *     DWORD dwSaltLength;
+ *     DWORD dwTrailerField;
+ * }
+ * }
+ */
 public class _CRYPT_RSA_SSA_PSS_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("Parameters")
-        ).withName("HashAlgorithm"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Parameters")
-            ).withName("HashAlgorithm")
-        ).withName("MaskGenAlgorithm"),
-        Constants$root.C_LONG$LAYOUT.withName("dwSaltLength"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTrailerField")
-    ).withName("_CRYPT_RSA_SSA_PSS_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_RSA_SSA_PSS_PARAMETERS.$struct$LAYOUT;
+    _CRYPT_RSA_SSA_PSS_PARAMETERS() {
+        // Should not be called directly
     }
-    public static MemorySegment HashAlgorithm$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
-    }
-    public static MemorySegment MaskGenAlgorithm$slice(MemorySegment seg) {
-        return seg.asSlice(24, 32);
-    }
-    static final VarHandle dwSaltLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSaltLength"));
-    public static VarHandle dwSaltLength$VH() {
-        return _CRYPT_RSA_SSA_PSS_PARAMETERS.dwSaltLength$VH;
-    }
-    public static int dwSaltLength$get(MemorySegment seg) {
-        return (int)_CRYPT_RSA_SSA_PSS_PARAMETERS.dwSaltLength$VH.get(seg);
-    }
-    public static void dwSaltLength$set( MemorySegment seg, int x) {
-        _CRYPT_RSA_SSA_PSS_PARAMETERS.dwSaltLength$VH.set(seg, x);
-    }
-    public static int dwSaltLength$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RSA_SSA_PSS_PARAMETERS.dwSaltLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSaltLength$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RSA_SSA_PSS_PARAMETERS.dwSaltLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTrailerField$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTrailerField"));
-    public static VarHandle dwTrailerField$VH() {
-        return _CRYPT_RSA_SSA_PSS_PARAMETERS.dwTrailerField$VH;
-    }
-    public static int dwTrailerField$get(MemorySegment seg) {
-        return (int)_CRYPT_RSA_SSA_PSS_PARAMETERS.dwTrailerField$VH.get(seg);
-    }
-    public static void dwTrailerField$set( MemorySegment seg, int x) {
-        _CRYPT_RSA_SSA_PSS_PARAMETERS.dwTrailerField$VH.set(seg, x);
-    }
-    public static int dwTrailerField$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RSA_SSA_PSS_PARAMETERS.dwTrailerField$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTrailerField$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RSA_SSA_PSS_PARAMETERS.dwTrailerField$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CRYPT_ALGORITHM_IDENTIFIER.layout().withName("HashAlgorithm"),
+        _CRYPT_MASK_GEN_ALGORITHM.layout().withName("MaskGenAlgorithm"),
+        wgl_h.C_LONG.withName("dwSaltLength"),
+        wgl_h.C_LONG.withName("dwTrailerField")
+    ).withName("_CRYPT_RSA_SSA_PSS_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout HashAlgorithm$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("HashAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm
+     * }
+     */
+    public static final GroupLayout HashAlgorithm$layout() {
+        return HashAlgorithm$LAYOUT;
+    }
+
+    private static final long HashAlgorithm$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm
+     * }
+     */
+    public static final long HashAlgorithm$offset() {
+        return HashAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm
+     * }
+     */
+    public static MemorySegment HashAlgorithm(MemorySegment struct) {
+        return struct.asSlice(HashAlgorithm$OFFSET, HashAlgorithm$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm
+     * }
+     */
+    public static void HashAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, HashAlgorithm$OFFSET, HashAlgorithm$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout MaskGenAlgorithm$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MaskGenAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_MASK_GEN_ALGORITHM MaskGenAlgorithm
+     * }
+     */
+    public static final GroupLayout MaskGenAlgorithm$layout() {
+        return MaskGenAlgorithm$LAYOUT;
+    }
+
+    private static final long MaskGenAlgorithm$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_MASK_GEN_ALGORITHM MaskGenAlgorithm
+     * }
+     */
+    public static final long MaskGenAlgorithm$offset() {
+        return MaskGenAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_MASK_GEN_ALGORITHM MaskGenAlgorithm
+     * }
+     */
+    public static MemorySegment MaskGenAlgorithm(MemorySegment struct) {
+        return struct.asSlice(MaskGenAlgorithm$OFFSET, MaskGenAlgorithm$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_MASK_GEN_ALGORITHM MaskGenAlgorithm
+     * }
+     */
+    public static void MaskGenAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MaskGenAlgorithm$OFFSET, MaskGenAlgorithm$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwSaltLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSaltLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSaltLength
+     * }
+     */
+    public static final OfInt dwSaltLength$layout() {
+        return dwSaltLength$LAYOUT;
+    }
+
+    private static final long dwSaltLength$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSaltLength
+     * }
+     */
+    public static final long dwSaltLength$offset() {
+        return dwSaltLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSaltLength
+     * }
+     */
+    public static int dwSaltLength(MemorySegment struct) {
+        return struct.get(dwSaltLength$LAYOUT, dwSaltLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSaltLength
+     * }
+     */
+    public static void dwSaltLength(MemorySegment struct, int fieldValue) {
+        struct.set(dwSaltLength$LAYOUT, dwSaltLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTrailerField$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTrailerField"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTrailerField
+     * }
+     */
+    public static final OfInt dwTrailerField$layout() {
+        return dwTrailerField$LAYOUT;
+    }
+
+    private static final long dwTrailerField$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTrailerField
+     * }
+     */
+    public static final long dwTrailerField$offset() {
+        return dwTrailerField$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTrailerField
+     * }
+     */
+    public static int dwTrailerField(MemorySegment struct) {
+        return struct.get(dwTrailerField$LAYOUT, dwTrailerField$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTrailerField
+     * }
+     */
+    public static void dwTrailerField(MemorySegment struct, int fieldValue) {
+        struct.set(dwTrailerField$LAYOUT, dwTrailerField$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

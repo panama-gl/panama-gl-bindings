@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_LEVEL_TRIM_RANGE {
+ *     DWORDLONG Offset;
+ *     DWORDLONG Length;
+ * } FILE_LEVEL_TRIM_RANGE
+ * }
+ */
 public class FILE_LEVEL_TRIM_RANGE extends _FILE_LEVEL_TRIM_RANGE {
 
+    FILE_LEVEL_TRIM_RANGE() {
+        // Should not be called directly
+    }
 }
-
 

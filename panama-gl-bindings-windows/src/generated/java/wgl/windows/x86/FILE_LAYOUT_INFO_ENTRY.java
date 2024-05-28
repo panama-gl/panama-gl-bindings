@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_LAYOUT_INFO_ENTRY {
+ *     struct {
+ *         LARGE_INTEGER CreationTime;
+ *         LARGE_INTEGER LastAccessTime;
+ *         LARGE_INTEGER LastWriteTime;
+ *         LARGE_INTEGER ChangeTime;
+ *         DWORD FileAttributes;
+ *     } BasicInformation;
+ *     DWORD OwnerId;
+ *     DWORD SecurityId;
+ *     USN Usn;
+ *     STORAGE_RESERVE_ID StorageReserveId;
+ * } FILE_LAYOUT_INFO_ENTRY
+ * }
+ */
 public class FILE_LAYOUT_INFO_ENTRY extends _FILE_LAYOUT_INFO_ENTRY {
 
+    FILE_LAYOUT_INFO_ENTRY() {
+        // Should not be called directly
+    }
 }
-
 

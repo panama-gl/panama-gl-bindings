@@ -2,48 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagICEXYZTRIPLE {
+ *     CIEXYZ ciexyzRed;
+ *     CIEXYZ ciexyzGreen;
+ *     CIEXYZ ciexyzBlue;
+ * }
+ * }
+ */
 public class tagICEXYZTRIPLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-        ).withName("ciexyzRed"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-        ).withName("ciexyzGreen"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-            Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-        ).withName("ciexyzBlue")
-    ).withName("tagICEXYZTRIPLE");
-    public static MemoryLayout $LAYOUT() {
-        return tagICEXYZTRIPLE.$struct$LAYOUT;
+    tagICEXYZTRIPLE() {
+        // Should not be called directly
     }
-    public static MemorySegment ciexyzRed$slice(MemorySegment seg) {
-        return seg.asSlice(0, 12);
-    }
-    public static MemorySegment ciexyzGreen$slice(MemorySegment seg) {
-        return seg.asSlice(12, 12);
-    }
-    public static MemorySegment ciexyzBlue$slice(MemorySegment seg) {
-        return seg.asSlice(24, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagCIEXYZ.layout().withName("ciexyzRed"),
+        tagCIEXYZ.layout().withName("ciexyzGreen"),
+        tagCIEXYZ.layout().withName("ciexyzBlue")
+    ).withName("tagICEXYZTRIPLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout ciexyzRed$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ciexyzRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzRed
+     * }
+     */
+    public static final GroupLayout ciexyzRed$layout() {
+        return ciexyzRed$LAYOUT;
+    }
+
+    private static final long ciexyzRed$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzRed
+     * }
+     */
+    public static final long ciexyzRed$offset() {
+        return ciexyzRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzRed
+     * }
+     */
+    public static MemorySegment ciexyzRed(MemorySegment struct) {
+        return struct.asSlice(ciexyzRed$OFFSET, ciexyzRed$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzRed
+     * }
+     */
+    public static void ciexyzRed(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ciexyzRed$OFFSET, ciexyzRed$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ciexyzGreen$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ciexyzGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzGreen
+     * }
+     */
+    public static final GroupLayout ciexyzGreen$layout() {
+        return ciexyzGreen$LAYOUT;
+    }
+
+    private static final long ciexyzGreen$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzGreen
+     * }
+     */
+    public static final long ciexyzGreen$offset() {
+        return ciexyzGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzGreen
+     * }
+     */
+    public static MemorySegment ciexyzGreen(MemorySegment struct) {
+        return struct.asSlice(ciexyzGreen$OFFSET, ciexyzGreen$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzGreen
+     * }
+     */
+    public static void ciexyzGreen(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ciexyzGreen$OFFSET, ciexyzGreen$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ciexyzBlue$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ciexyzBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzBlue
+     * }
+     */
+    public static final GroupLayout ciexyzBlue$layout() {
+        return ciexyzBlue$LAYOUT;
+    }
+
+    private static final long ciexyzBlue$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzBlue
+     * }
+     */
+    public static final long ciexyzBlue$offset() {
+        return ciexyzBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzBlue
+     * }
+     */
+    public static MemorySegment ciexyzBlue(MemorySegment struct) {
+        return struct.asSlice(ciexyzBlue$OFFSET, ciexyzBlue$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CIEXYZ ciexyzBlue
+     * }
+     */
+    public static void ciexyzBlue(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ciexyzBlue$OFFSET, ciexyzBlue$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

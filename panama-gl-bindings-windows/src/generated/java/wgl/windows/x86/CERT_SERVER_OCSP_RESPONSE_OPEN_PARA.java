@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_SERVER_OCSP_RESPONSE_OPEN_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwFlags;
+ *     DWORD *pcbUsedSize;
+ *     PWSTR pwszOcspDirectory;
+ *     PFN_CERT_SERVER_OCSP_RESPONSE_UPDATE_CALLBACK pfnUpdateCallback;
+ *     PVOID pvUpdateCallbackArg;
+ * } CERT_SERVER_OCSP_RESPONSE_OPEN_PARA
+ * }
+ */
 public class CERT_SERVER_OCSP_RESPONSE_OPEN_PARA extends _CERT_SERVER_OCSP_RESPONSE_OPEN_PARA {
 
+    CERT_SERVER_OCSP_RESPONSE_OPEN_PARA() {
+        // Should not be called directly
+    }
 }
-
 

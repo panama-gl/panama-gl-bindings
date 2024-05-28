@@ -2,247 +2,727 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RDR_CALLOUT_STATE {
+ *     RPC_STATUS LastError;
+ *     void *LastEEInfo;
+ *     RPC_HTTP_REDIRECTOR_STAGE LastCalledStage;
+ *     unsigned short *ServerName;
+ *     unsigned short *ServerPort;
+ *     unsigned short *RemoteUser;
+ *     unsigned short *AuthType;
+ *     unsigned char ResourceTypePresent;
+ *     unsigned char SessionIdPresent;
+ *     unsigned char InterfacePresent;
+ *     UUID ResourceType;
+ *     UUID SessionId;
+ *     RPC_SYNTAX_IDENTIFIER Interface;
+ *     void *CertContext;
+ * }
+ * }
+ */
 public class _RDR_CALLOUT_STATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("LastError"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("LastEEInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("LastCalledStage"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerName"),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerPort"),
-        Constants$root.C_POINTER$LAYOUT.withName("RemoteUser"),
-        Constants$root.C_POINTER$LAYOUT.withName("AuthType"),
-        Constants$root.C_CHAR$LAYOUT.withName("ResourceTypePresent"),
-        Constants$root.C_CHAR$LAYOUT.withName("SessionIdPresent"),
-        Constants$root.C_CHAR$LAYOUT.withName("InterfacePresent"),
-        MemoryLayout.paddingLayout(8),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("ResourceType"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("SessionId"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("SyntaxGUID"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-                Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-            ).withName("SyntaxVersion")
-        ).withName("Interface"),
-        Constants$root.C_POINTER$LAYOUT.withName("CertContext")
-    ).withName("_RDR_CALLOUT_STATE");
-    public static MemoryLayout $LAYOUT() {
-        return _RDR_CALLOUT_STATE.$struct$LAYOUT;
+    _RDR_CALLOUT_STATE() {
+        // Should not be called directly
     }
-    static final VarHandle LastError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastError"));
-    public static VarHandle LastError$VH() {
-        return _RDR_CALLOUT_STATE.LastError$VH;
-    }
-    public static int LastError$get(MemorySegment seg) {
-        return (int)_RDR_CALLOUT_STATE.LastError$VH.get(seg);
-    }
-    public static void LastError$set( MemorySegment seg, int x) {
-        _RDR_CALLOUT_STATE.LastError$VH.set(seg, x);
-    }
-    public static int LastError$get(MemorySegment seg, long index) {
-        return (int)_RDR_CALLOUT_STATE.LastError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastError$set(MemorySegment seg, long index, int x) {
-        _RDR_CALLOUT_STATE.LastError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastEEInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastEEInfo"));
-    public static VarHandle LastEEInfo$VH() {
-        return _RDR_CALLOUT_STATE.LastEEInfo$VH;
-    }
-    public static MemoryAddress LastEEInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.LastEEInfo$VH.get(seg);
-    }
-    public static void LastEEInfo$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.LastEEInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress LastEEInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.LastEEInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastEEInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.LastEEInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastCalledStage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastCalledStage"));
-    public static VarHandle LastCalledStage$VH() {
-        return _RDR_CALLOUT_STATE.LastCalledStage$VH;
-    }
-    public static int LastCalledStage$get(MemorySegment seg) {
-        return (int)_RDR_CALLOUT_STATE.LastCalledStage$VH.get(seg);
-    }
-    public static void LastCalledStage$set( MemorySegment seg, int x) {
-        _RDR_CALLOUT_STATE.LastCalledStage$VH.set(seg, x);
-    }
-    public static int LastCalledStage$get(MemorySegment seg, long index) {
-        return (int)_RDR_CALLOUT_STATE.LastCalledStage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastCalledStage$set(MemorySegment seg, long index, int x) {
-        _RDR_CALLOUT_STATE.LastCalledStage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerName"));
-    public static VarHandle ServerName$VH() {
-        return _RDR_CALLOUT_STATE.ServerName$VH;
-    }
-    public static MemoryAddress ServerName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.ServerName$VH.get(seg);
-    }
-    public static void ServerName$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.ServerName$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.ServerName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.ServerName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerPort$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerPort"));
-    public static VarHandle ServerPort$VH() {
-        return _RDR_CALLOUT_STATE.ServerPort$VH;
-    }
-    public static MemoryAddress ServerPort$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.ServerPort$VH.get(seg);
-    }
-    public static void ServerPort$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.ServerPort$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerPort$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.ServerPort$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerPort$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.ServerPort$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RemoteUser$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RemoteUser"));
-    public static VarHandle RemoteUser$VH() {
-        return _RDR_CALLOUT_STATE.RemoteUser$VH;
-    }
-    public static MemoryAddress RemoteUser$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.RemoteUser$VH.get(seg);
-    }
-    public static void RemoteUser$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.RemoteUser$VH.set(seg, x);
-    }
-    public static MemoryAddress RemoteUser$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.RemoteUser$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RemoteUser$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.RemoteUser$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthType"));
-    public static VarHandle AuthType$VH() {
-        return _RDR_CALLOUT_STATE.AuthType$VH;
-    }
-    public static MemoryAddress AuthType$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.AuthType$VH.get(seg);
-    }
-    public static void AuthType$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.AuthType$VH.set(seg, x);
-    }
-    public static MemoryAddress AuthType$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.AuthType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthType$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.AuthType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ResourceTypePresent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ResourceTypePresent"));
-    public static VarHandle ResourceTypePresent$VH() {
-        return _RDR_CALLOUT_STATE.ResourceTypePresent$VH;
-    }
-    public static byte ResourceTypePresent$get(MemorySegment seg) {
-        return (byte)_RDR_CALLOUT_STATE.ResourceTypePresent$VH.get(seg);
-    }
-    public static void ResourceTypePresent$set( MemorySegment seg, byte x) {
-        _RDR_CALLOUT_STATE.ResourceTypePresent$VH.set(seg, x);
-    }
-    public static byte ResourceTypePresent$get(MemorySegment seg, long index) {
-        return (byte)_RDR_CALLOUT_STATE.ResourceTypePresent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ResourceTypePresent$set(MemorySegment seg, long index, byte x) {
-        _RDR_CALLOUT_STATE.ResourceTypePresent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SessionIdPresent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SessionIdPresent"));
-    public static VarHandle SessionIdPresent$VH() {
-        return _RDR_CALLOUT_STATE.SessionIdPresent$VH;
-    }
-    public static byte SessionIdPresent$get(MemorySegment seg) {
-        return (byte)_RDR_CALLOUT_STATE.SessionIdPresent$VH.get(seg);
-    }
-    public static void SessionIdPresent$set( MemorySegment seg, byte x) {
-        _RDR_CALLOUT_STATE.SessionIdPresent$VH.set(seg, x);
-    }
-    public static byte SessionIdPresent$get(MemorySegment seg, long index) {
-        return (byte)_RDR_CALLOUT_STATE.SessionIdPresent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SessionIdPresent$set(MemorySegment seg, long index, byte x) {
-        _RDR_CALLOUT_STATE.SessionIdPresent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle InterfacePresent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("InterfacePresent"));
-    public static VarHandle InterfacePresent$VH() {
-        return _RDR_CALLOUT_STATE.InterfacePresent$VH;
-    }
-    public static byte InterfacePresent$get(MemorySegment seg) {
-        return (byte)_RDR_CALLOUT_STATE.InterfacePresent$VH.get(seg);
-    }
-    public static void InterfacePresent$set( MemorySegment seg, byte x) {
-        _RDR_CALLOUT_STATE.InterfacePresent$VH.set(seg, x);
-    }
-    public static byte InterfacePresent$get(MemorySegment seg, long index) {
-        return (byte)_RDR_CALLOUT_STATE.InterfacePresent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void InterfacePresent$set(MemorySegment seg, long index, byte x) {
-        _RDR_CALLOUT_STATE.InterfacePresent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ResourceType$slice(MemorySegment seg) {
-        return seg.asSlice(60, 16);
-    }
-    public static MemorySegment SessionId$slice(MemorySegment seg) {
-        return seg.asSlice(76, 16);
-    }
-    public static MemorySegment Interface$slice(MemorySegment seg) {
-        return seg.asSlice(92, 20);
-    }
-    static final VarHandle CertContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CertContext"));
-    public static VarHandle CertContext$VH() {
-        return _RDR_CALLOUT_STATE.CertContext$VH;
-    }
-    public static MemoryAddress CertContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.CertContext$VH.get(seg);
-    }
-    public static void CertContext$set( MemorySegment seg, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.CertContext$VH.set(seg, x);
-    }
-    public static MemoryAddress CertContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RDR_CALLOUT_STATE.CertContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CertContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RDR_CALLOUT_STATE.CertContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("LastError"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("LastEEInfo"),
+        wgl_h.C_INT.withName("LastCalledStage"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ServerName"),
+        wgl_h.C_POINTER.withName("ServerPort"),
+        wgl_h.C_POINTER.withName("RemoteUser"),
+        wgl_h.C_POINTER.withName("AuthType"),
+        wgl_h.C_CHAR.withName("ResourceTypePresent"),
+        wgl_h.C_CHAR.withName("SessionIdPresent"),
+        wgl_h.C_CHAR.withName("InterfacePresent"),
+        MemoryLayout.paddingLayout(1),
+        _GUID.layout().withName("ResourceType"),
+        _GUID.layout().withName("SessionId"),
+        _RPC_SYNTAX_IDENTIFIER.layout().withName("Interface"),
+        wgl_h.C_POINTER.withName("CertContext")
+    ).withName("_RDR_CALLOUT_STATE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt LastError$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LastError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_STATUS LastError
+     * }
+     */
+    public static final OfInt LastError$layout() {
+        return LastError$LAYOUT;
+    }
+
+    private static final long LastError$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_STATUS LastError
+     * }
+     */
+    public static final long LastError$offset() {
+        return LastError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_STATUS LastError
+     * }
+     */
+    public static int LastError(MemorySegment struct) {
+        return struct.get(LastError$LAYOUT, LastError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_STATUS LastError
+     * }
+     */
+    public static void LastError(MemorySegment struct, int fieldValue) {
+        struct.set(LastError$LAYOUT, LastError$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout LastEEInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LastEEInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *LastEEInfo
+     * }
+     */
+    public static final AddressLayout LastEEInfo$layout() {
+        return LastEEInfo$LAYOUT;
+    }
+
+    private static final long LastEEInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *LastEEInfo
+     * }
+     */
+    public static final long LastEEInfo$offset() {
+        return LastEEInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *LastEEInfo
+     * }
+     */
+    public static MemorySegment LastEEInfo(MemorySegment struct) {
+        return struct.get(LastEEInfo$LAYOUT, LastEEInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *LastEEInfo
+     * }
+     */
+    public static void LastEEInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LastEEInfo$LAYOUT, LastEEInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LastCalledStage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LastCalledStage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_HTTP_REDIRECTOR_STAGE LastCalledStage
+     * }
+     */
+    public static final OfInt LastCalledStage$layout() {
+        return LastCalledStage$LAYOUT;
+    }
+
+    private static final long LastCalledStage$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_HTTP_REDIRECTOR_STAGE LastCalledStage
+     * }
+     */
+    public static final long LastCalledStage$offset() {
+        return LastCalledStage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_HTTP_REDIRECTOR_STAGE LastCalledStage
+     * }
+     */
+    public static int LastCalledStage(MemorySegment struct) {
+        return struct.get(LastCalledStage$LAYOUT, LastCalledStage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_HTTP_REDIRECTOR_STAGE LastCalledStage
+     * }
+     */
+    public static void LastCalledStage(MemorySegment struct, int fieldValue) {
+        struct.set(LastCalledStage$LAYOUT, LastCalledStage$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ServerName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerName
+     * }
+     */
+    public static final AddressLayout ServerName$layout() {
+        return ServerName$LAYOUT;
+    }
+
+    private static final long ServerName$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerName
+     * }
+     */
+    public static final long ServerName$offset() {
+        return ServerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerName
+     * }
+     */
+    public static MemorySegment ServerName(MemorySegment struct) {
+        return struct.get(ServerName$LAYOUT, ServerName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerName
+     * }
+     */
+    public static void ServerName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerName$LAYOUT, ServerName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ServerPort$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerPort"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPort
+     * }
+     */
+    public static final AddressLayout ServerPort$layout() {
+        return ServerPort$LAYOUT;
+    }
+
+    private static final long ServerPort$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPort
+     * }
+     */
+    public static final long ServerPort$offset() {
+        return ServerPort$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPort
+     * }
+     */
+    public static MemorySegment ServerPort(MemorySegment struct) {
+        return struct.get(ServerPort$LAYOUT, ServerPort$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *ServerPort
+     * }
+     */
+    public static void ServerPort(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerPort$LAYOUT, ServerPort$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RemoteUser$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RemoteUser"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *RemoteUser
+     * }
+     */
+    public static final AddressLayout RemoteUser$layout() {
+        return RemoteUser$LAYOUT;
+    }
+
+    private static final long RemoteUser$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *RemoteUser
+     * }
+     */
+    public static final long RemoteUser$offset() {
+        return RemoteUser$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *RemoteUser
+     * }
+     */
+    public static MemorySegment RemoteUser(MemorySegment struct) {
+        return struct.get(RemoteUser$LAYOUT, RemoteUser$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *RemoteUser
+     * }
+     */
+    public static void RemoteUser(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RemoteUser$LAYOUT, RemoteUser$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout AuthType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AuthType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned short *AuthType
+     * }
+     */
+    public static final AddressLayout AuthType$layout() {
+        return AuthType$LAYOUT;
+    }
+
+    private static final long AuthType$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned short *AuthType
+     * }
+     */
+    public static final long AuthType$offset() {
+        return AuthType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned short *AuthType
+     * }
+     */
+    public static MemorySegment AuthType(MemorySegment struct) {
+        return struct.get(AuthType$LAYOUT, AuthType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned short *AuthType
+     * }
+     */
+    public static void AuthType(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AuthType$LAYOUT, AuthType$OFFSET, fieldValue);
+    }
+
+    private static final OfByte ResourceTypePresent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ResourceTypePresent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char ResourceTypePresent
+     * }
+     */
+    public static final OfByte ResourceTypePresent$layout() {
+        return ResourceTypePresent$LAYOUT;
+    }
+
+    private static final long ResourceTypePresent$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char ResourceTypePresent
+     * }
+     */
+    public static final long ResourceTypePresent$offset() {
+        return ResourceTypePresent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char ResourceTypePresent
+     * }
+     */
+    public static byte ResourceTypePresent(MemorySegment struct) {
+        return struct.get(ResourceTypePresent$LAYOUT, ResourceTypePresent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char ResourceTypePresent
+     * }
+     */
+    public static void ResourceTypePresent(MemorySegment struct, byte fieldValue) {
+        struct.set(ResourceTypePresent$LAYOUT, ResourceTypePresent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SessionIdPresent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SessionIdPresent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char SessionIdPresent
+     * }
+     */
+    public static final OfByte SessionIdPresent$layout() {
+        return SessionIdPresent$LAYOUT;
+    }
+
+    private static final long SessionIdPresent$OFFSET = 57;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char SessionIdPresent
+     * }
+     */
+    public static final long SessionIdPresent$offset() {
+        return SessionIdPresent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char SessionIdPresent
+     * }
+     */
+    public static byte SessionIdPresent(MemorySegment struct) {
+        return struct.get(SessionIdPresent$LAYOUT, SessionIdPresent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char SessionIdPresent
+     * }
+     */
+    public static void SessionIdPresent(MemorySegment struct, byte fieldValue) {
+        struct.set(SessionIdPresent$LAYOUT, SessionIdPresent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte InterfacePresent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("InterfacePresent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char InterfacePresent
+     * }
+     */
+    public static final OfByte InterfacePresent$layout() {
+        return InterfacePresent$LAYOUT;
+    }
+
+    private static final long InterfacePresent$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char InterfacePresent
+     * }
+     */
+    public static final long InterfacePresent$offset() {
+        return InterfacePresent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char InterfacePresent
+     * }
+     */
+    public static byte InterfacePresent(MemorySegment struct) {
+        return struct.get(InterfacePresent$LAYOUT, InterfacePresent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char InterfacePresent
+     * }
+     */
+    public static void InterfacePresent(MemorySegment struct, byte fieldValue) {
+        struct.set(InterfacePresent$LAYOUT, InterfacePresent$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ResourceType$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ResourceType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UUID ResourceType
+     * }
+     */
+    public static final GroupLayout ResourceType$layout() {
+        return ResourceType$LAYOUT;
+    }
+
+    private static final long ResourceType$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UUID ResourceType
+     * }
+     */
+    public static final long ResourceType$offset() {
+        return ResourceType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UUID ResourceType
+     * }
+     */
+    public static MemorySegment ResourceType(MemorySegment struct) {
+        return struct.asSlice(ResourceType$OFFSET, ResourceType$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UUID ResourceType
+     * }
+     */
+    public static void ResourceType(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ResourceType$OFFSET, ResourceType$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout SessionId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SessionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UUID SessionId
+     * }
+     */
+    public static final GroupLayout SessionId$layout() {
+        return SessionId$LAYOUT;
+    }
+
+    private static final long SessionId$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UUID SessionId
+     * }
+     */
+    public static final long SessionId$offset() {
+        return SessionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UUID SessionId
+     * }
+     */
+    public static MemorySegment SessionId(MemorySegment struct) {
+        return struct.asSlice(SessionId$OFFSET, SessionId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UUID SessionId
+     * }
+     */
+    public static void SessionId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SessionId$OFFSET, SessionId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Interface$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Interface"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER Interface
+     * }
+     */
+    public static final GroupLayout Interface$layout() {
+        return Interface$LAYOUT;
+    }
+
+    private static final long Interface$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER Interface
+     * }
+     */
+    public static final long Interface$offset() {
+        return Interface$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER Interface
+     * }
+     */
+    public static MemorySegment Interface(MemorySegment struct) {
+        return struct.asSlice(Interface$OFFSET, Interface$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_SYNTAX_IDENTIFIER Interface
+     * }
+     */
+    public static void Interface(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Interface$OFFSET, Interface$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout CertContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CertContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *CertContext
+     * }
+     */
+    public static final AddressLayout CertContext$layout() {
+        return CertContext$LAYOUT;
+    }
+
+    private static final long CertContext$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *CertContext
+     * }
+     */
+    public static final long CertContext$offset() {
+        return CertContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *CertContext
+     * }
+     */
+    public static MemorySegment CertContext(MemorySegment struct) {
+        return struct.get(CertContext$LAYOUT, CertContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *CertContext
+     * }
+     */
+    public static void CertContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CertContext$LAYOUT, CertContext$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

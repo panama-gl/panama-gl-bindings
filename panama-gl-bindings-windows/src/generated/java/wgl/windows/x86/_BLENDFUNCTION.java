@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BLENDFUNCTION {
+ *     BYTE BlendOp;
+ *     BYTE BlendFlags;
+ *     BYTE SourceConstantAlpha;
+ *     BYTE AlphaFormat;
+ * }
+ * }
+ */
 public class _BLENDFUNCTION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("BlendOp"),
-        Constants$root.C_CHAR$LAYOUT.withName("BlendFlags"),
-        Constants$root.C_CHAR$LAYOUT.withName("SourceConstantAlpha"),
-        Constants$root.C_CHAR$LAYOUT.withName("AlphaFormat")
-    ).withName("_BLENDFUNCTION");
-    public static MemoryLayout $LAYOUT() {
-        return _BLENDFUNCTION.$struct$LAYOUT;
+    _BLENDFUNCTION() {
+        // Should not be called directly
     }
-    static final VarHandle BlendOp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BlendOp"));
-    public static VarHandle BlendOp$VH() {
-        return _BLENDFUNCTION.BlendOp$VH;
-    }
-    public static byte BlendOp$get(MemorySegment seg) {
-        return (byte)_BLENDFUNCTION.BlendOp$VH.get(seg);
-    }
-    public static void BlendOp$set( MemorySegment seg, byte x) {
-        _BLENDFUNCTION.BlendOp$VH.set(seg, x);
-    }
-    public static byte BlendOp$get(MemorySegment seg, long index) {
-        return (byte)_BLENDFUNCTION.BlendOp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BlendOp$set(MemorySegment seg, long index, byte x) {
-        _BLENDFUNCTION.BlendOp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BlendFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BlendFlags"));
-    public static VarHandle BlendFlags$VH() {
-        return _BLENDFUNCTION.BlendFlags$VH;
-    }
-    public static byte BlendFlags$get(MemorySegment seg) {
-        return (byte)_BLENDFUNCTION.BlendFlags$VH.get(seg);
-    }
-    public static void BlendFlags$set( MemorySegment seg, byte x) {
-        _BLENDFUNCTION.BlendFlags$VH.set(seg, x);
-    }
-    public static byte BlendFlags$get(MemorySegment seg, long index) {
-        return (byte)_BLENDFUNCTION.BlendFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BlendFlags$set(MemorySegment seg, long index, byte x) {
-        _BLENDFUNCTION.BlendFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SourceConstantAlpha$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SourceConstantAlpha"));
-    public static VarHandle SourceConstantAlpha$VH() {
-        return _BLENDFUNCTION.SourceConstantAlpha$VH;
-    }
-    public static byte SourceConstantAlpha$get(MemorySegment seg) {
-        return (byte)_BLENDFUNCTION.SourceConstantAlpha$VH.get(seg);
-    }
-    public static void SourceConstantAlpha$set( MemorySegment seg, byte x) {
-        _BLENDFUNCTION.SourceConstantAlpha$VH.set(seg, x);
-    }
-    public static byte SourceConstantAlpha$get(MemorySegment seg, long index) {
-        return (byte)_BLENDFUNCTION.SourceConstantAlpha$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SourceConstantAlpha$set(MemorySegment seg, long index, byte x) {
-        _BLENDFUNCTION.SourceConstantAlpha$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AlphaFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AlphaFormat"));
-    public static VarHandle AlphaFormat$VH() {
-        return _BLENDFUNCTION.AlphaFormat$VH;
-    }
-    public static byte AlphaFormat$get(MemorySegment seg) {
-        return (byte)_BLENDFUNCTION.AlphaFormat$VH.get(seg);
-    }
-    public static void AlphaFormat$set( MemorySegment seg, byte x) {
-        _BLENDFUNCTION.AlphaFormat$VH.set(seg, x);
-    }
-    public static byte AlphaFormat$get(MemorySegment seg, long index) {
-        return (byte)_BLENDFUNCTION.AlphaFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AlphaFormat$set(MemorySegment seg, long index, byte x) {
-        _BLENDFUNCTION.AlphaFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("BlendOp"),
+        wgl_h.C_CHAR.withName("BlendFlags"),
+        wgl_h.C_CHAR.withName("SourceConstantAlpha"),
+        wgl_h.C_CHAR.withName("AlphaFormat")
+    ).withName("_BLENDFUNCTION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte BlendOp$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BlendOp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BlendOp
+     * }
+     */
+    public static final OfByte BlendOp$layout() {
+        return BlendOp$LAYOUT;
+    }
+
+    private static final long BlendOp$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BlendOp
+     * }
+     */
+    public static final long BlendOp$offset() {
+        return BlendOp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BlendOp
+     * }
+     */
+    public static byte BlendOp(MemorySegment struct) {
+        return struct.get(BlendOp$LAYOUT, BlendOp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BlendOp
+     * }
+     */
+    public static void BlendOp(MemorySegment struct, byte fieldValue) {
+        struct.set(BlendOp$LAYOUT, BlendOp$OFFSET, fieldValue);
+    }
+
+    private static final OfByte BlendFlags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BlendFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BlendFlags
+     * }
+     */
+    public static final OfByte BlendFlags$layout() {
+        return BlendFlags$LAYOUT;
+    }
+
+    private static final long BlendFlags$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BlendFlags
+     * }
+     */
+    public static final long BlendFlags$offset() {
+        return BlendFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BlendFlags
+     * }
+     */
+    public static byte BlendFlags(MemorySegment struct) {
+        return struct.get(BlendFlags$LAYOUT, BlendFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BlendFlags
+     * }
+     */
+    public static void BlendFlags(MemorySegment struct, byte fieldValue) {
+        struct.set(BlendFlags$LAYOUT, BlendFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SourceConstantAlpha$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SourceConstantAlpha"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SourceConstantAlpha
+     * }
+     */
+    public static final OfByte SourceConstantAlpha$layout() {
+        return SourceConstantAlpha$LAYOUT;
+    }
+
+    private static final long SourceConstantAlpha$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SourceConstantAlpha
+     * }
+     */
+    public static final long SourceConstantAlpha$offset() {
+        return SourceConstantAlpha$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SourceConstantAlpha
+     * }
+     */
+    public static byte SourceConstantAlpha(MemorySegment struct) {
+        return struct.get(SourceConstantAlpha$LAYOUT, SourceConstantAlpha$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SourceConstantAlpha
+     * }
+     */
+    public static void SourceConstantAlpha(MemorySegment struct, byte fieldValue) {
+        struct.set(SourceConstantAlpha$LAYOUT, SourceConstantAlpha$OFFSET, fieldValue);
+    }
+
+    private static final OfByte AlphaFormat$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AlphaFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE AlphaFormat
+     * }
+     */
+    public static final OfByte AlphaFormat$layout() {
+        return AlphaFormat$LAYOUT;
+    }
+
+    private static final long AlphaFormat$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE AlphaFormat
+     * }
+     */
+    public static final long AlphaFormat$offset() {
+        return AlphaFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE AlphaFormat
+     * }
+     */
+    public static byte AlphaFormat(MemorySegment struct) {
+        return struct.get(AlphaFormat$LAYOUT, AlphaFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE AlphaFormat
+     * }
+     */
+    public static void AlphaFormat(MemorySegment struct, byte fieldValue) {
+        struct.set(AlphaFormat$LAYOUT, AlphaFormat$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

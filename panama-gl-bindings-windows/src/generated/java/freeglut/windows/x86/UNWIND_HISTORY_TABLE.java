@@ -2,13 +2,34 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _UNWIND_HISTORY_TABLE {
+ *     DWORD Count;
+ *     BYTE LocalHint;
+ *     BYTE GlobalHint;
+ *     BYTE Search;
+ *     BYTE Once;
+ *     DWORD64 LowAddress;
+ *     DWORD64 HighAddress;
+ *     UNWIND_HISTORY_TABLE_ENTRY Entry[12];
+ * } UNWIND_HISTORY_TABLE
+ * }
+ */
 public class UNWIND_HISTORY_TABLE extends _UNWIND_HISTORY_TABLE {
 
+    UNWIND_HISTORY_TABLE() {
+        // Should not be called directly
+    }
 }
-
 

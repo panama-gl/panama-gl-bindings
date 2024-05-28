@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _OCSP_BASIC_RESPONSE_ENTRY {
+ *     OCSP_CERT_ID CertId;
+ *     DWORD dwCertStatus;
+ *     union {
+ *         POCSP_BASIC_REVOKED_INFO pRevokedInfo;
+ *     };
+ *     FILETIME ThisUpdate;
+ *     FILETIME NextUpdate;
+ *     DWORD cExtension;
+ *     PCERT_EXTENSION rgExtension;
+ * } OCSP_BASIC_RESPONSE_ENTRY
+ * }
+ */
 public class OCSP_BASIC_RESPONSE_ENTRY extends _OCSP_BASIC_RESPONSE_ENTRY {
 
+    OCSP_BASIC_RESPONSE_ENTRY() {
+        // Should not be called directly
+    }
 }
-
 

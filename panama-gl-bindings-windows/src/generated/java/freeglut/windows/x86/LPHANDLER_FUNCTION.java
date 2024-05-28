@@ -2,27 +2,66 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface LPHANDLER_FUNCTION {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int dwControl);
-    static MemorySegment allocate(LPHANDLER_FUNCTION fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(LPHANDLER_FUNCTION.class, fi, constants$616.LPHANDLER_FUNCTION$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*LPHANDLER_FUNCTION)(DWORD) __attribute__((stdcall))
+ * }
+ */
+public class LPHANDLER_FUNCTION {
+
+    LPHANDLER_FUNCTION() {
+        // Should not be called directly
     }
-    static LPHANDLER_FUNCTION ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwControl) -> {
-            try {
-                constants$616.LPHANDLER_FUNCTION$MH.invokeExact((Addressable)symbol, _dwControl);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int dwControl);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(LPHANDLER_FUNCTION.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(LPHANDLER_FUNCTION.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int dwControl) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, dwControl);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

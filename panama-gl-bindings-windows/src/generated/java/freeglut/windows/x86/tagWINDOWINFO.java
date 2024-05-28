@@ -2,178 +2,540 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagWINDOWINFO {
+ *     DWORD cbSize;
+ *     RECT rcWindow;
+ *     RECT rcClient;
+ *     DWORD dwStyle;
+ *     DWORD dwExStyle;
+ *     DWORD dwWindowStatus;
+ *     UINT cxWindowBorders;
+ *     UINT cyWindowBorders;
+ *     ATOM atomWindowType;
+ *     WORD wCreatorVersion;
+ * }
+ * }
+ */
 public class tagWINDOWINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rcWindow"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rcClient"),
-        Constants$root.C_LONG$LAYOUT.withName("dwStyle"),
-        Constants$root.C_LONG$LAYOUT.withName("dwExStyle"),
-        Constants$root.C_LONG$LAYOUT.withName("dwWindowStatus"),
-        Constants$root.C_LONG$LAYOUT.withName("cxWindowBorders"),
-        Constants$root.C_LONG$LAYOUT.withName("cyWindowBorders"),
-        Constants$root.C_SHORT$LAYOUT.withName("atomWindowType"),
-        Constants$root.C_SHORT$LAYOUT.withName("wCreatorVersion")
-    ).withName("tagWINDOWINFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagWINDOWINFO.$struct$LAYOUT;
+    tagWINDOWINFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagWINDOWINFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rcWindow$slice(MemorySegment seg) {
-        return seg.asSlice(4, 16);
-    }
-    public static MemorySegment rcClient$slice(MemorySegment seg) {
-        return seg.asSlice(20, 16);
-    }
-    static final VarHandle dwStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStyle"));
-    public static VarHandle dwStyle$VH() {
-        return tagWINDOWINFO.dwStyle$VH;
-    }
-    public static int dwStyle$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.dwStyle$VH.get(seg);
-    }
-    public static void dwStyle$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.dwStyle$VH.set(seg, x);
-    }
-    public static int dwStyle$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.dwStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStyle$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.dwStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwExStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwExStyle"));
-    public static VarHandle dwExStyle$VH() {
-        return tagWINDOWINFO.dwExStyle$VH;
-    }
-    public static int dwExStyle$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.dwExStyle$VH.get(seg);
-    }
-    public static void dwExStyle$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.dwExStyle$VH.set(seg, x);
-    }
-    public static int dwExStyle$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.dwExStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwExStyle$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.dwExStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwWindowStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwWindowStatus"));
-    public static VarHandle dwWindowStatus$VH() {
-        return tagWINDOWINFO.dwWindowStatus$VH;
-    }
-    public static int dwWindowStatus$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.dwWindowStatus$VH.get(seg);
-    }
-    public static void dwWindowStatus$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.dwWindowStatus$VH.set(seg, x);
-    }
-    public static int dwWindowStatus$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.dwWindowStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwWindowStatus$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.dwWindowStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cxWindowBorders$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cxWindowBorders"));
-    public static VarHandle cxWindowBorders$VH() {
-        return tagWINDOWINFO.cxWindowBorders$VH;
-    }
-    public static int cxWindowBorders$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.cxWindowBorders$VH.get(seg);
-    }
-    public static void cxWindowBorders$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.cxWindowBorders$VH.set(seg, x);
-    }
-    public static int cxWindowBorders$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.cxWindowBorders$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cxWindowBorders$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.cxWindowBorders$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cyWindowBorders$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cyWindowBorders"));
-    public static VarHandle cyWindowBorders$VH() {
-        return tagWINDOWINFO.cyWindowBorders$VH;
-    }
-    public static int cyWindowBorders$get(MemorySegment seg) {
-        return (int)tagWINDOWINFO.cyWindowBorders$VH.get(seg);
-    }
-    public static void cyWindowBorders$set( MemorySegment seg, int x) {
-        tagWINDOWINFO.cyWindowBorders$VH.set(seg, x);
-    }
-    public static int cyWindowBorders$get(MemorySegment seg, long index) {
-        return (int)tagWINDOWINFO.cyWindowBorders$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cyWindowBorders$set(MemorySegment seg, long index, int x) {
-        tagWINDOWINFO.cyWindowBorders$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle atomWindowType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("atomWindowType"));
-    public static VarHandle atomWindowType$VH() {
-        return tagWINDOWINFO.atomWindowType$VH;
-    }
-    public static short atomWindowType$get(MemorySegment seg) {
-        return (short)tagWINDOWINFO.atomWindowType$VH.get(seg);
-    }
-    public static void atomWindowType$set( MemorySegment seg, short x) {
-        tagWINDOWINFO.atomWindowType$VH.set(seg, x);
-    }
-    public static short atomWindowType$get(MemorySegment seg, long index) {
-        return (short)tagWINDOWINFO.atomWindowType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void atomWindowType$set(MemorySegment seg, long index, short x) {
-        tagWINDOWINFO.atomWindowType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle wCreatorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wCreatorVersion"));
-    public static VarHandle wCreatorVersion$VH() {
-        return tagWINDOWINFO.wCreatorVersion$VH;
-    }
-    public static short wCreatorVersion$get(MemorySegment seg) {
-        return (short)tagWINDOWINFO.wCreatorVersion$VH.get(seg);
-    }
-    public static void wCreatorVersion$set( MemorySegment seg, short x) {
-        tagWINDOWINFO.wCreatorVersion$VH.set(seg, x);
-    }
-    public static short wCreatorVersion$get(MemorySegment seg, long index) {
-        return (short)tagWINDOWINFO.wCreatorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wCreatorVersion$set(MemorySegment seg, long index, short x) {
-        tagWINDOWINFO.wCreatorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("cbSize"),
+        tagRECT.layout().withName("rcWindow"),
+        tagRECT.layout().withName("rcClient"),
+        freeglut_h.C_LONG.withName("dwStyle"),
+        freeglut_h.C_LONG.withName("dwExStyle"),
+        freeglut_h.C_LONG.withName("dwWindowStatus"),
+        freeglut_h.C_INT.withName("cxWindowBorders"),
+        freeglut_h.C_INT.withName("cyWindowBorders"),
+        freeglut_h.C_SHORT.withName("atomWindowType"),
+        freeglut_h.C_SHORT.withName("wCreatorVersion")
+    ).withName("tagWINDOWINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout rcWindow$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rcWindow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rcWindow
+     * }
+     */
+    public static final GroupLayout rcWindow$layout() {
+        return rcWindow$LAYOUT;
+    }
+
+    private static final long rcWindow$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rcWindow
+     * }
+     */
+    public static final long rcWindow$offset() {
+        return rcWindow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rcWindow
+     * }
+     */
+    public static MemorySegment rcWindow(MemorySegment struct) {
+        return struct.asSlice(rcWindow$OFFSET, rcWindow$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rcWindow
+     * }
+     */
+    public static void rcWindow(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rcWindow$OFFSET, rcWindow$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout rcClient$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rcClient"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rcClient
+     * }
+     */
+    public static final GroupLayout rcClient$layout() {
+        return rcClient$LAYOUT;
+    }
+
+    private static final long rcClient$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rcClient
+     * }
+     */
+    public static final long rcClient$offset() {
+        return rcClient$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rcClient
+     * }
+     */
+    public static MemorySegment rcClient(MemorySegment struct) {
+        return struct.asSlice(rcClient$OFFSET, rcClient$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rcClient
+     * }
+     */
+    public static void rcClient(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rcClient$OFFSET, rcClient$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static final OfInt dwStyle$layout() {
+        return dwStyle$LAYOUT;
+    }
+
+    private static final long dwStyle$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static final long dwStyle$offset() {
+        return dwStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static int dwStyle(MemorySegment struct) {
+        return struct.get(dwStyle$LAYOUT, dwStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static void dwStyle(MemorySegment struct, int fieldValue) {
+        struct.set(dwStyle$LAYOUT, dwStyle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwExStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwExStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwExStyle
+     * }
+     */
+    public static final OfInt dwExStyle$layout() {
+        return dwExStyle$LAYOUT;
+    }
+
+    private static final long dwExStyle$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwExStyle
+     * }
+     */
+    public static final long dwExStyle$offset() {
+        return dwExStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwExStyle
+     * }
+     */
+    public static int dwExStyle(MemorySegment struct) {
+        return struct.get(dwExStyle$LAYOUT, dwExStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwExStyle
+     * }
+     */
+    public static void dwExStyle(MemorySegment struct, int fieldValue) {
+        struct.set(dwExStyle$LAYOUT, dwExStyle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwWindowStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwWindowStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwWindowStatus
+     * }
+     */
+    public static final OfInt dwWindowStatus$layout() {
+        return dwWindowStatus$LAYOUT;
+    }
+
+    private static final long dwWindowStatus$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwWindowStatus
+     * }
+     */
+    public static final long dwWindowStatus$offset() {
+        return dwWindowStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwWindowStatus
+     * }
+     */
+    public static int dwWindowStatus(MemorySegment struct) {
+        return struct.get(dwWindowStatus$LAYOUT, dwWindowStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwWindowStatus
+     * }
+     */
+    public static void dwWindowStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwWindowStatus$LAYOUT, dwWindowStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cxWindowBorders$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cxWindowBorders"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cxWindowBorders
+     * }
+     */
+    public static final OfInt cxWindowBorders$layout() {
+        return cxWindowBorders$LAYOUT;
+    }
+
+    private static final long cxWindowBorders$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cxWindowBorders
+     * }
+     */
+    public static final long cxWindowBorders$offset() {
+        return cxWindowBorders$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cxWindowBorders
+     * }
+     */
+    public static int cxWindowBorders(MemorySegment struct) {
+        return struct.get(cxWindowBorders$LAYOUT, cxWindowBorders$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cxWindowBorders
+     * }
+     */
+    public static void cxWindowBorders(MemorySegment struct, int fieldValue) {
+        struct.set(cxWindowBorders$LAYOUT, cxWindowBorders$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cyWindowBorders$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cyWindowBorders"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cyWindowBorders
+     * }
+     */
+    public static final OfInt cyWindowBorders$layout() {
+        return cyWindowBorders$LAYOUT;
+    }
+
+    private static final long cyWindowBorders$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cyWindowBorders
+     * }
+     */
+    public static final long cyWindowBorders$offset() {
+        return cyWindowBorders$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cyWindowBorders
+     * }
+     */
+    public static int cyWindowBorders(MemorySegment struct) {
+        return struct.get(cyWindowBorders$LAYOUT, cyWindowBorders$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cyWindowBorders
+     * }
+     */
+    public static void cyWindowBorders(MemorySegment struct, int fieldValue) {
+        struct.set(cyWindowBorders$LAYOUT, cyWindowBorders$OFFSET, fieldValue);
+    }
+
+    private static final OfShort atomWindowType$LAYOUT = (OfShort)$LAYOUT.select(groupElement("atomWindowType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ATOM atomWindowType
+     * }
+     */
+    public static final OfShort atomWindowType$layout() {
+        return atomWindowType$LAYOUT;
+    }
+
+    private static final long atomWindowType$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ATOM atomWindowType
+     * }
+     */
+    public static final long atomWindowType$offset() {
+        return atomWindowType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ATOM atomWindowType
+     * }
+     */
+    public static short atomWindowType(MemorySegment struct) {
+        return struct.get(atomWindowType$LAYOUT, atomWindowType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ATOM atomWindowType
+     * }
+     */
+    public static void atomWindowType(MemorySegment struct, short fieldValue) {
+        struct.set(atomWindowType$LAYOUT, atomWindowType$OFFSET, fieldValue);
+    }
+
+    private static final OfShort wCreatorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wCreatorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wCreatorVersion
+     * }
+     */
+    public static final OfShort wCreatorVersion$layout() {
+        return wCreatorVersion$LAYOUT;
+    }
+
+    private static final long wCreatorVersion$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wCreatorVersion
+     * }
+     */
+    public static final long wCreatorVersion$offset() {
+        return wCreatorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wCreatorVersion
+     * }
+     */
+    public static short wCreatorVersion(MemorySegment struct) {
+        return struct.get(wCreatorVersion$LAYOUT, wCreatorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wCreatorVersion
+     * }
+     */
+    public static void wCreatorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(wCreatorVersion$LAYOUT, wCreatorVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

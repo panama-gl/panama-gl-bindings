@@ -2,13 +2,40 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _RDR_CALLOUT_STATE {
+ *     RPC_STATUS LastError;
+ *     void *LastEEInfo;
+ *     RPC_HTTP_REDIRECTOR_STAGE LastCalledStage;
+ *     unsigned short *ServerName;
+ *     unsigned short *ServerPort;
+ *     unsigned short *RemoteUser;
+ *     unsigned short *AuthType;
+ *     unsigned char ResourceTypePresent;
+ *     unsigned char SessionIdPresent;
+ *     unsigned char InterfacePresent;
+ *     UUID ResourceType;
+ *     UUID SessionId;
+ *     RPC_SYNTAX_IDENTIFIER Interface;
+ *     void *CertContext;
+ * } RDR_CALLOUT_STATE
+ * }
+ */
 public class RDR_CALLOUT_STATE extends _RDR_CALLOUT_STATE {
 
+    RDR_CALLOUT_STATE() {
+        // Should not be called directly
+    }
 }
-
 

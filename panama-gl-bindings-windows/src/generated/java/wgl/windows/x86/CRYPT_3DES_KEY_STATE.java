@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_3DES_KEY_STATE {
+ *     unsigned char Key[24];
+ *     unsigned char IV[8];
+ *     unsigned char Feedback[8];
+ * } CRYPT_3DES_KEY_STATE
+ * }
+ */
 public class CRYPT_3DES_KEY_STATE extends _CRYPT_3DES_KEY_STATE {
 
+    CRYPT_3DES_KEY_STATE() {
+        // Should not be called directly
+    }
 }
-
 

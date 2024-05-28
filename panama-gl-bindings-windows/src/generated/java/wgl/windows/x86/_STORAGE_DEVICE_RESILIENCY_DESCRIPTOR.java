@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD NameOffset;
+ *     DWORD NumberOfLogicalCopies;
+ *     DWORD NumberOfPhysicalCopies;
+ *     DWORD PhysicalDiskRedundancy;
+ *     DWORD NumberOfColumns;
+ *     DWORD Interleave;
+ * }
+ * }
+ */
 public class _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("NameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfLogicalCopies"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfPhysicalCopies"),
-        Constants$root.C_LONG$LAYOUT.withName("PhysicalDiskRedundancy"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfColumns"),
-        Constants$root.C_LONG$LAYOUT.withName("Interleave")
-    ).withName("_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.$struct$LAYOUT;
+    _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NameOffset"));
-    public static VarHandle NameOffset$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NameOffset$VH;
-    }
-    public static int NameOffset$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NameOffset$VH.get(seg);
-    }
-    public static void NameOffset$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NameOffset$VH.set(seg, x);
-    }
-    public static int NameOffset$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NameOffset$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfLogicalCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfLogicalCopies"));
-    public static VarHandle NumberOfLogicalCopies$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfLogicalCopies$VH;
-    }
-    public static int NumberOfLogicalCopies$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfLogicalCopies$VH.get(seg);
-    }
-    public static void NumberOfLogicalCopies$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfLogicalCopies$VH.set(seg, x);
-    }
-    public static int NumberOfLogicalCopies$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfLogicalCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfLogicalCopies$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfLogicalCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfPhysicalCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfPhysicalCopies"));
-    public static VarHandle NumberOfPhysicalCopies$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfPhysicalCopies$VH;
-    }
-    public static int NumberOfPhysicalCopies$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfPhysicalCopies$VH.get(seg);
-    }
-    public static void NumberOfPhysicalCopies$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfPhysicalCopies$VH.set(seg, x);
-    }
-    public static int NumberOfPhysicalCopies$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfPhysicalCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfPhysicalCopies$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfPhysicalCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PhysicalDiskRedundancy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PhysicalDiskRedundancy"));
-    public static VarHandle PhysicalDiskRedundancy$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.PhysicalDiskRedundancy$VH;
-    }
-    public static int PhysicalDiskRedundancy$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.PhysicalDiskRedundancy$VH.get(seg);
-    }
-    public static void PhysicalDiskRedundancy$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.PhysicalDiskRedundancy$VH.set(seg, x);
-    }
-    public static int PhysicalDiskRedundancy$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.PhysicalDiskRedundancy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PhysicalDiskRedundancy$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.PhysicalDiskRedundancy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfColumns$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfColumns"));
-    public static VarHandle NumberOfColumns$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfColumns$VH;
-    }
-    public static int NumberOfColumns$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfColumns$VH.get(seg);
-    }
-    public static void NumberOfColumns$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfColumns$VH.set(seg, x);
-    }
-    public static int NumberOfColumns$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfColumns$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfColumns$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.NumberOfColumns$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Interleave$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Interleave"));
-    public static VarHandle Interleave$VH() {
-        return _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Interleave$VH;
-    }
-    public static int Interleave$get(MemorySegment seg) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Interleave$VH.get(seg);
-    }
-    public static void Interleave$set( MemorySegment seg, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Interleave$VH.set(seg, x);
-    }
-    public static int Interleave$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Interleave$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Interleave$set(MemorySegment seg, long index, int x) {
-        _STORAGE_DEVICE_RESILIENCY_DESCRIPTOR.Interleave$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("NameOffset"),
+        wgl_h.C_LONG.withName("NumberOfLogicalCopies"),
+        wgl_h.C_LONG.withName("NumberOfPhysicalCopies"),
+        wgl_h.C_LONG.withName("PhysicalDiskRedundancy"),
+        wgl_h.C_LONG.withName("NumberOfColumns"),
+        wgl_h.C_LONG.withName("Interleave")
+    ).withName("_STORAGE_DEVICE_RESILIENCY_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NameOffset
+     * }
+     */
+    public static final OfInt NameOffset$layout() {
+        return NameOffset$LAYOUT;
+    }
+
+    private static final long NameOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NameOffset
+     * }
+     */
+    public static final long NameOffset$offset() {
+        return NameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NameOffset
+     * }
+     */
+    public static int NameOffset(MemorySegment struct) {
+        return struct.get(NameOffset$LAYOUT, NameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NameOffset
+     * }
+     */
+    public static void NameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(NameOffset$LAYOUT, NameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfLogicalCopies$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfLogicalCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLogicalCopies
+     * }
+     */
+    public static final OfInt NumberOfLogicalCopies$layout() {
+        return NumberOfLogicalCopies$LAYOUT;
+    }
+
+    private static final long NumberOfLogicalCopies$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLogicalCopies
+     * }
+     */
+    public static final long NumberOfLogicalCopies$offset() {
+        return NumberOfLogicalCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLogicalCopies
+     * }
+     */
+    public static int NumberOfLogicalCopies(MemorySegment struct) {
+        return struct.get(NumberOfLogicalCopies$LAYOUT, NumberOfLogicalCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfLogicalCopies
+     * }
+     */
+    public static void NumberOfLogicalCopies(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfLogicalCopies$LAYOUT, NumberOfLogicalCopies$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfPhysicalCopies$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfPhysicalCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPhysicalCopies
+     * }
+     */
+    public static final OfInt NumberOfPhysicalCopies$layout() {
+        return NumberOfPhysicalCopies$LAYOUT;
+    }
+
+    private static final long NumberOfPhysicalCopies$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPhysicalCopies
+     * }
+     */
+    public static final long NumberOfPhysicalCopies$offset() {
+        return NumberOfPhysicalCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPhysicalCopies
+     * }
+     */
+    public static int NumberOfPhysicalCopies(MemorySegment struct) {
+        return struct.get(NumberOfPhysicalCopies$LAYOUT, NumberOfPhysicalCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfPhysicalCopies
+     * }
+     */
+    public static void NumberOfPhysicalCopies(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfPhysicalCopies$LAYOUT, NumberOfPhysicalCopies$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PhysicalDiskRedundancy$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PhysicalDiskRedundancy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PhysicalDiskRedundancy
+     * }
+     */
+    public static final OfInt PhysicalDiskRedundancy$layout() {
+        return PhysicalDiskRedundancy$LAYOUT;
+    }
+
+    private static final long PhysicalDiskRedundancy$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PhysicalDiskRedundancy
+     * }
+     */
+    public static final long PhysicalDiskRedundancy$offset() {
+        return PhysicalDiskRedundancy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PhysicalDiskRedundancy
+     * }
+     */
+    public static int PhysicalDiskRedundancy(MemorySegment struct) {
+        return struct.get(PhysicalDiskRedundancy$LAYOUT, PhysicalDiskRedundancy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PhysicalDiskRedundancy
+     * }
+     */
+    public static void PhysicalDiskRedundancy(MemorySegment struct, int fieldValue) {
+        struct.set(PhysicalDiskRedundancy$LAYOUT, PhysicalDiskRedundancy$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfColumns$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfColumns"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfColumns
+     * }
+     */
+    public static final OfInt NumberOfColumns$layout() {
+        return NumberOfColumns$LAYOUT;
+    }
+
+    private static final long NumberOfColumns$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfColumns
+     * }
+     */
+    public static final long NumberOfColumns$offset() {
+        return NumberOfColumns$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfColumns
+     * }
+     */
+    public static int NumberOfColumns(MemorySegment struct) {
+        return struct.get(NumberOfColumns$LAYOUT, NumberOfColumns$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfColumns
+     * }
+     */
+    public static void NumberOfColumns(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfColumns$LAYOUT, NumberOfColumns$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Interleave$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Interleave"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Interleave
+     * }
+     */
+    public static final OfInt Interleave$layout() {
+        return Interleave$LAYOUT;
+    }
+
+    private static final long Interleave$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Interleave
+     * }
+     */
+    public static final long Interleave$offset() {
+        return Interleave$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Interleave
+     * }
+     */
+    public static int Interleave(MemorySegment struct) {
+        return struct.get(Interleave$LAYOUT, Interleave$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Interleave
+     * }
+     */
+    public static void Interleave(MemorySegment struct, int fieldValue) {
+        struct.set(Interleave$LAYOUT, Interleave$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

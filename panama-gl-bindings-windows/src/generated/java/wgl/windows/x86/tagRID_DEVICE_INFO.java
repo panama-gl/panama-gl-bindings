@@ -2,90 +2,314 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRID_DEVICE_INFO {
+ *     DWORD cbSize;
+ *     DWORD dwType;
+ *     union {
+ *         RID_DEVICE_INFO_MOUSE mouse;
+ *         RID_DEVICE_INFO_KEYBOARD keyboard;
+ *         RID_DEVICE_INFO_HID hid;
+ *     };
+ * }
+ * }
+ */
 public class tagRID_DEVICE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwType"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwId"),
-                Constants$root.C_LONG$LAYOUT.withName("dwNumberOfButtons"),
-                Constants$root.C_LONG$LAYOUT.withName("dwSampleRate"),
-                Constants$root.C_LONG$LAYOUT.withName("fHasHorizontalWheel")
-            ).withName("mouse"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwType"),
-                Constants$root.C_LONG$LAYOUT.withName("dwSubType"),
-                Constants$root.C_LONG$LAYOUT.withName("dwKeyboardMode"),
-                Constants$root.C_LONG$LAYOUT.withName("dwNumberOfFunctionKeys"),
-                Constants$root.C_LONG$LAYOUT.withName("dwNumberOfIndicators"),
-                Constants$root.C_LONG$LAYOUT.withName("dwNumberOfKeysTotal")
-            ).withName("keyboard"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwVendorId"),
-                Constants$root.C_LONG$LAYOUT.withName("dwProductId"),
-                Constants$root.C_LONG$LAYOUT.withName("dwVersionNumber"),
-                Constants$root.C_SHORT$LAYOUT.withName("usUsagePage"),
-                Constants$root.C_SHORT$LAYOUT.withName("usUsage")
-            ).withName("hid")
-        ).withName("$anon$0")
-    ).withName("tagRID_DEVICE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagRID_DEVICE_INFO.$struct$LAYOUT;
+    tagRID_DEVICE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagRID_DEVICE_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwType"));
-    public static VarHandle dwType$VH() {
-        return tagRID_DEVICE_INFO.dwType$VH;
-    }
-    public static int dwType$get(MemorySegment seg) {
-        return (int)tagRID_DEVICE_INFO.dwType$VH.get(seg);
-    }
-    public static void dwType$set( MemorySegment seg, int x) {
-        tagRID_DEVICE_INFO.dwType$VH.set(seg, x);
-    }
-    public static int dwType$get(MemorySegment seg, long index) {
-        return (int)tagRID_DEVICE_INFO.dwType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwType$set(MemorySegment seg, long index, int x) {
-        tagRID_DEVICE_INFO.dwType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment mouse$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment keyboard$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static MemorySegment hid$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwType"),
+        MemoryLayout.unionLayout(
+            tagRID_DEVICE_INFO_MOUSE.layout().withName("mouse"),
+            tagRID_DEVICE_INFO_KEYBOARD.layout().withName("keyboard"),
+            tagRID_DEVICE_INFO_HID.layout().withName("hid")
+        ).withName("$anon$15154:5")
+    ).withName("tagRID_DEVICE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static final OfInt dwType$layout() {
+        return dwType$LAYOUT;
+    }
+
+    private static final long dwType$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static final long dwType$offset() {
+        return dwType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static int dwType(MemorySegment struct) {
+        return struct.get(dwType$LAYOUT, dwType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwType
+     * }
+     */
+    public static void dwType(MemorySegment struct, int fieldValue) {
+        struct.set(dwType$LAYOUT, dwType$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout mouse$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$15154:5"), groupElement("mouse"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_MOUSE mouse
+     * }
+     */
+    public static final GroupLayout mouse$layout() {
+        return mouse$LAYOUT;
+    }
+
+    private static final long mouse$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_MOUSE mouse
+     * }
+     */
+    public static final long mouse$offset() {
+        return mouse$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_MOUSE mouse
+     * }
+     */
+    public static MemorySegment mouse(MemorySegment struct) {
+        return struct.asSlice(mouse$OFFSET, mouse$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_MOUSE mouse
+     * }
+     */
+    public static void mouse(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, mouse$OFFSET, mouse$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout keyboard$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$15154:5"), groupElement("keyboard"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_KEYBOARD keyboard
+     * }
+     */
+    public static final GroupLayout keyboard$layout() {
+        return keyboard$LAYOUT;
+    }
+
+    private static final long keyboard$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_KEYBOARD keyboard
+     * }
+     */
+    public static final long keyboard$offset() {
+        return keyboard$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_KEYBOARD keyboard
+     * }
+     */
+    public static MemorySegment keyboard(MemorySegment struct) {
+        return struct.asSlice(keyboard$OFFSET, keyboard$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_KEYBOARD keyboard
+     * }
+     */
+    public static void keyboard(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, keyboard$OFFSET, keyboard$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout hid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$15154:5"), groupElement("hid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_HID hid
+     * }
+     */
+    public static final GroupLayout hid$layout() {
+        return hid$LAYOUT;
+    }
+
+    private static final long hid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_HID hid
+     * }
+     */
+    public static final long hid$offset() {
+        return hid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_HID hid
+     * }
+     */
+    public static MemorySegment hid(MemorySegment struct) {
+        return struct.asSlice(hid$OFFSET, hid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RID_DEVICE_INFO_HID hid
+     * }
+     */
+    public static void hid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, hid$OFFSET, hid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

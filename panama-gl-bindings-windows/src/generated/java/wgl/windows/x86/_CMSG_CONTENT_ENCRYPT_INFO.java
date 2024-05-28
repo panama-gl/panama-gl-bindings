@@ -2,302 +2,824 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMSG_CONTENT_ENCRYPT_INFO {
+ *     DWORD cbSize;
+ *     HCRYPTPROV_LEGACY hCryptProv;
+ *     CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm;
+ *     void *pvEncryptionAuxInfo;
+ *     DWORD cRecipients;
+ *     PCMSG_RECIPIENT_ENCODE_INFO rgCmsRecipients;
+ *     PFN_CMSG_ALLOC pfnAlloc;
+ *     PFN_CMSG_FREE pfnFree;
+ *     DWORD dwEncryptFlags;
+ *     union {
+ *         HCRYPTKEY hContentEncryptKey;
+ *         BCRYPT_KEY_HANDLE hCNGContentEncryptKey;
+ *     };
+ *     DWORD dwFlags;
+ *     BOOL fCNG;
+ *     BYTE *pbCNGContentEncryptKeyObject;
+ *     BYTE *pbContentEncryptKey;
+ *     DWORD cbContentEncryptKey;
+ * }
+ * }
+ */
 public class _CMSG_CONTENT_ENCRYPT_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("hCryptProv"),
-        MemoryLayout.structLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("Parameters")
-        ).withName("ContentEncryptionAlgorithm"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvEncryptionAuxInfo"),
-        Constants$root.C_LONG$LAYOUT.withName("cRecipients"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgCmsRecipients"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnAlloc"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFree"),
-        Constants$root.C_LONG$LAYOUT.withName("dwEncryptFlags"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("hContentEncryptKey"),
-            Constants$root.C_POINTER$LAYOUT.withName("hCNGContentEncryptKey")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("fCNG"),
-        Constants$root.C_POINTER$LAYOUT.withName("pbCNGContentEncryptKeyObject"),
-        Constants$root.C_POINTER$LAYOUT.withName("pbContentEncryptKey"),
-        Constants$root.C_LONG$LAYOUT.withName("cbContentEncryptKey"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_CMSG_CONTENT_ENCRYPT_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.$struct$LAYOUT;
+    _CMSG_CONTENT_ENCRYPT_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCryptProv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hCryptProv"));
-    public static VarHandle hCryptProv$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.hCryptProv$VH;
-    }
-    public static long hCryptProv$get(MemorySegment seg) {
-        return (long)_CMSG_CONTENT_ENCRYPT_INFO.hCryptProv$VH.get(seg);
-    }
-    public static void hCryptProv$set( MemorySegment seg, long x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hCryptProv$VH.set(seg, x);
-    }
-    public static long hCryptProv$get(MemorySegment seg, long index) {
-        return (long)_CMSG_CONTENT_ENCRYPT_INFO.hCryptProv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCryptProv$set(MemorySegment seg, long index, long x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hCryptProv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ContentEncryptionAlgorithm$slice(MemorySegment seg) {
-        return seg.asSlice(16, 24);
-    }
-    static final VarHandle pvEncryptionAuxInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvEncryptionAuxInfo"));
-    public static VarHandle pvEncryptionAuxInfo$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.pvEncryptionAuxInfo$VH;
-    }
-    public static MemoryAddress pvEncryptionAuxInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pvEncryptionAuxInfo$VH.get(seg);
-    }
-    public static void pvEncryptionAuxInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pvEncryptionAuxInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pvEncryptionAuxInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pvEncryptionAuxInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvEncryptionAuxInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pvEncryptionAuxInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cRecipients$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cRecipients"));
-    public static VarHandle cRecipients$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.cRecipients$VH;
-    }
-    public static int cRecipients$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cRecipients$VH.get(seg);
-    }
-    public static void cRecipients$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cRecipients$VH.set(seg, x);
-    }
-    public static int cRecipients$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cRecipients$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cRecipients$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cRecipients$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgCmsRecipients$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgCmsRecipients"));
-    public static VarHandle rgCmsRecipients$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.rgCmsRecipients$VH;
-    }
-    public static MemoryAddress rgCmsRecipients$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.rgCmsRecipients$VH.get(seg);
-    }
-    public static void rgCmsRecipients$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.rgCmsRecipients$VH.set(seg, x);
-    }
-    public static MemoryAddress rgCmsRecipients$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.rgCmsRecipients$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgCmsRecipients$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.rgCmsRecipients$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnAlloc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnAlloc"));
-    public static VarHandle pfnAlloc$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.pfnAlloc$VH;
-    }
-    public static MemoryAddress pfnAlloc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pfnAlloc$VH.get(seg);
-    }
-    public static void pfnAlloc$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pfnAlloc$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnAlloc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pfnAlloc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnAlloc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pfnAlloc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CMSG_ALLOC pfnAlloc (MemorySegment segment, MemorySession session) {
-        return PFN_CMSG_ALLOC.ofAddress(pfnAlloc$get(segment), session);
-    }
-    static final VarHandle pfnFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFree"));
-    public static VarHandle pfnFree$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.pfnFree$VH;
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pfnFree$VH.get(seg);
-    }
-    public static void pfnFree$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pfnFree$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pfnFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pfnFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CMSG_FREE pfnFree (MemorySegment segment, MemorySession session) {
-        return PFN_CMSG_FREE.ofAddress(pfnFree$get(segment), session);
-    }
-    static final VarHandle dwEncryptFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwEncryptFlags"));
-    public static VarHandle dwEncryptFlags$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.dwEncryptFlags$VH;
-    }
-    public static int dwEncryptFlags$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.dwEncryptFlags$VH.get(seg);
-    }
-    public static void dwEncryptFlags$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.dwEncryptFlags$VH.set(seg, x);
-    }
-    public static int dwEncryptFlags$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.dwEncryptFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwEncryptFlags$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.dwEncryptFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hContentEncryptKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hContentEncryptKey"));
-    public static VarHandle hContentEncryptKey$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.hContentEncryptKey$VH;
-    }
-    public static long hContentEncryptKey$get(MemorySegment seg) {
-        return (long)_CMSG_CONTENT_ENCRYPT_INFO.hContentEncryptKey$VH.get(seg);
-    }
-    public static void hContentEncryptKey$set( MemorySegment seg, long x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hContentEncryptKey$VH.set(seg, x);
-    }
-    public static long hContentEncryptKey$get(MemorySegment seg, long index) {
-        return (long)_CMSG_CONTENT_ENCRYPT_INFO.hContentEncryptKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hContentEncryptKey$set(MemorySegment seg, long index, long x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hContentEncryptKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hCNGContentEncryptKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("hCNGContentEncryptKey"));
-    public static VarHandle hCNGContentEncryptKey$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.hCNGContentEncryptKey$VH;
-    }
-    public static MemoryAddress hCNGContentEncryptKey$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.hCNGContentEncryptKey$VH.get(seg);
-    }
-    public static void hCNGContentEncryptKey$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hCNGContentEncryptKey$VH.set(seg, x);
-    }
-    public static MemoryAddress hCNGContentEncryptKey$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.hCNGContentEncryptKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hCNGContentEncryptKey$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.hCNGContentEncryptKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fCNG$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fCNG"));
-    public static VarHandle fCNG$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.fCNG$VH;
-    }
-    public static int fCNG$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.fCNG$VH.get(seg);
-    }
-    public static void fCNG$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.fCNG$VH.set(seg, x);
-    }
-    public static int fCNG$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.fCNG$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fCNG$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.fCNG$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbCNGContentEncryptKeyObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbCNGContentEncryptKeyObject"));
-    public static VarHandle pbCNGContentEncryptKeyObject$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.pbCNGContentEncryptKeyObject$VH;
-    }
-    public static MemoryAddress pbCNGContentEncryptKeyObject$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pbCNGContentEncryptKeyObject$VH.get(seg);
-    }
-    public static void pbCNGContentEncryptKeyObject$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pbCNGContentEncryptKeyObject$VH.set(seg, x);
-    }
-    public static MemoryAddress pbCNGContentEncryptKeyObject$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pbCNGContentEncryptKeyObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbCNGContentEncryptKeyObject$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pbCNGContentEncryptKeyObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pbContentEncryptKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pbContentEncryptKey"));
-    public static VarHandle pbContentEncryptKey$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.pbContentEncryptKey$VH;
-    }
-    public static MemoryAddress pbContentEncryptKey$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pbContentEncryptKey$VH.get(seg);
-    }
-    public static void pbContentEncryptKey$set( MemorySegment seg, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pbContentEncryptKey$VH.set(seg, x);
-    }
-    public static MemoryAddress pbContentEncryptKey$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMSG_CONTENT_ENCRYPT_INFO.pbContentEncryptKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pbContentEncryptKey$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.pbContentEncryptKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbContentEncryptKey$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbContentEncryptKey"));
-    public static VarHandle cbContentEncryptKey$VH() {
-        return _CMSG_CONTENT_ENCRYPT_INFO.cbContentEncryptKey$VH;
-    }
-    public static int cbContentEncryptKey$get(MemorySegment seg) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cbContentEncryptKey$VH.get(seg);
-    }
-    public static void cbContentEncryptKey$set( MemorySegment seg, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cbContentEncryptKey$VH.set(seg, x);
-    }
-    public static int cbContentEncryptKey$get(MemorySegment seg, long index) {
-        return (int)_CMSG_CONTENT_ENCRYPT_INFO.cbContentEncryptKey$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbContentEncryptKey$set(MemorySegment seg, long index, int x) {
-        _CMSG_CONTENT_ENCRYPT_INFO.cbContentEncryptKey$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("hCryptProv"),
+        _CRYPT_ALGORITHM_IDENTIFIER.layout().withName("ContentEncryptionAlgorithm"),
+        wgl_h.C_POINTER.withName("pvEncryptionAuxInfo"),
+        wgl_h.C_LONG.withName("cRecipients"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgCmsRecipients"),
+        wgl_h.C_POINTER.withName("pfnAlloc"),
+        wgl_h.C_POINTER.withName("pfnFree"),
+        wgl_h.C_LONG.withName("dwEncryptFlags"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG_LONG.withName("hContentEncryptKey"),
+            wgl_h.C_POINTER.withName("hCNGContentEncryptKey")
+        ).withName("$anon$8442:5"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        wgl_h.C_INT.withName("fCNG"),
+        wgl_h.C_POINTER.withName("pbCNGContentEncryptKeyObject"),
+        wgl_h.C_POINTER.withName("pbContentEncryptKey"),
+        wgl_h.C_LONG.withName("cbContentEncryptKey"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_CMSG_CONTENT_ENCRYPT_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong hCryptProv$LAYOUT = (OfLong)$LAYOUT.select(groupElement("hCryptProv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static final OfLong hCryptProv$layout() {
+        return hCryptProv$LAYOUT;
+    }
+
+    private static final long hCryptProv$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static final long hCryptProv$offset() {
+        return hCryptProv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static long hCryptProv(MemorySegment struct) {
+        return struct.get(hCryptProv$LAYOUT, hCryptProv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCRYPTPROV_LEGACY hCryptProv
+     * }
+     */
+    public static void hCryptProv(MemorySegment struct, long fieldValue) {
+        struct.set(hCryptProv$LAYOUT, hCryptProv$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ContentEncryptionAlgorithm$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ContentEncryptionAlgorithm"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm
+     * }
+     */
+    public static final GroupLayout ContentEncryptionAlgorithm$layout() {
+        return ContentEncryptionAlgorithm$LAYOUT;
+    }
+
+    private static final long ContentEncryptionAlgorithm$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm
+     * }
+     */
+    public static final long ContentEncryptionAlgorithm$offset() {
+        return ContentEncryptionAlgorithm$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm
+     * }
+     */
+    public static MemorySegment ContentEncryptionAlgorithm(MemorySegment struct) {
+        return struct.asSlice(ContentEncryptionAlgorithm$OFFSET, ContentEncryptionAlgorithm$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm
+     * }
+     */
+    public static void ContentEncryptionAlgorithm(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ContentEncryptionAlgorithm$OFFSET, ContentEncryptionAlgorithm$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pvEncryptionAuxInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvEncryptionAuxInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *pvEncryptionAuxInfo
+     * }
+     */
+    public static final AddressLayout pvEncryptionAuxInfo$layout() {
+        return pvEncryptionAuxInfo$LAYOUT;
+    }
+
+    private static final long pvEncryptionAuxInfo$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *pvEncryptionAuxInfo
+     * }
+     */
+    public static final long pvEncryptionAuxInfo$offset() {
+        return pvEncryptionAuxInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *pvEncryptionAuxInfo
+     * }
+     */
+    public static MemorySegment pvEncryptionAuxInfo(MemorySegment struct) {
+        return struct.get(pvEncryptionAuxInfo$LAYOUT, pvEncryptionAuxInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *pvEncryptionAuxInfo
+     * }
+     */
+    public static void pvEncryptionAuxInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvEncryptionAuxInfo$LAYOUT, pvEncryptionAuxInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cRecipients$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cRecipients"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cRecipients
+     * }
+     */
+    public static final OfInt cRecipients$layout() {
+        return cRecipients$LAYOUT;
+    }
+
+    private static final long cRecipients$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cRecipients
+     * }
+     */
+    public static final long cRecipients$offset() {
+        return cRecipients$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cRecipients
+     * }
+     */
+    public static int cRecipients(MemorySegment struct) {
+        return struct.get(cRecipients$LAYOUT, cRecipients$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cRecipients
+     * }
+     */
+    public static void cRecipients(MemorySegment struct, int fieldValue) {
+        struct.set(cRecipients$LAYOUT, cRecipients$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgCmsRecipients$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgCmsRecipients"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCODE_INFO rgCmsRecipients
+     * }
+     */
+    public static final AddressLayout rgCmsRecipients$layout() {
+        return rgCmsRecipients$LAYOUT;
+    }
+
+    private static final long rgCmsRecipients$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCODE_INFO rgCmsRecipients
+     * }
+     */
+    public static final long rgCmsRecipients$offset() {
+        return rgCmsRecipients$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCODE_INFO rgCmsRecipients
+     * }
+     */
+    public static MemorySegment rgCmsRecipients(MemorySegment struct) {
+        return struct.get(rgCmsRecipients$LAYOUT, rgCmsRecipients$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCMSG_RECIPIENT_ENCODE_INFO rgCmsRecipients
+     * }
+     */
+    public static void rgCmsRecipients(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgCmsRecipients$LAYOUT, rgCmsRecipients$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnAlloc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnAlloc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_ALLOC pfnAlloc
+     * }
+     */
+    public static final AddressLayout pfnAlloc$layout() {
+        return pfnAlloc$LAYOUT;
+    }
+
+    private static final long pfnAlloc$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_ALLOC pfnAlloc
+     * }
+     */
+    public static final long pfnAlloc$offset() {
+        return pfnAlloc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_ALLOC pfnAlloc
+     * }
+     */
+    public static MemorySegment pfnAlloc(MemorySegment struct) {
+        return struct.get(pfnAlloc$LAYOUT, pfnAlloc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_ALLOC pfnAlloc
+     * }
+     */
+    public static void pfnAlloc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnAlloc$LAYOUT, pfnAlloc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_FREE pfnFree
+     * }
+     */
+    public static final AddressLayout pfnFree$layout() {
+        return pfnFree$LAYOUT;
+    }
+
+    private static final long pfnFree$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_FREE pfnFree
+     * }
+     */
+    public static final long pfnFree$offset() {
+        return pfnFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_FREE pfnFree
+     * }
+     */
+    public static MemorySegment pfnFree(MemorySegment struct) {
+        return struct.get(pfnFree$LAYOUT, pfnFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CMSG_FREE pfnFree
+     * }
+     */
+    public static void pfnFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFree$LAYOUT, pfnFree$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwEncryptFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwEncryptFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwEncryptFlags
+     * }
+     */
+    public static final OfInt dwEncryptFlags$layout() {
+        return dwEncryptFlags$LAYOUT;
+    }
+
+    private static final long dwEncryptFlags$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwEncryptFlags
+     * }
+     */
+    public static final long dwEncryptFlags$offset() {
+        return dwEncryptFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwEncryptFlags
+     * }
+     */
+    public static int dwEncryptFlags(MemorySegment struct) {
+        return struct.get(dwEncryptFlags$LAYOUT, dwEncryptFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwEncryptFlags
+     * }
+     */
+    public static void dwEncryptFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwEncryptFlags$LAYOUT, dwEncryptFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong hContentEncryptKey$LAYOUT = (OfLong)$LAYOUT.select(groupElement("$anon$8442:5"), groupElement("hContentEncryptKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HCRYPTKEY hContentEncryptKey
+     * }
+     */
+    public static final OfLong hContentEncryptKey$layout() {
+        return hContentEncryptKey$LAYOUT;
+    }
+
+    private static final long hContentEncryptKey$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HCRYPTKEY hContentEncryptKey
+     * }
+     */
+    public static final long hContentEncryptKey$offset() {
+        return hContentEncryptKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HCRYPTKEY hContentEncryptKey
+     * }
+     */
+    public static long hContentEncryptKey(MemorySegment struct) {
+        return struct.get(hContentEncryptKey$LAYOUT, hContentEncryptKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HCRYPTKEY hContentEncryptKey
+     * }
+     */
+    public static void hContentEncryptKey(MemorySegment struct, long fieldValue) {
+        struct.set(hContentEncryptKey$LAYOUT, hContentEncryptKey$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hCNGContentEncryptKey$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$8442:5"), groupElement("hCNGContentEncryptKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BCRYPT_KEY_HANDLE hCNGContentEncryptKey
+     * }
+     */
+    public static final AddressLayout hCNGContentEncryptKey$layout() {
+        return hCNGContentEncryptKey$LAYOUT;
+    }
+
+    private static final long hCNGContentEncryptKey$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BCRYPT_KEY_HANDLE hCNGContentEncryptKey
+     * }
+     */
+    public static final long hCNGContentEncryptKey$offset() {
+        return hCNGContentEncryptKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BCRYPT_KEY_HANDLE hCNGContentEncryptKey
+     * }
+     */
+    public static MemorySegment hCNGContentEncryptKey(MemorySegment struct) {
+        return struct.get(hCNGContentEncryptKey$LAYOUT, hCNGContentEncryptKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BCRYPT_KEY_HANDLE hCNGContentEncryptKey
+     * }
+     */
+    public static void hCNGContentEncryptKey(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hCNGContentEncryptKey$LAYOUT, hCNGContentEncryptKey$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fCNG$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fCNG"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fCNG
+     * }
+     */
+    public static final OfInt fCNG$layout() {
+        return fCNG$LAYOUT;
+    }
+
+    private static final long fCNG$OFFSET = 100;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fCNG
+     * }
+     */
+    public static final long fCNG$offset() {
+        return fCNG$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fCNG
+     * }
+     */
+    public static int fCNG(MemorySegment struct) {
+        return struct.get(fCNG$LAYOUT, fCNG$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fCNG
+     * }
+     */
+    public static void fCNG(MemorySegment struct, int fieldValue) {
+        struct.set(fCNG$LAYOUT, fCNG$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbCNGContentEncryptKeyObject$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbCNGContentEncryptKeyObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE *pbCNGContentEncryptKeyObject
+     * }
+     */
+    public static final AddressLayout pbCNGContentEncryptKeyObject$layout() {
+        return pbCNGContentEncryptKeyObject$LAYOUT;
+    }
+
+    private static final long pbCNGContentEncryptKeyObject$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE *pbCNGContentEncryptKeyObject
+     * }
+     */
+    public static final long pbCNGContentEncryptKeyObject$offset() {
+        return pbCNGContentEncryptKeyObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCNGContentEncryptKeyObject
+     * }
+     */
+    public static MemorySegment pbCNGContentEncryptKeyObject(MemorySegment struct) {
+        return struct.get(pbCNGContentEncryptKeyObject$LAYOUT, pbCNGContentEncryptKeyObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE *pbCNGContentEncryptKeyObject
+     * }
+     */
+    public static void pbCNGContentEncryptKeyObject(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbCNGContentEncryptKeyObject$LAYOUT, pbCNGContentEncryptKeyObject$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pbContentEncryptKey$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pbContentEncryptKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE *pbContentEncryptKey
+     * }
+     */
+    public static final AddressLayout pbContentEncryptKey$layout() {
+        return pbContentEncryptKey$LAYOUT;
+    }
+
+    private static final long pbContentEncryptKey$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE *pbContentEncryptKey
+     * }
+     */
+    public static final long pbContentEncryptKey$offset() {
+        return pbContentEncryptKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE *pbContentEncryptKey
+     * }
+     */
+    public static MemorySegment pbContentEncryptKey(MemorySegment struct) {
+        return struct.get(pbContentEncryptKey$LAYOUT, pbContentEncryptKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE *pbContentEncryptKey
+     * }
+     */
+    public static void pbContentEncryptKey(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pbContentEncryptKey$LAYOUT, pbContentEncryptKey$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbContentEncryptKey$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbContentEncryptKey"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbContentEncryptKey
+     * }
+     */
+    public static final OfInt cbContentEncryptKey$layout() {
+        return cbContentEncryptKey$LAYOUT;
+    }
+
+    private static final long cbContentEncryptKey$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbContentEncryptKey
+     * }
+     */
+    public static final long cbContentEncryptKey$offset() {
+        return cbContentEncryptKey$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbContentEncryptKey
+     * }
+     */
+    public static int cbContentEncryptKey(MemorySegment struct) {
+        return struct.get(cbContentEncryptKey$LAYOUT, cbContentEncryptKey$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbContentEncryptKey
+     * }
+     */
+    public static void cbContentEncryptKey(MemorySegment struct, int fieldValue) {
+        struct.set(cbContentEncryptKey$LAYOUT, cbContentEncryptKey$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

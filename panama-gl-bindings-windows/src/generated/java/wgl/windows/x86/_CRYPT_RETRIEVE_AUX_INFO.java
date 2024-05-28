@@ -2,230 +2,634 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_RETRIEVE_AUX_INFO {
+ *     DWORD cbSize;
+ *     FILETIME *pLastSyncTime;
+ *     DWORD dwMaxUrlRetrievalByteCount;
+ *     PCRYPTNET_URL_CACHE_PRE_FETCH_INFO pPreFetchInfo;
+ *     PCRYPTNET_URL_CACHE_FLUSH_INFO pFlushInfo;
+ *     PCRYPTNET_URL_CACHE_RESPONSE_INFO *ppResponseInfo;
+ *     LPWSTR pwszCacheFileNamePrefix;
+ *     LPFILETIME pftCacheResync;
+ *     BOOL fProxyCacheRetrieval;
+ *     DWORD dwHttpStatusCode;
+ *     LPWSTR *ppwszErrorResponseHeaders;
+ *     PCRYPT_DATA_BLOB *ppErrorContentBlob;
+ * }
+ * }
+ */
 public class _CRYPT_RETRIEVE_AUX_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pLastSyncTime"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMaxUrlRetrievalByteCount"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pPreFetchInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pFlushInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("ppResponseInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pwszCacheFileNamePrefix"),
-        Constants$root.C_POINTER$LAYOUT.withName("pftCacheResync"),
-        Constants$root.C_LONG$LAYOUT.withName("fProxyCacheRetrieval"),
-        Constants$root.C_LONG$LAYOUT.withName("dwHttpStatusCode"),
-        Constants$root.C_POINTER$LAYOUT.withName("ppwszErrorResponseHeaders"),
-        Constants$root.C_POINTER$LAYOUT.withName("ppErrorContentBlob")
-    ).withName("_CRYPT_RETRIEVE_AUX_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_RETRIEVE_AUX_INFO.$struct$LAYOUT;
+    _CRYPT_RETRIEVE_AUX_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pLastSyncTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pLastSyncTime"));
-    public static VarHandle pLastSyncTime$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.pLastSyncTime$VH;
-    }
-    public static MemoryAddress pLastSyncTime$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pLastSyncTime$VH.get(seg);
-    }
-    public static void pLastSyncTime$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pLastSyncTime$VH.set(seg, x);
-    }
-    public static MemoryAddress pLastSyncTime$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pLastSyncTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pLastSyncTime$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pLastSyncTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMaxUrlRetrievalByteCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMaxUrlRetrievalByteCount"));
-    public static VarHandle dwMaxUrlRetrievalByteCount$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.dwMaxUrlRetrievalByteCount$VH;
-    }
-    public static int dwMaxUrlRetrievalByteCount$get(MemorySegment seg) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.dwMaxUrlRetrievalByteCount$VH.get(seg);
-    }
-    public static void dwMaxUrlRetrievalByteCount$set( MemorySegment seg, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.dwMaxUrlRetrievalByteCount$VH.set(seg, x);
-    }
-    public static int dwMaxUrlRetrievalByteCount$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.dwMaxUrlRetrievalByteCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMaxUrlRetrievalByteCount$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.dwMaxUrlRetrievalByteCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pPreFetchInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPreFetchInfo"));
-    public static VarHandle pPreFetchInfo$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.pPreFetchInfo$VH;
-    }
-    public static MemoryAddress pPreFetchInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pPreFetchInfo$VH.get(seg);
-    }
-    public static void pPreFetchInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pPreFetchInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pPreFetchInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pPreFetchInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPreFetchInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pPreFetchInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pFlushInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFlushInfo"));
-    public static VarHandle pFlushInfo$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.pFlushInfo$VH;
-    }
-    public static MemoryAddress pFlushInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pFlushInfo$VH.get(seg);
-    }
-    public static void pFlushInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pFlushInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pFlushInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pFlushInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pFlushInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pFlushInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ppResponseInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ppResponseInfo"));
-    public static VarHandle ppResponseInfo$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.ppResponseInfo$VH;
-    }
-    public static MemoryAddress ppResponseInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppResponseInfo$VH.get(seg);
-    }
-    public static void ppResponseInfo$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppResponseInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress ppResponseInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppResponseInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ppResponseInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppResponseInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pwszCacheFileNamePrefix$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszCacheFileNamePrefix"));
-    public static VarHandle pwszCacheFileNamePrefix$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.pwszCacheFileNamePrefix$VH;
-    }
-    public static MemoryAddress pwszCacheFileNamePrefix$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pwszCacheFileNamePrefix$VH.get(seg);
-    }
-    public static void pwszCacheFileNamePrefix$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pwszCacheFileNamePrefix$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszCacheFileNamePrefix$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pwszCacheFileNamePrefix$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszCacheFileNamePrefix$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pwszCacheFileNamePrefix$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pftCacheResync$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pftCacheResync"));
-    public static VarHandle pftCacheResync$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.pftCacheResync$VH;
-    }
-    public static MemoryAddress pftCacheResync$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pftCacheResync$VH.get(seg);
-    }
-    public static void pftCacheResync$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pftCacheResync$VH.set(seg, x);
-    }
-    public static MemoryAddress pftCacheResync$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.pftCacheResync$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pftCacheResync$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.pftCacheResync$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fProxyCacheRetrieval$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fProxyCacheRetrieval"));
-    public static VarHandle fProxyCacheRetrieval$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.fProxyCacheRetrieval$VH;
-    }
-    public static int fProxyCacheRetrieval$get(MemorySegment seg) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.fProxyCacheRetrieval$VH.get(seg);
-    }
-    public static void fProxyCacheRetrieval$set( MemorySegment seg, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.fProxyCacheRetrieval$VH.set(seg, x);
-    }
-    public static int fProxyCacheRetrieval$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.fProxyCacheRetrieval$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fProxyCacheRetrieval$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.fProxyCacheRetrieval$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwHttpStatusCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwHttpStatusCode"));
-    public static VarHandle dwHttpStatusCode$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.dwHttpStatusCode$VH;
-    }
-    public static int dwHttpStatusCode$get(MemorySegment seg) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.dwHttpStatusCode$VH.get(seg);
-    }
-    public static void dwHttpStatusCode$set( MemorySegment seg, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.dwHttpStatusCode$VH.set(seg, x);
-    }
-    public static int dwHttpStatusCode$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RETRIEVE_AUX_INFO.dwHttpStatusCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwHttpStatusCode$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RETRIEVE_AUX_INFO.dwHttpStatusCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ppwszErrorResponseHeaders$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ppwszErrorResponseHeaders"));
-    public static VarHandle ppwszErrorResponseHeaders$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.ppwszErrorResponseHeaders$VH;
-    }
-    public static MemoryAddress ppwszErrorResponseHeaders$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppwszErrorResponseHeaders$VH.get(seg);
-    }
-    public static void ppwszErrorResponseHeaders$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppwszErrorResponseHeaders$VH.set(seg, x);
-    }
-    public static MemoryAddress ppwszErrorResponseHeaders$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppwszErrorResponseHeaders$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ppwszErrorResponseHeaders$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppwszErrorResponseHeaders$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ppErrorContentBlob$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ppErrorContentBlob"));
-    public static VarHandle ppErrorContentBlob$VH() {
-        return _CRYPT_RETRIEVE_AUX_INFO.ppErrorContentBlob$VH;
-    }
-    public static MemoryAddress ppErrorContentBlob$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppErrorContentBlob$VH.get(seg);
-    }
-    public static void ppErrorContentBlob$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppErrorContentBlob$VH.set(seg, x);
-    }
-    public static MemoryAddress ppErrorContentBlob$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_RETRIEVE_AUX_INFO.ppErrorContentBlob$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ppErrorContentBlob$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_RETRIEVE_AUX_INFO.ppErrorContentBlob$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pLastSyncTime"),
+        wgl_h.C_LONG.withName("dwMaxUrlRetrievalByteCount"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pPreFetchInfo"),
+        wgl_h.C_POINTER.withName("pFlushInfo"),
+        wgl_h.C_POINTER.withName("ppResponseInfo"),
+        wgl_h.C_POINTER.withName("pwszCacheFileNamePrefix"),
+        wgl_h.C_POINTER.withName("pftCacheResync"),
+        wgl_h.C_INT.withName("fProxyCacheRetrieval"),
+        wgl_h.C_LONG.withName("dwHttpStatusCode"),
+        wgl_h.C_POINTER.withName("ppwszErrorResponseHeaders"),
+        wgl_h.C_POINTER.withName("ppErrorContentBlob")
+    ).withName("_CRYPT_RETRIEVE_AUX_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pLastSyncTime$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pLastSyncTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME *pLastSyncTime
+     * }
+     */
+    public static final AddressLayout pLastSyncTime$layout() {
+        return pLastSyncTime$LAYOUT;
+    }
+
+    private static final long pLastSyncTime$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME *pLastSyncTime
+     * }
+     */
+    public static final long pLastSyncTime$offset() {
+        return pLastSyncTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME *pLastSyncTime
+     * }
+     */
+    public static MemorySegment pLastSyncTime(MemorySegment struct) {
+        return struct.get(pLastSyncTime$LAYOUT, pLastSyncTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME *pLastSyncTime
+     * }
+     */
+    public static void pLastSyncTime(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pLastSyncTime$LAYOUT, pLastSyncTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMaxUrlRetrievalByteCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMaxUrlRetrievalByteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxUrlRetrievalByteCount
+     * }
+     */
+    public static final OfInt dwMaxUrlRetrievalByteCount$layout() {
+        return dwMaxUrlRetrievalByteCount$LAYOUT;
+    }
+
+    private static final long dwMaxUrlRetrievalByteCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxUrlRetrievalByteCount
+     * }
+     */
+    public static final long dwMaxUrlRetrievalByteCount$offset() {
+        return dwMaxUrlRetrievalByteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxUrlRetrievalByteCount
+     * }
+     */
+    public static int dwMaxUrlRetrievalByteCount(MemorySegment struct) {
+        return struct.get(dwMaxUrlRetrievalByteCount$LAYOUT, dwMaxUrlRetrievalByteCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMaxUrlRetrievalByteCount
+     * }
+     */
+    public static void dwMaxUrlRetrievalByteCount(MemorySegment struct, int fieldValue) {
+        struct.set(dwMaxUrlRetrievalByteCount$LAYOUT, dwMaxUrlRetrievalByteCount$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pPreFetchInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPreFetchInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_PRE_FETCH_INFO pPreFetchInfo
+     * }
+     */
+    public static final AddressLayout pPreFetchInfo$layout() {
+        return pPreFetchInfo$LAYOUT;
+    }
+
+    private static final long pPreFetchInfo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_PRE_FETCH_INFO pPreFetchInfo
+     * }
+     */
+    public static final long pPreFetchInfo$offset() {
+        return pPreFetchInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_PRE_FETCH_INFO pPreFetchInfo
+     * }
+     */
+    public static MemorySegment pPreFetchInfo(MemorySegment struct) {
+        return struct.get(pPreFetchInfo$LAYOUT, pPreFetchInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_PRE_FETCH_INFO pPreFetchInfo
+     * }
+     */
+    public static void pPreFetchInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPreFetchInfo$LAYOUT, pPreFetchInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pFlushInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFlushInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_FLUSH_INFO pFlushInfo
+     * }
+     */
+    public static final AddressLayout pFlushInfo$layout() {
+        return pFlushInfo$LAYOUT;
+    }
+
+    private static final long pFlushInfo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_FLUSH_INFO pFlushInfo
+     * }
+     */
+    public static final long pFlushInfo$offset() {
+        return pFlushInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_FLUSH_INFO pFlushInfo
+     * }
+     */
+    public static MemorySegment pFlushInfo(MemorySegment struct) {
+        return struct.get(pFlushInfo$LAYOUT, pFlushInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_FLUSH_INFO pFlushInfo
+     * }
+     */
+    public static void pFlushInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pFlushInfo$LAYOUT, pFlushInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ppResponseInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ppResponseInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_RESPONSE_INFO *ppResponseInfo
+     * }
+     */
+    public static final AddressLayout ppResponseInfo$layout() {
+        return ppResponseInfo$LAYOUT;
+    }
+
+    private static final long ppResponseInfo$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_RESPONSE_INFO *ppResponseInfo
+     * }
+     */
+    public static final long ppResponseInfo$offset() {
+        return ppResponseInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_RESPONSE_INFO *ppResponseInfo
+     * }
+     */
+    public static MemorySegment ppResponseInfo(MemorySegment struct) {
+        return struct.get(ppResponseInfo$LAYOUT, ppResponseInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPTNET_URL_CACHE_RESPONSE_INFO *ppResponseInfo
+     * }
+     */
+    public static void ppResponseInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ppResponseInfo$LAYOUT, ppResponseInfo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pwszCacheFileNamePrefix$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszCacheFileNamePrefix"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszCacheFileNamePrefix
+     * }
+     */
+    public static final AddressLayout pwszCacheFileNamePrefix$layout() {
+        return pwszCacheFileNamePrefix$LAYOUT;
+    }
+
+    private static final long pwszCacheFileNamePrefix$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszCacheFileNamePrefix
+     * }
+     */
+    public static final long pwszCacheFileNamePrefix$offset() {
+        return pwszCacheFileNamePrefix$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszCacheFileNamePrefix
+     * }
+     */
+    public static MemorySegment pwszCacheFileNamePrefix(MemorySegment struct) {
+        return struct.get(pwszCacheFileNamePrefix$LAYOUT, pwszCacheFileNamePrefix$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszCacheFileNamePrefix
+     * }
+     */
+    public static void pwszCacheFileNamePrefix(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszCacheFileNamePrefix$LAYOUT, pwszCacheFileNamePrefix$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pftCacheResync$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pftCacheResync"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPFILETIME pftCacheResync
+     * }
+     */
+    public static final AddressLayout pftCacheResync$layout() {
+        return pftCacheResync$LAYOUT;
+    }
+
+    private static final long pftCacheResync$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPFILETIME pftCacheResync
+     * }
+     */
+    public static final long pftCacheResync$offset() {
+        return pftCacheResync$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPFILETIME pftCacheResync
+     * }
+     */
+    public static MemorySegment pftCacheResync(MemorySegment struct) {
+        return struct.get(pftCacheResync$LAYOUT, pftCacheResync$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPFILETIME pftCacheResync
+     * }
+     */
+    public static void pftCacheResync(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pftCacheResync$LAYOUT, pftCacheResync$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fProxyCacheRetrieval$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fProxyCacheRetrieval"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fProxyCacheRetrieval
+     * }
+     */
+    public static final OfInt fProxyCacheRetrieval$layout() {
+        return fProxyCacheRetrieval$LAYOUT;
+    }
+
+    private static final long fProxyCacheRetrieval$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fProxyCacheRetrieval
+     * }
+     */
+    public static final long fProxyCacheRetrieval$offset() {
+        return fProxyCacheRetrieval$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fProxyCacheRetrieval
+     * }
+     */
+    public static int fProxyCacheRetrieval(MemorySegment struct) {
+        return struct.get(fProxyCacheRetrieval$LAYOUT, fProxyCacheRetrieval$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fProxyCacheRetrieval
+     * }
+     */
+    public static void fProxyCacheRetrieval(MemorySegment struct, int fieldValue) {
+        struct.set(fProxyCacheRetrieval$LAYOUT, fProxyCacheRetrieval$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwHttpStatusCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwHttpStatusCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwHttpStatusCode
+     * }
+     */
+    public static final OfInt dwHttpStatusCode$layout() {
+        return dwHttpStatusCode$LAYOUT;
+    }
+
+    private static final long dwHttpStatusCode$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwHttpStatusCode
+     * }
+     */
+    public static final long dwHttpStatusCode$offset() {
+        return dwHttpStatusCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwHttpStatusCode
+     * }
+     */
+    public static int dwHttpStatusCode(MemorySegment struct) {
+        return struct.get(dwHttpStatusCode$LAYOUT, dwHttpStatusCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwHttpStatusCode
+     * }
+     */
+    public static void dwHttpStatusCode(MemorySegment struct, int fieldValue) {
+        struct.set(dwHttpStatusCode$LAYOUT, dwHttpStatusCode$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ppwszErrorResponseHeaders$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ppwszErrorResponseHeaders"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR *ppwszErrorResponseHeaders
+     * }
+     */
+    public static final AddressLayout ppwszErrorResponseHeaders$layout() {
+        return ppwszErrorResponseHeaders$LAYOUT;
+    }
+
+    private static final long ppwszErrorResponseHeaders$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR *ppwszErrorResponseHeaders
+     * }
+     */
+    public static final long ppwszErrorResponseHeaders$offset() {
+        return ppwszErrorResponseHeaders$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR *ppwszErrorResponseHeaders
+     * }
+     */
+    public static MemorySegment ppwszErrorResponseHeaders(MemorySegment struct) {
+        return struct.get(ppwszErrorResponseHeaders$LAYOUT, ppwszErrorResponseHeaders$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR *ppwszErrorResponseHeaders
+     * }
+     */
+    public static void ppwszErrorResponseHeaders(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ppwszErrorResponseHeaders$LAYOUT, ppwszErrorResponseHeaders$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ppErrorContentBlob$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ppErrorContentBlob"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_DATA_BLOB *ppErrorContentBlob
+     * }
+     */
+    public static final AddressLayout ppErrorContentBlob$layout() {
+        return ppErrorContentBlob$LAYOUT;
+    }
+
+    private static final long ppErrorContentBlob$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_DATA_BLOB *ppErrorContentBlob
+     * }
+     */
+    public static final long ppErrorContentBlob$offset() {
+        return ppErrorContentBlob$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_DATA_BLOB *ppErrorContentBlob
+     * }
+     */
+    public static MemorySegment ppErrorContentBlob(MemorySegment struct) {
+        return struct.get(ppErrorContentBlob$LAYOUT, ppErrorContentBlob$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_DATA_BLOB *ppErrorContentBlob
+     * }
+     */
+    public static void ppErrorContentBlob(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ppErrorContentBlob$LAYOUT, ppErrorContentBlob$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

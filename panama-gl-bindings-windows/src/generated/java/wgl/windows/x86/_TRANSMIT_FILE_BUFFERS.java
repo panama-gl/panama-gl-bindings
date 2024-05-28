@@ -2,94 +2,266 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TRANSMIT_FILE_BUFFERS {
+ *     PVOID Head;
+ *     DWORD HeadLength;
+ *     PVOID Tail;
+ *     DWORD TailLength;
+ * }
+ * }
+ */
 public class _TRANSMIT_FILE_BUFFERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("Head"),
-        Constants$root.C_LONG$LAYOUT.withName("HeadLength"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("Tail"),
-        Constants$root.C_LONG$LAYOUT.withName("TailLength"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_TRANSMIT_FILE_BUFFERS");
-    public static MemoryLayout $LAYOUT() {
-        return _TRANSMIT_FILE_BUFFERS.$struct$LAYOUT;
+    _TRANSMIT_FILE_BUFFERS() {
+        // Should not be called directly
     }
-    static final VarHandle Head$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Head"));
-    public static VarHandle Head$VH() {
-        return _TRANSMIT_FILE_BUFFERS.Head$VH;
-    }
-    public static MemoryAddress Head$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TRANSMIT_FILE_BUFFERS.Head$VH.get(seg);
-    }
-    public static void Head$set( MemorySegment seg, MemoryAddress x) {
-        _TRANSMIT_FILE_BUFFERS.Head$VH.set(seg, x);
-    }
-    public static MemoryAddress Head$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TRANSMIT_FILE_BUFFERS.Head$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Head$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TRANSMIT_FILE_BUFFERS.Head$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HeadLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HeadLength"));
-    public static VarHandle HeadLength$VH() {
-        return _TRANSMIT_FILE_BUFFERS.HeadLength$VH;
-    }
-    public static int HeadLength$get(MemorySegment seg) {
-        return (int)_TRANSMIT_FILE_BUFFERS.HeadLength$VH.get(seg);
-    }
-    public static void HeadLength$set( MemorySegment seg, int x) {
-        _TRANSMIT_FILE_BUFFERS.HeadLength$VH.set(seg, x);
-    }
-    public static int HeadLength$get(MemorySegment seg, long index) {
-        return (int)_TRANSMIT_FILE_BUFFERS.HeadLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HeadLength$set(MemorySegment seg, long index, int x) {
-        _TRANSMIT_FILE_BUFFERS.HeadLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Tail$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Tail"));
-    public static VarHandle Tail$VH() {
-        return _TRANSMIT_FILE_BUFFERS.Tail$VH;
-    }
-    public static MemoryAddress Tail$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_TRANSMIT_FILE_BUFFERS.Tail$VH.get(seg);
-    }
-    public static void Tail$set( MemorySegment seg, MemoryAddress x) {
-        _TRANSMIT_FILE_BUFFERS.Tail$VH.set(seg, x);
-    }
-    public static MemoryAddress Tail$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_TRANSMIT_FILE_BUFFERS.Tail$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Tail$set(MemorySegment seg, long index, MemoryAddress x) {
-        _TRANSMIT_FILE_BUFFERS.Tail$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TailLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TailLength"));
-    public static VarHandle TailLength$VH() {
-        return _TRANSMIT_FILE_BUFFERS.TailLength$VH;
-    }
-    public static int TailLength$get(MemorySegment seg) {
-        return (int)_TRANSMIT_FILE_BUFFERS.TailLength$VH.get(seg);
-    }
-    public static void TailLength$set( MemorySegment seg, int x) {
-        _TRANSMIT_FILE_BUFFERS.TailLength$VH.set(seg, x);
-    }
-    public static int TailLength$get(MemorySegment seg, long index) {
-        return (int)_TRANSMIT_FILE_BUFFERS.TailLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TailLength$set(MemorySegment seg, long index, int x) {
-        _TRANSMIT_FILE_BUFFERS.TailLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("Head"),
+        wgl_h.C_LONG.withName("HeadLength"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("Tail"),
+        wgl_h.C_LONG.withName("TailLength"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_TRANSMIT_FILE_BUFFERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout Head$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Head"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID Head
+     * }
+     */
+    public static final AddressLayout Head$layout() {
+        return Head$LAYOUT;
+    }
+
+    private static final long Head$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID Head
+     * }
+     */
+    public static final long Head$offset() {
+        return Head$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID Head
+     * }
+     */
+    public static MemorySegment Head(MemorySegment struct) {
+        return struct.get(Head$LAYOUT, Head$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID Head
+     * }
+     */
+    public static void Head(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Head$LAYOUT, Head$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HeadLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HeadLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HeadLength
+     * }
+     */
+    public static final OfInt HeadLength$layout() {
+        return HeadLength$LAYOUT;
+    }
+
+    private static final long HeadLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HeadLength
+     * }
+     */
+    public static final long HeadLength$offset() {
+        return HeadLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HeadLength
+     * }
+     */
+    public static int HeadLength(MemorySegment struct) {
+        return struct.get(HeadLength$LAYOUT, HeadLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HeadLength
+     * }
+     */
+    public static void HeadLength(MemorySegment struct, int fieldValue) {
+        struct.set(HeadLength$LAYOUT, HeadLength$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Tail$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Tail"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID Tail
+     * }
+     */
+    public static final AddressLayout Tail$layout() {
+        return Tail$LAYOUT;
+    }
+
+    private static final long Tail$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID Tail
+     * }
+     */
+    public static final long Tail$offset() {
+        return Tail$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID Tail
+     * }
+     */
+    public static MemorySegment Tail(MemorySegment struct) {
+        return struct.get(Tail$LAYOUT, Tail$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID Tail
+     * }
+     */
+    public static void Tail(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Tail$LAYOUT, Tail$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TailLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TailLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TailLength
+     * }
+     */
+    public static final OfInt TailLength$layout() {
+        return TailLength$LAYOUT;
+    }
+
+    private static final long TailLength$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TailLength
+     * }
+     */
+    public static final long TailLength$offset() {
+        return TailLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TailLength
+     * }
+     */
+    public static int TailLength(MemorySegment struct) {
+        return struct.get(TailLength$LAYOUT, TailLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TailLength
+     * }
+     */
+    public static void TailLength(MemorySegment struct, int fieldValue) {
+        struct.set(TailLength$LAYOUT, TailLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

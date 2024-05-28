@@ -2,83 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagTOUCH_HIT_TESTING_INPUT {
+ *     UINT32 pointerId;
+ *     POINT point;
+ *     RECT boundingBox;
+ *     RECT nonOccludedBoundingBox;
+ *     UINT32 orientation;
+ * }
+ * }
+ */
 public class tagTOUCH_HIT_TESTING_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("pointerId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("point"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("boundingBox"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("nonOccludedBoundingBox"),
-        Constants$root.C_LONG$LAYOUT.withName("orientation")
-    ).withName("tagTOUCH_HIT_TESTING_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return tagTOUCH_HIT_TESTING_INPUT.$struct$LAYOUT;
+    tagTOUCH_HIT_TESTING_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle pointerId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pointerId"));
-    public static VarHandle pointerId$VH() {
-        return tagTOUCH_HIT_TESTING_INPUT.pointerId$VH;
-    }
-    public static int pointerId$get(MemorySegment seg) {
-        return (int)tagTOUCH_HIT_TESTING_INPUT.pointerId$VH.get(seg);
-    }
-    public static void pointerId$set( MemorySegment seg, int x) {
-        tagTOUCH_HIT_TESTING_INPUT.pointerId$VH.set(seg, x);
-    }
-    public static int pointerId$get(MemorySegment seg, long index) {
-        return (int)tagTOUCH_HIT_TESTING_INPUT.pointerId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pointerId$set(MemorySegment seg, long index, int x) {
-        tagTOUCH_HIT_TESTING_INPUT.pointerId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment point$slice(MemorySegment seg) {
-        return seg.asSlice(4, 8);
-    }
-    public static MemorySegment boundingBox$slice(MemorySegment seg) {
-        return seg.asSlice(12, 16);
-    }
-    public static MemorySegment nonOccludedBoundingBox$slice(MemorySegment seg) {
-        return seg.asSlice(28, 16);
-    }
-    static final VarHandle orientation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("orientation"));
-    public static VarHandle orientation$VH() {
-        return tagTOUCH_HIT_TESTING_INPUT.orientation$VH;
-    }
-    public static int orientation$get(MemorySegment seg) {
-        return (int)tagTOUCH_HIT_TESTING_INPUT.orientation$VH.get(seg);
-    }
-    public static void orientation$set( MemorySegment seg, int x) {
-        tagTOUCH_HIT_TESTING_INPUT.orientation$VH.set(seg, x);
-    }
-    public static int orientation$get(MemorySegment seg, long index) {
-        return (int)tagTOUCH_HIT_TESTING_INPUT.orientation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void orientation$set(MemorySegment seg, long index, int x) {
-        tagTOUCH_HIT_TESTING_INPUT.orientation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("pointerId"),
+        tagPOINT.layout().withName("point"),
+        tagRECT.layout().withName("boundingBox"),
+        tagRECT.layout().withName("nonOccludedBoundingBox"),
+        wgl_h.C_INT.withName("orientation")
+    ).withName("tagTOUCH_HIT_TESTING_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt pointerId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pointerId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static final OfInt pointerId$layout() {
+        return pointerId$LAYOUT;
+    }
+
+    private static final long pointerId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static final long pointerId$offset() {
+        return pointerId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static int pointerId(MemorySegment struct) {
+        return struct.get(pointerId$LAYOUT, pointerId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static void pointerId(MemorySegment struct, int fieldValue) {
+        struct.set(pointerId$LAYOUT, pointerId$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout point$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("point"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT point
+     * }
+     */
+    public static final GroupLayout point$layout() {
+        return point$LAYOUT;
+    }
+
+    private static final long point$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT point
+     * }
+     */
+    public static final long point$offset() {
+        return point$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT point
+     * }
+     */
+    public static MemorySegment point(MemorySegment struct) {
+        return struct.asSlice(point$OFFSET, point$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT point
+     * }
+     */
+    public static void point(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, point$OFFSET, point$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout boundingBox$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("boundingBox"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT boundingBox
+     * }
+     */
+    public static final GroupLayout boundingBox$layout() {
+        return boundingBox$LAYOUT;
+    }
+
+    private static final long boundingBox$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT boundingBox
+     * }
+     */
+    public static final long boundingBox$offset() {
+        return boundingBox$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT boundingBox
+     * }
+     */
+    public static MemorySegment boundingBox(MemorySegment struct) {
+        return struct.asSlice(boundingBox$OFFSET, boundingBox$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT boundingBox
+     * }
+     */
+    public static void boundingBox(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, boundingBox$OFFSET, boundingBox$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout nonOccludedBoundingBox$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("nonOccludedBoundingBox"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT nonOccludedBoundingBox
+     * }
+     */
+    public static final GroupLayout nonOccludedBoundingBox$layout() {
+        return nonOccludedBoundingBox$LAYOUT;
+    }
+
+    private static final long nonOccludedBoundingBox$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT nonOccludedBoundingBox
+     * }
+     */
+    public static final long nonOccludedBoundingBox$offset() {
+        return nonOccludedBoundingBox$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT nonOccludedBoundingBox
+     * }
+     */
+    public static MemorySegment nonOccludedBoundingBox(MemorySegment struct) {
+        return struct.asSlice(nonOccludedBoundingBox$OFFSET, nonOccludedBoundingBox$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT nonOccludedBoundingBox
+     * }
+     */
+    public static void nonOccludedBoundingBox(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, nonOccludedBoundingBox$OFFSET, nonOccludedBoundingBox$LAYOUT.byteSize());
+    }
+
+    private static final OfInt orientation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("orientation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 orientation
+     * }
+     */
+    public static final OfInt orientation$layout() {
+        return orientation$LAYOUT;
+    }
+
+    private static final long orientation$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 orientation
+     * }
+     */
+    public static final long orientation$offset() {
+        return orientation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 orientation
+     * }
+     */
+    public static int orientation(MemorySegment struct) {
+        return struct.get(orientation$LAYOUT, orientation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 orientation
+     * }
+     */
+    public static void orientation(MemorySegment struct, int fieldValue) {
+        struct.set(orientation$LAYOUT, orientation$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,247 +2,680 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _tagSOFTDISTINFO {
+ *     ULONG cbSize;
+ *     DWORD dwFlags;
+ *     DWORD dwAdState;
+ *     LPWSTR szTitle;
+ *     LPWSTR szAbstract;
+ *     LPWSTR szHREF;
+ *     DWORD dwInstalledVersionMS;
+ *     DWORD dwInstalledVersionLS;
+ *     DWORD dwUpdateVersionMS;
+ *     DWORD dwUpdateVersionLS;
+ *     DWORD dwAdvertisedVersionMS;
+ *     DWORD dwAdvertisedVersionLS;
+ *     DWORD dwReserved;
+ * }
+ * }
+ */
 public class _tagSOFTDISTINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAdState"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("szTitle"),
-        Constants$root.C_POINTER$LAYOUT.withName("szAbstract"),
-        Constants$root.C_POINTER$LAYOUT.withName("szHREF"),
-        Constants$root.C_LONG$LAYOUT.withName("dwInstalledVersionMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwInstalledVersionLS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwUpdateVersionMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwUpdateVersionLS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAdvertisedVersionMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwAdvertisedVersionLS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwReserved"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_tagSOFTDISTINFO");
-    public static MemoryLayout $LAYOUT() {
-        return _tagSOFTDISTINFO.$struct$LAYOUT;
+    _tagSOFTDISTINFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _tagSOFTDISTINFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _tagSOFTDISTINFO.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAdState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAdState"));
-    public static VarHandle dwAdState$VH() {
-        return _tagSOFTDISTINFO.dwAdState$VH;
-    }
-    public static int dwAdState$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwAdState$VH.get(seg);
-    }
-    public static void dwAdState$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwAdState$VH.set(seg, x);
-    }
-    public static int dwAdState$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwAdState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAdState$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwAdState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle szTitle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("szTitle"));
-    public static VarHandle szTitle$VH() {
-        return _tagSOFTDISTINFO.szTitle$VH;
-    }
-    public static MemoryAddress szTitle$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szTitle$VH.get(seg);
-    }
-    public static void szTitle$set( MemorySegment seg, MemoryAddress x) {
-        _tagSOFTDISTINFO.szTitle$VH.set(seg, x);
-    }
-    public static MemoryAddress szTitle$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szTitle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void szTitle$set(MemorySegment seg, long index, MemoryAddress x) {
-        _tagSOFTDISTINFO.szTitle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle szAbstract$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("szAbstract"));
-    public static VarHandle szAbstract$VH() {
-        return _tagSOFTDISTINFO.szAbstract$VH;
-    }
-    public static MemoryAddress szAbstract$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szAbstract$VH.get(seg);
-    }
-    public static void szAbstract$set( MemorySegment seg, MemoryAddress x) {
-        _tagSOFTDISTINFO.szAbstract$VH.set(seg, x);
-    }
-    public static MemoryAddress szAbstract$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szAbstract$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void szAbstract$set(MemorySegment seg, long index, MemoryAddress x) {
-        _tagSOFTDISTINFO.szAbstract$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle szHREF$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("szHREF"));
-    public static VarHandle szHREF$VH() {
-        return _tagSOFTDISTINFO.szHREF$VH;
-    }
-    public static MemoryAddress szHREF$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szHREF$VH.get(seg);
-    }
-    public static void szHREF$set( MemorySegment seg, MemoryAddress x) {
-        _tagSOFTDISTINFO.szHREF$VH.set(seg, x);
-    }
-    public static MemoryAddress szHREF$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_tagSOFTDISTINFO.szHREF$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void szHREF$set(MemorySegment seg, long index, MemoryAddress x) {
-        _tagSOFTDISTINFO.szHREF$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwInstalledVersionMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwInstalledVersionMS"));
-    public static VarHandle dwInstalledVersionMS$VH() {
-        return _tagSOFTDISTINFO.dwInstalledVersionMS$VH;
-    }
-    public static int dwInstalledVersionMS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwInstalledVersionMS$VH.get(seg);
-    }
-    public static void dwInstalledVersionMS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwInstalledVersionMS$VH.set(seg, x);
-    }
-    public static int dwInstalledVersionMS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwInstalledVersionMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwInstalledVersionMS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwInstalledVersionMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwInstalledVersionLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwInstalledVersionLS"));
-    public static VarHandle dwInstalledVersionLS$VH() {
-        return _tagSOFTDISTINFO.dwInstalledVersionLS$VH;
-    }
-    public static int dwInstalledVersionLS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwInstalledVersionLS$VH.get(seg);
-    }
-    public static void dwInstalledVersionLS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwInstalledVersionLS$VH.set(seg, x);
-    }
-    public static int dwInstalledVersionLS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwInstalledVersionLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwInstalledVersionLS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwInstalledVersionLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwUpdateVersionMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUpdateVersionMS"));
-    public static VarHandle dwUpdateVersionMS$VH() {
-        return _tagSOFTDISTINFO.dwUpdateVersionMS$VH;
-    }
-    public static int dwUpdateVersionMS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwUpdateVersionMS$VH.get(seg);
-    }
-    public static void dwUpdateVersionMS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwUpdateVersionMS$VH.set(seg, x);
-    }
-    public static int dwUpdateVersionMS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwUpdateVersionMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwUpdateVersionMS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwUpdateVersionMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwUpdateVersionLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUpdateVersionLS"));
-    public static VarHandle dwUpdateVersionLS$VH() {
-        return _tagSOFTDISTINFO.dwUpdateVersionLS$VH;
-    }
-    public static int dwUpdateVersionLS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwUpdateVersionLS$VH.get(seg);
-    }
-    public static void dwUpdateVersionLS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwUpdateVersionLS$VH.set(seg, x);
-    }
-    public static int dwUpdateVersionLS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwUpdateVersionLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwUpdateVersionLS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwUpdateVersionLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAdvertisedVersionMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAdvertisedVersionMS"));
-    public static VarHandle dwAdvertisedVersionMS$VH() {
-        return _tagSOFTDISTINFO.dwAdvertisedVersionMS$VH;
-    }
-    public static int dwAdvertisedVersionMS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwAdvertisedVersionMS$VH.get(seg);
-    }
-    public static void dwAdvertisedVersionMS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwAdvertisedVersionMS$VH.set(seg, x);
-    }
-    public static int dwAdvertisedVersionMS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwAdvertisedVersionMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAdvertisedVersionMS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwAdvertisedVersionMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwAdvertisedVersionLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwAdvertisedVersionLS"));
-    public static VarHandle dwAdvertisedVersionLS$VH() {
-        return _tagSOFTDISTINFO.dwAdvertisedVersionLS$VH;
-    }
-    public static int dwAdvertisedVersionLS$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwAdvertisedVersionLS$VH.get(seg);
-    }
-    public static void dwAdvertisedVersionLS$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwAdvertisedVersionLS$VH.set(seg, x);
-    }
-    public static int dwAdvertisedVersionLS$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwAdvertisedVersionLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwAdvertisedVersionLS$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwAdvertisedVersionLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReserved"));
-    public static VarHandle dwReserved$VH() {
-        return _tagSOFTDISTINFO.dwReserved$VH;
-    }
-    public static int dwReserved$get(MemorySegment seg) {
-        return (int)_tagSOFTDISTINFO.dwReserved$VH.get(seg);
-    }
-    public static void dwReserved$set( MemorySegment seg, int x) {
-        _tagSOFTDISTINFO.dwReserved$VH.set(seg, x);
-    }
-    public static int dwReserved$get(MemorySegment seg, long index) {
-        return (int)_tagSOFTDISTINFO.dwReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReserved$set(MemorySegment seg, long index, int x) {
-        _tagSOFTDISTINFO.dwReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("dwFlags"),
+        wgl_h.C_LONG.withName("dwAdState"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("szTitle"),
+        wgl_h.C_POINTER.withName("szAbstract"),
+        wgl_h.C_POINTER.withName("szHREF"),
+        wgl_h.C_LONG.withName("dwInstalledVersionMS"),
+        wgl_h.C_LONG.withName("dwInstalledVersionLS"),
+        wgl_h.C_LONG.withName("dwUpdateVersionMS"),
+        wgl_h.C_LONG.withName("dwUpdateVersionLS"),
+        wgl_h.C_LONG.withName("dwAdvertisedVersionMS"),
+        wgl_h.C_LONG.withName("dwAdvertisedVersionLS"),
+        wgl_h.C_LONG.withName("dwReserved"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_tagSOFTDISTINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAdState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAdState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAdState
+     * }
+     */
+    public static final OfInt dwAdState$layout() {
+        return dwAdState$LAYOUT;
+    }
+
+    private static final long dwAdState$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAdState
+     * }
+     */
+    public static final long dwAdState$offset() {
+        return dwAdState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdState
+     * }
+     */
+    public static int dwAdState(MemorySegment struct) {
+        return struct.get(dwAdState$LAYOUT, dwAdState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdState
+     * }
+     */
+    public static void dwAdState(MemorySegment struct, int fieldValue) {
+        struct.set(dwAdState$LAYOUT, dwAdState$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout szTitle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("szTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR szTitle
+     * }
+     */
+    public static final AddressLayout szTitle$layout() {
+        return szTitle$LAYOUT;
+    }
+
+    private static final long szTitle$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR szTitle
+     * }
+     */
+    public static final long szTitle$offset() {
+        return szTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR szTitle
+     * }
+     */
+    public static MemorySegment szTitle(MemorySegment struct) {
+        return struct.get(szTitle$LAYOUT, szTitle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR szTitle
+     * }
+     */
+    public static void szTitle(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(szTitle$LAYOUT, szTitle$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout szAbstract$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("szAbstract"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR szAbstract
+     * }
+     */
+    public static final AddressLayout szAbstract$layout() {
+        return szAbstract$LAYOUT;
+    }
+
+    private static final long szAbstract$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR szAbstract
+     * }
+     */
+    public static final long szAbstract$offset() {
+        return szAbstract$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR szAbstract
+     * }
+     */
+    public static MemorySegment szAbstract(MemorySegment struct) {
+        return struct.get(szAbstract$LAYOUT, szAbstract$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR szAbstract
+     * }
+     */
+    public static void szAbstract(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(szAbstract$LAYOUT, szAbstract$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout szHREF$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("szHREF"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR szHREF
+     * }
+     */
+    public static final AddressLayout szHREF$layout() {
+        return szHREF$LAYOUT;
+    }
+
+    private static final long szHREF$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR szHREF
+     * }
+     */
+    public static final long szHREF$offset() {
+        return szHREF$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR szHREF
+     * }
+     */
+    public static MemorySegment szHREF(MemorySegment struct) {
+        return struct.get(szHREF$LAYOUT, szHREF$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR szHREF
+     * }
+     */
+    public static void szHREF(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(szHREF$LAYOUT, szHREF$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwInstalledVersionMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwInstalledVersionMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionMS
+     * }
+     */
+    public static final OfInt dwInstalledVersionMS$layout() {
+        return dwInstalledVersionMS$LAYOUT;
+    }
+
+    private static final long dwInstalledVersionMS$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionMS
+     * }
+     */
+    public static final long dwInstalledVersionMS$offset() {
+        return dwInstalledVersionMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionMS
+     * }
+     */
+    public static int dwInstalledVersionMS(MemorySegment struct) {
+        return struct.get(dwInstalledVersionMS$LAYOUT, dwInstalledVersionMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionMS
+     * }
+     */
+    public static void dwInstalledVersionMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwInstalledVersionMS$LAYOUT, dwInstalledVersionMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwInstalledVersionLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwInstalledVersionLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionLS
+     * }
+     */
+    public static final OfInt dwInstalledVersionLS$layout() {
+        return dwInstalledVersionLS$LAYOUT;
+    }
+
+    private static final long dwInstalledVersionLS$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionLS
+     * }
+     */
+    public static final long dwInstalledVersionLS$offset() {
+        return dwInstalledVersionLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionLS
+     * }
+     */
+    public static int dwInstalledVersionLS(MemorySegment struct) {
+        return struct.get(dwInstalledVersionLS$LAYOUT, dwInstalledVersionLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwInstalledVersionLS
+     * }
+     */
+    public static void dwInstalledVersionLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwInstalledVersionLS$LAYOUT, dwInstalledVersionLS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwUpdateVersionMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwUpdateVersionMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionMS
+     * }
+     */
+    public static final OfInt dwUpdateVersionMS$layout() {
+        return dwUpdateVersionMS$LAYOUT;
+    }
+
+    private static final long dwUpdateVersionMS$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionMS
+     * }
+     */
+    public static final long dwUpdateVersionMS$offset() {
+        return dwUpdateVersionMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionMS
+     * }
+     */
+    public static int dwUpdateVersionMS(MemorySegment struct) {
+        return struct.get(dwUpdateVersionMS$LAYOUT, dwUpdateVersionMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionMS
+     * }
+     */
+    public static void dwUpdateVersionMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwUpdateVersionMS$LAYOUT, dwUpdateVersionMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwUpdateVersionLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwUpdateVersionLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionLS
+     * }
+     */
+    public static final OfInt dwUpdateVersionLS$layout() {
+        return dwUpdateVersionLS$LAYOUT;
+    }
+
+    private static final long dwUpdateVersionLS$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionLS
+     * }
+     */
+    public static final long dwUpdateVersionLS$offset() {
+        return dwUpdateVersionLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionLS
+     * }
+     */
+    public static int dwUpdateVersionLS(MemorySegment struct) {
+        return struct.get(dwUpdateVersionLS$LAYOUT, dwUpdateVersionLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwUpdateVersionLS
+     * }
+     */
+    public static void dwUpdateVersionLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwUpdateVersionLS$LAYOUT, dwUpdateVersionLS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAdvertisedVersionMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAdvertisedVersionMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionMS
+     * }
+     */
+    public static final OfInt dwAdvertisedVersionMS$layout() {
+        return dwAdvertisedVersionMS$LAYOUT;
+    }
+
+    private static final long dwAdvertisedVersionMS$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionMS
+     * }
+     */
+    public static final long dwAdvertisedVersionMS$offset() {
+        return dwAdvertisedVersionMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionMS
+     * }
+     */
+    public static int dwAdvertisedVersionMS(MemorySegment struct) {
+        return struct.get(dwAdvertisedVersionMS$LAYOUT, dwAdvertisedVersionMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionMS
+     * }
+     */
+    public static void dwAdvertisedVersionMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwAdvertisedVersionMS$LAYOUT, dwAdvertisedVersionMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwAdvertisedVersionLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwAdvertisedVersionLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionLS
+     * }
+     */
+    public static final OfInt dwAdvertisedVersionLS$layout() {
+        return dwAdvertisedVersionLS$LAYOUT;
+    }
+
+    private static final long dwAdvertisedVersionLS$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionLS
+     * }
+     */
+    public static final long dwAdvertisedVersionLS$offset() {
+        return dwAdvertisedVersionLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionLS
+     * }
+     */
+    public static int dwAdvertisedVersionLS(MemorySegment struct) {
+        return struct.get(dwAdvertisedVersionLS$LAYOUT, dwAdvertisedVersionLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwAdvertisedVersionLS
+     * }
+     */
+    public static void dwAdvertisedVersionLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwAdvertisedVersionLS$LAYOUT, dwAdvertisedVersionLS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final OfInt dwReserved$layout() {
+        return dwReserved$LAYOUT;
+    }
+
+    private static final long dwReserved$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static final long dwReserved$offset() {
+        return dwReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static int dwReserved(MemorySegment struct) {
+        return struct.get(dwReserved$LAYOUT, dwReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReserved
+     * }
+     */
+    public static void dwReserved(MemorySegment struct, int fieldValue) {
+        struct.set(dwReserved$LAYOUT, dwReserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

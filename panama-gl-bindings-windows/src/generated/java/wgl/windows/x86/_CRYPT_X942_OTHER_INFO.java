@@ -2,57 +2,330 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_X942_OTHER_INFO {
+ *     LPSTR pszContentEncryptionObjId;
+ *     BYTE rgbCounter[4];
+ *     BYTE rgbKeyLength[4];
+ *     CRYPT_DATA_BLOB PubInfo;
+ * }
+ * }
+ */
 public class _CRYPT_X942_OTHER_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pszContentEncryptionObjId"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_CHAR$LAYOUT).withName("rgbCounter"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_CHAR$LAYOUT).withName("rgbKeyLength"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cbData"),
-            MemoryLayout.paddingLayout(32),
-            Constants$root.C_POINTER$LAYOUT.withName("pbData")
-        ).withName("PubInfo")
-    ).withName("_CRYPT_X942_OTHER_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_X942_OTHER_INFO.$struct$LAYOUT;
+    _CRYPT_X942_OTHER_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle pszContentEncryptionObjId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszContentEncryptionObjId"));
-    public static VarHandle pszContentEncryptionObjId$VH() {
-        return _CRYPT_X942_OTHER_INFO.pszContentEncryptionObjId$VH;
-    }
-    public static MemoryAddress pszContentEncryptionObjId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_X942_OTHER_INFO.pszContentEncryptionObjId$VH.get(seg);
-    }
-    public static void pszContentEncryptionObjId$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_X942_OTHER_INFO.pszContentEncryptionObjId$VH.set(seg, x);
-    }
-    public static MemoryAddress pszContentEncryptionObjId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_X942_OTHER_INFO.pszContentEncryptionObjId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszContentEncryptionObjId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_X942_OTHER_INFO.pszContentEncryptionObjId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbCounter$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
-    }
-    public static MemorySegment rgbKeyLength$slice(MemorySegment seg) {
-        return seg.asSlice(12, 4);
-    }
-    public static MemorySegment PubInfo$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pszContentEncryptionObjId"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_CHAR).withName("rgbCounter"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_CHAR).withName("rgbKeyLength"),
+        _CRYPTOAPI_BLOB.layout().withName("PubInfo")
+    ).withName("_CRYPT_X942_OTHER_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pszContentEncryptionObjId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszContentEncryptionObjId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncryptionObjId
+     * }
+     */
+    public static final AddressLayout pszContentEncryptionObjId$layout() {
+        return pszContentEncryptionObjId$LAYOUT;
+    }
+
+    private static final long pszContentEncryptionObjId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncryptionObjId
+     * }
+     */
+    public static final long pszContentEncryptionObjId$offset() {
+        return pszContentEncryptionObjId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncryptionObjId
+     * }
+     */
+    public static MemorySegment pszContentEncryptionObjId(MemorySegment struct) {
+        return struct.get(pszContentEncryptionObjId$LAYOUT, pszContentEncryptionObjId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pszContentEncryptionObjId
+     * }
+     */
+    public static void pszContentEncryptionObjId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszContentEncryptionObjId$LAYOUT, pszContentEncryptionObjId$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbCounter$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbCounter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static final SequenceLayout rgbCounter$layout() {
+        return rgbCounter$LAYOUT;
+    }
+
+    private static final long rgbCounter$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static final long rgbCounter$offset() {
+        return rgbCounter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static MemorySegment rgbCounter(MemorySegment struct) {
+        return struct.asSlice(rgbCounter$OFFSET, rgbCounter$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static void rgbCounter(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbCounter$OFFSET, rgbCounter$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbCounter$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static long[] rgbCounter$dimensions() {
+        return rgbCounter$DIMS;
+    }
+    private static final VarHandle rgbCounter$ELEM_HANDLE = rgbCounter$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static byte rgbCounter(MemorySegment struct, long index0) {
+        return (byte)rgbCounter$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbCounter[4]
+     * }
+     */
+    public static void rgbCounter(MemorySegment struct, long index0, byte fieldValue) {
+        rgbCounter$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout rgbKeyLength$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbKeyLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static final SequenceLayout rgbKeyLength$layout() {
+        return rgbKeyLength$LAYOUT;
+    }
+
+    private static final long rgbKeyLength$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static final long rgbKeyLength$offset() {
+        return rgbKeyLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static MemorySegment rgbKeyLength(MemorySegment struct) {
+        return struct.asSlice(rgbKeyLength$OFFSET, rgbKeyLength$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static void rgbKeyLength(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbKeyLength$OFFSET, rgbKeyLength$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbKeyLength$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static long[] rgbKeyLength$dimensions() {
+        return rgbKeyLength$DIMS;
+    }
+    private static final VarHandle rgbKeyLength$ELEM_HANDLE = rgbKeyLength$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static byte rgbKeyLength(MemorySegment struct, long index0) {
+        return (byte)rgbKeyLength$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbKeyLength[4]
+     * }
+     */
+    public static void rgbKeyLength(MemorySegment struct, long index0, byte fieldValue) {
+        rgbKeyLength$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final GroupLayout PubInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PubInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static final GroupLayout PubInfo$layout() {
+        return PubInfo$LAYOUT;
+    }
+
+    private static final long PubInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static final long PubInfo$offset() {
+        return PubInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static MemorySegment PubInfo(MemorySegment struct) {
+        return struct.asSlice(PubInfo$OFFSET, PubInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_DATA_BLOB PubInfo
+     * }
+     */
+    public static void PubInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PubInfo$OFFSET, PubInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

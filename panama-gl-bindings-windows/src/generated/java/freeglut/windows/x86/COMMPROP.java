@@ -2,13 +2,44 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _COMMPROP {
+ *     WORD wPacketLength;
+ *     WORD wPacketVersion;
+ *     DWORD dwServiceMask;
+ *     DWORD dwReserved1;
+ *     DWORD dwMaxTxQueue;
+ *     DWORD dwMaxRxQueue;
+ *     DWORD dwMaxBaud;
+ *     DWORD dwProvSubType;
+ *     DWORD dwProvCapabilities;
+ *     DWORD dwSettableParams;
+ *     DWORD dwSettableBaud;
+ *     WORD wSettableData;
+ *     WORD wSettableStopParity;
+ *     DWORD dwCurrentTxQueue;
+ *     DWORD dwCurrentRxQueue;
+ *     DWORD dwProvSpec1;
+ *     DWORD dwProvSpec2;
+ *     WCHAR wcProvChar[1];
+ * } COMMPROP
+ * }
+ */
 public class COMMPROP extends _COMMPROP {
 
+    COMMPROP() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,27 +2,69 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PTP_WAIT_CALLBACK {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress Instance, java.lang.foreign.MemoryAddress Context, java.lang.foreign.MemoryAddress Wait, int WaitResult);
-    static MemorySegment allocate(PTP_WAIT_CALLBACK fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PTP_WAIT_CALLBACK.class, fi, constants$128.PTP_WAIT_CALLBACK$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PTP_WAIT_CALLBACK)(PTP_CALLBACK_INSTANCE, PVOID, PTP_WAIT, TP_WAIT_RESULT) __attribute__((stdcall))
+ * }
+ */
+public class PTP_WAIT_CALLBACK {
+
+    PTP_WAIT_CALLBACK() {
+        // Should not be called directly
     }
-    static PTP_WAIT_CALLBACK ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _Instance, java.lang.foreign.MemoryAddress _Context, java.lang.foreign.MemoryAddress _Wait, int _WaitResult) -> {
-            try {
-                constants$128.PTP_WAIT_CALLBACK$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_Instance, (java.lang.foreign.Addressable)_Context, (java.lang.foreign.Addressable)_Wait, _WaitResult);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment Instance, MemorySegment Context, MemorySegment Wait, int WaitResult);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(PTP_WAIT_CALLBACK.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PTP_WAIT_CALLBACK.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment Instance, MemorySegment Context, MemorySegment Wait, int WaitResult) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, Instance, Context, Wait, WaitResult);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

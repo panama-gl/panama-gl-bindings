@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPELARRAY {
+ *     LONG paXCount;
+ *     LONG paYCount;
+ *     LONG paXExt;
+ *     LONG paYExt;
+ *     BYTE paRGBs;
+ * }
+ * }
+ */
 public class tagPELARRAY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("paXCount"),
-        Constants$root.C_LONG$LAYOUT.withName("paYCount"),
-        Constants$root.C_LONG$LAYOUT.withName("paXExt"),
-        Constants$root.C_LONG$LAYOUT.withName("paYExt"),
-        Constants$root.C_CHAR$LAYOUT.withName("paRGBs"),
-        MemoryLayout.paddingLayout(24)
-    ).withName("tagPELARRAY");
-    public static MemoryLayout $LAYOUT() {
-        return tagPELARRAY.$struct$LAYOUT;
+    tagPELARRAY() {
+        // Should not be called directly
     }
-    static final VarHandle paXCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("paXCount"));
-    public static VarHandle paXCount$VH() {
-        return tagPELARRAY.paXCount$VH;
-    }
-    public static int paXCount$get(MemorySegment seg) {
-        return (int)tagPELARRAY.paXCount$VH.get(seg);
-    }
-    public static void paXCount$set( MemorySegment seg, int x) {
-        tagPELARRAY.paXCount$VH.set(seg, x);
-    }
-    public static int paXCount$get(MemorySegment seg, long index) {
-        return (int)tagPELARRAY.paXCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void paXCount$set(MemorySegment seg, long index, int x) {
-        tagPELARRAY.paXCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle paYCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("paYCount"));
-    public static VarHandle paYCount$VH() {
-        return tagPELARRAY.paYCount$VH;
-    }
-    public static int paYCount$get(MemorySegment seg) {
-        return (int)tagPELARRAY.paYCount$VH.get(seg);
-    }
-    public static void paYCount$set( MemorySegment seg, int x) {
-        tagPELARRAY.paYCount$VH.set(seg, x);
-    }
-    public static int paYCount$get(MemorySegment seg, long index) {
-        return (int)tagPELARRAY.paYCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void paYCount$set(MemorySegment seg, long index, int x) {
-        tagPELARRAY.paYCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle paXExt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("paXExt"));
-    public static VarHandle paXExt$VH() {
-        return tagPELARRAY.paXExt$VH;
-    }
-    public static int paXExt$get(MemorySegment seg) {
-        return (int)tagPELARRAY.paXExt$VH.get(seg);
-    }
-    public static void paXExt$set( MemorySegment seg, int x) {
-        tagPELARRAY.paXExt$VH.set(seg, x);
-    }
-    public static int paXExt$get(MemorySegment seg, long index) {
-        return (int)tagPELARRAY.paXExt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void paXExt$set(MemorySegment seg, long index, int x) {
-        tagPELARRAY.paXExt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle paYExt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("paYExt"));
-    public static VarHandle paYExt$VH() {
-        return tagPELARRAY.paYExt$VH;
-    }
-    public static int paYExt$get(MemorySegment seg) {
-        return (int)tagPELARRAY.paYExt$VH.get(seg);
-    }
-    public static void paYExt$set( MemorySegment seg, int x) {
-        tagPELARRAY.paYExt$VH.set(seg, x);
-    }
-    public static int paYExt$get(MemorySegment seg, long index) {
-        return (int)tagPELARRAY.paYExt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void paYExt$set(MemorySegment seg, long index, int x) {
-        tagPELARRAY.paYExt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle paRGBs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("paRGBs"));
-    public static VarHandle paRGBs$VH() {
-        return tagPELARRAY.paRGBs$VH;
-    }
-    public static byte paRGBs$get(MemorySegment seg) {
-        return (byte)tagPELARRAY.paRGBs$VH.get(seg);
-    }
-    public static void paRGBs$set( MemorySegment seg, byte x) {
-        tagPELARRAY.paRGBs$VH.set(seg, x);
-    }
-    public static byte paRGBs$get(MemorySegment seg, long index) {
-        return (byte)tagPELARRAY.paRGBs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void paRGBs$set(MemorySegment seg, long index, byte x) {
-        tagPELARRAY.paRGBs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("paXCount"),
+        wgl_h.C_LONG.withName("paYCount"),
+        wgl_h.C_LONG.withName("paXExt"),
+        wgl_h.C_LONG.withName("paYExt"),
+        wgl_h.C_CHAR.withName("paRGBs"),
+        MemoryLayout.paddingLayout(3)
+    ).withName("tagPELARRAY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt paXCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("paXCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG paXCount
+     * }
+     */
+    public static final OfInt paXCount$layout() {
+        return paXCount$LAYOUT;
+    }
+
+    private static final long paXCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG paXCount
+     * }
+     */
+    public static final long paXCount$offset() {
+        return paXCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG paXCount
+     * }
+     */
+    public static int paXCount(MemorySegment struct) {
+        return struct.get(paXCount$LAYOUT, paXCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG paXCount
+     * }
+     */
+    public static void paXCount(MemorySegment struct, int fieldValue) {
+        struct.set(paXCount$LAYOUT, paXCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt paYCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("paYCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG paYCount
+     * }
+     */
+    public static final OfInt paYCount$layout() {
+        return paYCount$LAYOUT;
+    }
+
+    private static final long paYCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG paYCount
+     * }
+     */
+    public static final long paYCount$offset() {
+        return paYCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG paYCount
+     * }
+     */
+    public static int paYCount(MemorySegment struct) {
+        return struct.get(paYCount$LAYOUT, paYCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG paYCount
+     * }
+     */
+    public static void paYCount(MemorySegment struct, int fieldValue) {
+        struct.set(paYCount$LAYOUT, paYCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt paXExt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("paXExt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG paXExt
+     * }
+     */
+    public static final OfInt paXExt$layout() {
+        return paXExt$LAYOUT;
+    }
+
+    private static final long paXExt$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG paXExt
+     * }
+     */
+    public static final long paXExt$offset() {
+        return paXExt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG paXExt
+     * }
+     */
+    public static int paXExt(MemorySegment struct) {
+        return struct.get(paXExt$LAYOUT, paXExt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG paXExt
+     * }
+     */
+    public static void paXExt(MemorySegment struct, int fieldValue) {
+        struct.set(paXExt$LAYOUT, paXExt$OFFSET, fieldValue);
+    }
+
+    private static final OfInt paYExt$LAYOUT = (OfInt)$LAYOUT.select(groupElement("paYExt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG paYExt
+     * }
+     */
+    public static final OfInt paYExt$layout() {
+        return paYExt$LAYOUT;
+    }
+
+    private static final long paYExt$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG paYExt
+     * }
+     */
+    public static final long paYExt$offset() {
+        return paYExt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG paYExt
+     * }
+     */
+    public static int paYExt(MemorySegment struct) {
+        return struct.get(paYExt$LAYOUT, paYExt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG paYExt
+     * }
+     */
+    public static void paYExt(MemorySegment struct, int fieldValue) {
+        struct.set(paYExt$LAYOUT, paYExt$OFFSET, fieldValue);
+    }
+
+    private static final OfByte paRGBs$LAYOUT = (OfByte)$LAYOUT.select(groupElement("paRGBs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE paRGBs
+     * }
+     */
+    public static final OfByte paRGBs$layout() {
+        return paRGBs$LAYOUT;
+    }
+
+    private static final long paRGBs$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE paRGBs
+     * }
+     */
+    public static final long paRGBs$offset() {
+        return paRGBs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE paRGBs
+     * }
+     */
+    public static byte paRGBs(MemorySegment struct) {
+        return struct.get(paRGBs$LAYOUT, paRGBs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE paRGBs
+     * }
+     */
+    public static void paRGBs(MemorySegment struct, byte fieldValue) {
+        struct.set(paRGBs$LAYOUT, paRGBs$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

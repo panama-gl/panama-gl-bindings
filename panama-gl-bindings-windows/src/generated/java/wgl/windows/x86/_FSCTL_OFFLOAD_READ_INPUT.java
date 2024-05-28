@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FSCTL_OFFLOAD_READ_INPUT {
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     DWORD TokenTimeToLive;
+ *     DWORD Reserved;
+ *     DWORDLONG FileOffset;
+ *     DWORDLONG CopyLength;
+ * }
+ * }
+ */
 public class _FSCTL_OFFLOAD_READ_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("TokenTimeToLive"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("FileOffset"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CopyLength")
-    ).withName("_FSCTL_OFFLOAD_READ_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _FSCTL_OFFLOAD_READ_INPUT.$struct$LAYOUT;
+    _FSCTL_OFFLOAD_READ_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TokenTimeToLive$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TokenTimeToLive"));
-    public static VarHandle TokenTimeToLive$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.TokenTimeToLive$VH;
-    }
-    public static int TokenTimeToLive$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.TokenTimeToLive$VH.get(seg);
-    }
-    public static void TokenTimeToLive$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.TokenTimeToLive$VH.set(seg, x);
-    }
-    public static int TokenTimeToLive$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.TokenTimeToLive$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TokenTimeToLive$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.TokenTimeToLive$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_FSCTL_OFFLOAD_READ_INPUT.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _FSCTL_OFFLOAD_READ_INPUT.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FileOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FileOffset"));
-    public static VarHandle FileOffset$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.FileOffset$VH;
-    }
-    public static long FileOffset$get(MemorySegment seg) {
-        return (long)_FSCTL_OFFLOAD_READ_INPUT.FileOffset$VH.get(seg);
-    }
-    public static void FileOffset$set( MemorySegment seg, long x) {
-        _FSCTL_OFFLOAD_READ_INPUT.FileOffset$VH.set(seg, x);
-    }
-    public static long FileOffset$get(MemorySegment seg, long index) {
-        return (long)_FSCTL_OFFLOAD_READ_INPUT.FileOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FileOffset$set(MemorySegment seg, long index, long x) {
-        _FSCTL_OFFLOAD_READ_INPUT.FileOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CopyLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CopyLength"));
-    public static VarHandle CopyLength$VH() {
-        return _FSCTL_OFFLOAD_READ_INPUT.CopyLength$VH;
-    }
-    public static long CopyLength$get(MemorySegment seg) {
-        return (long)_FSCTL_OFFLOAD_READ_INPUT.CopyLength$VH.get(seg);
-    }
-    public static void CopyLength$set( MemorySegment seg, long x) {
-        _FSCTL_OFFLOAD_READ_INPUT.CopyLength$VH.set(seg, x);
-    }
-    public static long CopyLength$get(MemorySegment seg, long index) {
-        return (long)_FSCTL_OFFLOAD_READ_INPUT.CopyLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CopyLength$set(MemorySegment seg, long index, long x) {
-        _FSCTL_OFFLOAD_READ_INPUT.CopyLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("TokenTimeToLive"),
+        wgl_h.C_LONG.withName("Reserved"),
+        wgl_h.C_LONG_LONG.withName("FileOffset"),
+        wgl_h.C_LONG_LONG.withName("CopyLength")
+    ).withName("_FSCTL_OFFLOAD_READ_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TokenTimeToLive$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TokenTimeToLive"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TokenTimeToLive
+     * }
+     */
+    public static final OfInt TokenTimeToLive$layout() {
+        return TokenTimeToLive$LAYOUT;
+    }
+
+    private static final long TokenTimeToLive$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TokenTimeToLive
+     * }
+     */
+    public static final long TokenTimeToLive$offset() {
+        return TokenTimeToLive$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TokenTimeToLive
+     * }
+     */
+    public static int TokenTimeToLive(MemorySegment struct) {
+        return struct.get(TokenTimeToLive$LAYOUT, TokenTimeToLive$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TokenTimeToLive
+     * }
+     */
+    public static void TokenTimeToLive(MemorySegment struct, int fieldValue) {
+        struct.set(TokenTimeToLive$LAYOUT, TokenTimeToLive$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfLong FileOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("FileOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileOffset
+     * }
+     */
+    public static final OfLong FileOffset$layout() {
+        return FileOffset$LAYOUT;
+    }
+
+    private static final long FileOffset$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileOffset
+     * }
+     */
+    public static final long FileOffset$offset() {
+        return FileOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileOffset
+     * }
+     */
+    public static long FileOffset(MemorySegment struct) {
+        return struct.get(FileOffset$LAYOUT, FileOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG FileOffset
+     * }
+     */
+    public static void FileOffset(MemorySegment struct, long fieldValue) {
+        struct.set(FileOffset$LAYOUT, FileOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CopyLength$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CopyLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG CopyLength
+     * }
+     */
+    public static final OfLong CopyLength$layout() {
+        return CopyLength$LAYOUT;
+    }
+
+    private static final long CopyLength$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG CopyLength
+     * }
+     */
+    public static final long CopyLength$offset() {
+        return CopyLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG CopyLength
+     * }
+     */
+    public static long CopyLength(MemorySegment struct) {
+        return struct.get(CopyLength$LAYOUT, CopyLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG CopyLength
+     * }
+     */
+    public static void CopyLength(MemorySegment struct, long fieldValue) {
+        struct.set(CopyLength$LAYOUT, CopyLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

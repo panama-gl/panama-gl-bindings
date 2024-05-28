@@ -2,68 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SID {
+ *     BYTE Revision;
+ *     BYTE SubAuthorityCount;
+ *     SID_IDENTIFIER_AUTHORITY IdentifierAuthority;
+ *     DWORD SubAuthority[1];
+ * }
+ * }
+ */
 public class _SID {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Revision"),
-        Constants$root.C_CHAR$LAYOUT.withName("SubAuthorityCount"),
-        MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(6, Constants$root.C_CHAR$LAYOUT).withName("Value")
-        ).withName("IdentifierAuthority"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("SubAuthority")
-    ).withName("_SID");
-    public static MemoryLayout $LAYOUT() {
-        return _SID.$struct$LAYOUT;
+    _SID() {
+        // Should not be called directly
     }
-    static final VarHandle Revision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Revision"));
-    public static VarHandle Revision$VH() {
-        return _SID.Revision$VH;
-    }
-    public static byte Revision$get(MemorySegment seg) {
-        return (byte)_SID.Revision$VH.get(seg);
-    }
-    public static void Revision$set( MemorySegment seg, byte x) {
-        _SID.Revision$VH.set(seg, x);
-    }
-    public static byte Revision$get(MemorySegment seg, long index) {
-        return (byte)_SID.Revision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Revision$set(MemorySegment seg, long index, byte x) {
-        _SID.Revision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SubAuthorityCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SubAuthorityCount"));
-    public static VarHandle SubAuthorityCount$VH() {
-        return _SID.SubAuthorityCount$VH;
-    }
-    public static byte SubAuthorityCount$get(MemorySegment seg) {
-        return (byte)_SID.SubAuthorityCount$VH.get(seg);
-    }
-    public static void SubAuthorityCount$set( MemorySegment seg, byte x) {
-        _SID.SubAuthorityCount$VH.set(seg, x);
-    }
-    public static byte SubAuthorityCount$get(MemorySegment seg, long index) {
-        return (byte)_SID.SubAuthorityCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SubAuthorityCount$set(MemorySegment seg, long index, byte x) {
-        _SID.SubAuthorityCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment IdentifierAuthority$slice(MemorySegment seg) {
-        return seg.asSlice(2, 6);
-    }
-    public static MemorySegment SubAuthority$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("Revision"),
+        wgl_h.C_CHAR.withName("SubAuthorityCount"),
+        _SID_IDENTIFIER_AUTHORITY.layout().withName("IdentifierAuthority"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_LONG).withName("SubAuthority")
+    ).withName("_SID");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Revision$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Revision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static final OfByte Revision$layout() {
+        return Revision$LAYOUT;
+    }
+
+    private static final long Revision$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static final long Revision$offset() {
+        return Revision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static byte Revision(MemorySegment struct) {
+        return struct.get(Revision$LAYOUT, Revision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Revision
+     * }
+     */
+    public static void Revision(MemorySegment struct, byte fieldValue) {
+        struct.set(Revision$LAYOUT, Revision$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SubAuthorityCount$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SubAuthorityCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SubAuthorityCount
+     * }
+     */
+    public static final OfByte SubAuthorityCount$layout() {
+        return SubAuthorityCount$LAYOUT;
+    }
+
+    private static final long SubAuthorityCount$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SubAuthorityCount
+     * }
+     */
+    public static final long SubAuthorityCount$offset() {
+        return SubAuthorityCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SubAuthorityCount
+     * }
+     */
+    public static byte SubAuthorityCount(MemorySegment struct) {
+        return struct.get(SubAuthorityCount$LAYOUT, SubAuthorityCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SubAuthorityCount
+     * }
+     */
+    public static void SubAuthorityCount(MemorySegment struct, byte fieldValue) {
+        struct.set(SubAuthorityCount$LAYOUT, SubAuthorityCount$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout IdentifierAuthority$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("IdentifierAuthority"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SID_IDENTIFIER_AUTHORITY IdentifierAuthority
+     * }
+     */
+    public static final GroupLayout IdentifierAuthority$layout() {
+        return IdentifierAuthority$LAYOUT;
+    }
+
+    private static final long IdentifierAuthority$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SID_IDENTIFIER_AUTHORITY IdentifierAuthority
+     * }
+     */
+    public static final long IdentifierAuthority$offset() {
+        return IdentifierAuthority$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SID_IDENTIFIER_AUTHORITY IdentifierAuthority
+     * }
+     */
+    public static MemorySegment IdentifierAuthority(MemorySegment struct) {
+        return struct.asSlice(IdentifierAuthority$OFFSET, IdentifierAuthority$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SID_IDENTIFIER_AUTHORITY IdentifierAuthority
+     * }
+     */
+    public static void IdentifierAuthority(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IdentifierAuthority$OFFSET, IdentifierAuthority$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout SubAuthority$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SubAuthority"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static final SequenceLayout SubAuthority$layout() {
+        return SubAuthority$LAYOUT;
+    }
+
+    private static final long SubAuthority$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static final long SubAuthority$offset() {
+        return SubAuthority$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static MemorySegment SubAuthority(MemorySegment struct) {
+        return struct.asSlice(SubAuthority$OFFSET, SubAuthority$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static void SubAuthority(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SubAuthority$OFFSET, SubAuthority$LAYOUT.byteSize());
+    }
+
+    private static long[] SubAuthority$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static long[] SubAuthority$dimensions() {
+        return SubAuthority$DIMS;
+    }
+    private static final VarHandle SubAuthority$ELEM_HANDLE = SubAuthority$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static int SubAuthority(MemorySegment struct, long index0) {
+        return (int)SubAuthority$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD SubAuthority[1]
+     * }
+     */
+    public static void SubAuthority(MemorySegment struct, long index0, int fieldValue) {
+        SubAuthority$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

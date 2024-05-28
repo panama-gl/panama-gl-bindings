@@ -2,275 +2,924 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct __MIDL___MIDL_itf_wtypes_0000_0001_0001 {
+ *     DWORD tyspec;
+ *     union __MIDL___MIDL_itf_wtypes_0000_0001_0005 {
+ *         CLSID clsid;
+ *         LPOLESTR pFileExt;
+ *         LPOLESTR pMimeType;
+ *         LPOLESTR pProgId;
+ *         LPOLESTR pFileName;
+ *         struct {
+ *             LPOLESTR pPackageName;
+ *             GUID PolicyId;
+ *         } ByName;
+ *         struct {
+ *             GUID ObjectId;
+ *             GUID PolicyId;
+ *         } ByObjectId;
+ *     } tagged_union;
+ * }
+ * }
+ */
 public class __MIDL___MIDL_itf_wtypes_0000_0001_0001 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("tyspec"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("clsid"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFileExt"),
-            Constants$root.C_POINTER$LAYOUT.withName("pMimeType"),
-            Constants$root.C_POINTER$LAYOUT.withName("pProgId"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFileName"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pPackageName"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            ).withName("ByName"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("ObjectId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            ).withName("ByObjectId")
-        ).withName("tagged_union")
+    __MIDL___MIDL_itf_wtypes_0000_0001_0001() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("tyspec"),
+        MemoryLayout.paddingLayout(4),
+        __MIDL___MIDL_itf_wtypes_0000_0001_0001.__MIDL___MIDL_itf_wtypes_0000_0001_0005.layout().withName("tagged_union")
     ).withName("__MIDL___MIDL_itf_wtypes_0000_0001_0001");
-    public static MemoryLayout $LAYOUT() {
-        return __MIDL___MIDL_itf_wtypes_0000_0001_0001.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle tyspec$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("tyspec"));
-    public static VarHandle tyspec$VH() {
-        return __MIDL___MIDL_itf_wtypes_0000_0001_0001.tyspec$VH;
+
+    private static final OfInt tyspec$LAYOUT = (OfInt)$LAYOUT.select(groupElement("tyspec"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD tyspec
+     * }
+     */
+    public static final OfInt tyspec$layout() {
+        return tyspec$LAYOUT;
     }
-    public static int tyspec$get(MemorySegment seg) {
-        return (int)__MIDL___MIDL_itf_wtypes_0000_0001_0001.tyspec$VH.get(seg);
+
+    private static final long tyspec$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD tyspec
+     * }
+     */
+    public static final long tyspec$offset() {
+        return tyspec$OFFSET;
     }
-    public static void tyspec$set( MemorySegment seg, int x) {
-        __MIDL___MIDL_itf_wtypes_0000_0001_0001.tyspec$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD tyspec
+     * }
+     */
+    public static int tyspec(MemorySegment struct) {
+        return struct.get(tyspec$LAYOUT, tyspec$OFFSET);
     }
-    public static int tyspec$get(MemorySegment seg, long index) {
-        return (int)__MIDL___MIDL_itf_wtypes_0000_0001_0001.tyspec$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD tyspec
+     * }
+     */
+    public static void tyspec(MemorySegment struct, int fieldValue) {
+        struct.set(tyspec$LAYOUT, tyspec$OFFSET, fieldValue);
     }
-    public static void tyspec$set(MemorySegment seg, long index, int x) {
-        __MIDL___MIDL_itf_wtypes_0000_0001_0001.tyspec$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union __MIDL___MIDL_itf_wtypes_0000_0001_0005 {
+     *     CLSID clsid;
+     *     LPOLESTR pFileExt;
+     *     LPOLESTR pMimeType;
+     *     LPOLESTR pProgId;
+     *     LPOLESTR pFileName;
+     *     struct {
+     *         LPOLESTR pPackageName;
+     *         GUID PolicyId;
+     *     } ByName;
+     *     struct {
+     *         GUID ObjectId;
+     *         GUID PolicyId;
+     *     } ByObjectId;
+     * }
+     * }
+     */
     public static class __MIDL___MIDL_itf_wtypes_0000_0001_0005 {
 
-        static final  GroupLayout __MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("clsid"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFileExt"),
-            Constants$root.C_POINTER$LAYOUT.withName("pMimeType"),
-            Constants$root.C_POINTER$LAYOUT.withName("pProgId"),
-            Constants$root.C_POINTER$LAYOUT.withName("pFileName"),
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pPackageName"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            ).withName("ByName"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("ObjectId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            ).withName("ByObjectId")
+        __MIDL___MIDL_itf_wtypes_0000_0001_0005() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _GUID.layout().withName("clsid"),
+            wgl_h.C_POINTER.withName("pFileExt"),
+            wgl_h.C_POINTER.withName("pMimeType"),
+            wgl_h.C_POINTER.withName("pProgId"),
+            wgl_h.C_POINTER.withName("pFileName"),
+            __MIDL___MIDL_itf_wtypes_0000_0001_0001.__MIDL___MIDL_itf_wtypes_0000_0001_0005.ByName.layout().withName("ByName"),
+            __MIDL___MIDL_itf_wtypes_0000_0001_0001.__MIDL___MIDL_itf_wtypes_0000_0001_0005.ByObjectId.layout().withName("ByObjectId")
         ).withName("__MIDL___MIDL_itf_wtypes_0000_0001_0005");
-        public static MemoryLayout $LAYOUT() {
-            return __MIDL___MIDL_itf_wtypes_0000_0001_0005.__MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT;
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemorySegment clsid$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final GroupLayout clsid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("clsid"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * CLSID clsid
+         * }
+         */
+        public static final GroupLayout clsid$layout() {
+            return clsid$LAYOUT;
         }
-        static final VarHandle pFileExt$VH = __MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFileExt"));
-        public static VarHandle pFileExt$VH() {
-            return __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileExt$VH;
+
+        private static final long clsid$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * CLSID clsid
+         * }
+         */
+        public static final long clsid$offset() {
+            return clsid$OFFSET;
         }
-        public static MemoryAddress pFileExt$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileExt$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * CLSID clsid
+         * }
+         */
+        public static MemorySegment clsid(MemorySegment union) {
+            return union.asSlice(clsid$OFFSET, clsid$LAYOUT.byteSize());
         }
-        public static void pFileExt$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileExt$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * CLSID clsid
+         * }
+         */
+        public static void clsid(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, clsid$OFFSET, clsid$LAYOUT.byteSize());
         }
-        public static MemoryAddress pFileExt$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileExt$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final AddressLayout pFileExt$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFileExt"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileExt
+         * }
+         */
+        public static final AddressLayout pFileExt$layout() {
+            return pFileExt$LAYOUT;
         }
-        public static void pFileExt$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileExt$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long pFileExt$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileExt
+         * }
+         */
+        public static final long pFileExt$offset() {
+            return pFileExt$OFFSET;
         }
-        static final VarHandle pMimeType$VH = __MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pMimeType"));
-        public static VarHandle pMimeType$VH() {
-            return __MIDL___MIDL_itf_wtypes_0000_0001_0005.pMimeType$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileExt
+         * }
+         */
+        public static MemorySegment pFileExt(MemorySegment union) {
+            return union.get(pFileExt$LAYOUT, pFileExt$OFFSET);
         }
-        public static MemoryAddress pMimeType$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pMimeType$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileExt
+         * }
+         */
+        public static void pFileExt(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pFileExt$LAYOUT, pFileExt$OFFSET, fieldValue);
         }
-        public static void pMimeType$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pMimeType$VH.set(seg, x);
+
+        private static final AddressLayout pMimeType$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pMimeType"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPOLESTR pMimeType
+         * }
+         */
+        public static final AddressLayout pMimeType$layout() {
+            return pMimeType$LAYOUT;
         }
-        public static MemoryAddress pMimeType$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pMimeType$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long pMimeType$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPOLESTR pMimeType
+         * }
+         */
+        public static final long pMimeType$offset() {
+            return pMimeType$OFFSET;
         }
-        public static void pMimeType$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pMimeType$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pMimeType
+         * }
+         */
+        public static MemorySegment pMimeType(MemorySegment union) {
+            return union.get(pMimeType$LAYOUT, pMimeType$OFFSET);
         }
-        static final VarHandle pProgId$VH = __MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pProgId"));
-        public static VarHandle pProgId$VH() {
-            return __MIDL___MIDL_itf_wtypes_0000_0001_0005.pProgId$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pMimeType
+         * }
+         */
+        public static void pMimeType(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pMimeType$LAYOUT, pMimeType$OFFSET, fieldValue);
         }
-        public static MemoryAddress pProgId$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pProgId$VH.get(seg);
+
+        private static final AddressLayout pProgId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pProgId"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPOLESTR pProgId
+         * }
+         */
+        public static final AddressLayout pProgId$layout() {
+            return pProgId$LAYOUT;
         }
-        public static void pProgId$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pProgId$VH.set(seg, x);
+
+        private static final long pProgId$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPOLESTR pProgId
+         * }
+         */
+        public static final long pProgId$offset() {
+            return pProgId$OFFSET;
         }
-        public static MemoryAddress pProgId$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pProgId$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pProgId
+         * }
+         */
+        public static MemorySegment pProgId(MemorySegment union) {
+            return union.get(pProgId$LAYOUT, pProgId$OFFSET);
         }
-        public static void pProgId$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pProgId$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pProgId
+         * }
+         */
+        public static void pProgId(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pProgId$LAYOUT, pProgId$OFFSET, fieldValue);
         }
-        static final VarHandle pFileName$VH = __MIDL___MIDL_itf_wtypes_0000_0001_0005$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pFileName"));
-        public static VarHandle pFileName$VH() {
-            return __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileName$VH;
+
+        private static final AddressLayout pFileName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pFileName"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileName
+         * }
+         */
+        public static final AddressLayout pFileName$layout() {
+            return pFileName$LAYOUT;
         }
-        public static MemoryAddress pFileName$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileName$VH.get(seg);
+
+        private static final long pFileName$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileName
+         * }
+         */
+        public static final long pFileName$offset() {
+            return pFileName$OFFSET;
         }
-        public static void pFileName$set( MemorySegment seg, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileName$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileName
+         * }
+         */
+        public static MemorySegment pFileName(MemorySegment union) {
+            return union.get(pFileName$LAYOUT, pFileName$OFFSET);
         }
-        public static MemoryAddress pFileName$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)__MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileName$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LPOLESTR pFileName
+         * }
+         */
+        public static void pFileName(MemorySegment union, MemorySegment fieldValue) {
+            union.set(pFileName$LAYOUT, pFileName$OFFSET, fieldValue);
         }
-        public static void pFileName$set(MemorySegment seg, long index, MemoryAddress x) {
-            __MIDL___MIDL_itf_wtypes_0000_0001_0005.pFileName$VH.set(seg.asSlice(index*sizeof()), x);
-        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     LPOLESTR pPackageName;
+         *     GUID PolicyId;
+         * }
+         * }
+         */
         public static class ByName {
 
-            static final  GroupLayout __MIDL___MIDL_itf_wtypes_0000_0001_0005$ByName$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pPackageName"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return ByName.__MIDL___MIDL_itf_wtypes_0000_0001_0005$ByName$struct$LAYOUT;
+            ByName() {
+                // Should not be called directly
             }
-            static final VarHandle pPackageName$VH = __MIDL___MIDL_itf_wtypes_0000_0001_0005$ByName$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPackageName"));
-            public static VarHandle pPackageName$VH() {
-                return ByName.pPackageName$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_POINTER.withName("pPackageName"),
+                _GUID.layout().withName("PolicyId")
+            ).withName("$anon$930:24");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static MemoryAddress pPackageName$get(MemorySegment seg) {
-                return (java.lang.foreign.MemoryAddress)ByName.pPackageName$VH.get(seg);
+
+            private static final AddressLayout pPackageName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPackageName"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * LPOLESTR pPackageName
+             * }
+             */
+            public static final AddressLayout pPackageName$layout() {
+                return pPackageName$LAYOUT;
             }
-            public static void pPackageName$set( MemorySegment seg, MemoryAddress x) {
-                ByName.pPackageName$VH.set(seg, x);
+
+            private static final long pPackageName$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * LPOLESTR pPackageName
+             * }
+             */
+            public static final long pPackageName$offset() {
+                return pPackageName$OFFSET;
             }
-            public static MemoryAddress pPackageName$get(MemorySegment seg, long index) {
-                return (java.lang.foreign.MemoryAddress)ByName.pPackageName$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * LPOLESTR pPackageName
+             * }
+             */
+            public static MemorySegment pPackageName(MemorySegment struct) {
+                return struct.get(pPackageName$LAYOUT, pPackageName$OFFSET);
             }
-            public static void pPackageName$set(MemorySegment seg, long index, MemoryAddress x) {
-                ByName.pPackageName$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * LPOLESTR pPackageName
+             * }
+             */
+            public static void pPackageName(MemorySegment struct, MemorySegment fieldValue) {
+                struct.set(pPackageName$LAYOUT, pPackageName$OFFSET, fieldValue);
             }
-            public static MemorySegment PolicyId$slice(MemorySegment seg) {
-                return seg.asSlice(8, 16);
+
+            private static final GroupLayout PolicyId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PolicyId"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static final GroupLayout PolicyId$layout() {
+                return PolicyId$LAYOUT;
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final long PolicyId$OFFSET = 8;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static final long PolicyId$offset() {
+                return PolicyId$OFFSET;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static MemorySegment PolicyId(MemorySegment struct) {
+                return struct.asSlice(PolicyId$OFFSET, PolicyId$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static void PolicyId(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, PolicyId$OFFSET, PolicyId$LAYOUT.byteSize());
+            }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment ByName$slice(MemorySegment seg) {
-            return seg.asSlice(0, 24);
+        private static final GroupLayout ByName$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ByName"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LPOLESTR pPackageName;
+         *     GUID PolicyId;
+         * } ByName
+         * }
+         */
+        public static final GroupLayout ByName$layout() {
+            return ByName$LAYOUT;
         }
+
+        private static final long ByName$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LPOLESTR pPackageName;
+         *     GUID PolicyId;
+         * } ByName
+         * }
+         */
+        public static final long ByName$offset() {
+            return ByName$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LPOLESTR pPackageName;
+         *     GUID PolicyId;
+         * } ByName
+         * }
+         */
+        public static MemorySegment ByName(MemorySegment union) {
+            return union.asSlice(ByName$OFFSET, ByName$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     LPOLESTR pPackageName;
+         *     GUID PolicyId;
+         * } ByName
+         * }
+         */
+        public static void ByName(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, ByName$OFFSET, ByName$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     GUID ObjectId;
+         *     GUID PolicyId;
+         * }
+         * }
+         */
         public static class ByObjectId {
 
-            static final  GroupLayout __MIDL___MIDL_itf_wtypes_0000_0001_0005$ByObjectId$struct$LAYOUT = MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("ObjectId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                    Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                    MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-                ).withName("PolicyId")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return ByObjectId.__MIDL___MIDL_itf_wtypes_0000_0001_0005$ByObjectId$struct$LAYOUT;
+            ByObjectId() {
+                // Should not be called directly
             }
-            public static MemorySegment ObjectId$slice(MemorySegment seg) {
-                return seg.asSlice(0, 16);
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                _GUID.layout().withName("ObjectId"),
+                _GUID.layout().withName("PolicyId")
+            ).withName("$anon$935:24");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static MemorySegment PolicyId$slice(MemorySegment seg) {
-                return seg.asSlice(16, 16);
+
+            private static final GroupLayout ObjectId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ObjectId"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * GUID ObjectId
+             * }
+             */
+            public static final GroupLayout ObjectId$layout() {
+                return ObjectId$LAYOUT;
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            private static final long ObjectId$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * GUID ObjectId
+             * }
+             */
+            public static final long ObjectId$offset() {
+                return ObjectId$OFFSET;
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * GUID ObjectId
+             * }
+             */
+            public static MemorySegment ObjectId(MemorySegment struct) {
+                return struct.asSlice(ObjectId$OFFSET, ObjectId$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * GUID ObjectId
+             * }
+             */
+            public static void ObjectId(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, ObjectId$OFFSET, ObjectId$LAYOUT.byteSize());
+            }
+
+            private static final GroupLayout PolicyId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PolicyId"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static final GroupLayout PolicyId$layout() {
+                return PolicyId$LAYOUT;
+            }
+
+            private static final long PolicyId$OFFSET = 16;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static final long PolicyId$offset() {
+                return PolicyId$OFFSET;
+            }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static MemorySegment PolicyId(MemorySegment struct) {
+                return struct.asSlice(PolicyId$OFFSET, PolicyId$LAYOUT.byteSize());
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * GUID PolicyId
+             * }
+             */
+            public static void PolicyId(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, PolicyId$OFFSET, PolicyId$LAYOUT.byteSize());
+            }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment ByObjectId$slice(MemorySegment seg) {
-            return seg.asSlice(0, 32);
+        private static final GroupLayout ByObjectId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ByObjectId"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     GUID ObjectId;
+         *     GUID PolicyId;
+         * } ByObjectId
+         * }
+         */
+        public static final GroupLayout ByObjectId$layout() {
+            return ByObjectId$LAYOUT;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final long ByObjectId$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     GUID ObjectId;
+         *     GUID PolicyId;
+         * } ByObjectId
+         * }
+         */
+        public static final long ByObjectId$offset() {
+            return ByObjectId$OFFSET;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     GUID ObjectId;
+         *     GUID PolicyId;
+         * } ByObjectId
+         * }
+         */
+        public static MemorySegment ByObjectId(MemorySegment union) {
+            return union.asSlice(ByObjectId$OFFSET, ByObjectId$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     GUID ObjectId;
+         *     GUID PolicyId;
+         * } ByObjectId
+         * }
+         */
+        public static void ByObjectId(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, ByObjectId$OFFSET, ByObjectId$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment tagged_union$slice(MemorySegment seg) {
-        return seg.asSlice(8, 32);
+    private static final GroupLayout tagged_union$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("tagged_union"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union __MIDL___MIDL_itf_wtypes_0000_0001_0005 tagged_union
+     * }
+     */
+    public static final GroupLayout tagged_union$layout() {
+        return tagged_union$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long tagged_union$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union __MIDL___MIDL_itf_wtypes_0000_0001_0005 tagged_union
+     * }
+     */
+    public static final long tagged_union$offset() {
+        return tagged_union$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union __MIDL___MIDL_itf_wtypes_0000_0001_0005 tagged_union
+     * }
+     */
+    public static MemorySegment tagged_union(MemorySegment struct) {
+        return struct.asSlice(tagged_union$OFFSET, tagged_union$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union __MIDL___MIDL_itf_wtypes_0000_0001_0005 tagged_union
+     * }
+     */
+    public static void tagged_union(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, tagged_union$OFFSET, tagged_union$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

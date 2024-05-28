@@ -2,27 +2,67 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    java.lang.foreign.Addressable apply(int id);
-    static MemorySegment allocate(PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC.class, fi, constants$1384.PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef HGLRC (*PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC)(UINT) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC {
+
+    PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC() {
+        // Should not be called directly
     }
-    static PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _id) -> {
-            try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$1384.PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC$MH.invokeExact((Addressable)symbol, _id);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        MemorySegment apply(int id);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_POINTER,
+        wgl_h.C_INT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLCREATEASSOCIATEDCONTEXTAMDPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static MemorySegment invoke(MemorySegment funcPtr,int id) {
+        try {
+            return (MemorySegment) DOWN$MH.invokeExact(funcPtr, id);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

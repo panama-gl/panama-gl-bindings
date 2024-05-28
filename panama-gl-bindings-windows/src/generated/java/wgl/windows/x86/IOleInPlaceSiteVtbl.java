@@ -2,699 +2,1592 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IOleInPlaceSiteVtbl {
+ *     HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall));
+ *     ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall));
+ *     HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall));
+ *     HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall));
+ *     HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall));
+ *     HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall));
+ *     HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall));
+ *     HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall));
+ * }
+ * }
+ */
 public class IOleInPlaceSiteVtbl {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("QueryInterface"),
-        Constants$root.C_POINTER$LAYOUT.withName("AddRef"),
-        Constants$root.C_POINTER$LAYOUT.withName("Release"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetWindow"),
-        Constants$root.C_POINTER$LAYOUT.withName("ContextSensitiveHelp"),
-        Constants$root.C_POINTER$LAYOUT.withName("CanInPlaceActivate"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnInPlaceActivate"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnUIActivate"),
-        Constants$root.C_POINTER$LAYOUT.withName("GetWindowContext"),
-        Constants$root.C_POINTER$LAYOUT.withName("Scroll"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnUIDeactivate"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnInPlaceDeactivate"),
-        Constants$root.C_POINTER$LAYOUT.withName("DiscardUndoState"),
-        Constants$root.C_POINTER$LAYOUT.withName("DeactivateAndUndo"),
-        Constants$root.C_POINTER$LAYOUT.withName("OnPosRectChange")
+    IOleInPlaceSiteVtbl() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("QueryInterface"),
+        wgl_h.C_POINTER.withName("AddRef"),
+        wgl_h.C_POINTER.withName("Release"),
+        wgl_h.C_POINTER.withName("GetWindow"),
+        wgl_h.C_POINTER.withName("ContextSensitiveHelp"),
+        wgl_h.C_POINTER.withName("CanInPlaceActivate"),
+        wgl_h.C_POINTER.withName("OnInPlaceActivate"),
+        wgl_h.C_POINTER.withName("OnUIActivate"),
+        wgl_h.C_POINTER.withName("GetWindowContext"),
+        wgl_h.C_POINTER.withName("Scroll"),
+        wgl_h.C_POINTER.withName("OnUIDeactivate"),
+        wgl_h.C_POINTER.withName("OnInPlaceDeactivate"),
+        wgl_h.C_POINTER.withName("DiscardUndoState"),
+        wgl_h.C_POINTER.withName("DeactivateAndUndo"),
+        wgl_h.C_POINTER.withName("OnPosRectChange")
     ).withName("IOleInPlaceSiteVtbl");
-    public static MemoryLayout $LAYOUT() {
-        return IOleInPlaceSiteVtbl.$struct$LAYOUT;
-    }
-    static final FunctionDescriptor QueryInterface$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle QueryInterface$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.QueryInterface$FUNC
-    );
-    public interface QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2);
-        static MemorySegment allocate(QueryInterface fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(QueryInterface.class, fi, IOleInPlaceSiteVtbl.QueryInterface$FUNC, session);
-        }
-        static QueryInterface ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.QueryInterface$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
 
-    static final VarHandle QueryInterface$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("QueryInterface"));
-    public static VarHandle QueryInterface$VH() {
-        return IOleInPlaceSiteVtbl.QueryInterface$VH;
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.QueryInterface$VH.get(seg);
-    }
-    public static void QueryInterface$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.QueryInterface$VH.set(seg, x);
-    }
-    public static MemoryAddress QueryInterface$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.QueryInterface$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void QueryInterface$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.QueryInterface$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static QueryInterface QueryInterface (MemorySegment segment, MemorySession session) {
-        return QueryInterface.ofAddress(QueryInterface$get(segment), session);
-    }
-    static final FunctionDescriptor AddRef$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle AddRef$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.AddRef$FUNC
-    );
-    public interface AddRef {
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static class QueryInterface {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(AddRef fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(AddRef.class, fi, IOleInPlaceSiteVtbl.AddRef$FUNC, session);
+        QueryInterface() {
+            // Should not be called directly
         }
-        static AddRef ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.AddRef$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(QueryInterface.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(QueryInterface.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle AddRef$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AddRef"));
-    public static VarHandle AddRef$VH() {
-        return IOleInPlaceSiteVtbl.AddRef$VH;
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.AddRef$VH.get(seg);
-    }
-    public static void AddRef$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.AddRef$VH.set(seg, x);
-    }
-    public static MemoryAddress AddRef$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.AddRef$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AddRef$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.AddRef$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static AddRef AddRef (MemorySegment segment, MemorySession session) {
-        return AddRef.ofAddress(AddRef$get(segment), session);
-    }
-    static final FunctionDescriptor Release$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle Release$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.Release$FUNC
-    );
-    public interface Release {
+    private static final AddressLayout QueryInterface$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("QueryInterface"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(Release fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Release.class, fi, IOleInPlaceSiteVtbl.Release$FUNC, session);
-        }
-        static Release ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.Release$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout QueryInterface$layout() {
+        return QueryInterface$LAYOUT;
     }
 
-    static final VarHandle Release$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Release"));
-    public static VarHandle Release$VH() {
-        return IOleInPlaceSiteVtbl.Release$VH;
-    }
-    public static MemoryAddress Release$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.Release$VH.get(seg);
-    }
-    public static void Release$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.Release$VH.set(seg, x);
-    }
-    public static MemoryAddress Release$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.Release$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Release$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.Release$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Release Release (MemorySegment segment, MemorySession session) {
-        return Release.ofAddress(Release$get(segment), session);
-    }
-    static final FunctionDescriptor GetWindow$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetWindow$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.GetWindow$FUNC
-    );
-    public interface GetWindow {
+    private static final long QueryInterface$OFFSET = 0;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(GetWindow fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetWindow.class, fi, IOleInPlaceSiteVtbl.GetWindow$FUNC, session);
-        }
-        static GetWindow ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.GetWindow$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static final long QueryInterface$offset() {
+        return QueryInterface$OFFSET;
     }
 
-    static final VarHandle GetWindow$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetWindow"));
-    public static VarHandle GetWindow$VH() {
-        return IOleInPlaceSiteVtbl.GetWindow$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment QueryInterface(MemorySegment struct) {
+        return struct.get(QueryInterface$LAYOUT, QueryInterface$OFFSET);
     }
-    public static MemoryAddress GetWindow$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.GetWindow$VH.get(seg);
-    }
-    public static void GetWindow$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.GetWindow$VH.set(seg, x);
-    }
-    public static MemoryAddress GetWindow$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.GetWindow$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetWindow$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.GetWindow$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetWindow GetWindow (MemorySegment segment, MemorySession session) {
-        return GetWindow.ofAddress(GetWindow$get(segment), session);
-    }
-    static final FunctionDescriptor ContextSensitiveHelp$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle ContextSensitiveHelp$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.ContextSensitiveHelp$FUNC
-    );
-    public interface ContextSensitiveHelp {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(ContextSensitiveHelp fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(ContextSensitiveHelp.class, fi, IOleInPlaceSiteVtbl.ContextSensitiveHelp$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*QueryInterface)(IOleInPlaceSite *, const IID *const, void **) __attribute__((stdcall))
+     * }
+     */
+    public static void QueryInterface(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(QueryInterface$LAYOUT, QueryInterface$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class AddRef {
+
+        AddRef() {
+            // Should not be called directly
         }
-        static ContextSensitiveHelp ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.ContextSensitiveHelp$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(AddRef.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(AddRef.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle ContextSensitiveHelp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContextSensitiveHelp"));
-    public static VarHandle ContextSensitiveHelp$VH() {
-        return IOleInPlaceSiteVtbl.ContextSensitiveHelp$VH;
-    }
-    public static MemoryAddress ContextSensitiveHelp$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.ContextSensitiveHelp$VH.get(seg);
-    }
-    public static void ContextSensitiveHelp$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.ContextSensitiveHelp$VH.set(seg, x);
-    }
-    public static MemoryAddress ContextSensitiveHelp$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.ContextSensitiveHelp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContextSensitiveHelp$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.ContextSensitiveHelp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static ContextSensitiveHelp ContextSensitiveHelp (MemorySegment segment, MemorySession session) {
-        return ContextSensitiveHelp.ofAddress(ContextSensitiveHelp$get(segment), session);
-    }
-    static final FunctionDescriptor CanInPlaceActivate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle CanInPlaceActivate$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.CanInPlaceActivate$FUNC
-    );
-    public interface CanInPlaceActivate {
+    private static final AddressLayout AddRef$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AddRef"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(CanInPlaceActivate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(CanInPlaceActivate.class, fi, IOleInPlaceSiteVtbl.CanInPlaceActivate$FUNC, session);
-        }
-        static CanInPlaceActivate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.CanInPlaceActivate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout AddRef$layout() {
+        return AddRef$LAYOUT;
     }
 
-    static final VarHandle CanInPlaceActivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CanInPlaceActivate"));
-    public static VarHandle CanInPlaceActivate$VH() {
-        return IOleInPlaceSiteVtbl.CanInPlaceActivate$VH;
-    }
-    public static MemoryAddress CanInPlaceActivate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.CanInPlaceActivate$VH.get(seg);
-    }
-    public static void CanInPlaceActivate$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.CanInPlaceActivate$VH.set(seg, x);
-    }
-    public static MemoryAddress CanInPlaceActivate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.CanInPlaceActivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CanInPlaceActivate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.CanInPlaceActivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static CanInPlaceActivate CanInPlaceActivate (MemorySegment segment, MemorySession session) {
-        return CanInPlaceActivate.ofAddress(CanInPlaceActivate$get(segment), session);
-    }
-    static final FunctionDescriptor OnInPlaceActivate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle OnInPlaceActivate$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.OnInPlaceActivate$FUNC
-    );
-    public interface OnInPlaceActivate {
+    private static final long AddRef$OFFSET = 8;
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(OnInPlaceActivate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnInPlaceActivate.class, fi, IOleInPlaceSiteVtbl.OnInPlaceActivate$FUNC, session);
-        }
-        static OnInPlaceActivate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.OnInPlaceActivate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long AddRef$offset() {
+        return AddRef$OFFSET;
     }
 
-    static final VarHandle OnInPlaceActivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnInPlaceActivate"));
-    public static VarHandle OnInPlaceActivate$VH() {
-        return IOleInPlaceSiteVtbl.OnInPlaceActivate$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment AddRef(MemorySegment struct) {
+        return struct.get(AddRef$LAYOUT, AddRef$OFFSET);
     }
-    public static MemoryAddress OnInPlaceActivate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnInPlaceActivate$VH.get(seg);
-    }
-    public static void OnInPlaceActivate$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnInPlaceActivate$VH.set(seg, x);
-    }
-    public static MemoryAddress OnInPlaceActivate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnInPlaceActivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OnInPlaceActivate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnInPlaceActivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static OnInPlaceActivate OnInPlaceActivate (MemorySegment segment, MemorySession session) {
-        return OnInPlaceActivate.ofAddress(OnInPlaceActivate$get(segment), session);
-    }
-    static final FunctionDescriptor OnUIActivate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle OnUIActivate$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.OnUIActivate$FUNC
-    );
-    public interface OnUIActivate {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(OnUIActivate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnUIActivate.class, fi, IOleInPlaceSiteVtbl.OnUIActivate$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*AddRef)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void AddRef(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AddRef$LAYOUT, AddRef$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class Release {
+
+        Release() {
+            // Should not be called directly
         }
-        static OnUIActivate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.OnUIActivate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Release.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Release.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle OnUIActivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnUIActivate"));
-    public static VarHandle OnUIActivate$VH() {
-        return IOleInPlaceSiteVtbl.OnUIActivate$VH;
-    }
-    public static MemoryAddress OnUIActivate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnUIActivate$VH.get(seg);
-    }
-    public static void OnUIActivate$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnUIActivate$VH.set(seg, x);
-    }
-    public static MemoryAddress OnUIActivate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnUIActivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OnUIActivate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnUIActivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static OnUIActivate OnUIActivate (MemorySegment segment, MemorySession session) {
-        return OnUIActivate.ofAddress(OnUIActivate$get(segment), session);
-    }
-    static final FunctionDescriptor GetWindowContext$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle GetWindowContext$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.GetWindowContext$FUNC
-    );
-    public interface GetWindowContext {
+    private static final AddressLayout Release$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Release"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1, java.lang.foreign.MemoryAddress _x2, java.lang.foreign.MemoryAddress _x3, java.lang.foreign.MemoryAddress _x4, java.lang.foreign.MemoryAddress _x5);
-        static MemorySegment allocate(GetWindowContext fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(GetWindowContext.class, fi, IOleInPlaceSiteVtbl.GetWindowContext$FUNC, session);
-        }
-        static GetWindowContext ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1, java.lang.foreign.MemoryAddress __x2, java.lang.foreign.MemoryAddress __x3, java.lang.foreign.MemoryAddress __x4, java.lang.foreign.MemoryAddress __x5) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.GetWindowContext$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1, (java.lang.foreign.Addressable)__x2, (java.lang.foreign.Addressable)__x3, (java.lang.foreign.Addressable)__x4, (java.lang.foreign.Addressable)__x5);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Release$layout() {
+        return Release$LAYOUT;
     }
 
-    static final VarHandle GetWindowContext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GetWindowContext"));
-    public static VarHandle GetWindowContext$VH() {
-        return IOleInPlaceSiteVtbl.GetWindowContext$VH;
-    }
-    public static MemoryAddress GetWindowContext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.GetWindowContext$VH.get(seg);
-    }
-    public static void GetWindowContext$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.GetWindowContext$VH.set(seg, x);
-    }
-    public static MemoryAddress GetWindowContext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.GetWindowContext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetWindowContext$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.GetWindowContext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static GetWindowContext GetWindowContext (MemorySegment segment, MemorySession session) {
-        return GetWindowContext.ofAddress(GetWindowContext$get(segment), session);
-    }
-    static final FunctionDescriptor Scroll$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("cx"),
-            Constants$root.C_LONG$LAYOUT.withName("cy")
-        ).withName("tagSIZE")
-    );
-    static final MethodHandle Scroll$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.Scroll$FUNC
-    );
-    public interface Scroll {
+    private static final long Release$OFFSET = 16;
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemorySegment _x1);
-        static MemorySegment allocate(Scroll fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(Scroll.class, fi, IOleInPlaceSiteVtbl.Scroll$FUNC, session);
-        }
-        static Scroll ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemorySegment __x1) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.Scroll$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long Release$offset() {
+        return Release$OFFSET;
     }
 
-    static final VarHandle Scroll$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Scroll"));
-    public static VarHandle Scroll$VH() {
-        return IOleInPlaceSiteVtbl.Scroll$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Release(MemorySegment struct) {
+        return struct.get(Release$LAYOUT, Release$OFFSET);
     }
-    public static MemoryAddress Scroll$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.Scroll$VH.get(seg);
-    }
-    public static void Scroll$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.Scroll$VH.set(seg, x);
-    }
-    public static MemoryAddress Scroll$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.Scroll$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Scroll$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.Scroll$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static Scroll Scroll (MemorySegment segment, MemorySession session) {
-        return Scroll.ofAddress(Scroll$get(segment), session);
-    }
-    static final FunctionDescriptor OnUIDeactivate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_LONG$LAYOUT
-    );
-    static final MethodHandle OnUIDeactivate$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.OnUIDeactivate$FUNC
-    );
-    public interface OnUIDeactivate {
 
-        int apply(java.lang.foreign.MemoryAddress _x0, int _x1);
-        static MemorySegment allocate(OnUIDeactivate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnUIDeactivate.class, fi, IOleInPlaceSiteVtbl.OnUIDeactivate$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG (*Release)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void Release(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Release$LAYOUT, Release$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall))
+     * }
+     */
+    public static class GetWindow {
+
+        GetWindow() {
+            // Should not be called directly
         }
-        static OnUIDeactivate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, int __x1) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.OnUIDeactivate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, __x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetWindow.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetWindow.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle OnUIDeactivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnUIDeactivate"));
-    public static VarHandle OnUIDeactivate$VH() {
-        return IOleInPlaceSiteVtbl.OnUIDeactivate$VH;
-    }
-    public static MemoryAddress OnUIDeactivate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnUIDeactivate$VH.get(seg);
-    }
-    public static void OnUIDeactivate$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnUIDeactivate$VH.set(seg, x);
-    }
-    public static MemoryAddress OnUIDeactivate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnUIDeactivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OnUIDeactivate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnUIDeactivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static OnUIDeactivate OnUIDeactivate (MemorySegment segment, MemorySession session) {
-        return OnUIDeactivate.ofAddress(OnUIDeactivate$get(segment), session);
-    }
-    static final FunctionDescriptor OnInPlaceDeactivate$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle OnInPlaceDeactivate$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.OnInPlaceDeactivate$FUNC
-    );
-    public interface OnInPlaceDeactivate {
+    private static final AddressLayout GetWindow$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetWindow"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(OnInPlaceDeactivate fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnInPlaceDeactivate.class, fi, IOleInPlaceSiteVtbl.OnInPlaceDeactivate$FUNC, session);
-        }
-        static OnInPlaceDeactivate ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.OnInPlaceDeactivate$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetWindow$layout() {
+        return GetWindow$LAYOUT;
     }
 
-    static final VarHandle OnInPlaceDeactivate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnInPlaceDeactivate"));
-    public static VarHandle OnInPlaceDeactivate$VH() {
-        return IOleInPlaceSiteVtbl.OnInPlaceDeactivate$VH;
-    }
-    public static MemoryAddress OnInPlaceDeactivate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnInPlaceDeactivate$VH.get(seg);
-    }
-    public static void OnInPlaceDeactivate$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnInPlaceDeactivate$VH.set(seg, x);
-    }
-    public static MemoryAddress OnInPlaceDeactivate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnInPlaceDeactivate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OnInPlaceDeactivate$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnInPlaceDeactivate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static OnInPlaceDeactivate OnInPlaceDeactivate (MemorySegment segment, MemorySession session) {
-        return OnInPlaceDeactivate.ofAddress(OnInPlaceDeactivate$get(segment), session);
-    }
-    static final FunctionDescriptor DiscardUndoState$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle DiscardUndoState$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.DiscardUndoState$FUNC
-    );
-    public interface DiscardUndoState {
+    private static final long GetWindow$OFFSET = 24;
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(DiscardUndoState fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(DiscardUndoState.class, fi, IOleInPlaceSiteVtbl.DiscardUndoState$FUNC, session);
-        }
-        static DiscardUndoState ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.DiscardUndoState$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetWindow$offset() {
+        return GetWindow$OFFSET;
     }
 
-    static final VarHandle DiscardUndoState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DiscardUndoState"));
-    public static VarHandle DiscardUndoState$VH() {
-        return IOleInPlaceSiteVtbl.DiscardUndoState$VH;
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetWindow(MemorySegment struct) {
+        return struct.get(GetWindow$LAYOUT, GetWindow$OFFSET);
     }
-    public static MemoryAddress DiscardUndoState$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.DiscardUndoState$VH.get(seg);
-    }
-    public static void DiscardUndoState$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.DiscardUndoState$VH.set(seg, x);
-    }
-    public static MemoryAddress DiscardUndoState$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.DiscardUndoState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiscardUndoState$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.DiscardUndoState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static DiscardUndoState DiscardUndoState (MemorySegment segment, MemorySession session) {
-        return DiscardUndoState.ofAddress(DiscardUndoState$get(segment), session);
-    }
-    static final FunctionDescriptor DeactivateAndUndo$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle DeactivateAndUndo$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.DeactivateAndUndo$FUNC
-    );
-    public interface DeactivateAndUndo {
 
-        int apply(java.lang.foreign.MemoryAddress _x0);
-        static MemorySegment allocate(DeactivateAndUndo fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(DeactivateAndUndo.class, fi, IOleInPlaceSiteVtbl.DeactivateAndUndo$FUNC, session);
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindow)(IOleInPlaceSite *, HWND *) __attribute__((stdcall))
+     * }
+     */
+    public static void GetWindow(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetWindow$LAYOUT, GetWindow$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class ContextSensitiveHelp {
+
+        ContextSensitiveHelp() {
+            // Should not be called directly
         }
-        static DeactivateAndUndo ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.DeactivateAndUndo$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(ContextSensitiveHelp.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(ContextSensitiveHelp.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
         }
     }
 
-    static final VarHandle DeactivateAndUndo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeactivateAndUndo"));
-    public static VarHandle DeactivateAndUndo$VH() {
-        return IOleInPlaceSiteVtbl.DeactivateAndUndo$VH;
-    }
-    public static MemoryAddress DeactivateAndUndo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.DeactivateAndUndo$VH.get(seg);
-    }
-    public static void DeactivateAndUndo$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.DeactivateAndUndo$VH.set(seg, x);
-    }
-    public static MemoryAddress DeactivateAndUndo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.DeactivateAndUndo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeactivateAndUndo$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.DeactivateAndUndo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static DeactivateAndUndo DeactivateAndUndo (MemorySegment segment, MemorySession session) {
-        return DeactivateAndUndo.ofAddress(DeactivateAndUndo$get(segment), session);
-    }
-    static final FunctionDescriptor OnPosRectChange$FUNC = FunctionDescriptor.of(Constants$root.C_LONG$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT,
-        Constants$root.C_POINTER$LAYOUT
-    );
-    static final MethodHandle OnPosRectChange$MH = RuntimeHelper.downcallHandle(
-        IOleInPlaceSiteVtbl.OnPosRectChange$FUNC
-    );
-    public interface OnPosRectChange {
+    private static final AddressLayout ContextSensitiveHelp$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ContextSensitiveHelp"));
 
-        int apply(java.lang.foreign.MemoryAddress _x0, java.lang.foreign.MemoryAddress _x1);
-        static MemorySegment allocate(OnPosRectChange fi, MemorySession session) {
-            return RuntimeHelper.upcallStub(OnPosRectChange.class, fi, IOleInPlaceSiteVtbl.OnPosRectChange$FUNC, session);
-        }
-        static OnPosRectChange ofAddress(MemoryAddress addr, MemorySession session) {
-            MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-            return (java.lang.foreign.MemoryAddress __x0, java.lang.foreign.MemoryAddress __x1) -> {
-                try {
-                    return (int)IOleInPlaceSiteVtbl.OnPosRectChange$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0, (java.lang.foreign.Addressable)__x1);
-                } catch (Throwable ex$) {
-                    throw new AssertionError("should not reach here", ex$);
-                }
-            };
-        }
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout ContextSensitiveHelp$layout() {
+        return ContextSensitiveHelp$LAYOUT;
     }
 
-    static final VarHandle OnPosRectChange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OnPosRectChange"));
-    public static VarHandle OnPosRectChange$VH() {
-        return IOleInPlaceSiteVtbl.OnPosRectChange$VH;
+    private static final long ContextSensitiveHelp$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long ContextSensitiveHelp$offset() {
+        return ContextSensitiveHelp$OFFSET;
     }
-    public static MemoryAddress OnPosRectChange$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnPosRectChange$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment ContextSensitiveHelp(MemorySegment struct) {
+        return struct.get(ContextSensitiveHelp$LAYOUT, ContextSensitiveHelp$OFFSET);
     }
-    public static void OnPosRectChange$set( MemorySegment seg, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnPosRectChange$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*ContextSensitiveHelp)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void ContextSensitiveHelp(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ContextSensitiveHelp$LAYOUT, ContextSensitiveHelp$OFFSET, fieldValue);
     }
-    public static MemoryAddress OnPosRectChange$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)IOleInPlaceSiteVtbl.OnPosRectChange$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class CanInPlaceActivate {
+
+        CanInPlaceActivate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(CanInPlaceActivate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(CanInPlaceActivate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
     }
-    public static void OnPosRectChange$set(MemorySegment seg, long index, MemoryAddress x) {
-        IOleInPlaceSiteVtbl.OnPosRectChange$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final AddressLayout CanInPlaceActivate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CanInPlaceActivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout CanInPlaceActivate$layout() {
+        return CanInPlaceActivate$LAYOUT;
     }
-    public static OnPosRectChange OnPosRectChange (MemorySegment segment, MemorySession session) {
-        return OnPosRectChange.ofAddress(OnPosRectChange$get(segment), session);
+
+    private static final long CanInPlaceActivate$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long CanInPlaceActivate$offset() {
+        return CanInPlaceActivate$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment CanInPlaceActivate(MemorySegment struct) {
+        return struct.get(CanInPlaceActivate$LAYOUT, CanInPlaceActivate$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*CanInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void CanInPlaceActivate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CanInPlaceActivate$LAYOUT, CanInPlaceActivate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class OnInPlaceActivate {
+
+        OnInPlaceActivate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnInPlaceActivate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnInPlaceActivate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnInPlaceActivate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnInPlaceActivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnInPlaceActivate$layout() {
+        return OnInPlaceActivate$LAYOUT;
+    }
+
+    private static final long OnInPlaceActivate$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnInPlaceActivate$offset() {
+        return OnInPlaceActivate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnInPlaceActivate(MemorySegment struct) {
+        return struct.get(OnInPlaceActivate$LAYOUT, OnInPlaceActivate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void OnInPlaceActivate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnInPlaceActivate$LAYOUT, OnInPlaceActivate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class OnUIActivate {
+
+        OnUIActivate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnUIActivate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnUIActivate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnUIActivate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnUIActivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnUIActivate$layout() {
+        return OnUIActivate$LAYOUT;
+    }
+
+    private static final long OnUIActivate$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnUIActivate$offset() {
+        return OnUIActivate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnUIActivate(MemorySegment struct) {
+        return struct.get(OnUIActivate$LAYOUT, OnUIActivate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIActivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void OnUIActivate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnUIActivate$LAYOUT, OnUIActivate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall))
+     * }
+     */
+    public static class GetWindowContext {
+
+        GetWindowContext() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(GetWindowContext.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(GetWindowContext.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1, MemorySegment _x2, MemorySegment _x3, MemorySegment _x4, MemorySegment _x5) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2, _x3, _x4, _x5);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout GetWindowContext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetWindowContext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout GetWindowContext$layout() {
+        return GetWindowContext$LAYOUT;
+    }
+
+    private static final long GetWindowContext$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall))
+     * }
+     */
+    public static final long GetWindowContext$offset() {
+        return GetWindowContext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment GetWindowContext(MemorySegment struct) {
+        return struct.get(GetWindowContext$LAYOUT, GetWindowContext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*GetWindowContext)(IOleInPlaceSite *, IOleInPlaceFrame **, IOleInPlaceUIWindow **, LPRECT, LPRECT, LPOLEINPLACEFRAMEINFO) __attribute__((stdcall))
+     * }
+     */
+    public static void GetWindowContext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetWindowContext$LAYOUT, GetWindowContext$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall))
+     * }
+     */
+    public static class Scroll {
+
+        Scroll() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            tagSIZE.layout()
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(Scroll.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(Scroll.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout Scroll$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Scroll"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout Scroll$layout() {
+        return Scroll$LAYOUT;
+    }
+
+    private static final long Scroll$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall))
+     * }
+     */
+    public static final long Scroll$offset() {
+        return Scroll$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment Scroll(MemorySegment struct) {
+        return struct.get(Scroll$LAYOUT, Scroll$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*Scroll)(IOleInPlaceSite *, SIZE) __attribute__((stdcall))
+     * }
+     */
+    public static void Scroll(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Scroll$LAYOUT, Scroll$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static class OnUIDeactivate {
+
+        OnUIDeactivate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, int _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_INT
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnUIDeactivate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnUIDeactivate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, int _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnUIDeactivate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnUIDeactivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnUIDeactivate$layout() {
+        return OnUIDeactivate$LAYOUT;
+    }
+
+    private static final long OnUIDeactivate$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnUIDeactivate$offset() {
+        return OnUIDeactivate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnUIDeactivate(MemorySegment struct) {
+        return struct.get(OnUIDeactivate$LAYOUT, OnUIDeactivate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnUIDeactivate)(IOleInPlaceSite *, BOOL) __attribute__((stdcall))
+     * }
+     */
+    public static void OnUIDeactivate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnUIDeactivate$LAYOUT, OnUIDeactivate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class OnInPlaceDeactivate {
+
+        OnInPlaceDeactivate() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnInPlaceDeactivate.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnInPlaceDeactivate.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnInPlaceDeactivate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnInPlaceDeactivate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnInPlaceDeactivate$layout() {
+        return OnInPlaceDeactivate$LAYOUT;
+    }
+
+    private static final long OnInPlaceDeactivate$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnInPlaceDeactivate$offset() {
+        return OnInPlaceDeactivate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnInPlaceDeactivate(MemorySegment struct) {
+        return struct.get(OnInPlaceDeactivate$LAYOUT, OnInPlaceDeactivate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnInPlaceDeactivate)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void OnInPlaceDeactivate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnInPlaceDeactivate$LAYOUT, OnInPlaceDeactivate$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class DiscardUndoState {
+
+        DiscardUndoState() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(DiscardUndoState.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(DiscardUndoState.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout DiscardUndoState$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DiscardUndoState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout DiscardUndoState$layout() {
+        return DiscardUndoState$LAYOUT;
+    }
+
+    private static final long DiscardUndoState$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long DiscardUndoState$offset() {
+        return DiscardUndoState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment DiscardUndoState(MemorySegment struct) {
+        return struct.get(DiscardUndoState$LAYOUT, DiscardUndoState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DiscardUndoState)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void DiscardUndoState(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DiscardUndoState$LAYOUT, DiscardUndoState$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static class DeactivateAndUndo {
+
+        DeactivateAndUndo() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(DeactivateAndUndo.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(DeactivateAndUndo.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout DeactivateAndUndo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DeactivateAndUndo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout DeactivateAndUndo$layout() {
+        return DeactivateAndUndo$LAYOUT;
+    }
+
+    private static final long DeactivateAndUndo$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static final long DeactivateAndUndo$offset() {
+        return DeactivateAndUndo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment DeactivateAndUndo(MemorySegment struct) {
+        return struct.get(DeactivateAndUndo$LAYOUT, DeactivateAndUndo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*DeactivateAndUndo)(IOleInPlaceSite *) __attribute__((stdcall))
+     * }
+     */
+    public static void DeactivateAndUndo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DeactivateAndUndo$LAYOUT, DeactivateAndUndo$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall))
+     * }
+     */
+    public static class OnPosRectChange {
+
+        OnPosRectChange() {
+            // Should not be called directly
+        }
+
+        /**
+         * The function pointer signature, expressed as a functional interface
+         */
+        public interface Function {
+            int apply(MemorySegment _x0, MemorySegment _x1);
+        }
+
+        private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+            wgl_h.C_LONG,
+            wgl_h.C_POINTER,
+            wgl_h.C_POINTER
+        );
+
+        /**
+         * The descriptor of this function pointer
+         */
+        public static FunctionDescriptor descriptor() {
+            return $DESC;
+        }
+
+        private static final MethodHandle UP$MH = wgl_h.upcallHandle(OnPosRectChange.Function.class, "apply", $DESC);
+
+        /**
+         * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+         * The lifetime of the returned segment is managed by {@code arena}
+         */
+        public static MemorySegment allocate(OnPosRectChange.Function fi, Arena arena) {
+            return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+        }
+
+        private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+        /**
+         * Invoke the upcall stub {@code funcPtr}, with given parameters
+         */
+        public static int invoke(MemorySegment funcPtr,MemorySegment _x0, MemorySegment _x1) {
+            try {
+                return (int) DOWN$MH.invokeExact(funcPtr, _x0, _x1);
+            } catch (Throwable ex$) {
+                throw new AssertionError("should not reach here", ex$);
+            }
+        }
+    }
+
+    private static final AddressLayout OnPosRectChange$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("OnPosRectChange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall))
+     * }
+     */
+    public static final AddressLayout OnPosRectChange$layout() {
+        return OnPosRectChange$LAYOUT;
+    }
+
+    private static final long OnPosRectChange$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall))
+     * }
+     */
+    public static final long OnPosRectChange$offset() {
+        return OnPosRectChange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall))
+     * }
+     */
+    public static MemorySegment OnPosRectChange(MemorySegment struct) {
+        return struct.get(OnPosRectChange$LAYOUT, OnPosRectChange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HRESULT (*OnPosRectChange)(IOleInPlaceSite *, LPCRECT) __attribute__((stdcall))
+     * }
+     */
+    public static void OnPosRectChange(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(OnPosRectChange$LAYOUT, OnPosRectChange$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

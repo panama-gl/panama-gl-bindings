@@ -2,135 +2,360 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISPLAYCONFIG_MODE_INFO {
+ *     DISPLAYCONFIG_MODE_INFO_TYPE infoType;
+ *     UINT32 id;
+ *     LUID adapterId;
+ *     union {
+ *         DISPLAYCONFIG_TARGET_MODE targetMode;
+ *         DISPLAYCONFIG_SOURCE_MODE sourceMode;
+ *         DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo;
+ *     };
+ * }
+ * }
+ */
 public class DISPLAYCONFIG_MODE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("infoType"),
-        Constants$root.C_LONG$LAYOUT.withName("id"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-        ).withName("adapterId"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("pixelRate"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("Numerator"),
-                        Constants$root.C_LONG$LAYOUT.withName("Denominator")
-                    ).withName("hSyncFreq"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("Numerator"),
-                        Constants$root.C_LONG$LAYOUT.withName("Denominator")
-                    ).withName("vSyncFreq"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cx"),
-                        Constants$root.C_LONG$LAYOUT.withName("cy")
-                    ).withName("activeSize"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_LONG$LAYOUT.withName("cx"),
-                        Constants$root.C_LONG$LAYOUT.withName("cy")
-                    ).withName("totalSize"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            MemoryLayout.structLayout(
-                                MemoryLayout.paddingLayout(16).withName("videoStandard"),
-                                MemoryLayout.paddingLayout(6).withName("vSyncFreqDivider"),
-                                MemoryLayout.paddingLayout(10).withName("reserved")
-                            )
-                        ).withName("AdditionalSignalInfo"),
-                        Constants$root.C_LONG$LAYOUT.withName("videoStandard")
-                    ).withName("$anon$0"),
-                    Constants$root.C_LONG$LAYOUT.withName("scanLineOrdering")
-                ).withName("targetVideoSignalInfo")
-            ).withName("targetMode"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("width"),
-                Constants$root.C_LONG$LAYOUT.withName("height"),
-                Constants$root.C_LONG$LAYOUT.withName("pixelFormat"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("x"),
-                    Constants$root.C_LONG$LAYOUT.withName("y")
-                ).withName("position")
-            ).withName("sourceMode"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("x"),
-                    Constants$root.C_LONG$LAYOUT.withName("y")
-                ).withName("PathSourceSize"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("left"),
-                    Constants$root.C_LONG$LAYOUT.withName("top"),
-                    Constants$root.C_LONG$LAYOUT.withName("right"),
-                    Constants$root.C_LONG$LAYOUT.withName("bottom")
-                ).withName("DesktopImageRegion"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("left"),
-                    Constants$root.C_LONG$LAYOUT.withName("top"),
-                    Constants$root.C_LONG$LAYOUT.withName("right"),
-                    Constants$root.C_LONG$LAYOUT.withName("bottom")
-                ).withName("DesktopImageClip")
-            ).withName("desktopImageInfo")
-        ).withName("$anon$0")
-    ).withName("DISPLAYCONFIG_MODE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return DISPLAYCONFIG_MODE_INFO.$struct$LAYOUT;
+    DISPLAYCONFIG_MODE_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle infoType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("infoType"));
-    public static VarHandle infoType$VH() {
-        return DISPLAYCONFIG_MODE_INFO.infoType$VH;
-    }
-    public static int infoType$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_MODE_INFO.infoType$VH.get(seg);
-    }
-    public static void infoType$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_MODE_INFO.infoType$VH.set(seg, x);
-    }
-    public static int infoType$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_MODE_INFO.infoType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void infoType$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_MODE_INFO.infoType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle id$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("id"));
-    public static VarHandle id$VH() {
-        return DISPLAYCONFIG_MODE_INFO.id$VH;
-    }
-    public static int id$get(MemorySegment seg) {
-        return (int)DISPLAYCONFIG_MODE_INFO.id$VH.get(seg);
-    }
-    public static void id$set( MemorySegment seg, int x) {
-        DISPLAYCONFIG_MODE_INFO.id$VH.set(seg, x);
-    }
-    public static int id$get(MemorySegment seg, long index) {
-        return (int)DISPLAYCONFIG_MODE_INFO.id$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void id$set(MemorySegment seg, long index, int x) {
-        DISPLAYCONFIG_MODE_INFO.id$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment adapterId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment targetMode$slice(MemorySegment seg) {
-        return seg.asSlice(16, 48);
-    }
-    public static MemorySegment sourceMode$slice(MemorySegment seg) {
-        return seg.asSlice(16, 20);
-    }
-    public static MemorySegment desktopImageInfo$slice(MemorySegment seg) {
-        return seg.asSlice(16, 40);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("infoType"),
+        freeglut_h.C_INT.withName("id"),
+        _LUID.layout().withName("adapterId"),
+        MemoryLayout.unionLayout(
+            DISPLAYCONFIG_TARGET_MODE.layout().withName("targetMode"),
+            DISPLAYCONFIG_SOURCE_MODE.layout().withName("sourceMode"),
+            DISPLAYCONFIG_DESKTOP_IMAGE_INFO.layout().withName("desktopImageInfo")
+        ).withName("$anon$2932:5")
+    ).withName("DISPLAYCONFIG_MODE_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt infoType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("infoType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_MODE_INFO_TYPE infoType
+     * }
+     */
+    public static final OfInt infoType$layout() {
+        return infoType$LAYOUT;
+    }
+
+    private static final long infoType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_MODE_INFO_TYPE infoType
+     * }
+     */
+    public static final long infoType$offset() {
+        return infoType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_MODE_INFO_TYPE infoType
+     * }
+     */
+    public static int infoType(MemorySegment struct) {
+        return struct.get(infoType$LAYOUT, infoType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_MODE_INFO_TYPE infoType
+     * }
+     */
+    public static void infoType(MemorySegment struct, int fieldValue) {
+        struct.set(infoType$LAYOUT, infoType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt id$LAYOUT = (OfInt)$LAYOUT.select(groupElement("id"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final OfInt id$layout() {
+        return id$LAYOUT;
+    }
+
+    private static final long id$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static final long id$offset() {
+        return id$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static int id(MemorySegment struct) {
+        return struct.get(id$LAYOUT, id$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 id
+     * }
+     */
+    public static void id(MemorySegment struct, int fieldValue) {
+        struct.set(id$LAYOUT, id$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout adapterId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("adapterId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final GroupLayout adapterId$layout() {
+        return adapterId$LAYOUT;
+    }
+
+    private static final long adapterId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static final long adapterId$offset() {
+        return adapterId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static MemorySegment adapterId(MemorySegment struct) {
+        return struct.asSlice(adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LUID adapterId
+     * }
+     */
+    public static void adapterId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, adapterId$OFFSET, adapterId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout targetMode$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$2932:5"), groupElement("targetMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_TARGET_MODE targetMode
+     * }
+     */
+    public static final GroupLayout targetMode$layout() {
+        return targetMode$LAYOUT;
+    }
+
+    private static final long targetMode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_TARGET_MODE targetMode
+     * }
+     */
+    public static final long targetMode$offset() {
+        return targetMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_TARGET_MODE targetMode
+     * }
+     */
+    public static MemorySegment targetMode(MemorySegment struct) {
+        return struct.asSlice(targetMode$OFFSET, targetMode$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_TARGET_MODE targetMode
+     * }
+     */
+    public static void targetMode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, targetMode$OFFSET, targetMode$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout sourceMode$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$2932:5"), groupElement("sourceMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SOURCE_MODE sourceMode
+     * }
+     */
+    public static final GroupLayout sourceMode$layout() {
+        return sourceMode$LAYOUT;
+    }
+
+    private static final long sourceMode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SOURCE_MODE sourceMode
+     * }
+     */
+    public static final long sourceMode$offset() {
+        return sourceMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SOURCE_MODE sourceMode
+     * }
+     */
+    public static MemorySegment sourceMode(MemorySegment struct) {
+        return struct.asSlice(sourceMode$OFFSET, sourceMode$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_SOURCE_MODE sourceMode
+     * }
+     */
+    public static void sourceMode(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, sourceMode$OFFSET, sourceMode$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout desktopImageInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$2932:5"), groupElement("desktopImageInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo
+     * }
+     */
+    public static final GroupLayout desktopImageInfo$layout() {
+        return desktopImageInfo$LAYOUT;
+    }
+
+    private static final long desktopImageInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo
+     * }
+     */
+    public static final long desktopImageInfo$offset() {
+        return desktopImageInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo
+     * }
+     */
+    public static MemorySegment desktopImageInfo(MemorySegment struct) {
+        return struct.asSlice(desktopImageInfo$OFFSET, desktopImageInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DISPLAYCONFIG_DESKTOP_IMAGE_INFO desktopImageInfo
+     * }
+     */
+    public static void desktopImageInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, desktopImageInfo$OFFSET, desktopImageInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

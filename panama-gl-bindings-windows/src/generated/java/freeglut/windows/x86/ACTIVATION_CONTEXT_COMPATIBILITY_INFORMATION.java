@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
+ *     DWORD ElementCount;
+ *     COMPATIBILITY_CONTEXT_ELEMENT Elements[];
+ * } ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION
+ * }
+ */
 public class ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION extends _ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION {
 
+    ACTIVATION_CONTEXT_COMPATIBILITY_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

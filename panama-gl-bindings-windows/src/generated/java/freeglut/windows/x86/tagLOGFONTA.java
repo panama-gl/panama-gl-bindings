@@ -2,249 +2,757 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagLOGFONTA {
+ *     LONG lfHeight;
+ *     LONG lfWidth;
+ *     LONG lfEscapement;
+ *     LONG lfOrientation;
+ *     LONG lfWeight;
+ *     BYTE lfItalic;
+ *     BYTE lfUnderline;
+ *     BYTE lfStrikeOut;
+ *     BYTE lfCharSet;
+ *     BYTE lfOutPrecision;
+ *     BYTE lfClipPrecision;
+ *     BYTE lfQuality;
+ *     BYTE lfPitchAndFamily;
+ *     CHAR lfFaceName[32];
+ * }
+ * }
+ */
 public class tagLOGFONTA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-        Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-        Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-        Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-        Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-        Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("lfFaceName")
-    ).withName("tagLOGFONTA");
-    public static MemoryLayout $LAYOUT() {
-        return tagLOGFONTA.$struct$LAYOUT;
+    tagLOGFONTA() {
+        // Should not be called directly
     }
-    static final VarHandle lfHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfHeight"));
-    public static VarHandle lfHeight$VH() {
-        return tagLOGFONTA.lfHeight$VH;
-    }
-    public static int lfHeight$get(MemorySegment seg) {
-        return (int)tagLOGFONTA.lfHeight$VH.get(seg);
-    }
-    public static void lfHeight$set( MemorySegment seg, int x) {
-        tagLOGFONTA.lfHeight$VH.set(seg, x);
-    }
-    public static int lfHeight$get(MemorySegment seg, long index) {
-        return (int)tagLOGFONTA.lfHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfHeight$set(MemorySegment seg, long index, int x) {
-        tagLOGFONTA.lfHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfWidth"));
-    public static VarHandle lfWidth$VH() {
-        return tagLOGFONTA.lfWidth$VH;
-    }
-    public static int lfWidth$get(MemorySegment seg) {
-        return (int)tagLOGFONTA.lfWidth$VH.get(seg);
-    }
-    public static void lfWidth$set( MemorySegment seg, int x) {
-        tagLOGFONTA.lfWidth$VH.set(seg, x);
-    }
-    public static int lfWidth$get(MemorySegment seg, long index) {
-        return (int)tagLOGFONTA.lfWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfWidth$set(MemorySegment seg, long index, int x) {
-        tagLOGFONTA.lfWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfEscapement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfEscapement"));
-    public static VarHandle lfEscapement$VH() {
-        return tagLOGFONTA.lfEscapement$VH;
-    }
-    public static int lfEscapement$get(MemorySegment seg) {
-        return (int)tagLOGFONTA.lfEscapement$VH.get(seg);
-    }
-    public static void lfEscapement$set( MemorySegment seg, int x) {
-        tagLOGFONTA.lfEscapement$VH.set(seg, x);
-    }
-    public static int lfEscapement$get(MemorySegment seg, long index) {
-        return (int)tagLOGFONTA.lfEscapement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfEscapement$set(MemorySegment seg, long index, int x) {
-        tagLOGFONTA.lfEscapement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfOrientation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfOrientation"));
-    public static VarHandle lfOrientation$VH() {
-        return tagLOGFONTA.lfOrientation$VH;
-    }
-    public static int lfOrientation$get(MemorySegment seg) {
-        return (int)tagLOGFONTA.lfOrientation$VH.get(seg);
-    }
-    public static void lfOrientation$set( MemorySegment seg, int x) {
-        tagLOGFONTA.lfOrientation$VH.set(seg, x);
-    }
-    public static int lfOrientation$get(MemorySegment seg, long index) {
-        return (int)tagLOGFONTA.lfOrientation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfOrientation$set(MemorySegment seg, long index, int x) {
-        tagLOGFONTA.lfOrientation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfWeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfWeight"));
-    public static VarHandle lfWeight$VH() {
-        return tagLOGFONTA.lfWeight$VH;
-    }
-    public static int lfWeight$get(MemorySegment seg) {
-        return (int)tagLOGFONTA.lfWeight$VH.get(seg);
-    }
-    public static void lfWeight$set( MemorySegment seg, int x) {
-        tagLOGFONTA.lfWeight$VH.set(seg, x);
-    }
-    public static int lfWeight$get(MemorySegment seg, long index) {
-        return (int)tagLOGFONTA.lfWeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfWeight$set(MemorySegment seg, long index, int x) {
-        tagLOGFONTA.lfWeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfItalic$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfItalic"));
-    public static VarHandle lfItalic$VH() {
-        return tagLOGFONTA.lfItalic$VH;
-    }
-    public static byte lfItalic$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfItalic$VH.get(seg);
-    }
-    public static void lfItalic$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfItalic$VH.set(seg, x);
-    }
-    public static byte lfItalic$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfItalic$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfItalic$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfItalic$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfUnderline$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfUnderline"));
-    public static VarHandle lfUnderline$VH() {
-        return tagLOGFONTA.lfUnderline$VH;
-    }
-    public static byte lfUnderline$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfUnderline$VH.get(seg);
-    }
-    public static void lfUnderline$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfUnderline$VH.set(seg, x);
-    }
-    public static byte lfUnderline$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfUnderline$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfUnderline$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfUnderline$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfStrikeOut$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfStrikeOut"));
-    public static VarHandle lfStrikeOut$VH() {
-        return tagLOGFONTA.lfStrikeOut$VH;
-    }
-    public static byte lfStrikeOut$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfStrikeOut$VH.get(seg);
-    }
-    public static void lfStrikeOut$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfStrikeOut$VH.set(seg, x);
-    }
-    public static byte lfStrikeOut$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfStrikeOut$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfStrikeOut$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfStrikeOut$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfCharSet$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfCharSet"));
-    public static VarHandle lfCharSet$VH() {
-        return tagLOGFONTA.lfCharSet$VH;
-    }
-    public static byte lfCharSet$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfCharSet$VH.get(seg);
-    }
-    public static void lfCharSet$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfCharSet$VH.set(seg, x);
-    }
-    public static byte lfCharSet$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfCharSet$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfCharSet$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfCharSet$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfOutPrecision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfOutPrecision"));
-    public static VarHandle lfOutPrecision$VH() {
-        return tagLOGFONTA.lfOutPrecision$VH;
-    }
-    public static byte lfOutPrecision$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfOutPrecision$VH.get(seg);
-    }
-    public static void lfOutPrecision$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfOutPrecision$VH.set(seg, x);
-    }
-    public static byte lfOutPrecision$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfOutPrecision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfOutPrecision$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfOutPrecision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfClipPrecision$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfClipPrecision"));
-    public static VarHandle lfClipPrecision$VH() {
-        return tagLOGFONTA.lfClipPrecision$VH;
-    }
-    public static byte lfClipPrecision$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfClipPrecision$VH.get(seg);
-    }
-    public static void lfClipPrecision$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfClipPrecision$VH.set(seg, x);
-    }
-    public static byte lfClipPrecision$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfClipPrecision$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfClipPrecision$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfClipPrecision$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfQuality$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfQuality"));
-    public static VarHandle lfQuality$VH() {
-        return tagLOGFONTA.lfQuality$VH;
-    }
-    public static byte lfQuality$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfQuality$VH.get(seg);
-    }
-    public static void lfQuality$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfQuality$VH.set(seg, x);
-    }
-    public static byte lfQuality$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfQuality$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfQuality$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfQuality$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lfPitchAndFamily$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lfPitchAndFamily"));
-    public static VarHandle lfPitchAndFamily$VH() {
-        return tagLOGFONTA.lfPitchAndFamily$VH;
-    }
-    public static byte lfPitchAndFamily$get(MemorySegment seg) {
-        return (byte)tagLOGFONTA.lfPitchAndFamily$VH.get(seg);
-    }
-    public static void lfPitchAndFamily$set( MemorySegment seg, byte x) {
-        tagLOGFONTA.lfPitchAndFamily$VH.set(seg, x);
-    }
-    public static byte lfPitchAndFamily$get(MemorySegment seg, long index) {
-        return (byte)tagLOGFONTA.lfPitchAndFamily$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lfPitchAndFamily$set(MemorySegment seg, long index, byte x) {
-        tagLOGFONTA.lfPitchAndFamily$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lfFaceName$slice(MemorySegment seg) {
-        return seg.asSlice(28, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("lfHeight"),
+        freeglut_h.C_LONG.withName("lfWidth"),
+        freeglut_h.C_LONG.withName("lfEscapement"),
+        freeglut_h.C_LONG.withName("lfOrientation"),
+        freeglut_h.C_LONG.withName("lfWeight"),
+        freeglut_h.C_CHAR.withName("lfItalic"),
+        freeglut_h.C_CHAR.withName("lfUnderline"),
+        freeglut_h.C_CHAR.withName("lfStrikeOut"),
+        freeglut_h.C_CHAR.withName("lfCharSet"),
+        freeglut_h.C_CHAR.withName("lfOutPrecision"),
+        freeglut_h.C_CHAR.withName("lfClipPrecision"),
+        freeglut_h.C_CHAR.withName("lfQuality"),
+        freeglut_h.C_CHAR.withName("lfPitchAndFamily"),
+        MemoryLayout.sequenceLayout(32, freeglut_h.C_CHAR).withName("lfFaceName")
+    ).withName("tagLOGFONTA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lfHeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lfHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lfHeight
+     * }
+     */
+    public static final OfInt lfHeight$layout() {
+        return lfHeight$LAYOUT;
+    }
+
+    private static final long lfHeight$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lfHeight
+     * }
+     */
+    public static final long lfHeight$offset() {
+        return lfHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lfHeight
+     * }
+     */
+    public static int lfHeight(MemorySegment struct) {
+        return struct.get(lfHeight$LAYOUT, lfHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lfHeight
+     * }
+     */
+    public static void lfHeight(MemorySegment struct, int fieldValue) {
+        struct.set(lfHeight$LAYOUT, lfHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lfWidth$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lfWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lfWidth
+     * }
+     */
+    public static final OfInt lfWidth$layout() {
+        return lfWidth$LAYOUT;
+    }
+
+    private static final long lfWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lfWidth
+     * }
+     */
+    public static final long lfWidth$offset() {
+        return lfWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lfWidth
+     * }
+     */
+    public static int lfWidth(MemorySegment struct) {
+        return struct.get(lfWidth$LAYOUT, lfWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lfWidth
+     * }
+     */
+    public static void lfWidth(MemorySegment struct, int fieldValue) {
+        struct.set(lfWidth$LAYOUT, lfWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lfEscapement$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lfEscapement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lfEscapement
+     * }
+     */
+    public static final OfInt lfEscapement$layout() {
+        return lfEscapement$LAYOUT;
+    }
+
+    private static final long lfEscapement$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lfEscapement
+     * }
+     */
+    public static final long lfEscapement$offset() {
+        return lfEscapement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lfEscapement
+     * }
+     */
+    public static int lfEscapement(MemorySegment struct) {
+        return struct.get(lfEscapement$LAYOUT, lfEscapement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lfEscapement
+     * }
+     */
+    public static void lfEscapement(MemorySegment struct, int fieldValue) {
+        struct.set(lfEscapement$LAYOUT, lfEscapement$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lfOrientation$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lfOrientation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lfOrientation
+     * }
+     */
+    public static final OfInt lfOrientation$layout() {
+        return lfOrientation$LAYOUT;
+    }
+
+    private static final long lfOrientation$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lfOrientation
+     * }
+     */
+    public static final long lfOrientation$offset() {
+        return lfOrientation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lfOrientation
+     * }
+     */
+    public static int lfOrientation(MemorySegment struct) {
+        return struct.get(lfOrientation$LAYOUT, lfOrientation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lfOrientation
+     * }
+     */
+    public static void lfOrientation(MemorySegment struct, int fieldValue) {
+        struct.set(lfOrientation$LAYOUT, lfOrientation$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lfWeight$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lfWeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lfWeight
+     * }
+     */
+    public static final OfInt lfWeight$layout() {
+        return lfWeight$LAYOUT;
+    }
+
+    private static final long lfWeight$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lfWeight
+     * }
+     */
+    public static final long lfWeight$offset() {
+        return lfWeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lfWeight
+     * }
+     */
+    public static int lfWeight(MemorySegment struct) {
+        return struct.get(lfWeight$LAYOUT, lfWeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lfWeight
+     * }
+     */
+    public static void lfWeight(MemorySegment struct, int fieldValue) {
+        struct.set(lfWeight$LAYOUT, lfWeight$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfItalic$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfItalic"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfItalic
+     * }
+     */
+    public static final OfByte lfItalic$layout() {
+        return lfItalic$LAYOUT;
+    }
+
+    private static final long lfItalic$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfItalic
+     * }
+     */
+    public static final long lfItalic$offset() {
+        return lfItalic$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfItalic
+     * }
+     */
+    public static byte lfItalic(MemorySegment struct) {
+        return struct.get(lfItalic$LAYOUT, lfItalic$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfItalic
+     * }
+     */
+    public static void lfItalic(MemorySegment struct, byte fieldValue) {
+        struct.set(lfItalic$LAYOUT, lfItalic$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfUnderline$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfUnderline"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfUnderline
+     * }
+     */
+    public static final OfByte lfUnderline$layout() {
+        return lfUnderline$LAYOUT;
+    }
+
+    private static final long lfUnderline$OFFSET = 21;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfUnderline
+     * }
+     */
+    public static final long lfUnderline$offset() {
+        return lfUnderline$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfUnderline
+     * }
+     */
+    public static byte lfUnderline(MemorySegment struct) {
+        return struct.get(lfUnderline$LAYOUT, lfUnderline$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfUnderline
+     * }
+     */
+    public static void lfUnderline(MemorySegment struct, byte fieldValue) {
+        struct.set(lfUnderline$LAYOUT, lfUnderline$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfStrikeOut$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfStrikeOut"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfStrikeOut
+     * }
+     */
+    public static final OfByte lfStrikeOut$layout() {
+        return lfStrikeOut$LAYOUT;
+    }
+
+    private static final long lfStrikeOut$OFFSET = 22;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfStrikeOut
+     * }
+     */
+    public static final long lfStrikeOut$offset() {
+        return lfStrikeOut$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfStrikeOut
+     * }
+     */
+    public static byte lfStrikeOut(MemorySegment struct) {
+        return struct.get(lfStrikeOut$LAYOUT, lfStrikeOut$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfStrikeOut
+     * }
+     */
+    public static void lfStrikeOut(MemorySegment struct, byte fieldValue) {
+        struct.set(lfStrikeOut$LAYOUT, lfStrikeOut$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfCharSet$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfCharSet"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfCharSet
+     * }
+     */
+    public static final OfByte lfCharSet$layout() {
+        return lfCharSet$LAYOUT;
+    }
+
+    private static final long lfCharSet$OFFSET = 23;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfCharSet
+     * }
+     */
+    public static final long lfCharSet$offset() {
+        return lfCharSet$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfCharSet
+     * }
+     */
+    public static byte lfCharSet(MemorySegment struct) {
+        return struct.get(lfCharSet$LAYOUT, lfCharSet$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfCharSet
+     * }
+     */
+    public static void lfCharSet(MemorySegment struct, byte fieldValue) {
+        struct.set(lfCharSet$LAYOUT, lfCharSet$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfOutPrecision$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfOutPrecision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfOutPrecision
+     * }
+     */
+    public static final OfByte lfOutPrecision$layout() {
+        return lfOutPrecision$LAYOUT;
+    }
+
+    private static final long lfOutPrecision$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfOutPrecision
+     * }
+     */
+    public static final long lfOutPrecision$offset() {
+        return lfOutPrecision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfOutPrecision
+     * }
+     */
+    public static byte lfOutPrecision(MemorySegment struct) {
+        return struct.get(lfOutPrecision$LAYOUT, lfOutPrecision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfOutPrecision
+     * }
+     */
+    public static void lfOutPrecision(MemorySegment struct, byte fieldValue) {
+        struct.set(lfOutPrecision$LAYOUT, lfOutPrecision$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfClipPrecision$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfClipPrecision"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfClipPrecision
+     * }
+     */
+    public static final OfByte lfClipPrecision$layout() {
+        return lfClipPrecision$LAYOUT;
+    }
+
+    private static final long lfClipPrecision$OFFSET = 25;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfClipPrecision
+     * }
+     */
+    public static final long lfClipPrecision$offset() {
+        return lfClipPrecision$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfClipPrecision
+     * }
+     */
+    public static byte lfClipPrecision(MemorySegment struct) {
+        return struct.get(lfClipPrecision$LAYOUT, lfClipPrecision$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfClipPrecision
+     * }
+     */
+    public static void lfClipPrecision(MemorySegment struct, byte fieldValue) {
+        struct.set(lfClipPrecision$LAYOUT, lfClipPrecision$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfQuality$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfQuality"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfQuality
+     * }
+     */
+    public static final OfByte lfQuality$layout() {
+        return lfQuality$LAYOUT;
+    }
+
+    private static final long lfQuality$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfQuality
+     * }
+     */
+    public static final long lfQuality$offset() {
+        return lfQuality$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfQuality
+     * }
+     */
+    public static byte lfQuality(MemorySegment struct) {
+        return struct.get(lfQuality$LAYOUT, lfQuality$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfQuality
+     * }
+     */
+    public static void lfQuality(MemorySegment struct, byte fieldValue) {
+        struct.set(lfQuality$LAYOUT, lfQuality$OFFSET, fieldValue);
+    }
+
+    private static final OfByte lfPitchAndFamily$LAYOUT = (OfByte)$LAYOUT.select(groupElement("lfPitchAndFamily"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE lfPitchAndFamily
+     * }
+     */
+    public static final OfByte lfPitchAndFamily$layout() {
+        return lfPitchAndFamily$LAYOUT;
+    }
+
+    private static final long lfPitchAndFamily$OFFSET = 27;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE lfPitchAndFamily
+     * }
+     */
+    public static final long lfPitchAndFamily$offset() {
+        return lfPitchAndFamily$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE lfPitchAndFamily
+     * }
+     */
+    public static byte lfPitchAndFamily(MemorySegment struct) {
+        return struct.get(lfPitchAndFamily$LAYOUT, lfPitchAndFamily$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE lfPitchAndFamily
+     * }
+     */
+    public static void lfPitchAndFamily(MemorySegment struct, byte fieldValue) {
+        struct.set(lfPitchAndFamily$LAYOUT, lfPitchAndFamily$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout lfFaceName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("lfFaceName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static final SequenceLayout lfFaceName$layout() {
+        return lfFaceName$LAYOUT;
+    }
+
+    private static final long lfFaceName$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static final long lfFaceName$offset() {
+        return lfFaceName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static MemorySegment lfFaceName(MemorySegment struct) {
+        return struct.asSlice(lfFaceName$OFFSET, lfFaceName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static void lfFaceName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lfFaceName$OFFSET, lfFaceName$LAYOUT.byteSize());
+    }
+
+    private static long[] lfFaceName$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static long[] lfFaceName$dimensions() {
+        return lfFaceName$DIMS;
+    }
+    private static final VarHandle lfFaceName$ELEM_HANDLE = lfFaceName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static byte lfFaceName(MemorySegment struct, long index0) {
+        return (byte)lfFaceName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR lfFaceName[32]
+     * }
+     */
+    public static void lfFaceName(MemorySegment struct, long index0, byte fieldValue) {
+        lfFaceName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

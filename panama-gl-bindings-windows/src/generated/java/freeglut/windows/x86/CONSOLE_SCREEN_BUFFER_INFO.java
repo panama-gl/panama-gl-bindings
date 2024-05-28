@@ -2,13 +2,31 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CONSOLE_SCREEN_BUFFER_INFO {
+ *     COORD dwSize;
+ *     COORD dwCursorPosition;
+ *     WORD wAttributes;
+ *     SMALL_RECT srWindow;
+ *     COORD dwMaximumWindowSize;
+ * } CONSOLE_SCREEN_BUFFER_INFO
+ * }
+ */
 public class CONSOLE_SCREEN_BUFFER_INFO extends _CONSOLE_SCREEN_BUFFER_INFO {
 
+    CONSOLE_SCREEN_BUFFER_INFO() {
+        // Should not be called directly
+    }
 }
-
 

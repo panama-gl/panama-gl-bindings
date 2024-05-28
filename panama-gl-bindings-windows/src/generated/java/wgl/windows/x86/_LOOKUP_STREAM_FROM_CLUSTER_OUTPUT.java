@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT {
+ *     DWORD Offset;
+ *     DWORD NumberOfMatches;
+ *     DWORD BufferSizeRequired;
+ * }
+ * }
+ */
 public class _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Offset"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfMatches"),
-        Constants$root.C_LONG$LAYOUT.withName("BufferSizeRequired")
-    ).withName("_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.$struct$LAYOUT;
+    _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT() {
+        // Should not be called directly
     }
-    static final VarHandle Offset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Offset"));
-    public static VarHandle Offset$VH() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.Offset$VH;
-    }
-    public static int Offset$get(MemorySegment seg) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.Offset$VH.get(seg);
-    }
-    public static void Offset$set( MemorySegment seg, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.Offset$VH.set(seg, x);
-    }
-    public static int Offset$get(MemorySegment seg, long index) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.Offset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Offset$set(MemorySegment seg, long index, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.Offset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfMatches$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfMatches"));
-    public static VarHandle NumberOfMatches$VH() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.NumberOfMatches$VH;
-    }
-    public static int NumberOfMatches$get(MemorySegment seg) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.NumberOfMatches$VH.get(seg);
-    }
-    public static void NumberOfMatches$set( MemorySegment seg, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.NumberOfMatches$VH.set(seg, x);
-    }
-    public static int NumberOfMatches$get(MemorySegment seg, long index) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.NumberOfMatches$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfMatches$set(MemorySegment seg, long index, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.NumberOfMatches$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BufferSizeRequired$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BufferSizeRequired"));
-    public static VarHandle BufferSizeRequired$VH() {
-        return _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.BufferSizeRequired$VH;
-    }
-    public static int BufferSizeRequired$get(MemorySegment seg) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.BufferSizeRequired$VH.get(seg);
-    }
-    public static void BufferSizeRequired$set( MemorySegment seg, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.BufferSizeRequired$VH.set(seg, x);
-    }
-    public static int BufferSizeRequired$get(MemorySegment seg, long index) {
-        return (int)_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.BufferSizeRequired$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BufferSizeRequired$set(MemorySegment seg, long index, int x) {
-        _LOOKUP_STREAM_FROM_CLUSTER_OUTPUT.BufferSizeRequired$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Offset"),
+        wgl_h.C_LONG.withName("NumberOfMatches"),
+        wgl_h.C_LONG.withName("BufferSizeRequired")
+    ).withName("_LOOKUP_STREAM_FROM_CLUSTER_OUTPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Offset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Offset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Offset
+     * }
+     */
+    public static final OfInt Offset$layout() {
+        return Offset$LAYOUT;
+    }
+
+    private static final long Offset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Offset
+     * }
+     */
+    public static final long Offset$offset() {
+        return Offset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Offset
+     * }
+     */
+    public static int Offset(MemorySegment struct) {
+        return struct.get(Offset$LAYOUT, Offset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Offset
+     * }
+     */
+    public static void Offset(MemorySegment struct, int fieldValue) {
+        struct.set(Offset$LAYOUT, Offset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfMatches$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfMatches"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfMatches
+     * }
+     */
+    public static final OfInt NumberOfMatches$layout() {
+        return NumberOfMatches$LAYOUT;
+    }
+
+    private static final long NumberOfMatches$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfMatches
+     * }
+     */
+    public static final long NumberOfMatches$offset() {
+        return NumberOfMatches$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfMatches
+     * }
+     */
+    public static int NumberOfMatches(MemorySegment struct) {
+        return struct.get(NumberOfMatches$LAYOUT, NumberOfMatches$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfMatches
+     * }
+     */
+    public static void NumberOfMatches(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfMatches$LAYOUT, NumberOfMatches$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BufferSizeRequired$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BufferSizeRequired"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BufferSizeRequired
+     * }
+     */
+    public static final OfInt BufferSizeRequired$layout() {
+        return BufferSizeRequired$LAYOUT;
+    }
+
+    private static final long BufferSizeRequired$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BufferSizeRequired
+     * }
+     */
+    public static final long BufferSizeRequired$offset() {
+        return BufferSizeRequired$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BufferSizeRequired
+     * }
+     */
+    public static int BufferSizeRequired(MemorySegment struct) {
+        return struct.get(BufferSizeRequired$LAYOUT, BufferSizeRequired$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BufferSizeRequired
+     * }
+     */
+    public static void BufferSizeRequired(MemorySegment struct, int fieldValue) {
+        struct.set(BufferSizeRequired$LAYOUT, BufferSizeRequired$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

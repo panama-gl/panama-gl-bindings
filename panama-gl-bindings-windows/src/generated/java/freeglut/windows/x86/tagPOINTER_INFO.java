@@ -2,257 +2,817 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPOINTER_INFO {
+ *     POINTER_INPUT_TYPE pointerType;
+ *     UINT32 pointerId;
+ *     UINT32 frameId;
+ *     POINTER_FLAGS pointerFlags;
+ *     HANDLE sourceDevice;
+ *     HWND hwndTarget;
+ *     POINT ptPixelLocation;
+ *     POINT ptHimetricLocation;
+ *     POINT ptPixelLocationRaw;
+ *     POINT ptHimetricLocationRaw;
+ *     DWORD dwTime;
+ *     UINT32 historyCount;
+ *     INT32 InputData;
+ *     DWORD dwKeyStates;
+ *     UINT64 PerformanceCount;
+ *     POINTER_BUTTON_CHANGE_TYPE ButtonChangeType;
+ * }
+ * }
+ */
 public class tagPOINTER_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("pointerType"),
-        Constants$root.C_LONG$LAYOUT.withName("pointerId"),
-        Constants$root.C_LONG$LAYOUT.withName("frameId"),
-        Constants$root.C_LONG$LAYOUT.withName("pointerFlags"),
-        Constants$root.C_POINTER$LAYOUT.withName("sourceDevice"),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndTarget"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("ptPixelLocation"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("ptHimetricLocation"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("ptPixelLocationRaw"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("x"),
-            Constants$root.C_LONG$LAYOUT.withName("y")
-        ).withName("ptHimetricLocationRaw"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTime"),
-        Constants$root.C_LONG$LAYOUT.withName("historyCount"),
-        Constants$root.C_LONG$LAYOUT.withName("InputData"),
-        Constants$root.C_LONG$LAYOUT.withName("dwKeyStates"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("PerformanceCount"),
-        Constants$root.C_LONG$LAYOUT.withName("ButtonChangeType"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagPOINTER_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagPOINTER_INFO.$struct$LAYOUT;
+    tagPOINTER_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle pointerType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pointerType"));
-    public static VarHandle pointerType$VH() {
-        return tagPOINTER_INFO.pointerType$VH;
-    }
-    public static int pointerType$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.pointerType$VH.get(seg);
-    }
-    public static void pointerType$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.pointerType$VH.set(seg, x);
-    }
-    public static int pointerType$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.pointerType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pointerType$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.pointerType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pointerId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pointerId"));
-    public static VarHandle pointerId$VH() {
-        return tagPOINTER_INFO.pointerId$VH;
-    }
-    public static int pointerId$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.pointerId$VH.get(seg);
-    }
-    public static void pointerId$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.pointerId$VH.set(seg, x);
-    }
-    public static int pointerId$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.pointerId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pointerId$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.pointerId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle frameId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("frameId"));
-    public static VarHandle frameId$VH() {
-        return tagPOINTER_INFO.frameId$VH;
-    }
-    public static int frameId$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.frameId$VH.get(seg);
-    }
-    public static void frameId$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.frameId$VH.set(seg, x);
-    }
-    public static int frameId$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.frameId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void frameId$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.frameId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pointerFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pointerFlags"));
-    public static VarHandle pointerFlags$VH() {
-        return tagPOINTER_INFO.pointerFlags$VH;
-    }
-    public static int pointerFlags$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.pointerFlags$VH.get(seg);
-    }
-    public static void pointerFlags$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.pointerFlags$VH.set(seg, x);
-    }
-    public static int pointerFlags$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.pointerFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pointerFlags$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.pointerFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle sourceDevice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("sourceDevice"));
-    public static VarHandle sourceDevice$VH() {
-        return tagPOINTER_INFO.sourceDevice$VH;
-    }
-    public static MemoryAddress sourceDevice$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPOINTER_INFO.sourceDevice$VH.get(seg);
-    }
-    public static void sourceDevice$set( MemorySegment seg, MemoryAddress x) {
-        tagPOINTER_INFO.sourceDevice$VH.set(seg, x);
-    }
-    public static MemoryAddress sourceDevice$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPOINTER_INFO.sourceDevice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void sourceDevice$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPOINTER_INFO.sourceDevice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndTarget$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndTarget"));
-    public static VarHandle hwndTarget$VH() {
-        return tagPOINTER_INFO.hwndTarget$VH;
-    }
-    public static MemoryAddress hwndTarget$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPOINTER_INFO.hwndTarget$VH.get(seg);
-    }
-    public static void hwndTarget$set( MemorySegment seg, MemoryAddress x) {
-        tagPOINTER_INFO.hwndTarget$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndTarget$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPOINTER_INFO.hwndTarget$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndTarget$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPOINTER_INFO.hwndTarget$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ptPixelLocation$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    public static MemorySegment ptHimetricLocation$slice(MemorySegment seg) {
-        return seg.asSlice(40, 8);
-    }
-    public static MemorySegment ptPixelLocationRaw$slice(MemorySegment seg) {
-        return seg.asSlice(48, 8);
-    }
-    public static MemorySegment ptHimetricLocationRaw$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    static final VarHandle dwTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTime"));
-    public static VarHandle dwTime$VH() {
-        return tagPOINTER_INFO.dwTime$VH;
-    }
-    public static int dwTime$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.dwTime$VH.get(seg);
-    }
-    public static void dwTime$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.dwTime$VH.set(seg, x);
-    }
-    public static int dwTime$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.dwTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTime$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.dwTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle historyCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("historyCount"));
-    public static VarHandle historyCount$VH() {
-        return tagPOINTER_INFO.historyCount$VH;
-    }
-    public static int historyCount$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.historyCount$VH.get(seg);
-    }
-    public static void historyCount$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.historyCount$VH.set(seg, x);
-    }
-    public static int historyCount$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.historyCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void historyCount$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.historyCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle InputData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("InputData"));
-    public static VarHandle InputData$VH() {
-        return tagPOINTER_INFO.InputData$VH;
-    }
-    public static int InputData$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.InputData$VH.get(seg);
-    }
-    public static void InputData$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.InputData$VH.set(seg, x);
-    }
-    public static int InputData$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.InputData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void InputData$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.InputData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwKeyStates$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwKeyStates"));
-    public static VarHandle dwKeyStates$VH() {
-        return tagPOINTER_INFO.dwKeyStates$VH;
-    }
-    public static int dwKeyStates$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.dwKeyStates$VH.get(seg);
-    }
-    public static void dwKeyStates$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.dwKeyStates$VH.set(seg, x);
-    }
-    public static int dwKeyStates$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.dwKeyStates$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwKeyStates$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.dwKeyStates$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PerformanceCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PerformanceCount"));
-    public static VarHandle PerformanceCount$VH() {
-        return tagPOINTER_INFO.PerformanceCount$VH;
-    }
-    public static long PerformanceCount$get(MemorySegment seg) {
-        return (long)tagPOINTER_INFO.PerformanceCount$VH.get(seg);
-    }
-    public static void PerformanceCount$set( MemorySegment seg, long x) {
-        tagPOINTER_INFO.PerformanceCount$VH.set(seg, x);
-    }
-    public static long PerformanceCount$get(MemorySegment seg, long index) {
-        return (long)tagPOINTER_INFO.PerformanceCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PerformanceCount$set(MemorySegment seg, long index, long x) {
-        tagPOINTER_INFO.PerformanceCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ButtonChangeType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ButtonChangeType"));
-    public static VarHandle ButtonChangeType$VH() {
-        return tagPOINTER_INFO.ButtonChangeType$VH;
-    }
-    public static int ButtonChangeType$get(MemorySegment seg) {
-        return (int)tagPOINTER_INFO.ButtonChangeType$VH.get(seg);
-    }
-    public static void ButtonChangeType$set( MemorySegment seg, int x) {
-        tagPOINTER_INFO.ButtonChangeType$VH.set(seg, x);
-    }
-    public static int ButtonChangeType$get(MemorySegment seg, long index) {
-        return (int)tagPOINTER_INFO.ButtonChangeType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ButtonChangeType$set(MemorySegment seg, long index, int x) {
-        tagPOINTER_INFO.ButtonChangeType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("pointerType"),
+        freeglut_h.C_INT.withName("pointerId"),
+        freeglut_h.C_INT.withName("frameId"),
+        freeglut_h.C_INT.withName("pointerFlags"),
+        freeglut_h.C_POINTER.withName("sourceDevice"),
+        freeglut_h.C_POINTER.withName("hwndTarget"),
+        tagPOINT.layout().withName("ptPixelLocation"),
+        tagPOINT.layout().withName("ptHimetricLocation"),
+        tagPOINT.layout().withName("ptPixelLocationRaw"),
+        tagPOINT.layout().withName("ptHimetricLocationRaw"),
+        freeglut_h.C_LONG.withName("dwTime"),
+        freeglut_h.C_INT.withName("historyCount"),
+        freeglut_h.C_INT.withName("InputData"),
+        freeglut_h.C_LONG.withName("dwKeyStates"),
+        freeglut_h.C_LONG_LONG.withName("PerformanceCount"),
+        freeglut_h.C_INT.withName("ButtonChangeType"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagPOINTER_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt pointerType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pointerType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTER_INPUT_TYPE pointerType
+     * }
+     */
+    public static final OfInt pointerType$layout() {
+        return pointerType$LAYOUT;
+    }
+
+    private static final long pointerType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTER_INPUT_TYPE pointerType
+     * }
+     */
+    public static final long pointerType$offset() {
+        return pointerType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTER_INPUT_TYPE pointerType
+     * }
+     */
+    public static int pointerType(MemorySegment struct) {
+        return struct.get(pointerType$LAYOUT, pointerType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTER_INPUT_TYPE pointerType
+     * }
+     */
+    public static void pointerType(MemorySegment struct, int fieldValue) {
+        struct.set(pointerType$LAYOUT, pointerType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt pointerId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pointerId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static final OfInt pointerId$layout() {
+        return pointerId$LAYOUT;
+    }
+
+    private static final long pointerId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static final long pointerId$offset() {
+        return pointerId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static int pointerId(MemorySegment struct) {
+        return struct.get(pointerId$LAYOUT, pointerId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 pointerId
+     * }
+     */
+    public static void pointerId(MemorySegment struct, int fieldValue) {
+        struct.set(pointerId$LAYOUT, pointerId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt frameId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("frameId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 frameId
+     * }
+     */
+    public static final OfInt frameId$layout() {
+        return frameId$LAYOUT;
+    }
+
+    private static final long frameId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 frameId
+     * }
+     */
+    public static final long frameId$offset() {
+        return frameId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 frameId
+     * }
+     */
+    public static int frameId(MemorySegment struct) {
+        return struct.get(frameId$LAYOUT, frameId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 frameId
+     * }
+     */
+    public static void frameId(MemorySegment struct, int fieldValue) {
+        struct.set(frameId$LAYOUT, frameId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt pointerFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("pointerFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTER_FLAGS pointerFlags
+     * }
+     */
+    public static final OfInt pointerFlags$layout() {
+        return pointerFlags$LAYOUT;
+    }
+
+    private static final long pointerFlags$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTER_FLAGS pointerFlags
+     * }
+     */
+    public static final long pointerFlags$offset() {
+        return pointerFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTER_FLAGS pointerFlags
+     * }
+     */
+    public static int pointerFlags(MemorySegment struct) {
+        return struct.get(pointerFlags$LAYOUT, pointerFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTER_FLAGS pointerFlags
+     * }
+     */
+    public static void pointerFlags(MemorySegment struct, int fieldValue) {
+        struct.set(pointerFlags$LAYOUT, pointerFlags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout sourceDevice$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("sourceDevice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE sourceDevice
+     * }
+     */
+    public static final AddressLayout sourceDevice$layout() {
+        return sourceDevice$LAYOUT;
+    }
+
+    private static final long sourceDevice$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE sourceDevice
+     * }
+     */
+    public static final long sourceDevice$offset() {
+        return sourceDevice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE sourceDevice
+     * }
+     */
+    public static MemorySegment sourceDevice(MemorySegment struct) {
+        return struct.get(sourceDevice$LAYOUT, sourceDevice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE sourceDevice
+     * }
+     */
+    public static void sourceDevice(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(sourceDevice$LAYOUT, sourceDevice$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndTarget$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndTarget"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndTarget
+     * }
+     */
+    public static final AddressLayout hwndTarget$layout() {
+        return hwndTarget$LAYOUT;
+    }
+
+    private static final long hwndTarget$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndTarget
+     * }
+     */
+    public static final long hwndTarget$offset() {
+        return hwndTarget$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndTarget
+     * }
+     */
+    public static MemorySegment hwndTarget(MemorySegment struct) {
+        return struct.get(hwndTarget$LAYOUT, hwndTarget$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndTarget
+     * }
+     */
+    public static void hwndTarget(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndTarget$LAYOUT, hwndTarget$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ptPixelLocation$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ptPixelLocation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocation
+     * }
+     */
+    public static final GroupLayout ptPixelLocation$layout() {
+        return ptPixelLocation$LAYOUT;
+    }
+
+    private static final long ptPixelLocation$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocation
+     * }
+     */
+    public static final long ptPixelLocation$offset() {
+        return ptPixelLocation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocation
+     * }
+     */
+    public static MemorySegment ptPixelLocation(MemorySegment struct) {
+        return struct.asSlice(ptPixelLocation$OFFSET, ptPixelLocation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocation
+     * }
+     */
+    public static void ptPixelLocation(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ptPixelLocation$OFFSET, ptPixelLocation$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ptHimetricLocation$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ptHimetricLocation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocation
+     * }
+     */
+    public static final GroupLayout ptHimetricLocation$layout() {
+        return ptHimetricLocation$LAYOUT;
+    }
+
+    private static final long ptHimetricLocation$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocation
+     * }
+     */
+    public static final long ptHimetricLocation$offset() {
+        return ptHimetricLocation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocation
+     * }
+     */
+    public static MemorySegment ptHimetricLocation(MemorySegment struct) {
+        return struct.asSlice(ptHimetricLocation$OFFSET, ptHimetricLocation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocation
+     * }
+     */
+    public static void ptHimetricLocation(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ptHimetricLocation$OFFSET, ptHimetricLocation$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ptPixelLocationRaw$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ptPixelLocationRaw"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocationRaw
+     * }
+     */
+    public static final GroupLayout ptPixelLocationRaw$layout() {
+        return ptPixelLocationRaw$LAYOUT;
+    }
+
+    private static final long ptPixelLocationRaw$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocationRaw
+     * }
+     */
+    public static final long ptPixelLocationRaw$offset() {
+        return ptPixelLocationRaw$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocationRaw
+     * }
+     */
+    public static MemorySegment ptPixelLocationRaw(MemorySegment struct) {
+        return struct.asSlice(ptPixelLocationRaw$OFFSET, ptPixelLocationRaw$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT ptPixelLocationRaw
+     * }
+     */
+    public static void ptPixelLocationRaw(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ptPixelLocationRaw$OFFSET, ptPixelLocationRaw$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ptHimetricLocationRaw$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ptHimetricLocationRaw"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocationRaw
+     * }
+     */
+    public static final GroupLayout ptHimetricLocationRaw$layout() {
+        return ptHimetricLocationRaw$LAYOUT;
+    }
+
+    private static final long ptHimetricLocationRaw$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocationRaw
+     * }
+     */
+    public static final long ptHimetricLocationRaw$offset() {
+        return ptHimetricLocationRaw$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocationRaw
+     * }
+     */
+    public static MemorySegment ptHimetricLocationRaw(MemorySegment struct) {
+        return struct.asSlice(ptHimetricLocationRaw$OFFSET, ptHimetricLocationRaw$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINT ptHimetricLocationRaw
+     * }
+     */
+    public static void ptHimetricLocationRaw(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ptHimetricLocationRaw$OFFSET, ptHimetricLocationRaw$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static final OfInt dwTime$layout() {
+        return dwTime$LAYOUT;
+    }
+
+    private static final long dwTime$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static final long dwTime$offset() {
+        return dwTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static int dwTime(MemorySegment struct) {
+        return struct.get(dwTime$LAYOUT, dwTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTime
+     * }
+     */
+    public static void dwTime(MemorySegment struct, int fieldValue) {
+        struct.set(dwTime$LAYOUT, dwTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt historyCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("historyCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 historyCount
+     * }
+     */
+    public static final OfInt historyCount$layout() {
+        return historyCount$LAYOUT;
+    }
+
+    private static final long historyCount$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 historyCount
+     * }
+     */
+    public static final long historyCount$offset() {
+        return historyCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 historyCount
+     * }
+     */
+    public static int historyCount(MemorySegment struct) {
+        return struct.get(historyCount$LAYOUT, historyCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 historyCount
+     * }
+     */
+    public static void historyCount(MemorySegment struct, int fieldValue) {
+        struct.set(historyCount$LAYOUT, historyCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt InputData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("InputData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INT32 InputData
+     * }
+     */
+    public static final OfInt InputData$layout() {
+        return InputData$LAYOUT;
+    }
+
+    private static final long InputData$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INT32 InputData
+     * }
+     */
+    public static final long InputData$offset() {
+        return InputData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INT32 InputData
+     * }
+     */
+    public static int InputData(MemorySegment struct) {
+        return struct.get(InputData$LAYOUT, InputData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INT32 InputData
+     * }
+     */
+    public static void InputData(MemorySegment struct, int fieldValue) {
+        struct.set(InputData$LAYOUT, InputData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwKeyStates$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwKeyStates"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyStates
+     * }
+     */
+    public static final OfInt dwKeyStates$layout() {
+        return dwKeyStates$LAYOUT;
+    }
+
+    private static final long dwKeyStates$OFFSET = 76;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyStates
+     * }
+     */
+    public static final long dwKeyStates$offset() {
+        return dwKeyStates$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyStates
+     * }
+     */
+    public static int dwKeyStates(MemorySegment struct) {
+        return struct.get(dwKeyStates$LAYOUT, dwKeyStates$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwKeyStates
+     * }
+     */
+    public static void dwKeyStates(MemorySegment struct, int fieldValue) {
+        struct.set(dwKeyStates$LAYOUT, dwKeyStates$OFFSET, fieldValue);
+    }
+
+    private static final OfLong PerformanceCount$LAYOUT = (OfLong)$LAYOUT.select(groupElement("PerformanceCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT64 PerformanceCount
+     * }
+     */
+    public static final OfLong PerformanceCount$layout() {
+        return PerformanceCount$LAYOUT;
+    }
+
+    private static final long PerformanceCount$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT64 PerformanceCount
+     * }
+     */
+    public static final long PerformanceCount$offset() {
+        return PerformanceCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT64 PerformanceCount
+     * }
+     */
+    public static long PerformanceCount(MemorySegment struct) {
+        return struct.get(PerformanceCount$LAYOUT, PerformanceCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT64 PerformanceCount
+     * }
+     */
+    public static void PerformanceCount(MemorySegment struct, long fieldValue) {
+        struct.set(PerformanceCount$LAYOUT, PerformanceCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ButtonChangeType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ButtonChangeType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POINTER_BUTTON_CHANGE_TYPE ButtonChangeType
+     * }
+     */
+    public static final OfInt ButtonChangeType$layout() {
+        return ButtonChangeType$LAYOUT;
+    }
+
+    private static final long ButtonChangeType$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POINTER_BUTTON_CHANGE_TYPE ButtonChangeType
+     * }
+     */
+    public static final long ButtonChangeType$offset() {
+        return ButtonChangeType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POINTER_BUTTON_CHANGE_TYPE ButtonChangeType
+     * }
+     */
+    public static int ButtonChangeType(MemorySegment struct) {
+        return struct.get(ButtonChangeType$LAYOUT, ButtonChangeType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POINTER_BUTTON_CHANGE_TYPE ButtonChangeType
+     * }
+     */
+    public static void ButtonChangeType(MemorySegment struct, int fieldValue) {
+        struct.set(ButtonChangeType$LAYOUT, ButtonChangeType$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

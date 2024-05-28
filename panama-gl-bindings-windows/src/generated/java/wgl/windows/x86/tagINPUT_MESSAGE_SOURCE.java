@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagINPUT_MESSAGE_SOURCE {
+ *     INPUT_MESSAGE_DEVICE_TYPE deviceType;
+ *     INPUT_MESSAGE_ORIGIN_ID originId;
+ * }
+ * }
+ */
 public class tagINPUT_MESSAGE_SOURCE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("deviceType"),
-        Constants$root.C_LONG$LAYOUT.withName("originId")
-    ).withName("tagINPUT_MESSAGE_SOURCE");
-    public static MemoryLayout $LAYOUT() {
-        return tagINPUT_MESSAGE_SOURCE.$struct$LAYOUT;
+    tagINPUT_MESSAGE_SOURCE() {
+        // Should not be called directly
     }
-    static final VarHandle deviceType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("deviceType"));
-    public static VarHandle deviceType$VH() {
-        return tagINPUT_MESSAGE_SOURCE.deviceType$VH;
-    }
-    public static int deviceType$get(MemorySegment seg) {
-        return (int)tagINPUT_MESSAGE_SOURCE.deviceType$VH.get(seg);
-    }
-    public static void deviceType$set( MemorySegment seg, int x) {
-        tagINPUT_MESSAGE_SOURCE.deviceType$VH.set(seg, x);
-    }
-    public static int deviceType$get(MemorySegment seg, long index) {
-        return (int)tagINPUT_MESSAGE_SOURCE.deviceType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void deviceType$set(MemorySegment seg, long index, int x) {
-        tagINPUT_MESSAGE_SOURCE.deviceType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle originId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("originId"));
-    public static VarHandle originId$VH() {
-        return tagINPUT_MESSAGE_SOURCE.originId$VH;
-    }
-    public static int originId$get(MemorySegment seg) {
-        return (int)tagINPUT_MESSAGE_SOURCE.originId$VH.get(seg);
-    }
-    public static void originId$set( MemorySegment seg, int x) {
-        tagINPUT_MESSAGE_SOURCE.originId$VH.set(seg, x);
-    }
-    public static int originId$get(MemorySegment seg, long index) {
-        return (int)tagINPUT_MESSAGE_SOURCE.originId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void originId$set(MemorySegment seg, long index, int x) {
-        tagINPUT_MESSAGE_SOURCE.originId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("deviceType"),
+        wgl_h.C_INT.withName("originId")
+    ).withName("tagINPUT_MESSAGE_SOURCE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt deviceType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("deviceType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_DEVICE_TYPE deviceType
+     * }
+     */
+    public static final OfInt deviceType$layout() {
+        return deviceType$LAYOUT;
+    }
+
+    private static final long deviceType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_DEVICE_TYPE deviceType
+     * }
+     */
+    public static final long deviceType$offset() {
+        return deviceType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_DEVICE_TYPE deviceType
+     * }
+     */
+    public static int deviceType(MemorySegment struct) {
+        return struct.get(deviceType$LAYOUT, deviceType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_DEVICE_TYPE deviceType
+     * }
+     */
+    public static void deviceType(MemorySegment struct, int fieldValue) {
+        struct.set(deviceType$LAYOUT, deviceType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt originId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("originId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_ORIGIN_ID originId
+     * }
+     */
+    public static final OfInt originId$layout() {
+        return originId$LAYOUT;
+    }
+
+    private static final long originId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_ORIGIN_ID originId
+     * }
+     */
+    public static final long originId$offset() {
+        return originId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_ORIGIN_ID originId
+     * }
+     */
+    public static int originId(MemorySegment struct) {
+        return struct.get(originId$LAYOUT, originId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INPUT_MESSAGE_ORIGIN_ID originId
+     * }
+     */
+    public static void originId(MemorySegment struct, int fieldValue) {
+        struct.set(originId$LAYOUT, originId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

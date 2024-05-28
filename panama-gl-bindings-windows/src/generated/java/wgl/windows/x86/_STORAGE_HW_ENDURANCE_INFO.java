@@ -2,111 +2,507 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_HW_ENDURANCE_INFO {
+ *     DWORD ValidFields;
+ *     DWORD GroupId;
+ *     struct {
+ *         DWORD Shared : 1;
+ *         DWORD Reserved : 31;
+ *     } Flags;
+ *     DWORD LifePercentage;
+ *     BYTE BytesReadCount[16];
+ *     BYTE ByteWriteCount[16];
+ * }
+ * }
+ */
 public class _STORAGE_HW_ENDURANCE_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ValidFields"),
-        Constants$root.C_LONG$LAYOUT.withName("GroupId"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.paddingLayout(1).withName("Shared"),
-                MemoryLayout.paddingLayout(31).withName("Reserved")
-            )
-        ).withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("LifePercentage"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("BytesReadCount"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("ByteWriteCount")
+    _STORAGE_HW_ENDURANCE_INFO() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ValidFields"),
+        wgl_h.C_LONG.withName("GroupId"),
+        _STORAGE_HW_ENDURANCE_INFO.Flags.layout().withName("Flags"),
+        wgl_h.C_LONG.withName("LifePercentage"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("BytesReadCount"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("ByteWriteCount")
     ).withName("_STORAGE_HW_ENDURANCE_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_HW_ENDURANCE_INFO.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle ValidFields$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ValidFields"));
-    public static VarHandle ValidFields$VH() {
-        return _STORAGE_HW_ENDURANCE_INFO.ValidFields$VH;
+
+    private static final OfInt ValidFields$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ValidFields"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ValidFields
+     * }
+     */
+    public static final OfInt ValidFields$layout() {
+        return ValidFields$LAYOUT;
     }
-    public static int ValidFields$get(MemorySegment seg) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.ValidFields$VH.get(seg);
+
+    private static final long ValidFields$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ValidFields
+     * }
+     */
+    public static final long ValidFields$offset() {
+        return ValidFields$OFFSET;
     }
-    public static void ValidFields$set( MemorySegment seg, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.ValidFields$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ValidFields
+     * }
+     */
+    public static int ValidFields(MemorySegment struct) {
+        return struct.get(ValidFields$LAYOUT, ValidFields$OFFSET);
     }
-    public static int ValidFields$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.ValidFields$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ValidFields
+     * }
+     */
+    public static void ValidFields(MemorySegment struct, int fieldValue) {
+        struct.set(ValidFields$LAYOUT, ValidFields$OFFSET, fieldValue);
     }
-    public static void ValidFields$set(MemorySegment seg, long index, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.ValidFields$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt GroupId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("GroupId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD GroupId
+     * }
+     */
+    public static final OfInt GroupId$layout() {
+        return GroupId$LAYOUT;
     }
-    static final VarHandle GroupId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("GroupId"));
-    public static VarHandle GroupId$VH() {
-        return _STORAGE_HW_ENDURANCE_INFO.GroupId$VH;
+
+    private static final long GroupId$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD GroupId
+     * }
+     */
+    public static final long GroupId$offset() {
+        return GroupId$OFFSET;
     }
-    public static int GroupId$get(MemorySegment seg) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.GroupId$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD GroupId
+     * }
+     */
+    public static int GroupId(MemorySegment struct) {
+        return struct.get(GroupId$LAYOUT, GroupId$OFFSET);
     }
-    public static void GroupId$set( MemorySegment seg, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.GroupId$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD GroupId
+     * }
+     */
+    public static void GroupId(MemorySegment struct, int fieldValue) {
+        struct.set(GroupId$LAYOUT, GroupId$OFFSET, fieldValue);
     }
-    public static int GroupId$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.GroupId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GroupId$set(MemorySegment seg, long index, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.GroupId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Shared : 1;
+     *     DWORD Reserved : 31;
+     * }
+     * }
+     */
     public static class Flags {
 
-        static final  GroupLayout Flags$struct$LAYOUT = MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.paddingLayout(1).withName("Shared"),
-                MemoryLayout.paddingLayout(31).withName("Reserved")
-            )
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Flags.Flags$struct$LAYOUT;
+        Flags() {
+            // Should not be called directly
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            MemoryLayout.paddingLayout(4)
+        ).withName("$anon$3015:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Flags$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
+    private static final GroupLayout Flags$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Shared : 1;
+     *     DWORD Reserved : 31;
+     * } Flags
+     * }
+     */
+    public static final GroupLayout Flags$layout() {
+        return Flags$LAYOUT;
     }
-    static final VarHandle LifePercentage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LifePercentage"));
-    public static VarHandle LifePercentage$VH() {
-        return _STORAGE_HW_ENDURANCE_INFO.LifePercentage$VH;
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Shared : 1;
+     *     DWORD Reserved : 31;
+     * } Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
     }
-    public static int LifePercentage$get(MemorySegment seg) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.LifePercentage$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Shared : 1;
+     *     DWORD Reserved : 31;
+     * } Flags
+     * }
+     */
+    public static MemorySegment Flags(MemorySegment struct) {
+        return struct.asSlice(Flags$OFFSET, Flags$LAYOUT.byteSize());
     }
-    public static void LifePercentage$set( MemorySegment seg, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.LifePercentage$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Shared : 1;
+     *     DWORD Reserved : 31;
+     * } Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Flags$OFFSET, Flags$LAYOUT.byteSize());
     }
-    public static int LifePercentage$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_HW_ENDURANCE_INFO.LifePercentage$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt LifePercentage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LifePercentage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LifePercentage
+     * }
+     */
+    public static final OfInt LifePercentage$layout() {
+        return LifePercentage$LAYOUT;
     }
-    public static void LifePercentage$set(MemorySegment seg, long index, int x) {
-        _STORAGE_HW_ENDURANCE_INFO.LifePercentage$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long LifePercentage$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LifePercentage
+     * }
+     */
+    public static final long LifePercentage$offset() {
+        return LifePercentage$OFFSET;
     }
-    public static MemorySegment BytesReadCount$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LifePercentage
+     * }
+     */
+    public static int LifePercentage(MemorySegment struct) {
+        return struct.get(LifePercentage$LAYOUT, LifePercentage$OFFSET);
     }
-    public static MemorySegment ByteWriteCount$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LifePercentage
+     * }
+     */
+    public static void LifePercentage(MemorySegment struct, int fieldValue) {
+        struct.set(LifePercentage$LAYOUT, LifePercentage$OFFSET, fieldValue);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final SequenceLayout BytesReadCount$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("BytesReadCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static final SequenceLayout BytesReadCount$layout() {
+        return BytesReadCount$LAYOUT;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    private static final long BytesReadCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static final long BytesReadCount$offset() {
+        return BytesReadCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static MemorySegment BytesReadCount(MemorySegment struct) {
+        return struct.asSlice(BytesReadCount$OFFSET, BytesReadCount$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static void BytesReadCount(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BytesReadCount$OFFSET, BytesReadCount$LAYOUT.byteSize());
+    }
+
+    private static long[] BytesReadCount$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static long[] BytesReadCount$dimensions() {
+        return BytesReadCount$DIMS;
+    }
+    private static final VarHandle BytesReadCount$ELEM_HANDLE = BytesReadCount$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static byte BytesReadCount(MemorySegment struct, long index0) {
+        return (byte)BytesReadCount$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE BytesReadCount[16]
+     * }
+     */
+    public static void BytesReadCount(MemorySegment struct, long index0, byte fieldValue) {
+        BytesReadCount$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout ByteWriteCount$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ByteWriteCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static final SequenceLayout ByteWriteCount$layout() {
+        return ByteWriteCount$LAYOUT;
+    }
+
+    private static final long ByteWriteCount$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static final long ByteWriteCount$offset() {
+        return ByteWriteCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static MemorySegment ByteWriteCount(MemorySegment struct) {
+        return struct.asSlice(ByteWriteCount$OFFSET, ByteWriteCount$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static void ByteWriteCount(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ByteWriteCount$OFFSET, ByteWriteCount$LAYOUT.byteSize());
+    }
+
+    private static long[] ByteWriteCount$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static long[] ByteWriteCount$dimensions() {
+        return ByteWriteCount$DIMS;
+    }
+    private static final VarHandle ByteWriteCount$ELEM_HANDLE = ByteWriteCount$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static byte ByteWriteCount(MemorySegment struct, long index0) {
+        return (byte)ByteWriteCount$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE ByteWriteCount[16]
+     * }
+     */
+    public static void ByteWriteCount(MemorySegment struct, long index0, byte fieldValue) {
+        ByteWriteCount$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

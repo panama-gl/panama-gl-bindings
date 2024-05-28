@@ -2,127 +2,357 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_BINDING_HANDLE_SECURITY_V1_A {
+ *     unsigned long Version;
+ *     unsigned char *ServerPrincName;
+ *     unsigned long AuthnLevel;
+ *     unsigned long AuthnSvc;
+ *     SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity;
+ *     RPC_SECURITY_QOS *SecurityQos;
+ * }
+ * }
+ */
 public class _RPC_BINDING_HANDLE_SECURITY_V1_A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("ServerPrincName"),
-        Constants$root.C_LONG$LAYOUT.withName("AuthnLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("AuthnSvc"),
-        Constants$root.C_POINTER$LAYOUT.withName("AuthIdentity"),
-        Constants$root.C_POINTER$LAYOUT.withName("SecurityQos")
-    ).withName("_RPC_BINDING_HANDLE_SECURITY_V1_A");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.$struct$LAYOUT;
+    _RPC_BINDING_HANDLE_SECURITY_V1_A() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ServerPrincName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ServerPrincName"));
-    public static VarHandle ServerPrincName$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.ServerPrincName$VH;
-    }
-    public static MemoryAddress ServerPrincName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.ServerPrincName$VH.get(seg);
-    }
-    public static void ServerPrincName$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.ServerPrincName$VH.set(seg, x);
-    }
-    public static MemoryAddress ServerPrincName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.ServerPrincName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ServerPrincName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.ServerPrincName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthnLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthnLevel"));
-    public static VarHandle AuthnLevel$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnLevel$VH;
-    }
-    public static int AuthnLevel$get(MemorySegment seg) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnLevel$VH.get(seg);
-    }
-    public static void AuthnLevel$set( MemorySegment seg, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnLevel$VH.set(seg, x);
-    }
-    public static int AuthnLevel$get(MemorySegment seg, long index) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthnLevel$set(MemorySegment seg, long index, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthnSvc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthnSvc"));
-    public static VarHandle AuthnSvc$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnSvc$VH;
-    }
-    public static int AuthnSvc$get(MemorySegment seg) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnSvc$VH.get(seg);
-    }
-    public static void AuthnSvc$set( MemorySegment seg, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnSvc$VH.set(seg, x);
-    }
-    public static int AuthnSvc$get(MemorySegment seg, long index) {
-        return (int)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnSvc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthnSvc$set(MemorySegment seg, long index, int x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthnSvc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AuthIdentity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AuthIdentity"));
-    public static VarHandle AuthIdentity$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthIdentity$VH;
-    }
-    public static MemoryAddress AuthIdentity$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthIdentity$VH.get(seg);
-    }
-    public static void AuthIdentity$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthIdentity$VH.set(seg, x);
-    }
-    public static MemoryAddress AuthIdentity$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.AuthIdentity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AuthIdentity$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.AuthIdentity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SecurityQos$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SecurityQos"));
-    public static VarHandle SecurityQos$VH() {
-        return _RPC_BINDING_HANDLE_SECURITY_V1_A.SecurityQos$VH;
-    }
-    public static MemoryAddress SecurityQos$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.SecurityQos$VH.get(seg);
-    }
-    public static void SecurityQos$set( MemorySegment seg, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.SecurityQos$VH.set(seg, x);
-    }
-    public static MemoryAddress SecurityQos$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_RPC_BINDING_HANDLE_SECURITY_V1_A.SecurityQos$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SecurityQos$set(MemorySegment seg, long index, MemoryAddress x) {
-        _RPC_BINDING_HANDLE_SECURITY_V1_A.SecurityQos$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("ServerPrincName"),
+        wgl_h.C_LONG.withName("AuthnLevel"),
+        wgl_h.C_LONG.withName("AuthnSvc"),
+        wgl_h.C_POINTER.withName("AuthIdentity"),
+        wgl_h.C_POINTER.withName("SecurityQos")
+    ).withName("_RPC_BINDING_HANDLE_SECURITY_V1_A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ServerPrincName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ServerPrincName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerPrincName
+     * }
+     */
+    public static final AddressLayout ServerPrincName$layout() {
+        return ServerPrincName$LAYOUT;
+    }
+
+    private static final long ServerPrincName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerPrincName
+     * }
+     */
+    public static final long ServerPrincName$offset() {
+        return ServerPrincName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerPrincName
+     * }
+     */
+    public static MemorySegment ServerPrincName(MemorySegment struct) {
+        return struct.get(ServerPrincName$LAYOUT, ServerPrincName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char *ServerPrincName
+     * }
+     */
+    public static void ServerPrincName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ServerPrincName$LAYOUT, ServerPrincName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthnLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthnLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnLevel
+     * }
+     */
+    public static final OfInt AuthnLevel$layout() {
+        return AuthnLevel$LAYOUT;
+    }
+
+    private static final long AuthnLevel$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnLevel
+     * }
+     */
+    public static final long AuthnLevel$offset() {
+        return AuthnLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnLevel
+     * }
+     */
+    public static int AuthnLevel(MemorySegment struct) {
+        return struct.get(AuthnLevel$LAYOUT, AuthnLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnLevel
+     * }
+     */
+    public static void AuthnLevel(MemorySegment struct, int fieldValue) {
+        struct.set(AuthnLevel$LAYOUT, AuthnLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AuthnSvc$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AuthnSvc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnSvc
+     * }
+     */
+    public static final OfInt AuthnSvc$layout() {
+        return AuthnSvc$LAYOUT;
+    }
+
+    private static final long AuthnSvc$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnSvc
+     * }
+     */
+    public static final long AuthnSvc$offset() {
+        return AuthnSvc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnSvc
+     * }
+     */
+    public static int AuthnSvc(MemorySegment struct) {
+        return struct.get(AuthnSvc$LAYOUT, AuthnSvc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AuthnSvc
+     * }
+     */
+    public static void AuthnSvc(MemorySegment struct, int fieldValue) {
+        struct.set(AuthnSvc$LAYOUT, AuthnSvc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout AuthIdentity$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AuthIdentity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity
+     * }
+     */
+    public static final AddressLayout AuthIdentity$layout() {
+        return AuthIdentity$LAYOUT;
+    }
+
+    private static final long AuthIdentity$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity
+     * }
+     */
+    public static final long AuthIdentity$offset() {
+        return AuthIdentity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity
+     * }
+     */
+    public static MemorySegment AuthIdentity(MemorySegment struct) {
+        return struct.get(AuthIdentity$LAYOUT, AuthIdentity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity
+     * }
+     */
+    public static void AuthIdentity(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AuthIdentity$LAYOUT, AuthIdentity$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SecurityQos$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SecurityQos"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RPC_SECURITY_QOS *SecurityQos
+     * }
+     */
+    public static final AddressLayout SecurityQos$layout() {
+        return SecurityQos$LAYOUT;
+    }
+
+    private static final long SecurityQos$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RPC_SECURITY_QOS *SecurityQos
+     * }
+     */
+    public static final long SecurityQos$offset() {
+        return SecurityQos$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RPC_SECURITY_QOS *SecurityQos
+     * }
+     */
+    public static MemorySegment SecurityQos(MemorySegment struct) {
+        return struct.get(SecurityQos$LAYOUT, SecurityQos$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RPC_SECURITY_QOS *SecurityQos
+     * }
+     */
+    public static void SecurityQos(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SecurityQos$LAYOUT, SecurityQos$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

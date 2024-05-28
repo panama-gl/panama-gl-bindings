@@ -2,13 +2,44 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagTYPEATTR {
+ *     GUID guid;
+ *     LCID lcid;
+ *     DWORD dwReserved;
+ *     MEMBERID memidConstructor;
+ *     MEMBERID memidDestructor;
+ *     LPOLESTR lpstrSchema;
+ *     ULONG cbSizeInstance;
+ *     TYPEKIND typekind;
+ *     WORD cFuncs;
+ *     WORD cVars;
+ *     WORD cImplTypes;
+ *     WORD cbSizeVft;
+ *     WORD cbAlignment;
+ *     WORD wTypeFlags;
+ *     WORD wMajorVerNum;
+ *     WORD wMinorVerNum;
+ *     TYPEDESC tdescAlias;
+ *     IDLDESC idldescType;
+ * } TYPEATTR
+ * }
+ */
 public class TYPEATTR extends tagTYPEATTR {
 
+    TYPEATTR() {
+        // Should not be called directly
+    }
 }
-
 

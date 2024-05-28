@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _APP_MEMORY_INFORMATION {
+ *     ULONG64 AvailableCommit;
+ *     ULONG64 PrivateCommitUsage;
+ *     ULONG64 PeakPrivateCommitUsage;
+ *     ULONG64 TotalCommitUsage;
+ * }
+ * }
+ */
 public class _APP_MEMORY_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("AvailableCommit"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("PrivateCommitUsage"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("PeakPrivateCommitUsage"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TotalCommitUsage")
-    ).withName("_APP_MEMORY_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _APP_MEMORY_INFORMATION.$struct$LAYOUT;
+    _APP_MEMORY_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle AvailableCommit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AvailableCommit"));
-    public static VarHandle AvailableCommit$VH() {
-        return _APP_MEMORY_INFORMATION.AvailableCommit$VH;
-    }
-    public static long AvailableCommit$get(MemorySegment seg) {
-        return (long)_APP_MEMORY_INFORMATION.AvailableCommit$VH.get(seg);
-    }
-    public static void AvailableCommit$set( MemorySegment seg, long x) {
-        _APP_MEMORY_INFORMATION.AvailableCommit$VH.set(seg, x);
-    }
-    public static long AvailableCommit$get(MemorySegment seg, long index) {
-        return (long)_APP_MEMORY_INFORMATION.AvailableCommit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AvailableCommit$set(MemorySegment seg, long index, long x) {
-        _APP_MEMORY_INFORMATION.AvailableCommit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PrivateCommitUsage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PrivateCommitUsage"));
-    public static VarHandle PrivateCommitUsage$VH() {
-        return _APP_MEMORY_INFORMATION.PrivateCommitUsage$VH;
-    }
-    public static long PrivateCommitUsage$get(MemorySegment seg) {
-        return (long)_APP_MEMORY_INFORMATION.PrivateCommitUsage$VH.get(seg);
-    }
-    public static void PrivateCommitUsage$set( MemorySegment seg, long x) {
-        _APP_MEMORY_INFORMATION.PrivateCommitUsage$VH.set(seg, x);
-    }
-    public static long PrivateCommitUsage$get(MemorySegment seg, long index) {
-        return (long)_APP_MEMORY_INFORMATION.PrivateCommitUsage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PrivateCommitUsage$set(MemorySegment seg, long index, long x) {
-        _APP_MEMORY_INFORMATION.PrivateCommitUsage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PeakPrivateCommitUsage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PeakPrivateCommitUsage"));
-    public static VarHandle PeakPrivateCommitUsage$VH() {
-        return _APP_MEMORY_INFORMATION.PeakPrivateCommitUsage$VH;
-    }
-    public static long PeakPrivateCommitUsage$get(MemorySegment seg) {
-        return (long)_APP_MEMORY_INFORMATION.PeakPrivateCommitUsage$VH.get(seg);
-    }
-    public static void PeakPrivateCommitUsage$set( MemorySegment seg, long x) {
-        _APP_MEMORY_INFORMATION.PeakPrivateCommitUsage$VH.set(seg, x);
-    }
-    public static long PeakPrivateCommitUsage$get(MemorySegment seg, long index) {
-        return (long)_APP_MEMORY_INFORMATION.PeakPrivateCommitUsage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PeakPrivateCommitUsage$set(MemorySegment seg, long index, long x) {
-        _APP_MEMORY_INFORMATION.PeakPrivateCommitUsage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TotalCommitUsage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TotalCommitUsage"));
-    public static VarHandle TotalCommitUsage$VH() {
-        return _APP_MEMORY_INFORMATION.TotalCommitUsage$VH;
-    }
-    public static long TotalCommitUsage$get(MemorySegment seg) {
-        return (long)_APP_MEMORY_INFORMATION.TotalCommitUsage$VH.get(seg);
-    }
-    public static void TotalCommitUsage$set( MemorySegment seg, long x) {
-        _APP_MEMORY_INFORMATION.TotalCommitUsage$VH.set(seg, x);
-    }
-    public static long TotalCommitUsage$get(MemorySegment seg, long index) {
-        return (long)_APP_MEMORY_INFORMATION.TotalCommitUsage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TotalCommitUsage$set(MemorySegment seg, long index, long x) {
-        _APP_MEMORY_INFORMATION.TotalCommitUsage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("AvailableCommit"),
+        wgl_h.C_LONG_LONG.withName("PrivateCommitUsage"),
+        wgl_h.C_LONG_LONG.withName("PeakPrivateCommitUsage"),
+        wgl_h.C_LONG_LONG.withName("TotalCommitUsage")
+    ).withName("_APP_MEMORY_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong AvailableCommit$LAYOUT = (OfLong)$LAYOUT.select(groupElement("AvailableCommit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG64 AvailableCommit
+     * }
+     */
+    public static final OfLong AvailableCommit$layout() {
+        return AvailableCommit$LAYOUT;
+    }
+
+    private static final long AvailableCommit$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG64 AvailableCommit
+     * }
+     */
+    public static final long AvailableCommit$offset() {
+        return AvailableCommit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG64 AvailableCommit
+     * }
+     */
+    public static long AvailableCommit(MemorySegment struct) {
+        return struct.get(AvailableCommit$LAYOUT, AvailableCommit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG64 AvailableCommit
+     * }
+     */
+    public static void AvailableCommit(MemorySegment struct, long fieldValue) {
+        struct.set(AvailableCommit$LAYOUT, AvailableCommit$OFFSET, fieldValue);
+    }
+
+    private static final OfLong PrivateCommitUsage$LAYOUT = (OfLong)$LAYOUT.select(groupElement("PrivateCommitUsage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG64 PrivateCommitUsage
+     * }
+     */
+    public static final OfLong PrivateCommitUsage$layout() {
+        return PrivateCommitUsage$LAYOUT;
+    }
+
+    private static final long PrivateCommitUsage$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG64 PrivateCommitUsage
+     * }
+     */
+    public static final long PrivateCommitUsage$offset() {
+        return PrivateCommitUsage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG64 PrivateCommitUsage
+     * }
+     */
+    public static long PrivateCommitUsage(MemorySegment struct) {
+        return struct.get(PrivateCommitUsage$LAYOUT, PrivateCommitUsage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG64 PrivateCommitUsage
+     * }
+     */
+    public static void PrivateCommitUsage(MemorySegment struct, long fieldValue) {
+        struct.set(PrivateCommitUsage$LAYOUT, PrivateCommitUsage$OFFSET, fieldValue);
+    }
+
+    private static final OfLong PeakPrivateCommitUsage$LAYOUT = (OfLong)$LAYOUT.select(groupElement("PeakPrivateCommitUsage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG64 PeakPrivateCommitUsage
+     * }
+     */
+    public static final OfLong PeakPrivateCommitUsage$layout() {
+        return PeakPrivateCommitUsage$LAYOUT;
+    }
+
+    private static final long PeakPrivateCommitUsage$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG64 PeakPrivateCommitUsage
+     * }
+     */
+    public static final long PeakPrivateCommitUsage$offset() {
+        return PeakPrivateCommitUsage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG64 PeakPrivateCommitUsage
+     * }
+     */
+    public static long PeakPrivateCommitUsage(MemorySegment struct) {
+        return struct.get(PeakPrivateCommitUsage$LAYOUT, PeakPrivateCommitUsage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG64 PeakPrivateCommitUsage
+     * }
+     */
+    public static void PeakPrivateCommitUsage(MemorySegment struct, long fieldValue) {
+        struct.set(PeakPrivateCommitUsage$LAYOUT, PeakPrivateCommitUsage$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TotalCommitUsage$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TotalCommitUsage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG64 TotalCommitUsage
+     * }
+     */
+    public static final OfLong TotalCommitUsage$layout() {
+        return TotalCommitUsage$LAYOUT;
+    }
+
+    private static final long TotalCommitUsage$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG64 TotalCommitUsage
+     * }
+     */
+    public static final long TotalCommitUsage$offset() {
+        return TotalCommitUsage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG64 TotalCommitUsage
+     * }
+     */
+    public static long TotalCommitUsage(MemorySegment struct) {
+        return struct.get(TotalCommitUsage$LAYOUT, TotalCommitUsage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG64 TotalCommitUsage
+     * }
+     */
+    public static void TotalCommitUsage(MemorySegment struct, long fieldValue) {
+        struct.set(TotalCommitUsage$LAYOUT, TotalCommitUsage$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER {
+ *     DWORD OptimalWriteSize;
+ *     DWORD StreamGranularitySize;
+ *     DWORD StreamIdMin;
+ *     DWORD StreamIdMax;
+ * }
+ * }
+ */
 public class _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("OptimalWriteSize"),
-        Constants$root.C_LONG$LAYOUT.withName("StreamGranularitySize"),
-        Constants$root.C_LONG$LAYOUT.withName("StreamIdMin"),
-        Constants$root.C_LONG$LAYOUT.withName("StreamIdMax")
-    ).withName("_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER");
-    public static MemoryLayout $LAYOUT() {
-        return _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.$struct$LAYOUT;
+    _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER() {
+        // Should not be called directly
     }
-    static final VarHandle OptimalWriteSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OptimalWriteSize"));
-    public static VarHandle OptimalWriteSize$VH() {
-        return _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.OptimalWriteSize$VH;
-    }
-    public static int OptimalWriteSize$get(MemorySegment seg) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.OptimalWriteSize$VH.get(seg);
-    }
-    public static void OptimalWriteSize$set( MemorySegment seg, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.OptimalWriteSize$VH.set(seg, x);
-    }
-    public static int OptimalWriteSize$get(MemorySegment seg, long index) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.OptimalWriteSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OptimalWriteSize$set(MemorySegment seg, long index, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.OptimalWriteSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StreamGranularitySize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StreamGranularitySize"));
-    public static VarHandle StreamGranularitySize$VH() {
-        return _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamGranularitySize$VH;
-    }
-    public static int StreamGranularitySize$get(MemorySegment seg) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamGranularitySize$VH.get(seg);
-    }
-    public static void StreamGranularitySize$set( MemorySegment seg, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamGranularitySize$VH.set(seg, x);
-    }
-    public static int StreamGranularitySize$get(MemorySegment seg, long index) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamGranularitySize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StreamGranularitySize$set(MemorySegment seg, long index, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamGranularitySize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StreamIdMin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StreamIdMin"));
-    public static VarHandle StreamIdMin$VH() {
-        return _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMin$VH;
-    }
-    public static int StreamIdMin$get(MemorySegment seg) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMin$VH.get(seg);
-    }
-    public static void StreamIdMin$set( MemorySegment seg, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMin$VH.set(seg, x);
-    }
-    public static int StreamIdMin$get(MemorySegment seg, long index) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StreamIdMin$set(MemorySegment seg, long index, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StreamIdMax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StreamIdMax"));
-    public static VarHandle StreamIdMax$VH() {
-        return _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMax$VH;
-    }
-    public static int StreamIdMax$get(MemorySegment seg) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMax$VH.get(seg);
-    }
-    public static void StreamIdMax$set( MemorySegment seg, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMax$VH.set(seg, x);
-    }
-    public static int StreamIdMax$get(MemorySegment seg, long index) {
-        return (int)_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StreamIdMax$set(MemorySegment seg, long index, int x) {
-        _STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER.StreamIdMax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("OptimalWriteSize"),
+        wgl_h.C_LONG.withName("StreamGranularitySize"),
+        wgl_h.C_LONG.withName("StreamIdMin"),
+        wgl_h.C_LONG.withName("StreamIdMax")
+    ).withName("_STREAMS_QUERY_PARAMETERS_OUTPUT_BUFFER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt OptimalWriteSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OptimalWriteSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OptimalWriteSize
+     * }
+     */
+    public static final OfInt OptimalWriteSize$layout() {
+        return OptimalWriteSize$LAYOUT;
+    }
+
+    private static final long OptimalWriteSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OptimalWriteSize
+     * }
+     */
+    public static final long OptimalWriteSize$offset() {
+        return OptimalWriteSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OptimalWriteSize
+     * }
+     */
+    public static int OptimalWriteSize(MemorySegment struct) {
+        return struct.get(OptimalWriteSize$LAYOUT, OptimalWriteSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OptimalWriteSize
+     * }
+     */
+    public static void OptimalWriteSize(MemorySegment struct, int fieldValue) {
+        struct.set(OptimalWriteSize$LAYOUT, OptimalWriteSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StreamGranularitySize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StreamGranularitySize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StreamGranularitySize
+     * }
+     */
+    public static final OfInt StreamGranularitySize$layout() {
+        return StreamGranularitySize$LAYOUT;
+    }
+
+    private static final long StreamGranularitySize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StreamGranularitySize
+     * }
+     */
+    public static final long StreamGranularitySize$offset() {
+        return StreamGranularitySize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StreamGranularitySize
+     * }
+     */
+    public static int StreamGranularitySize(MemorySegment struct) {
+        return struct.get(StreamGranularitySize$LAYOUT, StreamGranularitySize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StreamGranularitySize
+     * }
+     */
+    public static void StreamGranularitySize(MemorySegment struct, int fieldValue) {
+        struct.set(StreamGranularitySize$LAYOUT, StreamGranularitySize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StreamIdMin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StreamIdMin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMin
+     * }
+     */
+    public static final OfInt StreamIdMin$layout() {
+        return StreamIdMin$LAYOUT;
+    }
+
+    private static final long StreamIdMin$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMin
+     * }
+     */
+    public static final long StreamIdMin$offset() {
+        return StreamIdMin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMin
+     * }
+     */
+    public static int StreamIdMin(MemorySegment struct) {
+        return struct.get(StreamIdMin$LAYOUT, StreamIdMin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMin
+     * }
+     */
+    public static void StreamIdMin(MemorySegment struct, int fieldValue) {
+        struct.set(StreamIdMin$LAYOUT, StreamIdMin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StreamIdMax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StreamIdMax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMax
+     * }
+     */
+    public static final OfInt StreamIdMax$layout() {
+        return StreamIdMax$LAYOUT;
+    }
+
+    private static final long StreamIdMax$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMax
+     * }
+     */
+    public static final long StreamIdMax$offset() {
+        return StreamIdMax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMax
+     * }
+     */
+    public static int StreamIdMax(MemorySegment struct) {
+        return struct.get(StreamIdMax$LAYOUT, StreamIdMax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StreamIdMax
+     * }
+     */
+    public static void StreamIdMax(MemorySegment struct, int fieldValue) {
+        struct.set(StreamIdMax$LAYOUT, StreamIdMax$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

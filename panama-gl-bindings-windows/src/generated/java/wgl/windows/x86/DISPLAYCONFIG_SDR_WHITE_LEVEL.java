@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DISPLAYCONFIG_SDR_WHITE_LEVEL {
+ *     DISPLAYCONFIG_DEVICE_INFO_HEADER header;
+ *     ULONG SDRWhiteLevel;
+ * } DISPLAYCONFIG_SDR_WHITE_LEVEL
+ * }
+ */
 public class DISPLAYCONFIG_SDR_WHITE_LEVEL extends _DISPLAYCONFIG_SDR_WHITE_LEVEL {
 
+    DISPLAYCONFIG_SDR_WHITE_LEVEL() {
+        // Should not be called directly
+    }
 }
-
 

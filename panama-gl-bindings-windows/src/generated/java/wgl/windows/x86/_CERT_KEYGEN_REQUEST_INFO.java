@@ -2,79 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_KEYGEN_REQUEST_INFO {
+ *     DWORD dwVersion;
+ *     CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo;
+ *     LPWSTR pwszChallengeString;
+ * }
+ * }
+ */
 public class _CERT_KEYGEN_REQUEST_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Parameters")
-            ).withName("Algorithm"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData"),
-                Constants$root.C_LONG$LAYOUT.withName("cUnusedBits"),
-                MemoryLayout.paddingLayout(32)
-            ).withName("PublicKey")
-        ).withName("SubjectPublicKeyInfo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pwszChallengeString")
-    ).withName("_CERT_KEYGEN_REQUEST_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_KEYGEN_REQUEST_INFO.$struct$LAYOUT;
+    _CERT_KEYGEN_REQUEST_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _CERT_KEYGEN_REQUEST_INFO.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_CERT_KEYGEN_REQUEST_INFO.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _CERT_KEYGEN_REQUEST_INFO.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_CERT_KEYGEN_REQUEST_INFO.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _CERT_KEYGEN_REQUEST_INFO.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SubjectPublicKeyInfo$slice(MemorySegment seg) {
-        return seg.asSlice(8, 48);
-    }
-    static final VarHandle pwszChallengeString$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pwszChallengeString"));
-    public static VarHandle pwszChallengeString$VH() {
-        return _CERT_KEYGEN_REQUEST_INFO.pwszChallengeString$VH;
-    }
-    public static MemoryAddress pwszChallengeString$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_KEYGEN_REQUEST_INFO.pwszChallengeString$VH.get(seg);
-    }
-    public static void pwszChallengeString$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_KEYGEN_REQUEST_INFO.pwszChallengeString$VH.set(seg, x);
-    }
-    public static MemoryAddress pwszChallengeString$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_KEYGEN_REQUEST_INFO.pwszChallengeString$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pwszChallengeString$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_KEYGEN_REQUEST_INFO.pwszChallengeString$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        MemoryLayout.paddingLayout(4),
+        _CERT_PUBLIC_KEY_INFO.layout().withName("SubjectPublicKeyInfo"),
+        wgl_h.C_POINTER.withName("pwszChallengeString")
+    ).withName("_CERT_KEYGEN_REQUEST_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout SubjectPublicKeyInfo$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("SubjectPublicKeyInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static final GroupLayout SubjectPublicKeyInfo$layout() {
+        return SubjectPublicKeyInfo$LAYOUT;
+    }
+
+    private static final long SubjectPublicKeyInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static final long SubjectPublicKeyInfo$offset() {
+        return SubjectPublicKeyInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static MemorySegment SubjectPublicKeyInfo(MemorySegment struct) {
+        return struct.asSlice(SubjectPublicKeyInfo$OFFSET, SubjectPublicKeyInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo
+     * }
+     */
+    public static void SubjectPublicKeyInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SubjectPublicKeyInfo$OFFSET, SubjectPublicKeyInfo$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout pwszChallengeString$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pwszChallengeString"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszChallengeString
+     * }
+     */
+    public static final AddressLayout pwszChallengeString$layout() {
+        return pwszChallengeString$LAYOUT;
+    }
+
+    private static final long pwszChallengeString$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszChallengeString
+     * }
+     */
+    public static final long pwszChallengeString$offset() {
+        return pwszChallengeString$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszChallengeString
+     * }
+     */
+    public static MemorySegment pwszChallengeString(MemorySegment struct) {
+        return struct.get(pwszChallengeString$LAYOUT, pwszChallengeString$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pwszChallengeString
+     * }
+     */
+    public static void pwszChallengeString(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pwszChallengeString$LAYOUT, pwszChallengeString$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

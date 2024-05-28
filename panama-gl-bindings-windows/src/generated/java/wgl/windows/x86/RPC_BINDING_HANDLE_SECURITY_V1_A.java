@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _RPC_BINDING_HANDLE_SECURITY_V1_A {
+ *     unsigned long Version;
+ *     unsigned char *ServerPrincName;
+ *     unsigned long AuthnLevel;
+ *     unsigned long AuthnSvc;
+ *     SEC_WINNT_AUTH_IDENTITY_A *AuthIdentity;
+ *     RPC_SECURITY_QOS *SecurityQos;
+ * } RPC_BINDING_HANDLE_SECURITY_V1_A
+ * }
+ */
 public class RPC_BINDING_HANDLE_SECURITY_V1_A extends _RPC_BINDING_HANDLE_SECURITY_V1_A {
 
+    RPC_BINDING_HANDLE_SECURITY_V1_A() {
+        // Should not be called directly
+    }
 }
-
 

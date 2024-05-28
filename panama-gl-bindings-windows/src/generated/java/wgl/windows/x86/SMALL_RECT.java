@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SMALL_RECT {
+ *     SHORT Left;
+ *     SHORT Top;
+ *     SHORT Right;
+ *     SHORT Bottom;
+ * } SMALL_RECT
+ * }
+ */
 public class SMALL_RECT extends _SMALL_RECT {
 
+    SMALL_RECT() {
+        // Should not be called directly
+    }
 }
-
 

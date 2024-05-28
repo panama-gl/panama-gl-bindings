@@ -2,126 +2,356 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_POWER_STATUS {
+ *     BYTE ACLineStatus;
+ *     BYTE BatteryFlag;
+ *     BYTE BatteryLifePercent;
+ *     BYTE SystemStatusFlag;
+ *     DWORD BatteryLifeTime;
+ *     DWORD BatteryFullLifeTime;
+ * }
+ * }
+ */
 public class _SYSTEM_POWER_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("ACLineStatus"),
-        Constants$root.C_CHAR$LAYOUT.withName("BatteryFlag"),
-        Constants$root.C_CHAR$LAYOUT.withName("BatteryLifePercent"),
-        Constants$root.C_CHAR$LAYOUT.withName("SystemStatusFlag"),
-        Constants$root.C_LONG$LAYOUT.withName("BatteryLifeTime"),
-        Constants$root.C_LONG$LAYOUT.withName("BatteryFullLifeTime")
-    ).withName("_SYSTEM_POWER_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_POWER_STATUS.$struct$LAYOUT;
+    _SYSTEM_POWER_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle ACLineStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ACLineStatus"));
-    public static VarHandle ACLineStatus$VH() {
-        return _SYSTEM_POWER_STATUS.ACLineStatus$VH;
-    }
-    public static byte ACLineStatus$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_STATUS.ACLineStatus$VH.get(seg);
-    }
-    public static void ACLineStatus$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_STATUS.ACLineStatus$VH.set(seg, x);
-    }
-    public static byte ACLineStatus$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_STATUS.ACLineStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ACLineStatus$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_STATUS.ACLineStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BatteryFlag$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BatteryFlag"));
-    public static VarHandle BatteryFlag$VH() {
-        return _SYSTEM_POWER_STATUS.BatteryFlag$VH;
-    }
-    public static byte BatteryFlag$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_STATUS.BatteryFlag$VH.get(seg);
-    }
-    public static void BatteryFlag$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_STATUS.BatteryFlag$VH.set(seg, x);
-    }
-    public static byte BatteryFlag$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_STATUS.BatteryFlag$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BatteryFlag$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_STATUS.BatteryFlag$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BatteryLifePercent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BatteryLifePercent"));
-    public static VarHandle BatteryLifePercent$VH() {
-        return _SYSTEM_POWER_STATUS.BatteryLifePercent$VH;
-    }
-    public static byte BatteryLifePercent$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_STATUS.BatteryLifePercent$VH.get(seg);
-    }
-    public static void BatteryLifePercent$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_STATUS.BatteryLifePercent$VH.set(seg, x);
-    }
-    public static byte BatteryLifePercent$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_STATUS.BatteryLifePercent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BatteryLifePercent$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_STATUS.BatteryLifePercent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SystemStatusFlag$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SystemStatusFlag"));
-    public static VarHandle SystemStatusFlag$VH() {
-        return _SYSTEM_POWER_STATUS.SystemStatusFlag$VH;
-    }
-    public static byte SystemStatusFlag$get(MemorySegment seg) {
-        return (byte)_SYSTEM_POWER_STATUS.SystemStatusFlag$VH.get(seg);
-    }
-    public static void SystemStatusFlag$set( MemorySegment seg, byte x) {
-        _SYSTEM_POWER_STATUS.SystemStatusFlag$VH.set(seg, x);
-    }
-    public static byte SystemStatusFlag$get(MemorySegment seg, long index) {
-        return (byte)_SYSTEM_POWER_STATUS.SystemStatusFlag$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SystemStatusFlag$set(MemorySegment seg, long index, byte x) {
-        _SYSTEM_POWER_STATUS.SystemStatusFlag$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BatteryLifeTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BatteryLifeTime"));
-    public static VarHandle BatteryLifeTime$VH() {
-        return _SYSTEM_POWER_STATUS.BatteryLifeTime$VH;
-    }
-    public static int BatteryLifeTime$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_STATUS.BatteryLifeTime$VH.get(seg);
-    }
-    public static void BatteryLifeTime$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_STATUS.BatteryLifeTime$VH.set(seg, x);
-    }
-    public static int BatteryLifeTime$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_STATUS.BatteryLifeTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BatteryLifeTime$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_STATUS.BatteryLifeTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BatteryFullLifeTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BatteryFullLifeTime"));
-    public static VarHandle BatteryFullLifeTime$VH() {
-        return _SYSTEM_POWER_STATUS.BatteryFullLifeTime$VH;
-    }
-    public static int BatteryFullLifeTime$get(MemorySegment seg) {
-        return (int)_SYSTEM_POWER_STATUS.BatteryFullLifeTime$VH.get(seg);
-    }
-    public static void BatteryFullLifeTime$set( MemorySegment seg, int x) {
-        _SYSTEM_POWER_STATUS.BatteryFullLifeTime$VH.set(seg, x);
-    }
-    public static int BatteryFullLifeTime$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_POWER_STATUS.BatteryFullLifeTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BatteryFullLifeTime$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_POWER_STATUS.BatteryFullLifeTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("ACLineStatus"),
+        wgl_h.C_CHAR.withName("BatteryFlag"),
+        wgl_h.C_CHAR.withName("BatteryLifePercent"),
+        wgl_h.C_CHAR.withName("SystemStatusFlag"),
+        wgl_h.C_LONG.withName("BatteryLifeTime"),
+        wgl_h.C_LONG.withName("BatteryFullLifeTime")
+    ).withName("_SYSTEM_POWER_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte ACLineStatus$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ACLineStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ACLineStatus
+     * }
+     */
+    public static final OfByte ACLineStatus$layout() {
+        return ACLineStatus$LAYOUT;
+    }
+
+    private static final long ACLineStatus$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ACLineStatus
+     * }
+     */
+    public static final long ACLineStatus$offset() {
+        return ACLineStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ACLineStatus
+     * }
+     */
+    public static byte ACLineStatus(MemorySegment struct) {
+        return struct.get(ACLineStatus$LAYOUT, ACLineStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ACLineStatus
+     * }
+     */
+    public static void ACLineStatus(MemorySegment struct, byte fieldValue) {
+        struct.set(ACLineStatus$LAYOUT, ACLineStatus$OFFSET, fieldValue);
+    }
+
+    private static final OfByte BatteryFlag$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BatteryFlag"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BatteryFlag
+     * }
+     */
+    public static final OfByte BatteryFlag$layout() {
+        return BatteryFlag$LAYOUT;
+    }
+
+    private static final long BatteryFlag$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BatteryFlag
+     * }
+     */
+    public static final long BatteryFlag$offset() {
+        return BatteryFlag$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BatteryFlag
+     * }
+     */
+    public static byte BatteryFlag(MemorySegment struct) {
+        return struct.get(BatteryFlag$LAYOUT, BatteryFlag$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BatteryFlag
+     * }
+     */
+    public static void BatteryFlag(MemorySegment struct, byte fieldValue) {
+        struct.set(BatteryFlag$LAYOUT, BatteryFlag$OFFSET, fieldValue);
+    }
+
+    private static final OfByte BatteryLifePercent$LAYOUT = (OfByte)$LAYOUT.select(groupElement("BatteryLifePercent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE BatteryLifePercent
+     * }
+     */
+    public static final OfByte BatteryLifePercent$layout() {
+        return BatteryLifePercent$LAYOUT;
+    }
+
+    private static final long BatteryLifePercent$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE BatteryLifePercent
+     * }
+     */
+    public static final long BatteryLifePercent$offset() {
+        return BatteryLifePercent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE BatteryLifePercent
+     * }
+     */
+    public static byte BatteryLifePercent(MemorySegment struct) {
+        return struct.get(BatteryLifePercent$LAYOUT, BatteryLifePercent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE BatteryLifePercent
+     * }
+     */
+    public static void BatteryLifePercent(MemorySegment struct, byte fieldValue) {
+        struct.set(BatteryLifePercent$LAYOUT, BatteryLifePercent$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SystemStatusFlag$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SystemStatusFlag"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SystemStatusFlag
+     * }
+     */
+    public static final OfByte SystemStatusFlag$layout() {
+        return SystemStatusFlag$LAYOUT;
+    }
+
+    private static final long SystemStatusFlag$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SystemStatusFlag
+     * }
+     */
+    public static final long SystemStatusFlag$offset() {
+        return SystemStatusFlag$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SystemStatusFlag
+     * }
+     */
+    public static byte SystemStatusFlag(MemorySegment struct) {
+        return struct.get(SystemStatusFlag$LAYOUT, SystemStatusFlag$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SystemStatusFlag
+     * }
+     */
+    public static void SystemStatusFlag(MemorySegment struct, byte fieldValue) {
+        struct.set(SystemStatusFlag$LAYOUT, SystemStatusFlag$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BatteryLifeTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BatteryLifeTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLifeTime
+     * }
+     */
+    public static final OfInt BatteryLifeTime$layout() {
+        return BatteryLifeTime$LAYOUT;
+    }
+
+    private static final long BatteryLifeTime$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLifeTime
+     * }
+     */
+    public static final long BatteryLifeTime$offset() {
+        return BatteryLifeTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLifeTime
+     * }
+     */
+    public static int BatteryLifeTime(MemorySegment struct) {
+        return struct.get(BatteryLifeTime$LAYOUT, BatteryLifeTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryLifeTime
+     * }
+     */
+    public static void BatteryLifeTime(MemorySegment struct, int fieldValue) {
+        struct.set(BatteryLifeTime$LAYOUT, BatteryLifeTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BatteryFullLifeTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BatteryFullLifeTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BatteryFullLifeTime
+     * }
+     */
+    public static final OfInt BatteryFullLifeTime$layout() {
+        return BatteryFullLifeTime$LAYOUT;
+    }
+
+    private static final long BatteryFullLifeTime$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BatteryFullLifeTime
+     * }
+     */
+    public static final long BatteryFullLifeTime$offset() {
+        return BatteryFullLifeTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryFullLifeTime
+     * }
+     */
+    public static int BatteryFullLifeTime(MemorySegment struct) {
+        return struct.get(BatteryFullLifeTime$LAYOUT, BatteryFullLifeTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BatteryFullLifeTime
+     * }
+     */
+    public static void BatteryFullLifeTime(MemorySegment struct, int fieldValue) {
+        struct.set(BatteryFullLifeTime$LAYOUT, BatteryFullLifeTime$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,110 +2,311 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CMC_ADD_ATTRIBUTES_INFO {
+ *     DWORD dwCmcDataReference;
+ *     DWORD cCertReference;
+ *     DWORD *rgdwCertReference;
+ *     DWORD cAttribute;
+ *     PCRYPT_ATTRIBUTE rgAttribute;
+ * }
+ * }
+ */
 public class _CMC_ADD_ATTRIBUTES_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwCmcDataReference"),
-        Constants$root.C_LONG$LAYOUT.withName("cCertReference"),
-        Constants$root.C_POINTER$LAYOUT.withName("rgdwCertReference"),
-        Constants$root.C_LONG$LAYOUT.withName("cAttribute"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgAttribute")
-    ).withName("_CMC_ADD_ATTRIBUTES_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CMC_ADD_ATTRIBUTES_INFO.$struct$LAYOUT;
+    _CMC_ADD_ATTRIBUTES_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwCmcDataReference$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCmcDataReference"));
-    public static VarHandle dwCmcDataReference$VH() {
-        return _CMC_ADD_ATTRIBUTES_INFO.dwCmcDataReference$VH;
-    }
-    public static int dwCmcDataReference$get(MemorySegment seg) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.dwCmcDataReference$VH.get(seg);
-    }
-    public static void dwCmcDataReference$set( MemorySegment seg, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.dwCmcDataReference$VH.set(seg, x);
-    }
-    public static int dwCmcDataReference$get(MemorySegment seg, long index) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.dwCmcDataReference$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCmcDataReference$set(MemorySegment seg, long index, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.dwCmcDataReference$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cCertReference$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCertReference"));
-    public static VarHandle cCertReference$VH() {
-        return _CMC_ADD_ATTRIBUTES_INFO.cCertReference$VH;
-    }
-    public static int cCertReference$get(MemorySegment seg) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.cCertReference$VH.get(seg);
-    }
-    public static void cCertReference$set( MemorySegment seg, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.cCertReference$VH.set(seg, x);
-    }
-    public static int cCertReference$get(MemorySegment seg, long index) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.cCertReference$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCertReference$set(MemorySegment seg, long index, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.cCertReference$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgdwCertReference$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgdwCertReference"));
-    public static VarHandle rgdwCertReference$VH() {
-        return _CMC_ADD_ATTRIBUTES_INFO.rgdwCertReference$VH;
-    }
-    public static MemoryAddress rgdwCertReference$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_ADD_ATTRIBUTES_INFO.rgdwCertReference$VH.get(seg);
-    }
-    public static void rgdwCertReference$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_ADD_ATTRIBUTES_INFO.rgdwCertReference$VH.set(seg, x);
-    }
-    public static MemoryAddress rgdwCertReference$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_ADD_ATTRIBUTES_INFO.rgdwCertReference$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgdwCertReference$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_ADD_ATTRIBUTES_INFO.rgdwCertReference$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cAttribute"));
-    public static VarHandle cAttribute$VH() {
-        return _CMC_ADD_ATTRIBUTES_INFO.cAttribute$VH;
-    }
-    public static int cAttribute$get(MemorySegment seg) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.cAttribute$VH.get(seg);
-    }
-    public static void cAttribute$set( MemorySegment seg, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.cAttribute$VH.set(seg, x);
-    }
-    public static int cAttribute$get(MemorySegment seg, long index) {
-        return (int)_CMC_ADD_ATTRIBUTES_INFO.cAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cAttribute$set(MemorySegment seg, long index, int x) {
-        _CMC_ADD_ATTRIBUTES_INFO.cAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgAttribute$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgAttribute"));
-    public static VarHandle rgAttribute$VH() {
-        return _CMC_ADD_ATTRIBUTES_INFO.rgAttribute$VH;
-    }
-    public static MemoryAddress rgAttribute$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CMC_ADD_ATTRIBUTES_INFO.rgAttribute$VH.get(seg);
-    }
-    public static void rgAttribute$set( MemorySegment seg, MemoryAddress x) {
-        _CMC_ADD_ATTRIBUTES_INFO.rgAttribute$VH.set(seg, x);
-    }
-    public static MemoryAddress rgAttribute$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CMC_ADD_ATTRIBUTES_INFO.rgAttribute$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgAttribute$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CMC_ADD_ATTRIBUTES_INFO.rgAttribute$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwCmcDataReference"),
+        wgl_h.C_LONG.withName("cCertReference"),
+        wgl_h.C_POINTER.withName("rgdwCertReference"),
+        wgl_h.C_LONG.withName("cAttribute"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgAttribute")
+    ).withName("_CMC_ADD_ATTRIBUTES_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwCmcDataReference$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCmcDataReference"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCmcDataReference
+     * }
+     */
+    public static final OfInt dwCmcDataReference$layout() {
+        return dwCmcDataReference$LAYOUT;
+    }
+
+    private static final long dwCmcDataReference$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCmcDataReference
+     * }
+     */
+    public static final long dwCmcDataReference$offset() {
+        return dwCmcDataReference$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCmcDataReference
+     * }
+     */
+    public static int dwCmcDataReference(MemorySegment struct) {
+        return struct.get(dwCmcDataReference$LAYOUT, dwCmcDataReference$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCmcDataReference
+     * }
+     */
+    public static void dwCmcDataReference(MemorySegment struct, int fieldValue) {
+        struct.set(dwCmcDataReference$LAYOUT, dwCmcDataReference$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cCertReference$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCertReference"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCertReference
+     * }
+     */
+    public static final OfInt cCertReference$layout() {
+        return cCertReference$LAYOUT;
+    }
+
+    private static final long cCertReference$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCertReference
+     * }
+     */
+    public static final long cCertReference$offset() {
+        return cCertReference$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCertReference
+     * }
+     */
+    public static int cCertReference(MemorySegment struct) {
+        return struct.get(cCertReference$LAYOUT, cCertReference$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCertReference
+     * }
+     */
+    public static void cCertReference(MemorySegment struct, int fieldValue) {
+        struct.set(cCertReference$LAYOUT, cCertReference$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgdwCertReference$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgdwCertReference"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD *rgdwCertReference
+     * }
+     */
+    public static final AddressLayout rgdwCertReference$layout() {
+        return rgdwCertReference$LAYOUT;
+    }
+
+    private static final long rgdwCertReference$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD *rgdwCertReference
+     * }
+     */
+    public static final long rgdwCertReference$offset() {
+        return rgdwCertReference$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD *rgdwCertReference
+     * }
+     */
+    public static MemorySegment rgdwCertReference(MemorySegment struct) {
+        return struct.get(rgdwCertReference$LAYOUT, rgdwCertReference$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD *rgdwCertReference
+     * }
+     */
+    public static void rgdwCertReference(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgdwCertReference$LAYOUT, rgdwCertReference$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cAttribute$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static final OfInt cAttribute$layout() {
+        return cAttribute$LAYOUT;
+    }
+
+    private static final long cAttribute$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static final long cAttribute$offset() {
+        return cAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static int cAttribute(MemorySegment struct) {
+        return struct.get(cAttribute$LAYOUT, cAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cAttribute
+     * }
+     */
+    public static void cAttribute(MemorySegment struct, int fieldValue) {
+        struct.set(cAttribute$LAYOUT, cAttribute$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgAttribute$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgAttribute"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static final AddressLayout rgAttribute$layout() {
+        return rgAttribute$LAYOUT;
+    }
+
+    private static final long rgAttribute$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static final long rgAttribute$offset() {
+        return rgAttribute$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static MemorySegment rgAttribute(MemorySegment struct) {
+        return struct.get(rgAttribute$LAYOUT, rgAttribute$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_ATTRIBUTE rgAttribute
+     * }
+     */
+    public static void rgAttribute(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgAttribute$LAYOUT, rgAttribute$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PUMS_SCHEDULER_ENTRY_POINT {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(int _x0, long _x1, java.lang.foreign.MemoryAddress _x2);
-    static MemorySegment allocate(PUMS_SCHEDULER_ENTRY_POINT fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PUMS_SCHEDULER_ENTRY_POINT.class, fi, constants$260.PUMS_SCHEDULER_ENTRY_POINT$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef PRTL_UMS_SCHEDULER_ENTRY_POINT PUMS_SCHEDULER_ENTRY_POINT
+ * }
+ */
+public class PUMS_SCHEDULER_ENTRY_POINT {
+
+    PUMS_SCHEDULER_ENTRY_POINT() {
+        // Should not be called directly
     }
-    static PUMS_SCHEDULER_ENTRY_POINT ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int __x0, long __x1, java.lang.foreign.MemoryAddress __x2) -> {
-            try {
-                constants$260.PUMS_SCHEDULER_ENTRY_POINT$MH.invokeExact((Addressable)symbol, __x0, __x1, (java.lang.foreign.Addressable)__x2);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(int _x0, long _x1, MemorySegment _x2);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_INT,
+        wgl_h.C_LONG_LONG,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PUMS_SCHEDULER_ENTRY_POINT.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PUMS_SCHEDULER_ENTRY_POINT.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,int _x0, long _x1, MemorySegment _x2) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, _x0, _x1, _x2);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

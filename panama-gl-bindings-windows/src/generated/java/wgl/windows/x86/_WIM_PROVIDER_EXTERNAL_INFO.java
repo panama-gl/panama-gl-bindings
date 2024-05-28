@@ -2,77 +2,298 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _WIM_PROVIDER_EXTERNAL_INFO {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     LARGE_INTEGER DataSourceId;
+ *     BYTE ResourceHash[20];
+ * }
+ * }
+ */
 public class _WIM_PROVIDER_EXTERNAL_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("DataSourceId"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("ResourceHash"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_WIM_PROVIDER_EXTERNAL_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _WIM_PROVIDER_EXTERNAL_INFO.$struct$LAYOUT;
+    _WIM_PROVIDER_EXTERNAL_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _WIM_PROVIDER_EXTERNAL_INFO.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_EXTERNAL_INFO.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_EXTERNAL_INFO.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_EXTERNAL_INFO.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_EXTERNAL_INFO.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _WIM_PROVIDER_EXTERNAL_INFO.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_EXTERNAL_INFO.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_EXTERNAL_INFO.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_EXTERNAL_INFO.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_EXTERNAL_INFO.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DataSourceId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment ResourceHash$slice(MemorySegment seg) {
-        return seg.asSlice(16, 20);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        _LARGE_INTEGER.layout().withName("DataSourceId"),
+        MemoryLayout.sequenceLayout(20, wgl_h.C_CHAR).withName("ResourceHash"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_WIM_PROVIDER_EXTERNAL_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout DataSourceId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DataSourceId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final GroupLayout DataSourceId$layout() {
+        return DataSourceId$LAYOUT;
+    }
+
+    private static final long DataSourceId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final long DataSourceId$offset() {
+        return DataSourceId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static MemorySegment DataSourceId(MemorySegment struct) {
+        return struct.asSlice(DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static void DataSourceId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout ResourceHash$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ResourceHash"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static final SequenceLayout ResourceHash$layout() {
+        return ResourceHash$LAYOUT;
+    }
+
+    private static final long ResourceHash$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static final long ResourceHash$offset() {
+        return ResourceHash$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static MemorySegment ResourceHash(MemorySegment struct) {
+        return struct.asSlice(ResourceHash$OFFSET, ResourceHash$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static void ResourceHash(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ResourceHash$OFFSET, ResourceHash$LAYOUT.byteSize());
+    }
+
+    private static long[] ResourceHash$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static long[] ResourceHash$dimensions() {
+        return ResourceHash$DIMS;
+    }
+    private static final VarHandle ResourceHash$ELEM_HANDLE = ResourceHash$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static byte ResourceHash(MemorySegment struct, long index0) {
+        return (byte)ResourceHash$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE ResourceHash[20]
+     * }
+     */
+    public static void ResourceHash(MemorySegment struct, long index0, byte fieldValue) {
+        ResourceHash$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

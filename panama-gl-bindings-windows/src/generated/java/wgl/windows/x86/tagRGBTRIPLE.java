@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRGBTRIPLE {
+ *     BYTE rgbtBlue;
+ *     BYTE rgbtGreen;
+ *     BYTE rgbtRed;
+ * }
+ * }
+ */
 public class tagRGBTRIPLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("rgbtBlue"),
-        Constants$root.C_CHAR$LAYOUT.withName("rgbtGreen"),
-        Constants$root.C_CHAR$LAYOUT.withName("rgbtRed")
-    ).withName("tagRGBTRIPLE");
-    public static MemoryLayout $LAYOUT() {
-        return tagRGBTRIPLE.$struct$LAYOUT;
+    tagRGBTRIPLE() {
+        // Should not be called directly
     }
-    static final VarHandle rgbtBlue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbtBlue"));
-    public static VarHandle rgbtBlue$VH() {
-        return tagRGBTRIPLE.rgbtBlue$VH;
-    }
-    public static byte rgbtBlue$get(MemorySegment seg) {
-        return (byte)tagRGBTRIPLE.rgbtBlue$VH.get(seg);
-    }
-    public static void rgbtBlue$set( MemorySegment seg, byte x) {
-        tagRGBTRIPLE.rgbtBlue$VH.set(seg, x);
-    }
-    public static byte rgbtBlue$get(MemorySegment seg, long index) {
-        return (byte)tagRGBTRIPLE.rgbtBlue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbtBlue$set(MemorySegment seg, long index, byte x) {
-        tagRGBTRIPLE.rgbtBlue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgbtGreen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbtGreen"));
-    public static VarHandle rgbtGreen$VH() {
-        return tagRGBTRIPLE.rgbtGreen$VH;
-    }
-    public static byte rgbtGreen$get(MemorySegment seg) {
-        return (byte)tagRGBTRIPLE.rgbtGreen$VH.get(seg);
-    }
-    public static void rgbtGreen$set( MemorySegment seg, byte x) {
-        tagRGBTRIPLE.rgbtGreen$VH.set(seg, x);
-    }
-    public static byte rgbtGreen$get(MemorySegment seg, long index) {
-        return (byte)tagRGBTRIPLE.rgbtGreen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbtGreen$set(MemorySegment seg, long index, byte x) {
-        tagRGBTRIPLE.rgbtGreen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgbtRed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgbtRed"));
-    public static VarHandle rgbtRed$VH() {
-        return tagRGBTRIPLE.rgbtRed$VH;
-    }
-    public static byte rgbtRed$get(MemorySegment seg) {
-        return (byte)tagRGBTRIPLE.rgbtRed$VH.get(seg);
-    }
-    public static void rgbtRed$set( MemorySegment seg, byte x) {
-        tagRGBTRIPLE.rgbtRed$VH.set(seg, x);
-    }
-    public static byte rgbtRed$get(MemorySegment seg, long index) {
-        return (byte)tagRGBTRIPLE.rgbtRed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgbtRed$set(MemorySegment seg, long index, byte x) {
-        tagRGBTRIPLE.rgbtRed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("rgbtBlue"),
+        wgl_h.C_CHAR.withName("rgbtGreen"),
+        wgl_h.C_CHAR.withName("rgbtRed")
+    ).withName("tagRGBTRIPLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte rgbtBlue$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbtBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbtBlue
+     * }
+     */
+    public static final OfByte rgbtBlue$layout() {
+        return rgbtBlue$LAYOUT;
+    }
+
+    private static final long rgbtBlue$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbtBlue
+     * }
+     */
+    public static final long rgbtBlue$offset() {
+        return rgbtBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtBlue
+     * }
+     */
+    public static byte rgbtBlue(MemorySegment struct) {
+        return struct.get(rgbtBlue$LAYOUT, rgbtBlue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtBlue
+     * }
+     */
+    public static void rgbtBlue(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbtBlue$LAYOUT, rgbtBlue$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rgbtGreen$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbtGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbtGreen
+     * }
+     */
+    public static final OfByte rgbtGreen$layout() {
+        return rgbtGreen$LAYOUT;
+    }
+
+    private static final long rgbtGreen$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbtGreen
+     * }
+     */
+    public static final long rgbtGreen$offset() {
+        return rgbtGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtGreen
+     * }
+     */
+    public static byte rgbtGreen(MemorySegment struct) {
+        return struct.get(rgbtGreen$LAYOUT, rgbtGreen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtGreen
+     * }
+     */
+    public static void rgbtGreen(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbtGreen$LAYOUT, rgbtGreen$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rgbtRed$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rgbtRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbtRed
+     * }
+     */
+    public static final OfByte rgbtRed$layout() {
+        return rgbtRed$LAYOUT;
+    }
+
+    private static final long rgbtRed$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbtRed
+     * }
+     */
+    public static final long rgbtRed$offset() {
+        return rgbtRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtRed
+     * }
+     */
+    public static byte rgbtRed(MemorySegment struct) {
+        return struct.get(rgbtRed$LAYOUT, rgbtRed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbtRed
+     * }
+     */
+    public static void rgbtRed(MemorySegment struct, byte fieldValue) {
+        struct.set(rgbtRed$LAYOUT, rgbtRed$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

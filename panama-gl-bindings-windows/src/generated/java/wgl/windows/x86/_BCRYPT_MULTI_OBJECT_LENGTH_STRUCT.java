@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT {
+ *     ULONG cbPerObject;
+ *     ULONG cbPerElement;
+ * }
+ * }
+ */
 public class _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbPerObject"),
-        Constants$root.C_LONG$LAYOUT.withName("cbPerElement")
-    ).withName("_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.$struct$LAYOUT;
+    _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle cbPerObject$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbPerObject"));
-    public static VarHandle cbPerObject$VH() {
-        return _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerObject$VH;
-    }
-    public static int cbPerObject$get(MemorySegment seg) {
-        return (int)_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerObject$VH.get(seg);
-    }
-    public static void cbPerObject$set( MemorySegment seg, int x) {
-        _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerObject$VH.set(seg, x);
-    }
-    public static int cbPerObject$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerObject$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbPerObject$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerObject$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbPerElement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbPerElement"));
-    public static VarHandle cbPerElement$VH() {
-        return _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerElement$VH;
-    }
-    public static int cbPerElement$get(MemorySegment seg) {
-        return (int)_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerElement$VH.get(seg);
-    }
-    public static void cbPerElement$set( MemorySegment seg, int x) {
-        _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerElement$VH.set(seg, x);
-    }
-    public static int cbPerElement$get(MemorySegment seg, long index) {
-        return (int)_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerElement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbPerElement$set(MemorySegment seg, long index, int x) {
-        _BCRYPT_MULTI_OBJECT_LENGTH_STRUCT.cbPerElement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbPerObject"),
+        wgl_h.C_LONG.withName("cbPerElement")
+    ).withName("_BCRYPT_MULTI_OBJECT_LENGTH_STRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbPerObject$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbPerObject"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbPerObject
+     * }
+     */
+    public static final OfInt cbPerObject$layout() {
+        return cbPerObject$LAYOUT;
+    }
+
+    private static final long cbPerObject$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbPerObject
+     * }
+     */
+    public static final long cbPerObject$offset() {
+        return cbPerObject$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbPerObject
+     * }
+     */
+    public static int cbPerObject(MemorySegment struct) {
+        return struct.get(cbPerObject$LAYOUT, cbPerObject$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbPerObject
+     * }
+     */
+    public static void cbPerObject(MemorySegment struct, int fieldValue) {
+        struct.set(cbPerObject$LAYOUT, cbPerObject$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbPerElement$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbPerElement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbPerElement
+     * }
+     */
+    public static final OfInt cbPerElement$layout() {
+        return cbPerElement$LAYOUT;
+    }
+
+    private static final long cbPerElement$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbPerElement
+     * }
+     */
+    public static final long cbPerElement$offset() {
+        return cbPerElement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbPerElement
+     * }
+     */
+    public static int cbPerElement(MemorySegment struct) {
+        return struct.get(cbPerElement$LAYOUT, cbPerElement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbPerElement
+     * }
+     */
+    public static void cbPerElement(MemorySegment struct, int fieldValue) {
+        struct.set(cbPerElement$LAYOUT, cbPerElement$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

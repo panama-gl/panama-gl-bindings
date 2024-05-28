@@ -2,94 +2,268 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     union {
+ *         DWORD UsnSourceInfo;
+ *         DWORD CopyNumber;
+ *     };
+ *     UINT32 VolumeHandle;
+ *     DWORD HandleInfo;
+ * }
+ * }
+ */
 public class MARK_HANDLE_INFO32 {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("UsnSourceInfo"),
-            Constants$root.C_LONG$LAYOUT.withName("CopyNumber")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("VolumeHandle"),
-        Constants$root.C_LONG$LAYOUT.withName("HandleInfo")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return MARK_HANDLE_INFO32.$struct$LAYOUT;
+    MARK_HANDLE_INFO32() {
+        // Should not be called directly
     }
-    static final VarHandle UsnSourceInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("UsnSourceInfo"));
-    public static VarHandle UsnSourceInfo$VH() {
-        return MARK_HANDLE_INFO32.UsnSourceInfo$VH;
-    }
-    public static int UsnSourceInfo$get(MemorySegment seg) {
-        return (int)MARK_HANDLE_INFO32.UsnSourceInfo$VH.get(seg);
-    }
-    public static void UsnSourceInfo$set( MemorySegment seg, int x) {
-        MARK_HANDLE_INFO32.UsnSourceInfo$VH.set(seg, x);
-    }
-    public static int UsnSourceInfo$get(MemorySegment seg, long index) {
-        return (int)MARK_HANDLE_INFO32.UsnSourceInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UsnSourceInfo$set(MemorySegment seg, long index, int x) {
-        MARK_HANDLE_INFO32.UsnSourceInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CopyNumber$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("CopyNumber"));
-    public static VarHandle CopyNumber$VH() {
-        return MARK_HANDLE_INFO32.CopyNumber$VH;
-    }
-    public static int CopyNumber$get(MemorySegment seg) {
-        return (int)MARK_HANDLE_INFO32.CopyNumber$VH.get(seg);
-    }
-    public static void CopyNumber$set( MemorySegment seg, int x) {
-        MARK_HANDLE_INFO32.CopyNumber$VH.set(seg, x);
-    }
-    public static int CopyNumber$get(MemorySegment seg, long index) {
-        return (int)MARK_HANDLE_INFO32.CopyNumber$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CopyNumber$set(MemorySegment seg, long index, int x) {
-        MARK_HANDLE_INFO32.CopyNumber$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VolumeHandle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeHandle"));
-    public static VarHandle VolumeHandle$VH() {
-        return MARK_HANDLE_INFO32.VolumeHandle$VH;
-    }
-    public static int VolumeHandle$get(MemorySegment seg) {
-        return (int)MARK_HANDLE_INFO32.VolumeHandle$VH.get(seg);
-    }
-    public static void VolumeHandle$set( MemorySegment seg, int x) {
-        MARK_HANDLE_INFO32.VolumeHandle$VH.set(seg, x);
-    }
-    public static int VolumeHandle$get(MemorySegment seg, long index) {
-        return (int)MARK_HANDLE_INFO32.VolumeHandle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeHandle$set(MemorySegment seg, long index, int x) {
-        MARK_HANDLE_INFO32.VolumeHandle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HandleInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HandleInfo"));
-    public static VarHandle HandleInfo$VH() {
-        return MARK_HANDLE_INFO32.HandleInfo$VH;
-    }
-    public static int HandleInfo$get(MemorySegment seg) {
-        return (int)MARK_HANDLE_INFO32.HandleInfo$VH.get(seg);
-    }
-    public static void HandleInfo$set( MemorySegment seg, int x) {
-        MARK_HANDLE_INFO32.HandleInfo$VH.set(seg, x);
-    }
-    public static int HandleInfo$get(MemorySegment seg, long index) {
-        return (int)MARK_HANDLE_INFO32.HandleInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HandleInfo$set(MemorySegment seg, long index, int x) {
-        MARK_HANDLE_INFO32.HandleInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("UsnSourceInfo"),
+            wgl_h.C_LONG.withName("CopyNumber")
+        ).withName("$anon$11068:5"),
+        wgl_h.C_INT.withName("VolumeHandle"),
+        wgl_h.C_LONG.withName("HandleInfo")
+    ).withName("$anon$11065:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt UsnSourceInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$11068:5"), groupElement("UsnSourceInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UsnSourceInfo
+     * }
+     */
+    public static final OfInt UsnSourceInfo$layout() {
+        return UsnSourceInfo$LAYOUT;
+    }
+
+    private static final long UsnSourceInfo$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UsnSourceInfo
+     * }
+     */
+    public static final long UsnSourceInfo$offset() {
+        return UsnSourceInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UsnSourceInfo
+     * }
+     */
+    public static int UsnSourceInfo(MemorySegment struct) {
+        return struct.get(UsnSourceInfo$LAYOUT, UsnSourceInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UsnSourceInfo
+     * }
+     */
+    public static void UsnSourceInfo(MemorySegment struct, int fieldValue) {
+        struct.set(UsnSourceInfo$LAYOUT, UsnSourceInfo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CopyNumber$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$11068:5"), groupElement("CopyNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CopyNumber
+     * }
+     */
+    public static final OfInt CopyNumber$layout() {
+        return CopyNumber$LAYOUT;
+    }
+
+    private static final long CopyNumber$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CopyNumber
+     * }
+     */
+    public static final long CopyNumber$offset() {
+        return CopyNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CopyNumber
+     * }
+     */
+    public static int CopyNumber(MemorySegment struct) {
+        return struct.get(CopyNumber$LAYOUT, CopyNumber$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CopyNumber
+     * }
+     */
+    public static void CopyNumber(MemorySegment struct, int fieldValue) {
+        struct.set(CopyNumber$LAYOUT, CopyNumber$OFFSET, fieldValue);
+    }
+
+    private static final OfInt VolumeHandle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VolumeHandle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT32 VolumeHandle
+     * }
+     */
+    public static final OfInt VolumeHandle$layout() {
+        return VolumeHandle$LAYOUT;
+    }
+
+    private static final long VolumeHandle$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT32 VolumeHandle
+     * }
+     */
+    public static final long VolumeHandle$offset() {
+        return VolumeHandle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT32 VolumeHandle
+     * }
+     */
+    public static int VolumeHandle(MemorySegment struct) {
+        return struct.get(VolumeHandle$LAYOUT, VolumeHandle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT32 VolumeHandle
+     * }
+     */
+    public static void VolumeHandle(MemorySegment struct, int fieldValue) {
+        struct.set(VolumeHandle$LAYOUT, VolumeHandle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt HandleInfo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HandleInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HandleInfo
+     * }
+     */
+    public static final OfInt HandleInfo$layout() {
+        return HandleInfo$LAYOUT;
+    }
+
+    private static final long HandleInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HandleInfo
+     * }
+     */
+    public static final long HandleInfo$offset() {
+        return HandleInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HandleInfo
+     * }
+     */
+    public static int HandleInfo(MemorySegment struct) {
+        return struct.get(HandleInfo$LAYOUT, HandleInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HandleInfo
+     * }
+     */
+    public static void HandleInfo(MemorySegment struct, int fieldValue) {
+        struct.set(HandleInfo$LAYOUT, HandleInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

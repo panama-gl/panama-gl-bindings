@@ -2,470 +2,1355 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ADAPTER_STATUS {
+ *     UCHAR adapter_address[6];
+ *     UCHAR rev_major;
+ *     UCHAR reserved0;
+ *     UCHAR adapter_type;
+ *     UCHAR rev_minor;
+ *     WORD duration;
+ *     WORD frmr_recv;
+ *     WORD frmr_xmit;
+ *     WORD iframe_recv_err;
+ *     WORD xmit_aborts;
+ *     DWORD xmit_success;
+ *     DWORD recv_success;
+ *     WORD iframe_xmit_err;
+ *     WORD recv_buff_unavail;
+ *     WORD t1_timeouts;
+ *     WORD ti_timeouts;
+ *     DWORD reserved1;
+ *     WORD free_ncbs;
+ *     WORD max_cfg_ncbs;
+ *     WORD max_ncbs;
+ *     WORD xmit_buf_unavail;
+ *     WORD max_dgram_size;
+ *     WORD pending_sess;
+ *     WORD max_cfg_sess;
+ *     WORD max_sess;
+ *     WORD max_sess_pkt_size;
+ *     WORD name_count;
+ * }
+ * }
+ */
 public class _ADAPTER_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(6, Constants$root.C_CHAR$LAYOUT).withName("adapter_address"),
-        Constants$root.C_CHAR$LAYOUT.withName("rev_major"),
-        Constants$root.C_CHAR$LAYOUT.withName("reserved0"),
-        Constants$root.C_CHAR$LAYOUT.withName("adapter_type"),
-        Constants$root.C_CHAR$LAYOUT.withName("rev_minor"),
-        Constants$root.C_SHORT$LAYOUT.withName("duration"),
-        Constants$root.C_SHORT$LAYOUT.withName("frmr_recv"),
-        Constants$root.C_SHORT$LAYOUT.withName("frmr_xmit"),
-        Constants$root.C_SHORT$LAYOUT.withName("iframe_recv_err"),
-        Constants$root.C_SHORT$LAYOUT.withName("xmit_aborts"),
-        Constants$root.C_LONG$LAYOUT.withName("xmit_success"),
-        Constants$root.C_LONG$LAYOUT.withName("recv_success"),
-        Constants$root.C_SHORT$LAYOUT.withName("iframe_xmit_err"),
-        Constants$root.C_SHORT$LAYOUT.withName("recv_buff_unavail"),
-        Constants$root.C_SHORT$LAYOUT.withName("t1_timeouts"),
-        Constants$root.C_SHORT$LAYOUT.withName("ti_timeouts"),
-        Constants$root.C_LONG$LAYOUT.withName("reserved1"),
-        Constants$root.C_SHORT$LAYOUT.withName("free_ncbs"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_cfg_ncbs"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_ncbs"),
-        Constants$root.C_SHORT$LAYOUT.withName("xmit_buf_unavail"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_dgram_size"),
-        Constants$root.C_SHORT$LAYOUT.withName("pending_sess"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_cfg_sess"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_sess"),
-        Constants$root.C_SHORT$LAYOUT.withName("max_sess_pkt_size"),
-        Constants$root.C_SHORT$LAYOUT.withName("name_count")
-    ).withName("_ADAPTER_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _ADAPTER_STATUS.$struct$LAYOUT;
+    _ADAPTER_STATUS() {
+        // Should not be called directly
     }
-    public static MemorySegment adapter_address$slice(MemorySegment seg) {
-        return seg.asSlice(0, 6);
-    }
-    static final VarHandle rev_major$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rev_major"));
-    public static VarHandle rev_major$VH() {
-        return _ADAPTER_STATUS.rev_major$VH;
-    }
-    public static byte rev_major$get(MemorySegment seg) {
-        return (byte)_ADAPTER_STATUS.rev_major$VH.get(seg);
-    }
-    public static void rev_major$set( MemorySegment seg, byte x) {
-        _ADAPTER_STATUS.rev_major$VH.set(seg, x);
-    }
-    public static byte rev_major$get(MemorySegment seg, long index) {
-        return (byte)_ADAPTER_STATUS.rev_major$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rev_major$set(MemorySegment seg, long index, byte x) {
-        _ADAPTER_STATUS.rev_major$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle reserved0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved0"));
-    public static VarHandle reserved0$VH() {
-        return _ADAPTER_STATUS.reserved0$VH;
-    }
-    public static byte reserved0$get(MemorySegment seg) {
-        return (byte)_ADAPTER_STATUS.reserved0$VH.get(seg);
-    }
-    public static void reserved0$set( MemorySegment seg, byte x) {
-        _ADAPTER_STATUS.reserved0$VH.set(seg, x);
-    }
-    public static byte reserved0$get(MemorySegment seg, long index) {
-        return (byte)_ADAPTER_STATUS.reserved0$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void reserved0$set(MemorySegment seg, long index, byte x) {
-        _ADAPTER_STATUS.reserved0$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle adapter_type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("adapter_type"));
-    public static VarHandle adapter_type$VH() {
-        return _ADAPTER_STATUS.adapter_type$VH;
-    }
-    public static byte adapter_type$get(MemorySegment seg) {
-        return (byte)_ADAPTER_STATUS.adapter_type$VH.get(seg);
-    }
-    public static void adapter_type$set( MemorySegment seg, byte x) {
-        _ADAPTER_STATUS.adapter_type$VH.set(seg, x);
-    }
-    public static byte adapter_type$get(MemorySegment seg, long index) {
-        return (byte)_ADAPTER_STATUS.adapter_type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void adapter_type$set(MemorySegment seg, long index, byte x) {
-        _ADAPTER_STATUS.adapter_type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rev_minor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rev_minor"));
-    public static VarHandle rev_minor$VH() {
-        return _ADAPTER_STATUS.rev_minor$VH;
-    }
-    public static byte rev_minor$get(MemorySegment seg) {
-        return (byte)_ADAPTER_STATUS.rev_minor$VH.get(seg);
-    }
-    public static void rev_minor$set( MemorySegment seg, byte x) {
-        _ADAPTER_STATUS.rev_minor$VH.set(seg, x);
-    }
-    public static byte rev_minor$get(MemorySegment seg, long index) {
-        return (byte)_ADAPTER_STATUS.rev_minor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rev_minor$set(MemorySegment seg, long index, byte x) {
-        _ADAPTER_STATUS.rev_minor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle duration$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("duration"));
-    public static VarHandle duration$VH() {
-        return _ADAPTER_STATUS.duration$VH;
-    }
-    public static short duration$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.duration$VH.get(seg);
-    }
-    public static void duration$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.duration$VH.set(seg, x);
-    }
-    public static short duration$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.duration$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void duration$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.duration$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle frmr_recv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("frmr_recv"));
-    public static VarHandle frmr_recv$VH() {
-        return _ADAPTER_STATUS.frmr_recv$VH;
-    }
-    public static short frmr_recv$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.frmr_recv$VH.get(seg);
-    }
-    public static void frmr_recv$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.frmr_recv$VH.set(seg, x);
-    }
-    public static short frmr_recv$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.frmr_recv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void frmr_recv$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.frmr_recv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle frmr_xmit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("frmr_xmit"));
-    public static VarHandle frmr_xmit$VH() {
-        return _ADAPTER_STATUS.frmr_xmit$VH;
-    }
-    public static short frmr_xmit$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.frmr_xmit$VH.get(seg);
-    }
-    public static void frmr_xmit$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.frmr_xmit$VH.set(seg, x);
-    }
-    public static short frmr_xmit$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.frmr_xmit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void frmr_xmit$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.frmr_xmit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iframe_recv_err$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iframe_recv_err"));
-    public static VarHandle iframe_recv_err$VH() {
-        return _ADAPTER_STATUS.iframe_recv_err$VH;
-    }
-    public static short iframe_recv_err$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.iframe_recv_err$VH.get(seg);
-    }
-    public static void iframe_recv_err$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.iframe_recv_err$VH.set(seg, x);
-    }
-    public static short iframe_recv_err$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.iframe_recv_err$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iframe_recv_err$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.iframe_recv_err$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle xmit_aborts$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("xmit_aborts"));
-    public static VarHandle xmit_aborts$VH() {
-        return _ADAPTER_STATUS.xmit_aborts$VH;
-    }
-    public static short xmit_aborts$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.xmit_aborts$VH.get(seg);
-    }
-    public static void xmit_aborts$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.xmit_aborts$VH.set(seg, x);
-    }
-    public static short xmit_aborts$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.xmit_aborts$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void xmit_aborts$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.xmit_aborts$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle xmit_success$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("xmit_success"));
-    public static VarHandle xmit_success$VH() {
-        return _ADAPTER_STATUS.xmit_success$VH;
-    }
-    public static int xmit_success$get(MemorySegment seg) {
-        return (int)_ADAPTER_STATUS.xmit_success$VH.get(seg);
-    }
-    public static void xmit_success$set( MemorySegment seg, int x) {
-        _ADAPTER_STATUS.xmit_success$VH.set(seg, x);
-    }
-    public static int xmit_success$get(MemorySegment seg, long index) {
-        return (int)_ADAPTER_STATUS.xmit_success$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void xmit_success$set(MemorySegment seg, long index, int x) {
-        _ADAPTER_STATUS.xmit_success$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle recv_success$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("recv_success"));
-    public static VarHandle recv_success$VH() {
-        return _ADAPTER_STATUS.recv_success$VH;
-    }
-    public static int recv_success$get(MemorySegment seg) {
-        return (int)_ADAPTER_STATUS.recv_success$VH.get(seg);
-    }
-    public static void recv_success$set( MemorySegment seg, int x) {
-        _ADAPTER_STATUS.recv_success$VH.set(seg, x);
-    }
-    public static int recv_success$get(MemorySegment seg, long index) {
-        return (int)_ADAPTER_STATUS.recv_success$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void recv_success$set(MemorySegment seg, long index, int x) {
-        _ADAPTER_STATUS.recv_success$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle iframe_xmit_err$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("iframe_xmit_err"));
-    public static VarHandle iframe_xmit_err$VH() {
-        return _ADAPTER_STATUS.iframe_xmit_err$VH;
-    }
-    public static short iframe_xmit_err$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.iframe_xmit_err$VH.get(seg);
-    }
-    public static void iframe_xmit_err$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.iframe_xmit_err$VH.set(seg, x);
-    }
-    public static short iframe_xmit_err$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.iframe_xmit_err$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void iframe_xmit_err$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.iframe_xmit_err$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle recv_buff_unavail$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("recv_buff_unavail"));
-    public static VarHandle recv_buff_unavail$VH() {
-        return _ADAPTER_STATUS.recv_buff_unavail$VH;
-    }
-    public static short recv_buff_unavail$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.recv_buff_unavail$VH.get(seg);
-    }
-    public static void recv_buff_unavail$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.recv_buff_unavail$VH.set(seg, x);
-    }
-    public static short recv_buff_unavail$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.recv_buff_unavail$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void recv_buff_unavail$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.recv_buff_unavail$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle t1_timeouts$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("t1_timeouts"));
-    public static VarHandle t1_timeouts$VH() {
-        return _ADAPTER_STATUS.t1_timeouts$VH;
-    }
-    public static short t1_timeouts$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.t1_timeouts$VH.get(seg);
-    }
-    public static void t1_timeouts$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.t1_timeouts$VH.set(seg, x);
-    }
-    public static short t1_timeouts$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.t1_timeouts$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void t1_timeouts$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.t1_timeouts$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ti_timeouts$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ti_timeouts"));
-    public static VarHandle ti_timeouts$VH() {
-        return _ADAPTER_STATUS.ti_timeouts$VH;
-    }
-    public static short ti_timeouts$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.ti_timeouts$VH.get(seg);
-    }
-    public static void ti_timeouts$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.ti_timeouts$VH.set(seg, x);
-    }
-    public static short ti_timeouts$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.ti_timeouts$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ti_timeouts$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.ti_timeouts$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle reserved1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved1"));
-    public static VarHandle reserved1$VH() {
-        return _ADAPTER_STATUS.reserved1$VH;
-    }
-    public static int reserved1$get(MemorySegment seg) {
-        return (int)_ADAPTER_STATUS.reserved1$VH.get(seg);
-    }
-    public static void reserved1$set( MemorySegment seg, int x) {
-        _ADAPTER_STATUS.reserved1$VH.set(seg, x);
-    }
-    public static int reserved1$get(MemorySegment seg, long index) {
-        return (int)_ADAPTER_STATUS.reserved1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void reserved1$set(MemorySegment seg, long index, int x) {
-        _ADAPTER_STATUS.reserved1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle free_ncbs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("free_ncbs"));
-    public static VarHandle free_ncbs$VH() {
-        return _ADAPTER_STATUS.free_ncbs$VH;
-    }
-    public static short free_ncbs$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.free_ncbs$VH.get(seg);
-    }
-    public static void free_ncbs$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.free_ncbs$VH.set(seg, x);
-    }
-    public static short free_ncbs$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.free_ncbs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void free_ncbs$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.free_ncbs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_cfg_ncbs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_cfg_ncbs"));
-    public static VarHandle max_cfg_ncbs$VH() {
-        return _ADAPTER_STATUS.max_cfg_ncbs$VH;
-    }
-    public static short max_cfg_ncbs$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_cfg_ncbs$VH.get(seg);
-    }
-    public static void max_cfg_ncbs$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_cfg_ncbs$VH.set(seg, x);
-    }
-    public static short max_cfg_ncbs$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_cfg_ncbs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_cfg_ncbs$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_cfg_ncbs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_ncbs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_ncbs"));
-    public static VarHandle max_ncbs$VH() {
-        return _ADAPTER_STATUS.max_ncbs$VH;
-    }
-    public static short max_ncbs$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_ncbs$VH.get(seg);
-    }
-    public static void max_ncbs$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_ncbs$VH.set(seg, x);
-    }
-    public static short max_ncbs$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_ncbs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_ncbs$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_ncbs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle xmit_buf_unavail$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("xmit_buf_unavail"));
-    public static VarHandle xmit_buf_unavail$VH() {
-        return _ADAPTER_STATUS.xmit_buf_unavail$VH;
-    }
-    public static short xmit_buf_unavail$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.xmit_buf_unavail$VH.get(seg);
-    }
-    public static void xmit_buf_unavail$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.xmit_buf_unavail$VH.set(seg, x);
-    }
-    public static short xmit_buf_unavail$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.xmit_buf_unavail$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void xmit_buf_unavail$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.xmit_buf_unavail$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_dgram_size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_dgram_size"));
-    public static VarHandle max_dgram_size$VH() {
-        return _ADAPTER_STATUS.max_dgram_size$VH;
-    }
-    public static short max_dgram_size$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_dgram_size$VH.get(seg);
-    }
-    public static void max_dgram_size$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_dgram_size$VH.set(seg, x);
-    }
-    public static short max_dgram_size$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_dgram_size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_dgram_size$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_dgram_size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pending_sess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pending_sess"));
-    public static VarHandle pending_sess$VH() {
-        return _ADAPTER_STATUS.pending_sess$VH;
-    }
-    public static short pending_sess$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.pending_sess$VH.get(seg);
-    }
-    public static void pending_sess$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.pending_sess$VH.set(seg, x);
-    }
-    public static short pending_sess$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.pending_sess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pending_sess$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.pending_sess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_cfg_sess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_cfg_sess"));
-    public static VarHandle max_cfg_sess$VH() {
-        return _ADAPTER_STATUS.max_cfg_sess$VH;
-    }
-    public static short max_cfg_sess$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_cfg_sess$VH.get(seg);
-    }
-    public static void max_cfg_sess$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_cfg_sess$VH.set(seg, x);
-    }
-    public static short max_cfg_sess$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_cfg_sess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_cfg_sess$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_cfg_sess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_sess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_sess"));
-    public static VarHandle max_sess$VH() {
-        return _ADAPTER_STATUS.max_sess$VH;
-    }
-    public static short max_sess$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_sess$VH.get(seg);
-    }
-    public static void max_sess$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_sess$VH.set(seg, x);
-    }
-    public static short max_sess$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_sess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_sess$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_sess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle max_sess_pkt_size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("max_sess_pkt_size"));
-    public static VarHandle max_sess_pkt_size$VH() {
-        return _ADAPTER_STATUS.max_sess_pkt_size$VH;
-    }
-    public static short max_sess_pkt_size$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.max_sess_pkt_size$VH.get(seg);
-    }
-    public static void max_sess_pkt_size$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.max_sess_pkt_size$VH.set(seg, x);
-    }
-    public static short max_sess_pkt_size$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.max_sess_pkt_size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void max_sess_pkt_size$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.max_sess_pkt_size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle name_count$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("name_count"));
-    public static VarHandle name_count$VH() {
-        return _ADAPTER_STATUS.name_count$VH;
-    }
-    public static short name_count$get(MemorySegment seg) {
-        return (short)_ADAPTER_STATUS.name_count$VH.get(seg);
-    }
-    public static void name_count$set( MemorySegment seg, short x) {
-        _ADAPTER_STATUS.name_count$VH.set(seg, x);
-    }
-    public static short name_count$get(MemorySegment seg, long index) {
-        return (short)_ADAPTER_STATUS.name_count$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void name_count$set(MemorySegment seg, long index, short x) {
-        _ADAPTER_STATUS.name_count$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(6, wgl_h.C_CHAR).withName("adapter_address"),
+        wgl_h.C_CHAR.withName("rev_major"),
+        wgl_h.C_CHAR.withName("reserved0"),
+        wgl_h.C_CHAR.withName("adapter_type"),
+        wgl_h.C_CHAR.withName("rev_minor"),
+        wgl_h.C_SHORT.withName("duration"),
+        wgl_h.C_SHORT.withName("frmr_recv"),
+        wgl_h.C_SHORT.withName("frmr_xmit"),
+        wgl_h.C_SHORT.withName("iframe_recv_err"),
+        wgl_h.C_SHORT.withName("xmit_aborts"),
+        wgl_h.C_LONG.withName("xmit_success"),
+        wgl_h.C_LONG.withName("recv_success"),
+        wgl_h.C_SHORT.withName("iframe_xmit_err"),
+        wgl_h.C_SHORT.withName("recv_buff_unavail"),
+        wgl_h.C_SHORT.withName("t1_timeouts"),
+        wgl_h.C_SHORT.withName("ti_timeouts"),
+        wgl_h.C_LONG.withName("reserved1"),
+        wgl_h.C_SHORT.withName("free_ncbs"),
+        wgl_h.C_SHORT.withName("max_cfg_ncbs"),
+        wgl_h.C_SHORT.withName("max_ncbs"),
+        wgl_h.C_SHORT.withName("xmit_buf_unavail"),
+        wgl_h.C_SHORT.withName("max_dgram_size"),
+        wgl_h.C_SHORT.withName("pending_sess"),
+        wgl_h.C_SHORT.withName("max_cfg_sess"),
+        wgl_h.C_SHORT.withName("max_sess"),
+        wgl_h.C_SHORT.withName("max_sess_pkt_size"),
+        wgl_h.C_SHORT.withName("name_count")
+    ).withName("_ADAPTER_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout adapter_address$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("adapter_address"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static final SequenceLayout adapter_address$layout() {
+        return adapter_address$LAYOUT;
+    }
+
+    private static final long adapter_address$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static final long adapter_address$offset() {
+        return adapter_address$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static MemorySegment adapter_address(MemorySegment struct) {
+        return struct.asSlice(adapter_address$OFFSET, adapter_address$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static void adapter_address(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, adapter_address$OFFSET, adapter_address$LAYOUT.byteSize());
+    }
+
+    private static long[] adapter_address$DIMS = { 6 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static long[] adapter_address$dimensions() {
+        return adapter_address$DIMS;
+    }
+    private static final VarHandle adapter_address$ELEM_HANDLE = adapter_address$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static byte adapter_address(MemorySegment struct, long index0) {
+        return (byte)adapter_address$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_address[6]
+     * }
+     */
+    public static void adapter_address(MemorySegment struct, long index0, byte fieldValue) {
+        adapter_address$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfByte rev_major$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rev_major"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR rev_major
+     * }
+     */
+    public static final OfByte rev_major$layout() {
+        return rev_major$LAYOUT;
+    }
+
+    private static final long rev_major$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR rev_major
+     * }
+     */
+    public static final long rev_major$offset() {
+        return rev_major$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR rev_major
+     * }
+     */
+    public static byte rev_major(MemorySegment struct) {
+        return struct.get(rev_major$LAYOUT, rev_major$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR rev_major
+     * }
+     */
+    public static void rev_major(MemorySegment struct, byte fieldValue) {
+        struct.set(rev_major$LAYOUT, rev_major$OFFSET, fieldValue);
+    }
+
+    private static final OfByte reserved0$LAYOUT = (OfByte)$LAYOUT.select(groupElement("reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR reserved0
+     * }
+     */
+    public static final OfByte reserved0$layout() {
+        return reserved0$LAYOUT;
+    }
+
+    private static final long reserved0$OFFSET = 7;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR reserved0
+     * }
+     */
+    public static final long reserved0$offset() {
+        return reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR reserved0
+     * }
+     */
+    public static byte reserved0(MemorySegment struct) {
+        return struct.get(reserved0$LAYOUT, reserved0$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR reserved0
+     * }
+     */
+    public static void reserved0(MemorySegment struct, byte fieldValue) {
+        struct.set(reserved0$LAYOUT, reserved0$OFFSET, fieldValue);
+    }
+
+    private static final OfByte adapter_type$LAYOUT = (OfByte)$LAYOUT.select(groupElement("adapter_type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_type
+     * }
+     */
+    public static final OfByte adapter_type$layout() {
+        return adapter_type$LAYOUT;
+    }
+
+    private static final long adapter_type$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_type
+     * }
+     */
+    public static final long adapter_type$offset() {
+        return adapter_type$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_type
+     * }
+     */
+    public static byte adapter_type(MemorySegment struct) {
+        return struct.get(adapter_type$LAYOUT, adapter_type$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR adapter_type
+     * }
+     */
+    public static void adapter_type(MemorySegment struct, byte fieldValue) {
+        struct.set(adapter_type$LAYOUT, adapter_type$OFFSET, fieldValue);
+    }
+
+    private static final OfByte rev_minor$LAYOUT = (OfByte)$LAYOUT.select(groupElement("rev_minor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UCHAR rev_minor
+     * }
+     */
+    public static final OfByte rev_minor$layout() {
+        return rev_minor$LAYOUT;
+    }
+
+    private static final long rev_minor$OFFSET = 9;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UCHAR rev_minor
+     * }
+     */
+    public static final long rev_minor$offset() {
+        return rev_minor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UCHAR rev_minor
+     * }
+     */
+    public static byte rev_minor(MemorySegment struct) {
+        return struct.get(rev_minor$LAYOUT, rev_minor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UCHAR rev_minor
+     * }
+     */
+    public static void rev_minor(MemorySegment struct, byte fieldValue) {
+        struct.set(rev_minor$LAYOUT, rev_minor$OFFSET, fieldValue);
+    }
+
+    private static final OfShort duration$LAYOUT = (OfShort)$LAYOUT.select(groupElement("duration"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD duration
+     * }
+     */
+    public static final OfShort duration$layout() {
+        return duration$LAYOUT;
+    }
+
+    private static final long duration$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD duration
+     * }
+     */
+    public static final long duration$offset() {
+        return duration$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD duration
+     * }
+     */
+    public static short duration(MemorySegment struct) {
+        return struct.get(duration$LAYOUT, duration$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD duration
+     * }
+     */
+    public static void duration(MemorySegment struct, short fieldValue) {
+        struct.set(duration$LAYOUT, duration$OFFSET, fieldValue);
+    }
+
+    private static final OfShort frmr_recv$LAYOUT = (OfShort)$LAYOUT.select(groupElement("frmr_recv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD frmr_recv
+     * }
+     */
+    public static final OfShort frmr_recv$layout() {
+        return frmr_recv$LAYOUT;
+    }
+
+    private static final long frmr_recv$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD frmr_recv
+     * }
+     */
+    public static final long frmr_recv$offset() {
+        return frmr_recv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD frmr_recv
+     * }
+     */
+    public static short frmr_recv(MemorySegment struct) {
+        return struct.get(frmr_recv$LAYOUT, frmr_recv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD frmr_recv
+     * }
+     */
+    public static void frmr_recv(MemorySegment struct, short fieldValue) {
+        struct.set(frmr_recv$LAYOUT, frmr_recv$OFFSET, fieldValue);
+    }
+
+    private static final OfShort frmr_xmit$LAYOUT = (OfShort)$LAYOUT.select(groupElement("frmr_xmit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD frmr_xmit
+     * }
+     */
+    public static final OfShort frmr_xmit$layout() {
+        return frmr_xmit$LAYOUT;
+    }
+
+    private static final long frmr_xmit$OFFSET = 14;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD frmr_xmit
+     * }
+     */
+    public static final long frmr_xmit$offset() {
+        return frmr_xmit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD frmr_xmit
+     * }
+     */
+    public static short frmr_xmit(MemorySegment struct) {
+        return struct.get(frmr_xmit$LAYOUT, frmr_xmit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD frmr_xmit
+     * }
+     */
+    public static void frmr_xmit(MemorySegment struct, short fieldValue) {
+        struct.set(frmr_xmit$LAYOUT, frmr_xmit$OFFSET, fieldValue);
+    }
+
+    private static final OfShort iframe_recv_err$LAYOUT = (OfShort)$LAYOUT.select(groupElement("iframe_recv_err"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD iframe_recv_err
+     * }
+     */
+    public static final OfShort iframe_recv_err$layout() {
+        return iframe_recv_err$LAYOUT;
+    }
+
+    private static final long iframe_recv_err$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD iframe_recv_err
+     * }
+     */
+    public static final long iframe_recv_err$offset() {
+        return iframe_recv_err$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD iframe_recv_err
+     * }
+     */
+    public static short iframe_recv_err(MemorySegment struct) {
+        return struct.get(iframe_recv_err$LAYOUT, iframe_recv_err$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD iframe_recv_err
+     * }
+     */
+    public static void iframe_recv_err(MemorySegment struct, short fieldValue) {
+        struct.set(iframe_recv_err$LAYOUT, iframe_recv_err$OFFSET, fieldValue);
+    }
+
+    private static final OfShort xmit_aborts$LAYOUT = (OfShort)$LAYOUT.select(groupElement("xmit_aborts"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD xmit_aborts
+     * }
+     */
+    public static final OfShort xmit_aborts$layout() {
+        return xmit_aborts$LAYOUT;
+    }
+
+    private static final long xmit_aborts$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD xmit_aborts
+     * }
+     */
+    public static final long xmit_aborts$offset() {
+        return xmit_aborts$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD xmit_aborts
+     * }
+     */
+    public static short xmit_aborts(MemorySegment struct) {
+        return struct.get(xmit_aborts$LAYOUT, xmit_aborts$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD xmit_aborts
+     * }
+     */
+    public static void xmit_aborts(MemorySegment struct, short fieldValue) {
+        struct.set(xmit_aborts$LAYOUT, xmit_aborts$OFFSET, fieldValue);
+    }
+
+    private static final OfInt xmit_success$LAYOUT = (OfInt)$LAYOUT.select(groupElement("xmit_success"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD xmit_success
+     * }
+     */
+    public static final OfInt xmit_success$layout() {
+        return xmit_success$LAYOUT;
+    }
+
+    private static final long xmit_success$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD xmit_success
+     * }
+     */
+    public static final long xmit_success$offset() {
+        return xmit_success$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD xmit_success
+     * }
+     */
+    public static int xmit_success(MemorySegment struct) {
+        return struct.get(xmit_success$LAYOUT, xmit_success$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD xmit_success
+     * }
+     */
+    public static void xmit_success(MemorySegment struct, int fieldValue) {
+        struct.set(xmit_success$LAYOUT, xmit_success$OFFSET, fieldValue);
+    }
+
+    private static final OfInt recv_success$LAYOUT = (OfInt)$LAYOUT.select(groupElement("recv_success"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD recv_success
+     * }
+     */
+    public static final OfInt recv_success$layout() {
+        return recv_success$LAYOUT;
+    }
+
+    private static final long recv_success$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD recv_success
+     * }
+     */
+    public static final long recv_success$offset() {
+        return recv_success$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD recv_success
+     * }
+     */
+    public static int recv_success(MemorySegment struct) {
+        return struct.get(recv_success$LAYOUT, recv_success$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD recv_success
+     * }
+     */
+    public static void recv_success(MemorySegment struct, int fieldValue) {
+        struct.set(recv_success$LAYOUT, recv_success$OFFSET, fieldValue);
+    }
+
+    private static final OfShort iframe_xmit_err$LAYOUT = (OfShort)$LAYOUT.select(groupElement("iframe_xmit_err"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD iframe_xmit_err
+     * }
+     */
+    public static final OfShort iframe_xmit_err$layout() {
+        return iframe_xmit_err$LAYOUT;
+    }
+
+    private static final long iframe_xmit_err$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD iframe_xmit_err
+     * }
+     */
+    public static final long iframe_xmit_err$offset() {
+        return iframe_xmit_err$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD iframe_xmit_err
+     * }
+     */
+    public static short iframe_xmit_err(MemorySegment struct) {
+        return struct.get(iframe_xmit_err$LAYOUT, iframe_xmit_err$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD iframe_xmit_err
+     * }
+     */
+    public static void iframe_xmit_err(MemorySegment struct, short fieldValue) {
+        struct.set(iframe_xmit_err$LAYOUT, iframe_xmit_err$OFFSET, fieldValue);
+    }
+
+    private static final OfShort recv_buff_unavail$LAYOUT = (OfShort)$LAYOUT.select(groupElement("recv_buff_unavail"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD recv_buff_unavail
+     * }
+     */
+    public static final OfShort recv_buff_unavail$layout() {
+        return recv_buff_unavail$LAYOUT;
+    }
+
+    private static final long recv_buff_unavail$OFFSET = 30;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD recv_buff_unavail
+     * }
+     */
+    public static final long recv_buff_unavail$offset() {
+        return recv_buff_unavail$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD recv_buff_unavail
+     * }
+     */
+    public static short recv_buff_unavail(MemorySegment struct) {
+        return struct.get(recv_buff_unavail$LAYOUT, recv_buff_unavail$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD recv_buff_unavail
+     * }
+     */
+    public static void recv_buff_unavail(MemorySegment struct, short fieldValue) {
+        struct.set(recv_buff_unavail$LAYOUT, recv_buff_unavail$OFFSET, fieldValue);
+    }
+
+    private static final OfShort t1_timeouts$LAYOUT = (OfShort)$LAYOUT.select(groupElement("t1_timeouts"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD t1_timeouts
+     * }
+     */
+    public static final OfShort t1_timeouts$layout() {
+        return t1_timeouts$LAYOUT;
+    }
+
+    private static final long t1_timeouts$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD t1_timeouts
+     * }
+     */
+    public static final long t1_timeouts$offset() {
+        return t1_timeouts$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD t1_timeouts
+     * }
+     */
+    public static short t1_timeouts(MemorySegment struct) {
+        return struct.get(t1_timeouts$LAYOUT, t1_timeouts$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD t1_timeouts
+     * }
+     */
+    public static void t1_timeouts(MemorySegment struct, short fieldValue) {
+        struct.set(t1_timeouts$LAYOUT, t1_timeouts$OFFSET, fieldValue);
+    }
+
+    private static final OfShort ti_timeouts$LAYOUT = (OfShort)$LAYOUT.select(groupElement("ti_timeouts"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD ti_timeouts
+     * }
+     */
+    public static final OfShort ti_timeouts$layout() {
+        return ti_timeouts$LAYOUT;
+    }
+
+    private static final long ti_timeouts$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD ti_timeouts
+     * }
+     */
+    public static final long ti_timeouts$offset() {
+        return ti_timeouts$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD ti_timeouts
+     * }
+     */
+    public static short ti_timeouts(MemorySegment struct) {
+        return struct.get(ti_timeouts$LAYOUT, ti_timeouts$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD ti_timeouts
+     * }
+     */
+    public static void ti_timeouts(MemorySegment struct, short fieldValue) {
+        struct.set(ti_timeouts$LAYOUT, ti_timeouts$OFFSET, fieldValue);
+    }
+
+    private static final OfInt reserved1$LAYOUT = (OfInt)$LAYOUT.select(groupElement("reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD reserved1
+     * }
+     */
+    public static final OfInt reserved1$layout() {
+        return reserved1$LAYOUT;
+    }
+
+    private static final long reserved1$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD reserved1
+     * }
+     */
+    public static final long reserved1$offset() {
+        return reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD reserved1
+     * }
+     */
+    public static int reserved1(MemorySegment struct) {
+        return struct.get(reserved1$LAYOUT, reserved1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD reserved1
+     * }
+     */
+    public static void reserved1(MemorySegment struct, int fieldValue) {
+        struct.set(reserved1$LAYOUT, reserved1$OFFSET, fieldValue);
+    }
+
+    private static final OfShort free_ncbs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("free_ncbs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD free_ncbs
+     * }
+     */
+    public static final OfShort free_ncbs$layout() {
+        return free_ncbs$LAYOUT;
+    }
+
+    private static final long free_ncbs$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD free_ncbs
+     * }
+     */
+    public static final long free_ncbs$offset() {
+        return free_ncbs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD free_ncbs
+     * }
+     */
+    public static short free_ncbs(MemorySegment struct) {
+        return struct.get(free_ncbs$LAYOUT, free_ncbs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD free_ncbs
+     * }
+     */
+    public static void free_ncbs(MemorySegment struct, short fieldValue) {
+        struct.set(free_ncbs$LAYOUT, free_ncbs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_cfg_ncbs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_cfg_ncbs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_ncbs
+     * }
+     */
+    public static final OfShort max_cfg_ncbs$layout() {
+        return max_cfg_ncbs$LAYOUT;
+    }
+
+    private static final long max_cfg_ncbs$OFFSET = 42;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_ncbs
+     * }
+     */
+    public static final long max_cfg_ncbs$offset() {
+        return max_cfg_ncbs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_ncbs
+     * }
+     */
+    public static short max_cfg_ncbs(MemorySegment struct) {
+        return struct.get(max_cfg_ncbs$LAYOUT, max_cfg_ncbs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_ncbs
+     * }
+     */
+    public static void max_cfg_ncbs(MemorySegment struct, short fieldValue) {
+        struct.set(max_cfg_ncbs$LAYOUT, max_cfg_ncbs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_ncbs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_ncbs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_ncbs
+     * }
+     */
+    public static final OfShort max_ncbs$layout() {
+        return max_ncbs$LAYOUT;
+    }
+
+    private static final long max_ncbs$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_ncbs
+     * }
+     */
+    public static final long max_ncbs$offset() {
+        return max_ncbs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_ncbs
+     * }
+     */
+    public static short max_ncbs(MemorySegment struct) {
+        return struct.get(max_ncbs$LAYOUT, max_ncbs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_ncbs
+     * }
+     */
+    public static void max_ncbs(MemorySegment struct, short fieldValue) {
+        struct.set(max_ncbs$LAYOUT, max_ncbs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort xmit_buf_unavail$LAYOUT = (OfShort)$LAYOUT.select(groupElement("xmit_buf_unavail"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD xmit_buf_unavail
+     * }
+     */
+    public static final OfShort xmit_buf_unavail$layout() {
+        return xmit_buf_unavail$LAYOUT;
+    }
+
+    private static final long xmit_buf_unavail$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD xmit_buf_unavail
+     * }
+     */
+    public static final long xmit_buf_unavail$offset() {
+        return xmit_buf_unavail$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD xmit_buf_unavail
+     * }
+     */
+    public static short xmit_buf_unavail(MemorySegment struct) {
+        return struct.get(xmit_buf_unavail$LAYOUT, xmit_buf_unavail$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD xmit_buf_unavail
+     * }
+     */
+    public static void xmit_buf_unavail(MemorySegment struct, short fieldValue) {
+        struct.set(xmit_buf_unavail$LAYOUT, xmit_buf_unavail$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_dgram_size$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_dgram_size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_dgram_size
+     * }
+     */
+    public static final OfShort max_dgram_size$layout() {
+        return max_dgram_size$LAYOUT;
+    }
+
+    private static final long max_dgram_size$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_dgram_size
+     * }
+     */
+    public static final long max_dgram_size$offset() {
+        return max_dgram_size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_dgram_size
+     * }
+     */
+    public static short max_dgram_size(MemorySegment struct) {
+        return struct.get(max_dgram_size$LAYOUT, max_dgram_size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_dgram_size
+     * }
+     */
+    public static void max_dgram_size(MemorySegment struct, short fieldValue) {
+        struct.set(max_dgram_size$LAYOUT, max_dgram_size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort pending_sess$LAYOUT = (OfShort)$LAYOUT.select(groupElement("pending_sess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD pending_sess
+     * }
+     */
+    public static final OfShort pending_sess$layout() {
+        return pending_sess$LAYOUT;
+    }
+
+    private static final long pending_sess$OFFSET = 50;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD pending_sess
+     * }
+     */
+    public static final long pending_sess$offset() {
+        return pending_sess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD pending_sess
+     * }
+     */
+    public static short pending_sess(MemorySegment struct) {
+        return struct.get(pending_sess$LAYOUT, pending_sess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD pending_sess
+     * }
+     */
+    public static void pending_sess(MemorySegment struct, short fieldValue) {
+        struct.set(pending_sess$LAYOUT, pending_sess$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_cfg_sess$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_cfg_sess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_sess
+     * }
+     */
+    public static final OfShort max_cfg_sess$layout() {
+        return max_cfg_sess$LAYOUT;
+    }
+
+    private static final long max_cfg_sess$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_sess
+     * }
+     */
+    public static final long max_cfg_sess$offset() {
+        return max_cfg_sess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_sess
+     * }
+     */
+    public static short max_cfg_sess(MemorySegment struct) {
+        return struct.get(max_cfg_sess$LAYOUT, max_cfg_sess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_cfg_sess
+     * }
+     */
+    public static void max_cfg_sess(MemorySegment struct, short fieldValue) {
+        struct.set(max_cfg_sess$LAYOUT, max_cfg_sess$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_sess$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_sess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_sess
+     * }
+     */
+    public static final OfShort max_sess$layout() {
+        return max_sess$LAYOUT;
+    }
+
+    private static final long max_sess$OFFSET = 54;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_sess
+     * }
+     */
+    public static final long max_sess$offset() {
+        return max_sess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_sess
+     * }
+     */
+    public static short max_sess(MemorySegment struct) {
+        return struct.get(max_sess$LAYOUT, max_sess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_sess
+     * }
+     */
+    public static void max_sess(MemorySegment struct, short fieldValue) {
+        struct.set(max_sess$LAYOUT, max_sess$OFFSET, fieldValue);
+    }
+
+    private static final OfShort max_sess_pkt_size$LAYOUT = (OfShort)$LAYOUT.select(groupElement("max_sess_pkt_size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD max_sess_pkt_size
+     * }
+     */
+    public static final OfShort max_sess_pkt_size$layout() {
+        return max_sess_pkt_size$LAYOUT;
+    }
+
+    private static final long max_sess_pkt_size$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD max_sess_pkt_size
+     * }
+     */
+    public static final long max_sess_pkt_size$offset() {
+        return max_sess_pkt_size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD max_sess_pkt_size
+     * }
+     */
+    public static short max_sess_pkt_size(MemorySegment struct) {
+        return struct.get(max_sess_pkt_size$LAYOUT, max_sess_pkt_size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD max_sess_pkt_size
+     * }
+     */
+    public static void max_sess_pkt_size(MemorySegment struct, short fieldValue) {
+        struct.set(max_sess_pkt_size$LAYOUT, max_sess_pkt_size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort name_count$LAYOUT = (OfShort)$LAYOUT.select(groupElement("name_count"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD name_count
+     * }
+     */
+    public static final OfShort name_count$layout() {
+        return name_count$LAYOUT;
+    }
+
+    private static final long name_count$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD name_count
+     * }
+     */
+    public static final long name_count$offset() {
+        return name_count$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD name_count
+     * }
+     */
+    public static short name_count(MemorySegment struct) {
+        return struct.get(name_count$LAYOUT, name_count$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD name_count
+     * }
+     */
+    public static void name_count(MemorySegment struct, short fieldValue) {
+        struct.set(name_count$LAYOUT, name_count$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

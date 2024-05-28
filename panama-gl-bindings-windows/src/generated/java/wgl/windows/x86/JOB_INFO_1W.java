@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _JOB_INFO_1W {
+ *     DWORD JobId;
+ *     LPWSTR pPrinterName;
+ *     LPWSTR pMachineName;
+ *     LPWSTR pUserName;
+ *     LPWSTR pDocument;
+ *     LPWSTR pDatatype;
+ *     LPWSTR pStatus;
+ *     DWORD Status;
+ *     DWORD Priority;
+ *     DWORD Position;
+ *     DWORD TotalPages;
+ *     DWORD PagesPrinted;
+ *     SYSTEMTIME Submitted;
+ * } JOB_INFO_1W
+ * }
+ */
 public class JOB_INFO_1W extends _JOB_INFO_1W {
 
+    JOB_INFO_1W() {
+        // Should not be called directly
+    }
 }
-
 

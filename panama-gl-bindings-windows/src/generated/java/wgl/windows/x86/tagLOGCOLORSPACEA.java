@@ -2,184 +2,573 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagLOGCOLORSPACEA {
+ *     DWORD lcsSignature;
+ *     DWORD lcsVersion;
+ *     DWORD lcsSize;
+ *     LCSCSTYPE lcsCSType;
+ *     LCSGAMUTMATCH lcsIntent;
+ *     CIEXYZTRIPLE lcsEndpoints;
+ *     DWORD lcsGammaRed;
+ *     DWORD lcsGammaGreen;
+ *     DWORD lcsGammaBlue;
+ *     CHAR lcsFilename[260];
+ * }
+ * }
+ */
 public class tagLOGCOLORSPACEA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lcsSignature"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsSize"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsCSType"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsIntent"),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzRed"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzGreen"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-                Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-            ).withName("ciexyzBlue")
-        ).withName("lcsEndpoints"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsGammaRed"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsGammaGreen"),
-        Constants$root.C_LONG$LAYOUT.withName("lcsGammaBlue"),
-        MemoryLayout.sequenceLayout(260, Constants$root.C_CHAR$LAYOUT).withName("lcsFilename")
-    ).withName("tagLOGCOLORSPACEA");
-    public static MemoryLayout $LAYOUT() {
-        return tagLOGCOLORSPACEA.$struct$LAYOUT;
+    tagLOGCOLORSPACEA() {
+        // Should not be called directly
     }
-    static final VarHandle lcsSignature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsSignature"));
-    public static VarHandle lcsSignature$VH() {
-        return tagLOGCOLORSPACEA.lcsSignature$VH;
-    }
-    public static int lcsSignature$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsSignature$VH.get(seg);
-    }
-    public static void lcsSignature$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsSignature$VH.set(seg, x);
-    }
-    public static int lcsSignature$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsSignature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsSignature$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsSignature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsVersion"));
-    public static VarHandle lcsVersion$VH() {
-        return tagLOGCOLORSPACEA.lcsVersion$VH;
-    }
-    public static int lcsVersion$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsVersion$VH.get(seg);
-    }
-    public static void lcsVersion$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsVersion$VH.set(seg, x);
-    }
-    public static int lcsVersion$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsVersion$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsSize"));
-    public static VarHandle lcsSize$VH() {
-        return tagLOGCOLORSPACEA.lcsSize$VH;
-    }
-    public static int lcsSize$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsSize$VH.get(seg);
-    }
-    public static void lcsSize$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsSize$VH.set(seg, x);
-    }
-    public static int lcsSize$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsSize$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsCSType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsCSType"));
-    public static VarHandle lcsCSType$VH() {
-        return tagLOGCOLORSPACEA.lcsCSType$VH;
-    }
-    public static int lcsCSType$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsCSType$VH.get(seg);
-    }
-    public static void lcsCSType$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsCSType$VH.set(seg, x);
-    }
-    public static int lcsCSType$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsCSType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsCSType$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsCSType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsIntent$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsIntent"));
-    public static VarHandle lcsIntent$VH() {
-        return tagLOGCOLORSPACEA.lcsIntent$VH;
-    }
-    public static int lcsIntent$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsIntent$VH.get(seg);
-    }
-    public static void lcsIntent$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsIntent$VH.set(seg, x);
-    }
-    public static int lcsIntent$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsIntent$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsIntent$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsIntent$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lcsEndpoints$slice(MemorySegment seg) {
-        return seg.asSlice(20, 36);
-    }
-    static final VarHandle lcsGammaRed$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsGammaRed"));
-    public static VarHandle lcsGammaRed$VH() {
-        return tagLOGCOLORSPACEA.lcsGammaRed$VH;
-    }
-    public static int lcsGammaRed$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaRed$VH.get(seg);
-    }
-    public static void lcsGammaRed$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsGammaRed$VH.set(seg, x);
-    }
-    public static int lcsGammaRed$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaRed$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsGammaRed$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsGammaRed$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsGammaGreen$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsGammaGreen"));
-    public static VarHandle lcsGammaGreen$VH() {
-        return tagLOGCOLORSPACEA.lcsGammaGreen$VH;
-    }
-    public static int lcsGammaGreen$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaGreen$VH.get(seg);
-    }
-    public static void lcsGammaGreen$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsGammaGreen$VH.set(seg, x);
-    }
-    public static int lcsGammaGreen$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaGreen$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsGammaGreen$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsGammaGreen$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lcsGammaBlue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lcsGammaBlue"));
-    public static VarHandle lcsGammaBlue$VH() {
-        return tagLOGCOLORSPACEA.lcsGammaBlue$VH;
-    }
-    public static int lcsGammaBlue$get(MemorySegment seg) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaBlue$VH.get(seg);
-    }
-    public static void lcsGammaBlue$set( MemorySegment seg, int x) {
-        tagLOGCOLORSPACEA.lcsGammaBlue$VH.set(seg, x);
-    }
-    public static int lcsGammaBlue$get(MemorySegment seg, long index) {
-        return (int)tagLOGCOLORSPACEA.lcsGammaBlue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lcsGammaBlue$set(MemorySegment seg, long index, int x) {
-        tagLOGCOLORSPACEA.lcsGammaBlue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment lcsFilename$slice(MemorySegment seg) {
-        return seg.asSlice(68, 260);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("lcsSignature"),
+        wgl_h.C_LONG.withName("lcsVersion"),
+        wgl_h.C_LONG.withName("lcsSize"),
+        wgl_h.C_LONG.withName("lcsCSType"),
+        wgl_h.C_LONG.withName("lcsIntent"),
+        tagICEXYZTRIPLE.layout().withName("lcsEndpoints"),
+        wgl_h.C_LONG.withName("lcsGammaRed"),
+        wgl_h.C_LONG.withName("lcsGammaGreen"),
+        wgl_h.C_LONG.withName("lcsGammaBlue"),
+        MemoryLayout.sequenceLayout(260, wgl_h.C_CHAR).withName("lcsFilename")
+    ).withName("tagLOGCOLORSPACEA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lcsSignature$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsSignature
+     * }
+     */
+    public static final OfInt lcsSignature$layout() {
+        return lcsSignature$LAYOUT;
+    }
+
+    private static final long lcsSignature$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsSignature
+     * }
+     */
+    public static final long lcsSignature$offset() {
+        return lcsSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsSignature
+     * }
+     */
+    public static int lcsSignature(MemorySegment struct) {
+        return struct.get(lcsSignature$LAYOUT, lcsSignature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsSignature
+     * }
+     */
+    public static void lcsSignature(MemorySegment struct, int fieldValue) {
+        struct.set(lcsSignature$LAYOUT, lcsSignature$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsVersion
+     * }
+     */
+    public static final OfInt lcsVersion$layout() {
+        return lcsVersion$LAYOUT;
+    }
+
+    private static final long lcsVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsVersion
+     * }
+     */
+    public static final long lcsVersion$offset() {
+        return lcsVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsVersion
+     * }
+     */
+    public static int lcsVersion(MemorySegment struct) {
+        return struct.get(lcsVersion$LAYOUT, lcsVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsVersion
+     * }
+     */
+    public static void lcsVersion(MemorySegment struct, int fieldValue) {
+        struct.set(lcsVersion$LAYOUT, lcsVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsSize
+     * }
+     */
+    public static final OfInt lcsSize$layout() {
+        return lcsSize$LAYOUT;
+    }
+
+    private static final long lcsSize$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsSize
+     * }
+     */
+    public static final long lcsSize$offset() {
+        return lcsSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsSize
+     * }
+     */
+    public static int lcsSize(MemorySegment struct) {
+        return struct.get(lcsSize$LAYOUT, lcsSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsSize
+     * }
+     */
+    public static void lcsSize(MemorySegment struct, int fieldValue) {
+        struct.set(lcsSize$LAYOUT, lcsSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsCSType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsCSType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LCSCSTYPE lcsCSType
+     * }
+     */
+    public static final OfInt lcsCSType$layout() {
+        return lcsCSType$LAYOUT;
+    }
+
+    private static final long lcsCSType$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LCSCSTYPE lcsCSType
+     * }
+     */
+    public static final long lcsCSType$offset() {
+        return lcsCSType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LCSCSTYPE lcsCSType
+     * }
+     */
+    public static int lcsCSType(MemorySegment struct) {
+        return struct.get(lcsCSType$LAYOUT, lcsCSType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LCSCSTYPE lcsCSType
+     * }
+     */
+    public static void lcsCSType(MemorySegment struct, int fieldValue) {
+        struct.set(lcsCSType$LAYOUT, lcsCSType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsIntent$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsIntent"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LCSGAMUTMATCH lcsIntent
+     * }
+     */
+    public static final OfInt lcsIntent$layout() {
+        return lcsIntent$LAYOUT;
+    }
+
+    private static final long lcsIntent$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LCSGAMUTMATCH lcsIntent
+     * }
+     */
+    public static final long lcsIntent$offset() {
+        return lcsIntent$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LCSGAMUTMATCH lcsIntent
+     * }
+     */
+    public static int lcsIntent(MemorySegment struct) {
+        return struct.get(lcsIntent$LAYOUT, lcsIntent$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LCSGAMUTMATCH lcsIntent
+     * }
+     */
+    public static void lcsIntent(MemorySegment struct, int fieldValue) {
+        struct.set(lcsIntent$LAYOUT, lcsIntent$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout lcsEndpoints$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("lcsEndpoints"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE lcsEndpoints
+     * }
+     */
+    public static final GroupLayout lcsEndpoints$layout() {
+        return lcsEndpoints$LAYOUT;
+    }
+
+    private static final long lcsEndpoints$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE lcsEndpoints
+     * }
+     */
+    public static final long lcsEndpoints$offset() {
+        return lcsEndpoints$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE lcsEndpoints
+     * }
+     */
+    public static MemorySegment lcsEndpoints(MemorySegment struct) {
+        return struct.asSlice(lcsEndpoints$OFFSET, lcsEndpoints$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CIEXYZTRIPLE lcsEndpoints
+     * }
+     */
+    public static void lcsEndpoints(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lcsEndpoints$OFFSET, lcsEndpoints$LAYOUT.byteSize());
+    }
+
+    private static final OfInt lcsGammaRed$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsGammaRed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaRed
+     * }
+     */
+    public static final OfInt lcsGammaRed$layout() {
+        return lcsGammaRed$LAYOUT;
+    }
+
+    private static final long lcsGammaRed$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaRed
+     * }
+     */
+    public static final long lcsGammaRed$offset() {
+        return lcsGammaRed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaRed
+     * }
+     */
+    public static int lcsGammaRed(MemorySegment struct) {
+        return struct.get(lcsGammaRed$LAYOUT, lcsGammaRed$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaRed
+     * }
+     */
+    public static void lcsGammaRed(MemorySegment struct, int fieldValue) {
+        struct.set(lcsGammaRed$LAYOUT, lcsGammaRed$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsGammaGreen$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsGammaGreen"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaGreen
+     * }
+     */
+    public static final OfInt lcsGammaGreen$layout() {
+        return lcsGammaGreen$LAYOUT;
+    }
+
+    private static final long lcsGammaGreen$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaGreen
+     * }
+     */
+    public static final long lcsGammaGreen$offset() {
+        return lcsGammaGreen$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaGreen
+     * }
+     */
+    public static int lcsGammaGreen(MemorySegment struct) {
+        return struct.get(lcsGammaGreen$LAYOUT, lcsGammaGreen$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaGreen
+     * }
+     */
+    public static void lcsGammaGreen(MemorySegment struct, int fieldValue) {
+        struct.set(lcsGammaGreen$LAYOUT, lcsGammaGreen$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lcsGammaBlue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lcsGammaBlue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaBlue
+     * }
+     */
+    public static final OfInt lcsGammaBlue$layout() {
+        return lcsGammaBlue$LAYOUT;
+    }
+
+    private static final long lcsGammaBlue$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaBlue
+     * }
+     */
+    public static final long lcsGammaBlue$offset() {
+        return lcsGammaBlue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaBlue
+     * }
+     */
+    public static int lcsGammaBlue(MemorySegment struct) {
+        return struct.get(lcsGammaBlue$LAYOUT, lcsGammaBlue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lcsGammaBlue
+     * }
+     */
+    public static void lcsGammaBlue(MemorySegment struct, int fieldValue) {
+        struct.set(lcsGammaBlue$LAYOUT, lcsGammaBlue$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout lcsFilename$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("lcsFilename"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static final SequenceLayout lcsFilename$layout() {
+        return lcsFilename$LAYOUT;
+    }
+
+    private static final long lcsFilename$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static final long lcsFilename$offset() {
+        return lcsFilename$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static MemorySegment lcsFilename(MemorySegment struct) {
+        return struct.asSlice(lcsFilename$OFFSET, lcsFilename$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static void lcsFilename(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, lcsFilename$OFFSET, lcsFilename$LAYOUT.byteSize());
+    }
+
+    private static long[] lcsFilename$DIMS = { 260 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static long[] lcsFilename$dimensions() {
+        return lcsFilename$DIMS;
+    }
+    private static final VarHandle lcsFilename$ELEM_HANDLE = lcsFilename$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static byte lcsFilename(MemorySegment struct, long index0) {
+        return (byte)lcsFilename$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * CHAR lcsFilename[260]
+     * }
+     */
+    public static void lcsFilename(MemorySegment struct, long index0, byte fieldValue) {
+        lcsFilename$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

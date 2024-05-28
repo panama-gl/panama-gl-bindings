@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT {
+ *     DWORDLONG TopologyRangeBytes;
+ *     BYTE TopologyId[16];
+ * } DEVICE_DSM_TOPOLOGY_ID_QUERY_OUTPUT
+ * }
+ */
 public class DEVICE_DSM_TOPOLOGY_ID_QUERY_OUTPUT extends _DEVICE_DATA_SET_TOPOLOGY_ID_QUERY_OUTPUT {
 
+    DEVICE_DSM_TOPOLOGY_ID_QUERY_OUTPUT() {
+        // Should not be called directly
+    }
 }
-
 

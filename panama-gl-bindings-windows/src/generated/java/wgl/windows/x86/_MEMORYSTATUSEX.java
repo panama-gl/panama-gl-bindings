@@ -2,177 +2,494 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MEMORYSTATUSEX {
+ *     DWORD dwLength;
+ *     DWORD dwMemoryLoad;
+ *     DWORDLONG ullTotalPhys;
+ *     DWORDLONG ullAvailPhys;
+ *     DWORDLONG ullTotalPageFile;
+ *     DWORDLONG ullAvailPageFile;
+ *     DWORDLONG ullTotalVirtual;
+ *     DWORDLONG ullAvailVirtual;
+ *     DWORDLONG ullAvailExtendedVirtual;
+ * }
+ * }
+ */
 public class _MEMORYSTATUSEX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwLength"),
-        Constants$root.C_LONG$LAYOUT.withName("dwMemoryLoad"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullTotalPhys"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullAvailPhys"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullTotalPageFile"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullAvailPageFile"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullTotalVirtual"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullAvailVirtual"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ullAvailExtendedVirtual")
-    ).withName("_MEMORYSTATUSEX");
-    public static MemoryLayout $LAYOUT() {
-        return _MEMORYSTATUSEX.$struct$LAYOUT;
+    _MEMORYSTATUSEX() {
+        // Should not be called directly
     }
-    static final VarHandle dwLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLength"));
-    public static VarHandle dwLength$VH() {
-        return _MEMORYSTATUSEX.dwLength$VH;
-    }
-    public static int dwLength$get(MemorySegment seg) {
-        return (int)_MEMORYSTATUSEX.dwLength$VH.get(seg);
-    }
-    public static void dwLength$set( MemorySegment seg, int x) {
-        _MEMORYSTATUSEX.dwLength$VH.set(seg, x);
-    }
-    public static int dwLength$get(MemorySegment seg, long index) {
-        return (int)_MEMORYSTATUSEX.dwLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLength$set(MemorySegment seg, long index, int x) {
-        _MEMORYSTATUSEX.dwLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwMemoryLoad$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwMemoryLoad"));
-    public static VarHandle dwMemoryLoad$VH() {
-        return _MEMORYSTATUSEX.dwMemoryLoad$VH;
-    }
-    public static int dwMemoryLoad$get(MemorySegment seg) {
-        return (int)_MEMORYSTATUSEX.dwMemoryLoad$VH.get(seg);
-    }
-    public static void dwMemoryLoad$set( MemorySegment seg, int x) {
-        _MEMORYSTATUSEX.dwMemoryLoad$VH.set(seg, x);
-    }
-    public static int dwMemoryLoad$get(MemorySegment seg, long index) {
-        return (int)_MEMORYSTATUSEX.dwMemoryLoad$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwMemoryLoad$set(MemorySegment seg, long index, int x) {
-        _MEMORYSTATUSEX.dwMemoryLoad$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullTotalPhys$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullTotalPhys"));
-    public static VarHandle ullTotalPhys$VH() {
-        return _MEMORYSTATUSEX.ullTotalPhys$VH;
-    }
-    public static long ullTotalPhys$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullTotalPhys$VH.get(seg);
-    }
-    public static void ullTotalPhys$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullTotalPhys$VH.set(seg, x);
-    }
-    public static long ullTotalPhys$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullTotalPhys$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullTotalPhys$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullTotalPhys$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullAvailPhys$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullAvailPhys"));
-    public static VarHandle ullAvailPhys$VH() {
-        return _MEMORYSTATUSEX.ullAvailPhys$VH;
-    }
-    public static long ullAvailPhys$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullAvailPhys$VH.get(seg);
-    }
-    public static void ullAvailPhys$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullAvailPhys$VH.set(seg, x);
-    }
-    public static long ullAvailPhys$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullAvailPhys$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullAvailPhys$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullAvailPhys$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullTotalPageFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullTotalPageFile"));
-    public static VarHandle ullTotalPageFile$VH() {
-        return _MEMORYSTATUSEX.ullTotalPageFile$VH;
-    }
-    public static long ullTotalPageFile$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullTotalPageFile$VH.get(seg);
-    }
-    public static void ullTotalPageFile$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullTotalPageFile$VH.set(seg, x);
-    }
-    public static long ullTotalPageFile$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullTotalPageFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullTotalPageFile$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullTotalPageFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullAvailPageFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullAvailPageFile"));
-    public static VarHandle ullAvailPageFile$VH() {
-        return _MEMORYSTATUSEX.ullAvailPageFile$VH;
-    }
-    public static long ullAvailPageFile$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullAvailPageFile$VH.get(seg);
-    }
-    public static void ullAvailPageFile$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullAvailPageFile$VH.set(seg, x);
-    }
-    public static long ullAvailPageFile$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullAvailPageFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullAvailPageFile$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullAvailPageFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullTotalVirtual$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullTotalVirtual"));
-    public static VarHandle ullTotalVirtual$VH() {
-        return _MEMORYSTATUSEX.ullTotalVirtual$VH;
-    }
-    public static long ullTotalVirtual$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullTotalVirtual$VH.get(seg);
-    }
-    public static void ullTotalVirtual$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullTotalVirtual$VH.set(seg, x);
-    }
-    public static long ullTotalVirtual$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullTotalVirtual$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullTotalVirtual$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullTotalVirtual$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullAvailVirtual$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullAvailVirtual"));
-    public static VarHandle ullAvailVirtual$VH() {
-        return _MEMORYSTATUSEX.ullAvailVirtual$VH;
-    }
-    public static long ullAvailVirtual$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullAvailVirtual$VH.get(seg);
-    }
-    public static void ullAvailVirtual$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullAvailVirtual$VH.set(seg, x);
-    }
-    public static long ullAvailVirtual$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullAvailVirtual$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullAvailVirtual$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullAvailVirtual$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ullAvailExtendedVirtual$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ullAvailExtendedVirtual"));
-    public static VarHandle ullAvailExtendedVirtual$VH() {
-        return _MEMORYSTATUSEX.ullAvailExtendedVirtual$VH;
-    }
-    public static long ullAvailExtendedVirtual$get(MemorySegment seg) {
-        return (long)_MEMORYSTATUSEX.ullAvailExtendedVirtual$VH.get(seg);
-    }
-    public static void ullAvailExtendedVirtual$set( MemorySegment seg, long x) {
-        _MEMORYSTATUSEX.ullAvailExtendedVirtual$VH.set(seg, x);
-    }
-    public static long ullAvailExtendedVirtual$get(MemorySegment seg, long index) {
-        return (long)_MEMORYSTATUSEX.ullAvailExtendedVirtual$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ullAvailExtendedVirtual$set(MemorySegment seg, long index, long x) {
-        _MEMORYSTATUSEX.ullAvailExtendedVirtual$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwLength"),
+        wgl_h.C_LONG.withName("dwMemoryLoad"),
+        wgl_h.C_LONG_LONG.withName("ullTotalPhys"),
+        wgl_h.C_LONG_LONG.withName("ullAvailPhys"),
+        wgl_h.C_LONG_LONG.withName("ullTotalPageFile"),
+        wgl_h.C_LONG_LONG.withName("ullAvailPageFile"),
+        wgl_h.C_LONG_LONG.withName("ullTotalVirtual"),
+        wgl_h.C_LONG_LONG.withName("ullAvailVirtual"),
+        wgl_h.C_LONG_LONG.withName("ullAvailExtendedVirtual")
+    ).withName("_MEMORYSTATUSEX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLength
+     * }
+     */
+    public static final OfInt dwLength$layout() {
+        return dwLength$LAYOUT;
+    }
+
+    private static final long dwLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLength
+     * }
+     */
+    public static final long dwLength$offset() {
+        return dwLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLength
+     * }
+     */
+    public static int dwLength(MemorySegment struct) {
+        return struct.get(dwLength$LAYOUT, dwLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLength
+     * }
+     */
+    public static void dwLength(MemorySegment struct, int fieldValue) {
+        struct.set(dwLength$LAYOUT, dwLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwMemoryLoad$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwMemoryLoad"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwMemoryLoad
+     * }
+     */
+    public static final OfInt dwMemoryLoad$layout() {
+        return dwMemoryLoad$LAYOUT;
+    }
+
+    private static final long dwMemoryLoad$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwMemoryLoad
+     * }
+     */
+    public static final long dwMemoryLoad$offset() {
+        return dwMemoryLoad$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwMemoryLoad
+     * }
+     */
+    public static int dwMemoryLoad(MemorySegment struct) {
+        return struct.get(dwMemoryLoad$LAYOUT, dwMemoryLoad$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwMemoryLoad
+     * }
+     */
+    public static void dwMemoryLoad(MemorySegment struct, int fieldValue) {
+        struct.set(dwMemoryLoad$LAYOUT, dwMemoryLoad$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullTotalPhys$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullTotalPhys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPhys
+     * }
+     */
+    public static final OfLong ullTotalPhys$layout() {
+        return ullTotalPhys$LAYOUT;
+    }
+
+    private static final long ullTotalPhys$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPhys
+     * }
+     */
+    public static final long ullTotalPhys$offset() {
+        return ullTotalPhys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPhys
+     * }
+     */
+    public static long ullTotalPhys(MemorySegment struct) {
+        return struct.get(ullTotalPhys$LAYOUT, ullTotalPhys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPhys
+     * }
+     */
+    public static void ullTotalPhys(MemorySegment struct, long fieldValue) {
+        struct.set(ullTotalPhys$LAYOUT, ullTotalPhys$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullAvailPhys$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullAvailPhys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPhys
+     * }
+     */
+    public static final OfLong ullAvailPhys$layout() {
+        return ullAvailPhys$LAYOUT;
+    }
+
+    private static final long ullAvailPhys$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPhys
+     * }
+     */
+    public static final long ullAvailPhys$offset() {
+        return ullAvailPhys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPhys
+     * }
+     */
+    public static long ullAvailPhys(MemorySegment struct) {
+        return struct.get(ullAvailPhys$LAYOUT, ullAvailPhys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPhys
+     * }
+     */
+    public static void ullAvailPhys(MemorySegment struct, long fieldValue) {
+        struct.set(ullAvailPhys$LAYOUT, ullAvailPhys$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullTotalPageFile$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullTotalPageFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPageFile
+     * }
+     */
+    public static final OfLong ullTotalPageFile$layout() {
+        return ullTotalPageFile$LAYOUT;
+    }
+
+    private static final long ullTotalPageFile$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPageFile
+     * }
+     */
+    public static final long ullTotalPageFile$offset() {
+        return ullTotalPageFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPageFile
+     * }
+     */
+    public static long ullTotalPageFile(MemorySegment struct) {
+        return struct.get(ullTotalPageFile$LAYOUT, ullTotalPageFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalPageFile
+     * }
+     */
+    public static void ullTotalPageFile(MemorySegment struct, long fieldValue) {
+        struct.set(ullTotalPageFile$LAYOUT, ullTotalPageFile$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullAvailPageFile$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullAvailPageFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPageFile
+     * }
+     */
+    public static final OfLong ullAvailPageFile$layout() {
+        return ullAvailPageFile$LAYOUT;
+    }
+
+    private static final long ullAvailPageFile$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPageFile
+     * }
+     */
+    public static final long ullAvailPageFile$offset() {
+        return ullAvailPageFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPageFile
+     * }
+     */
+    public static long ullAvailPageFile(MemorySegment struct) {
+        return struct.get(ullAvailPageFile$LAYOUT, ullAvailPageFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailPageFile
+     * }
+     */
+    public static void ullAvailPageFile(MemorySegment struct, long fieldValue) {
+        struct.set(ullAvailPageFile$LAYOUT, ullAvailPageFile$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullTotalVirtual$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullTotalVirtual"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalVirtual
+     * }
+     */
+    public static final OfLong ullTotalVirtual$layout() {
+        return ullTotalVirtual$LAYOUT;
+    }
+
+    private static final long ullTotalVirtual$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalVirtual
+     * }
+     */
+    public static final long ullTotalVirtual$offset() {
+        return ullTotalVirtual$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalVirtual
+     * }
+     */
+    public static long ullTotalVirtual(MemorySegment struct) {
+        return struct.get(ullTotalVirtual$LAYOUT, ullTotalVirtual$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullTotalVirtual
+     * }
+     */
+    public static void ullTotalVirtual(MemorySegment struct, long fieldValue) {
+        struct.set(ullTotalVirtual$LAYOUT, ullTotalVirtual$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullAvailVirtual$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullAvailVirtual"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailVirtual
+     * }
+     */
+    public static final OfLong ullAvailVirtual$layout() {
+        return ullAvailVirtual$LAYOUT;
+    }
+
+    private static final long ullAvailVirtual$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailVirtual
+     * }
+     */
+    public static final long ullAvailVirtual$offset() {
+        return ullAvailVirtual$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailVirtual
+     * }
+     */
+    public static long ullAvailVirtual(MemorySegment struct) {
+        return struct.get(ullAvailVirtual$LAYOUT, ullAvailVirtual$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailVirtual
+     * }
+     */
+    public static void ullAvailVirtual(MemorySegment struct, long fieldValue) {
+        struct.set(ullAvailVirtual$LAYOUT, ullAvailVirtual$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ullAvailExtendedVirtual$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ullAvailExtendedVirtual"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailExtendedVirtual
+     * }
+     */
+    public static final OfLong ullAvailExtendedVirtual$layout() {
+        return ullAvailExtendedVirtual$LAYOUT;
+    }
+
+    private static final long ullAvailExtendedVirtual$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailExtendedVirtual
+     * }
+     */
+    public static final long ullAvailExtendedVirtual$offset() {
+        return ullAvailExtendedVirtual$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailExtendedVirtual
+     * }
+     */
+    public static long ullAvailExtendedVirtual(MemorySegment struct) {
+        return struct.get(ullAvailExtendedVirtual$LAYOUT, ullAvailExtendedVirtual$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG ullAvailExtendedVirtual
+     * }
+     */
+    public static void ullAvailExtendedVirtual(MemorySegment struct, long fieldValue) {
+        struct.set(ullAvailExtendedVirtual$LAYOUT, ullAvailExtendedVirtual$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

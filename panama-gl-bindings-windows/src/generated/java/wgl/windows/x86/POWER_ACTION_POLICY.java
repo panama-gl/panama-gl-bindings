@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     POWER_ACTION Action;
+ *     DWORD Flags;
+ *     DWORD EventCode;
+ * }
+ * }
+ */
 public class POWER_ACTION_POLICY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Action"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("EventCode")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return POWER_ACTION_POLICY.$struct$LAYOUT;
+    POWER_ACTION_POLICY() {
+        // Should not be called directly
     }
-    static final VarHandle Action$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Action"));
-    public static VarHandle Action$VH() {
-        return POWER_ACTION_POLICY.Action$VH;
-    }
-    public static int Action$get(MemorySegment seg) {
-        return (int)POWER_ACTION_POLICY.Action$VH.get(seg);
-    }
-    public static void Action$set( MemorySegment seg, int x) {
-        POWER_ACTION_POLICY.Action$VH.set(seg, x);
-    }
-    public static int Action$get(MemorySegment seg, long index) {
-        return (int)POWER_ACTION_POLICY.Action$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Action$set(MemorySegment seg, long index, int x) {
-        POWER_ACTION_POLICY.Action$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return POWER_ACTION_POLICY.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)POWER_ACTION_POLICY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        POWER_ACTION_POLICY.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)POWER_ACTION_POLICY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        POWER_ACTION_POLICY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EventCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EventCode"));
-    public static VarHandle EventCode$VH() {
-        return POWER_ACTION_POLICY.EventCode$VH;
-    }
-    public static int EventCode$get(MemorySegment seg) {
-        return (int)POWER_ACTION_POLICY.EventCode$VH.get(seg);
-    }
-    public static void EventCode$set( MemorySegment seg, int x) {
-        POWER_ACTION_POLICY.EventCode$VH.set(seg, x);
-    }
-    public static int EventCode$get(MemorySegment seg, long index) {
-        return (int)POWER_ACTION_POLICY.EventCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EventCode$set(MemorySegment seg, long index, int x) {
-        POWER_ACTION_POLICY.EventCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("Action"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("EventCode")
+    ).withName("$anon$16511:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Action$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Action"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POWER_ACTION Action
+     * }
+     */
+    public static final OfInt Action$layout() {
+        return Action$LAYOUT;
+    }
+
+    private static final long Action$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POWER_ACTION Action
+     * }
+     */
+    public static final long Action$offset() {
+        return Action$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION Action
+     * }
+     */
+    public static int Action(MemorySegment struct) {
+        return struct.get(Action$LAYOUT, Action$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POWER_ACTION Action
+     * }
+     */
+    public static void Action(MemorySegment struct, int fieldValue) {
+        struct.set(Action$LAYOUT, Action$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EventCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EventCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EventCode
+     * }
+     */
+    public static final OfInt EventCode$layout() {
+        return EventCode$LAYOUT;
+    }
+
+    private static final long EventCode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EventCode
+     * }
+     */
+    public static final long EventCode$offset() {
+        return EventCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EventCode
+     * }
+     */
+    public static int EventCode(MemorySegment struct) {
+        return struct.get(EventCode$LAYOUT, EventCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EventCode
+     * }
+     */
+    public static void EventCode(MemorySegment struct, int fieldValue) {
+        struct.set(EventCode$LAYOUT, EventCode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

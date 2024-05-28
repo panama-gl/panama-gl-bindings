@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _GET_DEVICE_INTERNAL_STATUS_DATA_REQUEST {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DEVICE_INTERNAL_STATUS_DATA_REQUEST_TYPE RequestDataType;
+ *     DEVICE_INTERNAL_STATUS_DATA_SET RequestDataSet;
+ * } GET_DEVICE_INTERNAL_STATUS_DATA_REQUEST
+ * }
+ */
 public class GET_DEVICE_INTERNAL_STATUS_DATA_REQUEST extends _GET_DEVICE_INTERNAL_STATUS_DATA_REQUEST {
 
+    GET_DEVICE_INTERNAL_STATUS_DATA_REQUEST() {
+        // Should not be called directly
+    }
 }
-
 

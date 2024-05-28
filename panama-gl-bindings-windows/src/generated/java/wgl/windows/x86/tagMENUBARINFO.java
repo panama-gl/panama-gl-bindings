@@ -2,91 +2,269 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMENUBARINFO {
+ *     DWORD cbSize;
+ *     RECT rcBar;
+ *     HMENU hMenu;
+ *     HWND hwndMenu;
+ *     BOOL fBarFocused : 1;
+ *     BOOL fFocused : 1;
+ *     BOOL fUnused : 30;
+ * }
+ * }
+ */
 public class tagMENUBARINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("left"),
-            Constants$root.C_LONG$LAYOUT.withName("top"),
-            Constants$root.C_LONG$LAYOUT.withName("right"),
-            Constants$root.C_LONG$LAYOUT.withName("bottom")
-        ).withName("rcBar"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hMenu"),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndMenu"),
-        MemoryLayout.structLayout(
-            MemoryLayout.paddingLayout(1).withName("fBarFocused"),
-            MemoryLayout.paddingLayout(1).withName("fFocused"),
-            MemoryLayout.paddingLayout(30).withName("fUnused"),
-            MemoryLayout.paddingLayout(32)
-        )
-    ).withName("tagMENUBARINFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagMENUBARINFO.$struct$LAYOUT;
+    tagMENUBARINFO() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagMENUBARINFO.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagMENUBARINFO.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagMENUBARINFO.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagMENUBARINFO.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagMENUBARINFO.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rcBar$slice(MemorySegment seg) {
-        return seg.asSlice(4, 16);
-    }
-    static final VarHandle hMenu$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hMenu"));
-    public static VarHandle hMenu$VH() {
-        return tagMENUBARINFO.hMenu$VH;
-    }
-    public static MemoryAddress hMenu$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUBARINFO.hMenu$VH.get(seg);
-    }
-    public static void hMenu$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUBARINFO.hMenu$VH.set(seg, x);
-    }
-    public static MemoryAddress hMenu$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUBARINFO.hMenu$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hMenu$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUBARINFO.hMenu$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndMenu$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndMenu"));
-    public static VarHandle hwndMenu$VH() {
-        return tagMENUBARINFO.hwndMenu$VH;
-    }
-    public static MemoryAddress hwndMenu$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMENUBARINFO.hwndMenu$VH.get(seg);
-    }
-    public static void hwndMenu$set( MemorySegment seg, MemoryAddress x) {
-        tagMENUBARINFO.hwndMenu$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndMenu$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMENUBARINFO.hwndMenu$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndMenu$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMENUBARINFO.hwndMenu$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        tagRECT.layout().withName("rcBar"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hMenu"),
+        wgl_h.C_POINTER.withName("hwndMenu"),
+        MemoryLayout.paddingLayout(8)
+    ).withName("tagMENUBARINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout rcBar$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("rcBar"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RECT rcBar
+     * }
+     */
+    public static final GroupLayout rcBar$layout() {
+        return rcBar$LAYOUT;
+    }
+
+    private static final long rcBar$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RECT rcBar
+     * }
+     */
+    public static final long rcBar$offset() {
+        return rcBar$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RECT rcBar
+     * }
+     */
+    public static MemorySegment rcBar(MemorySegment struct) {
+        return struct.asSlice(rcBar$OFFSET, rcBar$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RECT rcBar
+     * }
+     */
+    public static void rcBar(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rcBar$OFFSET, rcBar$LAYOUT.byteSize());
+    }
+
+    private static final AddressLayout hMenu$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hMenu"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HMENU hMenu
+     * }
+     */
+    public static final AddressLayout hMenu$layout() {
+        return hMenu$LAYOUT;
+    }
+
+    private static final long hMenu$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HMENU hMenu
+     * }
+     */
+    public static final long hMenu$offset() {
+        return hMenu$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HMENU hMenu
+     * }
+     */
+    public static MemorySegment hMenu(MemorySegment struct) {
+        return struct.get(hMenu$LAYOUT, hMenu$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HMENU hMenu
+     * }
+     */
+    public static void hMenu(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hMenu$LAYOUT, hMenu$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndMenu$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndMenu"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndMenu
+     * }
+     */
+    public static final AddressLayout hwndMenu$layout() {
+        return hwndMenu$LAYOUT;
+    }
+
+    private static final long hwndMenu$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndMenu
+     * }
+     */
+    public static final long hwndMenu$offset() {
+        return hwndMenu$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndMenu
+     * }
+     */
+    public static MemorySegment hwndMenu(MemorySegment struct) {
+        return struct.get(hwndMenu$LAYOUT, hwndMenu$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndMenu
+     * }
+     */
+    public static void hwndMenu(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndMenu$LAYOUT, hwndMenu$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

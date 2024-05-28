@@ -2,148 +2,480 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _RPC_SECURITY_QOS_V2_A {
+ *     unsigned long Version;
+ *     unsigned long Capabilities;
+ *     unsigned long IdentityTracking;
+ *     unsigned long ImpersonationType;
+ *     unsigned long AdditionalSecurityInfoType;
+ *     union {
+ *         RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+ *     } u;
+ * }
+ * }
+ */
 public class _RPC_SECURITY_QOS_V2_A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Capabilities"),
-        Constants$root.C_LONG$LAYOUT.withName("IdentityTracking"),
-        Constants$root.C_LONG$LAYOUT.withName("ImpersonationType"),
-        Constants$root.C_LONG$LAYOUT.withName("AdditionalSecurityInfoType"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("HttpCredentials")
-        ).withName("u")
+    _RPC_SECURITY_QOS_V2_A() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Capabilities"),
+        wgl_h.C_LONG.withName("IdentityTracking"),
+        wgl_h.C_LONG.withName("ImpersonationType"),
+        wgl_h.C_LONG.withName("AdditionalSecurityInfoType"),
+        MemoryLayout.paddingLayout(4),
+        _RPC_SECURITY_QOS_V2_A.u.layout().withName("u")
     ).withName("_RPC_SECURITY_QOS_V2_A");
-    public static MemoryLayout $LAYOUT() {
-        return _RPC_SECURITY_QOS_V2_A.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _RPC_SECURITY_QOS_V2_A.Version$VH;
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
     }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_RPC_SECURITY_QOS_V2_A.Version$VH.get(seg);
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
     }
-    public static void Version$set( MemorySegment seg, int x) {
-        _RPC_SECURITY_QOS_V2_A.Version$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
     }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_RPC_SECURITY_QOS_V2_A.Version$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
     }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _RPC_SECURITY_QOS_V2_A.Version$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt Capabilities$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Capabilities"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long Capabilities
+     * }
+     */
+    public static final OfInt Capabilities$layout() {
+        return Capabilities$LAYOUT;
     }
-    static final VarHandle Capabilities$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Capabilities"));
-    public static VarHandle Capabilities$VH() {
-        return _RPC_SECURITY_QOS_V2_A.Capabilities$VH;
+
+    private static final long Capabilities$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long Capabilities
+     * }
+     */
+    public static final long Capabilities$offset() {
+        return Capabilities$OFFSET;
     }
-    public static int Capabilities$get(MemorySegment seg) {
-        return (int)_RPC_SECURITY_QOS_V2_A.Capabilities$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long Capabilities
+     * }
+     */
+    public static int Capabilities(MemorySegment struct) {
+        return struct.get(Capabilities$LAYOUT, Capabilities$OFFSET);
     }
-    public static void Capabilities$set( MemorySegment seg, int x) {
-        _RPC_SECURITY_QOS_V2_A.Capabilities$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long Capabilities
+     * }
+     */
+    public static void Capabilities(MemorySegment struct, int fieldValue) {
+        struct.set(Capabilities$LAYOUT, Capabilities$OFFSET, fieldValue);
     }
-    public static int Capabilities$get(MemorySegment seg, long index) {
-        return (int)_RPC_SECURITY_QOS_V2_A.Capabilities$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt IdentityTracking$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IdentityTracking"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long IdentityTracking
+     * }
+     */
+    public static final OfInt IdentityTracking$layout() {
+        return IdentityTracking$LAYOUT;
     }
-    public static void Capabilities$set(MemorySegment seg, long index, int x) {
-        _RPC_SECURITY_QOS_V2_A.Capabilities$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long IdentityTracking$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long IdentityTracking
+     * }
+     */
+    public static final long IdentityTracking$offset() {
+        return IdentityTracking$OFFSET;
     }
-    static final VarHandle IdentityTracking$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IdentityTracking"));
-    public static VarHandle IdentityTracking$VH() {
-        return _RPC_SECURITY_QOS_V2_A.IdentityTracking$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long IdentityTracking
+     * }
+     */
+    public static int IdentityTracking(MemorySegment struct) {
+        return struct.get(IdentityTracking$LAYOUT, IdentityTracking$OFFSET);
     }
-    public static int IdentityTracking$get(MemorySegment seg) {
-        return (int)_RPC_SECURITY_QOS_V2_A.IdentityTracking$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long IdentityTracking
+     * }
+     */
+    public static void IdentityTracking(MemorySegment struct, int fieldValue) {
+        struct.set(IdentityTracking$LAYOUT, IdentityTracking$OFFSET, fieldValue);
     }
-    public static void IdentityTracking$set( MemorySegment seg, int x) {
-        _RPC_SECURITY_QOS_V2_A.IdentityTracking$VH.set(seg, x);
+
+    private static final OfInt ImpersonationType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ImpersonationType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long ImpersonationType
+     * }
+     */
+    public static final OfInt ImpersonationType$layout() {
+        return ImpersonationType$LAYOUT;
     }
-    public static int IdentityTracking$get(MemorySegment seg, long index) {
-        return (int)_RPC_SECURITY_QOS_V2_A.IdentityTracking$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long ImpersonationType$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long ImpersonationType
+     * }
+     */
+    public static final long ImpersonationType$offset() {
+        return ImpersonationType$OFFSET;
     }
-    public static void IdentityTracking$set(MemorySegment seg, long index, int x) {
-        _RPC_SECURITY_QOS_V2_A.IdentityTracking$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long ImpersonationType
+     * }
+     */
+    public static int ImpersonationType(MemorySegment struct) {
+        return struct.get(ImpersonationType$LAYOUT, ImpersonationType$OFFSET);
     }
-    static final VarHandle ImpersonationType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImpersonationType"));
-    public static VarHandle ImpersonationType$VH() {
-        return _RPC_SECURITY_QOS_V2_A.ImpersonationType$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long ImpersonationType
+     * }
+     */
+    public static void ImpersonationType(MemorySegment struct, int fieldValue) {
+        struct.set(ImpersonationType$LAYOUT, ImpersonationType$OFFSET, fieldValue);
     }
-    public static int ImpersonationType$get(MemorySegment seg) {
-        return (int)_RPC_SECURITY_QOS_V2_A.ImpersonationType$VH.get(seg);
+
+    private static final OfInt AdditionalSecurityInfoType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AdditionalSecurityInfoType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long AdditionalSecurityInfoType
+     * }
+     */
+    public static final OfInt AdditionalSecurityInfoType$layout() {
+        return AdditionalSecurityInfoType$LAYOUT;
     }
-    public static void ImpersonationType$set( MemorySegment seg, int x) {
-        _RPC_SECURITY_QOS_V2_A.ImpersonationType$VH.set(seg, x);
+
+    private static final long AdditionalSecurityInfoType$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long AdditionalSecurityInfoType
+     * }
+     */
+    public static final long AdditionalSecurityInfoType$offset() {
+        return AdditionalSecurityInfoType$OFFSET;
     }
-    public static int ImpersonationType$get(MemorySegment seg, long index) {
-        return (int)_RPC_SECURITY_QOS_V2_A.ImpersonationType$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long AdditionalSecurityInfoType
+     * }
+     */
+    public static int AdditionalSecurityInfoType(MemorySegment struct) {
+        return struct.get(AdditionalSecurityInfoType$LAYOUT, AdditionalSecurityInfoType$OFFSET);
     }
-    public static void ImpersonationType$set(MemorySegment seg, long index, int x) {
-        _RPC_SECURITY_QOS_V2_A.ImpersonationType$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long AdditionalSecurityInfoType
+     * }
+     */
+    public static void AdditionalSecurityInfoType(MemorySegment struct, int fieldValue) {
+        struct.set(AdditionalSecurityInfoType$LAYOUT, AdditionalSecurityInfoType$OFFSET, fieldValue);
     }
-    static final VarHandle AdditionalSecurityInfoType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AdditionalSecurityInfoType"));
-    public static VarHandle AdditionalSecurityInfoType$VH() {
-        return _RPC_SECURITY_QOS_V2_A.AdditionalSecurityInfoType$VH;
-    }
-    public static int AdditionalSecurityInfoType$get(MemorySegment seg) {
-        return (int)_RPC_SECURITY_QOS_V2_A.AdditionalSecurityInfoType$VH.get(seg);
-    }
-    public static void AdditionalSecurityInfoType$set( MemorySegment seg, int x) {
-        _RPC_SECURITY_QOS_V2_A.AdditionalSecurityInfoType$VH.set(seg, x);
-    }
-    public static int AdditionalSecurityInfoType$get(MemorySegment seg, long index) {
-        return (int)_RPC_SECURITY_QOS_V2_A.AdditionalSecurityInfoType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AdditionalSecurityInfoType$set(MemorySegment seg, long index, int x) {
-        _RPC_SECURITY_QOS_V2_A.AdditionalSecurityInfoType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+     * }
+     * }
+     */
     public static class u {
 
-        static final  GroupLayout u$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("HttpCredentials")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return u.u$union$LAYOUT;
+        u() {
+            // Should not be called directly
         }
-        static final VarHandle HttpCredentials$VH = u$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HttpCredentials"));
-        public static VarHandle HttpCredentials$VH() {
-            return u.HttpCredentials$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("HttpCredentials")
+        ).withName("$anon$1822:3");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemoryAddress HttpCredentials$get(MemorySegment seg) {
-            return (java.lang.foreign.MemoryAddress)u.HttpCredentials$VH.get(seg);
+
+        private static final AddressLayout HttpCredentials$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("HttpCredentials"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials
+         * }
+         */
+        public static final AddressLayout HttpCredentials$layout() {
+            return HttpCredentials$LAYOUT;
         }
-        public static void HttpCredentials$set( MemorySegment seg, MemoryAddress x) {
-            u.HttpCredentials$VH.set(seg, x);
+
+        private static final long HttpCredentials$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials
+         * }
+         */
+        public static final long HttpCredentials$offset() {
+            return HttpCredentials$OFFSET;
         }
-        public static MemoryAddress HttpCredentials$get(MemorySegment seg, long index) {
-            return (java.lang.foreign.MemoryAddress)u.HttpCredentials$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials
+         * }
+         */
+        public static MemorySegment HttpCredentials(MemorySegment union) {
+            return union.get(HttpCredentials$LAYOUT, HttpCredentials$OFFSET);
         }
-        public static void HttpCredentials$set(MemorySegment seg, long index, MemoryAddress x) {
-            u.HttpCredentials$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials
+         * }
+         */
+        public static void HttpCredentials(MemorySegment union, MemorySegment fieldValue) {
+            union.set(HttpCredentials$LAYOUT, HttpCredentials$OFFSET, fieldValue);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment u$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
+    private static final GroupLayout u$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("u"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+     * } u
+     * }
+     */
+    public static final GroupLayout u$layout() {
+        return u$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long u$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+     * } u
+     * }
+     */
+    public static final long u$offset() {
+        return u$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+     * } u
+     * }
+     */
+    public static MemorySegment u(MemorySegment struct) {
+        return struct.asSlice(u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     RPC_HTTP_TRANSPORT_CREDENTIALS_A *HttpCredentials;
+     * } u
+     * }
+     */
+    public static void u(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, u$OFFSET, u$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

@@ -2,245 +2,678 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagVS_FIXEDFILEINFO {
+ *     DWORD dwSignature;
+ *     DWORD dwStrucVersion;
+ *     DWORD dwFileVersionMS;
+ *     DWORD dwFileVersionLS;
+ *     DWORD dwProductVersionMS;
+ *     DWORD dwProductVersionLS;
+ *     DWORD dwFileFlagsMask;
+ *     DWORD dwFileFlags;
+ *     DWORD dwFileOS;
+ *     DWORD dwFileType;
+ *     DWORD dwFileSubtype;
+ *     DWORD dwFileDateMS;
+ *     DWORD dwFileDateLS;
+ * }
+ * }
+ */
 public class tagVS_FIXEDFILEINFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwSignature"),
-        Constants$root.C_LONG$LAYOUT.withName("dwStrucVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileVersionMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileVersionLS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProductVersionMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwProductVersionLS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileFlagsMask"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileOS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileType"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileSubtype"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileDateMS"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFileDateLS")
-    ).withName("tagVS_FIXEDFILEINFO");
-    public static MemoryLayout $LAYOUT() {
-        return tagVS_FIXEDFILEINFO.$struct$LAYOUT;
+    tagVS_FIXEDFILEINFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwSignature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSignature"));
-    public static VarHandle dwSignature$VH() {
-        return tagVS_FIXEDFILEINFO.dwSignature$VH;
-    }
-    public static int dwSignature$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwSignature$VH.get(seg);
-    }
-    public static void dwSignature$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwSignature$VH.set(seg, x);
-    }
-    public static int dwSignature$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwSignature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSignature$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwSignature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwStrucVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStrucVersion"));
-    public static VarHandle dwStrucVersion$VH() {
-        return tagVS_FIXEDFILEINFO.dwStrucVersion$VH;
-    }
-    public static int dwStrucVersion$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwStrucVersion$VH.get(seg);
-    }
-    public static void dwStrucVersion$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwStrucVersion$VH.set(seg, x);
-    }
-    public static int dwStrucVersion$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwStrucVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStrucVersion$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwStrucVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileVersionMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileVersionMS"));
-    public static VarHandle dwFileVersionMS$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileVersionMS$VH;
-    }
-    public static int dwFileVersionMS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileVersionMS$VH.get(seg);
-    }
-    public static void dwFileVersionMS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileVersionMS$VH.set(seg, x);
-    }
-    public static int dwFileVersionMS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileVersionMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileVersionMS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileVersionMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileVersionLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileVersionLS"));
-    public static VarHandle dwFileVersionLS$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileVersionLS$VH;
-    }
-    public static int dwFileVersionLS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileVersionLS$VH.get(seg);
-    }
-    public static void dwFileVersionLS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileVersionLS$VH.set(seg, x);
-    }
-    public static int dwFileVersionLS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileVersionLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileVersionLS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileVersionLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProductVersionMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProductVersionMS"));
-    public static VarHandle dwProductVersionMS$VH() {
-        return tagVS_FIXEDFILEINFO.dwProductVersionMS$VH;
-    }
-    public static int dwProductVersionMS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwProductVersionMS$VH.get(seg);
-    }
-    public static void dwProductVersionMS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwProductVersionMS$VH.set(seg, x);
-    }
-    public static int dwProductVersionMS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwProductVersionMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProductVersionMS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwProductVersionMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwProductVersionLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwProductVersionLS"));
-    public static VarHandle dwProductVersionLS$VH() {
-        return tagVS_FIXEDFILEINFO.dwProductVersionLS$VH;
-    }
-    public static int dwProductVersionLS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwProductVersionLS$VH.get(seg);
-    }
-    public static void dwProductVersionLS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwProductVersionLS$VH.set(seg, x);
-    }
-    public static int dwProductVersionLS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwProductVersionLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwProductVersionLS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwProductVersionLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileFlagsMask$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileFlagsMask"));
-    public static VarHandle dwFileFlagsMask$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileFlagsMask$VH;
-    }
-    public static int dwFileFlagsMask$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileFlagsMask$VH.get(seg);
-    }
-    public static void dwFileFlagsMask$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileFlagsMask$VH.set(seg, x);
-    }
-    public static int dwFileFlagsMask$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileFlagsMask$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileFlagsMask$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileFlagsMask$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileFlags"));
-    public static VarHandle dwFileFlags$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileFlags$VH;
-    }
-    public static int dwFileFlags$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileFlags$VH.get(seg);
-    }
-    public static void dwFileFlags$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileFlags$VH.set(seg, x);
-    }
-    public static int dwFileFlags$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileFlags$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileOS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileOS"));
-    public static VarHandle dwFileOS$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileOS$VH;
-    }
-    public static int dwFileOS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileOS$VH.get(seg);
-    }
-    public static void dwFileOS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileOS$VH.set(seg, x);
-    }
-    public static int dwFileOS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileOS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileOS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileOS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileType"));
-    public static VarHandle dwFileType$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileType$VH;
-    }
-    public static int dwFileType$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileType$VH.get(seg);
-    }
-    public static void dwFileType$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileType$VH.set(seg, x);
-    }
-    public static int dwFileType$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileType$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileSubtype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileSubtype"));
-    public static VarHandle dwFileSubtype$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileSubtype$VH;
-    }
-    public static int dwFileSubtype$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileSubtype$VH.get(seg);
-    }
-    public static void dwFileSubtype$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileSubtype$VH.set(seg, x);
-    }
-    public static int dwFileSubtype$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileSubtype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileSubtype$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileSubtype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileDateMS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileDateMS"));
-    public static VarHandle dwFileDateMS$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileDateMS$VH;
-    }
-    public static int dwFileDateMS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileDateMS$VH.get(seg);
-    }
-    public static void dwFileDateMS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileDateMS$VH.set(seg, x);
-    }
-    public static int dwFileDateMS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileDateMS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileDateMS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileDateMS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFileDateLS$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFileDateLS"));
-    public static VarHandle dwFileDateLS$VH() {
-        return tagVS_FIXEDFILEINFO.dwFileDateLS$VH;
-    }
-    public static int dwFileDateLS$get(MemorySegment seg) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileDateLS$VH.get(seg);
-    }
-    public static void dwFileDateLS$set( MemorySegment seg, int x) {
-        tagVS_FIXEDFILEINFO.dwFileDateLS$VH.set(seg, x);
-    }
-    public static int dwFileDateLS$get(MemorySegment seg, long index) {
-        return (int)tagVS_FIXEDFILEINFO.dwFileDateLS$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFileDateLS$set(MemorySegment seg, long index, int x) {
-        tagVS_FIXEDFILEINFO.dwFileDateLS$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("dwSignature"),
+        freeglut_h.C_LONG.withName("dwStrucVersion"),
+        freeglut_h.C_LONG.withName("dwFileVersionMS"),
+        freeglut_h.C_LONG.withName("dwFileVersionLS"),
+        freeglut_h.C_LONG.withName("dwProductVersionMS"),
+        freeglut_h.C_LONG.withName("dwProductVersionLS"),
+        freeglut_h.C_LONG.withName("dwFileFlagsMask"),
+        freeglut_h.C_LONG.withName("dwFileFlags"),
+        freeglut_h.C_LONG.withName("dwFileOS"),
+        freeglut_h.C_LONG.withName("dwFileType"),
+        freeglut_h.C_LONG.withName("dwFileSubtype"),
+        freeglut_h.C_LONG.withName("dwFileDateMS"),
+        freeglut_h.C_LONG.withName("dwFileDateLS")
+    ).withName("tagVS_FIXEDFILEINFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwSignature$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSignature
+     * }
+     */
+    public static final OfInt dwSignature$layout() {
+        return dwSignature$LAYOUT;
+    }
+
+    private static final long dwSignature$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSignature
+     * }
+     */
+    public static final long dwSignature$offset() {
+        return dwSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSignature
+     * }
+     */
+    public static int dwSignature(MemorySegment struct) {
+        return struct.get(dwSignature$LAYOUT, dwSignature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSignature
+     * }
+     */
+    public static void dwSignature(MemorySegment struct, int fieldValue) {
+        struct.set(dwSignature$LAYOUT, dwSignature$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwStrucVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStrucVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStrucVersion
+     * }
+     */
+    public static final OfInt dwStrucVersion$layout() {
+        return dwStrucVersion$LAYOUT;
+    }
+
+    private static final long dwStrucVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStrucVersion
+     * }
+     */
+    public static final long dwStrucVersion$offset() {
+        return dwStrucVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStrucVersion
+     * }
+     */
+    public static int dwStrucVersion(MemorySegment struct) {
+        return struct.get(dwStrucVersion$LAYOUT, dwStrucVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStrucVersion
+     * }
+     */
+    public static void dwStrucVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwStrucVersion$LAYOUT, dwStrucVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileVersionMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileVersionMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionMS
+     * }
+     */
+    public static final OfInt dwFileVersionMS$layout() {
+        return dwFileVersionMS$LAYOUT;
+    }
+
+    private static final long dwFileVersionMS$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionMS
+     * }
+     */
+    public static final long dwFileVersionMS$offset() {
+        return dwFileVersionMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionMS
+     * }
+     */
+    public static int dwFileVersionMS(MemorySegment struct) {
+        return struct.get(dwFileVersionMS$LAYOUT, dwFileVersionMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionMS
+     * }
+     */
+    public static void dwFileVersionMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileVersionMS$LAYOUT, dwFileVersionMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileVersionLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileVersionLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionLS
+     * }
+     */
+    public static final OfInt dwFileVersionLS$layout() {
+        return dwFileVersionLS$LAYOUT;
+    }
+
+    private static final long dwFileVersionLS$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionLS
+     * }
+     */
+    public static final long dwFileVersionLS$offset() {
+        return dwFileVersionLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionLS
+     * }
+     */
+    public static int dwFileVersionLS(MemorySegment struct) {
+        return struct.get(dwFileVersionLS$LAYOUT, dwFileVersionLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileVersionLS
+     * }
+     */
+    public static void dwFileVersionLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileVersionLS$LAYOUT, dwFileVersionLS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProductVersionMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProductVersionMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionMS
+     * }
+     */
+    public static final OfInt dwProductVersionMS$layout() {
+        return dwProductVersionMS$LAYOUT;
+    }
+
+    private static final long dwProductVersionMS$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionMS
+     * }
+     */
+    public static final long dwProductVersionMS$offset() {
+        return dwProductVersionMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionMS
+     * }
+     */
+    public static int dwProductVersionMS(MemorySegment struct) {
+        return struct.get(dwProductVersionMS$LAYOUT, dwProductVersionMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionMS
+     * }
+     */
+    public static void dwProductVersionMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwProductVersionMS$LAYOUT, dwProductVersionMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwProductVersionLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwProductVersionLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionLS
+     * }
+     */
+    public static final OfInt dwProductVersionLS$layout() {
+        return dwProductVersionLS$LAYOUT;
+    }
+
+    private static final long dwProductVersionLS$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionLS
+     * }
+     */
+    public static final long dwProductVersionLS$offset() {
+        return dwProductVersionLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionLS
+     * }
+     */
+    public static int dwProductVersionLS(MemorySegment struct) {
+        return struct.get(dwProductVersionLS$LAYOUT, dwProductVersionLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwProductVersionLS
+     * }
+     */
+    public static void dwProductVersionLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwProductVersionLS$LAYOUT, dwProductVersionLS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileFlagsMask$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileFlagsMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlagsMask
+     * }
+     */
+    public static final OfInt dwFileFlagsMask$layout() {
+        return dwFileFlagsMask$LAYOUT;
+    }
+
+    private static final long dwFileFlagsMask$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlagsMask
+     * }
+     */
+    public static final long dwFileFlagsMask$offset() {
+        return dwFileFlagsMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlagsMask
+     * }
+     */
+    public static int dwFileFlagsMask(MemorySegment struct) {
+        return struct.get(dwFileFlagsMask$LAYOUT, dwFileFlagsMask$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlagsMask
+     * }
+     */
+    public static void dwFileFlagsMask(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileFlagsMask$LAYOUT, dwFileFlagsMask$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlags
+     * }
+     */
+    public static final OfInt dwFileFlags$layout() {
+        return dwFileFlags$LAYOUT;
+    }
+
+    private static final long dwFileFlags$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlags
+     * }
+     */
+    public static final long dwFileFlags$offset() {
+        return dwFileFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlags
+     * }
+     */
+    public static int dwFileFlags(MemorySegment struct) {
+        return struct.get(dwFileFlags$LAYOUT, dwFileFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileFlags
+     * }
+     */
+    public static void dwFileFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileFlags$LAYOUT, dwFileFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileOS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileOS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileOS
+     * }
+     */
+    public static final OfInt dwFileOS$layout() {
+        return dwFileOS$LAYOUT;
+    }
+
+    private static final long dwFileOS$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileOS
+     * }
+     */
+    public static final long dwFileOS$offset() {
+        return dwFileOS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileOS
+     * }
+     */
+    public static int dwFileOS(MemorySegment struct) {
+        return struct.get(dwFileOS$LAYOUT, dwFileOS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileOS
+     * }
+     */
+    public static void dwFileOS(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileOS$LAYOUT, dwFileOS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static final OfInt dwFileType$layout() {
+        return dwFileType$LAYOUT;
+    }
+
+    private static final long dwFileType$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static final long dwFileType$offset() {
+        return dwFileType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static int dwFileType(MemorySegment struct) {
+        return struct.get(dwFileType$LAYOUT, dwFileType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileType
+     * }
+     */
+    public static void dwFileType(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileType$LAYOUT, dwFileType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileSubtype$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileSubtype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileSubtype
+     * }
+     */
+    public static final OfInt dwFileSubtype$layout() {
+        return dwFileSubtype$LAYOUT;
+    }
+
+    private static final long dwFileSubtype$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileSubtype
+     * }
+     */
+    public static final long dwFileSubtype$offset() {
+        return dwFileSubtype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileSubtype
+     * }
+     */
+    public static int dwFileSubtype(MemorySegment struct) {
+        return struct.get(dwFileSubtype$LAYOUT, dwFileSubtype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileSubtype
+     * }
+     */
+    public static void dwFileSubtype(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileSubtype$LAYOUT, dwFileSubtype$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileDateMS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileDateMS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateMS
+     * }
+     */
+    public static final OfInt dwFileDateMS$layout() {
+        return dwFileDateMS$LAYOUT;
+    }
+
+    private static final long dwFileDateMS$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateMS
+     * }
+     */
+    public static final long dwFileDateMS$offset() {
+        return dwFileDateMS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateMS
+     * }
+     */
+    public static int dwFileDateMS(MemorySegment struct) {
+        return struct.get(dwFileDateMS$LAYOUT, dwFileDateMS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateMS
+     * }
+     */
+    public static void dwFileDateMS(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileDateMS$LAYOUT, dwFileDateMS$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFileDateLS$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFileDateLS"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateLS
+     * }
+     */
+    public static final OfInt dwFileDateLS$layout() {
+        return dwFileDateLS$LAYOUT;
+    }
+
+    private static final long dwFileDateLS$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateLS
+     * }
+     */
+    public static final long dwFileDateLS$offset() {
+        return dwFileDateLS$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateLS
+     * }
+     */
+    public static int dwFileDateLS(MemorySegment struct) {
+        return struct.get(dwFileDateLS$LAYOUT, dwFileDateLS$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFileDateLS
+     * }
+     */
+    public static void dwFileDateLS(MemorySegment struct, int fieldValue) {
+        struct.set(dwFileDateLS$LAYOUT, dwFileDateLS$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

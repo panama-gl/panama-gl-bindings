@@ -2,74 +2,220 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SERVICE_CONTROL_STATUS_REASON_PARAMSW {
+ *     DWORD dwReason;
+ *     LPWSTR pszComment;
+ *     SERVICE_STATUS_PROCESS ServiceStatus;
+ * }
+ * }
+ */
 public class _SERVICE_CONTROL_STATUS_REASON_PARAMSW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwReason"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pszComment"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceType"),
-            Constants$root.C_LONG$LAYOUT.withName("dwCurrentState"),
-            Constants$root.C_LONG$LAYOUT.withName("dwControlsAccepted"),
-            Constants$root.C_LONG$LAYOUT.withName("dwWin32ExitCode"),
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceSpecificExitCode"),
-            Constants$root.C_LONG$LAYOUT.withName("dwCheckPoint"),
-            Constants$root.C_LONG$LAYOUT.withName("dwWaitHint"),
-            Constants$root.C_LONG$LAYOUT.withName("dwProcessId"),
-            Constants$root.C_LONG$LAYOUT.withName("dwServiceFlags")
-        ).withName("ServiceStatus"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_SERVICE_CONTROL_STATUS_REASON_PARAMSW");
-    public static MemoryLayout $LAYOUT() {
-        return _SERVICE_CONTROL_STATUS_REASON_PARAMSW.$struct$LAYOUT;
+    _SERVICE_CONTROL_STATUS_REASON_PARAMSW() {
+        // Should not be called directly
     }
-    static final VarHandle dwReason$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwReason"));
-    public static VarHandle dwReason$VH() {
-        return _SERVICE_CONTROL_STATUS_REASON_PARAMSW.dwReason$VH;
-    }
-    public static int dwReason$get(MemorySegment seg) {
-        return (int)_SERVICE_CONTROL_STATUS_REASON_PARAMSW.dwReason$VH.get(seg);
-    }
-    public static void dwReason$set( MemorySegment seg, int x) {
-        _SERVICE_CONTROL_STATUS_REASON_PARAMSW.dwReason$VH.set(seg, x);
-    }
-    public static int dwReason$get(MemorySegment seg, long index) {
-        return (int)_SERVICE_CONTROL_STATUS_REASON_PARAMSW.dwReason$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwReason$set(MemorySegment seg, long index, int x) {
-        _SERVICE_CONTROL_STATUS_REASON_PARAMSW.dwReason$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pszComment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pszComment"));
-    public static VarHandle pszComment$VH() {
-        return _SERVICE_CONTROL_STATUS_REASON_PARAMSW.pszComment$VH;
-    }
-    public static MemoryAddress pszComment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_CONTROL_STATUS_REASON_PARAMSW.pszComment$VH.get(seg);
-    }
-    public static void pszComment$set( MemorySegment seg, MemoryAddress x) {
-        _SERVICE_CONTROL_STATUS_REASON_PARAMSW.pszComment$VH.set(seg, x);
-    }
-    public static MemoryAddress pszComment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SERVICE_CONTROL_STATUS_REASON_PARAMSW.pszComment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pszComment$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SERVICE_CONTROL_STATUS_REASON_PARAMSW.pszComment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ServiceStatus$slice(MemorySegment seg) {
-        return seg.asSlice(16, 36);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwReason"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pszComment"),
+        _SERVICE_STATUS_PROCESS.layout().withName("ServiceStatus"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_SERVICE_CONTROL_STATUS_REASON_PARAMSW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwReason$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwReason"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwReason
+     * }
+     */
+    public static final OfInt dwReason$layout() {
+        return dwReason$LAYOUT;
+    }
+
+    private static final long dwReason$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwReason
+     * }
+     */
+    public static final long dwReason$offset() {
+        return dwReason$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwReason
+     * }
+     */
+    public static int dwReason(MemorySegment struct) {
+        return struct.get(dwReason$LAYOUT, dwReason$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwReason
+     * }
+     */
+    public static void dwReason(MemorySegment struct, int fieldValue) {
+        struct.set(dwReason$LAYOUT, dwReason$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pszComment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pszComment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pszComment
+     * }
+     */
+    public static final AddressLayout pszComment$layout() {
+        return pszComment$LAYOUT;
+    }
+
+    private static final long pszComment$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pszComment
+     * }
+     */
+    public static final long pszComment$offset() {
+        return pszComment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszComment
+     * }
+     */
+    public static MemorySegment pszComment(MemorySegment struct) {
+        return struct.get(pszComment$LAYOUT, pszComment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pszComment
+     * }
+     */
+    public static void pszComment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pszComment$LAYOUT, pszComment$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ServiceStatus$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ServiceStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static final GroupLayout ServiceStatus$layout() {
+        return ServiceStatus$LAYOUT;
+    }
+
+    private static final long ServiceStatus$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static final long ServiceStatus$offset() {
+        return ServiceStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static MemorySegment ServiceStatus(MemorySegment struct) {
+        return struct.asSlice(ServiceStatus$OFFSET, ServiceStatus$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SERVICE_STATUS_PROCESS ServiceStatus
+     * }
+     */
+    public static void ServiceStatus(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ServiceStatus$OFFSET, ServiceStatus$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,38 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_PRIVATE_KEY_VALIDITY {
+ *     FILETIME NotBefore;
+ *     FILETIME NotAfter;
+ * }
+ * }
+ */
 public class _CERT_PRIVATE_KEY_VALIDITY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("NotBefore"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("NotAfter")
-    ).withName("_CERT_PRIVATE_KEY_VALIDITY");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_PRIVATE_KEY_VALIDITY.$struct$LAYOUT;
+    _CERT_PRIVATE_KEY_VALIDITY() {
+        // Should not be called directly
     }
-    public static MemorySegment NotBefore$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment NotAfter$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _FILETIME.layout().withName("NotBefore"),
+        _FILETIME.layout().withName("NotAfter")
+    ).withName("_CERT_PRIVATE_KEY_VALIDITY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout NotBefore$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NotBefore"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME NotBefore
+     * }
+     */
+    public static final GroupLayout NotBefore$layout() {
+        return NotBefore$LAYOUT;
+    }
+
+    private static final long NotBefore$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME NotBefore
+     * }
+     */
+    public static final long NotBefore$offset() {
+        return NotBefore$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME NotBefore
+     * }
+     */
+    public static MemorySegment NotBefore(MemorySegment struct) {
+        return struct.asSlice(NotBefore$OFFSET, NotBefore$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME NotBefore
+     * }
+     */
+    public static void NotBefore(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NotBefore$OFFSET, NotBefore$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NotAfter$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NotAfter"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME NotAfter
+     * }
+     */
+    public static final GroupLayout NotAfter$layout() {
+        return NotAfter$LAYOUT;
+    }
+
+    private static final long NotAfter$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME NotAfter
+     * }
+     */
+    public static final long NotAfter$offset() {
+        return NotAfter$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME NotAfter
+     * }
+     */
+    public static MemorySegment NotAfter(MemorySegment struct) {
+        return struct.asSlice(NotAfter$OFFSET, NotAfter$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME NotAfter
+     * }
+     */
+    public static void NotAfter(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NotAfter$OFFSET, NotAfter$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

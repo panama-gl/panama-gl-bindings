@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _GP_LOG_PAGE_DESCRIPTOR {
+ *     WORD LogAddress;
+ *     WORD LogSectors;
+ * } GP_LOG_PAGE_DESCRIPTOR
+ * }
+ */
 public class GP_LOG_PAGE_DESCRIPTOR extends _GP_LOG_PAGE_DESCRIPTOR {
 
+    GP_LOG_PAGE_DESCRIPTOR() {
+        // Should not be called directly
+    }
 }
-
 

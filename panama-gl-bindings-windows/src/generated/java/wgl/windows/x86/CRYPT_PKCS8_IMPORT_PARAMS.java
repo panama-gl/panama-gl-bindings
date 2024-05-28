@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_PKCS8_IMPORT_PARAMS {
+ *     CRYPT_DIGEST_BLOB PrivateKey;
+ *     PCRYPT_RESOLVE_HCRYPTPROV_FUNC pResolvehCryptProvFunc;
+ *     LPVOID pVoidResolveFunc;
+ *     PCRYPT_DECRYPT_PRIVATE_KEY_FUNC pDecryptPrivateKeyFunc;
+ *     LPVOID pVoidDecryptFunc;
+ * } CRYPT_PKCS8_IMPORT_PARAMS
+ * }
+ */
 public class CRYPT_PKCS8_IMPORT_PARAMS extends _CRYPT_PKCS8_IMPORT_PARAMS {
 
+    CRYPT_PKCS8_IMPORT_PARAMS() {
+        // Should not be called directly
+    }
 }
-
 

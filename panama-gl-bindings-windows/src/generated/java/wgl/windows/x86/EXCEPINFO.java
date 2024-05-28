@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagEXCEPINFO {
+ *     WORD wCode;
+ *     WORD wReserved;
+ *     BSTR bstrSource;
+ *     BSTR bstrDescription;
+ *     BSTR bstrHelpFile;
+ *     DWORD dwHelpContext;
+ *     PVOID pvReserved;
+ *     HRESULT (*pfnDeferredFillIn)(struct tagEXCEPINFO *) __attribute__((stdcall));
+ *     SCODE scode;
+ * } EXCEPINFO
+ * }
+ */
 public class EXCEPINFO extends tagEXCEPINFO {
 
+    EXCEPINFO() {
+        // Should not be called directly
+    }
 }
-
 

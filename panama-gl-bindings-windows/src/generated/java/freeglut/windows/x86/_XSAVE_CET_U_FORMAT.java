@@ -2,58 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XSAVE_CET_U_FORMAT {
+ *     DWORD64 Ia32CetUMsr;
+ *     DWORD64 Ia32Pl3SspMsr;
+ * }
+ * }
+ */
 public class _XSAVE_CET_U_FORMAT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Ia32CetUMsr"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Ia32Pl3SspMsr")
-    ).withName("_XSAVE_CET_U_FORMAT");
-    public static MemoryLayout $LAYOUT() {
-        return _XSAVE_CET_U_FORMAT.$struct$LAYOUT;
+    _XSAVE_CET_U_FORMAT() {
+        // Should not be called directly
     }
-    static final VarHandle Ia32CetUMsr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Ia32CetUMsr"));
-    public static VarHandle Ia32CetUMsr$VH() {
-        return _XSAVE_CET_U_FORMAT.Ia32CetUMsr$VH;
-    }
-    public static long Ia32CetUMsr$get(MemorySegment seg) {
-        return (long)_XSAVE_CET_U_FORMAT.Ia32CetUMsr$VH.get(seg);
-    }
-    public static void Ia32CetUMsr$set( MemorySegment seg, long x) {
-        _XSAVE_CET_U_FORMAT.Ia32CetUMsr$VH.set(seg, x);
-    }
-    public static long Ia32CetUMsr$get(MemorySegment seg, long index) {
-        return (long)_XSAVE_CET_U_FORMAT.Ia32CetUMsr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Ia32CetUMsr$set(MemorySegment seg, long index, long x) {
-        _XSAVE_CET_U_FORMAT.Ia32CetUMsr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Ia32Pl3SspMsr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Ia32Pl3SspMsr"));
-    public static VarHandle Ia32Pl3SspMsr$VH() {
-        return _XSAVE_CET_U_FORMAT.Ia32Pl3SspMsr$VH;
-    }
-    public static long Ia32Pl3SspMsr$get(MemorySegment seg) {
-        return (long)_XSAVE_CET_U_FORMAT.Ia32Pl3SspMsr$VH.get(seg);
-    }
-    public static void Ia32Pl3SspMsr$set( MemorySegment seg, long x) {
-        _XSAVE_CET_U_FORMAT.Ia32Pl3SspMsr$VH.set(seg, x);
-    }
-    public static long Ia32Pl3SspMsr$get(MemorySegment seg, long index) {
-        return (long)_XSAVE_CET_U_FORMAT.Ia32Pl3SspMsr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Ia32Pl3SspMsr$set(MemorySegment seg, long index, long x) {
-        _XSAVE_CET_U_FORMAT.Ia32Pl3SspMsr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("Ia32CetUMsr"),
+        freeglut_h.C_LONG_LONG.withName("Ia32Pl3SspMsr")
+    ).withName("_XSAVE_CET_U_FORMAT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Ia32CetUMsr$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Ia32CetUMsr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32CetUMsr
+     * }
+     */
+    public static final OfLong Ia32CetUMsr$layout() {
+        return Ia32CetUMsr$LAYOUT;
+    }
+
+    private static final long Ia32CetUMsr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32CetUMsr
+     * }
+     */
+    public static final long Ia32CetUMsr$offset() {
+        return Ia32CetUMsr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32CetUMsr
+     * }
+     */
+    public static long Ia32CetUMsr(MemorySegment struct) {
+        return struct.get(Ia32CetUMsr$LAYOUT, Ia32CetUMsr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32CetUMsr
+     * }
+     */
+    public static void Ia32CetUMsr(MemorySegment struct, long fieldValue) {
+        struct.set(Ia32CetUMsr$LAYOUT, Ia32CetUMsr$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Ia32Pl3SspMsr$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Ia32Pl3SspMsr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32Pl3SspMsr
+     * }
+     */
+    public static final OfLong Ia32Pl3SspMsr$layout() {
+        return Ia32Pl3SspMsr$LAYOUT;
+    }
+
+    private static final long Ia32Pl3SspMsr$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32Pl3SspMsr
+     * }
+     */
+    public static final long Ia32Pl3SspMsr$offset() {
+        return Ia32Pl3SspMsr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32Pl3SspMsr
+     * }
+     */
+    public static long Ia32Pl3SspMsr(MemorySegment struct) {
+        return struct.get(Ia32Pl3SspMsr$LAYOUT, Ia32Pl3SspMsr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Ia32Pl3SspMsr
+     * }
+     */
+    public static void Ia32Pl3SspMsr(MemorySegment struct, long fieldValue) {
+        struct.set(Ia32Pl3SspMsr$LAYOUT, Ia32Pl3SspMsr$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

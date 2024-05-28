@@ -2,13 +2,51 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DRIVER_INFO_8W {
+ *     DWORD cVersion;
+ *     LPWSTR pName;
+ *     LPWSTR pEnvironment;
+ *     LPWSTR pDriverPath;
+ *     LPWSTR pDataFile;
+ *     LPWSTR pConfigFile;
+ *     LPWSTR pHelpFile;
+ *     LPWSTR pDependentFiles;
+ *     LPWSTR pMonitorName;
+ *     LPWSTR pDefaultDataType;
+ *     LPWSTR pszzPreviousNames;
+ *     FILETIME ftDriverDate;
+ *     DWORDLONG dwlDriverVersion;
+ *     LPWSTR pszMfgName;
+ *     LPWSTR pszOEMUrl;
+ *     LPWSTR pszHardwareID;
+ *     LPWSTR pszProvider;
+ *     LPWSTR pszPrintProcessor;
+ *     LPWSTR pszVendorSetup;
+ *     LPWSTR pszzColorProfiles;
+ *     LPWSTR pszInfPath;
+ *     DWORD dwPrinterDriverAttributes;
+ *     LPWSTR pszzCoreDriverDependencies;
+ *     FILETIME ftMinInboxDriverVerDate;
+ *     DWORDLONG dwlMinInboxDriverVerVersion;
+ * } DRIVER_INFO_8W
+ * }
+ */
 public class DRIVER_INFO_8W extends _DRIVER_INFO_8W {
 
+    DRIVER_INFO_8W() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,198 +2,541 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CREATE_PROCESS_DEBUG_INFO {
+ *     HANDLE hFile;
+ *     HANDLE hProcess;
+ *     HANDLE hThread;
+ *     LPVOID lpBaseOfImage;
+ *     DWORD dwDebugInfoFileOffset;
+ *     DWORD nDebugInfoSize;
+ *     LPVOID lpThreadLocalBase;
+ *     LPTHREAD_START_ROUTINE lpStartAddress;
+ *     LPVOID lpImageName;
+ *     WORD fUnicode;
+ * }
+ * }
+ */
 public class _CREATE_PROCESS_DEBUG_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("hProcess"),
-        Constants$root.C_POINTER$LAYOUT.withName("hThread"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpBaseOfImage"),
-        Constants$root.C_LONG$LAYOUT.withName("dwDebugInfoFileOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("nDebugInfoSize"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpThreadLocalBase"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpStartAddress"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpImageName"),
-        Constants$root.C_SHORT$LAYOUT.withName("fUnicode"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("_CREATE_PROCESS_DEBUG_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CREATE_PROCESS_DEBUG_INFO.$struct$LAYOUT;
+    _CREATE_PROCESS_DEBUG_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle hFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hFile"));
-    public static VarHandle hFile$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.hFile$VH;
-    }
-    public static MemoryAddress hFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hFile$VH.get(seg);
-    }
-    public static void hFile$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hFile$VH.set(seg, x);
-    }
-    public static MemoryAddress hFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hProcess$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hProcess"));
-    public static VarHandle hProcess$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.hProcess$VH;
-    }
-    public static MemoryAddress hProcess$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hProcess$VH.get(seg);
-    }
-    public static void hProcess$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hProcess$VH.set(seg, x);
-    }
-    public static MemoryAddress hProcess$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hProcess$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hProcess$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hProcess$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hThread$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hThread"));
-    public static VarHandle hThread$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.hThread$VH;
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hThread$VH.get(seg);
-    }
-    public static void hThread$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hThread$VH.set(seg, x);
-    }
-    public static MemoryAddress hThread$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.hThread$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hThread$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.hThread$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpBaseOfImage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpBaseOfImage"));
-    public static VarHandle lpBaseOfImage$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.lpBaseOfImage$VH;
-    }
-    public static MemoryAddress lpBaseOfImage$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpBaseOfImage$VH.get(seg);
-    }
-    public static void lpBaseOfImage$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpBaseOfImage$VH.set(seg, x);
-    }
-    public static MemoryAddress lpBaseOfImage$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpBaseOfImage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpBaseOfImage$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpBaseOfImage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwDebugInfoFileOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwDebugInfoFileOffset"));
-    public static VarHandle dwDebugInfoFileOffset$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.dwDebugInfoFileOffset$VH;
-    }
-    public static int dwDebugInfoFileOffset$get(MemorySegment seg) {
-        return (int)_CREATE_PROCESS_DEBUG_INFO.dwDebugInfoFileOffset$VH.get(seg);
-    }
-    public static void dwDebugInfoFileOffset$set( MemorySegment seg, int x) {
-        _CREATE_PROCESS_DEBUG_INFO.dwDebugInfoFileOffset$VH.set(seg, x);
-    }
-    public static int dwDebugInfoFileOffset$get(MemorySegment seg, long index) {
-        return (int)_CREATE_PROCESS_DEBUG_INFO.dwDebugInfoFileOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwDebugInfoFileOffset$set(MemorySegment seg, long index, int x) {
-        _CREATE_PROCESS_DEBUG_INFO.dwDebugInfoFileOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nDebugInfoSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nDebugInfoSize"));
-    public static VarHandle nDebugInfoSize$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.nDebugInfoSize$VH;
-    }
-    public static int nDebugInfoSize$get(MemorySegment seg) {
-        return (int)_CREATE_PROCESS_DEBUG_INFO.nDebugInfoSize$VH.get(seg);
-    }
-    public static void nDebugInfoSize$set( MemorySegment seg, int x) {
-        _CREATE_PROCESS_DEBUG_INFO.nDebugInfoSize$VH.set(seg, x);
-    }
-    public static int nDebugInfoSize$get(MemorySegment seg, long index) {
-        return (int)_CREATE_PROCESS_DEBUG_INFO.nDebugInfoSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nDebugInfoSize$set(MemorySegment seg, long index, int x) {
-        _CREATE_PROCESS_DEBUG_INFO.nDebugInfoSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpThreadLocalBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpThreadLocalBase"));
-    public static VarHandle lpThreadLocalBase$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.lpThreadLocalBase$VH;
-    }
-    public static MemoryAddress lpThreadLocalBase$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpThreadLocalBase$VH.get(seg);
-    }
-    public static void lpThreadLocalBase$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpThreadLocalBase$VH.set(seg, x);
-    }
-    public static MemoryAddress lpThreadLocalBase$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpThreadLocalBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpThreadLocalBase$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpThreadLocalBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpStartAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpStartAddress"));
-    public static VarHandle lpStartAddress$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.lpStartAddress$VH;
-    }
-    public static MemoryAddress lpStartAddress$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpStartAddress$VH.get(seg);
-    }
-    public static void lpStartAddress$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpStartAddress$VH.set(seg, x);
-    }
-    public static MemoryAddress lpStartAddress$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpStartAddress$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpStartAddress$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpStartAddress$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPTHREAD_START_ROUTINE lpStartAddress (MemorySegment segment, MemorySession session) {
-        return LPTHREAD_START_ROUTINE.ofAddress(lpStartAddress$get(segment), session);
-    }
-    static final VarHandle lpImageName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpImageName"));
-    public static VarHandle lpImageName$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.lpImageName$VH;
-    }
-    public static MemoryAddress lpImageName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpImageName$VH.get(seg);
-    }
-    public static void lpImageName$set( MemorySegment seg, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpImageName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpImageName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CREATE_PROCESS_DEBUG_INFO.lpImageName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpImageName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CREATE_PROCESS_DEBUG_INFO.lpImageName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fUnicode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fUnicode"));
-    public static VarHandle fUnicode$VH() {
-        return _CREATE_PROCESS_DEBUG_INFO.fUnicode$VH;
-    }
-    public static short fUnicode$get(MemorySegment seg) {
-        return (short)_CREATE_PROCESS_DEBUG_INFO.fUnicode$VH.get(seg);
-    }
-    public static void fUnicode$set( MemorySegment seg, short x) {
-        _CREATE_PROCESS_DEBUG_INFO.fUnicode$VH.set(seg, x);
-    }
-    public static short fUnicode$get(MemorySegment seg, long index) {
-        return (short)_CREATE_PROCESS_DEBUG_INFO.fUnicode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fUnicode$set(MemorySegment seg, long index, short x) {
-        _CREATE_PROCESS_DEBUG_INFO.fUnicode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("hFile"),
+        wgl_h.C_POINTER.withName("hProcess"),
+        wgl_h.C_POINTER.withName("hThread"),
+        wgl_h.C_POINTER.withName("lpBaseOfImage"),
+        wgl_h.C_LONG.withName("dwDebugInfoFileOffset"),
+        wgl_h.C_LONG.withName("nDebugInfoSize"),
+        wgl_h.C_POINTER.withName("lpThreadLocalBase"),
+        wgl_h.C_POINTER.withName("lpStartAddress"),
+        wgl_h.C_POINTER.withName("lpImageName"),
+        wgl_h.C_SHORT.withName("fUnicode"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("_CREATE_PROCESS_DEBUG_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hFile
+     * }
+     */
+    public static final AddressLayout hFile$layout() {
+        return hFile$LAYOUT;
+    }
+
+    private static final long hFile$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hFile
+     * }
+     */
+    public static final long hFile$offset() {
+        return hFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hFile
+     * }
+     */
+    public static MemorySegment hFile(MemorySegment struct) {
+        return struct.get(hFile$LAYOUT, hFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hFile
+     * }
+     */
+    public static void hFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hFile$LAYOUT, hFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hProcess$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hProcess"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static final AddressLayout hProcess$layout() {
+        return hProcess$LAYOUT;
+    }
+
+    private static final long hProcess$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static final long hProcess$offset() {
+        return hProcess$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static MemorySegment hProcess(MemorySegment struct) {
+        return struct.get(hProcess$LAYOUT, hProcess$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hProcess
+     * }
+     */
+    public static void hProcess(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hProcess$LAYOUT, hProcess$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hThread$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hThread"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final AddressLayout hThread$layout() {
+        return hThread$LAYOUT;
+    }
+
+    private static final long hThread$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static final long hThread$offset() {
+        return hThread$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static MemorySegment hThread(MemorySegment struct) {
+        return struct.get(hThread$LAYOUT, hThread$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HANDLE hThread
+     * }
+     */
+    public static void hThread(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hThread$LAYOUT, hThread$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpBaseOfImage$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpBaseOfImage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpBaseOfImage
+     * }
+     */
+    public static final AddressLayout lpBaseOfImage$layout() {
+        return lpBaseOfImage$LAYOUT;
+    }
+
+    private static final long lpBaseOfImage$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpBaseOfImage
+     * }
+     */
+    public static final long lpBaseOfImage$offset() {
+        return lpBaseOfImage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpBaseOfImage
+     * }
+     */
+    public static MemorySegment lpBaseOfImage(MemorySegment struct) {
+        return struct.get(lpBaseOfImage$LAYOUT, lpBaseOfImage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpBaseOfImage
+     * }
+     */
+    public static void lpBaseOfImage(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpBaseOfImage$LAYOUT, lpBaseOfImage$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwDebugInfoFileOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwDebugInfoFileOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwDebugInfoFileOffset
+     * }
+     */
+    public static final OfInt dwDebugInfoFileOffset$layout() {
+        return dwDebugInfoFileOffset$LAYOUT;
+    }
+
+    private static final long dwDebugInfoFileOffset$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwDebugInfoFileOffset
+     * }
+     */
+    public static final long dwDebugInfoFileOffset$offset() {
+        return dwDebugInfoFileOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwDebugInfoFileOffset
+     * }
+     */
+    public static int dwDebugInfoFileOffset(MemorySegment struct) {
+        return struct.get(dwDebugInfoFileOffset$LAYOUT, dwDebugInfoFileOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwDebugInfoFileOffset
+     * }
+     */
+    public static void dwDebugInfoFileOffset(MemorySegment struct, int fieldValue) {
+        struct.set(dwDebugInfoFileOffset$LAYOUT, dwDebugInfoFileOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt nDebugInfoSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("nDebugInfoSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD nDebugInfoSize
+     * }
+     */
+    public static final OfInt nDebugInfoSize$layout() {
+        return nDebugInfoSize$LAYOUT;
+    }
+
+    private static final long nDebugInfoSize$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD nDebugInfoSize
+     * }
+     */
+    public static final long nDebugInfoSize$offset() {
+        return nDebugInfoSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD nDebugInfoSize
+     * }
+     */
+    public static int nDebugInfoSize(MemorySegment struct) {
+        return struct.get(nDebugInfoSize$LAYOUT, nDebugInfoSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD nDebugInfoSize
+     * }
+     */
+    public static void nDebugInfoSize(MemorySegment struct, int fieldValue) {
+        struct.set(nDebugInfoSize$LAYOUT, nDebugInfoSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpThreadLocalBase$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpThreadLocalBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static final AddressLayout lpThreadLocalBase$layout() {
+        return lpThreadLocalBase$LAYOUT;
+    }
+
+    private static final long lpThreadLocalBase$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static final long lpThreadLocalBase$offset() {
+        return lpThreadLocalBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static MemorySegment lpThreadLocalBase(MemorySegment struct) {
+        return struct.get(lpThreadLocalBase$LAYOUT, lpThreadLocalBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpThreadLocalBase
+     * }
+     */
+    public static void lpThreadLocalBase(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpThreadLocalBase$LAYOUT, lpThreadLocalBase$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpStartAddress$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpStartAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static final AddressLayout lpStartAddress$layout() {
+        return lpStartAddress$LAYOUT;
+    }
+
+    private static final long lpStartAddress$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static final long lpStartAddress$offset() {
+        return lpStartAddress$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static MemorySegment lpStartAddress(MemorySegment struct) {
+        return struct.get(lpStartAddress$LAYOUT, lpStartAddress$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPTHREAD_START_ROUTINE lpStartAddress
+     * }
+     */
+    public static void lpStartAddress(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpStartAddress$LAYOUT, lpStartAddress$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpImageName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpImageName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID lpImageName
+     * }
+     */
+    public static final AddressLayout lpImageName$layout() {
+        return lpImageName$LAYOUT;
+    }
+
+    private static final long lpImageName$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID lpImageName
+     * }
+     */
+    public static final long lpImageName$offset() {
+        return lpImageName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID lpImageName
+     * }
+     */
+    public static MemorySegment lpImageName(MemorySegment struct) {
+        return struct.get(lpImageName$LAYOUT, lpImageName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID lpImageName
+     * }
+     */
+    public static void lpImageName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpImageName$LAYOUT, lpImageName$OFFSET, fieldValue);
+    }
+
+    private static final OfShort fUnicode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("fUnicode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD fUnicode
+     * }
+     */
+    public static final OfShort fUnicode$layout() {
+        return fUnicode$LAYOUT;
+    }
+
+    private static final long fUnicode$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD fUnicode
+     * }
+     */
+    public static final long fUnicode$offset() {
+        return fUnicode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD fUnicode
+     * }
+     */
+    public static short fUnicode(MemorySegment struct) {
+        return struct.get(fUnicode$LAYOUT, fUnicode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD fUnicode
+     * }
+     */
+    public static void fUnicode(MemorySegment struct, short fieldValue) {
+        struct.set(fUnicode$LAYOUT, fUnicode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

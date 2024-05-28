@@ -2,13 +2,54 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SYSTEM_CPU_SET_INFORMATION {
+ *     DWORD Size;
+ *     CPU_SET_INFORMATION_TYPE Type;
+ *     union {
+ *         struct {
+ *             DWORD Id;
+ *             WORD Group;
+ *             BYTE LogicalProcessorIndex;
+ *             BYTE CoreIndex;
+ *             BYTE LastLevelCacheIndex;
+ *             BYTE NumaNodeIndex;
+ *             BYTE EfficiencyClass;
+ *             union {
+ *                 BYTE AllFlags;
+ *                 struct {
+ *                     BYTE Parked : 1;
+ *                     BYTE Allocated : 1;
+ *                     BYTE AllocatedToTargetProcess : 1;
+ *                     BYTE RealTime : 1;
+ *                     BYTE ReservedFlags : 4;
+ *                 };
+ *             };
+ *             union {
+ *                 DWORD Reserved;
+ *                 BYTE SchedulingClass;
+ *             };
+ *             DWORD64 AllocationTag;
+ *         } CpuSet;
+ *     };
+ * } SYSTEM_CPU_SET_INFORMATION
+ * }
+ */
 public class SYSTEM_CPU_SET_INFORMATION extends _SYSTEM_CPU_SET_INFORMATION {
 
+    SYSTEM_CPU_SET_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,61 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_ASYNC_RETRIEVAL_COMPLETION {
+ *     PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion;
+ *     LPVOID pvCompletion;
+ * }
+ * }
+ */
 public class _CRYPT_ASYNC_RETRIEVAL_COMPLETION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pfnCompletion"),
-        Constants$root.C_POINTER$LAYOUT.withName("pvCompletion")
-    ).withName("_CRYPT_ASYNC_RETRIEVAL_COMPLETION");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_ASYNC_RETRIEVAL_COMPLETION.$struct$LAYOUT;
+    _CRYPT_ASYNC_RETRIEVAL_COMPLETION() {
+        // Should not be called directly
     }
-    static final VarHandle pfnCompletion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnCompletion"));
-    public static VarHandle pfnCompletion$VH() {
-        return _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pfnCompletion$VH;
-    }
-    public static MemoryAddress pfnCompletion$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ASYNC_RETRIEVAL_COMPLETION.pfnCompletion$VH.get(seg);
-    }
-    public static void pfnCompletion$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pfnCompletion$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnCompletion$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ASYNC_RETRIEVAL_COMPLETION.pfnCompletion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnCompletion$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pfnCompletion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC.ofAddress(pfnCompletion$get(segment), session);
-    }
-    static final VarHandle pvCompletion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pvCompletion"));
-    public static VarHandle pvCompletion$VH() {
-        return _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pvCompletion$VH;
-    }
-    public static MemoryAddress pvCompletion$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ASYNC_RETRIEVAL_COMPLETION.pvCompletion$VH.get(seg);
-    }
-    public static void pvCompletion$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pvCompletion$VH.set(seg, x);
-    }
-    public static MemoryAddress pvCompletion$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_ASYNC_RETRIEVAL_COMPLETION.pvCompletion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pvCompletion$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_ASYNC_RETRIEVAL_COMPLETION.pvCompletion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pfnCompletion"),
+        wgl_h.C_POINTER.withName("pvCompletion")
+    ).withName("_CRYPT_ASYNC_RETRIEVAL_COMPLETION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pfnCompletion$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnCompletion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion
+     * }
+     */
+    public static final AddressLayout pfnCompletion$layout() {
+        return pfnCompletion$LAYOUT;
+    }
+
+    private static final long pfnCompletion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion
+     * }
+     */
+    public static final long pfnCompletion$offset() {
+        return pfnCompletion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion
+     * }
+     */
+    public static MemorySegment pfnCompletion(MemorySegment struct) {
+        return struct.get(pfnCompletion$LAYOUT, pfnCompletion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_ASYNC_RETRIEVAL_COMPLETION_FUNC pfnCompletion
+     * }
+     */
+    public static void pfnCompletion(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnCompletion$LAYOUT, pfnCompletion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pvCompletion$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pvCompletion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPVOID pvCompletion
+     * }
+     */
+    public static final AddressLayout pvCompletion$layout() {
+        return pvCompletion$LAYOUT;
+    }
+
+    private static final long pvCompletion$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPVOID pvCompletion
+     * }
+     */
+    public static final long pvCompletion$offset() {
+        return pvCompletion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPVOID pvCompletion
+     * }
+     */
+    public static MemorySegment pvCompletion(MemorySegment struct) {
+        return struct.get(pvCompletion$LAYOUT, pvCompletion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPVOID pvCompletion
+     * }
+     */
+    public static void pvCompletion(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pvCompletion$LAYOUT, pvCompletion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

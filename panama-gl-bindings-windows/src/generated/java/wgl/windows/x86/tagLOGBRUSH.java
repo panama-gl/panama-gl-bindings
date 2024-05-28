@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagLOGBRUSH {
+ *     UINT lbStyle;
+ *     COLORREF lbColor;
+ *     ULONG_PTR lbHatch;
+ * }
+ * }
+ */
 public class tagLOGBRUSH {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lbStyle"),
-        Constants$root.C_LONG$LAYOUT.withName("lbColor"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("lbHatch")
-    ).withName("tagLOGBRUSH");
-    public static MemoryLayout $LAYOUT() {
-        return tagLOGBRUSH.$struct$LAYOUT;
+    tagLOGBRUSH() {
+        // Should not be called directly
     }
-    static final VarHandle lbStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lbStyle"));
-    public static VarHandle lbStyle$VH() {
-        return tagLOGBRUSH.lbStyle$VH;
-    }
-    public static int lbStyle$get(MemorySegment seg) {
-        return (int)tagLOGBRUSH.lbStyle$VH.get(seg);
-    }
-    public static void lbStyle$set( MemorySegment seg, int x) {
-        tagLOGBRUSH.lbStyle$VH.set(seg, x);
-    }
-    public static int lbStyle$get(MemorySegment seg, long index) {
-        return (int)tagLOGBRUSH.lbStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lbStyle$set(MemorySegment seg, long index, int x) {
-        tagLOGBRUSH.lbStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lbColor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lbColor"));
-    public static VarHandle lbColor$VH() {
-        return tagLOGBRUSH.lbColor$VH;
-    }
-    public static int lbColor$get(MemorySegment seg) {
-        return (int)tagLOGBRUSH.lbColor$VH.get(seg);
-    }
-    public static void lbColor$set( MemorySegment seg, int x) {
-        tagLOGBRUSH.lbColor$VH.set(seg, x);
-    }
-    public static int lbColor$get(MemorySegment seg, long index) {
-        return (int)tagLOGBRUSH.lbColor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lbColor$set(MemorySegment seg, long index, int x) {
-        tagLOGBRUSH.lbColor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lbHatch$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lbHatch"));
-    public static VarHandle lbHatch$VH() {
-        return tagLOGBRUSH.lbHatch$VH;
-    }
-    public static long lbHatch$get(MemorySegment seg) {
-        return (long)tagLOGBRUSH.lbHatch$VH.get(seg);
-    }
-    public static void lbHatch$set( MemorySegment seg, long x) {
-        tagLOGBRUSH.lbHatch$VH.set(seg, x);
-    }
-    public static long lbHatch$get(MemorySegment seg, long index) {
-        return (long)tagLOGBRUSH.lbHatch$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lbHatch$set(MemorySegment seg, long index, long x) {
-        tagLOGBRUSH.lbHatch$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("lbStyle"),
+        wgl_h.C_LONG.withName("lbColor"),
+        wgl_h.C_LONG_LONG.withName("lbHatch")
+    ).withName("tagLOGBRUSH");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lbStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lbStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT lbStyle
+     * }
+     */
+    public static final OfInt lbStyle$layout() {
+        return lbStyle$LAYOUT;
+    }
+
+    private static final long lbStyle$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT lbStyle
+     * }
+     */
+    public static final long lbStyle$offset() {
+        return lbStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT lbStyle
+     * }
+     */
+    public static int lbStyle(MemorySegment struct) {
+        return struct.get(lbStyle$LAYOUT, lbStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT lbStyle
+     * }
+     */
+    public static void lbStyle(MemorySegment struct, int fieldValue) {
+        struct.set(lbStyle$LAYOUT, lbStyle$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lbColor$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lbColor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COLORREF lbColor
+     * }
+     */
+    public static final OfInt lbColor$layout() {
+        return lbColor$LAYOUT;
+    }
+
+    private static final long lbColor$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COLORREF lbColor
+     * }
+     */
+    public static final long lbColor$offset() {
+        return lbColor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COLORREF lbColor
+     * }
+     */
+    public static int lbColor(MemorySegment struct) {
+        return struct.get(lbColor$LAYOUT, lbColor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COLORREF lbColor
+     * }
+     */
+    public static void lbColor(MemorySegment struct, int fieldValue) {
+        struct.set(lbColor$LAYOUT, lbColor$OFFSET, fieldValue);
+    }
+
+    private static final OfLong lbHatch$LAYOUT = (OfLong)$LAYOUT.select(groupElement("lbHatch"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR lbHatch
+     * }
+     */
+    public static final OfLong lbHatch$layout() {
+        return lbHatch$LAYOUT;
+    }
+
+    private static final long lbHatch$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR lbHatch
+     * }
+     */
+    public static final long lbHatch$offset() {
+        return lbHatch$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR lbHatch
+     * }
+     */
+    public static long lbHatch(MemorySegment struct) {
+        return struct.get(lbHatch$LAYOUT, lbHatch$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR lbHatch
+     * }
+     */
+    public static void lbHatch(MemorySegment struct, long fieldValue) {
+        struct.set(lbHatch$LAYOUT, lbHatch$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,28 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _IMAGE_ROM_HEADERS {
+ *     IMAGE_FILE_HEADER FileHeader;
+ *     IMAGE_ROM_OPTIONAL_HEADER OptionalHeader;
+ * } IMAGE_ROM_HEADERS
+ * }
+ */
 public class IMAGE_ROM_HEADERS extends _IMAGE_ROM_HEADERS {
 
+    IMAGE_ROM_HEADERS() {
+        // Should not be called directly
+    }
 }
-
 

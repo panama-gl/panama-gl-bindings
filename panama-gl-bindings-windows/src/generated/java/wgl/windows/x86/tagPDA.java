@@ -2,355 +2,956 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagPDA {
+ *     DWORD lStructSize;
+ *     HWND hwndOwner;
+ *     HGLOBAL hDevMode;
+ *     HGLOBAL hDevNames;
+ *     HDC hDC;
+ *     DWORD Flags;
+ *     WORD nFromPage;
+ *     WORD nToPage;
+ *     WORD nMinPage;
+ *     WORD nMaxPage;
+ *     WORD nCopies;
+ *     HINSTANCE hInstance;
+ *     LPARAM lCustData;
+ *     LPPRINTHOOKPROC lpfnPrintHook;
+ *     LPSETUPHOOKPROC lpfnSetupHook;
+ *     LPCSTR lpPrintTemplateName;
+ *     LPCSTR lpSetupTemplateName;
+ *     HGLOBAL hPrintTemplate;
+ *     HGLOBAL hSetupTemplate;
+ * }
+ * }
+ */
 public class tagPDA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("lStructSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndOwner"),
-        Constants$root.C_POINTER$LAYOUT.withName("hDevMode"),
-        Constants$root.C_POINTER$LAYOUT.withName("hDevNames"),
-        Constants$root.C_POINTER$LAYOUT.withName("hDC"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_SHORT$LAYOUT.withName("nFromPage"),
-        Constants$root.C_SHORT$LAYOUT.withName("nToPage"),
-        Constants$root.C_SHORT$LAYOUT.withName("nMinPage"),
-        Constants$root.C_SHORT$LAYOUT.withName("nMaxPage"),
-        Constants$root.C_SHORT$LAYOUT.withName("nCopies"),
-        MemoryLayout.paddingLayout(16),
-        Constants$root.C_POINTER$LAYOUT.withName("hInstance"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("lCustData"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnPrintHook"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnSetupHook"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpPrintTemplateName"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpSetupTemplateName"),
-        Constants$root.C_POINTER$LAYOUT.withName("hPrintTemplate"),
-        Constants$root.C_POINTER$LAYOUT.withName("hSetupTemplate")
-    ).withName("tagPDA");
-    public static MemoryLayout $LAYOUT() {
-        return tagPDA.$struct$LAYOUT;
+    tagPDA() {
+        // Should not be called directly
     }
-    static final VarHandle lStructSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lStructSize"));
-    public static VarHandle lStructSize$VH() {
-        return tagPDA.lStructSize$VH;
-    }
-    public static int lStructSize$get(MemorySegment seg) {
-        return (int)tagPDA.lStructSize$VH.get(seg);
-    }
-    public static void lStructSize$set( MemorySegment seg, int x) {
-        tagPDA.lStructSize$VH.set(seg, x);
-    }
-    public static int lStructSize$get(MemorySegment seg, long index) {
-        return (int)tagPDA.lStructSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lStructSize$set(MemorySegment seg, long index, int x) {
-        tagPDA.lStructSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndOwner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndOwner"));
-    public static VarHandle hwndOwner$VH() {
-        return tagPDA.hwndOwner$VH;
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hwndOwner$VH.get(seg);
-    }
-    public static void hwndOwner$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hwndOwner$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hwndOwner$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndOwner$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hwndOwner$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hDevMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hDevMode"));
-    public static VarHandle hDevMode$VH() {
-        return tagPDA.hDevMode$VH;
-    }
-    public static MemoryAddress hDevMode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDevMode$VH.get(seg);
-    }
-    public static void hDevMode$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hDevMode$VH.set(seg, x);
-    }
-    public static MemoryAddress hDevMode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDevMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hDevMode$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hDevMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hDevNames$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hDevNames"));
-    public static VarHandle hDevNames$VH() {
-        return tagPDA.hDevNames$VH;
-    }
-    public static MemoryAddress hDevNames$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDevNames$VH.get(seg);
-    }
-    public static void hDevNames$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hDevNames$VH.set(seg, x);
-    }
-    public static MemoryAddress hDevNames$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDevNames$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hDevNames$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hDevNames$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hDC$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hDC"));
-    public static VarHandle hDC$VH() {
-        return tagPDA.hDC$VH;
-    }
-    public static MemoryAddress hDC$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDC$VH.get(seg);
-    }
-    public static void hDC$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hDC$VH.set(seg, x);
-    }
-    public static MemoryAddress hDC$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hDC$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hDC$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hDC$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return tagPDA.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)tagPDA.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        tagPDA.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)tagPDA.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        tagPDA.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nFromPage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nFromPage"));
-    public static VarHandle nFromPage$VH() {
-        return tagPDA.nFromPage$VH;
-    }
-    public static short nFromPage$get(MemorySegment seg) {
-        return (short)tagPDA.nFromPage$VH.get(seg);
-    }
-    public static void nFromPage$set( MemorySegment seg, short x) {
-        tagPDA.nFromPage$VH.set(seg, x);
-    }
-    public static short nFromPage$get(MemorySegment seg, long index) {
-        return (short)tagPDA.nFromPage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nFromPage$set(MemorySegment seg, long index, short x) {
-        tagPDA.nFromPage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nToPage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nToPage"));
-    public static VarHandle nToPage$VH() {
-        return tagPDA.nToPage$VH;
-    }
-    public static short nToPage$get(MemorySegment seg) {
-        return (short)tagPDA.nToPage$VH.get(seg);
-    }
-    public static void nToPage$set( MemorySegment seg, short x) {
-        tagPDA.nToPage$VH.set(seg, x);
-    }
-    public static short nToPage$get(MemorySegment seg, long index) {
-        return (short)tagPDA.nToPage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nToPage$set(MemorySegment seg, long index, short x) {
-        tagPDA.nToPage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMinPage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMinPage"));
-    public static VarHandle nMinPage$VH() {
-        return tagPDA.nMinPage$VH;
-    }
-    public static short nMinPage$get(MemorySegment seg) {
-        return (short)tagPDA.nMinPage$VH.get(seg);
-    }
-    public static void nMinPage$set( MemorySegment seg, short x) {
-        tagPDA.nMinPage$VH.set(seg, x);
-    }
-    public static short nMinPage$get(MemorySegment seg, long index) {
-        return (short)tagPDA.nMinPage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMinPage$set(MemorySegment seg, long index, short x) {
-        tagPDA.nMinPage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nMaxPage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nMaxPage"));
-    public static VarHandle nMaxPage$VH() {
-        return tagPDA.nMaxPage$VH;
-    }
-    public static short nMaxPage$get(MemorySegment seg) {
-        return (short)tagPDA.nMaxPage$VH.get(seg);
-    }
-    public static void nMaxPage$set( MemorySegment seg, short x) {
-        tagPDA.nMaxPage$VH.set(seg, x);
-    }
-    public static short nMaxPage$get(MemorySegment seg, long index) {
-        return (short)tagPDA.nMaxPage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nMaxPage$set(MemorySegment seg, long index, short x) {
-        tagPDA.nMaxPage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle nCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("nCopies"));
-    public static VarHandle nCopies$VH() {
-        return tagPDA.nCopies$VH;
-    }
-    public static short nCopies$get(MemorySegment seg) {
-        return (short)tagPDA.nCopies$VH.get(seg);
-    }
-    public static void nCopies$set( MemorySegment seg, short x) {
-        tagPDA.nCopies$VH.set(seg, x);
-    }
-    public static short nCopies$get(MemorySegment seg, long index) {
-        return (short)tagPDA.nCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void nCopies$set(MemorySegment seg, long index, short x) {
-        tagPDA.nCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hInstance$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hInstance"));
-    public static VarHandle hInstance$VH() {
-        return tagPDA.hInstance$VH;
-    }
-    public static MemoryAddress hInstance$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hInstance$VH.get(seg);
-    }
-    public static void hInstance$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hInstance$VH.set(seg, x);
-    }
-    public static MemoryAddress hInstance$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hInstance$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hInstance$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hInstance$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lCustData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lCustData"));
-    public static VarHandle lCustData$VH() {
-        return tagPDA.lCustData$VH;
-    }
-    public static long lCustData$get(MemorySegment seg) {
-        return (long)tagPDA.lCustData$VH.get(seg);
-    }
-    public static void lCustData$set( MemorySegment seg, long x) {
-        tagPDA.lCustData$VH.set(seg, x);
-    }
-    public static long lCustData$get(MemorySegment seg, long index) {
-        return (long)tagPDA.lCustData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lCustData$set(MemorySegment seg, long index, long x) {
-        tagPDA.lCustData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpfnPrintHook$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnPrintHook"));
-    public static VarHandle lpfnPrintHook$VH() {
-        return tagPDA.lpfnPrintHook$VH;
-    }
-    public static MemoryAddress lpfnPrintHook$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpfnPrintHook$VH.get(seg);
-    }
-    public static void lpfnPrintHook$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.lpfnPrintHook$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnPrintHook$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpfnPrintHook$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnPrintHook$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.lpfnPrintHook$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPPRINTHOOKPROC lpfnPrintHook (MemorySegment segment, MemorySession session) {
-        return LPPRINTHOOKPROC.ofAddress(lpfnPrintHook$get(segment), session);
-    }
-    static final VarHandle lpfnSetupHook$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnSetupHook"));
-    public static VarHandle lpfnSetupHook$VH() {
-        return tagPDA.lpfnSetupHook$VH;
-    }
-    public static MemoryAddress lpfnSetupHook$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpfnSetupHook$VH.get(seg);
-    }
-    public static void lpfnSetupHook$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.lpfnSetupHook$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnSetupHook$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpfnSetupHook$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnSetupHook$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.lpfnSetupHook$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static LPSETUPHOOKPROC lpfnSetupHook (MemorySegment segment, MemorySession session) {
-        return LPSETUPHOOKPROC.ofAddress(lpfnSetupHook$get(segment), session);
-    }
-    static final VarHandle lpPrintTemplateName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpPrintTemplateName"));
-    public static VarHandle lpPrintTemplateName$VH() {
-        return tagPDA.lpPrintTemplateName$VH;
-    }
-    public static MemoryAddress lpPrintTemplateName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpPrintTemplateName$VH.get(seg);
-    }
-    public static void lpPrintTemplateName$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.lpPrintTemplateName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpPrintTemplateName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpPrintTemplateName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpPrintTemplateName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.lpPrintTemplateName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpSetupTemplateName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpSetupTemplateName"));
-    public static VarHandle lpSetupTemplateName$VH() {
-        return tagPDA.lpSetupTemplateName$VH;
-    }
-    public static MemoryAddress lpSetupTemplateName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpSetupTemplateName$VH.get(seg);
-    }
-    public static void lpSetupTemplateName$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.lpSetupTemplateName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpSetupTemplateName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.lpSetupTemplateName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpSetupTemplateName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.lpSetupTemplateName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hPrintTemplate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hPrintTemplate"));
-    public static VarHandle hPrintTemplate$VH() {
-        return tagPDA.hPrintTemplate$VH;
-    }
-    public static MemoryAddress hPrintTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hPrintTemplate$VH.get(seg);
-    }
-    public static void hPrintTemplate$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hPrintTemplate$VH.set(seg, x);
-    }
-    public static MemoryAddress hPrintTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hPrintTemplate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hPrintTemplate$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hPrintTemplate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hSetupTemplate$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hSetupTemplate"));
-    public static VarHandle hSetupTemplate$VH() {
-        return tagPDA.hSetupTemplate$VH;
-    }
-    public static MemoryAddress hSetupTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hSetupTemplate$VH.get(seg);
-    }
-    public static void hSetupTemplate$set( MemorySegment seg, MemoryAddress x) {
-        tagPDA.hSetupTemplate$VH.set(seg, x);
-    }
-    public static MemoryAddress hSetupTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagPDA.hSetupTemplate$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hSetupTemplate$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagPDA.hSetupTemplate$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("lStructSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hwndOwner"),
+        wgl_h.C_POINTER.withName("hDevMode"),
+        wgl_h.C_POINTER.withName("hDevNames"),
+        wgl_h.C_POINTER.withName("hDC"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_SHORT.withName("nFromPage"),
+        wgl_h.C_SHORT.withName("nToPage"),
+        wgl_h.C_SHORT.withName("nMinPage"),
+        wgl_h.C_SHORT.withName("nMaxPage"),
+        wgl_h.C_SHORT.withName("nCopies"),
+        MemoryLayout.paddingLayout(2),
+        wgl_h.C_POINTER.withName("hInstance"),
+        wgl_h.C_LONG_LONG.withName("lCustData"),
+        wgl_h.C_POINTER.withName("lpfnPrintHook"),
+        wgl_h.C_POINTER.withName("lpfnSetupHook"),
+        wgl_h.C_POINTER.withName("lpPrintTemplateName"),
+        wgl_h.C_POINTER.withName("lpSetupTemplateName"),
+        wgl_h.C_POINTER.withName("hPrintTemplate"),
+        wgl_h.C_POINTER.withName("hSetupTemplate")
+    ).withName("tagPDA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt lStructSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lStructSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD lStructSize
+     * }
+     */
+    public static final OfInt lStructSize$layout() {
+        return lStructSize$LAYOUT;
+    }
+
+    private static final long lStructSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD lStructSize
+     * }
+     */
+    public static final long lStructSize$offset() {
+        return lStructSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD lStructSize
+     * }
+     */
+    public static int lStructSize(MemorySegment struct) {
+        return struct.get(lStructSize$LAYOUT, lStructSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD lStructSize
+     * }
+     */
+    public static void lStructSize(MemorySegment struct, int fieldValue) {
+        struct.set(lStructSize$LAYOUT, lStructSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndOwner$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndOwner"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final AddressLayout hwndOwner$layout() {
+        return hwndOwner$LAYOUT;
+    }
+
+    private static final long hwndOwner$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final long hwndOwner$offset() {
+        return hwndOwner$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static MemorySegment hwndOwner(MemorySegment struct) {
+        return struct.get(hwndOwner$LAYOUT, hwndOwner$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static void hwndOwner(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndOwner$LAYOUT, hwndOwner$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hDevMode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hDevMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevMode
+     * }
+     */
+    public static final AddressLayout hDevMode$layout() {
+        return hDevMode$LAYOUT;
+    }
+
+    private static final long hDevMode$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevMode
+     * }
+     */
+    public static final long hDevMode$offset() {
+        return hDevMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevMode
+     * }
+     */
+    public static MemorySegment hDevMode(MemorySegment struct) {
+        return struct.get(hDevMode$LAYOUT, hDevMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevMode
+     * }
+     */
+    public static void hDevMode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hDevMode$LAYOUT, hDevMode$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hDevNames$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hDevNames"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevNames
+     * }
+     */
+    public static final AddressLayout hDevNames$layout() {
+        return hDevNames$LAYOUT;
+    }
+
+    private static final long hDevNames$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevNames
+     * }
+     */
+    public static final long hDevNames$offset() {
+        return hDevNames$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevNames
+     * }
+     */
+    public static MemorySegment hDevNames(MemorySegment struct) {
+        return struct.get(hDevNames$LAYOUT, hDevNames$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hDevNames
+     * }
+     */
+    public static void hDevNames(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hDevNames$LAYOUT, hDevNames$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hDC$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hDC"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HDC hDC
+     * }
+     */
+    public static final AddressLayout hDC$layout() {
+        return hDC$LAYOUT;
+    }
+
+    private static final long hDC$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HDC hDC
+     * }
+     */
+    public static final long hDC$offset() {
+        return hDC$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HDC hDC
+     * }
+     */
+    public static MemorySegment hDC(MemorySegment struct) {
+        return struct.get(hDC$LAYOUT, hDC$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HDC hDC
+     * }
+     */
+    public static void hDC(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hDC$LAYOUT, hDC$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nFromPage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nFromPage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nFromPage
+     * }
+     */
+    public static final OfShort nFromPage$layout() {
+        return nFromPage$LAYOUT;
+    }
+
+    private static final long nFromPage$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nFromPage
+     * }
+     */
+    public static final long nFromPage$offset() {
+        return nFromPage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nFromPage
+     * }
+     */
+    public static short nFromPage(MemorySegment struct) {
+        return struct.get(nFromPage$LAYOUT, nFromPage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nFromPage
+     * }
+     */
+    public static void nFromPage(MemorySegment struct, short fieldValue) {
+        struct.set(nFromPage$LAYOUT, nFromPage$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nToPage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nToPage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nToPage
+     * }
+     */
+    public static final OfShort nToPage$layout() {
+        return nToPage$LAYOUT;
+    }
+
+    private static final long nToPage$OFFSET = 46;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nToPage
+     * }
+     */
+    public static final long nToPage$offset() {
+        return nToPage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nToPage
+     * }
+     */
+    public static short nToPage(MemorySegment struct) {
+        return struct.get(nToPage$LAYOUT, nToPage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nToPage
+     * }
+     */
+    public static void nToPage(MemorySegment struct, short fieldValue) {
+        struct.set(nToPage$LAYOUT, nToPage$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nMinPage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nMinPage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nMinPage
+     * }
+     */
+    public static final OfShort nMinPage$layout() {
+        return nMinPage$LAYOUT;
+    }
+
+    private static final long nMinPage$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nMinPage
+     * }
+     */
+    public static final long nMinPage$offset() {
+        return nMinPage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nMinPage
+     * }
+     */
+    public static short nMinPage(MemorySegment struct) {
+        return struct.get(nMinPage$LAYOUT, nMinPage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nMinPage
+     * }
+     */
+    public static void nMinPage(MemorySegment struct, short fieldValue) {
+        struct.set(nMinPage$LAYOUT, nMinPage$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nMaxPage$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nMaxPage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nMaxPage
+     * }
+     */
+    public static final OfShort nMaxPage$layout() {
+        return nMaxPage$LAYOUT;
+    }
+
+    private static final long nMaxPage$OFFSET = 50;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nMaxPage
+     * }
+     */
+    public static final long nMaxPage$offset() {
+        return nMaxPage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nMaxPage
+     * }
+     */
+    public static short nMaxPage(MemorySegment struct) {
+        return struct.get(nMaxPage$LAYOUT, nMaxPage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nMaxPage
+     * }
+     */
+    public static void nMaxPage(MemorySegment struct, short fieldValue) {
+        struct.set(nMaxPage$LAYOUT, nMaxPage$OFFSET, fieldValue);
+    }
+
+    private static final OfShort nCopies$LAYOUT = (OfShort)$LAYOUT.select(groupElement("nCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD nCopies
+     * }
+     */
+    public static final OfShort nCopies$layout() {
+        return nCopies$LAYOUT;
+    }
+
+    private static final long nCopies$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD nCopies
+     * }
+     */
+    public static final long nCopies$offset() {
+        return nCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD nCopies
+     * }
+     */
+    public static short nCopies(MemorySegment struct) {
+        return struct.get(nCopies$LAYOUT, nCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD nCopies
+     * }
+     */
+    public static void nCopies(MemorySegment struct, short fieldValue) {
+        struct.set(nCopies$LAYOUT, nCopies$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hInstance$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hInstance"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static final AddressLayout hInstance$layout() {
+        return hInstance$LAYOUT;
+    }
+
+    private static final long hInstance$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static final long hInstance$offset() {
+        return hInstance$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static MemorySegment hInstance(MemorySegment struct) {
+        return struct.get(hInstance$LAYOUT, hInstance$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static void hInstance(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hInstance$LAYOUT, hInstance$OFFSET, fieldValue);
+    }
+
+    private static final OfLong lCustData$LAYOUT = (OfLong)$LAYOUT.select(groupElement("lCustData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPARAM lCustData
+     * }
+     */
+    public static final OfLong lCustData$layout() {
+        return lCustData$LAYOUT;
+    }
+
+    private static final long lCustData$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPARAM lCustData
+     * }
+     */
+    public static final long lCustData$offset() {
+        return lCustData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPARAM lCustData
+     * }
+     */
+    public static long lCustData(MemorySegment struct) {
+        return struct.get(lCustData$LAYOUT, lCustData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPARAM lCustData
+     * }
+     */
+    public static void lCustData(MemorySegment struct, long fieldValue) {
+        struct.set(lCustData$LAYOUT, lCustData$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnPrintHook$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnPrintHook"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPPRINTHOOKPROC lpfnPrintHook
+     * }
+     */
+    public static final AddressLayout lpfnPrintHook$layout() {
+        return lpfnPrintHook$LAYOUT;
+    }
+
+    private static final long lpfnPrintHook$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPPRINTHOOKPROC lpfnPrintHook
+     * }
+     */
+    public static final long lpfnPrintHook$offset() {
+        return lpfnPrintHook$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPPRINTHOOKPROC lpfnPrintHook
+     * }
+     */
+    public static MemorySegment lpfnPrintHook(MemorySegment struct) {
+        return struct.get(lpfnPrintHook$LAYOUT, lpfnPrintHook$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPPRINTHOOKPROC lpfnPrintHook
+     * }
+     */
+    public static void lpfnPrintHook(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnPrintHook$LAYOUT, lpfnPrintHook$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnSetupHook$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnSetupHook"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSETUPHOOKPROC lpfnSetupHook
+     * }
+     */
+    public static final AddressLayout lpfnSetupHook$layout() {
+        return lpfnSetupHook$LAYOUT;
+    }
+
+    private static final long lpfnSetupHook$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSETUPHOOKPROC lpfnSetupHook
+     * }
+     */
+    public static final long lpfnSetupHook$offset() {
+        return lpfnSetupHook$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSETUPHOOKPROC lpfnSetupHook
+     * }
+     */
+    public static MemorySegment lpfnSetupHook(MemorySegment struct) {
+        return struct.get(lpfnSetupHook$LAYOUT, lpfnSetupHook$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSETUPHOOKPROC lpfnSetupHook
+     * }
+     */
+    public static void lpfnSetupHook(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnSetupHook$LAYOUT, lpfnSetupHook$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpPrintTemplateName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpPrintTemplateName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR lpPrintTemplateName
+     * }
+     */
+    public static final AddressLayout lpPrintTemplateName$layout() {
+        return lpPrintTemplateName$LAYOUT;
+    }
+
+    private static final long lpPrintTemplateName$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR lpPrintTemplateName
+     * }
+     */
+    public static final long lpPrintTemplateName$offset() {
+        return lpPrintTemplateName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpPrintTemplateName
+     * }
+     */
+    public static MemorySegment lpPrintTemplateName(MemorySegment struct) {
+        return struct.get(lpPrintTemplateName$LAYOUT, lpPrintTemplateName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpPrintTemplateName
+     * }
+     */
+    public static void lpPrintTemplateName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpPrintTemplateName$LAYOUT, lpPrintTemplateName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpSetupTemplateName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpSetupTemplateName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCSTR lpSetupTemplateName
+     * }
+     */
+    public static final AddressLayout lpSetupTemplateName$layout() {
+        return lpSetupTemplateName$LAYOUT;
+    }
+
+    private static final long lpSetupTemplateName$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCSTR lpSetupTemplateName
+     * }
+     */
+    public static final long lpSetupTemplateName$offset() {
+        return lpSetupTemplateName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpSetupTemplateName
+     * }
+     */
+    public static MemorySegment lpSetupTemplateName(MemorySegment struct) {
+        return struct.get(lpSetupTemplateName$LAYOUT, lpSetupTemplateName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCSTR lpSetupTemplateName
+     * }
+     */
+    public static void lpSetupTemplateName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpSetupTemplateName$LAYOUT, lpSetupTemplateName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hPrintTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hPrintTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGLOBAL hPrintTemplate
+     * }
+     */
+    public static final AddressLayout hPrintTemplate$layout() {
+        return hPrintTemplate$LAYOUT;
+    }
+
+    private static final long hPrintTemplate$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGLOBAL hPrintTemplate
+     * }
+     */
+    public static final long hPrintTemplate$offset() {
+        return hPrintTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hPrintTemplate
+     * }
+     */
+    public static MemorySegment hPrintTemplate(MemorySegment struct) {
+        return struct.get(hPrintTemplate$LAYOUT, hPrintTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hPrintTemplate
+     * }
+     */
+    public static void hPrintTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hPrintTemplate$LAYOUT, hPrintTemplate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hSetupTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hSetupTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HGLOBAL hSetupTemplate
+     * }
+     */
+    public static final AddressLayout hSetupTemplate$layout() {
+        return hSetupTemplate$LAYOUT;
+    }
+
+    private static final long hSetupTemplate$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HGLOBAL hSetupTemplate
+     * }
+     */
+    public static final long hSetupTemplate$offset() {
+        return hSetupTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hSetupTemplate
+     * }
+     */
+    public static MemorySegment hSetupTemplate(MemorySegment struct) {
+        return struct.get(hSetupTemplate$LAYOUT, hSetupTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HGLOBAL hSetupTemplate
+     * }
+     */
+    public static void hSetupTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hSetupTemplate$LAYOUT, hSetupTemplate$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

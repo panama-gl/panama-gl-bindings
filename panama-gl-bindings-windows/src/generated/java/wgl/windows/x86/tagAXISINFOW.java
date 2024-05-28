@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagAXISINFOW {
+ *     LONG axMinValue;
+ *     LONG axMaxValue;
+ *     WCHAR axAxisName[16];
+ * }
+ * }
+ */
 public class tagAXISINFOW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("axMinValue"),
-        Constants$root.C_LONG$LAYOUT.withName("axMaxValue"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_SHORT$LAYOUT).withName("axAxisName")
-    ).withName("tagAXISINFOW");
-    public static MemoryLayout $LAYOUT() {
-        return tagAXISINFOW.$struct$LAYOUT;
+    tagAXISINFOW() {
+        // Should not be called directly
     }
-    static final VarHandle axMinValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("axMinValue"));
-    public static VarHandle axMinValue$VH() {
-        return tagAXISINFOW.axMinValue$VH;
-    }
-    public static int axMinValue$get(MemorySegment seg) {
-        return (int)tagAXISINFOW.axMinValue$VH.get(seg);
-    }
-    public static void axMinValue$set( MemorySegment seg, int x) {
-        tagAXISINFOW.axMinValue$VH.set(seg, x);
-    }
-    public static int axMinValue$get(MemorySegment seg, long index) {
-        return (int)tagAXISINFOW.axMinValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void axMinValue$set(MemorySegment seg, long index, int x) {
-        tagAXISINFOW.axMinValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle axMaxValue$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("axMaxValue"));
-    public static VarHandle axMaxValue$VH() {
-        return tagAXISINFOW.axMaxValue$VH;
-    }
-    public static int axMaxValue$get(MemorySegment seg) {
-        return (int)tagAXISINFOW.axMaxValue$VH.get(seg);
-    }
-    public static void axMaxValue$set( MemorySegment seg, int x) {
-        tagAXISINFOW.axMaxValue$VH.set(seg, x);
-    }
-    public static int axMaxValue$get(MemorySegment seg, long index) {
-        return (int)tagAXISINFOW.axMaxValue$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void axMaxValue$set(MemorySegment seg, long index, int x) {
-        tagAXISINFOW.axMaxValue$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment axAxisName$slice(MemorySegment seg) {
-        return seg.asSlice(8, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("axMinValue"),
+        wgl_h.C_LONG.withName("axMaxValue"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_SHORT).withName("axAxisName")
+    ).withName("tagAXISINFOW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt axMinValue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("axMinValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG axMinValue
+     * }
+     */
+    public static final OfInt axMinValue$layout() {
+        return axMinValue$LAYOUT;
+    }
+
+    private static final long axMinValue$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG axMinValue
+     * }
+     */
+    public static final long axMinValue$offset() {
+        return axMinValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG axMinValue
+     * }
+     */
+    public static int axMinValue(MemorySegment struct) {
+        return struct.get(axMinValue$LAYOUT, axMinValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG axMinValue
+     * }
+     */
+    public static void axMinValue(MemorySegment struct, int fieldValue) {
+        struct.set(axMinValue$LAYOUT, axMinValue$OFFSET, fieldValue);
+    }
+
+    private static final OfInt axMaxValue$LAYOUT = (OfInt)$LAYOUT.select(groupElement("axMaxValue"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG axMaxValue
+     * }
+     */
+    public static final OfInt axMaxValue$layout() {
+        return axMaxValue$LAYOUT;
+    }
+
+    private static final long axMaxValue$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG axMaxValue
+     * }
+     */
+    public static final long axMaxValue$offset() {
+        return axMaxValue$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG axMaxValue
+     * }
+     */
+    public static int axMaxValue(MemorySegment struct) {
+        return struct.get(axMaxValue$LAYOUT, axMaxValue$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG axMaxValue
+     * }
+     */
+    public static void axMaxValue(MemorySegment struct, int fieldValue) {
+        struct.set(axMaxValue$LAYOUT, axMaxValue$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout axAxisName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("axAxisName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static final SequenceLayout axAxisName$layout() {
+        return axAxisName$LAYOUT;
+    }
+
+    private static final long axAxisName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static final long axAxisName$offset() {
+        return axAxisName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static MemorySegment axAxisName(MemorySegment struct) {
+        return struct.asSlice(axAxisName$OFFSET, axAxisName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static void axAxisName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, axAxisName$OFFSET, axAxisName$LAYOUT.byteSize());
+    }
+
+    private static long[] axAxisName$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static long[] axAxisName$dimensions() {
+        return axAxisName$DIMS;
+    }
+    private static final VarHandle axAxisName$ELEM_HANDLE = axAxisName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static short axAxisName(MemorySegment struct, long index0) {
+        return (short)axAxisName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR axAxisName[16]
+     * }
+     */
+    public static void axAxisName(MemorySegment struct, long index0, short fieldValue) {
+        axAxisName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

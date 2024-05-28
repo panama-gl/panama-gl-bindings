@@ -2,936 +2,3143 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONTEXT {
+ *     DWORD64 P1Home;
+ *     DWORD64 P2Home;
+ *     DWORD64 P3Home;
+ *     DWORD64 P4Home;
+ *     DWORD64 P5Home;
+ *     DWORD64 P6Home;
+ *     DWORD ContextFlags;
+ *     DWORD MxCsr;
+ *     WORD SegCs;
+ *     WORD SegDs;
+ *     WORD SegEs;
+ *     WORD SegFs;
+ *     WORD SegGs;
+ *     WORD SegSs;
+ *     DWORD EFlags;
+ *     DWORD64 Dr0;
+ *     DWORD64 Dr1;
+ *     DWORD64 Dr2;
+ *     DWORD64 Dr3;
+ *     DWORD64 Dr6;
+ *     DWORD64 Dr7;
+ *     DWORD64 Rax;
+ *     DWORD64 Rcx;
+ *     DWORD64 Rdx;
+ *     DWORD64 Rbx;
+ *     DWORD64 Rsp;
+ *     DWORD64 Rbp;
+ *     DWORD64 Rsi;
+ *     DWORD64 Rdi;
+ *     DWORD64 R8;
+ *     DWORD64 R9;
+ *     DWORD64 R10;
+ *     DWORD64 R11;
+ *     DWORD64 R12;
+ *     DWORD64 R13;
+ *     DWORD64 R14;
+ *     DWORD64 R15;
+ *     DWORD64 Rip;
+ *     union {
+ *         XMM_SAVE_AREA32 FltSave;
+ *         struct {
+ *             M128A Header[2];
+ *             M128A Legacy[8];
+ *             M128A Xmm0;
+ *             M128A Xmm1;
+ *             M128A Xmm2;
+ *             M128A Xmm3;
+ *             M128A Xmm4;
+ *             M128A Xmm5;
+ *             M128A Xmm6;
+ *             M128A Xmm7;
+ *             M128A Xmm8;
+ *             M128A Xmm9;
+ *             M128A Xmm10;
+ *             M128A Xmm11;
+ *             M128A Xmm12;
+ *             M128A Xmm13;
+ *             M128A Xmm14;
+ *             M128A Xmm15;
+ *         };
+ *     };
+ *     M128A VectorRegister[26];
+ *     DWORD64 VectorControl;
+ *     DWORD64 DebugControl;
+ *     DWORD64 LastBranchToRip;
+ *     DWORD64 LastBranchFromRip;
+ *     DWORD64 LastExceptionToRip;
+ *     DWORD64 LastExceptionFromRip;
+ * }
+ * }
+ */
 public class _CONTEXT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P1Home"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P2Home"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P3Home"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P4Home"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P5Home"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("P6Home"),
-        Constants$root.C_LONG$LAYOUT.withName("ContextFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("MxCsr"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegCs"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegDs"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegEs"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegFs"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegGs"),
-        Constants$root.C_SHORT$LAYOUT.withName("SegSs"),
-        Constants$root.C_LONG$LAYOUT.withName("EFlags"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr0"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr1"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr2"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr3"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr6"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Dr7"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rax"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rcx"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rdx"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rbx"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rsp"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rbp"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rsi"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rdi"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R8"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R9"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R10"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R11"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R12"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R13"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R14"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("R15"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Rip"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("ControlWord"),
-                Constants$root.C_SHORT$LAYOUT.withName("StatusWord"),
-                Constants$root.C_CHAR$LAYOUT.withName("TagWord"),
-                Constants$root.C_CHAR$LAYOUT.withName("Reserved1"),
-                Constants$root.C_SHORT$LAYOUT.withName("ErrorOpcode"),
-                Constants$root.C_LONG$LAYOUT.withName("ErrorOffset"),
-                Constants$root.C_SHORT$LAYOUT.withName("ErrorSelector"),
-                Constants$root.C_SHORT$LAYOUT.withName("Reserved2"),
-                Constants$root.C_LONG$LAYOUT.withName("DataOffset"),
-                Constants$root.C_SHORT$LAYOUT.withName("DataSelector"),
-                Constants$root.C_SHORT$LAYOUT.withName("Reserved3"),
-                Constants$root.C_LONG$LAYOUT.withName("MxCsr"),
-                Constants$root.C_LONG$LAYOUT.withName("MxCsr_Mask"),
-                MemoryLayout.sequenceLayout(8, MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("_M128A")).withName("FloatRegisters"),
-                MemoryLayout.sequenceLayout(16, MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("_M128A")).withName("XmmRegisters"),
-                MemoryLayout.sequenceLayout(96, Constants$root.C_CHAR$LAYOUT).withName("Reserved4")
-            ).withName("FltSave"),
-            MemoryLayout.structLayout(
-                MemoryLayout.sequenceLayout(2, MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("_M128A")).withName("Header"),
-                MemoryLayout.sequenceLayout(8, MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("_M128A")).withName("Legacy"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm1"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm2"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm3"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm4"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm5"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm6"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm7"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm8"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm9"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm10"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm11"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm12"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm13"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm14"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-                ).withName("Xmm15")
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        MemoryLayout.sequenceLayout(26, MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Low"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("High")
-        ).withName("_M128A")).withName("VectorRegister"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VectorControl"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DebugControl"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LastBranchToRip"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LastBranchFromRip"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LastExceptionToRip"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LastExceptionFromRip")
-    ).withName("_CONTEXT");
-    public static MemoryLayout $LAYOUT() {
-        return _CONTEXT.$struct$LAYOUT;
+    _CONTEXT() {
+        // Should not be called directly
     }
-    static final VarHandle P1Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P1Home"));
-    public static VarHandle P1Home$VH() {
-        return _CONTEXT.P1Home$VH;
-    }
-    public static long P1Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P1Home$VH.get(seg);
-    }
-    public static void P1Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P1Home$VH.set(seg, x);
-    }
-    public static long P1Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P1Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P1Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P1Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle P2Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P2Home"));
-    public static VarHandle P2Home$VH() {
-        return _CONTEXT.P2Home$VH;
-    }
-    public static long P2Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P2Home$VH.get(seg);
-    }
-    public static void P2Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P2Home$VH.set(seg, x);
-    }
-    public static long P2Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P2Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P2Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P2Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle P3Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P3Home"));
-    public static VarHandle P3Home$VH() {
-        return _CONTEXT.P3Home$VH;
-    }
-    public static long P3Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P3Home$VH.get(seg);
-    }
-    public static void P3Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P3Home$VH.set(seg, x);
-    }
-    public static long P3Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P3Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P3Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P3Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle P4Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P4Home"));
-    public static VarHandle P4Home$VH() {
-        return _CONTEXT.P4Home$VH;
-    }
-    public static long P4Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P4Home$VH.get(seg);
-    }
-    public static void P4Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P4Home$VH.set(seg, x);
-    }
-    public static long P4Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P4Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P4Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P4Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle P5Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P5Home"));
-    public static VarHandle P5Home$VH() {
-        return _CONTEXT.P5Home$VH;
-    }
-    public static long P5Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P5Home$VH.get(seg);
-    }
-    public static void P5Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P5Home$VH.set(seg, x);
-    }
-    public static long P5Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P5Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P5Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P5Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle P6Home$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("P6Home"));
-    public static VarHandle P6Home$VH() {
-        return _CONTEXT.P6Home$VH;
-    }
-    public static long P6Home$get(MemorySegment seg) {
-        return (long)_CONTEXT.P6Home$VH.get(seg);
-    }
-    public static void P6Home$set( MemorySegment seg, long x) {
-        _CONTEXT.P6Home$VH.set(seg, x);
-    }
-    public static long P6Home$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.P6Home$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void P6Home$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.P6Home$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ContextFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContextFlags"));
-    public static VarHandle ContextFlags$VH() {
-        return _CONTEXT.ContextFlags$VH;
-    }
-    public static int ContextFlags$get(MemorySegment seg) {
-        return (int)_CONTEXT.ContextFlags$VH.get(seg);
-    }
-    public static void ContextFlags$set( MemorySegment seg, int x) {
-        _CONTEXT.ContextFlags$VH.set(seg, x);
-    }
-    public static int ContextFlags$get(MemorySegment seg, long index) {
-        return (int)_CONTEXT.ContextFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContextFlags$set(MemorySegment seg, long index, int x) {
-        _CONTEXT.ContextFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MxCsr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MxCsr"));
-    public static VarHandle MxCsr$VH() {
-        return _CONTEXT.MxCsr$VH;
-    }
-    public static int MxCsr$get(MemorySegment seg) {
-        return (int)_CONTEXT.MxCsr$VH.get(seg);
-    }
-    public static void MxCsr$set( MemorySegment seg, int x) {
-        _CONTEXT.MxCsr$VH.set(seg, x);
-    }
-    public static int MxCsr$get(MemorySegment seg, long index) {
-        return (int)_CONTEXT.MxCsr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MxCsr$set(MemorySegment seg, long index, int x) {
-        _CONTEXT.MxCsr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegCs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegCs"));
-    public static VarHandle SegCs$VH() {
-        return _CONTEXT.SegCs$VH;
-    }
-    public static short SegCs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegCs$VH.get(seg);
-    }
-    public static void SegCs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegCs$VH.set(seg, x);
-    }
-    public static short SegCs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegCs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegCs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegCs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegDs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegDs"));
-    public static VarHandle SegDs$VH() {
-        return _CONTEXT.SegDs$VH;
-    }
-    public static short SegDs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegDs$VH.get(seg);
-    }
-    public static void SegDs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegDs$VH.set(seg, x);
-    }
-    public static short SegDs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegDs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegDs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegDs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegEs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegEs"));
-    public static VarHandle SegEs$VH() {
-        return _CONTEXT.SegEs$VH;
-    }
-    public static short SegEs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegEs$VH.get(seg);
-    }
-    public static void SegEs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegEs$VH.set(seg, x);
-    }
-    public static short SegEs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegEs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegEs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegEs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegFs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegFs"));
-    public static VarHandle SegFs$VH() {
-        return _CONTEXT.SegFs$VH;
-    }
-    public static short SegFs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegFs$VH.get(seg);
-    }
-    public static void SegFs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegFs$VH.set(seg, x);
-    }
-    public static short SegFs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegFs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegFs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegFs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegGs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegGs"));
-    public static VarHandle SegGs$VH() {
-        return _CONTEXT.SegGs$VH;
-    }
-    public static short SegGs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegGs$VH.get(seg);
-    }
-    public static void SegGs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegGs$VH.set(seg, x);
-    }
-    public static short SegGs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegGs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegGs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegGs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SegSs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SegSs"));
-    public static VarHandle SegSs$VH() {
-        return _CONTEXT.SegSs$VH;
-    }
-    public static short SegSs$get(MemorySegment seg) {
-        return (short)_CONTEXT.SegSs$VH.get(seg);
-    }
-    public static void SegSs$set( MemorySegment seg, short x) {
-        _CONTEXT.SegSs$VH.set(seg, x);
-    }
-    public static short SegSs$get(MemorySegment seg, long index) {
-        return (short)_CONTEXT.SegSs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SegSs$set(MemorySegment seg, long index, short x) {
-        _CONTEXT.SegSs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EFlags"));
-    public static VarHandle EFlags$VH() {
-        return _CONTEXT.EFlags$VH;
-    }
-    public static int EFlags$get(MemorySegment seg) {
-        return (int)_CONTEXT.EFlags$VH.get(seg);
-    }
-    public static void EFlags$set( MemorySegment seg, int x) {
-        _CONTEXT.EFlags$VH.set(seg, x);
-    }
-    public static int EFlags$get(MemorySegment seg, long index) {
-        return (int)_CONTEXT.EFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EFlags$set(MemorySegment seg, long index, int x) {
-        _CONTEXT.EFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr0$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr0"));
-    public static VarHandle Dr0$VH() {
-        return _CONTEXT.Dr0$VH;
-    }
-    public static long Dr0$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr0$VH.get(seg);
-    }
-    public static void Dr0$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr0$VH.set(seg, x);
-    }
-    public static long Dr0$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr0$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr0$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr0$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr1"));
-    public static VarHandle Dr1$VH() {
-        return _CONTEXT.Dr1$VH;
-    }
-    public static long Dr1$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr1$VH.get(seg);
-    }
-    public static void Dr1$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr1$VH.set(seg, x);
-    }
-    public static long Dr1$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr1$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr2"));
-    public static VarHandle Dr2$VH() {
-        return _CONTEXT.Dr2$VH;
-    }
-    public static long Dr2$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr2$VH.get(seg);
-    }
-    public static void Dr2$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr2$VH.set(seg, x);
-    }
-    public static long Dr2$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr2$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr3"));
-    public static VarHandle Dr3$VH() {
-        return _CONTEXT.Dr3$VH;
-    }
-    public static long Dr3$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr3$VH.get(seg);
-    }
-    public static void Dr3$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr3$VH.set(seg, x);
-    }
-    public static long Dr3$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr3$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr6$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr6"));
-    public static VarHandle Dr6$VH() {
-        return _CONTEXT.Dr6$VH;
-    }
-    public static long Dr6$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr6$VH.get(seg);
-    }
-    public static void Dr6$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr6$VH.set(seg, x);
-    }
-    public static long Dr6$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr6$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr6$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr6$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Dr7$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Dr7"));
-    public static VarHandle Dr7$VH() {
-        return _CONTEXT.Dr7$VH;
-    }
-    public static long Dr7$get(MemorySegment seg) {
-        return (long)_CONTEXT.Dr7$VH.get(seg);
-    }
-    public static void Dr7$set( MemorySegment seg, long x) {
-        _CONTEXT.Dr7$VH.set(seg, x);
-    }
-    public static long Dr7$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Dr7$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Dr7$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Dr7$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rax"));
-    public static VarHandle Rax$VH() {
-        return _CONTEXT.Rax$VH;
-    }
-    public static long Rax$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rax$VH.get(seg);
-    }
-    public static void Rax$set( MemorySegment seg, long x) {
-        _CONTEXT.Rax$VH.set(seg, x);
-    }
-    public static long Rax$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rax$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rcx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rcx"));
-    public static VarHandle Rcx$VH() {
-        return _CONTEXT.Rcx$VH;
-    }
-    public static long Rcx$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rcx$VH.get(seg);
-    }
-    public static void Rcx$set( MemorySegment seg, long x) {
-        _CONTEXT.Rcx$VH.set(seg, x);
-    }
-    public static long Rcx$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rcx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rcx$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rcx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rdx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rdx"));
-    public static VarHandle Rdx$VH() {
-        return _CONTEXT.Rdx$VH;
-    }
-    public static long Rdx$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rdx$VH.get(seg);
-    }
-    public static void Rdx$set( MemorySegment seg, long x) {
-        _CONTEXT.Rdx$VH.set(seg, x);
-    }
-    public static long Rdx$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rdx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rdx$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rdx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rbx$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rbx"));
-    public static VarHandle Rbx$VH() {
-        return _CONTEXT.Rbx$VH;
-    }
-    public static long Rbx$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rbx$VH.get(seg);
-    }
-    public static void Rbx$set( MemorySegment seg, long x) {
-        _CONTEXT.Rbx$VH.set(seg, x);
-    }
-    public static long Rbx$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rbx$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rbx$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rbx$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rsp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rsp"));
-    public static VarHandle Rsp$VH() {
-        return _CONTEXT.Rsp$VH;
-    }
-    public static long Rsp$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rsp$VH.get(seg);
-    }
-    public static void Rsp$set( MemorySegment seg, long x) {
-        _CONTEXT.Rsp$VH.set(seg, x);
-    }
-    public static long Rsp$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rsp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rsp$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rsp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rbp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rbp"));
-    public static VarHandle Rbp$VH() {
-        return _CONTEXT.Rbp$VH;
-    }
-    public static long Rbp$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rbp$VH.get(seg);
-    }
-    public static void Rbp$set( MemorySegment seg, long x) {
-        _CONTEXT.Rbp$VH.set(seg, x);
-    }
-    public static long Rbp$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rbp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rbp$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rbp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rsi$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rsi"));
-    public static VarHandle Rsi$VH() {
-        return _CONTEXT.Rsi$VH;
-    }
-    public static long Rsi$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rsi$VH.get(seg);
-    }
-    public static void Rsi$set( MemorySegment seg, long x) {
-        _CONTEXT.Rsi$VH.set(seg, x);
-    }
-    public static long Rsi$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rsi$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rsi$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rsi$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rdi$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rdi"));
-    public static VarHandle Rdi$VH() {
-        return _CONTEXT.Rdi$VH;
-    }
-    public static long Rdi$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rdi$VH.get(seg);
-    }
-    public static void Rdi$set( MemorySegment seg, long x) {
-        _CONTEXT.Rdi$VH.set(seg, x);
-    }
-    public static long Rdi$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rdi$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rdi$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rdi$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R8$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R8"));
-    public static VarHandle R8$VH() {
-        return _CONTEXT.R8$VH;
-    }
-    public static long R8$get(MemorySegment seg) {
-        return (long)_CONTEXT.R8$VH.get(seg);
-    }
-    public static void R8$set( MemorySegment seg, long x) {
-        _CONTEXT.R8$VH.set(seg, x);
-    }
-    public static long R8$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R8$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R8$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R8$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R9$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R9"));
-    public static VarHandle R9$VH() {
-        return _CONTEXT.R9$VH;
-    }
-    public static long R9$get(MemorySegment seg) {
-        return (long)_CONTEXT.R9$VH.get(seg);
-    }
-    public static void R9$set( MemorySegment seg, long x) {
-        _CONTEXT.R9$VH.set(seg, x);
-    }
-    public static long R9$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R9$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R9$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R9$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R10$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R10"));
-    public static VarHandle R10$VH() {
-        return _CONTEXT.R10$VH;
-    }
-    public static long R10$get(MemorySegment seg) {
-        return (long)_CONTEXT.R10$VH.get(seg);
-    }
-    public static void R10$set( MemorySegment seg, long x) {
-        _CONTEXT.R10$VH.set(seg, x);
-    }
-    public static long R10$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R10$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R10$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R10$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R11$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R11"));
-    public static VarHandle R11$VH() {
-        return _CONTEXT.R11$VH;
-    }
-    public static long R11$get(MemorySegment seg) {
-        return (long)_CONTEXT.R11$VH.get(seg);
-    }
-    public static void R11$set( MemorySegment seg, long x) {
-        _CONTEXT.R11$VH.set(seg, x);
-    }
-    public static long R11$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R11$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R11$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R11$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R12$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R12"));
-    public static VarHandle R12$VH() {
-        return _CONTEXT.R12$VH;
-    }
-    public static long R12$get(MemorySegment seg) {
-        return (long)_CONTEXT.R12$VH.get(seg);
-    }
-    public static void R12$set( MemorySegment seg, long x) {
-        _CONTEXT.R12$VH.set(seg, x);
-    }
-    public static long R12$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R12$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R12$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R12$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R13$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R13"));
-    public static VarHandle R13$VH() {
-        return _CONTEXT.R13$VH;
-    }
-    public static long R13$get(MemorySegment seg) {
-        return (long)_CONTEXT.R13$VH.get(seg);
-    }
-    public static void R13$set( MemorySegment seg, long x) {
-        _CONTEXT.R13$VH.set(seg, x);
-    }
-    public static long R13$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R13$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R13$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R13$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R14$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R14"));
-    public static VarHandle R14$VH() {
-        return _CONTEXT.R14$VH;
-    }
-    public static long R14$get(MemorySegment seg) {
-        return (long)_CONTEXT.R14$VH.get(seg);
-    }
-    public static void R14$set( MemorySegment seg, long x) {
-        _CONTEXT.R14$VH.set(seg, x);
-    }
-    public static long R14$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R14$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R14$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R14$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle R15$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("R15"));
-    public static VarHandle R15$VH() {
-        return _CONTEXT.R15$VH;
-    }
-    public static long R15$get(MemorySegment seg) {
-        return (long)_CONTEXT.R15$VH.get(seg);
-    }
-    public static void R15$set( MemorySegment seg, long x) {
-        _CONTEXT.R15$VH.set(seg, x);
-    }
-    public static long R15$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.R15$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void R15$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.R15$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Rip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Rip"));
-    public static VarHandle Rip$VH() {
-        return _CONTEXT.Rip$VH;
-    }
-    public static long Rip$get(MemorySegment seg) {
-        return (long)_CONTEXT.Rip$VH.get(seg);
-    }
-    public static void Rip$set( MemorySegment seg, long x) {
-        _CONTEXT.Rip$VH.set(seg, x);
-    }
-    public static long Rip$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.Rip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Rip$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.Rip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment FltSave$slice(MemorySegment seg) {
-        return seg.asSlice(256, 512);
-    }
-    public static MemorySegment Header$slice(MemorySegment seg) {
-        return seg.asSlice(256, 32);
-    }
-    public static MemorySegment Legacy$slice(MemorySegment seg) {
-        return seg.asSlice(288, 128);
-    }
-    public static MemorySegment Xmm0$slice(MemorySegment seg) {
-        return seg.asSlice(416, 16);
-    }
-    public static MemorySegment Xmm1$slice(MemorySegment seg) {
-        return seg.asSlice(432, 16);
-    }
-    public static MemorySegment Xmm2$slice(MemorySegment seg) {
-        return seg.asSlice(448, 16);
-    }
-    public static MemorySegment Xmm3$slice(MemorySegment seg) {
-        return seg.asSlice(464, 16);
-    }
-    public static MemorySegment Xmm4$slice(MemorySegment seg) {
-        return seg.asSlice(480, 16);
-    }
-    public static MemorySegment Xmm5$slice(MemorySegment seg) {
-        return seg.asSlice(496, 16);
-    }
-    public static MemorySegment Xmm6$slice(MemorySegment seg) {
-        return seg.asSlice(512, 16);
-    }
-    public static MemorySegment Xmm7$slice(MemorySegment seg) {
-        return seg.asSlice(528, 16);
-    }
-    public static MemorySegment Xmm8$slice(MemorySegment seg) {
-        return seg.asSlice(544, 16);
-    }
-    public static MemorySegment Xmm9$slice(MemorySegment seg) {
-        return seg.asSlice(560, 16);
-    }
-    public static MemorySegment Xmm10$slice(MemorySegment seg) {
-        return seg.asSlice(576, 16);
-    }
-    public static MemorySegment Xmm11$slice(MemorySegment seg) {
-        return seg.asSlice(592, 16);
-    }
-    public static MemorySegment Xmm12$slice(MemorySegment seg) {
-        return seg.asSlice(608, 16);
-    }
-    public static MemorySegment Xmm13$slice(MemorySegment seg) {
-        return seg.asSlice(624, 16);
-    }
-    public static MemorySegment Xmm14$slice(MemorySegment seg) {
-        return seg.asSlice(640, 16);
-    }
-    public static MemorySegment Xmm15$slice(MemorySegment seg) {
-        return seg.asSlice(656, 16);
-    }
-    public static MemorySegment VectorRegister$slice(MemorySegment seg) {
-        return seg.asSlice(768, 416);
-    }
-    static final VarHandle VectorControl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VectorControl"));
-    public static VarHandle VectorControl$VH() {
-        return _CONTEXT.VectorControl$VH;
-    }
-    public static long VectorControl$get(MemorySegment seg) {
-        return (long)_CONTEXT.VectorControl$VH.get(seg);
-    }
-    public static void VectorControl$set( MemorySegment seg, long x) {
-        _CONTEXT.VectorControl$VH.set(seg, x);
-    }
-    public static long VectorControl$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.VectorControl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VectorControl$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.VectorControl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DebugControl$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DebugControl"));
-    public static VarHandle DebugControl$VH() {
-        return _CONTEXT.DebugControl$VH;
-    }
-    public static long DebugControl$get(MemorySegment seg) {
-        return (long)_CONTEXT.DebugControl$VH.get(seg);
-    }
-    public static void DebugControl$set( MemorySegment seg, long x) {
-        _CONTEXT.DebugControl$VH.set(seg, x);
-    }
-    public static long DebugControl$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.DebugControl$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DebugControl$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.DebugControl$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastBranchToRip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastBranchToRip"));
-    public static VarHandle LastBranchToRip$VH() {
-        return _CONTEXT.LastBranchToRip$VH;
-    }
-    public static long LastBranchToRip$get(MemorySegment seg) {
-        return (long)_CONTEXT.LastBranchToRip$VH.get(seg);
-    }
-    public static void LastBranchToRip$set( MemorySegment seg, long x) {
-        _CONTEXT.LastBranchToRip$VH.set(seg, x);
-    }
-    public static long LastBranchToRip$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.LastBranchToRip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastBranchToRip$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.LastBranchToRip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastBranchFromRip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastBranchFromRip"));
-    public static VarHandle LastBranchFromRip$VH() {
-        return _CONTEXT.LastBranchFromRip$VH;
-    }
-    public static long LastBranchFromRip$get(MemorySegment seg) {
-        return (long)_CONTEXT.LastBranchFromRip$VH.get(seg);
-    }
-    public static void LastBranchFromRip$set( MemorySegment seg, long x) {
-        _CONTEXT.LastBranchFromRip$VH.set(seg, x);
-    }
-    public static long LastBranchFromRip$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.LastBranchFromRip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastBranchFromRip$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.LastBranchFromRip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastExceptionToRip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastExceptionToRip"));
-    public static VarHandle LastExceptionToRip$VH() {
-        return _CONTEXT.LastExceptionToRip$VH;
-    }
-    public static long LastExceptionToRip$get(MemorySegment seg) {
-        return (long)_CONTEXT.LastExceptionToRip$VH.get(seg);
-    }
-    public static void LastExceptionToRip$set( MemorySegment seg, long x) {
-        _CONTEXT.LastExceptionToRip$VH.set(seg, x);
-    }
-    public static long LastExceptionToRip$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.LastExceptionToRip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastExceptionToRip$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.LastExceptionToRip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LastExceptionFromRip$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastExceptionFromRip"));
-    public static VarHandle LastExceptionFromRip$VH() {
-        return _CONTEXT.LastExceptionFromRip$VH;
-    }
-    public static long LastExceptionFromRip$get(MemorySegment seg) {
-        return (long)_CONTEXT.LastExceptionFromRip$VH.get(seg);
-    }
-    public static void LastExceptionFromRip$set( MemorySegment seg, long x) {
-        _CONTEXT.LastExceptionFromRip$VH.set(seg, x);
-    }
-    public static long LastExceptionFromRip$get(MemorySegment seg, long index) {
-        return (long)_CONTEXT.LastExceptionFromRip$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LastExceptionFromRip$set(MemorySegment seg, long index, long x) {
-        _CONTEXT.LastExceptionFromRip$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("P1Home"),
+        wgl_h.C_LONG_LONG.withName("P2Home"),
+        wgl_h.C_LONG_LONG.withName("P3Home"),
+        wgl_h.C_LONG_LONG.withName("P4Home"),
+        wgl_h.C_LONG_LONG.withName("P5Home"),
+        wgl_h.C_LONG_LONG.withName("P6Home"),
+        wgl_h.C_LONG.withName("ContextFlags"),
+        wgl_h.C_LONG.withName("MxCsr"),
+        wgl_h.C_SHORT.withName("SegCs"),
+        wgl_h.C_SHORT.withName("SegDs"),
+        wgl_h.C_SHORT.withName("SegEs"),
+        wgl_h.C_SHORT.withName("SegFs"),
+        wgl_h.C_SHORT.withName("SegGs"),
+        wgl_h.C_SHORT.withName("SegSs"),
+        wgl_h.C_LONG.withName("EFlags"),
+        wgl_h.C_LONG_LONG.withName("Dr0"),
+        wgl_h.C_LONG_LONG.withName("Dr1"),
+        wgl_h.C_LONG_LONG.withName("Dr2"),
+        wgl_h.C_LONG_LONG.withName("Dr3"),
+        wgl_h.C_LONG_LONG.withName("Dr6"),
+        wgl_h.C_LONG_LONG.withName("Dr7"),
+        wgl_h.C_LONG_LONG.withName("Rax"),
+        wgl_h.C_LONG_LONG.withName("Rcx"),
+        wgl_h.C_LONG_LONG.withName("Rdx"),
+        wgl_h.C_LONG_LONG.withName("Rbx"),
+        wgl_h.C_LONG_LONG.withName("Rsp"),
+        wgl_h.C_LONG_LONG.withName("Rbp"),
+        wgl_h.C_LONG_LONG.withName("Rsi"),
+        wgl_h.C_LONG_LONG.withName("Rdi"),
+        wgl_h.C_LONG_LONG.withName("R8"),
+        wgl_h.C_LONG_LONG.withName("R9"),
+        wgl_h.C_LONG_LONG.withName("R10"),
+        wgl_h.C_LONG_LONG.withName("R11"),
+        wgl_h.C_LONG_LONG.withName("R12"),
+        wgl_h.C_LONG_LONG.withName("R13"),
+        wgl_h.C_LONG_LONG.withName("R14"),
+        wgl_h.C_LONG_LONG.withName("R15"),
+        wgl_h.C_LONG_LONG.withName("Rip"),
+        MemoryLayout.unionLayout(
+            _XSAVE_FORMAT.layout().withName("FltSave"),
+            MemoryLayout.structLayout(
+                MemoryLayout.sequenceLayout(2, _M128A.layout()).withName("Header"),
+                MemoryLayout.sequenceLayout(8, _M128A.layout()).withName("Legacy"),
+                _M128A.layout().withName("Xmm0"),
+                _M128A.layout().withName("Xmm1"),
+                _M128A.layout().withName("Xmm2"),
+                _M128A.layout().withName("Xmm3"),
+                _M128A.layout().withName("Xmm4"),
+                _M128A.layout().withName("Xmm5"),
+                _M128A.layout().withName("Xmm6"),
+                _M128A.layout().withName("Xmm7"),
+                _M128A.layout().withName("Xmm8"),
+                _M128A.layout().withName("Xmm9"),
+                _M128A.layout().withName("Xmm10"),
+                _M128A.layout().withName("Xmm11"),
+                _M128A.layout().withName("Xmm12"),
+                _M128A.layout().withName("Xmm13"),
+                _M128A.layout().withName("Xmm14"),
+                _M128A.layout().withName("Xmm15")
+            ).withName("$anon$3980:9")
+        ).withName("$anon$3978:5"),
+        MemoryLayout.sequenceLayout(26, _M128A.layout()).withName("VectorRegister"),
+        wgl_h.C_LONG_LONG.withName("VectorControl"),
+        wgl_h.C_LONG_LONG.withName("DebugControl"),
+        wgl_h.C_LONG_LONG.withName("LastBranchToRip"),
+        wgl_h.C_LONG_LONG.withName("LastBranchFromRip"),
+        wgl_h.C_LONG_LONG.withName("LastExceptionToRip"),
+        wgl_h.C_LONG_LONG.withName("LastExceptionFromRip")
+    ).withName("_CONTEXT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong P1Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P1Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P1Home
+     * }
+     */
+    public static final OfLong P1Home$layout() {
+        return P1Home$LAYOUT;
+    }
+
+    private static final long P1Home$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P1Home
+     * }
+     */
+    public static final long P1Home$offset() {
+        return P1Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P1Home
+     * }
+     */
+    public static long P1Home(MemorySegment struct) {
+        return struct.get(P1Home$LAYOUT, P1Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P1Home
+     * }
+     */
+    public static void P1Home(MemorySegment struct, long fieldValue) {
+        struct.set(P1Home$LAYOUT, P1Home$OFFSET, fieldValue);
+    }
+
+    private static final OfLong P2Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P2Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P2Home
+     * }
+     */
+    public static final OfLong P2Home$layout() {
+        return P2Home$LAYOUT;
+    }
+
+    private static final long P2Home$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P2Home
+     * }
+     */
+    public static final long P2Home$offset() {
+        return P2Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P2Home
+     * }
+     */
+    public static long P2Home(MemorySegment struct) {
+        return struct.get(P2Home$LAYOUT, P2Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P2Home
+     * }
+     */
+    public static void P2Home(MemorySegment struct, long fieldValue) {
+        struct.set(P2Home$LAYOUT, P2Home$OFFSET, fieldValue);
+    }
+
+    private static final OfLong P3Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P3Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P3Home
+     * }
+     */
+    public static final OfLong P3Home$layout() {
+        return P3Home$LAYOUT;
+    }
+
+    private static final long P3Home$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P3Home
+     * }
+     */
+    public static final long P3Home$offset() {
+        return P3Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P3Home
+     * }
+     */
+    public static long P3Home(MemorySegment struct) {
+        return struct.get(P3Home$LAYOUT, P3Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P3Home
+     * }
+     */
+    public static void P3Home(MemorySegment struct, long fieldValue) {
+        struct.set(P3Home$LAYOUT, P3Home$OFFSET, fieldValue);
+    }
+
+    private static final OfLong P4Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P4Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P4Home
+     * }
+     */
+    public static final OfLong P4Home$layout() {
+        return P4Home$LAYOUT;
+    }
+
+    private static final long P4Home$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P4Home
+     * }
+     */
+    public static final long P4Home$offset() {
+        return P4Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P4Home
+     * }
+     */
+    public static long P4Home(MemorySegment struct) {
+        return struct.get(P4Home$LAYOUT, P4Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P4Home
+     * }
+     */
+    public static void P4Home(MemorySegment struct, long fieldValue) {
+        struct.set(P4Home$LAYOUT, P4Home$OFFSET, fieldValue);
+    }
+
+    private static final OfLong P5Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P5Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P5Home
+     * }
+     */
+    public static final OfLong P5Home$layout() {
+        return P5Home$LAYOUT;
+    }
+
+    private static final long P5Home$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P5Home
+     * }
+     */
+    public static final long P5Home$offset() {
+        return P5Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P5Home
+     * }
+     */
+    public static long P5Home(MemorySegment struct) {
+        return struct.get(P5Home$LAYOUT, P5Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P5Home
+     * }
+     */
+    public static void P5Home(MemorySegment struct, long fieldValue) {
+        struct.set(P5Home$LAYOUT, P5Home$OFFSET, fieldValue);
+    }
+
+    private static final OfLong P6Home$LAYOUT = (OfLong)$LAYOUT.select(groupElement("P6Home"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 P6Home
+     * }
+     */
+    public static final OfLong P6Home$layout() {
+        return P6Home$LAYOUT;
+    }
+
+    private static final long P6Home$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 P6Home
+     * }
+     */
+    public static final long P6Home$offset() {
+        return P6Home$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 P6Home
+     * }
+     */
+    public static long P6Home(MemorySegment struct) {
+        return struct.get(P6Home$LAYOUT, P6Home$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 P6Home
+     * }
+     */
+    public static void P6Home(MemorySegment struct, long fieldValue) {
+        struct.set(P6Home$LAYOUT, P6Home$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ContextFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ContextFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ContextFlags
+     * }
+     */
+    public static final OfInt ContextFlags$layout() {
+        return ContextFlags$LAYOUT;
+    }
+
+    private static final long ContextFlags$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ContextFlags
+     * }
+     */
+    public static final long ContextFlags$offset() {
+        return ContextFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ContextFlags
+     * }
+     */
+    public static int ContextFlags(MemorySegment struct) {
+        return struct.get(ContextFlags$LAYOUT, ContextFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ContextFlags
+     * }
+     */
+    public static void ContextFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ContextFlags$LAYOUT, ContextFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MxCsr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MxCsr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static final OfInt MxCsr$layout() {
+        return MxCsr$LAYOUT;
+    }
+
+    private static final long MxCsr$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static final long MxCsr$offset() {
+        return MxCsr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static int MxCsr(MemorySegment struct) {
+        return struct.get(MxCsr$LAYOUT, MxCsr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MxCsr
+     * }
+     */
+    public static void MxCsr(MemorySegment struct, int fieldValue) {
+        struct.set(MxCsr$LAYOUT, MxCsr$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegCs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegCs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegCs
+     * }
+     */
+    public static final OfShort SegCs$layout() {
+        return SegCs$LAYOUT;
+    }
+
+    private static final long SegCs$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegCs
+     * }
+     */
+    public static final long SegCs$offset() {
+        return SegCs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegCs
+     * }
+     */
+    public static short SegCs(MemorySegment struct) {
+        return struct.get(SegCs$LAYOUT, SegCs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegCs
+     * }
+     */
+    public static void SegCs(MemorySegment struct, short fieldValue) {
+        struct.set(SegCs$LAYOUT, SegCs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegDs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegDs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegDs
+     * }
+     */
+    public static final OfShort SegDs$layout() {
+        return SegDs$LAYOUT;
+    }
+
+    private static final long SegDs$OFFSET = 58;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegDs
+     * }
+     */
+    public static final long SegDs$offset() {
+        return SegDs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegDs
+     * }
+     */
+    public static short SegDs(MemorySegment struct) {
+        return struct.get(SegDs$LAYOUT, SegDs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegDs
+     * }
+     */
+    public static void SegDs(MemorySegment struct, short fieldValue) {
+        struct.set(SegDs$LAYOUT, SegDs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegEs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegEs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegEs
+     * }
+     */
+    public static final OfShort SegEs$layout() {
+        return SegEs$LAYOUT;
+    }
+
+    private static final long SegEs$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegEs
+     * }
+     */
+    public static final long SegEs$offset() {
+        return SegEs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegEs
+     * }
+     */
+    public static short SegEs(MemorySegment struct) {
+        return struct.get(SegEs$LAYOUT, SegEs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegEs
+     * }
+     */
+    public static void SegEs(MemorySegment struct, short fieldValue) {
+        struct.set(SegEs$LAYOUT, SegEs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegFs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegFs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegFs
+     * }
+     */
+    public static final OfShort SegFs$layout() {
+        return SegFs$LAYOUT;
+    }
+
+    private static final long SegFs$OFFSET = 62;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegFs
+     * }
+     */
+    public static final long SegFs$offset() {
+        return SegFs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegFs
+     * }
+     */
+    public static short SegFs(MemorySegment struct) {
+        return struct.get(SegFs$LAYOUT, SegFs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegFs
+     * }
+     */
+    public static void SegFs(MemorySegment struct, short fieldValue) {
+        struct.set(SegFs$LAYOUT, SegFs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegGs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegGs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegGs
+     * }
+     */
+    public static final OfShort SegGs$layout() {
+        return SegGs$LAYOUT;
+    }
+
+    private static final long SegGs$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegGs
+     * }
+     */
+    public static final long SegGs$offset() {
+        return SegGs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegGs
+     * }
+     */
+    public static short SegGs(MemorySegment struct) {
+        return struct.get(SegGs$LAYOUT, SegGs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegGs
+     * }
+     */
+    public static void SegGs(MemorySegment struct, short fieldValue) {
+        struct.set(SegGs$LAYOUT, SegGs$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SegSs$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SegSs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SegSs
+     * }
+     */
+    public static final OfShort SegSs$layout() {
+        return SegSs$LAYOUT;
+    }
+
+    private static final long SegSs$OFFSET = 66;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SegSs
+     * }
+     */
+    public static final long SegSs$offset() {
+        return SegSs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SegSs
+     * }
+     */
+    public static short SegSs(MemorySegment struct) {
+        return struct.get(SegSs$LAYOUT, SegSs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SegSs
+     * }
+     */
+    public static void SegSs(MemorySegment struct, short fieldValue) {
+        struct.set(SegSs$LAYOUT, SegSs$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("EFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EFlags
+     * }
+     */
+    public static final OfInt EFlags$layout() {
+        return EFlags$LAYOUT;
+    }
+
+    private static final long EFlags$OFFSET = 68;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EFlags
+     * }
+     */
+    public static final long EFlags$offset() {
+        return EFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EFlags
+     * }
+     */
+    public static int EFlags(MemorySegment struct) {
+        return struct.get(EFlags$LAYOUT, EFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EFlags
+     * }
+     */
+    public static void EFlags(MemorySegment struct, int fieldValue) {
+        struct.set(EFlags$LAYOUT, EFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr0$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr0
+     * }
+     */
+    public static final OfLong Dr0$layout() {
+        return Dr0$LAYOUT;
+    }
+
+    private static final long Dr0$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr0
+     * }
+     */
+    public static final long Dr0$offset() {
+        return Dr0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr0
+     * }
+     */
+    public static long Dr0(MemorySegment struct) {
+        return struct.get(Dr0$LAYOUT, Dr0$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr0
+     * }
+     */
+    public static void Dr0(MemorySegment struct, long fieldValue) {
+        struct.set(Dr0$LAYOUT, Dr0$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr1$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr1
+     * }
+     */
+    public static final OfLong Dr1$layout() {
+        return Dr1$LAYOUT;
+    }
+
+    private static final long Dr1$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr1
+     * }
+     */
+    public static final long Dr1$offset() {
+        return Dr1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr1
+     * }
+     */
+    public static long Dr1(MemorySegment struct) {
+        return struct.get(Dr1$LAYOUT, Dr1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr1
+     * }
+     */
+    public static void Dr1(MemorySegment struct, long fieldValue) {
+        struct.set(Dr1$LAYOUT, Dr1$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr2$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr2
+     * }
+     */
+    public static final OfLong Dr2$layout() {
+        return Dr2$LAYOUT;
+    }
+
+    private static final long Dr2$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr2
+     * }
+     */
+    public static final long Dr2$offset() {
+        return Dr2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr2
+     * }
+     */
+    public static long Dr2(MemorySegment struct) {
+        return struct.get(Dr2$LAYOUT, Dr2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr2
+     * }
+     */
+    public static void Dr2(MemorySegment struct, long fieldValue) {
+        struct.set(Dr2$LAYOUT, Dr2$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr3$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr3
+     * }
+     */
+    public static final OfLong Dr3$layout() {
+        return Dr3$LAYOUT;
+    }
+
+    private static final long Dr3$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr3
+     * }
+     */
+    public static final long Dr3$offset() {
+        return Dr3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr3
+     * }
+     */
+    public static long Dr3(MemorySegment struct) {
+        return struct.get(Dr3$LAYOUT, Dr3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr3
+     * }
+     */
+    public static void Dr3(MemorySegment struct, long fieldValue) {
+        struct.set(Dr3$LAYOUT, Dr3$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr6$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr6"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr6
+     * }
+     */
+    public static final OfLong Dr6$layout() {
+        return Dr6$LAYOUT;
+    }
+
+    private static final long Dr6$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr6
+     * }
+     */
+    public static final long Dr6$offset() {
+        return Dr6$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr6
+     * }
+     */
+    public static long Dr6(MemorySegment struct) {
+        return struct.get(Dr6$LAYOUT, Dr6$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr6
+     * }
+     */
+    public static void Dr6(MemorySegment struct, long fieldValue) {
+        struct.set(Dr6$LAYOUT, Dr6$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Dr7$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Dr7"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr7
+     * }
+     */
+    public static final OfLong Dr7$layout() {
+        return Dr7$LAYOUT;
+    }
+
+    private static final long Dr7$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr7
+     * }
+     */
+    public static final long Dr7$offset() {
+        return Dr7$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr7
+     * }
+     */
+    public static long Dr7(MemorySegment struct) {
+        return struct.get(Dr7$LAYOUT, Dr7$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Dr7
+     * }
+     */
+    public static void Dr7(MemorySegment struct, long fieldValue) {
+        struct.set(Dr7$LAYOUT, Dr7$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rax$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rax
+     * }
+     */
+    public static final OfLong Rax$layout() {
+        return Rax$LAYOUT;
+    }
+
+    private static final long Rax$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rax
+     * }
+     */
+    public static final long Rax$offset() {
+        return Rax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rax
+     * }
+     */
+    public static long Rax(MemorySegment struct) {
+        return struct.get(Rax$LAYOUT, Rax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rax
+     * }
+     */
+    public static void Rax(MemorySegment struct, long fieldValue) {
+        struct.set(Rax$LAYOUT, Rax$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rcx$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rcx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rcx
+     * }
+     */
+    public static final OfLong Rcx$layout() {
+        return Rcx$LAYOUT;
+    }
+
+    private static final long Rcx$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rcx
+     * }
+     */
+    public static final long Rcx$offset() {
+        return Rcx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rcx
+     * }
+     */
+    public static long Rcx(MemorySegment struct) {
+        return struct.get(Rcx$LAYOUT, Rcx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rcx
+     * }
+     */
+    public static void Rcx(MemorySegment struct, long fieldValue) {
+        struct.set(Rcx$LAYOUT, Rcx$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rdx$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rdx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdx
+     * }
+     */
+    public static final OfLong Rdx$layout() {
+        return Rdx$LAYOUT;
+    }
+
+    private static final long Rdx$OFFSET = 136;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdx
+     * }
+     */
+    public static final long Rdx$offset() {
+        return Rdx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdx
+     * }
+     */
+    public static long Rdx(MemorySegment struct) {
+        return struct.get(Rdx$LAYOUT, Rdx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdx
+     * }
+     */
+    public static void Rdx(MemorySegment struct, long fieldValue) {
+        struct.set(Rdx$LAYOUT, Rdx$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rbx$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rbx"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbx
+     * }
+     */
+    public static final OfLong Rbx$layout() {
+        return Rbx$LAYOUT;
+    }
+
+    private static final long Rbx$OFFSET = 144;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbx
+     * }
+     */
+    public static final long Rbx$offset() {
+        return Rbx$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbx
+     * }
+     */
+    public static long Rbx(MemorySegment struct) {
+        return struct.get(Rbx$LAYOUT, Rbx$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbx
+     * }
+     */
+    public static void Rbx(MemorySegment struct, long fieldValue) {
+        struct.set(Rbx$LAYOUT, Rbx$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rsp$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rsp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsp
+     * }
+     */
+    public static final OfLong Rsp$layout() {
+        return Rsp$LAYOUT;
+    }
+
+    private static final long Rsp$OFFSET = 152;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsp
+     * }
+     */
+    public static final long Rsp$offset() {
+        return Rsp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsp
+     * }
+     */
+    public static long Rsp(MemorySegment struct) {
+        return struct.get(Rsp$LAYOUT, Rsp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsp
+     * }
+     */
+    public static void Rsp(MemorySegment struct, long fieldValue) {
+        struct.set(Rsp$LAYOUT, Rsp$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rbp$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rbp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbp
+     * }
+     */
+    public static final OfLong Rbp$layout() {
+        return Rbp$LAYOUT;
+    }
+
+    private static final long Rbp$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbp
+     * }
+     */
+    public static final long Rbp$offset() {
+        return Rbp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbp
+     * }
+     */
+    public static long Rbp(MemorySegment struct) {
+        return struct.get(Rbp$LAYOUT, Rbp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rbp
+     * }
+     */
+    public static void Rbp(MemorySegment struct, long fieldValue) {
+        struct.set(Rbp$LAYOUT, Rbp$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rsi$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rsi"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsi
+     * }
+     */
+    public static final OfLong Rsi$layout() {
+        return Rsi$LAYOUT;
+    }
+
+    private static final long Rsi$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsi
+     * }
+     */
+    public static final long Rsi$offset() {
+        return Rsi$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsi
+     * }
+     */
+    public static long Rsi(MemorySegment struct) {
+        return struct.get(Rsi$LAYOUT, Rsi$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rsi
+     * }
+     */
+    public static void Rsi(MemorySegment struct, long fieldValue) {
+        struct.set(Rsi$LAYOUT, Rsi$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rdi$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rdi"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdi
+     * }
+     */
+    public static final OfLong Rdi$layout() {
+        return Rdi$LAYOUT;
+    }
+
+    private static final long Rdi$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdi
+     * }
+     */
+    public static final long Rdi$offset() {
+        return Rdi$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdi
+     * }
+     */
+    public static long Rdi(MemorySegment struct) {
+        return struct.get(Rdi$LAYOUT, Rdi$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rdi
+     * }
+     */
+    public static void Rdi(MemorySegment struct, long fieldValue) {
+        struct.set(Rdi$LAYOUT, Rdi$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R8$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R8"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R8
+     * }
+     */
+    public static final OfLong R8$layout() {
+        return R8$LAYOUT;
+    }
+
+    private static final long R8$OFFSET = 184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R8
+     * }
+     */
+    public static final long R8$offset() {
+        return R8$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R8
+     * }
+     */
+    public static long R8(MemorySegment struct) {
+        return struct.get(R8$LAYOUT, R8$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R8
+     * }
+     */
+    public static void R8(MemorySegment struct, long fieldValue) {
+        struct.set(R8$LAYOUT, R8$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R9$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R9"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R9
+     * }
+     */
+    public static final OfLong R9$layout() {
+        return R9$LAYOUT;
+    }
+
+    private static final long R9$OFFSET = 192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R9
+     * }
+     */
+    public static final long R9$offset() {
+        return R9$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R9
+     * }
+     */
+    public static long R9(MemorySegment struct) {
+        return struct.get(R9$LAYOUT, R9$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R9
+     * }
+     */
+    public static void R9(MemorySegment struct, long fieldValue) {
+        struct.set(R9$LAYOUT, R9$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R10$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R10"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R10
+     * }
+     */
+    public static final OfLong R10$layout() {
+        return R10$LAYOUT;
+    }
+
+    private static final long R10$OFFSET = 200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R10
+     * }
+     */
+    public static final long R10$offset() {
+        return R10$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R10
+     * }
+     */
+    public static long R10(MemorySegment struct) {
+        return struct.get(R10$LAYOUT, R10$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R10
+     * }
+     */
+    public static void R10(MemorySegment struct, long fieldValue) {
+        struct.set(R10$LAYOUT, R10$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R11$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R11"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R11
+     * }
+     */
+    public static final OfLong R11$layout() {
+        return R11$LAYOUT;
+    }
+
+    private static final long R11$OFFSET = 208;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R11
+     * }
+     */
+    public static final long R11$offset() {
+        return R11$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R11
+     * }
+     */
+    public static long R11(MemorySegment struct) {
+        return struct.get(R11$LAYOUT, R11$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R11
+     * }
+     */
+    public static void R11(MemorySegment struct, long fieldValue) {
+        struct.set(R11$LAYOUT, R11$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R12$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R12"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R12
+     * }
+     */
+    public static final OfLong R12$layout() {
+        return R12$LAYOUT;
+    }
+
+    private static final long R12$OFFSET = 216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R12
+     * }
+     */
+    public static final long R12$offset() {
+        return R12$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R12
+     * }
+     */
+    public static long R12(MemorySegment struct) {
+        return struct.get(R12$LAYOUT, R12$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R12
+     * }
+     */
+    public static void R12(MemorySegment struct, long fieldValue) {
+        struct.set(R12$LAYOUT, R12$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R13$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R13"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R13
+     * }
+     */
+    public static final OfLong R13$layout() {
+        return R13$LAYOUT;
+    }
+
+    private static final long R13$OFFSET = 224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R13
+     * }
+     */
+    public static final long R13$offset() {
+        return R13$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R13
+     * }
+     */
+    public static long R13(MemorySegment struct) {
+        return struct.get(R13$LAYOUT, R13$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R13
+     * }
+     */
+    public static void R13(MemorySegment struct, long fieldValue) {
+        struct.set(R13$LAYOUT, R13$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R14$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R14"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R14
+     * }
+     */
+    public static final OfLong R14$layout() {
+        return R14$LAYOUT;
+    }
+
+    private static final long R14$OFFSET = 232;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R14
+     * }
+     */
+    public static final long R14$offset() {
+        return R14$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R14
+     * }
+     */
+    public static long R14(MemorySegment struct) {
+        return struct.get(R14$LAYOUT, R14$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R14
+     * }
+     */
+    public static void R14(MemorySegment struct, long fieldValue) {
+        struct.set(R14$LAYOUT, R14$OFFSET, fieldValue);
+    }
+
+    private static final OfLong R15$LAYOUT = (OfLong)$LAYOUT.select(groupElement("R15"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 R15
+     * }
+     */
+    public static final OfLong R15$layout() {
+        return R15$LAYOUT;
+    }
+
+    private static final long R15$OFFSET = 240;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 R15
+     * }
+     */
+    public static final long R15$offset() {
+        return R15$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 R15
+     * }
+     */
+    public static long R15(MemorySegment struct) {
+        return struct.get(R15$LAYOUT, R15$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 R15
+     * }
+     */
+    public static void R15(MemorySegment struct, long fieldValue) {
+        struct.set(R15$LAYOUT, R15$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Rip$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Rip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Rip
+     * }
+     */
+    public static final OfLong Rip$layout() {
+        return Rip$LAYOUT;
+    }
+
+    private static final long Rip$OFFSET = 248;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Rip
+     * }
+     */
+    public static final long Rip$offset() {
+        return Rip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rip
+     * }
+     */
+    public static long Rip(MemorySegment struct) {
+        return struct.get(Rip$LAYOUT, Rip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Rip
+     * }
+     */
+    public static void Rip(MemorySegment struct, long fieldValue) {
+        struct.set(Rip$LAYOUT, Rip$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout FltSave$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("FltSave"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XMM_SAVE_AREA32 FltSave
+     * }
+     */
+    public static final GroupLayout FltSave$layout() {
+        return FltSave$LAYOUT;
+    }
+
+    private static final long FltSave$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XMM_SAVE_AREA32 FltSave
+     * }
+     */
+    public static final long FltSave$offset() {
+        return FltSave$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XMM_SAVE_AREA32 FltSave
+     * }
+     */
+    public static MemorySegment FltSave(MemorySegment struct) {
+        return struct.asSlice(FltSave$OFFSET, FltSave$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XMM_SAVE_AREA32 FltSave
+     * }
+     */
+    public static void FltSave(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, FltSave$OFFSET, FltSave$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout Header$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static final SequenceLayout Header$layout() {
+        return Header$LAYOUT;
+    }
+
+    private static final long Header$OFFSET = 256;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static final long Header$offset() {
+        return Header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static MemorySegment Header(MemorySegment struct) {
+        return struct.asSlice(Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static void Header(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Header$OFFSET, Header$LAYOUT.byteSize());
+    }
+
+    private static long[] Header$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static long[] Header$dimensions() {
+        return Header$DIMS;
+    }
+    private static final MethodHandle Header$ELEM_HANDLE = Header$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static MemorySegment Header(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Header$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * M128A Header[2]
+     * }
+     */
+    public static void Header(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Header(struct, index0), 0L, _M128A.layout().byteSize());
+    }
+
+    private static final SequenceLayout Legacy$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Legacy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static final SequenceLayout Legacy$layout() {
+        return Legacy$LAYOUT;
+    }
+
+    private static final long Legacy$OFFSET = 288;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static final long Legacy$offset() {
+        return Legacy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static MemorySegment Legacy(MemorySegment struct) {
+        return struct.asSlice(Legacy$OFFSET, Legacy$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static void Legacy(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Legacy$OFFSET, Legacy$LAYOUT.byteSize());
+    }
+
+    private static long[] Legacy$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static long[] Legacy$dimensions() {
+        return Legacy$DIMS;
+    }
+    private static final MethodHandle Legacy$ELEM_HANDLE = Legacy$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static MemorySegment Legacy(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Legacy$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * M128A Legacy[8]
+     * }
+     */
+    public static void Legacy(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Legacy(struct, index0), 0L, _M128A.layout().byteSize());
+    }
+
+    private static final GroupLayout Xmm0$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm0
+     * }
+     */
+    public static final GroupLayout Xmm0$layout() {
+        return Xmm0$LAYOUT;
+    }
+
+    private static final long Xmm0$OFFSET = 416;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm0
+     * }
+     */
+    public static final long Xmm0$offset() {
+        return Xmm0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm0
+     * }
+     */
+    public static MemorySegment Xmm0(MemorySegment struct) {
+        return struct.asSlice(Xmm0$OFFSET, Xmm0$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm0
+     * }
+     */
+    public static void Xmm0(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm0$OFFSET, Xmm0$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm1$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm1
+     * }
+     */
+    public static final GroupLayout Xmm1$layout() {
+        return Xmm1$LAYOUT;
+    }
+
+    private static final long Xmm1$OFFSET = 432;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm1
+     * }
+     */
+    public static final long Xmm1$offset() {
+        return Xmm1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm1
+     * }
+     */
+    public static MemorySegment Xmm1(MemorySegment struct) {
+        return struct.asSlice(Xmm1$OFFSET, Xmm1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm1
+     * }
+     */
+    public static void Xmm1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm1$OFFSET, Xmm1$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm2$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm2
+     * }
+     */
+    public static final GroupLayout Xmm2$layout() {
+        return Xmm2$LAYOUT;
+    }
+
+    private static final long Xmm2$OFFSET = 448;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm2
+     * }
+     */
+    public static final long Xmm2$offset() {
+        return Xmm2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm2
+     * }
+     */
+    public static MemorySegment Xmm2(MemorySegment struct) {
+        return struct.asSlice(Xmm2$OFFSET, Xmm2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm2
+     * }
+     */
+    public static void Xmm2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm2$OFFSET, Xmm2$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm3$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm3
+     * }
+     */
+    public static final GroupLayout Xmm3$layout() {
+        return Xmm3$LAYOUT;
+    }
+
+    private static final long Xmm3$OFFSET = 464;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm3
+     * }
+     */
+    public static final long Xmm3$offset() {
+        return Xmm3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm3
+     * }
+     */
+    public static MemorySegment Xmm3(MemorySegment struct) {
+        return struct.asSlice(Xmm3$OFFSET, Xmm3$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm3
+     * }
+     */
+    public static void Xmm3(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm3$OFFSET, Xmm3$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm4$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm4"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm4
+     * }
+     */
+    public static final GroupLayout Xmm4$layout() {
+        return Xmm4$LAYOUT;
+    }
+
+    private static final long Xmm4$OFFSET = 480;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm4
+     * }
+     */
+    public static final long Xmm4$offset() {
+        return Xmm4$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm4
+     * }
+     */
+    public static MemorySegment Xmm4(MemorySegment struct) {
+        return struct.asSlice(Xmm4$OFFSET, Xmm4$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm4
+     * }
+     */
+    public static void Xmm4(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm4$OFFSET, Xmm4$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm5$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm5"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm5
+     * }
+     */
+    public static final GroupLayout Xmm5$layout() {
+        return Xmm5$LAYOUT;
+    }
+
+    private static final long Xmm5$OFFSET = 496;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm5
+     * }
+     */
+    public static final long Xmm5$offset() {
+        return Xmm5$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm5
+     * }
+     */
+    public static MemorySegment Xmm5(MemorySegment struct) {
+        return struct.asSlice(Xmm5$OFFSET, Xmm5$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm5
+     * }
+     */
+    public static void Xmm5(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm5$OFFSET, Xmm5$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm6$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm6"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm6
+     * }
+     */
+    public static final GroupLayout Xmm6$layout() {
+        return Xmm6$LAYOUT;
+    }
+
+    private static final long Xmm6$OFFSET = 512;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm6
+     * }
+     */
+    public static final long Xmm6$offset() {
+        return Xmm6$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm6
+     * }
+     */
+    public static MemorySegment Xmm6(MemorySegment struct) {
+        return struct.asSlice(Xmm6$OFFSET, Xmm6$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm6
+     * }
+     */
+    public static void Xmm6(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm6$OFFSET, Xmm6$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm7$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm7"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm7
+     * }
+     */
+    public static final GroupLayout Xmm7$layout() {
+        return Xmm7$LAYOUT;
+    }
+
+    private static final long Xmm7$OFFSET = 528;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm7
+     * }
+     */
+    public static final long Xmm7$offset() {
+        return Xmm7$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm7
+     * }
+     */
+    public static MemorySegment Xmm7(MemorySegment struct) {
+        return struct.asSlice(Xmm7$OFFSET, Xmm7$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm7
+     * }
+     */
+    public static void Xmm7(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm7$OFFSET, Xmm7$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm8$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm8"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm8
+     * }
+     */
+    public static final GroupLayout Xmm8$layout() {
+        return Xmm8$LAYOUT;
+    }
+
+    private static final long Xmm8$OFFSET = 544;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm8
+     * }
+     */
+    public static final long Xmm8$offset() {
+        return Xmm8$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm8
+     * }
+     */
+    public static MemorySegment Xmm8(MemorySegment struct) {
+        return struct.asSlice(Xmm8$OFFSET, Xmm8$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm8
+     * }
+     */
+    public static void Xmm8(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm8$OFFSET, Xmm8$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm9$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm9"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm9
+     * }
+     */
+    public static final GroupLayout Xmm9$layout() {
+        return Xmm9$LAYOUT;
+    }
+
+    private static final long Xmm9$OFFSET = 560;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm9
+     * }
+     */
+    public static final long Xmm9$offset() {
+        return Xmm9$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm9
+     * }
+     */
+    public static MemorySegment Xmm9(MemorySegment struct) {
+        return struct.asSlice(Xmm9$OFFSET, Xmm9$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm9
+     * }
+     */
+    public static void Xmm9(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm9$OFFSET, Xmm9$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm10$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm10"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm10
+     * }
+     */
+    public static final GroupLayout Xmm10$layout() {
+        return Xmm10$LAYOUT;
+    }
+
+    private static final long Xmm10$OFFSET = 576;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm10
+     * }
+     */
+    public static final long Xmm10$offset() {
+        return Xmm10$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm10
+     * }
+     */
+    public static MemorySegment Xmm10(MemorySegment struct) {
+        return struct.asSlice(Xmm10$OFFSET, Xmm10$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm10
+     * }
+     */
+    public static void Xmm10(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm10$OFFSET, Xmm10$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm11$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm11"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm11
+     * }
+     */
+    public static final GroupLayout Xmm11$layout() {
+        return Xmm11$LAYOUT;
+    }
+
+    private static final long Xmm11$OFFSET = 592;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm11
+     * }
+     */
+    public static final long Xmm11$offset() {
+        return Xmm11$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm11
+     * }
+     */
+    public static MemorySegment Xmm11(MemorySegment struct) {
+        return struct.asSlice(Xmm11$OFFSET, Xmm11$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm11
+     * }
+     */
+    public static void Xmm11(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm11$OFFSET, Xmm11$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm12$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm12"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm12
+     * }
+     */
+    public static final GroupLayout Xmm12$layout() {
+        return Xmm12$LAYOUT;
+    }
+
+    private static final long Xmm12$OFFSET = 608;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm12
+     * }
+     */
+    public static final long Xmm12$offset() {
+        return Xmm12$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm12
+     * }
+     */
+    public static MemorySegment Xmm12(MemorySegment struct) {
+        return struct.asSlice(Xmm12$OFFSET, Xmm12$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm12
+     * }
+     */
+    public static void Xmm12(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm12$OFFSET, Xmm12$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm13$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm13"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm13
+     * }
+     */
+    public static final GroupLayout Xmm13$layout() {
+        return Xmm13$LAYOUT;
+    }
+
+    private static final long Xmm13$OFFSET = 624;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm13
+     * }
+     */
+    public static final long Xmm13$offset() {
+        return Xmm13$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm13
+     * }
+     */
+    public static MemorySegment Xmm13(MemorySegment struct) {
+        return struct.asSlice(Xmm13$OFFSET, Xmm13$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm13
+     * }
+     */
+    public static void Xmm13(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm13$OFFSET, Xmm13$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm14$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm14"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm14
+     * }
+     */
+    public static final GroupLayout Xmm14$layout() {
+        return Xmm14$LAYOUT;
+    }
+
+    private static final long Xmm14$OFFSET = 640;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm14
+     * }
+     */
+    public static final long Xmm14$offset() {
+        return Xmm14$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm14
+     * }
+     */
+    public static MemorySegment Xmm14(MemorySegment struct) {
+        return struct.asSlice(Xmm14$OFFSET, Xmm14$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm14
+     * }
+     */
+    public static void Xmm14(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm14$OFFSET, Xmm14$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout Xmm15$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$3978:5"), groupElement("$anon$3980:9"), groupElement("Xmm15"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A Xmm15
+     * }
+     */
+    public static final GroupLayout Xmm15$layout() {
+        return Xmm15$LAYOUT;
+    }
+
+    private static final long Xmm15$OFFSET = 656;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A Xmm15
+     * }
+     */
+    public static final long Xmm15$offset() {
+        return Xmm15$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A Xmm15
+     * }
+     */
+    public static MemorySegment Xmm15(MemorySegment struct) {
+        return struct.asSlice(Xmm15$OFFSET, Xmm15$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A Xmm15
+     * }
+     */
+    public static void Xmm15(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Xmm15$OFFSET, Xmm15$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout VectorRegister$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("VectorRegister"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static final SequenceLayout VectorRegister$layout() {
+        return VectorRegister$LAYOUT;
+    }
+
+    private static final long VectorRegister$OFFSET = 768;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static final long VectorRegister$offset() {
+        return VectorRegister$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static MemorySegment VectorRegister(MemorySegment struct) {
+        return struct.asSlice(VectorRegister$OFFSET, VectorRegister$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static void VectorRegister(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VectorRegister$OFFSET, VectorRegister$LAYOUT.byteSize());
+    }
+
+    private static long[] VectorRegister$DIMS = { 26 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static long[] VectorRegister$dimensions() {
+        return VectorRegister$DIMS;
+    }
+    private static final MethodHandle VectorRegister$ELEM_HANDLE = VectorRegister$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static MemorySegment VectorRegister(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)VectorRegister$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * M128A VectorRegister[26]
+     * }
+     */
+    public static void VectorRegister(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, VectorRegister(struct, index0), 0L, _M128A.layout().byteSize());
+    }
+
+    private static final OfLong VectorControl$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VectorControl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 VectorControl
+     * }
+     */
+    public static final OfLong VectorControl$layout() {
+        return VectorControl$LAYOUT;
+    }
+
+    private static final long VectorControl$OFFSET = 1184;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 VectorControl
+     * }
+     */
+    public static final long VectorControl$offset() {
+        return VectorControl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 VectorControl
+     * }
+     */
+    public static long VectorControl(MemorySegment struct) {
+        return struct.get(VectorControl$LAYOUT, VectorControl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 VectorControl
+     * }
+     */
+    public static void VectorControl(MemorySegment struct, long fieldValue) {
+        struct.set(VectorControl$LAYOUT, VectorControl$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DebugControl$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DebugControl"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 DebugControl
+     * }
+     */
+    public static final OfLong DebugControl$layout() {
+        return DebugControl$LAYOUT;
+    }
+
+    private static final long DebugControl$OFFSET = 1192;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 DebugControl
+     * }
+     */
+    public static final long DebugControl$offset() {
+        return DebugControl$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 DebugControl
+     * }
+     */
+    public static long DebugControl(MemorySegment struct) {
+        return struct.get(DebugControl$LAYOUT, DebugControl$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 DebugControl
+     * }
+     */
+    public static void DebugControl(MemorySegment struct, long fieldValue) {
+        struct.set(DebugControl$LAYOUT, DebugControl$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LastBranchToRip$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LastBranchToRip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchToRip
+     * }
+     */
+    public static final OfLong LastBranchToRip$layout() {
+        return LastBranchToRip$LAYOUT;
+    }
+
+    private static final long LastBranchToRip$OFFSET = 1200;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchToRip
+     * }
+     */
+    public static final long LastBranchToRip$offset() {
+        return LastBranchToRip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchToRip
+     * }
+     */
+    public static long LastBranchToRip(MemorySegment struct) {
+        return struct.get(LastBranchToRip$LAYOUT, LastBranchToRip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchToRip
+     * }
+     */
+    public static void LastBranchToRip(MemorySegment struct, long fieldValue) {
+        struct.set(LastBranchToRip$LAYOUT, LastBranchToRip$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LastBranchFromRip$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LastBranchFromRip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchFromRip
+     * }
+     */
+    public static final OfLong LastBranchFromRip$layout() {
+        return LastBranchFromRip$LAYOUT;
+    }
+
+    private static final long LastBranchFromRip$OFFSET = 1208;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchFromRip
+     * }
+     */
+    public static final long LastBranchFromRip$offset() {
+        return LastBranchFromRip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchFromRip
+     * }
+     */
+    public static long LastBranchFromRip(MemorySegment struct) {
+        return struct.get(LastBranchFromRip$LAYOUT, LastBranchFromRip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastBranchFromRip
+     * }
+     */
+    public static void LastBranchFromRip(MemorySegment struct, long fieldValue) {
+        struct.set(LastBranchFromRip$LAYOUT, LastBranchFromRip$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LastExceptionToRip$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LastExceptionToRip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionToRip
+     * }
+     */
+    public static final OfLong LastExceptionToRip$layout() {
+        return LastExceptionToRip$LAYOUT;
+    }
+
+    private static final long LastExceptionToRip$OFFSET = 1216;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionToRip
+     * }
+     */
+    public static final long LastExceptionToRip$offset() {
+        return LastExceptionToRip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionToRip
+     * }
+     */
+    public static long LastExceptionToRip(MemorySegment struct) {
+        return struct.get(LastExceptionToRip$LAYOUT, LastExceptionToRip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionToRip
+     * }
+     */
+    public static void LastExceptionToRip(MemorySegment struct, long fieldValue) {
+        struct.set(LastExceptionToRip$LAYOUT, LastExceptionToRip$OFFSET, fieldValue);
+    }
+
+    private static final OfLong LastExceptionFromRip$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LastExceptionFromRip"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionFromRip
+     * }
+     */
+    public static final OfLong LastExceptionFromRip$layout() {
+        return LastExceptionFromRip$LAYOUT;
+    }
+
+    private static final long LastExceptionFromRip$OFFSET = 1224;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionFromRip
+     * }
+     */
+    public static final long LastExceptionFromRip$offset() {
+        return LastExceptionFromRip$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionFromRip
+     * }
+     */
+    public static long LastExceptionFromRip(MemorySegment struct) {
+        return struct.get(LastExceptionFromRip$LAYOUT, LastExceptionFromRip$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 LastExceptionFromRip
+     * }
+     */
+    public static void LastExceptionFromRip(MemorySegment struct, long fieldValue) {
+        struct.set(LastExceptionFromRip$LAYOUT, LastExceptionFromRip$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

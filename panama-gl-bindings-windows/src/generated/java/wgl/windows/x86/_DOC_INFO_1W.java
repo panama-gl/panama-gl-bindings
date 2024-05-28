@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DOC_INFO_1W {
+ *     LPWSTR pDocName;
+ *     LPWSTR pOutputFile;
+ *     LPWSTR pDatatype;
+ * }
+ * }
+ */
 public class _DOC_INFO_1W {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pDocName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pOutputFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDatatype")
-    ).withName("_DOC_INFO_1W");
-    public static MemoryLayout $LAYOUT() {
-        return _DOC_INFO_1W.$struct$LAYOUT;
+    _DOC_INFO_1W() {
+        // Should not be called directly
     }
-    static final VarHandle pDocName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDocName"));
-    public static VarHandle pDocName$VH() {
-        return _DOC_INFO_1W.pDocName$VH;
-    }
-    public static MemoryAddress pDocName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pDocName$VH.get(seg);
-    }
-    public static void pDocName$set( MemorySegment seg, MemoryAddress x) {
-        _DOC_INFO_1W.pDocName$VH.set(seg, x);
-    }
-    public static MemoryAddress pDocName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pDocName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDocName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DOC_INFO_1W.pDocName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pOutputFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pOutputFile"));
-    public static VarHandle pOutputFile$VH() {
-        return _DOC_INFO_1W.pOutputFile$VH;
-    }
-    public static MemoryAddress pOutputFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pOutputFile$VH.get(seg);
-    }
-    public static void pOutputFile$set( MemorySegment seg, MemoryAddress x) {
-        _DOC_INFO_1W.pOutputFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pOutputFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pOutputFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pOutputFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DOC_INFO_1W.pOutputFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDatatype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDatatype"));
-    public static VarHandle pDatatype$VH() {
-        return _DOC_INFO_1W.pDatatype$VH;
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pDatatype$VH.get(seg);
-    }
-    public static void pDatatype$set( MemorySegment seg, MemoryAddress x) {
-        _DOC_INFO_1W.pDatatype$VH.set(seg, x);
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_DOC_INFO_1W.pDatatype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDatatype$set(MemorySegment seg, long index, MemoryAddress x) {
-        _DOC_INFO_1W.pDatatype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pDocName"),
+        wgl_h.C_POINTER.withName("pOutputFile"),
+        wgl_h.C_POINTER.withName("pDatatype")
+    ).withName("_DOC_INFO_1W");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pDocName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDocName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDocName
+     * }
+     */
+    public static final AddressLayout pDocName$layout() {
+        return pDocName$LAYOUT;
+    }
+
+    private static final long pDocName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDocName
+     * }
+     */
+    public static final long pDocName$offset() {
+        return pDocName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDocName
+     * }
+     */
+    public static MemorySegment pDocName(MemorySegment struct) {
+        return struct.get(pDocName$LAYOUT, pDocName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDocName
+     * }
+     */
+    public static void pDocName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDocName$LAYOUT, pDocName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pOutputFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pOutputFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pOutputFile
+     * }
+     */
+    public static final AddressLayout pOutputFile$layout() {
+        return pOutputFile$LAYOUT;
+    }
+
+    private static final long pOutputFile$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pOutputFile
+     * }
+     */
+    public static final long pOutputFile$offset() {
+        return pOutputFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pOutputFile
+     * }
+     */
+    public static MemorySegment pOutputFile(MemorySegment struct) {
+        return struct.get(pOutputFile$LAYOUT, pOutputFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pOutputFile
+     * }
+     */
+    public static void pOutputFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pOutputFile$LAYOUT, pOutputFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDatatype$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDatatype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static final AddressLayout pDatatype$layout() {
+        return pDatatype$LAYOUT;
+    }
+
+    private static final long pDatatype$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static final long pDatatype$offset() {
+        return pDatatype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static MemorySegment pDatatype(MemorySegment struct) {
+        return struct.get(pDatatype$LAYOUT, pDatatype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDatatype
+     * }
+     */
+    public static void pDatatype(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDatatype$LAYOUT, pDatatype$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

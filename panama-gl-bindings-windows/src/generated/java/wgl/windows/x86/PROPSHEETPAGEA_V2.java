@@ -2,13 +2,44 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PROPSHEETPAGEA_V2 {
+ *     DWORD dwSize;
+ *     DWORD dwFlags;
+ *     HINSTANCE hInstance;
+ *     union {
+ *         LPCSTR pszTemplate;
+ *         PROPSHEETPAGE_RESOURCE pResource;
+ *     };
+ *     union {
+ *         HICON hIcon;
+ *         LPCSTR pszIcon;
+ *     };
+ *     LPCSTR pszTitle;
+ *     DLGPROC pfnDlgProc;
+ *     LPARAM lParam;
+ *     LPFNPSPCALLBACKA pfnCallback;
+ *     UINT *pcRefParent;
+ *     LPCSTR pszHeaderTitle;
+ *     LPCSTR pszHeaderSubTitle;
+ * } PROPSHEETPAGEA_V2
+ * }
+ */
 public class PROPSHEETPAGEA_V2 extends _PROPSHEETPAGEA_V2 {
 
+    PROPSHEETPAGEA_V2() {
+        // Should not be called directly
+    }
 }
-
 

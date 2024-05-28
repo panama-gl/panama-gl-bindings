@@ -2,213 +2,633 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCM_REGION {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     DWORD NfitHandle;
+ *     GUID LogicalDeviceGuid;
+ *     GUID AddressRangeType;
+ *     DWORD AssociatedId;
+ *     DWORD64 Length;
+ *     DWORD64 StartingDPA;
+ *     DWORD64 BaseSPA;
+ *     DWORD64 SPAOffset;
+ *     DWORD64 RegionOffset;
+ * }
+ * }
+ */
 public class _SCM_REGION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("NfitHandle"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("LogicalDeviceGuid"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("AddressRangeType"),
-        Constants$root.C_LONG$LAYOUT.withName("AssociatedId"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Length"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("StartingDPA"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("BaseSPA"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("SPAOffset"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("RegionOffset")
-    ).withName("_SCM_REGION");
-    public static MemoryLayout $LAYOUT() {
-        return _SCM_REGION.$struct$LAYOUT;
+    _SCM_REGION() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _SCM_REGION.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_SCM_REGION.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _SCM_REGION.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_SCM_REGION.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _SCM_REGION.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SCM_REGION.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SCM_REGION.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SCM_REGION.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SCM_REGION.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SCM_REGION.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _SCM_REGION.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_SCM_REGION.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _SCM_REGION.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_SCM_REGION.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _SCM_REGION.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NfitHandle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NfitHandle"));
-    public static VarHandle NfitHandle$VH() {
-        return _SCM_REGION.NfitHandle$VH;
-    }
-    public static int NfitHandle$get(MemorySegment seg) {
-        return (int)_SCM_REGION.NfitHandle$VH.get(seg);
-    }
-    public static void NfitHandle$set( MemorySegment seg, int x) {
-        _SCM_REGION.NfitHandle$VH.set(seg, x);
-    }
-    public static int NfitHandle$get(MemorySegment seg, long index) {
-        return (int)_SCM_REGION.NfitHandle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NfitHandle$set(MemorySegment seg, long index, int x) {
-        _SCM_REGION.NfitHandle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment LogicalDeviceGuid$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    public static MemorySegment AddressRangeType$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
-    }
-    static final VarHandle AssociatedId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AssociatedId"));
-    public static VarHandle AssociatedId$VH() {
-        return _SCM_REGION.AssociatedId$VH;
-    }
-    public static int AssociatedId$get(MemorySegment seg) {
-        return (int)_SCM_REGION.AssociatedId$VH.get(seg);
-    }
-    public static void AssociatedId$set( MemorySegment seg, int x) {
-        _SCM_REGION.AssociatedId$VH.set(seg, x);
-    }
-    public static int AssociatedId$get(MemorySegment seg, long index) {
-        return (int)_SCM_REGION.AssociatedId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AssociatedId$set(MemorySegment seg, long index, int x) {
-        _SCM_REGION.AssociatedId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-    public static VarHandle Length$VH() {
-        return _SCM_REGION.Length$VH;
-    }
-    public static long Length$get(MemorySegment seg) {
-        return (long)_SCM_REGION.Length$VH.get(seg);
-    }
-    public static void Length$set( MemorySegment seg, long x) {
-        _SCM_REGION.Length$VH.set(seg, x);
-    }
-    public static long Length$get(MemorySegment seg, long index) {
-        return (long)_SCM_REGION.Length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Length$set(MemorySegment seg, long index, long x) {
-        _SCM_REGION.Length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StartingDPA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartingDPA"));
-    public static VarHandle StartingDPA$VH() {
-        return _SCM_REGION.StartingDPA$VH;
-    }
-    public static long StartingDPA$get(MemorySegment seg) {
-        return (long)_SCM_REGION.StartingDPA$VH.get(seg);
-    }
-    public static void StartingDPA$set( MemorySegment seg, long x) {
-        _SCM_REGION.StartingDPA$VH.set(seg, x);
-    }
-    public static long StartingDPA$get(MemorySegment seg, long index) {
-        return (long)_SCM_REGION.StartingDPA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartingDPA$set(MemorySegment seg, long index, long x) {
-        _SCM_REGION.StartingDPA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BaseSPA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BaseSPA"));
-    public static VarHandle BaseSPA$VH() {
-        return _SCM_REGION.BaseSPA$VH;
-    }
-    public static long BaseSPA$get(MemorySegment seg) {
-        return (long)_SCM_REGION.BaseSPA$VH.get(seg);
-    }
-    public static void BaseSPA$set( MemorySegment seg, long x) {
-        _SCM_REGION.BaseSPA$VH.set(seg, x);
-    }
-    public static long BaseSPA$get(MemorySegment seg, long index) {
-        return (long)_SCM_REGION.BaseSPA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BaseSPA$set(MemorySegment seg, long index, long x) {
-        _SCM_REGION.BaseSPA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SPAOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SPAOffset"));
-    public static VarHandle SPAOffset$VH() {
-        return _SCM_REGION.SPAOffset$VH;
-    }
-    public static long SPAOffset$get(MemorySegment seg) {
-        return (long)_SCM_REGION.SPAOffset$VH.get(seg);
-    }
-    public static void SPAOffset$set( MemorySegment seg, long x) {
-        _SCM_REGION.SPAOffset$VH.set(seg, x);
-    }
-    public static long SPAOffset$get(MemorySegment seg, long index) {
-        return (long)_SCM_REGION.SPAOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SPAOffset$set(MemorySegment seg, long index, long x) {
-        _SCM_REGION.SPAOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RegionOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RegionOffset"));
-    public static VarHandle RegionOffset$VH() {
-        return _SCM_REGION.RegionOffset$VH;
-    }
-    public static long RegionOffset$get(MemorySegment seg) {
-        return (long)_SCM_REGION.RegionOffset$VH.get(seg);
-    }
-    public static void RegionOffset$set( MemorySegment seg, long x) {
-        _SCM_REGION.RegionOffset$VH.set(seg, x);
-    }
-    public static long RegionOffset$get(MemorySegment seg, long index) {
-        return (long)_SCM_REGION.RegionOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RegionOffset$set(MemorySegment seg, long index, long x) {
-        _SCM_REGION.RegionOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("NfitHandle"),
+        _GUID.layout().withName("LogicalDeviceGuid"),
+        _GUID.layout().withName("AddressRangeType"),
+        wgl_h.C_LONG.withName("AssociatedId"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_LONG_LONG.withName("Length"),
+        wgl_h.C_LONG_LONG.withName("StartingDPA"),
+        wgl_h.C_LONG_LONG.withName("BaseSPA"),
+        wgl_h.C_LONG_LONG.withName("SPAOffset"),
+        wgl_h.C_LONG_LONG.withName("RegionOffset")
+    ).withName("_SCM_REGION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NfitHandle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NfitHandle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static final OfInt NfitHandle$layout() {
+        return NfitHandle$LAYOUT;
+    }
+
+    private static final long NfitHandle$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static final long NfitHandle$offset() {
+        return NfitHandle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static int NfitHandle(MemorySegment struct) {
+        return struct.get(NfitHandle$LAYOUT, NfitHandle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static void NfitHandle(MemorySegment struct, int fieldValue) {
+        struct.set(NfitHandle$LAYOUT, NfitHandle$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout LogicalDeviceGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("LogicalDeviceGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID LogicalDeviceGuid
+     * }
+     */
+    public static final GroupLayout LogicalDeviceGuid$layout() {
+        return LogicalDeviceGuid$LAYOUT;
+    }
+
+    private static final long LogicalDeviceGuid$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID LogicalDeviceGuid
+     * }
+     */
+    public static final long LogicalDeviceGuid$offset() {
+        return LogicalDeviceGuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID LogicalDeviceGuid
+     * }
+     */
+    public static MemorySegment LogicalDeviceGuid(MemorySegment struct) {
+        return struct.asSlice(LogicalDeviceGuid$OFFSET, LogicalDeviceGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID LogicalDeviceGuid
+     * }
+     */
+    public static void LogicalDeviceGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LogicalDeviceGuid$OFFSET, LogicalDeviceGuid$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout AddressRangeType$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("AddressRangeType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID AddressRangeType
+     * }
+     */
+    public static final GroupLayout AddressRangeType$layout() {
+        return AddressRangeType$LAYOUT;
+    }
+
+    private static final long AddressRangeType$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID AddressRangeType
+     * }
+     */
+    public static final long AddressRangeType$offset() {
+        return AddressRangeType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID AddressRangeType
+     * }
+     */
+    public static MemorySegment AddressRangeType(MemorySegment struct) {
+        return struct.asSlice(AddressRangeType$OFFSET, AddressRangeType$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID AddressRangeType
+     * }
+     */
+    public static void AddressRangeType(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, AddressRangeType$OFFSET, AddressRangeType$LAYOUT.byteSize());
+    }
+
+    private static final OfInt AssociatedId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AssociatedId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AssociatedId
+     * }
+     */
+    public static final OfInt AssociatedId$layout() {
+        return AssociatedId$LAYOUT;
+    }
+
+    private static final long AssociatedId$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AssociatedId
+     * }
+     */
+    public static final long AssociatedId$offset() {
+        return AssociatedId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AssociatedId
+     * }
+     */
+    public static int AssociatedId(MemorySegment struct) {
+        return struct.get(AssociatedId$LAYOUT, AssociatedId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AssociatedId
+     * }
+     */
+    public static void AssociatedId(MemorySegment struct, int fieldValue) {
+        struct.set(AssociatedId$LAYOUT, AssociatedId$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Length$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Length
+     * }
+     */
+    public static final OfLong Length$layout() {
+        return Length$LAYOUT;
+    }
+
+    private static final long Length$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Length
+     * }
+     */
+    public static final long Length$offset() {
+        return Length$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Length
+     * }
+     */
+    public static long Length(MemorySegment struct) {
+        return struct.get(Length$LAYOUT, Length$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Length
+     * }
+     */
+    public static void Length(MemorySegment struct, long fieldValue) {
+        struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
+    }
+
+    private static final OfLong StartingDPA$LAYOUT = (OfLong)$LAYOUT.select(groupElement("StartingDPA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 StartingDPA
+     * }
+     */
+    public static final OfLong StartingDPA$layout() {
+        return StartingDPA$LAYOUT;
+    }
+
+    private static final long StartingDPA$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 StartingDPA
+     * }
+     */
+    public static final long StartingDPA$offset() {
+        return StartingDPA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 StartingDPA
+     * }
+     */
+    public static long StartingDPA(MemorySegment struct) {
+        return struct.get(StartingDPA$LAYOUT, StartingDPA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 StartingDPA
+     * }
+     */
+    public static void StartingDPA(MemorySegment struct, long fieldValue) {
+        struct.set(StartingDPA$LAYOUT, StartingDPA$OFFSET, fieldValue);
+    }
+
+    private static final OfLong BaseSPA$LAYOUT = (OfLong)$LAYOUT.select(groupElement("BaseSPA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 BaseSPA
+     * }
+     */
+    public static final OfLong BaseSPA$layout() {
+        return BaseSPA$LAYOUT;
+    }
+
+    private static final long BaseSPA$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 BaseSPA
+     * }
+     */
+    public static final long BaseSPA$offset() {
+        return BaseSPA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 BaseSPA
+     * }
+     */
+    public static long BaseSPA(MemorySegment struct) {
+        return struct.get(BaseSPA$LAYOUT, BaseSPA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 BaseSPA
+     * }
+     */
+    public static void BaseSPA(MemorySegment struct, long fieldValue) {
+        struct.set(BaseSPA$LAYOUT, BaseSPA$OFFSET, fieldValue);
+    }
+
+    private static final OfLong SPAOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("SPAOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 SPAOffset
+     * }
+     */
+    public static final OfLong SPAOffset$layout() {
+        return SPAOffset$LAYOUT;
+    }
+
+    private static final long SPAOffset$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 SPAOffset
+     * }
+     */
+    public static final long SPAOffset$offset() {
+        return SPAOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 SPAOffset
+     * }
+     */
+    public static long SPAOffset(MemorySegment struct) {
+        return struct.get(SPAOffset$LAYOUT, SPAOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 SPAOffset
+     * }
+     */
+    public static void SPAOffset(MemorySegment struct, long fieldValue) {
+        struct.set(SPAOffset$LAYOUT, SPAOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfLong RegionOffset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("RegionOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 RegionOffset
+     * }
+     */
+    public static final OfLong RegionOffset$layout() {
+        return RegionOffset$LAYOUT;
+    }
+
+    private static final long RegionOffset$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 RegionOffset
+     * }
+     */
+    public static final long RegionOffset$offset() {
+        return RegionOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 RegionOffset
+     * }
+     */
+    public static long RegionOffset(MemorySegment struct) {
+        return struct.get(RegionOffset$LAYOUT, RegionOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 RegionOffset
+     * }
+     */
+    public static void RegionOffset(MemorySegment struct, long fieldValue) {
+        struct.set(RegionOffset$LAYOUT, RegionOffset$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

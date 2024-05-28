@@ -2,32 +2,238 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_HOT_PATCH_HASHES {
+ *     BYTE SHA256[32];
+ *     BYTE SHA1[20];
+ * }
+ * }
+ */
 public class _IMAGE_HOT_PATCH_HASHES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("SHA256"),
-        MemoryLayout.sequenceLayout(20, Constants$root.C_CHAR$LAYOUT).withName("SHA1")
-    ).withName("_IMAGE_HOT_PATCH_HASHES");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_HOT_PATCH_HASHES.$struct$LAYOUT;
+    _IMAGE_HOT_PATCH_HASHES() {
+        // Should not be called directly
     }
-    public static MemorySegment SHA256$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
-    }
-    public static MemorySegment SHA1$slice(MemorySegment seg) {
-        return seg.asSlice(32, 20);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(32, freeglut_h.C_CHAR).withName("SHA256"),
+        MemoryLayout.sequenceLayout(20, freeglut_h.C_CHAR).withName("SHA1")
+    ).withName("_IMAGE_HOT_PATCH_HASHES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout SHA256$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SHA256"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static final SequenceLayout SHA256$layout() {
+        return SHA256$LAYOUT;
+    }
+
+    private static final long SHA256$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static final long SHA256$offset() {
+        return SHA256$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static MemorySegment SHA256(MemorySegment struct) {
+        return struct.asSlice(SHA256$OFFSET, SHA256$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static void SHA256(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SHA256$OFFSET, SHA256$LAYOUT.byteSize());
+    }
+
+    private static long[] SHA256$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static long[] SHA256$dimensions() {
+        return SHA256$DIMS;
+    }
+    private static final VarHandle SHA256$ELEM_HANDLE = SHA256$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static byte SHA256(MemorySegment struct, long index0) {
+        return (byte)SHA256$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE SHA256[32]
+     * }
+     */
+    public static void SHA256(MemorySegment struct, long index0, byte fieldValue) {
+        SHA256$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout SHA1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SHA1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static final SequenceLayout SHA1$layout() {
+        return SHA1$LAYOUT;
+    }
+
+    private static final long SHA1$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static final long SHA1$offset() {
+        return SHA1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static MemorySegment SHA1(MemorySegment struct) {
+        return struct.asSlice(SHA1$OFFSET, SHA1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static void SHA1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SHA1$OFFSET, SHA1$LAYOUT.byteSize());
+    }
+
+    private static long[] SHA1$DIMS = { 20 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static long[] SHA1$dimensions() {
+        return SHA1$DIMS;
+    }
+    private static final VarHandle SHA1$ELEM_HANDLE = SHA1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static byte SHA1(MemorySegment struct, long index0) {
+        return (byte)SHA1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE SHA1[20]
+     * }
+     */
+    public static void SHA1(MemorySegment struct, long index0, byte fieldValue) {
+        SHA1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_POLICY_ID {
+ *     DWORD cCertPolicyElementId;
+ *     LPSTR *rgpszCertPolicyElementId;
+ * }
+ * }
+ */
 public class _CERT_POLICY_ID {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cCertPolicyElementId"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgpszCertPolicyElementId")
-    ).withName("_CERT_POLICY_ID");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_POLICY_ID.$struct$LAYOUT;
+    _CERT_POLICY_ID() {
+        // Should not be called directly
     }
-    static final VarHandle cCertPolicyElementId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCertPolicyElementId"));
-    public static VarHandle cCertPolicyElementId$VH() {
-        return _CERT_POLICY_ID.cCertPolicyElementId$VH;
-    }
-    public static int cCertPolicyElementId$get(MemorySegment seg) {
-        return (int)_CERT_POLICY_ID.cCertPolicyElementId$VH.get(seg);
-    }
-    public static void cCertPolicyElementId$set( MemorySegment seg, int x) {
-        _CERT_POLICY_ID.cCertPolicyElementId$VH.set(seg, x);
-    }
-    public static int cCertPolicyElementId$get(MemorySegment seg, long index) {
-        return (int)_CERT_POLICY_ID.cCertPolicyElementId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCertPolicyElementId$set(MemorySegment seg, long index, int x) {
-        _CERT_POLICY_ID.cCertPolicyElementId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgpszCertPolicyElementId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgpszCertPolicyElementId"));
-    public static VarHandle rgpszCertPolicyElementId$VH() {
-        return _CERT_POLICY_ID.rgpszCertPolicyElementId$VH;
-    }
-    public static MemoryAddress rgpszCertPolicyElementId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_POLICY_ID.rgpszCertPolicyElementId$VH.get(seg);
-    }
-    public static void rgpszCertPolicyElementId$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_POLICY_ID.rgpszCertPolicyElementId$VH.set(seg, x);
-    }
-    public static MemoryAddress rgpszCertPolicyElementId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_POLICY_ID.rgpszCertPolicyElementId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgpszCertPolicyElementId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_POLICY_ID.rgpszCertPolicyElementId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cCertPolicyElementId"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgpszCertPolicyElementId")
+    ).withName("_CERT_POLICY_ID");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cCertPolicyElementId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCertPolicyElementId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCertPolicyElementId
+     * }
+     */
+    public static final OfInt cCertPolicyElementId$layout() {
+        return cCertPolicyElementId$LAYOUT;
+    }
+
+    private static final long cCertPolicyElementId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCertPolicyElementId
+     * }
+     */
+    public static final long cCertPolicyElementId$offset() {
+        return cCertPolicyElementId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCertPolicyElementId
+     * }
+     */
+    public static int cCertPolicyElementId(MemorySegment struct) {
+        return struct.get(cCertPolicyElementId$LAYOUT, cCertPolicyElementId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCertPolicyElementId
+     * }
+     */
+    public static void cCertPolicyElementId(MemorySegment struct, int fieldValue) {
+        struct.set(cCertPolicyElementId$LAYOUT, cCertPolicyElementId$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgpszCertPolicyElementId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgpszCertPolicyElementId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR *rgpszCertPolicyElementId
+     * }
+     */
+    public static final AddressLayout rgpszCertPolicyElementId$layout() {
+        return rgpszCertPolicyElementId$LAYOUT;
+    }
+
+    private static final long rgpszCertPolicyElementId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR *rgpszCertPolicyElementId
+     * }
+     */
+    public static final long rgpszCertPolicyElementId$offset() {
+        return rgpszCertPolicyElementId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR *rgpszCertPolicyElementId
+     * }
+     */
+    public static MemorySegment rgpszCertPolicyElementId(MemorySegment struct) {
+        return struct.get(rgpszCertPolicyElementId$LAYOUT, rgpszCertPolicyElementId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR *rgpszCertPolicyElementId
+     * }
+     */
+    public static void rgpszCertPolicyElementId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgpszCertPolicyElementId$LAYOUT, rgpszCertPolicyElementId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

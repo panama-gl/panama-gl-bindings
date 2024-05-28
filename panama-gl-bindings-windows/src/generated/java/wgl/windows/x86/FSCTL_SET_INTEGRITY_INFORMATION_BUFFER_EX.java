@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX {
+ *     BYTE EnableIntegrity;
+ *     BYTE KeepIntegrityStateUnchanged;
+ *     WORD Reserved;
+ *     DWORD Flags;
+ *     BYTE Version;
+ *     BYTE Reserved2[7];
+ * } FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX
+ * }
+ */
 public class FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX extends _FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX {
 
+    FSCTL_SET_INTEGRITY_INFORMATION_BUFFER_EX() {
+        // Should not be called directly
+    }
 }
-
 

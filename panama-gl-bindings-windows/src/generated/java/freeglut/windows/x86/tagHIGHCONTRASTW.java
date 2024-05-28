@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagHIGHCONTRASTW {
+ *     UINT cbSize;
+ *     DWORD dwFlags;
+ *     LPWSTR lpszDefaultScheme;
+ * }
+ * }
+ */
 public class tagHIGHCONTRASTW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpszDefaultScheme")
-    ).withName("tagHIGHCONTRASTW");
-    public static MemoryLayout $LAYOUT() {
-        return tagHIGHCONTRASTW.$struct$LAYOUT;
+    tagHIGHCONTRASTW() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagHIGHCONTRASTW.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagHIGHCONTRASTW.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagHIGHCONTRASTW.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagHIGHCONTRASTW.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagHIGHCONTRASTW.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return tagHIGHCONTRASTW.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)tagHIGHCONTRASTW.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        tagHIGHCONTRASTW.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)tagHIGHCONTRASTW.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        tagHIGHCONTRASTW.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszDefaultScheme$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpszDefaultScheme"));
-    public static VarHandle lpszDefaultScheme$VH() {
-        return tagHIGHCONTRASTW.lpszDefaultScheme$VH;
-    }
-    public static MemoryAddress lpszDefaultScheme$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagHIGHCONTRASTW.lpszDefaultScheme$VH.get(seg);
-    }
-    public static void lpszDefaultScheme$set( MemorySegment seg, MemoryAddress x) {
-        tagHIGHCONTRASTW.lpszDefaultScheme$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszDefaultScheme$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagHIGHCONTRASTW.lpszDefaultScheme$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszDefaultScheme$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagHIGHCONTRASTW.lpszDefaultScheme$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_INT.withName("cbSize"),
+        freeglut_h.C_LONG.withName("dwFlags"),
+        freeglut_h.C_POINTER.withName("lpszDefaultScheme")
+    ).withName("tagHIGHCONTRASTW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszDefaultScheme$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpszDefaultScheme"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszDefaultScheme
+     * }
+     */
+    public static final AddressLayout lpszDefaultScheme$layout() {
+        return lpszDefaultScheme$LAYOUT;
+    }
+
+    private static final long lpszDefaultScheme$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszDefaultScheme
+     * }
+     */
+    public static final long lpszDefaultScheme$offset() {
+        return lpszDefaultScheme$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszDefaultScheme
+     * }
+     */
+    public static MemorySegment lpszDefaultScheme(MemorySegment struct) {
+        return struct.get(lpszDefaultScheme$LAYOUT, lpszDefaultScheme$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR lpszDefaultScheme
+     * }
+     */
+    public static void lpszDefaultScheme(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszDefaultScheme$LAYOUT, lpszDefaultScheme$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

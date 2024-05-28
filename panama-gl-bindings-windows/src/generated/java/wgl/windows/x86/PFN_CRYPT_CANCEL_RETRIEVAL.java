@@ -2,27 +2,68 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_CANCEL_RETRIEVAL {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwFlags, java.lang.foreign.MemoryAddress pvArg);
-    static MemorySegment allocate(PFN_CRYPT_CANCEL_RETRIEVAL fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_CANCEL_RETRIEVAL.class, fi, constants$804.PFN_CRYPT_CANCEL_RETRIEVAL$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CRYPT_CANCEL_RETRIEVAL)(DWORD, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_CANCEL_RETRIEVAL {
+
+    PFN_CRYPT_CANCEL_RETRIEVAL() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_CANCEL_RETRIEVAL ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwFlags, java.lang.foreign.MemoryAddress _pvArg) -> {
-            try {
-                return (int)constants$804.PFN_CRYPT_CANCEL_RETRIEVAL$MH.invokeExact((Addressable)symbol, _dwFlags, (java.lang.foreign.Addressable)_pvArg);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwFlags, MemorySegment pvArg);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_CANCEL_RETRIEVAL.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_CANCEL_RETRIEVAL.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwFlags, MemorySegment pvArg) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwFlags, pvArg);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

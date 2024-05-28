@@ -2,13 +2,36 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _COMSTAT {
+ *     DWORD fCtsHold : 1;
+ *     DWORD fDsrHold : 1;
+ *     DWORD fRlsdHold : 1;
+ *     DWORD fXoffHold : 1;
+ *     DWORD fXoffSent : 1;
+ *     DWORD fEof : 1;
+ *     DWORD fTxim : 1;
+ *     DWORD fReserved : 25;
+ *     DWORD cbInQue;
+ *     DWORD cbOutQue;
+ * } COMSTAT
+ * }
+ */
 public class COMSTAT extends _COMSTAT {
 
+    COMSTAT() {
+        // Should not be called directly
+    }
 }
-
 

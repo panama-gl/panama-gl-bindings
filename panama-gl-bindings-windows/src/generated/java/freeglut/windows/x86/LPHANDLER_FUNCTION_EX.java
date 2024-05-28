@@ -2,27 +2,70 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface LPHANDLER_FUNCTION_EX {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwControl, int dwEventType, java.lang.foreign.MemoryAddress lpEventData, java.lang.foreign.MemoryAddress lpContext);
-    static MemorySegment allocate(LPHANDLER_FUNCTION_EX fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(LPHANDLER_FUNCTION_EX.class, fi, constants$617.LPHANDLER_FUNCTION_EX$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef DWORD (*LPHANDLER_FUNCTION_EX)(DWORD, DWORD, LPVOID, LPVOID) __attribute__((stdcall))
+ * }
+ */
+public class LPHANDLER_FUNCTION_EX {
+
+    LPHANDLER_FUNCTION_EX() {
+        // Should not be called directly
     }
-    static LPHANDLER_FUNCTION_EX ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwControl, int _dwEventType, java.lang.foreign.MemoryAddress _lpEventData, java.lang.foreign.MemoryAddress _lpContext) -> {
-            try {
-                return (int)constants$617.LPHANDLER_FUNCTION_EX$MH.invokeExact((Addressable)symbol, _dwControl, _dwEventType, (java.lang.foreign.Addressable)_lpEventData, (java.lang.foreign.Addressable)_lpContext);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwControl, int dwEventType, MemorySegment lpEventData, MemorySegment lpContext);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        freeglut_h.C_LONG,
+        freeglut_h.C_LONG,
+        freeglut_h.C_LONG,
+        freeglut_h.C_POINTER,
+        freeglut_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = freeglut_h.upcallHandle(LPHANDLER_FUNCTION_EX.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(LPHANDLER_FUNCTION_EX.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwControl, int dwEventType, MemorySegment lpEventData, MemorySegment lpContext) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwControl, dwEventType, lpEventData, lpContext);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

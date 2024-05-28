@@ -2,13 +2,36 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _NT_TIB {
+ *     struct _EXCEPTION_REGISTRATION_RECORD *ExceptionList;
+ *     PVOID StackBase;
+ *     PVOID StackLimit;
+ *     PVOID SubSystemTib;
+ *     union {
+ *         PVOID FiberData;
+ *         DWORD Version;
+ *     };
+ *     PVOID ArbitraryUserPointer;
+ *     struct _NT_TIB *Self;
+ * } NT_TIB
+ * }
+ */
 public class NT_TIB extends _NT_TIB {
 
+    NT_TIB() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,49 +2,209 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _MESSAGE_RESOURCE_DATA {
+ *     DWORD NumberOfBlocks;
+ *     MESSAGE_RESOURCE_BLOCK Blocks[1];
+ * }
+ * }
+ */
 public class _MESSAGE_RESOURCE_DATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfBlocks"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("LowId"),
-            Constants$root.C_LONG$LAYOUT.withName("HighId"),
-            Constants$root.C_LONG$LAYOUT.withName("OffsetToEntries")
-        ).withName("_MESSAGE_RESOURCE_BLOCK")).withName("Blocks")
-    ).withName("_MESSAGE_RESOURCE_DATA");
-    public static MemoryLayout $LAYOUT() {
-        return _MESSAGE_RESOURCE_DATA.$struct$LAYOUT;
+    _MESSAGE_RESOURCE_DATA() {
+        // Should not be called directly
     }
-    static final VarHandle NumberOfBlocks$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfBlocks"));
-    public static VarHandle NumberOfBlocks$VH() {
-        return _MESSAGE_RESOURCE_DATA.NumberOfBlocks$VH;
-    }
-    public static int NumberOfBlocks$get(MemorySegment seg) {
-        return (int)_MESSAGE_RESOURCE_DATA.NumberOfBlocks$VH.get(seg);
-    }
-    public static void NumberOfBlocks$set( MemorySegment seg, int x) {
-        _MESSAGE_RESOURCE_DATA.NumberOfBlocks$VH.set(seg, x);
-    }
-    public static int NumberOfBlocks$get(MemorySegment seg, long index) {
-        return (int)_MESSAGE_RESOURCE_DATA.NumberOfBlocks$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfBlocks$set(MemorySegment seg, long index, int x) {
-        _MESSAGE_RESOURCE_DATA.NumberOfBlocks$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Blocks$slice(MemorySegment seg) {
-        return seg.asSlice(4, 12);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("NumberOfBlocks"),
+        MemoryLayout.sequenceLayout(1, _MESSAGE_RESOURCE_BLOCK.layout()).withName("Blocks")
+    ).withName("_MESSAGE_RESOURCE_DATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NumberOfBlocks$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfBlocks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfBlocks
+     * }
+     */
+    public static final OfInt NumberOfBlocks$layout() {
+        return NumberOfBlocks$LAYOUT;
+    }
+
+    private static final long NumberOfBlocks$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfBlocks
+     * }
+     */
+    public static final long NumberOfBlocks$offset() {
+        return NumberOfBlocks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfBlocks
+     * }
+     */
+    public static int NumberOfBlocks(MemorySegment struct) {
+        return struct.get(NumberOfBlocks$LAYOUT, NumberOfBlocks$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfBlocks
+     * }
+     */
+    public static void NumberOfBlocks(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfBlocks$LAYOUT, NumberOfBlocks$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Blocks$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Blocks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static final SequenceLayout Blocks$layout() {
+        return Blocks$LAYOUT;
+    }
+
+    private static final long Blocks$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static final long Blocks$offset() {
+        return Blocks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static MemorySegment Blocks(MemorySegment struct) {
+        return struct.asSlice(Blocks$OFFSET, Blocks$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static void Blocks(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Blocks$OFFSET, Blocks$LAYOUT.byteSize());
+    }
+
+    private static long[] Blocks$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static long[] Blocks$dimensions() {
+        return Blocks$DIMS;
+    }
+    private static final MethodHandle Blocks$ELEM_HANDLE = Blocks$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static MemorySegment Blocks(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Blocks$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * MESSAGE_RESOURCE_BLOCK Blocks[1]
+     * }
+     */
+    public static void Blocks(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Blocks(struct, index0), 0L, _MESSAGE_RESOURCE_BLOCK.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

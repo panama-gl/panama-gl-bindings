@@ -2,304 +2,928 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SYSTEM_CPU_SET_INFORMATION {
+ *     DWORD Size;
+ *     CPU_SET_INFORMATION_TYPE Type;
+ *     union {
+ *         struct {
+ *             DWORD Id;
+ *             WORD Group;
+ *             BYTE LogicalProcessorIndex;
+ *             BYTE CoreIndex;
+ *             BYTE LastLevelCacheIndex;
+ *             BYTE NumaNodeIndex;
+ *             BYTE EfficiencyClass;
+ *             union {
+ *                 BYTE AllFlags;
+ *                 struct {
+ *                     BYTE Parked : 1;
+ *                     BYTE Allocated : 1;
+ *                     BYTE AllocatedToTargetProcess : 1;
+ *                     BYTE RealTime : 1;
+ *                     BYTE ReservedFlags : 4;
+ *                 };
+ *             };
+ *             union {
+ *                 DWORD Reserved;
+ *                 BYTE SchedulingClass;
+ *             };
+ *             DWORD64 AllocationTag;
+ *         } CpuSet;
+ *     };
+ * }
+ * }
+ */
 public class _SYSTEM_CPU_SET_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Type"),
+    _SYSTEM_CPU_SET_INFORMATION() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("Type"),
         MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Id"),
-                Constants$root.C_SHORT$LAYOUT.withName("Group"),
-                Constants$root.C_CHAR$LAYOUT.withName("LogicalProcessorIndex"),
-                Constants$root.C_CHAR$LAYOUT.withName("CoreIndex"),
-                Constants$root.C_CHAR$LAYOUT.withName("LastLevelCacheIndex"),
-                Constants$root.C_CHAR$LAYOUT.withName("NumaNodeIndex"),
-                Constants$root.C_CHAR$LAYOUT.withName("EfficiencyClass"),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("AllFlags"),
-                    MemoryLayout.structLayout(
-                        MemoryLayout.structLayout(
-                            MemoryLayout.paddingLayout(1).withName("Parked"),
-                            MemoryLayout.paddingLayout(1).withName("Allocated"),
-                            MemoryLayout.paddingLayout(1).withName("AllocatedToTargetProcess"),
-                            MemoryLayout.paddingLayout(1).withName("RealTime"),
-                            MemoryLayout.paddingLayout(4).withName("ReservedFlags")
-                        )
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-                    Constants$root.C_CHAR$LAYOUT.withName("SchedulingClass")
-                ).withName("$anon$1"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("AllocationTag")
-            ).withName("CpuSet")
-        ).withName("$anon$0")
+            _SYSTEM_CPU_SET_INFORMATION.CpuSet.layout().withName("CpuSet")
+        ).withName("$anon$12628:5")
     ).withName("_SYSTEM_CPU_SET_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _SYSTEM_CPU_SET_INFORMATION.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SYSTEM_CPU_SET_INFORMATION.Size$VH;
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
     }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SYSTEM_CPU_SET_INFORMATION.Size$VH.get(seg);
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
     }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SYSTEM_CPU_SET_INFORMATION.Size$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
     }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_CPU_SET_INFORMATION.Size$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
     }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_CPU_SET_INFORMATION.Size$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt Type$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Type"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CPU_SET_INFORMATION_TYPE Type
+     * }
+     */
+    public static final OfInt Type$layout() {
+        return Type$LAYOUT;
     }
-    static final VarHandle Type$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Type"));
-    public static VarHandle Type$VH() {
-        return _SYSTEM_CPU_SET_INFORMATION.Type$VH;
+
+    private static final long Type$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CPU_SET_INFORMATION_TYPE Type
+     * }
+     */
+    public static final long Type$offset() {
+        return Type$OFFSET;
     }
-    public static int Type$get(MemorySegment seg) {
-        return (int)_SYSTEM_CPU_SET_INFORMATION.Type$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CPU_SET_INFORMATION_TYPE Type
+     * }
+     */
+    public static int Type(MemorySegment struct) {
+        return struct.get(Type$LAYOUT, Type$OFFSET);
     }
-    public static void Type$set( MemorySegment seg, int x) {
-        _SYSTEM_CPU_SET_INFORMATION.Type$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CPU_SET_INFORMATION_TYPE Type
+     * }
+     */
+    public static void Type(MemorySegment struct, int fieldValue) {
+        struct.set(Type$LAYOUT, Type$OFFSET, fieldValue);
     }
-    public static int Type$get(MemorySegment seg, long index) {
-        return (int)_SYSTEM_CPU_SET_INFORMATION.Type$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Type$set(MemorySegment seg, long index, int x) {
-        _SYSTEM_CPU_SET_INFORMATION.Type$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Id;
+     *     WORD Group;
+     *     BYTE LogicalProcessorIndex;
+     *     BYTE CoreIndex;
+     *     BYTE LastLevelCacheIndex;
+     *     BYTE NumaNodeIndex;
+     *     BYTE EfficiencyClass;
+     *     union {
+     *         BYTE AllFlags;
+     *         struct {
+     *             BYTE Parked : 1;
+     *             BYTE Allocated : 1;
+     *             BYTE AllocatedToTargetProcess : 1;
+     *             BYTE RealTime : 1;
+     *             BYTE ReservedFlags : 4;
+     *         };
+     *     };
+     *     union {
+     *         DWORD Reserved;
+     *         BYTE SchedulingClass;
+     *     };
+     *     DWORD64 AllocationTag;
+     * }
+     * }
+     */
     public static class CpuSet {
 
-        static final  GroupLayout CpuSet$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Id"),
-            Constants$root.C_SHORT$LAYOUT.withName("Group"),
-            Constants$root.C_CHAR$LAYOUT.withName("LogicalProcessorIndex"),
-            Constants$root.C_CHAR$LAYOUT.withName("CoreIndex"),
-            Constants$root.C_CHAR$LAYOUT.withName("LastLevelCacheIndex"),
-            Constants$root.C_CHAR$LAYOUT.withName("NumaNodeIndex"),
-            Constants$root.C_CHAR$LAYOUT.withName("EfficiencyClass"),
+        CpuSet() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG.withName("Id"),
+            wgl_h.C_SHORT.withName("Group"),
+            wgl_h.C_CHAR.withName("LogicalProcessorIndex"),
+            wgl_h.C_CHAR.withName("CoreIndex"),
+            wgl_h.C_CHAR.withName("LastLevelCacheIndex"),
+            wgl_h.C_CHAR.withName("NumaNodeIndex"),
+            wgl_h.C_CHAR.withName("EfficiencyClass"),
             MemoryLayout.unionLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("AllFlags"),
+                wgl_h.C_CHAR.withName("AllFlags"),
                 MemoryLayout.structLayout(
-                    MemoryLayout.structLayout(
-                        MemoryLayout.paddingLayout(1).withName("Parked"),
-                        MemoryLayout.paddingLayout(1).withName("Allocated"),
-                        MemoryLayout.paddingLayout(1).withName("AllocatedToTargetProcess"),
-                        MemoryLayout.paddingLayout(1).withName("RealTime"),
-                        MemoryLayout.paddingLayout(4).withName("ReservedFlags")
-                    )
-                ).withName("$anon$0")
-            ).withName("$anon$0"),
+                    MemoryLayout.paddingLayout(1)
+                ).withName("$anon$12645:17")
+            ).withName("$anon$12637:13"),
             MemoryLayout.unionLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Reserved"),
-                Constants$root.C_CHAR$LAYOUT.withName("SchedulingClass")
-            ).withName("$anon$1"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("AllocationTag")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return CpuSet.CpuSet$struct$LAYOUT;
+                wgl_h.C_LONG.withName("Reserved"),
+                wgl_h.C_CHAR.withName("SchedulingClass")
+            ).withName("$anon$12654:13"),
+            wgl_h.C_LONG_LONG.withName("AllocationTag")
+        ).withName("$anon$12629:9");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        static final VarHandle Id$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Id"));
-        public static VarHandle Id$VH() {
-            return CpuSet.Id$VH;
+
+        private static final OfInt Id$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Id"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Id
+         * }
+         */
+        public static final OfInt Id$layout() {
+            return Id$LAYOUT;
         }
-        public static int Id$get(MemorySegment seg) {
-            return (int)CpuSet.Id$VH.get(seg);
+
+        private static final long Id$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Id
+         * }
+         */
+        public static final long Id$offset() {
+            return Id$OFFSET;
         }
-        public static void Id$set( MemorySegment seg, int x) {
-            CpuSet.Id$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Id
+         * }
+         */
+        public static int Id(MemorySegment struct) {
+            return struct.get(Id$LAYOUT, Id$OFFSET);
         }
-        public static int Id$get(MemorySegment seg, long index) {
-            return (int)CpuSet.Id$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Id
+         * }
+         */
+        public static void Id(MemorySegment struct, int fieldValue) {
+            struct.set(Id$LAYOUT, Id$OFFSET, fieldValue);
         }
-        public static void Id$set(MemorySegment seg, long index, int x) {
-            CpuSet.Id$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfShort Group$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Group"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WORD Group
+         * }
+         */
+        public static final OfShort Group$layout() {
+            return Group$LAYOUT;
         }
-        static final VarHandle Group$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Group"));
-        public static VarHandle Group$VH() {
-            return CpuSet.Group$VH;
+
+        private static final long Group$OFFSET = 4;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WORD Group
+         * }
+         */
+        public static final long Group$offset() {
+            return Group$OFFSET;
         }
-        public static short Group$get(MemorySegment seg) {
-            return (short)CpuSet.Group$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WORD Group
+         * }
+         */
+        public static short Group(MemorySegment struct) {
+            return struct.get(Group$LAYOUT, Group$OFFSET);
         }
-        public static void Group$set( MemorySegment seg, short x) {
-            CpuSet.Group$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WORD Group
+         * }
+         */
+        public static void Group(MemorySegment struct, short fieldValue) {
+            struct.set(Group$LAYOUT, Group$OFFSET, fieldValue);
         }
-        public static short Group$get(MemorySegment seg, long index) {
-            return (short)CpuSet.Group$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfByte LogicalProcessorIndex$LAYOUT = (OfByte)$LAYOUT.select(groupElement("LogicalProcessorIndex"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE LogicalProcessorIndex
+         * }
+         */
+        public static final OfByte LogicalProcessorIndex$layout() {
+            return LogicalProcessorIndex$LAYOUT;
         }
-        public static void Group$set(MemorySegment seg, long index, short x) {
-            CpuSet.Group$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long LogicalProcessorIndex$OFFSET = 6;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE LogicalProcessorIndex
+         * }
+         */
+        public static final long LogicalProcessorIndex$offset() {
+            return LogicalProcessorIndex$OFFSET;
         }
-        static final VarHandle LogicalProcessorIndex$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogicalProcessorIndex"));
-        public static VarHandle LogicalProcessorIndex$VH() {
-            return CpuSet.LogicalProcessorIndex$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE LogicalProcessorIndex
+         * }
+         */
+        public static byte LogicalProcessorIndex(MemorySegment struct) {
+            return struct.get(LogicalProcessorIndex$LAYOUT, LogicalProcessorIndex$OFFSET);
         }
-        public static byte LogicalProcessorIndex$get(MemorySegment seg) {
-            return (byte)CpuSet.LogicalProcessorIndex$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE LogicalProcessorIndex
+         * }
+         */
+        public static void LogicalProcessorIndex(MemorySegment struct, byte fieldValue) {
+            struct.set(LogicalProcessorIndex$LAYOUT, LogicalProcessorIndex$OFFSET, fieldValue);
         }
-        public static void LogicalProcessorIndex$set( MemorySegment seg, byte x) {
-            CpuSet.LogicalProcessorIndex$VH.set(seg, x);
+
+        private static final OfByte CoreIndex$LAYOUT = (OfByte)$LAYOUT.select(groupElement("CoreIndex"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE CoreIndex
+         * }
+         */
+        public static final OfByte CoreIndex$layout() {
+            return CoreIndex$LAYOUT;
         }
-        public static byte LogicalProcessorIndex$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.LogicalProcessorIndex$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long CoreIndex$OFFSET = 7;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE CoreIndex
+         * }
+         */
+        public static final long CoreIndex$offset() {
+            return CoreIndex$OFFSET;
         }
-        public static void LogicalProcessorIndex$set(MemorySegment seg, long index, byte x) {
-            CpuSet.LogicalProcessorIndex$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE CoreIndex
+         * }
+         */
+        public static byte CoreIndex(MemorySegment struct) {
+            return struct.get(CoreIndex$LAYOUT, CoreIndex$OFFSET);
         }
-        static final VarHandle CoreIndex$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CoreIndex"));
-        public static VarHandle CoreIndex$VH() {
-            return CpuSet.CoreIndex$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE CoreIndex
+         * }
+         */
+        public static void CoreIndex(MemorySegment struct, byte fieldValue) {
+            struct.set(CoreIndex$LAYOUT, CoreIndex$OFFSET, fieldValue);
         }
-        public static byte CoreIndex$get(MemorySegment seg) {
-            return (byte)CpuSet.CoreIndex$VH.get(seg);
+
+        private static final OfByte LastLevelCacheIndex$LAYOUT = (OfByte)$LAYOUT.select(groupElement("LastLevelCacheIndex"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE LastLevelCacheIndex
+         * }
+         */
+        public static final OfByte LastLevelCacheIndex$layout() {
+            return LastLevelCacheIndex$LAYOUT;
         }
-        public static void CoreIndex$set( MemorySegment seg, byte x) {
-            CpuSet.CoreIndex$VH.set(seg, x);
+
+        private static final long LastLevelCacheIndex$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE LastLevelCacheIndex
+         * }
+         */
+        public static final long LastLevelCacheIndex$offset() {
+            return LastLevelCacheIndex$OFFSET;
         }
-        public static byte CoreIndex$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.CoreIndex$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE LastLevelCacheIndex
+         * }
+         */
+        public static byte LastLevelCacheIndex(MemorySegment struct) {
+            return struct.get(LastLevelCacheIndex$LAYOUT, LastLevelCacheIndex$OFFSET);
         }
-        public static void CoreIndex$set(MemorySegment seg, long index, byte x) {
-            CpuSet.CoreIndex$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE LastLevelCacheIndex
+         * }
+         */
+        public static void LastLevelCacheIndex(MemorySegment struct, byte fieldValue) {
+            struct.set(LastLevelCacheIndex$LAYOUT, LastLevelCacheIndex$OFFSET, fieldValue);
         }
-        static final VarHandle LastLevelCacheIndex$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastLevelCacheIndex"));
-        public static VarHandle LastLevelCacheIndex$VH() {
-            return CpuSet.LastLevelCacheIndex$VH;
+
+        private static final OfByte NumaNodeIndex$LAYOUT = (OfByte)$LAYOUT.select(groupElement("NumaNodeIndex"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE NumaNodeIndex
+         * }
+         */
+        public static final OfByte NumaNodeIndex$layout() {
+            return NumaNodeIndex$LAYOUT;
         }
-        public static byte LastLevelCacheIndex$get(MemorySegment seg) {
-            return (byte)CpuSet.LastLevelCacheIndex$VH.get(seg);
+
+        private static final long NumaNodeIndex$OFFSET = 9;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE NumaNodeIndex
+         * }
+         */
+        public static final long NumaNodeIndex$offset() {
+            return NumaNodeIndex$OFFSET;
         }
-        public static void LastLevelCacheIndex$set( MemorySegment seg, byte x) {
-            CpuSet.LastLevelCacheIndex$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE NumaNodeIndex
+         * }
+         */
+        public static byte NumaNodeIndex(MemorySegment struct) {
+            return struct.get(NumaNodeIndex$LAYOUT, NumaNodeIndex$OFFSET);
         }
-        public static byte LastLevelCacheIndex$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.LastLevelCacheIndex$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE NumaNodeIndex
+         * }
+         */
+        public static void NumaNodeIndex(MemorySegment struct, byte fieldValue) {
+            struct.set(NumaNodeIndex$LAYOUT, NumaNodeIndex$OFFSET, fieldValue);
         }
-        public static void LastLevelCacheIndex$set(MemorySegment seg, long index, byte x) {
-            CpuSet.LastLevelCacheIndex$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfByte EfficiencyClass$LAYOUT = (OfByte)$LAYOUT.select(groupElement("EfficiencyClass"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE EfficiencyClass
+         * }
+         */
+        public static final OfByte EfficiencyClass$layout() {
+            return EfficiencyClass$LAYOUT;
         }
-        static final VarHandle NumaNodeIndex$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumaNodeIndex"));
-        public static VarHandle NumaNodeIndex$VH() {
-            return CpuSet.NumaNodeIndex$VH;
+
+        private static final long EfficiencyClass$OFFSET = 10;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE EfficiencyClass
+         * }
+         */
+        public static final long EfficiencyClass$offset() {
+            return EfficiencyClass$OFFSET;
         }
-        public static byte NumaNodeIndex$get(MemorySegment seg) {
-            return (byte)CpuSet.NumaNodeIndex$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE EfficiencyClass
+         * }
+         */
+        public static byte EfficiencyClass(MemorySegment struct) {
+            return struct.get(EfficiencyClass$LAYOUT, EfficiencyClass$OFFSET);
         }
-        public static void NumaNodeIndex$set( MemorySegment seg, byte x) {
-            CpuSet.NumaNodeIndex$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE EfficiencyClass
+         * }
+         */
+        public static void EfficiencyClass(MemorySegment struct, byte fieldValue) {
+            struct.set(EfficiencyClass$LAYOUT, EfficiencyClass$OFFSET, fieldValue);
         }
-        public static byte NumaNodeIndex$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.NumaNodeIndex$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfByte AllFlags$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$12637:13"), groupElement("AllFlags"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE AllFlags
+         * }
+         */
+        public static final OfByte AllFlags$layout() {
+            return AllFlags$LAYOUT;
         }
-        public static void NumaNodeIndex$set(MemorySegment seg, long index, byte x) {
-            CpuSet.NumaNodeIndex$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long AllFlags$OFFSET = 11;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE AllFlags
+         * }
+         */
+        public static final long AllFlags$offset() {
+            return AllFlags$OFFSET;
         }
-        static final VarHandle EfficiencyClass$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EfficiencyClass"));
-        public static VarHandle EfficiencyClass$VH() {
-            return CpuSet.EfficiencyClass$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE AllFlags
+         * }
+         */
+        public static byte AllFlags(MemorySegment struct) {
+            return struct.get(AllFlags$LAYOUT, AllFlags$OFFSET);
         }
-        public static byte EfficiencyClass$get(MemorySegment seg) {
-            return (byte)CpuSet.EfficiencyClass$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE AllFlags
+         * }
+         */
+        public static void AllFlags(MemorySegment struct, byte fieldValue) {
+            struct.set(AllFlags$LAYOUT, AllFlags$OFFSET, fieldValue);
         }
-        public static void EfficiencyClass$set( MemorySegment seg, byte x) {
-            CpuSet.EfficiencyClass$VH.set(seg, x);
+
+        private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$12654:13"), groupElement("Reserved"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD Reserved
+         * }
+         */
+        public static final OfInt Reserved$layout() {
+            return Reserved$LAYOUT;
         }
-        public static byte EfficiencyClass$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.EfficiencyClass$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final long Reserved$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD Reserved
+         * }
+         */
+        public static final long Reserved$offset() {
+            return Reserved$OFFSET;
         }
-        public static void EfficiencyClass$set(MemorySegment seg, long index, byte x) {
-            CpuSet.EfficiencyClass$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD Reserved
+         * }
+         */
+        public static int Reserved(MemorySegment struct) {
+            return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
         }
-        static final VarHandle AllFlags$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("AllFlags"));
-        public static VarHandle AllFlags$VH() {
-            return CpuSet.AllFlags$VH;
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD Reserved
+         * }
+         */
+        public static void Reserved(MemorySegment struct, int fieldValue) {
+            struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
         }
-        public static byte AllFlags$get(MemorySegment seg) {
-            return (byte)CpuSet.AllFlags$VH.get(seg);
+
+        private static final OfByte SchedulingClass$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$12654:13"), groupElement("SchedulingClass"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE SchedulingClass
+         * }
+         */
+        public static final OfByte SchedulingClass$layout() {
+            return SchedulingClass$LAYOUT;
         }
-        public static void AllFlags$set( MemorySegment seg, byte x) {
-            CpuSet.AllFlags$VH.set(seg, x);
+
+        private static final long SchedulingClass$OFFSET = 12;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE SchedulingClass
+         * }
+         */
+        public static final long SchedulingClass$offset() {
+            return SchedulingClass$OFFSET;
         }
-        public static byte AllFlags$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.AllFlags$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE SchedulingClass
+         * }
+         */
+        public static byte SchedulingClass(MemorySegment struct) {
+            return struct.get(SchedulingClass$LAYOUT, SchedulingClass$OFFSET);
         }
-        public static void AllFlags$set(MemorySegment seg, long index, byte x) {
-            CpuSet.AllFlags$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE SchedulingClass
+         * }
+         */
+        public static void SchedulingClass(MemorySegment struct, byte fieldValue) {
+            struct.set(SchedulingClass$LAYOUT, SchedulingClass$OFFSET, fieldValue);
         }
-        static final VarHandle Reserved$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("Reserved"));
-        public static VarHandle Reserved$VH() {
-            return CpuSet.Reserved$VH;
+
+        private static final OfLong AllocationTag$LAYOUT = (OfLong)$LAYOUT.select(groupElement("AllocationTag"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD64 AllocationTag
+         * }
+         */
+        public static final OfLong AllocationTag$layout() {
+            return AllocationTag$LAYOUT;
         }
-        public static int Reserved$get(MemorySegment seg) {
-            return (int)CpuSet.Reserved$VH.get(seg);
+
+        private static final long AllocationTag$OFFSET = 16;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD64 AllocationTag
+         * }
+         */
+        public static final long AllocationTag$offset() {
+            return AllocationTag$OFFSET;
         }
-        public static void Reserved$set( MemorySegment seg, int x) {
-            CpuSet.Reserved$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD64 AllocationTag
+         * }
+         */
+        public static long AllocationTag(MemorySegment struct) {
+            return struct.get(AllocationTag$LAYOUT, AllocationTag$OFFSET);
         }
-        public static int Reserved$get(MemorySegment seg, long index) {
-            return (int)CpuSet.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD64 AllocationTag
+         * }
+         */
+        public static void AllocationTag(MemorySegment struct, long fieldValue) {
+            struct.set(AllocationTag$LAYOUT, AllocationTag$OFFSET, fieldValue);
         }
-        public static void Reserved$set(MemorySegment seg, long index, int x) {
-            CpuSet.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        static final VarHandle SchedulingClass$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$1"), MemoryLayout.PathElement.groupElement("SchedulingClass"));
-        public static VarHandle SchedulingClass$VH() {
-            return CpuSet.SchedulingClass$VH;
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static byte SchedulingClass$get(MemorySegment seg) {
-            return (byte)CpuSet.SchedulingClass$VH.get(seg);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static void SchedulingClass$set( MemorySegment seg, byte x) {
-            CpuSet.SchedulingClass$VH.set(seg, x);
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static byte SchedulingClass$get(MemorySegment seg, long index) {
-            return (byte)CpuSet.SchedulingClass$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
         }
-        public static void SchedulingClass$set(MemorySegment seg, long index, byte x) {
-            CpuSet.SchedulingClass$VH.set(seg.asSlice(index*sizeof()), x);
-        }
-        static final VarHandle AllocationTag$VH = CpuSet$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllocationTag"));
-        public static VarHandle AllocationTag$VH() {
-            return CpuSet.AllocationTag$VH;
-        }
-        public static long AllocationTag$get(MemorySegment seg) {
-            return (long)CpuSet.AllocationTag$VH.get(seg);
-        }
-        public static void AllocationTag$set( MemorySegment seg, long x) {
-            CpuSet.AllocationTag$VH.set(seg, x);
-        }
-        public static long AllocationTag$get(MemorySegment seg, long index) {
-            return (long)CpuSet.AllocationTag$VH.get(seg.asSlice(index*sizeof()));
-        }
-        public static void AllocationTag$set(MemorySegment seg, long index, long x) {
-            CpuSet.AllocationTag$VH.set(seg.asSlice(index*sizeof()), x);
-        }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-        }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
     }
 
-    public static MemorySegment CpuSet$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
+    private static final GroupLayout CpuSet$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$12628:5"), groupElement("CpuSet"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Id;
+     *     WORD Group;
+     *     BYTE LogicalProcessorIndex;
+     *     BYTE CoreIndex;
+     *     BYTE LastLevelCacheIndex;
+     *     BYTE NumaNodeIndex;
+     *     BYTE EfficiencyClass;
+     *     union {
+     *         BYTE AllFlags;
+     *         struct {
+     *             BYTE Parked : 1;
+     *             BYTE Allocated : 1;
+     *             BYTE AllocatedToTargetProcess : 1;
+     *             BYTE RealTime : 1;
+     *             BYTE ReservedFlags : 4;
+     *         };
+     *     };
+     *     union {
+     *         DWORD Reserved;
+     *         BYTE SchedulingClass;
+     *     };
+     *     DWORD64 AllocationTag;
+     * } CpuSet
+     * }
+     */
+    public static final GroupLayout CpuSet$layout() {
+        return CpuSet$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long CpuSet$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Id;
+     *     WORD Group;
+     *     BYTE LogicalProcessorIndex;
+     *     BYTE CoreIndex;
+     *     BYTE LastLevelCacheIndex;
+     *     BYTE NumaNodeIndex;
+     *     BYTE EfficiencyClass;
+     *     union {
+     *         BYTE AllFlags;
+     *         struct {
+     *             BYTE Parked : 1;
+     *             BYTE Allocated : 1;
+     *             BYTE AllocatedToTargetProcess : 1;
+     *             BYTE RealTime : 1;
+     *             BYTE ReservedFlags : 4;
+     *         };
+     *     };
+     *     union {
+     *         DWORD Reserved;
+     *         BYTE SchedulingClass;
+     *     };
+     *     DWORD64 AllocationTag;
+     * } CpuSet
+     * }
+     */
+    public static final long CpuSet$offset() {
+        return CpuSet$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Id;
+     *     WORD Group;
+     *     BYTE LogicalProcessorIndex;
+     *     BYTE CoreIndex;
+     *     BYTE LastLevelCacheIndex;
+     *     BYTE NumaNodeIndex;
+     *     BYTE EfficiencyClass;
+     *     union {
+     *         BYTE AllFlags;
+     *         struct {
+     *             BYTE Parked : 1;
+     *             BYTE Allocated : 1;
+     *             BYTE AllocatedToTargetProcess : 1;
+     *             BYTE RealTime : 1;
+     *             BYTE ReservedFlags : 4;
+     *         };
+     *     };
+     *     union {
+     *         DWORD Reserved;
+     *         BYTE SchedulingClass;
+     *     };
+     *     DWORD64 AllocationTag;
+     * } CpuSet
+     * }
+     */
+    public static MemorySegment CpuSet(MemorySegment struct) {
+        return struct.asSlice(CpuSet$OFFSET, CpuSet$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     DWORD Id;
+     *     WORD Group;
+     *     BYTE LogicalProcessorIndex;
+     *     BYTE CoreIndex;
+     *     BYTE LastLevelCacheIndex;
+     *     BYTE NumaNodeIndex;
+     *     BYTE EfficiencyClass;
+     *     union {
+     *         BYTE AllFlags;
+     *         struct {
+     *             BYTE Parked : 1;
+     *             BYTE Allocated : 1;
+     *             BYTE AllocatedToTargetProcess : 1;
+     *             BYTE RealTime : 1;
+     *             BYTE ReservedFlags : 4;
+     *         };
+     *     };
+     *     union {
+     *         DWORD Reserved;
+     *         BYTE SchedulingClass;
+     *     };
+     *     DWORD64 AllocationTag;
+     * } CpuSet
+     * }
+     */
+    public static void CpuSet(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CpuSet$OFFSET, CpuSet$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

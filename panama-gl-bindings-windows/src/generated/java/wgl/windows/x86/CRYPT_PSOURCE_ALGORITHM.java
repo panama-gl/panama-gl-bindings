@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_PSOURCE_ALGORITHM {
+ *     LPSTR pszObjId;
+ *     CRYPT_DATA_BLOB EncodingParameters;
+ * } CRYPT_PSOURCE_ALGORITHM
+ * }
+ */
 public class CRYPT_PSOURCE_ALGORITHM extends _CRYPT_PSOURCE_ALGORITHM {
 
+    CRYPT_PSOURCE_ALGORITHM() {
+        // Should not be called directly
+    }
 }
-
 

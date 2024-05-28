@@ -2,75 +2,269 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_ID {
+ *     DWORD dwIdChoice;
+ *     union {
+ *         CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber;
+ *         CRYPT_HASH_BLOB KeyId;
+ *         CRYPT_HASH_BLOB HashId;
+ *     };
+ * }
+ * }
+ */
 public class _CERT_ID {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwIdChoice"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Issuer"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("SerialNumber")
-            ).withName("IssuerSerialNumber"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("KeyId"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("HashId")
-        ).withName("$anon$0")
-    ).withName("_CERT_ID");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_ID.$struct$LAYOUT;
+    _CERT_ID() {
+        // Should not be called directly
     }
-    static final VarHandle dwIdChoice$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwIdChoice"));
-    public static VarHandle dwIdChoice$VH() {
-        return _CERT_ID.dwIdChoice$VH;
-    }
-    public static int dwIdChoice$get(MemorySegment seg) {
-        return (int)_CERT_ID.dwIdChoice$VH.get(seg);
-    }
-    public static void dwIdChoice$set( MemorySegment seg, int x) {
-        _CERT_ID.dwIdChoice$VH.set(seg, x);
-    }
-    public static int dwIdChoice$get(MemorySegment seg, long index) {
-        return (int)_CERT_ID.dwIdChoice$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwIdChoice$set(MemorySegment seg, long index, int x) {
-        _CERT_ID.dwIdChoice$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment IssuerSerialNumber$slice(MemorySegment seg) {
-        return seg.asSlice(8, 32);
-    }
-    public static MemorySegment KeyId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static MemorySegment HashId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwIdChoice"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            _CERT_ISSUER_SERIAL_NUMBER.layout().withName("IssuerSerialNumber"),
+            _CRYPTOAPI_BLOB.layout().withName("KeyId"),
+            _CRYPTOAPI_BLOB.layout().withName("HashId")
+        ).withName("$anon$6665:5")
+    ).withName("_CERT_ID");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwIdChoice$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwIdChoice"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwIdChoice
+     * }
+     */
+    public static final OfInt dwIdChoice$layout() {
+        return dwIdChoice$LAYOUT;
+    }
+
+    private static final long dwIdChoice$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwIdChoice
+     * }
+     */
+    public static final long dwIdChoice$offset() {
+        return dwIdChoice$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwIdChoice
+     * }
+     */
+    public static int dwIdChoice(MemorySegment struct) {
+        return struct.get(dwIdChoice$LAYOUT, dwIdChoice$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwIdChoice
+     * }
+     */
+    public static void dwIdChoice(MemorySegment struct, int fieldValue) {
+        struct.set(dwIdChoice$LAYOUT, dwIdChoice$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout IssuerSerialNumber$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$6665:5"), groupElement("IssuerSerialNumber"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber
+     * }
+     */
+    public static final GroupLayout IssuerSerialNumber$layout() {
+        return IssuerSerialNumber$LAYOUT;
+    }
+
+    private static final long IssuerSerialNumber$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber
+     * }
+     */
+    public static final long IssuerSerialNumber$offset() {
+        return IssuerSerialNumber$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber
+     * }
+     */
+    public static MemorySegment IssuerSerialNumber(MemorySegment struct) {
+        return struct.asSlice(IssuerSerialNumber$OFFSET, IssuerSerialNumber$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber
+     * }
+     */
+    public static void IssuerSerialNumber(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IssuerSerialNumber$OFFSET, IssuerSerialNumber$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout KeyId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$6665:5"), groupElement("KeyId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB KeyId
+     * }
+     */
+    public static final GroupLayout KeyId$layout() {
+        return KeyId$LAYOUT;
+    }
+
+    private static final long KeyId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB KeyId
+     * }
+     */
+    public static final long KeyId$offset() {
+        return KeyId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB KeyId
+     * }
+     */
+    public static MemorySegment KeyId(MemorySegment struct) {
+        return struct.asSlice(KeyId$OFFSET, KeyId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB KeyId
+     * }
+     */
+    public static void KeyId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, KeyId$OFFSET, KeyId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout HashId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$6665:5"), groupElement("HashId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB HashId
+     * }
+     */
+    public static final GroupLayout HashId$layout() {
+        return HashId$LAYOUT;
+    }
+
+    private static final long HashId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB HashId
+     * }
+     */
+    public static final long HashId$offset() {
+        return HashId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB HashId
+     * }
+     */
+    public static MemorySegment HashId(MemorySegment struct) {
+        return struct.asSlice(HashId$OFFSET, HashId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CRYPT_HASH_BLOB HashId
+     * }
+     */
+    public static void HashId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, HashId$OFFSET, HashId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

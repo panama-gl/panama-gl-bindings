@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSTATPROPSTG {
+ *     LPOLESTR lpwstrName;
+ *     PROPID propid;
+ *     VARTYPE vt;
+ * }
+ * }
+ */
 public class tagSTATPROPSTG {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("lpwstrName"),
-        Constants$root.C_LONG$LAYOUT.withName("propid"),
-        Constants$root.C_SHORT$LAYOUT.withName("vt"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("tagSTATPROPSTG");
-    public static MemoryLayout $LAYOUT() {
-        return tagSTATPROPSTG.$struct$LAYOUT;
+    tagSTATPROPSTG() {
+        // Should not be called directly
     }
-    static final VarHandle lpwstrName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpwstrName"));
-    public static VarHandle lpwstrName$VH() {
-        return tagSTATPROPSTG.lpwstrName$VH;
-    }
-    public static MemoryAddress lpwstrName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagSTATPROPSTG.lpwstrName$VH.get(seg);
-    }
-    public static void lpwstrName$set( MemorySegment seg, MemoryAddress x) {
-        tagSTATPROPSTG.lpwstrName$VH.set(seg, x);
-    }
-    public static MemoryAddress lpwstrName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagSTATPROPSTG.lpwstrName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpwstrName$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagSTATPROPSTG.lpwstrName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle propid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("propid"));
-    public static VarHandle propid$VH() {
-        return tagSTATPROPSTG.propid$VH;
-    }
-    public static int propid$get(MemorySegment seg) {
-        return (int)tagSTATPROPSTG.propid$VH.get(seg);
-    }
-    public static void propid$set( MemorySegment seg, int x) {
-        tagSTATPROPSTG.propid$VH.set(seg, x);
-    }
-    public static int propid$get(MemorySegment seg, long index) {
-        return (int)tagSTATPROPSTG.propid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void propid$set(MemorySegment seg, long index, int x) {
-        tagSTATPROPSTG.propid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle vt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vt"));
-    public static VarHandle vt$VH() {
-        return tagSTATPROPSTG.vt$VH;
-    }
-    public static short vt$get(MemorySegment seg) {
-        return (short)tagSTATPROPSTG.vt$VH.get(seg);
-    }
-    public static void vt$set( MemorySegment seg, short x) {
-        tagSTATPROPSTG.vt$VH.set(seg, x);
-    }
-    public static short vt$get(MemorySegment seg, long index) {
-        return (short)tagSTATPROPSTG.vt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void vt$set(MemorySegment seg, long index, short x) {
-        tagSTATPROPSTG.vt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("lpwstrName"),
+        wgl_h.C_LONG.withName("propid"),
+        wgl_h.C_SHORT.withName("vt"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("tagSTATPROPSTG");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout lpwstrName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpwstrName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpwstrName
+     * }
+     */
+    public static final AddressLayout lpwstrName$layout() {
+        return lpwstrName$LAYOUT;
+    }
+
+    private static final long lpwstrName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpwstrName
+     * }
+     */
+    public static final long lpwstrName$offset() {
+        return lpwstrName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpwstrName
+     * }
+     */
+    public static MemorySegment lpwstrName(MemorySegment struct) {
+        return struct.get(lpwstrName$LAYOUT, lpwstrName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPOLESTR lpwstrName
+     * }
+     */
+    public static void lpwstrName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpwstrName$LAYOUT, lpwstrName$OFFSET, fieldValue);
+    }
+
+    private static final OfInt propid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("propid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PROPID propid
+     * }
+     */
+    public static final OfInt propid$layout() {
+        return propid$LAYOUT;
+    }
+
+    private static final long propid$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PROPID propid
+     * }
+     */
+    public static final long propid$offset() {
+        return propid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PROPID propid
+     * }
+     */
+    public static int propid(MemorySegment struct) {
+        return struct.get(propid$LAYOUT, propid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PROPID propid
+     * }
+     */
+    public static void propid(MemorySegment struct, int fieldValue) {
+        struct.set(propid$LAYOUT, propid$OFFSET, fieldValue);
+    }
+
+    private static final OfShort vt$LAYOUT = (OfShort)$LAYOUT.select(groupElement("vt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final OfShort vt$layout() {
+        return vt$LAYOUT;
+    }
+
+    private static final long vt$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static final long vt$offset() {
+        return vt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static short vt(MemorySegment struct) {
+        return struct.get(vt$LAYOUT, vt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * VARTYPE vt
+     * }
+     */
+    public static void vt(MemorySegment struct, short fieldValue) {
+        struct.set(vt$LAYOUT, vt$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

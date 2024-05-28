@@ -2,133 +2,403 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _WIM_PROVIDER_OVERLAY_ENTRY {
+ *     DWORD NextEntryOffset;
+ *     LARGE_INTEGER DataSourceId;
+ *     GUID WimGuid;
+ *     DWORD WimFileNameOffset;
+ *     DWORD WimType;
+ *     DWORD WimIndex;
+ *     DWORD Flags;
+ * }
+ * }
+ */
 public class _WIM_PROVIDER_OVERLAY_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NextEntryOffset"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("DataSourceId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("WimGuid"),
-        Constants$root.C_LONG$LAYOUT.withName("WimFileNameOffset"),
-        Constants$root.C_LONG$LAYOUT.withName("WimType"),
-        Constants$root.C_LONG$LAYOUT.withName("WimIndex"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags")
-    ).withName("_WIM_PROVIDER_OVERLAY_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.$struct$LAYOUT;
+    _WIM_PROVIDER_OVERLAY_ENTRY() {
+        // Should not be called directly
     }
-    static final VarHandle NextEntryOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NextEntryOffset"));
-    public static VarHandle NextEntryOffset$VH() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.NextEntryOffset$VH;
-    }
-    public static int NextEntryOffset$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.NextEntryOffset$VH.get(seg);
-    }
-    public static void NextEntryOffset$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.NextEntryOffset$VH.set(seg, x);
-    }
-    public static int NextEntryOffset$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.NextEntryOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NextEntryOffset$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.NextEntryOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DataSourceId$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static MemorySegment WimGuid$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    static final VarHandle WimFileNameOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WimFileNameOffset"));
-    public static VarHandle WimFileNameOffset$VH() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.WimFileNameOffset$VH;
-    }
-    public static int WimFileNameOffset$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimFileNameOffset$VH.get(seg);
-    }
-    public static void WimFileNameOffset$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimFileNameOffset$VH.set(seg, x);
-    }
-    public static int WimFileNameOffset$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimFileNameOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WimFileNameOffset$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimFileNameOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WimType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WimType"));
-    public static VarHandle WimType$VH() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.WimType$VH;
-    }
-    public static int WimType$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimType$VH.get(seg);
-    }
-    public static void WimType$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimType$VH.set(seg, x);
-    }
-    public static int WimType$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WimType$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WimIndex$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WimIndex"));
-    public static VarHandle WimIndex$VH() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.WimIndex$VH;
-    }
-    public static int WimIndex$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimIndex$VH.get(seg);
-    }
-    public static void WimIndex$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimIndex$VH.set(seg, x);
-    }
-    public static int WimIndex$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.WimIndex$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WimIndex$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.WimIndex$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _WIM_PROVIDER_OVERLAY_ENTRY.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_WIM_PROVIDER_OVERLAY_ENTRY.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _WIM_PROVIDER_OVERLAY_ENTRY.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("NextEntryOffset"),
+        MemoryLayout.paddingLayout(4),
+        _LARGE_INTEGER.layout().withName("DataSourceId"),
+        _GUID.layout().withName("WimGuid"),
+        wgl_h.C_LONG.withName("WimFileNameOffset"),
+        wgl_h.C_LONG.withName("WimType"),
+        wgl_h.C_LONG.withName("WimIndex"),
+        wgl_h.C_LONG.withName("Flags")
+    ).withName("_WIM_PROVIDER_OVERLAY_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NextEntryOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NextEntryOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NextEntryOffset
+     * }
+     */
+    public static final OfInt NextEntryOffset$layout() {
+        return NextEntryOffset$LAYOUT;
+    }
+
+    private static final long NextEntryOffset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NextEntryOffset
+     * }
+     */
+    public static final long NextEntryOffset$offset() {
+        return NextEntryOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NextEntryOffset
+     * }
+     */
+    public static int NextEntryOffset(MemorySegment struct) {
+        return struct.get(NextEntryOffset$LAYOUT, NextEntryOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NextEntryOffset
+     * }
+     */
+    public static void NextEntryOffset(MemorySegment struct, int fieldValue) {
+        struct.set(NextEntryOffset$LAYOUT, NextEntryOffset$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout DataSourceId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("DataSourceId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final GroupLayout DataSourceId$layout() {
+        return DataSourceId$LAYOUT;
+    }
+
+    private static final long DataSourceId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static final long DataSourceId$offset() {
+        return DataSourceId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static MemorySegment DataSourceId(MemorySegment struct) {
+        return struct.asSlice(DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER DataSourceId
+     * }
+     */
+    public static void DataSourceId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DataSourceId$OFFSET, DataSourceId$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout WimGuid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("WimGuid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID WimGuid
+     * }
+     */
+    public static final GroupLayout WimGuid$layout() {
+        return WimGuid$LAYOUT;
+    }
+
+    private static final long WimGuid$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID WimGuid
+     * }
+     */
+    public static final long WimGuid$offset() {
+        return WimGuid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID WimGuid
+     * }
+     */
+    public static MemorySegment WimGuid(MemorySegment struct) {
+        return struct.asSlice(WimGuid$OFFSET, WimGuid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID WimGuid
+     * }
+     */
+    public static void WimGuid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, WimGuid$OFFSET, WimGuid$LAYOUT.byteSize());
+    }
+
+    private static final OfInt WimFileNameOffset$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WimFileNameOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static final OfInt WimFileNameOffset$layout() {
+        return WimFileNameOffset$LAYOUT;
+    }
+
+    private static final long WimFileNameOffset$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static final long WimFileNameOffset$offset() {
+        return WimFileNameOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static int WimFileNameOffset(MemorySegment struct) {
+        return struct.get(WimFileNameOffset$LAYOUT, WimFileNameOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WimFileNameOffset
+     * }
+     */
+    public static void WimFileNameOffset(MemorySegment struct, int fieldValue) {
+        struct.set(WimFileNameOffset$LAYOUT, WimFileNameOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WimType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WimType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WimType
+     * }
+     */
+    public static final OfInt WimType$layout() {
+        return WimType$LAYOUT;
+    }
+
+    private static final long WimType$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WimType
+     * }
+     */
+    public static final long WimType$offset() {
+        return WimType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WimType
+     * }
+     */
+    public static int WimType(MemorySegment struct) {
+        return struct.get(WimType$LAYOUT, WimType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WimType
+     * }
+     */
+    public static void WimType(MemorySegment struct, int fieldValue) {
+        struct.set(WimType$LAYOUT, WimType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WimIndex$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WimIndex"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD WimIndex
+     * }
+     */
+    public static final OfInt WimIndex$layout() {
+        return WimIndex$LAYOUT;
+    }
+
+    private static final long WimIndex$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD WimIndex
+     * }
+     */
+    public static final long WimIndex$offset() {
+        return WimIndex$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD WimIndex
+     * }
+     */
+    public static int WimIndex(MemorySegment struct) {
+        return struct.get(WimIndex$LAYOUT, WimIndex$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD WimIndex
+     * }
+     */
+    public static void WimIndex(MemorySegment struct, int fieldValue) {
+        struct.set(WimIndex$LAYOUT, WimIndex$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

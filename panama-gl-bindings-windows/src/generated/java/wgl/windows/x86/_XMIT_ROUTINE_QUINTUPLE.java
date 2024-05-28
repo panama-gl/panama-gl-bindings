@@ -2,104 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XMIT_ROUTINE_QUINTUPLE {
+ *     XMIT_HELPER_ROUTINE pfnTranslateToXmit;
+ *     XMIT_HELPER_ROUTINE pfnTranslateFromXmit;
+ *     XMIT_HELPER_ROUTINE pfnFreeXmit;
+ *     XMIT_HELPER_ROUTINE pfnFreeInst;
+ * }
+ * }
+ */
 public class _XMIT_ROUTINE_QUINTUPLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pfnTranslateToXmit"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnTranslateFromXmit"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFreeXmit"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFreeInst")
-    ).withName("_XMIT_ROUTINE_QUINTUPLE");
-    public static MemoryLayout $LAYOUT() {
-        return _XMIT_ROUTINE_QUINTUPLE.$struct$LAYOUT;
+    _XMIT_ROUTINE_QUINTUPLE() {
+        // Should not be called directly
     }
-    static final VarHandle pfnTranslateToXmit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnTranslateToXmit"));
-    public static VarHandle pfnTranslateToXmit$VH() {
-        return _XMIT_ROUTINE_QUINTUPLE.pfnTranslateToXmit$VH;
-    }
-    public static MemoryAddress pfnTranslateToXmit$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnTranslateToXmit$VH.get(seg);
-    }
-    public static void pfnTranslateToXmit$set( MemorySegment seg, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnTranslateToXmit$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnTranslateToXmit$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnTranslateToXmit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnTranslateToXmit$set(MemorySegment seg, long index, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnTranslateToXmit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static XMIT_HELPER_ROUTINE pfnTranslateToXmit (MemorySegment segment, MemorySession session) {
-        return XMIT_HELPER_ROUTINE.ofAddress(pfnTranslateToXmit$get(segment), session);
-    }
-    static final VarHandle pfnTranslateFromXmit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnTranslateFromXmit"));
-    public static VarHandle pfnTranslateFromXmit$VH() {
-        return _XMIT_ROUTINE_QUINTUPLE.pfnTranslateFromXmit$VH;
-    }
-    public static MemoryAddress pfnTranslateFromXmit$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnTranslateFromXmit$VH.get(seg);
-    }
-    public static void pfnTranslateFromXmit$set( MemorySegment seg, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnTranslateFromXmit$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnTranslateFromXmit$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnTranslateFromXmit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnTranslateFromXmit$set(MemorySegment seg, long index, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnTranslateFromXmit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static XMIT_HELPER_ROUTINE pfnTranslateFromXmit (MemorySegment segment, MemorySession session) {
-        return XMIT_HELPER_ROUTINE.ofAddress(pfnTranslateFromXmit$get(segment), session);
-    }
-    static final VarHandle pfnFreeXmit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFreeXmit"));
-    public static VarHandle pfnFreeXmit$VH() {
-        return _XMIT_ROUTINE_QUINTUPLE.pfnFreeXmit$VH;
-    }
-    public static MemoryAddress pfnFreeXmit$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnFreeXmit$VH.get(seg);
-    }
-    public static void pfnFreeXmit$set( MemorySegment seg, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnFreeXmit$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFreeXmit$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnFreeXmit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFreeXmit$set(MemorySegment seg, long index, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnFreeXmit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static XMIT_HELPER_ROUTINE pfnFreeXmit (MemorySegment segment, MemorySession session) {
-        return XMIT_HELPER_ROUTINE.ofAddress(pfnFreeXmit$get(segment), session);
-    }
-    static final VarHandle pfnFreeInst$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFreeInst"));
-    public static VarHandle pfnFreeInst$VH() {
-        return _XMIT_ROUTINE_QUINTUPLE.pfnFreeInst$VH;
-    }
-    public static MemoryAddress pfnFreeInst$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnFreeInst$VH.get(seg);
-    }
-    public static void pfnFreeInst$set( MemorySegment seg, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnFreeInst$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFreeInst$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_XMIT_ROUTINE_QUINTUPLE.pfnFreeInst$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFreeInst$set(MemorySegment seg, long index, MemoryAddress x) {
-        _XMIT_ROUTINE_QUINTUPLE.pfnFreeInst$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static XMIT_HELPER_ROUTINE pfnFreeInst (MemorySegment segment, MemorySession session) {
-        return XMIT_HELPER_ROUTINE.ofAddress(pfnFreeInst$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pfnTranslateToXmit"),
+        wgl_h.C_POINTER.withName("pfnTranslateFromXmit"),
+        wgl_h.C_POINTER.withName("pfnFreeXmit"),
+        wgl_h.C_POINTER.withName("pfnFreeInst")
+    ).withName("_XMIT_ROUTINE_QUINTUPLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pfnTranslateToXmit$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnTranslateToXmit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateToXmit
+     * }
+     */
+    public static final AddressLayout pfnTranslateToXmit$layout() {
+        return pfnTranslateToXmit$LAYOUT;
+    }
+
+    private static final long pfnTranslateToXmit$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateToXmit
+     * }
+     */
+    public static final long pfnTranslateToXmit$offset() {
+        return pfnTranslateToXmit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateToXmit
+     * }
+     */
+    public static MemorySegment pfnTranslateToXmit(MemorySegment struct) {
+        return struct.get(pfnTranslateToXmit$LAYOUT, pfnTranslateToXmit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateToXmit
+     * }
+     */
+    public static void pfnTranslateToXmit(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnTranslateToXmit$LAYOUT, pfnTranslateToXmit$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnTranslateFromXmit$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnTranslateFromXmit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateFromXmit
+     * }
+     */
+    public static final AddressLayout pfnTranslateFromXmit$layout() {
+        return pfnTranslateFromXmit$LAYOUT;
+    }
+
+    private static final long pfnTranslateFromXmit$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateFromXmit
+     * }
+     */
+    public static final long pfnTranslateFromXmit$offset() {
+        return pfnTranslateFromXmit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateFromXmit
+     * }
+     */
+    public static MemorySegment pfnTranslateFromXmit(MemorySegment struct) {
+        return struct.get(pfnTranslateFromXmit$LAYOUT, pfnTranslateFromXmit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnTranslateFromXmit
+     * }
+     */
+    public static void pfnTranslateFromXmit(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnTranslateFromXmit$LAYOUT, pfnTranslateFromXmit$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFreeXmit$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFreeXmit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeXmit
+     * }
+     */
+    public static final AddressLayout pfnFreeXmit$layout() {
+        return pfnFreeXmit$LAYOUT;
+    }
+
+    private static final long pfnFreeXmit$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeXmit
+     * }
+     */
+    public static final long pfnFreeXmit$offset() {
+        return pfnFreeXmit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeXmit
+     * }
+     */
+    public static MemorySegment pfnFreeXmit(MemorySegment struct) {
+        return struct.get(pfnFreeXmit$LAYOUT, pfnFreeXmit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeXmit
+     * }
+     */
+    public static void pfnFreeXmit(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFreeXmit$LAYOUT, pfnFreeXmit$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFreeInst$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFreeInst"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeInst
+     * }
+     */
+    public static final AddressLayout pfnFreeInst$layout() {
+        return pfnFreeInst$LAYOUT;
+    }
+
+    private static final long pfnFreeInst$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeInst
+     * }
+     */
+    public static final long pfnFreeInst$offset() {
+        return pfnFreeInst$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeInst
+     * }
+     */
+    public static MemorySegment pfnFreeInst(MemorySegment struct) {
+        return struct.get(pfnFreeInst$LAYOUT, pfnFreeInst$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XMIT_HELPER_ROUTINE pfnFreeInst
+     * }
+     */
+    public static void pfnFreeInst(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFreeInst$LAYOUT, pfnFreeInst$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

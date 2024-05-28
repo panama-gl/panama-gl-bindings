@@ -2,75 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagCIEXYZ {
+ *     FXPT2DOT30 ciexyzX;
+ *     FXPT2DOT30 ciexyzY;
+ *     FXPT2DOT30 ciexyzZ;
+ * }
+ * }
+ */
 public class tagCIEXYZ {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ciexyzX"),
-        Constants$root.C_LONG$LAYOUT.withName("ciexyzY"),
-        Constants$root.C_LONG$LAYOUT.withName("ciexyzZ")
-    ).withName("tagCIEXYZ");
-    public static MemoryLayout $LAYOUT() {
-        return tagCIEXYZ.$struct$LAYOUT;
+    tagCIEXYZ() {
+        // Should not be called directly
     }
-    static final VarHandle ciexyzX$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ciexyzX"));
-    public static VarHandle ciexyzX$VH() {
-        return tagCIEXYZ.ciexyzX$VH;
-    }
-    public static int ciexyzX$get(MemorySegment seg) {
-        return (int)tagCIEXYZ.ciexyzX$VH.get(seg);
-    }
-    public static void ciexyzX$set( MemorySegment seg, int x) {
-        tagCIEXYZ.ciexyzX$VH.set(seg, x);
-    }
-    public static int ciexyzX$get(MemorySegment seg, long index) {
-        return (int)tagCIEXYZ.ciexyzX$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ciexyzX$set(MemorySegment seg, long index, int x) {
-        tagCIEXYZ.ciexyzX$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ciexyzY$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ciexyzY"));
-    public static VarHandle ciexyzY$VH() {
-        return tagCIEXYZ.ciexyzY$VH;
-    }
-    public static int ciexyzY$get(MemorySegment seg) {
-        return (int)tagCIEXYZ.ciexyzY$VH.get(seg);
-    }
-    public static void ciexyzY$set( MemorySegment seg, int x) {
-        tagCIEXYZ.ciexyzY$VH.set(seg, x);
-    }
-    public static int ciexyzY$get(MemorySegment seg, long index) {
-        return (int)tagCIEXYZ.ciexyzY$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ciexyzY$set(MemorySegment seg, long index, int x) {
-        tagCIEXYZ.ciexyzY$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ciexyzZ$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ciexyzZ"));
-    public static VarHandle ciexyzZ$VH() {
-        return tagCIEXYZ.ciexyzZ$VH;
-    }
-    public static int ciexyzZ$get(MemorySegment seg) {
-        return (int)tagCIEXYZ.ciexyzZ$VH.get(seg);
-    }
-    public static void ciexyzZ$set( MemorySegment seg, int x) {
-        tagCIEXYZ.ciexyzZ$VH.set(seg, x);
-    }
-    public static int ciexyzZ$get(MemorySegment seg, long index) {
-        return (int)tagCIEXYZ.ciexyzZ$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ciexyzZ$set(MemorySegment seg, long index, int x) {
-        tagCIEXYZ.ciexyzZ$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("ciexyzX"),
+        freeglut_h.C_LONG.withName("ciexyzY"),
+        freeglut_h.C_LONG.withName("ciexyzZ")
+    ).withName("tagCIEXYZ");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ciexyzX$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ciexyzX"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzX
+     * }
+     */
+    public static final OfInt ciexyzX$layout() {
+        return ciexyzX$LAYOUT;
+    }
+
+    private static final long ciexyzX$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzX
+     * }
+     */
+    public static final long ciexyzX$offset() {
+        return ciexyzX$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzX
+     * }
+     */
+    public static int ciexyzX(MemorySegment struct) {
+        return struct.get(ciexyzX$LAYOUT, ciexyzX$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzX
+     * }
+     */
+    public static void ciexyzX(MemorySegment struct, int fieldValue) {
+        struct.set(ciexyzX$LAYOUT, ciexyzX$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ciexyzY$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ciexyzY"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzY
+     * }
+     */
+    public static final OfInt ciexyzY$layout() {
+        return ciexyzY$LAYOUT;
+    }
+
+    private static final long ciexyzY$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzY
+     * }
+     */
+    public static final long ciexyzY$offset() {
+        return ciexyzY$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzY
+     * }
+     */
+    public static int ciexyzY(MemorySegment struct) {
+        return struct.get(ciexyzY$LAYOUT, ciexyzY$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzY
+     * }
+     */
+    public static void ciexyzY(MemorySegment struct, int fieldValue) {
+        struct.set(ciexyzY$LAYOUT, ciexyzY$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ciexyzZ$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ciexyzZ"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzZ
+     * }
+     */
+    public static final OfInt ciexyzZ$layout() {
+        return ciexyzZ$LAYOUT;
+    }
+
+    private static final long ciexyzZ$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzZ
+     * }
+     */
+    public static final long ciexyzZ$offset() {
+        return ciexyzZ$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzZ
+     * }
+     */
+    public static int ciexyzZ(MemorySegment struct) {
+        return struct.get(ciexyzZ$LAYOUT, ciexyzZ$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FXPT2DOT30 ciexyzZ
+     * }
+     */
+    public static void ciexyzZ(MemorySegment struct, int fieldValue) {
+        struct.set(ciexyzZ$LAYOUT, ciexyzZ$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

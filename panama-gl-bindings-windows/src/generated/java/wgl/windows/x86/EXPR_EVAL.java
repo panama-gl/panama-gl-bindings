@@ -2,27 +2,140 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface EXPR_EVAL {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress _x0);
-    static MemorySegment allocate(EXPR_EVAL fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(EXPR_EVAL.class, fi, constants$824.EXPR_EVAL$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*EXPR_EVAL)(struct _MIDL_STUB_MESSAGE {
+ *     PRPC_MESSAGE RpcMsg;
+ *     unsigned char *Buffer;
+ *     unsigned char *BufferStart;
+ *     unsigned char *BufferEnd;
+ *     unsigned char *BufferMark;
+ *     unsigned long BufferLength;
+ *     unsigned long MemorySize;
+ *     unsigned char *Memory;
+ *     unsigned char IsClient;
+ *     unsigned char Pad;
+ *     unsigned short uFlags2;
+ *     int ReuseBuffer;
+ *     struct NDR_ALLOC_ALL_NODES_CONTEXT *pAllocAllNodesContext;
+ *     struct NDR_POINTER_QUEUE_STATE *pPointerQueueState;
+ *     int IgnoreEmbeddedPointers;
+ *     unsigned char *PointerBufferMark;
+ *     unsigned char CorrDespIncrement;
+ *     unsigned char uFlags;
+ *     unsigned short UniquePtrCount;
+ *     ULONG_PTR MaxCount;
+ *     unsigned long Offset;
+ *     unsigned long ActualCount;
+ *     void *(*pfnAllocate)(size_t) __attribute__((stdcall));
+ *     void (*pfnFree)(void *) __attribute__((stdcall));
+ *     unsigned char *StackTop;
+ *     unsigned char *pPresentedType;
+ *     unsigned char *pTransmitType;
+ *     handle_t SavedHandle;
+ *     const struct _MIDL_STUB_DESC *StubDesc;
+ *     struct _FULL_PTR_XLAT_TABLES *FullPtrXlatTables;
+ *     unsigned long FullPtrRefId;
+ *     unsigned long PointerLength;
+ *     int fInDontFree : 1;
+ *     int fDontCallFreeInst : 1;
+ *     int fUnused1 : 1;
+ *     int fHasReturn : 1;
+ *     int fHasExtensions : 1;
+ *     int fHasNewCorrDesc : 1;
+ *     int fIsIn : 1;
+ *     int fIsOut : 1;
+ *     int fIsOicf : 1;
+ *     int fBufferValid : 1;
+ *     int fHasMemoryValidateCallback : 1;
+ *     int fInFree : 1;
+ *     int fNeedMCCP : 1;
+ *     int fUnused2 : 3;
+ *     int fUnused3 : 16;
+ *     unsigned long dwDestContext;
+ *     void *pvDestContext;
+ *     NDR_SCONTEXT *SavedContextHandles;
+ *     long ParamNumber;
+ *     struct IRpcChannelBuffer *pRpcChannelBuffer;
+ *     PARRAY_INFO pArrayInfo;
+ *     unsigned long *SizePtrCountArray;
+ *     unsigned long *SizePtrOffsetArray;
+ *     unsigned long *SizePtrLengthArray;
+ *     void *pArgQueue;
+ *     unsigned long dwStubPhase;
+ *     void *LowStackMark;
+ *     PNDR_ASYNC_MESSAGE pAsyncMsg;
+ *     PNDR_CORRELATION_INFO pCorrInfo;
+ *     unsigned char *pCorrMemory;
+ *     void *pMemoryList;
+ *     INT_PTR pCSInfo;
+ *     unsigned char *ConformanceMark;
+ *     unsigned char *VarianceMark;
+ *     INT_PTR Unused;
+ *     struct _NDR_PROC_CONTEXT *pContext;
+ *     void *ContextHandleHash;
+ *     void *pUserMarshalList;
+ *     INT_PTR Reserved51_3;
+ *     INT_PTR Reserved51_4;
+ *     INT_PTR Reserved51_5;
+ * } *) __attribute__((stdcall))
+ * }
+ */
+public class EXPR_EVAL {
+
+    EXPR_EVAL() {
+        // Should not be called directly
     }
-    static EXPR_EVAL ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress __x0) -> {
-            try {
-                constants$824.EXPR_EVAL$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)__x0);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment _x0);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(EXPR_EVAL.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(EXPR_EVAL.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment _x0) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, _x0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

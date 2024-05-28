@@ -2,49 +2,284 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCARD_ATRMASK {
+ *     DWORD cbAtr;
+ *     BYTE rgbAtr[36];
+ *     BYTE rgbMask[36];
+ * }
+ * }
+ */
 public class _SCARD_ATRMASK {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbAtr"),
-        MemoryLayout.sequenceLayout(36, Constants$root.C_CHAR$LAYOUT).withName("rgbAtr"),
-        MemoryLayout.sequenceLayout(36, Constants$root.C_CHAR$LAYOUT).withName("rgbMask")
-    ).withName("_SCARD_ATRMASK");
-    public static MemoryLayout $LAYOUT() {
-        return _SCARD_ATRMASK.$struct$LAYOUT;
+    _SCARD_ATRMASK() {
+        // Should not be called directly
     }
-    static final VarHandle cbAtr$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbAtr"));
-    public static VarHandle cbAtr$VH() {
-        return _SCARD_ATRMASK.cbAtr$VH;
-    }
-    public static int cbAtr$get(MemorySegment seg) {
-        return (int)_SCARD_ATRMASK.cbAtr$VH.get(seg);
-    }
-    public static void cbAtr$set( MemorySegment seg, int x) {
-        _SCARD_ATRMASK.cbAtr$VH.set(seg, x);
-    }
-    public static int cbAtr$get(MemorySegment seg, long index) {
-        return (int)_SCARD_ATRMASK.cbAtr$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbAtr$set(MemorySegment seg, long index, int x) {
-        _SCARD_ATRMASK.cbAtr$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbAtr$slice(MemorySegment seg) {
-        return seg.asSlice(4, 36);
-    }
-    public static MemorySegment rgbMask$slice(MemorySegment seg) {
-        return seg.asSlice(40, 36);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbAtr"),
+        MemoryLayout.sequenceLayout(36, wgl_h.C_CHAR).withName("rgbAtr"),
+        MemoryLayout.sequenceLayout(36, wgl_h.C_CHAR).withName("rgbMask")
+    ).withName("_SCARD_ATRMASK");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbAtr$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbAtr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static final OfInt cbAtr$layout() {
+        return cbAtr$LAYOUT;
+    }
+
+    private static final long cbAtr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static final long cbAtr$offset() {
+        return cbAtr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static int cbAtr(MemorySegment struct) {
+        return struct.get(cbAtr$LAYOUT, cbAtr$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbAtr
+     * }
+     */
+    public static void cbAtr(MemorySegment struct, int fieldValue) {
+        struct.set(cbAtr$LAYOUT, cbAtr$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbAtr$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbAtr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static final SequenceLayout rgbAtr$layout() {
+        return rgbAtr$LAYOUT;
+    }
+
+    private static final long rgbAtr$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static final long rgbAtr$offset() {
+        return rgbAtr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static MemorySegment rgbAtr(MemorySegment struct) {
+        return struct.asSlice(rgbAtr$OFFSET, rgbAtr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static void rgbAtr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbAtr$OFFSET, rgbAtr$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbAtr$DIMS = { 36 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static long[] rgbAtr$dimensions() {
+        return rgbAtr$DIMS;
+    }
+    private static final VarHandle rgbAtr$ELEM_HANDLE = rgbAtr$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static byte rgbAtr(MemorySegment struct, long index0) {
+        return (byte)rgbAtr$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbAtr[36]
+     * }
+     */
+    public static void rgbAtr(MemorySegment struct, long index0, byte fieldValue) {
+        rgbAtr$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout rgbMask$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbMask"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static final SequenceLayout rgbMask$layout() {
+        return rgbMask$LAYOUT;
+    }
+
+    private static final long rgbMask$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static final long rgbMask$offset() {
+        return rgbMask$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static MemorySegment rgbMask(MemorySegment struct) {
+        return struct.asSlice(rgbMask$OFFSET, rgbMask$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static void rgbMask(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbMask$OFFSET, rgbMask$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbMask$DIMS = { 36 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static long[] rgbMask$dimensions() {
+        return rgbMask$DIMS;
+    }
+    private static final VarHandle rgbMask$ELEM_HANDLE = rgbMask$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static byte rgbMask(MemorySegment struct, long index0) {
+        return (byte)rgbMask$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbMask[36]
+     * }
+     */
+    public static void rgbMask(MemorySegment struct, long index0, byte fieldValue) {
+        rgbMask$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

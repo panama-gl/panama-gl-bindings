@@ -2,96 +2,265 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _UMS_SCHEDULER_STARTUP_INFO {
+ *     ULONG UmsVersion;
+ *     PUMS_COMPLETION_LIST CompletionList;
+ *     PUMS_SCHEDULER_ENTRY_POINT SchedulerProc;
+ *     PVOID SchedulerParam;
+ * }
+ * }
+ */
 public class _UMS_SCHEDULER_STARTUP_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("UmsVersion"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("CompletionList"),
-        Constants$root.C_POINTER$LAYOUT.withName("SchedulerProc"),
-        Constants$root.C_POINTER$LAYOUT.withName("SchedulerParam")
-    ).withName("_UMS_SCHEDULER_STARTUP_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _UMS_SCHEDULER_STARTUP_INFO.$struct$LAYOUT;
+    _UMS_SCHEDULER_STARTUP_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle UmsVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UmsVersion"));
-    public static VarHandle UmsVersion$VH() {
-        return _UMS_SCHEDULER_STARTUP_INFO.UmsVersion$VH;
-    }
-    public static int UmsVersion$get(MemorySegment seg) {
-        return (int)_UMS_SCHEDULER_STARTUP_INFO.UmsVersion$VH.get(seg);
-    }
-    public static void UmsVersion$set( MemorySegment seg, int x) {
-        _UMS_SCHEDULER_STARTUP_INFO.UmsVersion$VH.set(seg, x);
-    }
-    public static int UmsVersion$get(MemorySegment seg, long index) {
-        return (int)_UMS_SCHEDULER_STARTUP_INFO.UmsVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UmsVersion$set(MemorySegment seg, long index, int x) {
-        _UMS_SCHEDULER_STARTUP_INFO.UmsVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompletionList$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompletionList"));
-    public static VarHandle CompletionList$VH() {
-        return _UMS_SCHEDULER_STARTUP_INFO.CompletionList$VH;
-    }
-    public static MemoryAddress CompletionList$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.CompletionList$VH.get(seg);
-    }
-    public static void CompletionList$set( MemorySegment seg, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.CompletionList$VH.set(seg, x);
-    }
-    public static MemoryAddress CompletionList$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.CompletionList$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompletionList$set(MemorySegment seg, long index, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.CompletionList$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SchedulerProc$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SchedulerProc"));
-    public static VarHandle SchedulerProc$VH() {
-        return _UMS_SCHEDULER_STARTUP_INFO.SchedulerProc$VH;
-    }
-    public static MemoryAddress SchedulerProc$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.SchedulerProc$VH.get(seg);
-    }
-    public static void SchedulerProc$set( MemorySegment seg, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.SchedulerProc$VH.set(seg, x);
-    }
-    public static MemoryAddress SchedulerProc$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.SchedulerProc$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SchedulerProc$set(MemorySegment seg, long index, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.SchedulerProc$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PUMS_SCHEDULER_ENTRY_POINT SchedulerProc (MemorySegment segment, MemorySession session) {
-        return PUMS_SCHEDULER_ENTRY_POINT.ofAddress(SchedulerProc$get(segment), session);
-    }
-    static final VarHandle SchedulerParam$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SchedulerParam"));
-    public static VarHandle SchedulerParam$VH() {
-        return _UMS_SCHEDULER_STARTUP_INFO.SchedulerParam$VH;
-    }
-    public static MemoryAddress SchedulerParam$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.SchedulerParam$VH.get(seg);
-    }
-    public static void SchedulerParam$set( MemorySegment seg, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.SchedulerParam$VH.set(seg, x);
-    }
-    public static MemoryAddress SchedulerParam$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_UMS_SCHEDULER_STARTUP_INFO.SchedulerParam$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SchedulerParam$set(MemorySegment seg, long index, MemoryAddress x) {
-        _UMS_SCHEDULER_STARTUP_INFO.SchedulerParam$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("UmsVersion"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("CompletionList"),
+        wgl_h.C_POINTER.withName("SchedulerProc"),
+        wgl_h.C_POINTER.withName("SchedulerParam")
+    ).withName("_UMS_SCHEDULER_STARTUP_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt UmsVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UmsVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG UmsVersion
+     * }
+     */
+    public static final OfInt UmsVersion$layout() {
+        return UmsVersion$LAYOUT;
+    }
+
+    private static final long UmsVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG UmsVersion
+     * }
+     */
+    public static final long UmsVersion$offset() {
+        return UmsVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG UmsVersion
+     * }
+     */
+    public static int UmsVersion(MemorySegment struct) {
+        return struct.get(UmsVersion$LAYOUT, UmsVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG UmsVersion
+     * }
+     */
+    public static void UmsVersion(MemorySegment struct, int fieldValue) {
+        struct.set(UmsVersion$LAYOUT, UmsVersion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout CompletionList$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("CompletionList"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUMS_COMPLETION_LIST CompletionList
+     * }
+     */
+    public static final AddressLayout CompletionList$layout() {
+        return CompletionList$LAYOUT;
+    }
+
+    private static final long CompletionList$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUMS_COMPLETION_LIST CompletionList
+     * }
+     */
+    public static final long CompletionList$offset() {
+        return CompletionList$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUMS_COMPLETION_LIST CompletionList
+     * }
+     */
+    public static MemorySegment CompletionList(MemorySegment struct) {
+        return struct.get(CompletionList$LAYOUT, CompletionList$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUMS_COMPLETION_LIST CompletionList
+     * }
+     */
+    public static void CompletionList(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(CompletionList$LAYOUT, CompletionList$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SchedulerProc$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SchedulerProc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PUMS_SCHEDULER_ENTRY_POINT SchedulerProc
+     * }
+     */
+    public static final AddressLayout SchedulerProc$layout() {
+        return SchedulerProc$LAYOUT;
+    }
+
+    private static final long SchedulerProc$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PUMS_SCHEDULER_ENTRY_POINT SchedulerProc
+     * }
+     */
+    public static final long SchedulerProc$offset() {
+        return SchedulerProc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PUMS_SCHEDULER_ENTRY_POINT SchedulerProc
+     * }
+     */
+    public static MemorySegment SchedulerProc(MemorySegment struct) {
+        return struct.get(SchedulerProc$LAYOUT, SchedulerProc$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PUMS_SCHEDULER_ENTRY_POINT SchedulerProc
+     * }
+     */
+    public static void SchedulerProc(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SchedulerProc$LAYOUT, SchedulerProc$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SchedulerParam$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SchedulerParam"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID SchedulerParam
+     * }
+     */
+    public static final AddressLayout SchedulerParam$layout() {
+        return SchedulerParam$LAYOUT;
+    }
+
+    private static final long SchedulerParam$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID SchedulerParam
+     * }
+     */
+    public static final long SchedulerParam$offset() {
+        return SchedulerParam$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID SchedulerParam
+     * }
+     */
+    public static MemorySegment SchedulerParam(MemorySegment struct) {
+        return struct.get(SchedulerParam$LAYOUT, SchedulerParam$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID SchedulerParam
+     * }
+     */
+    public static void SchedulerParam(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SchedulerParam$LAYOUT, SchedulerParam$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

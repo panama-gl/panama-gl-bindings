@@ -2,233 +2,622 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _XSTATE_CONFIGURATION {
+ *     DWORD64 EnabledFeatures;
+ *     DWORD64 EnabledVolatileFeatures;
+ *     DWORD Size;
+ *     union {
+ *         DWORD ControlFlags;
+ *         struct {
+ *             DWORD OptimizedSave : 1;
+ *             DWORD CompactionEnabled : 1;
+ *         };
+ *     };
+ *     XSTATE_FEATURE Features[64];
+ *     DWORD64 EnabledSupervisorFeatures;
+ *     DWORD64 AlignedFeatures;
+ *     DWORD AllFeatureSize;
+ *     DWORD AllFeatures[64];
+ *     DWORD64 EnabledUserVisibleSupervisorFeatures;
+ * }
+ * }
+ */
 public class _XSTATE_CONFIGURATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EnabledFeatures"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EnabledVolatileFeatures"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("ControlFlags"),
-            MemoryLayout.structLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.paddingLayout(1).withName("OptimizedSave"),
-                    MemoryLayout.paddingLayout(1).withName("CompactionEnabled"),
-                    MemoryLayout.paddingLayout(1).withName("ExtendedFeatureDisable"),
-                    MemoryLayout.paddingLayout(29)
-                )
-            ).withName("$anon$0")
-        ).withName("$anon$0"),
-        MemoryLayout.sequenceLayout(64, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Offset"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("_XSTATE_FEATURE")).withName("Features"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EnabledSupervisorFeatures"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("AlignedFeatures"),
-        Constants$root.C_LONG$LAYOUT.withName("AllFeatureSize"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_LONG$LAYOUT).withName("AllFeatures"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("EnabledUserVisibleSupervisorFeatures"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ExtendedFeatureDisableFeatures"),
-        Constants$root.C_LONG$LAYOUT.withName("AllNonLargeFeatureSize"),
-        Constants$root.C_LONG$LAYOUT.withName("Spare")
-    ).withName("_XSTATE_CONFIGURATION");
-    public static MemoryLayout $LAYOUT() {
-        return _XSTATE_CONFIGURATION.$struct$LAYOUT;
+    _XSTATE_CONFIGURATION() {
+        // Should not be called directly
     }
-    static final VarHandle EnabledFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EnabledFeatures"));
-    public static VarHandle EnabledFeatures$VH() {
-        return _XSTATE_CONFIGURATION.EnabledFeatures$VH;
-    }
-    public static long EnabledFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.EnabledFeatures$VH.get(seg);
-    }
-    public static void EnabledFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.EnabledFeatures$VH.set(seg, x);
-    }
-    public static long EnabledFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.EnabledFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EnabledFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.EnabledFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EnabledVolatileFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EnabledVolatileFeatures"));
-    public static VarHandle EnabledVolatileFeatures$VH() {
-        return _XSTATE_CONFIGURATION.EnabledVolatileFeatures$VH;
-    }
-    public static long EnabledVolatileFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.EnabledVolatileFeatures$VH.get(seg);
-    }
-    public static void EnabledVolatileFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.EnabledVolatileFeatures$VH.set(seg, x);
-    }
-    public static long EnabledVolatileFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.EnabledVolatileFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EnabledVolatileFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.EnabledVolatileFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _XSTATE_CONFIGURATION.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_XSTATE_CONFIGURATION.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _XSTATE_CONFIGURATION.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_XSTATE_CONFIGURATION.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _XSTATE_CONFIGURATION.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ControlFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("ControlFlags"));
-    public static VarHandle ControlFlags$VH() {
-        return _XSTATE_CONFIGURATION.ControlFlags$VH;
-    }
-    public static int ControlFlags$get(MemorySegment seg) {
-        return (int)_XSTATE_CONFIGURATION.ControlFlags$VH.get(seg);
-    }
-    public static void ControlFlags$set( MemorySegment seg, int x) {
-        _XSTATE_CONFIGURATION.ControlFlags$VH.set(seg, x);
-    }
-    public static int ControlFlags$get(MemorySegment seg, long index) {
-        return (int)_XSTATE_CONFIGURATION.ControlFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ControlFlags$set(MemorySegment seg, long index, int x) {
-        _XSTATE_CONFIGURATION.ControlFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Features$slice(MemorySegment seg) {
-        return seg.asSlice(24, 512);
-    }
-    static final VarHandle EnabledSupervisorFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EnabledSupervisorFeatures"));
-    public static VarHandle EnabledSupervisorFeatures$VH() {
-        return _XSTATE_CONFIGURATION.EnabledSupervisorFeatures$VH;
-    }
-    public static long EnabledSupervisorFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.EnabledSupervisorFeatures$VH.get(seg);
-    }
-    public static void EnabledSupervisorFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.EnabledSupervisorFeatures$VH.set(seg, x);
-    }
-    public static long EnabledSupervisorFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.EnabledSupervisorFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EnabledSupervisorFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.EnabledSupervisorFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AlignedFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AlignedFeatures"));
-    public static VarHandle AlignedFeatures$VH() {
-        return _XSTATE_CONFIGURATION.AlignedFeatures$VH;
-    }
-    public static long AlignedFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.AlignedFeatures$VH.get(seg);
-    }
-    public static void AlignedFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.AlignedFeatures$VH.set(seg, x);
-    }
-    public static long AlignedFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.AlignedFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AlignedFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.AlignedFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AllFeatureSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllFeatureSize"));
-    public static VarHandle AllFeatureSize$VH() {
-        return _XSTATE_CONFIGURATION.AllFeatureSize$VH;
-    }
-    public static int AllFeatureSize$get(MemorySegment seg) {
-        return (int)_XSTATE_CONFIGURATION.AllFeatureSize$VH.get(seg);
-    }
-    public static void AllFeatureSize$set( MemorySegment seg, int x) {
-        _XSTATE_CONFIGURATION.AllFeatureSize$VH.set(seg, x);
-    }
-    public static int AllFeatureSize$get(MemorySegment seg, long index) {
-        return (int)_XSTATE_CONFIGURATION.AllFeatureSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllFeatureSize$set(MemorySegment seg, long index, int x) {
-        _XSTATE_CONFIGURATION.AllFeatureSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment AllFeatures$slice(MemorySegment seg) {
-        return seg.asSlice(556, 256);
-    }
-    static final VarHandle EnabledUserVisibleSupervisorFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("EnabledUserVisibleSupervisorFeatures"));
-    public static VarHandle EnabledUserVisibleSupervisorFeatures$VH() {
-        return _XSTATE_CONFIGURATION.EnabledUserVisibleSupervisorFeatures$VH;
-    }
-    public static long EnabledUserVisibleSupervisorFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.EnabledUserVisibleSupervisorFeatures$VH.get(seg);
-    }
-    public static void EnabledUserVisibleSupervisorFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.EnabledUserVisibleSupervisorFeatures$VH.set(seg, x);
-    }
-    public static long EnabledUserVisibleSupervisorFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.EnabledUserVisibleSupervisorFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EnabledUserVisibleSupervisorFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.EnabledUserVisibleSupervisorFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ExtendedFeatureDisableFeatures$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ExtendedFeatureDisableFeatures"));
-    public static VarHandle ExtendedFeatureDisableFeatures$VH() {
-        return _XSTATE_CONFIGURATION.ExtendedFeatureDisableFeatures$VH;
-    }
-    public static long ExtendedFeatureDisableFeatures$get(MemorySegment seg) {
-        return (long)_XSTATE_CONFIGURATION.ExtendedFeatureDisableFeatures$VH.get(seg);
-    }
-    public static void ExtendedFeatureDisableFeatures$set( MemorySegment seg, long x) {
-        _XSTATE_CONFIGURATION.ExtendedFeatureDisableFeatures$VH.set(seg, x);
-    }
-    public static long ExtendedFeatureDisableFeatures$get(MemorySegment seg, long index) {
-        return (long)_XSTATE_CONFIGURATION.ExtendedFeatureDisableFeatures$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ExtendedFeatureDisableFeatures$set(MemorySegment seg, long index, long x) {
-        _XSTATE_CONFIGURATION.ExtendedFeatureDisableFeatures$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AllNonLargeFeatureSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AllNonLargeFeatureSize"));
-    public static VarHandle AllNonLargeFeatureSize$VH() {
-        return _XSTATE_CONFIGURATION.AllNonLargeFeatureSize$VH;
-    }
-    public static int AllNonLargeFeatureSize$get(MemorySegment seg) {
-        return (int)_XSTATE_CONFIGURATION.AllNonLargeFeatureSize$VH.get(seg);
-    }
-    public static void AllNonLargeFeatureSize$set( MemorySegment seg, int x) {
-        _XSTATE_CONFIGURATION.AllNonLargeFeatureSize$VH.set(seg, x);
-    }
-    public static int AllNonLargeFeatureSize$get(MemorySegment seg, long index) {
-        return (int)_XSTATE_CONFIGURATION.AllNonLargeFeatureSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AllNonLargeFeatureSize$set(MemorySegment seg, long index, int x) {
-        _XSTATE_CONFIGURATION.AllNonLargeFeatureSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Spare$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Spare"));
-    public static VarHandle Spare$VH() {
-        return _XSTATE_CONFIGURATION.Spare$VH;
-    }
-    public static int Spare$get(MemorySegment seg) {
-        return (int)_XSTATE_CONFIGURATION.Spare$VH.get(seg);
-    }
-    public static void Spare$set( MemorySegment seg, int x) {
-        _XSTATE_CONFIGURATION.Spare$VH.set(seg, x);
-    }
-    public static int Spare$get(MemorySegment seg, long index) {
-        return (int)_XSTATE_CONFIGURATION.Spare$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Spare$set(MemorySegment seg, long index, int x) {
-        _XSTATE_CONFIGURATION.Spare$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("EnabledFeatures"),
+        freeglut_h.C_LONG_LONG.withName("EnabledVolatileFeatures"),
+        freeglut_h.C_LONG.withName("Size"),
+        MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("ControlFlags"),
+            MemoryLayout.structLayout(
+                MemoryLayout.paddingLayout(4)
+            ).withName("$anon$12870:9")
+        ).withName("$anon$12868:5"),
+        MemoryLayout.sequenceLayout(64, _XSTATE_FEATURE.layout()).withName("Features"),
+        freeglut_h.C_LONG_LONG.withName("EnabledSupervisorFeatures"),
+        freeglut_h.C_LONG_LONG.withName("AlignedFeatures"),
+        freeglut_h.C_LONG.withName("AllFeatureSize"),
+        MemoryLayout.sequenceLayout(64, freeglut_h.C_LONG).withName("AllFeatures"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("EnabledUserVisibleSupervisorFeatures")
+    ).withName("_XSTATE_CONFIGURATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong EnabledFeatures$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EnabledFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledFeatures
+     * }
+     */
+    public static final OfLong EnabledFeatures$layout() {
+        return EnabledFeatures$LAYOUT;
+    }
+
+    private static final long EnabledFeatures$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledFeatures
+     * }
+     */
+    public static final long EnabledFeatures$offset() {
+        return EnabledFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledFeatures
+     * }
+     */
+    public static long EnabledFeatures(MemorySegment struct) {
+        return struct.get(EnabledFeatures$LAYOUT, EnabledFeatures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledFeatures
+     * }
+     */
+    public static void EnabledFeatures(MemorySegment struct, long fieldValue) {
+        struct.set(EnabledFeatures$LAYOUT, EnabledFeatures$OFFSET, fieldValue);
+    }
+
+    private static final OfLong EnabledVolatileFeatures$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EnabledVolatileFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledVolatileFeatures
+     * }
+     */
+    public static final OfLong EnabledVolatileFeatures$layout() {
+        return EnabledVolatileFeatures$LAYOUT;
+    }
+
+    private static final long EnabledVolatileFeatures$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledVolatileFeatures
+     * }
+     */
+    public static final long EnabledVolatileFeatures$offset() {
+        return EnabledVolatileFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledVolatileFeatures
+     * }
+     */
+    public static long EnabledVolatileFeatures(MemorySegment struct) {
+        return struct.get(EnabledVolatileFeatures$LAYOUT, EnabledVolatileFeatures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledVolatileFeatures
+     * }
+     */
+    public static void EnabledVolatileFeatures(MemorySegment struct, long fieldValue) {
+        struct.set(EnabledVolatileFeatures$LAYOUT, EnabledVolatileFeatures$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ControlFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$12868:5"), groupElement("ControlFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ControlFlags
+     * }
+     */
+    public static final OfInt ControlFlags$layout() {
+        return ControlFlags$LAYOUT;
+    }
+
+    private static final long ControlFlags$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ControlFlags
+     * }
+     */
+    public static final long ControlFlags$offset() {
+        return ControlFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ControlFlags
+     * }
+     */
+    public static int ControlFlags(MemorySegment struct) {
+        return struct.get(ControlFlags$LAYOUT, ControlFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ControlFlags
+     * }
+     */
+    public static void ControlFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ControlFlags$LAYOUT, ControlFlags$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Features$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Features"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static final SequenceLayout Features$layout() {
+        return Features$LAYOUT;
+    }
+
+    private static final long Features$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static final long Features$offset() {
+        return Features$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static MemorySegment Features(MemorySegment struct) {
+        return struct.asSlice(Features$OFFSET, Features$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static void Features(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Features$OFFSET, Features$LAYOUT.byteSize());
+    }
+
+    private static long[] Features$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static long[] Features$dimensions() {
+        return Features$DIMS;
+    }
+    private static final MethodHandle Features$ELEM_HANDLE = Features$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static MemorySegment Features(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)Features$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * XSTATE_FEATURE Features[64]
+     * }
+     */
+    public static void Features(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, Features(struct, index0), 0L, _XSTATE_FEATURE.layout().byteSize());
+    }
+
+    private static final OfLong EnabledSupervisorFeatures$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EnabledSupervisorFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledSupervisorFeatures
+     * }
+     */
+    public static final OfLong EnabledSupervisorFeatures$layout() {
+        return EnabledSupervisorFeatures$LAYOUT;
+    }
+
+    private static final long EnabledSupervisorFeatures$OFFSET = 536;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledSupervisorFeatures
+     * }
+     */
+    public static final long EnabledSupervisorFeatures$offset() {
+        return EnabledSupervisorFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledSupervisorFeatures
+     * }
+     */
+    public static long EnabledSupervisorFeatures(MemorySegment struct) {
+        return struct.get(EnabledSupervisorFeatures$LAYOUT, EnabledSupervisorFeatures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledSupervisorFeatures
+     * }
+     */
+    public static void EnabledSupervisorFeatures(MemorySegment struct, long fieldValue) {
+        struct.set(EnabledSupervisorFeatures$LAYOUT, EnabledSupervisorFeatures$OFFSET, fieldValue);
+    }
+
+    private static final OfLong AlignedFeatures$LAYOUT = (OfLong)$LAYOUT.select(groupElement("AlignedFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 AlignedFeatures
+     * }
+     */
+    public static final OfLong AlignedFeatures$layout() {
+        return AlignedFeatures$LAYOUT;
+    }
+
+    private static final long AlignedFeatures$OFFSET = 544;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 AlignedFeatures
+     * }
+     */
+    public static final long AlignedFeatures$offset() {
+        return AlignedFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 AlignedFeatures
+     * }
+     */
+    public static long AlignedFeatures(MemorySegment struct) {
+        return struct.get(AlignedFeatures$LAYOUT, AlignedFeatures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 AlignedFeatures
+     * }
+     */
+    public static void AlignedFeatures(MemorySegment struct, long fieldValue) {
+        struct.set(AlignedFeatures$LAYOUT, AlignedFeatures$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AllFeatureSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AllFeatureSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatureSize
+     * }
+     */
+    public static final OfInt AllFeatureSize$layout() {
+        return AllFeatureSize$LAYOUT;
+    }
+
+    private static final long AllFeatureSize$OFFSET = 552;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatureSize
+     * }
+     */
+    public static final long AllFeatureSize$offset() {
+        return AllFeatureSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatureSize
+     * }
+     */
+    public static int AllFeatureSize(MemorySegment struct) {
+        return struct.get(AllFeatureSize$LAYOUT, AllFeatureSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatureSize
+     * }
+     */
+    public static void AllFeatureSize(MemorySegment struct, int fieldValue) {
+        struct.set(AllFeatureSize$LAYOUT, AllFeatureSize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout AllFeatures$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("AllFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static final SequenceLayout AllFeatures$layout() {
+        return AllFeatures$LAYOUT;
+    }
+
+    private static final long AllFeatures$OFFSET = 556;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static final long AllFeatures$offset() {
+        return AllFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static MemorySegment AllFeatures(MemorySegment struct) {
+        return struct.asSlice(AllFeatures$OFFSET, AllFeatures$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static void AllFeatures(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, AllFeatures$OFFSET, AllFeatures$LAYOUT.byteSize());
+    }
+
+    private static long[] AllFeatures$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static long[] AllFeatures$dimensions() {
+        return AllFeatures$DIMS;
+    }
+    private static final VarHandle AllFeatures$ELEM_HANDLE = AllFeatures$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static int AllFeatures(MemorySegment struct, long index0) {
+        return (int)AllFeatures$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD AllFeatures[64]
+     * }
+     */
+    public static void AllFeatures(MemorySegment struct, long index0, int fieldValue) {
+        AllFeatures$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfLong EnabledUserVisibleSupervisorFeatures$LAYOUT = (OfLong)$LAYOUT.select(groupElement("EnabledUserVisibleSupervisorFeatures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledUserVisibleSupervisorFeatures
+     * }
+     */
+    public static final OfLong EnabledUserVisibleSupervisorFeatures$layout() {
+        return EnabledUserVisibleSupervisorFeatures$LAYOUT;
+    }
+
+    private static final long EnabledUserVisibleSupervisorFeatures$OFFSET = 816;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledUserVisibleSupervisorFeatures
+     * }
+     */
+    public static final long EnabledUserVisibleSupervisorFeatures$offset() {
+        return EnabledUserVisibleSupervisorFeatures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledUserVisibleSupervisorFeatures
+     * }
+     */
+    public static long EnabledUserVisibleSupervisorFeatures(MemorySegment struct) {
+        return struct.get(EnabledUserVisibleSupervisorFeatures$LAYOUT, EnabledUserVisibleSupervisorFeatures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 EnabledUserVisibleSupervisorFeatures
+     * }
+     */
+    public static void EnabledUserVisibleSupervisorFeatures(MemorySegment struct, long fieldValue) {
+        struct.set(EnabledUserVisibleSupervisorFeatures$LAYOUT, EnabledUserVisibleSupervisorFeatures$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

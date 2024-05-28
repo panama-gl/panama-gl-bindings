@@ -2,13 +2,40 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _DEVICE_LOCATION {
+ *     DWORD Socket;
+ *     DWORD Slot;
+ *     DWORD Adapter;
+ *     DWORD Port;
+ *     union {
+ *         struct {
+ *             DWORD Channel;
+ *             DWORD Device;
+ *         };
+ *         struct {
+ *             DWORD Target;
+ *             DWORD Lun;
+ *         };
+ *     };
+ * } DEVICE_LOCATION
+ * }
+ */
 public class DEVICE_LOCATION extends _DEVICE_LOCATION {
 
+    DEVICE_LOCATION() {
+        // Should not be called directly
+    }
 }
-
 

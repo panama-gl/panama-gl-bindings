@@ -2,80 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_POLICY_METADATA {
+ *     BYTE Version;
+ *     BYTE Reserved0[7];
+ *     ULONGLONG ApplicationId;
+ *     IMAGE_POLICY_ENTRY Policies[];
+ * }
+ * }
+ */
 public class _IMAGE_POLICY_METADATA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Version"),
-        MemoryLayout.sequenceLayout(7, Constants$root.C_CHAR$LAYOUT).withName("Reserved0"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ApplicationId"),
-        MemoryLayout.sequenceLayout(0, MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Type"),
-            Constants$root.C_LONG$LAYOUT.withName("PolicyId"),
-            MemoryLayout.unionLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("None"),
-                Constants$root.C_CHAR$LAYOUT.withName("BoolValue"),
-                Constants$root.C_CHAR$LAYOUT.withName("Int8Value"),
-                Constants$root.C_CHAR$LAYOUT.withName("UInt8Value"),
-                Constants$root.C_SHORT$LAYOUT.withName("Int16Value"),
-                Constants$root.C_SHORT$LAYOUT.withName("UInt16Value"),
-                Constants$root.C_LONG$LAYOUT.withName("Int32Value"),
-                Constants$root.C_LONG$LAYOUT.withName("UInt32Value"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("Int64Value"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("UInt64Value"),
-                Constants$root.C_POINTER$LAYOUT.withName("AnsiStringValue"),
-                Constants$root.C_POINTER$LAYOUT.withName("UnicodeStringValue")
-            ).withName("u")
-        ).withName("_IMAGE_POLICY_ENTRY")).withName("Policies")
-    ).withName("_IMAGE_POLICY_METADATA");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_POLICY_METADATA.$struct$LAYOUT;
+    _IMAGE_POLICY_METADATA() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _IMAGE_POLICY_METADATA.Version$VH;
-    }
-    public static byte Version$get(MemorySegment seg) {
-        return (byte)_IMAGE_POLICY_METADATA.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, byte x) {
-        _IMAGE_POLICY_METADATA.Version$VH.set(seg, x);
-    }
-    public static byte Version$get(MemorySegment seg, long index) {
-        return (byte)_IMAGE_POLICY_METADATA.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, byte x) {
-        _IMAGE_POLICY_METADATA.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Reserved0$slice(MemorySegment seg) {
-        return seg.asSlice(1, 7);
-    }
-    static final VarHandle ApplicationId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ApplicationId"));
-    public static VarHandle ApplicationId$VH() {
-        return _IMAGE_POLICY_METADATA.ApplicationId$VH;
-    }
-    public static long ApplicationId$get(MemorySegment seg) {
-        return (long)_IMAGE_POLICY_METADATA.ApplicationId$VH.get(seg);
-    }
-    public static void ApplicationId$set( MemorySegment seg, long x) {
-        _IMAGE_POLICY_METADATA.ApplicationId$VH.set(seg, x);
-    }
-    public static long ApplicationId$get(MemorySegment seg, long index) {
-        return (long)_IMAGE_POLICY_METADATA.ApplicationId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ApplicationId$set(MemorySegment seg, long index, long x) {
-        _IMAGE_POLICY_METADATA.ApplicationId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("Version"),
+        MemoryLayout.sequenceLayout(7, wgl_h.C_CHAR).withName("Reserved0"),
+        wgl_h.C_LONG_LONG.withName("ApplicationId"),
+        MemoryLayout.sequenceLayout(0, _IMAGE_POLICY_ENTRY.layout()).withName("Policies")
+    ).withName("_IMAGE_POLICY_METADATA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Version$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static final OfByte Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static byte Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Version
+     * }
+     */
+    public static void Version(MemorySegment struct, byte fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved0$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved0"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static final SequenceLayout Reserved0$layout() {
+        return Reserved0$LAYOUT;
+    }
+
+    private static final long Reserved0$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static final long Reserved0$offset() {
+        return Reserved0$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static MemorySegment Reserved0(MemorySegment struct) {
+        return struct.asSlice(Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved0$OFFSET, Reserved0$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved0$DIMS = { 7 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static long[] Reserved0$dimensions() {
+        return Reserved0$DIMS;
+    }
+    private static final VarHandle Reserved0$ELEM_HANDLE = Reserved0$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static byte Reserved0(MemorySegment struct, long index0) {
+        return (byte)Reserved0$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved0[7]
+     * }
+     */
+    public static void Reserved0(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved0$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfLong ApplicationId$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ApplicationId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ApplicationId
+     * }
+     */
+    public static final OfLong ApplicationId$layout() {
+        return ApplicationId$LAYOUT;
+    }
+
+    private static final long ApplicationId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ApplicationId
+     * }
+     */
+    public static final long ApplicationId$offset() {
+        return ApplicationId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ApplicationId
+     * }
+     */
+    public static long ApplicationId(MemorySegment struct) {
+        return struct.get(ApplicationId$LAYOUT, ApplicationId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ApplicationId
+     * }
+     */
+    public static void ApplicationId(MemorySegment struct, long fieldValue) {
+        struct.set(ApplicationId$LAYOUT, ApplicationId$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Policies$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Policies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_POLICY_ENTRY Policies[]
+     * }
+     */
+    public static final SequenceLayout Policies$layout() {
+        return Policies$LAYOUT;
+    }
+
+    private static final long Policies$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_POLICY_ENTRY Policies[]
+     * }
+     */
+    public static final long Policies$offset() {
+        return Policies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_POLICY_ENTRY Policies[]
+     * }
+     */
+    public static MemorySegment Policies(MemorySegment struct) {
+        return struct.asSlice(Policies$OFFSET, Policies$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_POLICY_ENTRY Policies[]
+     * }
+     */
+    public static void Policies(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Policies$OFFSET, Policies$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

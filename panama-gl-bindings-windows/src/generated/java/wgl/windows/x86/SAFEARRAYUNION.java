@@ -2,13 +2,39 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _wireSAFEARRAY_UNION {
+ *     ULONG sfType;
+ *     union __MIDL_IOleAutomationTypes_0001 {
+ *         SAFEARR_BSTR BstrStr;
+ *         SAFEARR_UNKNOWN UnknownStr;
+ *         SAFEARR_DISPATCH DispatchStr;
+ *         SAFEARR_VARIANT VariantStr;
+ *         SAFEARR_BRECORD RecordStr;
+ *         SAFEARR_HAVEIID HaveIidStr;
+ *         BYTE_SIZEDARR ByteStr;
+ *         WORD_SIZEDARR WordStr;
+ *         DWORD_SIZEDARR LongStr;
+ *         HYPER_SIZEDARR HyperStr;
+ *     } u;
+ * } SAFEARRAYUNION
+ * }
+ */
 public class SAFEARRAYUNION extends _wireSAFEARRAY_UNION {
 
+    SAFEARRAYUNION() {
+        // Should not be called directly
+    }
 }
-
 

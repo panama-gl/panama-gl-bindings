@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE {
+ *     DWORD ResponseLevel;
+ *     DWORD NumberEntries;
+ *     union {
+ *         STORAGE_QUERY_DEPENDENT_VOLUME_LEV1_ENTRY Lev1Depends[];
+ *         STORAGE_QUERY_DEPENDENT_VOLUME_LEV2_ENTRY Lev2Depends[];
+ *     };
+ * } STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE
+ * }
+ */
 public class STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE extends _STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE {
 
+    STORAGE_QUERY_DEPENDENT_VOLUME_RESPONSE() {
+        // Should not be called directly
+    }
 }
-
 

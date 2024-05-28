@@ -2,138 +2,461 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * union _STORAGE_SPEC_VERSION {
+ *     struct {
+ *         union {
+ *             struct {
+ *                 BYTE SubMinor;
+ *                 BYTE Minor;
+ *             };
+ *             WORD AsUshort;
+ *         } MinorVersion;
+ *         WORD MajorVersion;
+ *     };
+ *     DWORD AsUlong;
+ * }
+ * }
+ */
 public class _STORAGE_SPEC_VERSION {
 
-    static final  GroupLayout $union$LAYOUT = MemoryLayout.unionLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_CHAR$LAYOUT.withName("SubMinor"),
-                    Constants$root.C_CHAR$LAYOUT.withName("Minor")
-                ).withName("$anon$0"),
-                Constants$root.C_SHORT$LAYOUT.withName("AsUshort")
-            ).withName("MinorVersion"),
-            Constants$root.C_SHORT$LAYOUT.withName("MajorVersion")
-        ).withName("$anon$0"),
-        Constants$root.C_LONG$LAYOUT.withName("AsUlong")
-    ).withName("_STORAGE_SPEC_VERSION");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_SPEC_VERSION.$union$LAYOUT;
+    _STORAGE_SPEC_VERSION() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+        MemoryLayout.structLayout(
+            _STORAGE_SPEC_VERSION.MinorVersion.layout().withName("MinorVersion"),
+            wgl_h.C_SHORT.withName("MajorVersion")
+        ).withName("$anon$2461:5"),
+        wgl_h.C_LONG.withName("AsUlong")
+    ).withName("_STORAGE_SPEC_VERSION");
+
+    /**
+     * The layout of this union
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SubMinor;
+     *         BYTE Minor;
+     *     };
+     *     WORD AsUshort;
+     * }
+     * }
+     */
     public static class MinorVersion {
 
-        static final  GroupLayout MinorVersion$union$LAYOUT = MemoryLayout.unionLayout(
+        MinorVersion() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
             MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("SubMinor"),
-                Constants$root.C_CHAR$LAYOUT.withName("Minor")
-            ).withName("$anon$0"),
-            Constants$root.C_SHORT$LAYOUT.withName("AsUshort")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return MinorVersion.MinorVersion$union$LAYOUT;
+                wgl_h.C_CHAR.withName("SubMinor"),
+                wgl_h.C_CHAR.withName("Minor")
+            ).withName("$anon$2463:13"),
+            wgl_h.C_SHORT.withName("AsUshort")
+        ).withName("$anon$2462:9");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        static final VarHandle SubMinor$VH = MinorVersion$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("SubMinor"));
-        public static VarHandle SubMinor$VH() {
-            return MinorVersion.SubMinor$VH;
+
+        private static final OfByte SubMinor$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$2463:13"), groupElement("SubMinor"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE SubMinor
+         * }
+         */
+        public static final OfByte SubMinor$layout() {
+            return SubMinor$LAYOUT;
         }
-        public static byte SubMinor$get(MemorySegment seg) {
-            return (byte)MinorVersion.SubMinor$VH.get(seg);
+
+        private static final long SubMinor$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE SubMinor
+         * }
+         */
+        public static final long SubMinor$offset() {
+            return SubMinor$OFFSET;
         }
-        public static void SubMinor$set( MemorySegment seg, byte x) {
-            MinorVersion.SubMinor$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE SubMinor
+         * }
+         */
+        public static byte SubMinor(MemorySegment union) {
+            return union.get(SubMinor$LAYOUT, SubMinor$OFFSET);
         }
-        public static byte SubMinor$get(MemorySegment seg, long index) {
-            return (byte)MinorVersion.SubMinor$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE SubMinor
+         * }
+         */
+        public static void SubMinor(MemorySegment union, byte fieldValue) {
+            union.set(SubMinor$LAYOUT, SubMinor$OFFSET, fieldValue);
         }
-        public static void SubMinor$set(MemorySegment seg, long index, byte x) {
-            MinorVersion.SubMinor$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final OfByte Minor$LAYOUT = (OfByte)$LAYOUT.select(groupElement("$anon$2463:13"), groupElement("Minor"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * BYTE Minor
+         * }
+         */
+        public static final OfByte Minor$layout() {
+            return Minor$LAYOUT;
         }
-        static final VarHandle Minor$VH = MinorVersion$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("Minor"));
-        public static VarHandle Minor$VH() {
-            return MinorVersion.Minor$VH;
+
+        private static final long Minor$OFFSET = 1;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * BYTE Minor
+         * }
+         */
+        public static final long Minor$offset() {
+            return Minor$OFFSET;
         }
-        public static byte Minor$get(MemorySegment seg) {
-            return (byte)MinorVersion.Minor$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * BYTE Minor
+         * }
+         */
+        public static byte Minor(MemorySegment union) {
+            return union.get(Minor$LAYOUT, Minor$OFFSET);
         }
-        public static void Minor$set( MemorySegment seg, byte x) {
-            MinorVersion.Minor$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * BYTE Minor
+         * }
+         */
+        public static void Minor(MemorySegment union, byte fieldValue) {
+            union.set(Minor$LAYOUT, Minor$OFFSET, fieldValue);
         }
-        public static byte Minor$get(MemorySegment seg, long index) {
-            return (byte)MinorVersion.Minor$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfShort AsUshort$LAYOUT = (OfShort)$LAYOUT.select(groupElement("AsUshort"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WORD AsUshort
+         * }
+         */
+        public static final OfShort AsUshort$layout() {
+            return AsUshort$LAYOUT;
         }
-        public static void Minor$set(MemorySegment seg, long index, byte x) {
-            MinorVersion.Minor$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long AsUshort$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WORD AsUshort
+         * }
+         */
+        public static final long AsUshort$offset() {
+            return AsUshort$OFFSET;
         }
-        static final VarHandle AsUshort$VH = MinorVersion$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsUshort"));
-        public static VarHandle AsUshort$VH() {
-            return MinorVersion.AsUshort$VH;
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WORD AsUshort
+         * }
+         */
+        public static short AsUshort(MemorySegment union) {
+            return union.get(AsUshort$LAYOUT, AsUshort$OFFSET);
         }
-        public static short AsUshort$get(MemorySegment seg) {
-            return (short)MinorVersion.AsUshort$VH.get(seg);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WORD AsUshort
+         * }
+         */
+        public static void AsUshort(MemorySegment union, short fieldValue) {
+            union.set(AsUshort$LAYOUT, AsUshort$OFFSET, fieldValue);
         }
-        public static void AsUshort$set( MemorySegment seg, short x) {
-            MinorVersion.AsUshort$VH.set(seg, x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static short AsUshort$get(MemorySegment seg, long index) {
-            return (short)MinorVersion.AsUshort$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static void AsUshort$set(MemorySegment seg, long index, short x) {
-            MinorVersion.AsUshort$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment MinorVersion$slice(MemorySegment seg) {
-        return seg.asSlice(0, 2);
+    private static final GroupLayout MinorVersion$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("$anon$2461:5"), groupElement("MinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SubMinor;
+     *         BYTE Minor;
+     *     };
+     *     WORD AsUshort;
+     * } MinorVersion
+     * }
+     */
+    public static final GroupLayout MinorVersion$layout() {
+        return MinorVersion$LAYOUT;
     }
-    static final VarHandle MajorVersion$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("MajorVersion"));
-    public static VarHandle MajorVersion$VH() {
-        return _STORAGE_SPEC_VERSION.MajorVersion$VH;
+
+    private static final long MinorVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SubMinor;
+     *         BYTE Minor;
+     *     };
+     *     WORD AsUshort;
+     * } MinorVersion
+     * }
+     */
+    public static final long MinorVersion$offset() {
+        return MinorVersion$OFFSET;
     }
-    public static short MajorVersion$get(MemorySegment seg) {
-        return (short)_STORAGE_SPEC_VERSION.MajorVersion$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SubMinor;
+     *         BYTE Minor;
+     *     };
+     *     WORD AsUshort;
+     * } MinorVersion
+     * }
+     */
+    public static MemorySegment MinorVersion(MemorySegment union) {
+        return union.asSlice(MinorVersion$OFFSET, MinorVersion$LAYOUT.byteSize());
     }
-    public static void MajorVersion$set( MemorySegment seg, short x) {
-        _STORAGE_SPEC_VERSION.MajorVersion$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SubMinor;
+     *         BYTE Minor;
+     *     };
+     *     WORD AsUshort;
+     * } MinorVersion
+     * }
+     */
+    public static void MinorVersion(MemorySegment union, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, union, MinorVersion$OFFSET, MinorVersion$LAYOUT.byteSize());
     }
-    public static short MajorVersion$get(MemorySegment seg, long index) {
-        return (short)_STORAGE_SPEC_VERSION.MajorVersion$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort MajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("$anon$2461:5"), groupElement("MajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final OfShort MajorVersion$layout() {
+        return MajorVersion$LAYOUT;
     }
-    public static void MajorVersion$set(MemorySegment seg, long index, short x) {
-        _STORAGE_SPEC_VERSION.MajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long MajorVersion$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final long MajorVersion$offset() {
+        return MajorVersion$OFFSET;
     }
-    static final VarHandle AsUlong$VH = $union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsUlong"));
-    public static VarHandle AsUlong$VH() {
-        return _STORAGE_SPEC_VERSION.AsUlong$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static short MajorVersion(MemorySegment union) {
+        return union.get(MajorVersion$LAYOUT, MajorVersion$OFFSET);
     }
-    public static int AsUlong$get(MemorySegment seg) {
-        return (int)_STORAGE_SPEC_VERSION.AsUlong$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static void MajorVersion(MemorySegment union, short fieldValue) {
+        union.set(MajorVersion$LAYOUT, MajorVersion$OFFSET, fieldValue);
     }
-    public static void AsUlong$set( MemorySegment seg, int x) {
-        _STORAGE_SPEC_VERSION.AsUlong$VH.set(seg, x);
+
+    private static final OfInt AsUlong$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AsUlong"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AsUlong
+     * }
+     */
+    public static final OfInt AsUlong$layout() {
+        return AsUlong$LAYOUT;
     }
-    public static int AsUlong$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_SPEC_VERSION.AsUlong$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long AsUlong$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AsUlong
+     * }
+     */
+    public static final long AsUlong$offset() {
+        return AsUlong$OFFSET;
     }
-    public static void AsUlong$set(MemorySegment seg, long index, int x) {
-        _STORAGE_SPEC_VERSION.AsUlong$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AsUlong
+     * }
+     */
+    public static int AsUlong(MemorySegment union) {
+        return union.get(AsUlong$LAYOUT, AsUlong$OFFSET);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AsUlong
+     * }
+     */
+    public static void AsUlong(MemorySegment union, int fieldValue) {
+        union.set(AsUlong$LAYOUT, AsUlong$OFFSET, fieldValue);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this union
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

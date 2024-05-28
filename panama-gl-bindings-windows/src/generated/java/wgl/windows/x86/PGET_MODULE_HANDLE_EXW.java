@@ -2,27 +2,69 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PGET_MODULE_HANDLE_EXW {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwFlags, java.lang.foreign.MemoryAddress lpModuleName, java.lang.foreign.MemoryAddress phModule);
-    static MemorySegment allocate(PGET_MODULE_HANDLE_EXW fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PGET_MODULE_HANDLE_EXW.class, fi, constants$226.PGET_MODULE_HANDLE_EXW$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PGET_MODULE_HANDLE_EXW)(DWORD, LPCWSTR, HMODULE *) __attribute__((stdcall))
+ * }
+ */
+public class PGET_MODULE_HANDLE_EXW {
+
+    PGET_MODULE_HANDLE_EXW() {
+        // Should not be called directly
     }
-    static PGET_MODULE_HANDLE_EXW ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwFlags, java.lang.foreign.MemoryAddress _lpModuleName, java.lang.foreign.MemoryAddress _phModule) -> {
-            try {
-                return (int)constants$226.PGET_MODULE_HANDLE_EXW$MH.invokeExact((Addressable)symbol, _dwFlags, (java.lang.foreign.Addressable)_lpModuleName, (java.lang.foreign.Addressable)_phModule);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwFlags, MemorySegment lpModuleName, MemorySegment phModule);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PGET_MODULE_HANDLE_EXW.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PGET_MODULE_HANDLE_EXW.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwFlags, MemorySegment lpModuleName, MemorySegment phModule) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwFlags, lpModuleName, phModule);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

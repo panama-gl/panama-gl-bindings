@@ -2,48 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEMRSETCOLORADJUSTMENT {
+ *     EMR emr;
+ *     COLORADJUSTMENT ColorAdjustment;
+ * }
+ * }
+ */
 public class tagEMRSETCOLORADJUSTMENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("iType"),
-            Constants$root.C_LONG$LAYOUT.withName("nSize")
-        ).withName("emr"),
-        MemoryLayout.structLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("caSize"),
-            Constants$root.C_SHORT$LAYOUT.withName("caFlags"),
-            Constants$root.C_SHORT$LAYOUT.withName("caIlluminantIndex"),
-            Constants$root.C_SHORT$LAYOUT.withName("caRedGamma"),
-            Constants$root.C_SHORT$LAYOUT.withName("caGreenGamma"),
-            Constants$root.C_SHORT$LAYOUT.withName("caBlueGamma"),
-            Constants$root.C_SHORT$LAYOUT.withName("caReferenceBlack"),
-            Constants$root.C_SHORT$LAYOUT.withName("caReferenceWhite"),
-            Constants$root.C_SHORT$LAYOUT.withName("caContrast"),
-            Constants$root.C_SHORT$LAYOUT.withName("caBrightness"),
-            Constants$root.C_SHORT$LAYOUT.withName("caColorfulness"),
-            Constants$root.C_SHORT$LAYOUT.withName("caRedGreenTint")
-        ).withName("ColorAdjustment")
-    ).withName("tagEMRSETCOLORADJUSTMENT");
-    public static MemoryLayout $LAYOUT() {
-        return tagEMRSETCOLORADJUSTMENT.$struct$LAYOUT;
+    tagEMRSETCOLORADJUSTMENT() {
+        // Should not be called directly
     }
-    public static MemorySegment emr$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment ColorAdjustment$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagEMR.layout().withName("emr"),
+        tagCOLORADJUSTMENT.layout().withName("ColorAdjustment")
+    ).withName("tagEMRSETCOLORADJUSTMENT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout emr$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("emr"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final GroupLayout emr$layout() {
+        return emr$LAYOUT;
+    }
+
+    private static final long emr$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static final long emr$offset() {
+        return emr$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static MemorySegment emr(MemorySegment struct) {
+        return struct.asSlice(emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * EMR emr
+     * }
+     */
+    public static void emr(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, emr$OFFSET, emr$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ColorAdjustment$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ColorAdjustment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * COLORADJUSTMENT ColorAdjustment
+     * }
+     */
+    public static final GroupLayout ColorAdjustment$layout() {
+        return ColorAdjustment$LAYOUT;
+    }
+
+    private static final long ColorAdjustment$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * COLORADJUSTMENT ColorAdjustment
+     * }
+     */
+    public static final long ColorAdjustment$offset() {
+        return ColorAdjustment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * COLORADJUSTMENT ColorAdjustment
+     * }
+     */
+    public static MemorySegment ColorAdjustment(MemorySegment struct) {
+        return struct.asSlice(ColorAdjustment$OFFSET, ColorAdjustment$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * COLORADJUSTMENT ColorAdjustment
+     * }
+     */
+    public static void ColorAdjustment(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ColorAdjustment$OFFSET, ColorAdjustment$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

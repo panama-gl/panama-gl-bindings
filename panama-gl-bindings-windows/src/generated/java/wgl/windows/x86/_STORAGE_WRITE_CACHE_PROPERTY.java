@@ -2,178 +2,495 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_WRITE_CACHE_PROPERTY {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     WRITE_CACHE_TYPE WriteCacheType;
+ *     WRITE_CACHE_ENABLE WriteCacheEnabled;
+ *     WRITE_CACHE_CHANGE WriteCacheChangeable;
+ *     WRITE_THROUGH WriteThroughSupported;
+ *     BOOLEAN FlushCacheSupported;
+ *     BOOLEAN UserDefinedPowerProtection;
+ *     BOOLEAN NVCacheEnabled;
+ * }
+ * }
+ */
 public class _STORAGE_WRITE_CACHE_PROPERTY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("WriteCacheType"),
-        Constants$root.C_LONG$LAYOUT.withName("WriteCacheEnabled"),
-        Constants$root.C_LONG$LAYOUT.withName("WriteCacheChangeable"),
-        Constants$root.C_LONG$LAYOUT.withName("WriteThroughSupported"),
-        Constants$root.C_CHAR$LAYOUT.withName("FlushCacheSupported"),
-        Constants$root.C_CHAR$LAYOUT.withName("UserDefinedPowerProtection"),
-        Constants$root.C_CHAR$LAYOUT.withName("NVCacheEnabled"),
-        MemoryLayout.paddingLayout(8)
-    ).withName("_STORAGE_WRITE_CACHE_PROPERTY");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.$struct$LAYOUT;
+    _STORAGE_WRITE_CACHE_PROPERTY() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteCacheType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteCacheType"));
-    public static VarHandle WriteCacheType$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheType$VH;
-    }
-    public static int WriteCacheType$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheType$VH.get(seg);
-    }
-    public static void WriteCacheType$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheType$VH.set(seg, x);
-    }
-    public static int WriteCacheType$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteCacheType$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteCacheEnabled$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteCacheEnabled"));
-    public static VarHandle WriteCacheEnabled$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheEnabled$VH;
-    }
-    public static int WriteCacheEnabled$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheEnabled$VH.get(seg);
-    }
-    public static void WriteCacheEnabled$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheEnabled$VH.set(seg, x);
-    }
-    public static int WriteCacheEnabled$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheEnabled$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteCacheEnabled$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheEnabled$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteCacheChangeable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteCacheChangeable"));
-    public static VarHandle WriteCacheChangeable$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheChangeable$VH;
-    }
-    public static int WriteCacheChangeable$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheChangeable$VH.get(seg);
-    }
-    public static void WriteCacheChangeable$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheChangeable$VH.set(seg, x);
-    }
-    public static int WriteCacheChangeable$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteCacheChangeable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteCacheChangeable$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteCacheChangeable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteThroughSupported$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteThroughSupported"));
-    public static VarHandle WriteThroughSupported$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.WriteThroughSupported$VH;
-    }
-    public static int WriteThroughSupported$get(MemorySegment seg) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteThroughSupported$VH.get(seg);
-    }
-    public static void WriteThroughSupported$set( MemorySegment seg, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteThroughSupported$VH.set(seg, x);
-    }
-    public static int WriteThroughSupported$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_WRITE_CACHE_PROPERTY.WriteThroughSupported$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteThroughSupported$set(MemorySegment seg, long index, int x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.WriteThroughSupported$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FlushCacheSupported$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FlushCacheSupported"));
-    public static VarHandle FlushCacheSupported$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.FlushCacheSupported$VH;
-    }
-    public static byte FlushCacheSupported$get(MemorySegment seg) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.FlushCacheSupported$VH.get(seg);
-    }
-    public static void FlushCacheSupported$set( MemorySegment seg, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.FlushCacheSupported$VH.set(seg, x);
-    }
-    public static byte FlushCacheSupported$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.FlushCacheSupported$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FlushCacheSupported$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.FlushCacheSupported$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UserDefinedPowerProtection$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UserDefinedPowerProtection"));
-    public static VarHandle UserDefinedPowerProtection$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.UserDefinedPowerProtection$VH;
-    }
-    public static byte UserDefinedPowerProtection$get(MemorySegment seg) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.UserDefinedPowerProtection$VH.get(seg);
-    }
-    public static void UserDefinedPowerProtection$set( MemorySegment seg, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.UserDefinedPowerProtection$VH.set(seg, x);
-    }
-    public static byte UserDefinedPowerProtection$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.UserDefinedPowerProtection$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UserDefinedPowerProtection$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.UserDefinedPowerProtection$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NVCacheEnabled$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NVCacheEnabled"));
-    public static VarHandle NVCacheEnabled$VH() {
-        return _STORAGE_WRITE_CACHE_PROPERTY.NVCacheEnabled$VH;
-    }
-    public static byte NVCacheEnabled$get(MemorySegment seg) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.NVCacheEnabled$VH.get(seg);
-    }
-    public static void NVCacheEnabled$set( MemorySegment seg, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.NVCacheEnabled$VH.set(seg, x);
-    }
-    public static byte NVCacheEnabled$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_WRITE_CACHE_PROPERTY.NVCacheEnabled$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NVCacheEnabled$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_WRITE_CACHE_PROPERTY.NVCacheEnabled$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("WriteCacheType"),
+        wgl_h.C_INT.withName("WriteCacheEnabled"),
+        wgl_h.C_INT.withName("WriteCacheChangeable"),
+        wgl_h.C_INT.withName("WriteThroughSupported"),
+        wgl_h.C_CHAR.withName("FlushCacheSupported"),
+        wgl_h.C_CHAR.withName("UserDefinedPowerProtection"),
+        wgl_h.C_CHAR.withName("NVCacheEnabled"),
+        MemoryLayout.paddingLayout(1)
+    ).withName("_STORAGE_WRITE_CACHE_PROPERTY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WriteCacheType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WriteCacheType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_TYPE WriteCacheType
+     * }
+     */
+    public static final OfInt WriteCacheType$layout() {
+        return WriteCacheType$LAYOUT;
+    }
+
+    private static final long WriteCacheType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_TYPE WriteCacheType
+     * }
+     */
+    public static final long WriteCacheType$offset() {
+        return WriteCacheType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_TYPE WriteCacheType
+     * }
+     */
+    public static int WriteCacheType(MemorySegment struct) {
+        return struct.get(WriteCacheType$LAYOUT, WriteCacheType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_TYPE WriteCacheType
+     * }
+     */
+    public static void WriteCacheType(MemorySegment struct, int fieldValue) {
+        struct.set(WriteCacheType$LAYOUT, WriteCacheType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WriteCacheEnabled$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WriteCacheEnabled"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_ENABLE WriteCacheEnabled
+     * }
+     */
+    public static final OfInt WriteCacheEnabled$layout() {
+        return WriteCacheEnabled$LAYOUT;
+    }
+
+    private static final long WriteCacheEnabled$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_ENABLE WriteCacheEnabled
+     * }
+     */
+    public static final long WriteCacheEnabled$offset() {
+        return WriteCacheEnabled$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_ENABLE WriteCacheEnabled
+     * }
+     */
+    public static int WriteCacheEnabled(MemorySegment struct) {
+        return struct.get(WriteCacheEnabled$LAYOUT, WriteCacheEnabled$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_ENABLE WriteCacheEnabled
+     * }
+     */
+    public static void WriteCacheEnabled(MemorySegment struct, int fieldValue) {
+        struct.set(WriteCacheEnabled$LAYOUT, WriteCacheEnabled$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WriteCacheChangeable$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WriteCacheChangeable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_CHANGE WriteCacheChangeable
+     * }
+     */
+    public static final OfInt WriteCacheChangeable$layout() {
+        return WriteCacheChangeable$LAYOUT;
+    }
+
+    private static final long WriteCacheChangeable$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_CHANGE WriteCacheChangeable
+     * }
+     */
+    public static final long WriteCacheChangeable$offset() {
+        return WriteCacheChangeable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_CHANGE WriteCacheChangeable
+     * }
+     */
+    public static int WriteCacheChangeable(MemorySegment struct) {
+        return struct.get(WriteCacheChangeable$LAYOUT, WriteCacheChangeable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WRITE_CACHE_CHANGE WriteCacheChangeable
+     * }
+     */
+    public static void WriteCacheChangeable(MemorySegment struct, int fieldValue) {
+        struct.set(WriteCacheChangeable$LAYOUT, WriteCacheChangeable$OFFSET, fieldValue);
+    }
+
+    private static final OfInt WriteThroughSupported$LAYOUT = (OfInt)$LAYOUT.select(groupElement("WriteThroughSupported"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WRITE_THROUGH WriteThroughSupported
+     * }
+     */
+    public static final OfInt WriteThroughSupported$layout() {
+        return WriteThroughSupported$LAYOUT;
+    }
+
+    private static final long WriteThroughSupported$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WRITE_THROUGH WriteThroughSupported
+     * }
+     */
+    public static final long WriteThroughSupported$offset() {
+        return WriteThroughSupported$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WRITE_THROUGH WriteThroughSupported
+     * }
+     */
+    public static int WriteThroughSupported(MemorySegment struct) {
+        return struct.get(WriteThroughSupported$LAYOUT, WriteThroughSupported$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WRITE_THROUGH WriteThroughSupported
+     * }
+     */
+    public static void WriteThroughSupported(MemorySegment struct, int fieldValue) {
+        struct.set(WriteThroughSupported$LAYOUT, WriteThroughSupported$OFFSET, fieldValue);
+    }
+
+    private static final OfByte FlushCacheSupported$LAYOUT = (OfByte)$LAYOUT.select(groupElement("FlushCacheSupported"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN FlushCacheSupported
+     * }
+     */
+    public static final OfByte FlushCacheSupported$layout() {
+        return FlushCacheSupported$LAYOUT;
+    }
+
+    private static final long FlushCacheSupported$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN FlushCacheSupported
+     * }
+     */
+    public static final long FlushCacheSupported$offset() {
+        return FlushCacheSupported$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN FlushCacheSupported
+     * }
+     */
+    public static byte FlushCacheSupported(MemorySegment struct) {
+        return struct.get(FlushCacheSupported$LAYOUT, FlushCacheSupported$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN FlushCacheSupported
+     * }
+     */
+    public static void FlushCacheSupported(MemorySegment struct, byte fieldValue) {
+        struct.set(FlushCacheSupported$LAYOUT, FlushCacheSupported$OFFSET, fieldValue);
+    }
+
+    private static final OfByte UserDefinedPowerProtection$LAYOUT = (OfByte)$LAYOUT.select(groupElement("UserDefinedPowerProtection"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN UserDefinedPowerProtection
+     * }
+     */
+    public static final OfByte UserDefinedPowerProtection$layout() {
+        return UserDefinedPowerProtection$LAYOUT;
+    }
+
+    private static final long UserDefinedPowerProtection$OFFSET = 25;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN UserDefinedPowerProtection
+     * }
+     */
+    public static final long UserDefinedPowerProtection$offset() {
+        return UserDefinedPowerProtection$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN UserDefinedPowerProtection
+     * }
+     */
+    public static byte UserDefinedPowerProtection(MemorySegment struct) {
+        return struct.get(UserDefinedPowerProtection$LAYOUT, UserDefinedPowerProtection$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN UserDefinedPowerProtection
+     * }
+     */
+    public static void UserDefinedPowerProtection(MemorySegment struct, byte fieldValue) {
+        struct.set(UserDefinedPowerProtection$LAYOUT, UserDefinedPowerProtection$OFFSET, fieldValue);
+    }
+
+    private static final OfByte NVCacheEnabled$LAYOUT = (OfByte)$LAYOUT.select(groupElement("NVCacheEnabled"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN NVCacheEnabled
+     * }
+     */
+    public static final OfByte NVCacheEnabled$layout() {
+        return NVCacheEnabled$LAYOUT;
+    }
+
+    private static final long NVCacheEnabled$OFFSET = 26;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN NVCacheEnabled
+     * }
+     */
+    public static final long NVCacheEnabled$offset() {
+        return NVCacheEnabled$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN NVCacheEnabled
+     * }
+     */
+    public static byte NVCacheEnabled(MemorySegment struct) {
+        return struct.get(NVCacheEnabled$LAYOUT, NVCacheEnabled$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN NVCacheEnabled
+     * }
+     */
+    public static void NVCacheEnabled(MemorySegment struct, byte fieldValue) {
+        struct.set(NVCacheEnabled$LAYOUT, NVCacheEnabled$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

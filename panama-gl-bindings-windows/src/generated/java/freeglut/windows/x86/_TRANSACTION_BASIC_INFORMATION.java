@@ -2,67 +2,218 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TRANSACTION_BASIC_INFORMATION {
+ *     GUID TransactionId;
+ *     DWORD State;
+ *     DWORD Outcome;
+ * }
+ * }
+ */
 public class _TRANSACTION_BASIC_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("TransactionId"),
-        Constants$root.C_LONG$LAYOUT.withName("State"),
-        Constants$root.C_LONG$LAYOUT.withName("Outcome")
-    ).withName("_TRANSACTION_BASIC_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _TRANSACTION_BASIC_INFORMATION.$struct$LAYOUT;
+    _TRANSACTION_BASIC_INFORMATION() {
+        // Should not be called directly
     }
-    public static MemorySegment TransactionId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    static final VarHandle State$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("State"));
-    public static VarHandle State$VH() {
-        return _TRANSACTION_BASIC_INFORMATION.State$VH;
-    }
-    public static int State$get(MemorySegment seg) {
-        return (int)_TRANSACTION_BASIC_INFORMATION.State$VH.get(seg);
-    }
-    public static void State$set( MemorySegment seg, int x) {
-        _TRANSACTION_BASIC_INFORMATION.State$VH.set(seg, x);
-    }
-    public static int State$get(MemorySegment seg, long index) {
-        return (int)_TRANSACTION_BASIC_INFORMATION.State$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void State$set(MemorySegment seg, long index, int x) {
-        _TRANSACTION_BASIC_INFORMATION.State$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Outcome$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Outcome"));
-    public static VarHandle Outcome$VH() {
-        return _TRANSACTION_BASIC_INFORMATION.Outcome$VH;
-    }
-    public static int Outcome$get(MemorySegment seg) {
-        return (int)_TRANSACTION_BASIC_INFORMATION.Outcome$VH.get(seg);
-    }
-    public static void Outcome$set( MemorySegment seg, int x) {
-        _TRANSACTION_BASIC_INFORMATION.Outcome$VH.set(seg, x);
-    }
-    public static int Outcome$get(MemorySegment seg, long index) {
-        return (int)_TRANSACTION_BASIC_INFORMATION.Outcome$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Outcome$set(MemorySegment seg, long index, int x) {
-        _TRANSACTION_BASIC_INFORMATION.Outcome$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("TransactionId"),
+        freeglut_h.C_LONG.withName("State"),
+        freeglut_h.C_LONG.withName("Outcome")
+    ).withName("_TRANSACTION_BASIC_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout TransactionId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TransactionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static final GroupLayout TransactionId$layout() {
+        return TransactionId$LAYOUT;
+    }
+
+    private static final long TransactionId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static final long TransactionId$offset() {
+        return TransactionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static MemorySegment TransactionId(MemorySegment struct) {
+        return struct.asSlice(TransactionId$OFFSET, TransactionId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID TransactionId
+     * }
+     */
+    public static void TransactionId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TransactionId$OFFSET, TransactionId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt State$LAYOUT = (OfInt)$LAYOUT.select(groupElement("State"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static final OfInt State$layout() {
+        return State$LAYOUT;
+    }
+
+    private static final long State$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static final long State$offset() {
+        return State$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static int State(MemorySegment struct) {
+        return struct.get(State$LAYOUT, State$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD State
+     * }
+     */
+    public static void State(MemorySegment struct, int fieldValue) {
+        struct.set(State$LAYOUT, State$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Outcome$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Outcome"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Outcome
+     * }
+     */
+    public static final OfInt Outcome$layout() {
+        return Outcome$LAYOUT;
+    }
+
+    private static final long Outcome$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Outcome
+     * }
+     */
+    public static final long Outcome$offset() {
+        return Outcome$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Outcome
+     * }
+     */
+    public static int Outcome(MemorySegment struct) {
+        return struct.get(Outcome$LAYOUT, Outcome$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Outcome
+     * }
+     */
+    public static void Outcome(MemorySegment struct, int fieldValue) {
+        struct.set(Outcome$LAYOUT, Outcome$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

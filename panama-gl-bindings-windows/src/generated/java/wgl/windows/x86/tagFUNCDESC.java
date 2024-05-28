@@ -2,240 +2,635 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagFUNCDESC {
+ *     MEMBERID memid;
+ *     SCODE *lprgscode;
+ *     ELEMDESC *lprgelemdescParam;
+ *     FUNCKIND funckind;
+ *     INVOKEKIND invkind;
+ *     CALLCONV callconv;
+ *     SHORT cParams;
+ *     SHORT cParamsOpt;
+ *     SHORT oVft;
+ *     SHORT cScodes;
+ *     ELEMDESC elemdescFunc;
+ *     WORD wFuncFlags;
+ * }
+ * }
+ */
 public class tagFUNCDESC {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("memid"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lprgscode"),
-        Constants$root.C_POINTER$LAYOUT.withName("lprgelemdescParam"),
-        Constants$root.C_LONG$LAYOUT.withName("funckind"),
-        Constants$root.C_LONG$LAYOUT.withName("invkind"),
-        Constants$root.C_LONG$LAYOUT.withName("callconv"),
-        Constants$root.C_SHORT$LAYOUT.withName("cParams"),
-        Constants$root.C_SHORT$LAYOUT.withName("cParamsOpt"),
-        Constants$root.C_SHORT$LAYOUT.withName("oVft"),
-        Constants$root.C_SHORT$LAYOUT.withName("cScodes"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                MemoryLayout.unionLayout(
-                    Constants$root.C_POINTER$LAYOUT.withName("lptdesc"),
-                    Constants$root.C_POINTER$LAYOUT.withName("lpadesc"),
-                    Constants$root.C_LONG$LAYOUT.withName("hreftype")
-                ).withName("$anon$0"),
-                Constants$root.C_SHORT$LAYOUT.withName("vt"),
-                MemoryLayout.paddingLayout(48)
-            ).withName("tdesc"),
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG_LONG$LAYOUT.withName("dwReserved"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wIDLFlags"),
-                    MemoryLayout.paddingLayout(48)
-                ).withName("idldesc"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_POINTER$LAYOUT.withName("pparamdescex"),
-                    Constants$root.C_SHORT$LAYOUT.withName("wParamFlags"),
-                    MemoryLayout.paddingLayout(48)
-                ).withName("paramdesc")
-            ).withName("$anon$0")
-        ).withName("elemdescFunc"),
-        Constants$root.C_SHORT$LAYOUT.withName("wFuncFlags"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("tagFUNCDESC");
-    public static MemoryLayout $LAYOUT() {
-        return tagFUNCDESC.$struct$LAYOUT;
+    tagFUNCDESC() {
+        // Should not be called directly
     }
-    static final VarHandle memid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("memid"));
-    public static VarHandle memid$VH() {
-        return tagFUNCDESC.memid$VH;
-    }
-    public static int memid$get(MemorySegment seg) {
-        return (int)tagFUNCDESC.memid$VH.get(seg);
-    }
-    public static void memid$set( MemorySegment seg, int x) {
-        tagFUNCDESC.memid$VH.set(seg, x);
-    }
-    public static int memid$get(MemorySegment seg, long index) {
-        return (int)tagFUNCDESC.memid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void memid$set(MemorySegment seg, long index, int x) {
-        tagFUNCDESC.memid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lprgscode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lprgscode"));
-    public static VarHandle lprgscode$VH() {
-        return tagFUNCDESC.lprgscode$VH;
-    }
-    public static MemoryAddress lprgscode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagFUNCDESC.lprgscode$VH.get(seg);
-    }
-    public static void lprgscode$set( MemorySegment seg, MemoryAddress x) {
-        tagFUNCDESC.lprgscode$VH.set(seg, x);
-    }
-    public static MemoryAddress lprgscode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagFUNCDESC.lprgscode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lprgscode$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagFUNCDESC.lprgscode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lprgelemdescParam$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lprgelemdescParam"));
-    public static VarHandle lprgelemdescParam$VH() {
-        return tagFUNCDESC.lprgelemdescParam$VH;
-    }
-    public static MemoryAddress lprgelemdescParam$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagFUNCDESC.lprgelemdescParam$VH.get(seg);
-    }
-    public static void lprgelemdescParam$set( MemorySegment seg, MemoryAddress x) {
-        tagFUNCDESC.lprgelemdescParam$VH.set(seg, x);
-    }
-    public static MemoryAddress lprgelemdescParam$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagFUNCDESC.lprgelemdescParam$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lprgelemdescParam$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagFUNCDESC.lprgelemdescParam$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle funckind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("funckind"));
-    public static VarHandle funckind$VH() {
-        return tagFUNCDESC.funckind$VH;
-    }
-    public static int funckind$get(MemorySegment seg) {
-        return (int)tagFUNCDESC.funckind$VH.get(seg);
-    }
-    public static void funckind$set( MemorySegment seg, int x) {
-        tagFUNCDESC.funckind$VH.set(seg, x);
-    }
-    public static int funckind$get(MemorySegment seg, long index) {
-        return (int)tagFUNCDESC.funckind$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void funckind$set(MemorySegment seg, long index, int x) {
-        tagFUNCDESC.funckind$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle invkind$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("invkind"));
-    public static VarHandle invkind$VH() {
-        return tagFUNCDESC.invkind$VH;
-    }
-    public static int invkind$get(MemorySegment seg) {
-        return (int)tagFUNCDESC.invkind$VH.get(seg);
-    }
-    public static void invkind$set( MemorySegment seg, int x) {
-        tagFUNCDESC.invkind$VH.set(seg, x);
-    }
-    public static int invkind$get(MemorySegment seg, long index) {
-        return (int)tagFUNCDESC.invkind$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void invkind$set(MemorySegment seg, long index, int x) {
-        tagFUNCDESC.invkind$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle callconv$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("callconv"));
-    public static VarHandle callconv$VH() {
-        return tagFUNCDESC.callconv$VH;
-    }
-    public static int callconv$get(MemorySegment seg) {
-        return (int)tagFUNCDESC.callconv$VH.get(seg);
-    }
-    public static void callconv$set( MemorySegment seg, int x) {
-        tagFUNCDESC.callconv$VH.set(seg, x);
-    }
-    public static int callconv$get(MemorySegment seg, long index) {
-        return (int)tagFUNCDESC.callconv$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void callconv$set(MemorySegment seg, long index, int x) {
-        tagFUNCDESC.callconv$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cParams$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cParams"));
-    public static VarHandle cParams$VH() {
-        return tagFUNCDESC.cParams$VH;
-    }
-    public static short cParams$get(MemorySegment seg) {
-        return (short)tagFUNCDESC.cParams$VH.get(seg);
-    }
-    public static void cParams$set( MemorySegment seg, short x) {
-        tagFUNCDESC.cParams$VH.set(seg, x);
-    }
-    public static short cParams$get(MemorySegment seg, long index) {
-        return (short)tagFUNCDESC.cParams$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cParams$set(MemorySegment seg, long index, short x) {
-        tagFUNCDESC.cParams$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cParamsOpt$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cParamsOpt"));
-    public static VarHandle cParamsOpt$VH() {
-        return tagFUNCDESC.cParamsOpt$VH;
-    }
-    public static short cParamsOpt$get(MemorySegment seg) {
-        return (short)tagFUNCDESC.cParamsOpt$VH.get(seg);
-    }
-    public static void cParamsOpt$set( MemorySegment seg, short x) {
-        tagFUNCDESC.cParamsOpt$VH.set(seg, x);
-    }
-    public static short cParamsOpt$get(MemorySegment seg, long index) {
-        return (short)tagFUNCDESC.cParamsOpt$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cParamsOpt$set(MemorySegment seg, long index, short x) {
-        tagFUNCDESC.cParamsOpt$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle oVft$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("oVft"));
-    public static VarHandle oVft$VH() {
-        return tagFUNCDESC.oVft$VH;
-    }
-    public static short oVft$get(MemorySegment seg) {
-        return (short)tagFUNCDESC.oVft$VH.get(seg);
-    }
-    public static void oVft$set( MemorySegment seg, short x) {
-        tagFUNCDESC.oVft$VH.set(seg, x);
-    }
-    public static short oVft$get(MemorySegment seg, long index) {
-        return (short)tagFUNCDESC.oVft$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void oVft$set(MemorySegment seg, long index, short x) {
-        tagFUNCDESC.oVft$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cScodes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cScodes"));
-    public static VarHandle cScodes$VH() {
-        return tagFUNCDESC.cScodes$VH;
-    }
-    public static short cScodes$get(MemorySegment seg) {
-        return (short)tagFUNCDESC.cScodes$VH.get(seg);
-    }
-    public static void cScodes$set( MemorySegment seg, short x) {
-        tagFUNCDESC.cScodes$VH.set(seg, x);
-    }
-    public static short cScodes$get(MemorySegment seg, long index) {
-        return (short)tagFUNCDESC.cScodes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cScodes$set(MemorySegment seg, long index, short x) {
-        tagFUNCDESC.cScodes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment elemdescFunc$slice(MemorySegment seg) {
-        return seg.asSlice(48, 32);
-    }
-    static final VarHandle wFuncFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("wFuncFlags"));
-    public static VarHandle wFuncFlags$VH() {
-        return tagFUNCDESC.wFuncFlags$VH;
-    }
-    public static short wFuncFlags$get(MemorySegment seg) {
-        return (short)tagFUNCDESC.wFuncFlags$VH.get(seg);
-    }
-    public static void wFuncFlags$set( MemorySegment seg, short x) {
-        tagFUNCDESC.wFuncFlags$VH.set(seg, x);
-    }
-    public static short wFuncFlags$get(MemorySegment seg, long index) {
-        return (short)tagFUNCDESC.wFuncFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void wFuncFlags$set(MemorySegment seg, long index, short x) {
-        tagFUNCDESC.wFuncFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("memid"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lprgscode"),
+        wgl_h.C_POINTER.withName("lprgelemdescParam"),
+        wgl_h.C_INT.withName("funckind"),
+        wgl_h.C_INT.withName("invkind"),
+        wgl_h.C_INT.withName("callconv"),
+        wgl_h.C_SHORT.withName("cParams"),
+        wgl_h.C_SHORT.withName("cParamsOpt"),
+        wgl_h.C_SHORT.withName("oVft"),
+        wgl_h.C_SHORT.withName("cScodes"),
+        MemoryLayout.paddingLayout(4),
+        tagELEMDESC.layout().withName("elemdescFunc"),
+        wgl_h.C_SHORT.withName("wFuncFlags"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("tagFUNCDESC");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt memid$LAYOUT = (OfInt)$LAYOUT.select(groupElement("memid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MEMBERID memid
+     * }
+     */
+    public static final OfInt memid$layout() {
+        return memid$LAYOUT;
+    }
+
+    private static final long memid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MEMBERID memid
+     * }
+     */
+    public static final long memid$offset() {
+        return memid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MEMBERID memid
+     * }
+     */
+    public static int memid(MemorySegment struct) {
+        return struct.get(memid$LAYOUT, memid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MEMBERID memid
+     * }
+     */
+    public static void memid(MemorySegment struct, int fieldValue) {
+        struct.set(memid$LAYOUT, memid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lprgscode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lprgscode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCODE *lprgscode
+     * }
+     */
+    public static final AddressLayout lprgscode$layout() {
+        return lprgscode$LAYOUT;
+    }
+
+    private static final long lprgscode$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCODE *lprgscode
+     * }
+     */
+    public static final long lprgscode$offset() {
+        return lprgscode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCODE *lprgscode
+     * }
+     */
+    public static MemorySegment lprgscode(MemorySegment struct) {
+        return struct.get(lprgscode$LAYOUT, lprgscode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCODE *lprgscode
+     * }
+     */
+    public static void lprgscode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lprgscode$LAYOUT, lprgscode$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lprgelemdescParam$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lprgelemdescParam"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ELEMDESC *lprgelemdescParam
+     * }
+     */
+    public static final AddressLayout lprgelemdescParam$layout() {
+        return lprgelemdescParam$LAYOUT;
+    }
+
+    private static final long lprgelemdescParam$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ELEMDESC *lprgelemdescParam
+     * }
+     */
+    public static final long lprgelemdescParam$offset() {
+        return lprgelemdescParam$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ELEMDESC *lprgelemdescParam
+     * }
+     */
+    public static MemorySegment lprgelemdescParam(MemorySegment struct) {
+        return struct.get(lprgelemdescParam$LAYOUT, lprgelemdescParam$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ELEMDESC *lprgelemdescParam
+     * }
+     */
+    public static void lprgelemdescParam(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lprgelemdescParam$LAYOUT, lprgelemdescParam$OFFSET, fieldValue);
+    }
+
+    private static final OfInt funckind$LAYOUT = (OfInt)$LAYOUT.select(groupElement("funckind"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FUNCKIND funckind
+     * }
+     */
+    public static final OfInt funckind$layout() {
+        return funckind$LAYOUT;
+    }
+
+    private static final long funckind$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FUNCKIND funckind
+     * }
+     */
+    public static final long funckind$offset() {
+        return funckind$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FUNCKIND funckind
+     * }
+     */
+    public static int funckind(MemorySegment struct) {
+        return struct.get(funckind$LAYOUT, funckind$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FUNCKIND funckind
+     * }
+     */
+    public static void funckind(MemorySegment struct, int fieldValue) {
+        struct.set(funckind$LAYOUT, funckind$OFFSET, fieldValue);
+    }
+
+    private static final OfInt invkind$LAYOUT = (OfInt)$LAYOUT.select(groupElement("invkind"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * INVOKEKIND invkind
+     * }
+     */
+    public static final OfInt invkind$layout() {
+        return invkind$LAYOUT;
+    }
+
+    private static final long invkind$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * INVOKEKIND invkind
+     * }
+     */
+    public static final long invkind$offset() {
+        return invkind$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * INVOKEKIND invkind
+     * }
+     */
+    public static int invkind(MemorySegment struct) {
+        return struct.get(invkind$LAYOUT, invkind$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * INVOKEKIND invkind
+     * }
+     */
+    public static void invkind(MemorySegment struct, int fieldValue) {
+        struct.set(invkind$LAYOUT, invkind$OFFSET, fieldValue);
+    }
+
+    private static final OfInt callconv$LAYOUT = (OfInt)$LAYOUT.select(groupElement("callconv"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CALLCONV callconv
+     * }
+     */
+    public static final OfInt callconv$layout() {
+        return callconv$LAYOUT;
+    }
+
+    private static final long callconv$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CALLCONV callconv
+     * }
+     */
+    public static final long callconv$offset() {
+        return callconv$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CALLCONV callconv
+     * }
+     */
+    public static int callconv(MemorySegment struct) {
+        return struct.get(callconv$LAYOUT, callconv$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CALLCONV callconv
+     * }
+     */
+    public static void callconv(MemorySegment struct, int fieldValue) {
+        struct.set(callconv$LAYOUT, callconv$OFFSET, fieldValue);
+    }
+
+    private static final OfShort cParams$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cParams"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT cParams
+     * }
+     */
+    public static final OfShort cParams$layout() {
+        return cParams$LAYOUT;
+    }
+
+    private static final long cParams$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT cParams
+     * }
+     */
+    public static final long cParams$offset() {
+        return cParams$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT cParams
+     * }
+     */
+    public static short cParams(MemorySegment struct) {
+        return struct.get(cParams$LAYOUT, cParams$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT cParams
+     * }
+     */
+    public static void cParams(MemorySegment struct, short fieldValue) {
+        struct.set(cParams$LAYOUT, cParams$OFFSET, fieldValue);
+    }
+
+    private static final OfShort cParamsOpt$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cParamsOpt"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT cParamsOpt
+     * }
+     */
+    public static final OfShort cParamsOpt$layout() {
+        return cParamsOpt$LAYOUT;
+    }
+
+    private static final long cParamsOpt$OFFSET = 38;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT cParamsOpt
+     * }
+     */
+    public static final long cParamsOpt$offset() {
+        return cParamsOpt$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT cParamsOpt
+     * }
+     */
+    public static short cParamsOpt(MemorySegment struct) {
+        return struct.get(cParamsOpt$LAYOUT, cParamsOpt$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT cParamsOpt
+     * }
+     */
+    public static void cParamsOpt(MemorySegment struct, short fieldValue) {
+        struct.set(cParamsOpt$LAYOUT, cParamsOpt$OFFSET, fieldValue);
+    }
+
+    private static final OfShort oVft$LAYOUT = (OfShort)$LAYOUT.select(groupElement("oVft"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT oVft
+     * }
+     */
+    public static final OfShort oVft$layout() {
+        return oVft$LAYOUT;
+    }
+
+    private static final long oVft$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT oVft
+     * }
+     */
+    public static final long oVft$offset() {
+        return oVft$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT oVft
+     * }
+     */
+    public static short oVft(MemorySegment struct) {
+        return struct.get(oVft$LAYOUT, oVft$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT oVft
+     * }
+     */
+    public static void oVft(MemorySegment struct, short fieldValue) {
+        struct.set(oVft$LAYOUT, oVft$OFFSET, fieldValue);
+    }
+
+    private static final OfShort cScodes$LAYOUT = (OfShort)$LAYOUT.select(groupElement("cScodes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SHORT cScodes
+     * }
+     */
+    public static final OfShort cScodes$layout() {
+        return cScodes$LAYOUT;
+    }
+
+    private static final long cScodes$OFFSET = 42;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SHORT cScodes
+     * }
+     */
+    public static final long cScodes$offset() {
+        return cScodes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SHORT cScodes
+     * }
+     */
+    public static short cScodes(MemorySegment struct) {
+        return struct.get(cScodes$LAYOUT, cScodes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SHORT cScodes
+     * }
+     */
+    public static void cScodes(MemorySegment struct, short fieldValue) {
+        struct.set(cScodes$LAYOUT, cScodes$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout elemdescFunc$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("elemdescFunc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ELEMDESC elemdescFunc
+     * }
+     */
+    public static final GroupLayout elemdescFunc$layout() {
+        return elemdescFunc$LAYOUT;
+    }
+
+    private static final long elemdescFunc$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ELEMDESC elemdescFunc
+     * }
+     */
+    public static final long elemdescFunc$offset() {
+        return elemdescFunc$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ELEMDESC elemdescFunc
+     * }
+     */
+    public static MemorySegment elemdescFunc(MemorySegment struct) {
+        return struct.asSlice(elemdescFunc$OFFSET, elemdescFunc$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ELEMDESC elemdescFunc
+     * }
+     */
+    public static void elemdescFunc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elemdescFunc$OFFSET, elemdescFunc$LAYOUT.byteSize());
+    }
+
+    private static final OfShort wFuncFlags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("wFuncFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD wFuncFlags
+     * }
+     */
+    public static final OfShort wFuncFlags$layout() {
+        return wFuncFlags$LAYOUT;
+    }
+
+    private static final long wFuncFlags$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD wFuncFlags
+     * }
+     */
+    public static final long wFuncFlags$offset() {
+        return wFuncFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD wFuncFlags
+     * }
+     */
+    public static short wFuncFlags(MemorySegment struct) {
+        return struct.get(wFuncFlags$LAYOUT, wFuncFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD wFuncFlags
+     * }
+     */
+    public static void wFuncFlags(MemorySegment struct, short fieldValue) {
+        struct.set(wFuncFlags$LAYOUT, wFuncFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,177 +2,494 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _NON_PAGED_DEBUG_INFO {
+ *     WORD Signature;
+ *     WORD Flags;
+ *     DWORD Size;
+ *     WORD Machine;
+ *     WORD Characteristics;
+ *     DWORD TimeDateStamp;
+ *     DWORD CheckSum;
+ *     DWORD SizeOfImage;
+ *     ULONGLONG ImageBase;
+ * }
+ * }
+ */
 public class _NON_PAGED_DEBUG_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Signature"),
-        Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_SHORT$LAYOUT.withName("Machine"),
-        Constants$root.C_SHORT$LAYOUT.withName("Characteristics"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeDateStamp"),
-        Constants$root.C_LONG$LAYOUT.withName("CheckSum"),
-        Constants$root.C_LONG$LAYOUT.withName("SizeOfImage"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ImageBase")
-    ).withName("_NON_PAGED_DEBUG_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _NON_PAGED_DEBUG_INFO.$struct$LAYOUT;
+    _NON_PAGED_DEBUG_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Signature$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Signature"));
-    public static VarHandle Signature$VH() {
-        return _NON_PAGED_DEBUG_INFO.Signature$VH;
-    }
-    public static short Signature$get(MemorySegment seg) {
-        return (short)_NON_PAGED_DEBUG_INFO.Signature$VH.get(seg);
-    }
-    public static void Signature$set( MemorySegment seg, short x) {
-        _NON_PAGED_DEBUG_INFO.Signature$VH.set(seg, x);
-    }
-    public static short Signature$get(MemorySegment seg, long index) {
-        return (short)_NON_PAGED_DEBUG_INFO.Signature$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Signature$set(MemorySegment seg, long index, short x) {
-        _NON_PAGED_DEBUG_INFO.Signature$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _NON_PAGED_DEBUG_INFO.Flags$VH;
-    }
-    public static short Flags$get(MemorySegment seg) {
-        return (short)_NON_PAGED_DEBUG_INFO.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, short x) {
-        _NON_PAGED_DEBUG_INFO.Flags$VH.set(seg, x);
-    }
-    public static short Flags$get(MemorySegment seg, long index) {
-        return (short)_NON_PAGED_DEBUG_INFO.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, short x) {
-        _NON_PAGED_DEBUG_INFO.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _NON_PAGED_DEBUG_INFO.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_NON_PAGED_DEBUG_INFO.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _NON_PAGED_DEBUG_INFO.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_NON_PAGED_DEBUG_INFO.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _NON_PAGED_DEBUG_INFO.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Machine$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Machine"));
-    public static VarHandle Machine$VH() {
-        return _NON_PAGED_DEBUG_INFO.Machine$VH;
-    }
-    public static short Machine$get(MemorySegment seg) {
-        return (short)_NON_PAGED_DEBUG_INFO.Machine$VH.get(seg);
-    }
-    public static void Machine$set( MemorySegment seg, short x) {
-        _NON_PAGED_DEBUG_INFO.Machine$VH.set(seg, x);
-    }
-    public static short Machine$get(MemorySegment seg, long index) {
-        return (short)_NON_PAGED_DEBUG_INFO.Machine$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Machine$set(MemorySegment seg, long index, short x) {
-        _NON_PAGED_DEBUG_INFO.Machine$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Characteristics$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Characteristics"));
-    public static VarHandle Characteristics$VH() {
-        return _NON_PAGED_DEBUG_INFO.Characteristics$VH;
-    }
-    public static short Characteristics$get(MemorySegment seg) {
-        return (short)_NON_PAGED_DEBUG_INFO.Characteristics$VH.get(seg);
-    }
-    public static void Characteristics$set( MemorySegment seg, short x) {
-        _NON_PAGED_DEBUG_INFO.Characteristics$VH.set(seg, x);
-    }
-    public static short Characteristics$get(MemorySegment seg, long index) {
-        return (short)_NON_PAGED_DEBUG_INFO.Characteristics$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Characteristics$set(MemorySegment seg, long index, short x) {
-        _NON_PAGED_DEBUG_INFO.Characteristics$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeDateStamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeDateStamp"));
-    public static VarHandle TimeDateStamp$VH() {
-        return _NON_PAGED_DEBUG_INFO.TimeDateStamp$VH;
-    }
-    public static int TimeDateStamp$get(MemorySegment seg) {
-        return (int)_NON_PAGED_DEBUG_INFO.TimeDateStamp$VH.get(seg);
-    }
-    public static void TimeDateStamp$set( MemorySegment seg, int x) {
-        _NON_PAGED_DEBUG_INFO.TimeDateStamp$VH.set(seg, x);
-    }
-    public static int TimeDateStamp$get(MemorySegment seg, long index) {
-        return (int)_NON_PAGED_DEBUG_INFO.TimeDateStamp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeDateStamp$set(MemorySegment seg, long index, int x) {
-        _NON_PAGED_DEBUG_INFO.TimeDateStamp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CheckSum$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CheckSum"));
-    public static VarHandle CheckSum$VH() {
-        return _NON_PAGED_DEBUG_INFO.CheckSum$VH;
-    }
-    public static int CheckSum$get(MemorySegment seg) {
-        return (int)_NON_PAGED_DEBUG_INFO.CheckSum$VH.get(seg);
-    }
-    public static void CheckSum$set( MemorySegment seg, int x) {
-        _NON_PAGED_DEBUG_INFO.CheckSum$VH.set(seg, x);
-    }
-    public static int CheckSum$get(MemorySegment seg, long index) {
-        return (int)_NON_PAGED_DEBUG_INFO.CheckSum$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CheckSum$set(MemorySegment seg, long index, int x) {
-        _NON_PAGED_DEBUG_INFO.CheckSum$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SizeOfImage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SizeOfImage"));
-    public static VarHandle SizeOfImage$VH() {
-        return _NON_PAGED_DEBUG_INFO.SizeOfImage$VH;
-    }
-    public static int SizeOfImage$get(MemorySegment seg) {
-        return (int)_NON_PAGED_DEBUG_INFO.SizeOfImage$VH.get(seg);
-    }
-    public static void SizeOfImage$set( MemorySegment seg, int x) {
-        _NON_PAGED_DEBUG_INFO.SizeOfImage$VH.set(seg, x);
-    }
-    public static int SizeOfImage$get(MemorySegment seg, long index) {
-        return (int)_NON_PAGED_DEBUG_INFO.SizeOfImage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SizeOfImage$set(MemorySegment seg, long index, int x) {
-        _NON_PAGED_DEBUG_INFO.SizeOfImage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ImageBase$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ImageBase"));
-    public static VarHandle ImageBase$VH() {
-        return _NON_PAGED_DEBUG_INFO.ImageBase$VH;
-    }
-    public static long ImageBase$get(MemorySegment seg) {
-        return (long)_NON_PAGED_DEBUG_INFO.ImageBase$VH.get(seg);
-    }
-    public static void ImageBase$set( MemorySegment seg, long x) {
-        _NON_PAGED_DEBUG_INFO.ImageBase$VH.set(seg, x);
-    }
-    public static long ImageBase$get(MemorySegment seg, long index) {
-        return (long)_NON_PAGED_DEBUG_INFO.ImageBase$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ImageBase$set(MemorySegment seg, long index, long x) {
-        _NON_PAGED_DEBUG_INFO.ImageBase$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_SHORT.withName("Signature"),
+        wgl_h.C_SHORT.withName("Flags"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_SHORT.withName("Machine"),
+        wgl_h.C_SHORT.withName("Characteristics"),
+        wgl_h.C_LONG.withName("TimeDateStamp"),
+        wgl_h.C_LONG.withName("CheckSum"),
+        wgl_h.C_LONG.withName("SizeOfImage"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 4).withName("ImageBase")
+    ).withName("_NON_PAGED_DEBUG_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Signature$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Signature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Signature
+     * }
+     */
+    public static final OfShort Signature$layout() {
+        return Signature$LAYOUT;
+    }
+
+    private static final long Signature$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Signature
+     * }
+     */
+    public static final long Signature$offset() {
+        return Signature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Signature
+     * }
+     */
+    public static short Signature(MemorySegment struct) {
+        return struct.get(Signature$LAYOUT, Signature$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Signature
+     * }
+     */
+    public static void Signature(MemorySegment struct, short fieldValue) {
+        struct.set(Signature$LAYOUT, Signature$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Flags$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final OfShort Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static short Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, short fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Machine$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Machine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static final OfShort Machine$layout() {
+        return Machine$LAYOUT;
+    }
+
+    private static final long Machine$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static final long Machine$offset() {
+        return Machine$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static short Machine(MemorySegment struct) {
+        return struct.get(Machine$LAYOUT, Machine$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static void Machine(MemorySegment struct, short fieldValue) {
+        struct.set(Machine$LAYOUT, Machine$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Characteristics$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Characteristics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static final OfShort Characteristics$layout() {
+        return Characteristics$LAYOUT;
+    }
+
+    private static final long Characteristics$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static final long Characteristics$offset() {
+        return Characteristics$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static short Characteristics(MemorySegment struct) {
+        return struct.get(Characteristics$LAYOUT, Characteristics$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static void Characteristics(MemorySegment struct, short fieldValue) {
+        struct.set(Characteristics$LAYOUT, Characteristics$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeDateStamp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeDateStamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final OfInt TimeDateStamp$layout() {
+        return TimeDateStamp$LAYOUT;
+    }
+
+    private static final long TimeDateStamp$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final long TimeDateStamp$offset() {
+        return TimeDateStamp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static int TimeDateStamp(MemorySegment struct) {
+        return struct.get(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static void TimeDateStamp(MemorySegment struct, int fieldValue) {
+        struct.set(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CheckSum$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CheckSum"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CheckSum
+     * }
+     */
+    public static final OfInt CheckSum$layout() {
+        return CheckSum$LAYOUT;
+    }
+
+    private static final long CheckSum$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CheckSum
+     * }
+     */
+    public static final long CheckSum$offset() {
+        return CheckSum$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CheckSum
+     * }
+     */
+    public static int CheckSum(MemorySegment struct) {
+        return struct.get(CheckSum$LAYOUT, CheckSum$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CheckSum
+     * }
+     */
+    public static void CheckSum(MemorySegment struct, int fieldValue) {
+        struct.set(CheckSum$LAYOUT, CheckSum$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SizeOfImage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SizeOfImage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfImage
+     * }
+     */
+    public static final OfInt SizeOfImage$layout() {
+        return SizeOfImage$LAYOUT;
+    }
+
+    private static final long SizeOfImage$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfImage
+     * }
+     */
+    public static final long SizeOfImage$offset() {
+        return SizeOfImage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfImage
+     * }
+     */
+    public static int SizeOfImage(MemorySegment struct) {
+        return struct.get(SizeOfImage$LAYOUT, SizeOfImage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfImage
+     * }
+     */
+    public static void SizeOfImage(MemorySegment struct, int fieldValue) {
+        struct.set(SizeOfImage$LAYOUT, SizeOfImage$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ImageBase$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ImageBase"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ImageBase
+     * }
+     */
+    public static final OfLong ImageBase$layout() {
+        return ImageBase$LAYOUT;
+    }
+
+    private static final long ImageBase$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ImageBase
+     * }
+     */
+    public static final long ImageBase$offset() {
+        return ImageBase$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ImageBase
+     * }
+     */
+    public static long ImageBase(MemorySegment struct) {
+        return struct.get(ImageBase$LAYOUT, ImageBase$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ImageBase
+     * }
+     */
+    public static void ImageBase(MemorySegment struct, long fieldValue) {
+        struct.set(ImageBase$LAYOUT, ImageBase$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagNMHDR {
+ *     HWND hwndFrom;
+ *     UINT_PTR idFrom;
+ *     UINT code;
+ * }
+ * }
+ */
 public class tagNMHDR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("hwndFrom"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("idFrom"),
-        Constants$root.C_LONG$LAYOUT.withName("code"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagNMHDR");
-    public static MemoryLayout $LAYOUT() {
-        return tagNMHDR.$struct$LAYOUT;
+    tagNMHDR() {
+        // Should not be called directly
     }
-    static final VarHandle hwndFrom$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndFrom"));
-    public static VarHandle hwndFrom$VH() {
-        return tagNMHDR.hwndFrom$VH;
-    }
-    public static MemoryAddress hwndFrom$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagNMHDR.hwndFrom$VH.get(seg);
-    }
-    public static void hwndFrom$set( MemorySegment seg, MemoryAddress x) {
-        tagNMHDR.hwndFrom$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndFrom$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagNMHDR.hwndFrom$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndFrom$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagNMHDR.hwndFrom$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle idFrom$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("idFrom"));
-    public static VarHandle idFrom$VH() {
-        return tagNMHDR.idFrom$VH;
-    }
-    public static long idFrom$get(MemorySegment seg) {
-        return (long)tagNMHDR.idFrom$VH.get(seg);
-    }
-    public static void idFrom$set( MemorySegment seg, long x) {
-        tagNMHDR.idFrom$VH.set(seg, x);
-    }
-    public static long idFrom$get(MemorySegment seg, long index) {
-        return (long)tagNMHDR.idFrom$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void idFrom$set(MemorySegment seg, long index, long x) {
-        tagNMHDR.idFrom$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle code$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("code"));
-    public static VarHandle code$VH() {
-        return tagNMHDR.code$VH;
-    }
-    public static int code$get(MemorySegment seg) {
-        return (int)tagNMHDR.code$VH.get(seg);
-    }
-    public static void code$set( MemorySegment seg, int x) {
-        tagNMHDR.code$VH.set(seg, x);
-    }
-    public static int code$get(MemorySegment seg, long index) {
-        return (int)tagNMHDR.code$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void code$set(MemorySegment seg, long index, int x) {
-        tagNMHDR.code$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("hwndFrom"),
+        wgl_h.C_LONG_LONG.withName("idFrom"),
+        wgl_h.C_INT.withName("code"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagNMHDR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout hwndFrom$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndFrom"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndFrom
+     * }
+     */
+    public static final AddressLayout hwndFrom$layout() {
+        return hwndFrom$LAYOUT;
+    }
+
+    private static final long hwndFrom$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndFrom
+     * }
+     */
+    public static final long hwndFrom$offset() {
+        return hwndFrom$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndFrom
+     * }
+     */
+    public static MemorySegment hwndFrom(MemorySegment struct) {
+        return struct.get(hwndFrom$LAYOUT, hwndFrom$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndFrom
+     * }
+     */
+    public static void hwndFrom(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndFrom$LAYOUT, hwndFrom$OFFSET, fieldValue);
+    }
+
+    private static final OfLong idFrom$LAYOUT = (OfLong)$LAYOUT.select(groupElement("idFrom"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT_PTR idFrom
+     * }
+     */
+    public static final OfLong idFrom$layout() {
+        return idFrom$LAYOUT;
+    }
+
+    private static final long idFrom$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT_PTR idFrom
+     * }
+     */
+    public static final long idFrom$offset() {
+        return idFrom$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT_PTR idFrom
+     * }
+     */
+    public static long idFrom(MemorySegment struct) {
+        return struct.get(idFrom$LAYOUT, idFrom$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT_PTR idFrom
+     * }
+     */
+    public static void idFrom(MemorySegment struct, long fieldValue) {
+        struct.set(idFrom$LAYOUT, idFrom$OFFSET, fieldValue);
+    }
+
+    private static final OfInt code$LAYOUT = (OfInt)$LAYOUT.select(groupElement("code"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT code
+     * }
+     */
+    public static final OfInt code$layout() {
+        return code$LAYOUT;
+    }
+
+    private static final long code$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT code
+     * }
+     */
+    public static final long code$offset() {
+        return code$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT code
+     * }
+     */
+    public static int code(MemorySegment struct) {
+        return struct.get(code$LAYOUT, code$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT code
+     * }
+     */
+    public static void code(MemorySegment struct, int fieldValue) {
+        struct.set(code$LAYOUT, code$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

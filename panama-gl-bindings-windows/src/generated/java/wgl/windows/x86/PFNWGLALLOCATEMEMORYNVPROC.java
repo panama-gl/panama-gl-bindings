@@ -2,27 +2,70 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFNWGLALLOCATEMEMORYNVPROC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    java.lang.foreign.Addressable apply(int size, float readfreq, float writefreq, float priority);
-    static MemorySegment allocate(PFNWGLALLOCATEMEMORYNVPROC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFNWGLALLOCATEMEMORYNVPROC.class, fi, constants$1410.PFNWGLALLOCATEMEMORYNVPROC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void *(*PFNWGLALLOCATEMEMORYNVPROC)(GLsizei, GLfloat, GLfloat, GLfloat) __attribute__((stdcall))
+ * }
+ */
+public class PFNWGLALLOCATEMEMORYNVPROC {
+
+    PFNWGLALLOCATEMEMORYNVPROC() {
+        // Should not be called directly
     }
-    static PFNWGLALLOCATEMEMORYNVPROC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _size, float _readfreq, float _writefreq, float _priority) -> {
-            try {
-                return (java.lang.foreign.Addressable)(java.lang.foreign.MemoryAddress)constants$1410.PFNWGLALLOCATEMEMORYNVPROC$MH.invokeExact((Addressable)symbol, _size, _readfreq, _writefreq, _priority);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        MemorySegment apply(int size, float readfreq, float writefreq, float priority);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_POINTER,
+        wgl_h.C_INT,
+        wgl_h.C_FLOAT,
+        wgl_h.C_FLOAT,
+        wgl_h.C_FLOAT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFNWGLALLOCATEMEMORYNVPROC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFNWGLALLOCATEMEMORYNVPROC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static MemorySegment invoke(MemorySegment funcPtr,int size, float readfreq, float writefreq, float priority) {
+        try {
+            return (MemorySegment) DOWN$MH.invokeExact(funcPtr, size, readfreq, writefreq, priority);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

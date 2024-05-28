@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_STANDARD_INFO {
+ *     LARGE_INTEGER AllocationSize;
+ *     LARGE_INTEGER EndOfFile;
+ *     DWORD NumberOfLinks;
+ *     BOOLEAN DeletePending;
+ *     BOOLEAN Directory;
+ * } FILE_STANDARD_INFO
+ * }
+ */
 public class FILE_STANDARD_INFO extends _FILE_STANDARD_INFO {
 
+    FILE_STANDARD_INFO() {
+        // Should not be called directly
+    }
 }
-
 

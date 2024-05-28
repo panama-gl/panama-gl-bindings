@@ -2,76 +2,219 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _POWER_SESSION_WINLOGON {
+ *     DWORD SessionId;
+ *     BOOLEAN Console;
+ *     BOOLEAN Locked;
+ * }
+ * }
+ */
 public class _POWER_SESSION_WINLOGON {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("SessionId"),
-        Constants$root.C_CHAR$LAYOUT.withName("Console"),
-        Constants$root.C_CHAR$LAYOUT.withName("Locked"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("_POWER_SESSION_WINLOGON");
-    public static MemoryLayout $LAYOUT() {
-        return _POWER_SESSION_WINLOGON.$struct$LAYOUT;
+    _POWER_SESSION_WINLOGON() {
+        // Should not be called directly
     }
-    static final VarHandle SessionId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SessionId"));
-    public static VarHandle SessionId$VH() {
-        return _POWER_SESSION_WINLOGON.SessionId$VH;
-    }
-    public static int SessionId$get(MemorySegment seg) {
-        return (int)_POWER_SESSION_WINLOGON.SessionId$VH.get(seg);
-    }
-    public static void SessionId$set( MemorySegment seg, int x) {
-        _POWER_SESSION_WINLOGON.SessionId$VH.set(seg, x);
-    }
-    public static int SessionId$get(MemorySegment seg, long index) {
-        return (int)_POWER_SESSION_WINLOGON.SessionId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SessionId$set(MemorySegment seg, long index, int x) {
-        _POWER_SESSION_WINLOGON.SessionId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Console$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Console"));
-    public static VarHandle Console$VH() {
-        return _POWER_SESSION_WINLOGON.Console$VH;
-    }
-    public static byte Console$get(MemorySegment seg) {
-        return (byte)_POWER_SESSION_WINLOGON.Console$VH.get(seg);
-    }
-    public static void Console$set( MemorySegment seg, byte x) {
-        _POWER_SESSION_WINLOGON.Console$VH.set(seg, x);
-    }
-    public static byte Console$get(MemorySegment seg, long index) {
-        return (byte)_POWER_SESSION_WINLOGON.Console$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Console$set(MemorySegment seg, long index, byte x) {
-        _POWER_SESSION_WINLOGON.Console$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Locked$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Locked"));
-    public static VarHandle Locked$VH() {
-        return _POWER_SESSION_WINLOGON.Locked$VH;
-    }
-    public static byte Locked$get(MemorySegment seg) {
-        return (byte)_POWER_SESSION_WINLOGON.Locked$VH.get(seg);
-    }
-    public static void Locked$set( MemorySegment seg, byte x) {
-        _POWER_SESSION_WINLOGON.Locked$VH.set(seg, x);
-    }
-    public static byte Locked$get(MemorySegment seg, long index) {
-        return (byte)_POWER_SESSION_WINLOGON.Locked$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Locked$set(MemorySegment seg, long index, byte x) {
-        _POWER_SESSION_WINLOGON.Locked$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("SessionId"),
+        wgl_h.C_CHAR.withName("Console"),
+        wgl_h.C_CHAR.withName("Locked"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("_POWER_SESSION_WINLOGON");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt SessionId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SessionId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SessionId
+     * }
+     */
+    public static final OfInt SessionId$layout() {
+        return SessionId$LAYOUT;
+    }
+
+    private static final long SessionId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SessionId
+     * }
+     */
+    public static final long SessionId$offset() {
+        return SessionId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SessionId
+     * }
+     */
+    public static int SessionId(MemorySegment struct) {
+        return struct.get(SessionId$LAYOUT, SessionId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SessionId
+     * }
+     */
+    public static void SessionId(MemorySegment struct, int fieldValue) {
+        struct.set(SessionId$LAYOUT, SessionId$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Console$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Console"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Console
+     * }
+     */
+    public static final OfByte Console$layout() {
+        return Console$LAYOUT;
+    }
+
+    private static final long Console$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Console
+     * }
+     */
+    public static final long Console$offset() {
+        return Console$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Console
+     * }
+     */
+    public static byte Console(MemorySegment struct) {
+        return struct.get(Console$LAYOUT, Console$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Console
+     * }
+     */
+    public static void Console(MemorySegment struct, byte fieldValue) {
+        struct.set(Console$LAYOUT, Console$OFFSET, fieldValue);
+    }
+
+    private static final OfByte Locked$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Locked"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN Locked
+     * }
+     */
+    public static final OfByte Locked$layout() {
+        return Locked$LAYOUT;
+    }
+
+    private static final long Locked$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN Locked
+     * }
+     */
+    public static final long Locked$offset() {
+        return Locked$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Locked
+     * }
+     */
+    public static byte Locked(MemorySegment struct) {
+        return struct.get(Locked$LAYOUT, Locked$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN Locked
+     * }
+     */
+    public static void Locked(MemorySegment struct, byte fieldValue) {
+        struct.set(Locked$LAYOUT, Locked$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FILE_LEVEL_TRIM_RANGE {
+ *     DWORDLONG Offset;
+ *     DWORDLONG Length;
+ * }
+ * }
+ */
 public class _FILE_LEVEL_TRIM_RANGE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Offset"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Length")
-    ).withName("_FILE_LEVEL_TRIM_RANGE");
-    public static MemoryLayout $LAYOUT() {
-        return _FILE_LEVEL_TRIM_RANGE.$struct$LAYOUT;
+    _FILE_LEVEL_TRIM_RANGE() {
+        // Should not be called directly
     }
-    static final VarHandle Offset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Offset"));
-    public static VarHandle Offset$VH() {
-        return _FILE_LEVEL_TRIM_RANGE.Offset$VH;
-    }
-    public static long Offset$get(MemorySegment seg) {
-        return (long)_FILE_LEVEL_TRIM_RANGE.Offset$VH.get(seg);
-    }
-    public static void Offset$set( MemorySegment seg, long x) {
-        _FILE_LEVEL_TRIM_RANGE.Offset$VH.set(seg, x);
-    }
-    public static long Offset$get(MemorySegment seg, long index) {
-        return (long)_FILE_LEVEL_TRIM_RANGE.Offset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Offset$set(MemorySegment seg, long index, long x) {
-        _FILE_LEVEL_TRIM_RANGE.Offset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Length$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Length"));
-    public static VarHandle Length$VH() {
-        return _FILE_LEVEL_TRIM_RANGE.Length$VH;
-    }
-    public static long Length$get(MemorySegment seg) {
-        return (long)_FILE_LEVEL_TRIM_RANGE.Length$VH.get(seg);
-    }
-    public static void Length$set( MemorySegment seg, long x) {
-        _FILE_LEVEL_TRIM_RANGE.Length$VH.set(seg, x);
-    }
-    public static long Length$get(MemorySegment seg, long index) {
-        return (long)_FILE_LEVEL_TRIM_RANGE.Length$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Length$set(MemorySegment seg, long index, long x) {
-        _FILE_LEVEL_TRIM_RANGE.Length$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG_LONG.withName("Offset"),
+        wgl_h.C_LONG_LONG.withName("Length")
+    ).withName("_FILE_LEVEL_TRIM_RANGE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong Offset$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Offset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static final OfLong Offset$layout() {
+        return Offset$LAYOUT;
+    }
+
+    private static final long Offset$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static final long Offset$offset() {
+        return Offset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static long Offset(MemorySegment struct) {
+        return struct.get(Offset$LAYOUT, Offset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Offset
+     * }
+     */
+    public static void Offset(MemorySegment struct, long fieldValue) {
+        struct.set(Offset$LAYOUT, Offset$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Length$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Length"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Length
+     * }
+     */
+    public static final OfLong Length$layout() {
+        return Length$LAYOUT;
+    }
+
+    private static final long Length$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Length
+     * }
+     */
+    public static final long Length$offset() {
+        return Length$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Length
+     * }
+     */
+    public static long Length(MemorySegment struct) {
+        return struct.get(Length$LAYOUT, Length$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Length
+     * }
+     */
+    public static void Length(MemorySegment struct, long fieldValue) {
+        struct.set(Length$LAYOUT, Length$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

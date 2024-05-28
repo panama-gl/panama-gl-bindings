@@ -2,58 +2,172 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CONSOLE_CURSOR_INFO {
+ *     DWORD dwSize;
+ *     BOOL bVisible;
+ * }
+ * }
+ */
 public class _CONSOLE_CURSOR_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-        Constants$root.C_LONG$LAYOUT.withName("bVisible")
-    ).withName("_CONSOLE_CURSOR_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CONSOLE_CURSOR_INFO.$struct$LAYOUT;
+    _CONSOLE_CURSOR_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle dwSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwSize"));
-    public static VarHandle dwSize$VH() {
-        return _CONSOLE_CURSOR_INFO.dwSize$VH;
-    }
-    public static int dwSize$get(MemorySegment seg) {
-        return (int)_CONSOLE_CURSOR_INFO.dwSize$VH.get(seg);
-    }
-    public static void dwSize$set( MemorySegment seg, int x) {
-        _CONSOLE_CURSOR_INFO.dwSize$VH.set(seg, x);
-    }
-    public static int dwSize$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_CURSOR_INFO.dwSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwSize$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_CURSOR_INFO.dwSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bVisible$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bVisible"));
-    public static VarHandle bVisible$VH() {
-        return _CONSOLE_CURSOR_INFO.bVisible$VH;
-    }
-    public static int bVisible$get(MemorySegment seg) {
-        return (int)_CONSOLE_CURSOR_INFO.bVisible$VH.get(seg);
-    }
-    public static void bVisible$set( MemorySegment seg, int x) {
-        _CONSOLE_CURSOR_INFO.bVisible$VH.set(seg, x);
-    }
-    public static int bVisible$get(MemorySegment seg, long index) {
-        return (int)_CONSOLE_CURSOR_INFO.bVisible$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bVisible$set(MemorySegment seg, long index, int x) {
-        _CONSOLE_CURSOR_INFO.bVisible$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("dwSize"),
+        freeglut_h.C_INT.withName("bVisible")
+    ).withName("_CONSOLE_CURSOR_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final OfInt dwSize$layout() {
+        return dwSize$LAYOUT;
+    }
+
+    private static final long dwSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static final long dwSize$offset() {
+        return dwSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static int dwSize(MemorySegment struct) {
+        return struct.get(dwSize$LAYOUT, dwSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwSize
+     * }
+     */
+    public static void dwSize(MemorySegment struct, int fieldValue) {
+        struct.set(dwSize$LAYOUT, dwSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt bVisible$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bVisible"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL bVisible
+     * }
+     */
+    public static final OfInt bVisible$layout() {
+        return bVisible$LAYOUT;
+    }
+
+    private static final long bVisible$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL bVisible
+     * }
+     */
+    public static final long bVisible$offset() {
+        return bVisible$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL bVisible
+     * }
+     */
+    public static int bVisible(MemorySegment struct) {
+        return struct.get(bVisible$LAYOUT, bVisible$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL bVisible
+     * }
+     */
+    public static void bVisible(MemorySegment struct, int fieldValue) {
+        struct.set(bVisible$LAYOUT, bVisible$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

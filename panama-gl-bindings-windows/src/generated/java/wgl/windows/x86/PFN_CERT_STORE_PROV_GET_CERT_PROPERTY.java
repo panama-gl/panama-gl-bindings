@@ -2,27 +2,72 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CERT_STORE_PROV_GET_CERT_PROPERTY {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(java.lang.foreign.MemoryAddress hStoreProv, java.lang.foreign.MemoryAddress pCertContext, int dwPropId, int dwFlags, java.lang.foreign.MemoryAddress pvData, java.lang.foreign.MemoryAddress pcbData);
-    static MemorySegment allocate(PFN_CERT_STORE_PROV_GET_CERT_PROPERTY fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CERT_STORE_PROV_GET_CERT_PROPERTY.class, fi, constants$771.PFN_CERT_STORE_PROV_GET_CERT_PROPERTY$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CERT_STORE_PROV_GET_CERT_PROPERTY)(HCERTSTOREPROV, PCCERT_CONTEXT, DWORD, DWORD, void *, DWORD *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CERT_STORE_PROV_GET_CERT_PROPERTY {
+
+    PFN_CERT_STORE_PROV_GET_CERT_PROPERTY() {
+        // Should not be called directly
     }
-    static PFN_CERT_STORE_PROV_GET_CERT_PROPERTY ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _hStoreProv, java.lang.foreign.MemoryAddress _pCertContext, int _dwPropId, int _dwFlags, java.lang.foreign.MemoryAddress _pvData, java.lang.foreign.MemoryAddress _pcbData) -> {
-            try {
-                return (int)constants$772.PFN_CERT_STORE_PROV_GET_CERT_PROPERTY$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_hStoreProv, (java.lang.foreign.Addressable)_pCertContext, _dwPropId, _dwFlags, (java.lang.foreign.Addressable)_pvData, (java.lang.foreign.Addressable)_pcbData);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(MemorySegment hStoreProv, MemorySegment pCertContext, int dwPropId, int dwFlags, MemorySegment pvData, MemorySegment pcbData);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CERT_STORE_PROV_GET_CERT_PROPERTY.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CERT_STORE_PROV_GET_CERT_PROPERTY.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,MemorySegment hStoreProv, MemorySegment pCertContext, int dwPropId, int dwFlags, MemorySegment pvData, MemorySegment pcbData) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, hStoreProv, pCertContext, dwPropId, dwFlags, pvData, pcbData);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

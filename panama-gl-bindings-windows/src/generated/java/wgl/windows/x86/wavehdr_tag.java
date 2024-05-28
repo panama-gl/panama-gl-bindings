@@ -2,160 +2,448 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct wavehdr_tag {
+ *     LPSTR lpData;
+ *     DWORD dwBufferLength;
+ *     DWORD dwBytesRecorded;
+ *     DWORD_PTR dwUser;
+ *     DWORD dwFlags;
+ *     DWORD dwLoops;
+ *     struct wavehdr_tag *lpNext;
+ *     DWORD_PTR reserved;
+ * }
+ * }
+ */
 public class wavehdr_tag {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("lpData"),
-        Constants$root.C_LONG$LAYOUT.withName("dwBufferLength"),
-        Constants$root.C_LONG$LAYOUT.withName("dwBytesRecorded"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwUser"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLoops"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpNext"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("reserved")
-    ).withName("wavehdr_tag");
-    public static MemoryLayout $LAYOUT() {
-        return wavehdr_tag.$struct$LAYOUT;
+    wavehdr_tag() {
+        // Should not be called directly
     }
-    static final VarHandle lpData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpData"));
-    public static VarHandle lpData$VH() {
-        return wavehdr_tag.lpData$VH;
-    }
-    public static MemoryAddress lpData$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)wavehdr_tag.lpData$VH.get(seg);
-    }
-    public static void lpData$set( MemorySegment seg, MemoryAddress x) {
-        wavehdr_tag.lpData$VH.set(seg, x);
-    }
-    public static MemoryAddress lpData$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)wavehdr_tag.lpData$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpData$set(MemorySegment seg, long index, MemoryAddress x) {
-        wavehdr_tag.lpData$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwBufferLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwBufferLength"));
-    public static VarHandle dwBufferLength$VH() {
-        return wavehdr_tag.dwBufferLength$VH;
-    }
-    public static int dwBufferLength$get(MemorySegment seg) {
-        return (int)wavehdr_tag.dwBufferLength$VH.get(seg);
-    }
-    public static void dwBufferLength$set( MemorySegment seg, int x) {
-        wavehdr_tag.dwBufferLength$VH.set(seg, x);
-    }
-    public static int dwBufferLength$get(MemorySegment seg, long index) {
-        return (int)wavehdr_tag.dwBufferLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwBufferLength$set(MemorySegment seg, long index, int x) {
-        wavehdr_tag.dwBufferLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwBytesRecorded$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwBytesRecorded"));
-    public static VarHandle dwBytesRecorded$VH() {
-        return wavehdr_tag.dwBytesRecorded$VH;
-    }
-    public static int dwBytesRecorded$get(MemorySegment seg) {
-        return (int)wavehdr_tag.dwBytesRecorded$VH.get(seg);
-    }
-    public static void dwBytesRecorded$set( MemorySegment seg, int x) {
-        wavehdr_tag.dwBytesRecorded$VH.set(seg, x);
-    }
-    public static int dwBytesRecorded$get(MemorySegment seg, long index) {
-        return (int)wavehdr_tag.dwBytesRecorded$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwBytesRecorded$set(MemorySegment seg, long index, int x) {
-        wavehdr_tag.dwBytesRecorded$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwUser$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwUser"));
-    public static VarHandle dwUser$VH() {
-        return wavehdr_tag.dwUser$VH;
-    }
-    public static long dwUser$get(MemorySegment seg) {
-        return (long)wavehdr_tag.dwUser$VH.get(seg);
-    }
-    public static void dwUser$set( MemorySegment seg, long x) {
-        wavehdr_tag.dwUser$VH.set(seg, x);
-    }
-    public static long dwUser$get(MemorySegment seg, long index) {
-        return (long)wavehdr_tag.dwUser$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwUser$set(MemorySegment seg, long index, long x) {
-        wavehdr_tag.dwUser$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return wavehdr_tag.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)wavehdr_tag.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        wavehdr_tag.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)wavehdr_tag.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        wavehdr_tag.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwLoops$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLoops"));
-    public static VarHandle dwLoops$VH() {
-        return wavehdr_tag.dwLoops$VH;
-    }
-    public static int dwLoops$get(MemorySegment seg) {
-        return (int)wavehdr_tag.dwLoops$VH.get(seg);
-    }
-    public static void dwLoops$set( MemorySegment seg, int x) {
-        wavehdr_tag.dwLoops$VH.set(seg, x);
-    }
-    public static int dwLoops$get(MemorySegment seg, long index) {
-        return (int)wavehdr_tag.dwLoops$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLoops$set(MemorySegment seg, long index, int x) {
-        wavehdr_tag.dwLoops$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpNext$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpNext"));
-    public static VarHandle lpNext$VH() {
-        return wavehdr_tag.lpNext$VH;
-    }
-    public static MemoryAddress lpNext$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)wavehdr_tag.lpNext$VH.get(seg);
-    }
-    public static void lpNext$set( MemorySegment seg, MemoryAddress x) {
-        wavehdr_tag.lpNext$VH.set(seg, x);
-    }
-    public static MemoryAddress lpNext$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)wavehdr_tag.lpNext$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpNext$set(MemorySegment seg, long index, MemoryAddress x) {
-        wavehdr_tag.lpNext$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("reserved"));
-    public static VarHandle reserved$VH() {
-        return wavehdr_tag.reserved$VH;
-    }
-    public static long reserved$get(MemorySegment seg) {
-        return (long)wavehdr_tag.reserved$VH.get(seg);
-    }
-    public static void reserved$set( MemorySegment seg, long x) {
-        wavehdr_tag.reserved$VH.set(seg, x);
-    }
-    public static long reserved$get(MemorySegment seg, long index) {
-        return (long)wavehdr_tag.reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void reserved$set(MemorySegment seg, long index, long x) {
-        wavehdr_tag.reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("lpData"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwBufferLength"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwBytesRecorded"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("dwUser"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwFlags"),
+        wgl_h.align(wgl_h.C_LONG, 1).withName("dwLoops"),
+        wgl_h.align(wgl_h.C_POINTER, 1).withName("lpNext"),
+        wgl_h.align(wgl_h.C_LONG_LONG, 1).withName("reserved")
+    ).withName("wavehdr_tag");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout lpData$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR lpData
+     * }
+     */
+    public static final AddressLayout lpData$layout() {
+        return lpData$LAYOUT;
+    }
+
+    private static final long lpData$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR lpData
+     * }
+     */
+    public static final long lpData$offset() {
+        return lpData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR lpData
+     * }
+     */
+    public static MemorySegment lpData(MemorySegment struct) {
+        return struct.get(lpData$LAYOUT, lpData$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR lpData
+     * }
+     */
+    public static void lpData(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpData$LAYOUT, lpData$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwBufferLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwBufferLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferLength
+     * }
+     */
+    public static final OfInt dwBufferLength$layout() {
+        return dwBufferLength$LAYOUT;
+    }
+
+    private static final long dwBufferLength$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferLength
+     * }
+     */
+    public static final long dwBufferLength$offset() {
+        return dwBufferLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferLength
+     * }
+     */
+    public static int dwBufferLength(MemorySegment struct) {
+        return struct.get(dwBufferLength$LAYOUT, dwBufferLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwBufferLength
+     * }
+     */
+    public static void dwBufferLength(MemorySegment struct, int fieldValue) {
+        struct.set(dwBufferLength$LAYOUT, dwBufferLength$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwBytesRecorded$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwBytesRecorded"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwBytesRecorded
+     * }
+     */
+    public static final OfInt dwBytesRecorded$layout() {
+        return dwBytesRecorded$LAYOUT;
+    }
+
+    private static final long dwBytesRecorded$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwBytesRecorded
+     * }
+     */
+    public static final long dwBytesRecorded$offset() {
+        return dwBytesRecorded$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwBytesRecorded
+     * }
+     */
+    public static int dwBytesRecorded(MemorySegment struct) {
+        return struct.get(dwBytesRecorded$LAYOUT, dwBytesRecorded$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwBytesRecorded
+     * }
+     */
+    public static void dwBytesRecorded(MemorySegment struct, int fieldValue) {
+        struct.set(dwBytesRecorded$LAYOUT, dwBytesRecorded$OFFSET, fieldValue);
+    }
+
+    private static final OfLong dwUser$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwUser"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static final OfLong dwUser$layout() {
+        return dwUser$LAYOUT;
+    }
+
+    private static final long dwUser$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static final long dwUser$offset() {
+        return dwUser$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static long dwUser(MemorySegment struct) {
+        return struct.get(dwUser$LAYOUT, dwUser$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwUser
+     * }
+     */
+    public static void dwUser(MemorySegment struct, long fieldValue) {
+        struct.set(dwUser$LAYOUT, dwUser$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwLoops$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLoops"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLoops
+     * }
+     */
+    public static final OfInt dwLoops$layout() {
+        return dwLoops$LAYOUT;
+    }
+
+    private static final long dwLoops$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLoops
+     * }
+     */
+    public static final long dwLoops$offset() {
+        return dwLoops$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLoops
+     * }
+     */
+    public static int dwLoops(MemorySegment struct) {
+        return struct.get(dwLoops$LAYOUT, dwLoops$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLoops
+     * }
+     */
+    public static void dwLoops(MemorySegment struct, int fieldValue) {
+        struct.set(dwLoops$LAYOUT, dwLoops$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpNext$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpNext"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct wavehdr_tag *lpNext
+     * }
+     */
+    public static final AddressLayout lpNext$layout() {
+        return lpNext$LAYOUT;
+    }
+
+    private static final long lpNext$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct wavehdr_tag *lpNext
+     * }
+     */
+    public static final long lpNext$offset() {
+        return lpNext$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct wavehdr_tag *lpNext
+     * }
+     */
+    public static MemorySegment lpNext(MemorySegment struct) {
+        return struct.get(lpNext$LAYOUT, lpNext$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct wavehdr_tag *lpNext
+     * }
+     */
+    public static void lpNext(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpNext$LAYOUT, lpNext$OFFSET, fieldValue);
+    }
+
+    private static final OfLong reserved$LAYOUT = (OfLong)$LAYOUT.select(groupElement("reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR reserved
+     * }
+     */
+    public static final OfLong reserved$layout() {
+        return reserved$LAYOUT;
+    }
+
+    private static final long reserved$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR reserved
+     * }
+     */
+    public static final long reserved$offset() {
+        return reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR reserved
+     * }
+     */
+    public static long reserved(MemorySegment struct) {
+        return struct.get(reserved$LAYOUT, reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR reserved
+     * }
+     */
+    public static void reserved(MemorySegment struct, long fieldValue) {
+        struct.set(reserved$LAYOUT, reserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

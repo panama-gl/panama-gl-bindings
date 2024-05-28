@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_HOTPLUG_INFO {
+ *     DWORD Size;
+ *     BOOLEAN MediaRemovable;
+ *     BOOLEAN MediaHotplug;
+ *     BOOLEAN DeviceHotplug;
+ *     BOOLEAN WriteCacheEnableOverride;
+ * }
+ * }
+ */
 public class _STORAGE_HOTPLUG_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_CHAR$LAYOUT.withName("MediaRemovable"),
-        Constants$root.C_CHAR$LAYOUT.withName("MediaHotplug"),
-        Constants$root.C_CHAR$LAYOUT.withName("DeviceHotplug"),
-        Constants$root.C_CHAR$LAYOUT.withName("WriteCacheEnableOverride")
-    ).withName("_STORAGE_HOTPLUG_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_HOTPLUG_INFO.$struct$LAYOUT;
+    _STORAGE_HOTPLUG_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_HOTPLUG_INFO.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_HOTPLUG_INFO.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_HOTPLUG_INFO.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_HOTPLUG_INFO.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_HOTPLUG_INFO.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MediaRemovable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaRemovable"));
-    public static VarHandle MediaRemovable$VH() {
-        return _STORAGE_HOTPLUG_INFO.MediaRemovable$VH;
-    }
-    public static byte MediaRemovable$get(MemorySegment seg) {
-        return (byte)_STORAGE_HOTPLUG_INFO.MediaRemovable$VH.get(seg);
-    }
-    public static void MediaRemovable$set( MemorySegment seg, byte x) {
-        _STORAGE_HOTPLUG_INFO.MediaRemovable$VH.set(seg, x);
-    }
-    public static byte MediaRemovable$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_HOTPLUG_INFO.MediaRemovable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaRemovable$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_HOTPLUG_INFO.MediaRemovable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MediaHotplug$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaHotplug"));
-    public static VarHandle MediaHotplug$VH() {
-        return _STORAGE_HOTPLUG_INFO.MediaHotplug$VH;
-    }
-    public static byte MediaHotplug$get(MemorySegment seg) {
-        return (byte)_STORAGE_HOTPLUG_INFO.MediaHotplug$VH.get(seg);
-    }
-    public static void MediaHotplug$set( MemorySegment seg, byte x) {
-        _STORAGE_HOTPLUG_INFO.MediaHotplug$VH.set(seg, x);
-    }
-    public static byte MediaHotplug$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_HOTPLUG_INFO.MediaHotplug$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaHotplug$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_HOTPLUG_INFO.MediaHotplug$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DeviceHotplug$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeviceHotplug"));
-    public static VarHandle DeviceHotplug$VH() {
-        return _STORAGE_HOTPLUG_INFO.DeviceHotplug$VH;
-    }
-    public static byte DeviceHotplug$get(MemorySegment seg) {
-        return (byte)_STORAGE_HOTPLUG_INFO.DeviceHotplug$VH.get(seg);
-    }
-    public static void DeviceHotplug$set( MemorySegment seg, byte x) {
-        _STORAGE_HOTPLUG_INFO.DeviceHotplug$VH.set(seg, x);
-    }
-    public static byte DeviceHotplug$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_HOTPLUG_INFO.DeviceHotplug$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeviceHotplug$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_HOTPLUG_INFO.DeviceHotplug$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle WriteCacheEnableOverride$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("WriteCacheEnableOverride"));
-    public static VarHandle WriteCacheEnableOverride$VH() {
-        return _STORAGE_HOTPLUG_INFO.WriteCacheEnableOverride$VH;
-    }
-    public static byte WriteCacheEnableOverride$get(MemorySegment seg) {
-        return (byte)_STORAGE_HOTPLUG_INFO.WriteCacheEnableOverride$VH.get(seg);
-    }
-    public static void WriteCacheEnableOverride$set( MemorySegment seg, byte x) {
-        _STORAGE_HOTPLUG_INFO.WriteCacheEnableOverride$VH.set(seg, x);
-    }
-    public static byte WriteCacheEnableOverride$get(MemorySegment seg, long index) {
-        return (byte)_STORAGE_HOTPLUG_INFO.WriteCacheEnableOverride$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void WriteCacheEnableOverride$set(MemorySegment seg, long index, byte x) {
-        _STORAGE_HOTPLUG_INFO.WriteCacheEnableOverride$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_CHAR.withName("MediaRemovable"),
+        wgl_h.C_CHAR.withName("MediaHotplug"),
+        wgl_h.C_CHAR.withName("DeviceHotplug"),
+        wgl_h.C_CHAR.withName("WriteCacheEnableOverride")
+    ).withName("_STORAGE_HOTPLUG_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MediaRemovable$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MediaRemovable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaRemovable
+     * }
+     */
+    public static final OfByte MediaRemovable$layout() {
+        return MediaRemovable$LAYOUT;
+    }
+
+    private static final long MediaRemovable$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaRemovable
+     * }
+     */
+    public static final long MediaRemovable$offset() {
+        return MediaRemovable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaRemovable
+     * }
+     */
+    public static byte MediaRemovable(MemorySegment struct) {
+        return struct.get(MediaRemovable$LAYOUT, MediaRemovable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaRemovable
+     * }
+     */
+    public static void MediaRemovable(MemorySegment struct, byte fieldValue) {
+        struct.set(MediaRemovable$LAYOUT, MediaRemovable$OFFSET, fieldValue);
+    }
+
+    private static final OfByte MediaHotplug$LAYOUT = (OfByte)$LAYOUT.select(groupElement("MediaHotplug"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaHotplug
+     * }
+     */
+    public static final OfByte MediaHotplug$layout() {
+        return MediaHotplug$LAYOUT;
+    }
+
+    private static final long MediaHotplug$OFFSET = 5;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaHotplug
+     * }
+     */
+    public static final long MediaHotplug$offset() {
+        return MediaHotplug$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaHotplug
+     * }
+     */
+    public static byte MediaHotplug(MemorySegment struct) {
+        return struct.get(MediaHotplug$LAYOUT, MediaHotplug$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN MediaHotplug
+     * }
+     */
+    public static void MediaHotplug(MemorySegment struct, byte fieldValue) {
+        struct.set(MediaHotplug$LAYOUT, MediaHotplug$OFFSET, fieldValue);
+    }
+
+    private static final OfByte DeviceHotplug$LAYOUT = (OfByte)$LAYOUT.select(groupElement("DeviceHotplug"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceHotplug
+     * }
+     */
+    public static final OfByte DeviceHotplug$layout() {
+        return DeviceHotplug$LAYOUT;
+    }
+
+    private static final long DeviceHotplug$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceHotplug
+     * }
+     */
+    public static final long DeviceHotplug$offset() {
+        return DeviceHotplug$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceHotplug
+     * }
+     */
+    public static byte DeviceHotplug(MemorySegment struct) {
+        return struct.get(DeviceHotplug$LAYOUT, DeviceHotplug$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN DeviceHotplug
+     * }
+     */
+    public static void DeviceHotplug(MemorySegment struct, byte fieldValue) {
+        struct.set(DeviceHotplug$LAYOUT, DeviceHotplug$OFFSET, fieldValue);
+    }
+
+    private static final OfByte WriteCacheEnableOverride$LAYOUT = (OfByte)$LAYOUT.select(groupElement("WriteCacheEnableOverride"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteCacheEnableOverride
+     * }
+     */
+    public static final OfByte WriteCacheEnableOverride$layout() {
+        return WriteCacheEnableOverride$LAYOUT;
+    }
+
+    private static final long WriteCacheEnableOverride$OFFSET = 7;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteCacheEnableOverride
+     * }
+     */
+    public static final long WriteCacheEnableOverride$offset() {
+        return WriteCacheEnableOverride$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteCacheEnableOverride
+     * }
+     */
+    public static byte WriteCacheEnableOverride(MemorySegment struct) {
+        return struct.get(WriteCacheEnableOverride$LAYOUT, WriteCacheEnableOverride$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN WriteCacheEnableOverride
+     * }
+     */
+    public static void WriteCacheEnableOverride(MemorySegment struct, byte fieldValue) {
+        struct.set(WriteCacheEnableOverride$LAYOUT, WriteCacheEnableOverride$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

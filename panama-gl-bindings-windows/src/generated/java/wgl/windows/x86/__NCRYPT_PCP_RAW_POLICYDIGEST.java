@@ -2,58 +2,172 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct __NCRYPT_PCP_RAW_POLICYDIGEST {
+ *     DWORD dwVersion;
+ *     DWORD cbDigest;
+ * }
+ * }
+ */
 public class __NCRYPT_PCP_RAW_POLICYDIGEST {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("cbDigest")
-    ).withName("__NCRYPT_PCP_RAW_POLICYDIGEST");
-    public static MemoryLayout $LAYOUT() {
-        return __NCRYPT_PCP_RAW_POLICYDIGEST.$struct$LAYOUT;
+    __NCRYPT_PCP_RAW_POLICYDIGEST() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return __NCRYPT_PCP_RAW_POLICYDIGEST.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_RAW_POLICYDIGEST.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_RAW_POLICYDIGEST.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_RAW_POLICYDIGEST.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_RAW_POLICYDIGEST.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cbDigest$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbDigest"));
-    public static VarHandle cbDigest$VH() {
-        return __NCRYPT_PCP_RAW_POLICYDIGEST.cbDigest$VH;
-    }
-    public static int cbDigest$get(MemorySegment seg) {
-        return (int)__NCRYPT_PCP_RAW_POLICYDIGEST.cbDigest$VH.get(seg);
-    }
-    public static void cbDigest$set( MemorySegment seg, int x) {
-        __NCRYPT_PCP_RAW_POLICYDIGEST.cbDigest$VH.set(seg, x);
-    }
-    public static int cbDigest$get(MemorySegment seg, long index) {
-        return (int)__NCRYPT_PCP_RAW_POLICYDIGEST.cbDigest$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbDigest$set(MemorySegment seg, long index, int x) {
-        __NCRYPT_PCP_RAW_POLICYDIGEST.cbDigest$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_LONG.withName("cbDigest")
+    ).withName("__NCRYPT_PCP_RAW_POLICYDIGEST");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cbDigest$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbDigest"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbDigest
+     * }
+     */
+    public static final OfInt cbDigest$layout() {
+        return cbDigest$LAYOUT;
+    }
+
+    private static final long cbDigest$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbDigest
+     * }
+     */
+    public static final long cbDigest$offset() {
+        return cbDigest$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbDigest
+     * }
+     */
+    public static int cbDigest(MemorySegment struct) {
+        return struct.get(cbDigest$LAYOUT, cbDigest$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbDigest
+     * }
+     */
+    public static void cbDigest(MemorySegment struct, int fieldValue) {
+        struct.set(cbDigest$LAYOUT, cbDigest$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

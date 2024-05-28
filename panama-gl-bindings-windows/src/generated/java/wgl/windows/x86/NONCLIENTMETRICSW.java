@@ -2,13 +2,42 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagNONCLIENTMETRICSW {
+ *     UINT cbSize;
+ *     int iBorderWidth;
+ *     int iScrollWidth;
+ *     int iScrollHeight;
+ *     int iCaptionWidth;
+ *     int iCaptionHeight;
+ *     LOGFONTW lfCaptionFont;
+ *     int iSmCaptionWidth;
+ *     int iSmCaptionHeight;
+ *     LOGFONTW lfSmCaptionFont;
+ *     int iMenuWidth;
+ *     int iMenuHeight;
+ *     LOGFONTW lfMenuFont;
+ *     LOGFONTW lfStatusFont;
+ *     LOGFONTW lfMessageFont;
+ *     int iPaddedBorderWidth;
+ * } NONCLIENTMETRICSW
+ * }
+ */
 public class NONCLIENTMETRICSW extends tagNONCLIENTMETRICSW {
 
+    NONCLIENTMETRICSW() {
+        // Should not be called directly
+    }
 }
-
 

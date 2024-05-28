@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     BYTE Mode;
+ *     DWORD64 Processors;
+ * }
+ * }
+ */
 public class PPM_THERMAL_POLICY_EVENT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("Mode"),
-        MemoryLayout.paddingLayout(56),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Processors")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return PPM_THERMAL_POLICY_EVENT.$struct$LAYOUT;
+    PPM_THERMAL_POLICY_EVENT() {
+        // Should not be called directly
     }
-    static final VarHandle Mode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Mode"));
-    public static VarHandle Mode$VH() {
-        return PPM_THERMAL_POLICY_EVENT.Mode$VH;
-    }
-    public static byte Mode$get(MemorySegment seg) {
-        return (byte)PPM_THERMAL_POLICY_EVENT.Mode$VH.get(seg);
-    }
-    public static void Mode$set( MemorySegment seg, byte x) {
-        PPM_THERMAL_POLICY_EVENT.Mode$VH.set(seg, x);
-    }
-    public static byte Mode$get(MemorySegment seg, long index) {
-        return (byte)PPM_THERMAL_POLICY_EVENT.Mode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Mode$set(MemorySegment seg, long index, byte x) {
-        PPM_THERMAL_POLICY_EVENT.Mode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Processors$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Processors"));
-    public static VarHandle Processors$VH() {
-        return PPM_THERMAL_POLICY_EVENT.Processors$VH;
-    }
-    public static long Processors$get(MemorySegment seg) {
-        return (long)PPM_THERMAL_POLICY_EVENT.Processors$VH.get(seg);
-    }
-    public static void Processors$set( MemorySegment seg, long x) {
-        PPM_THERMAL_POLICY_EVENT.Processors$VH.set(seg, x);
-    }
-    public static long Processors$get(MemorySegment seg, long index) {
-        return (long)PPM_THERMAL_POLICY_EVENT.Processors$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Processors$set(MemorySegment seg, long index, long x) {
-        PPM_THERMAL_POLICY_EVENT.Processors$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("Mode"),
+        MemoryLayout.paddingLayout(7),
+        wgl_h.C_LONG_LONG.withName("Processors")
+    ).withName("$anon$16501:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte Mode$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Mode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Mode
+     * }
+     */
+    public static final OfByte Mode$layout() {
+        return Mode$LAYOUT;
+    }
+
+    private static final long Mode$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Mode
+     * }
+     */
+    public static final long Mode$offset() {
+        return Mode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Mode
+     * }
+     */
+    public static byte Mode(MemorySegment struct) {
+        return struct.get(Mode$LAYOUT, Mode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Mode
+     * }
+     */
+    public static void Mode(MemorySegment struct, byte fieldValue) {
+        struct.set(Mode$LAYOUT, Mode$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Processors$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Processors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD64 Processors
+     * }
+     */
+    public static final OfLong Processors$layout() {
+        return Processors$LAYOUT;
+    }
+
+    private static final long Processors$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD64 Processors
+     * }
+     */
+    public static final long Processors$offset() {
+        return Processors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD64 Processors
+     * }
+     */
+    public static long Processors(MemorySegment struct) {
+        return struct.get(Processors$LAYOUT, Processors$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD64 Processors
+     * }
+     */
+    public static void Processors(MemorySegment struct, long fieldValue) {
+        struct.set(Processors$LAYOUT, Processors$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,13 +2,30 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FSCTL_OFFLOAD_READ_OUTPUT {
+ *     DWORD Size;
+ *     DWORD Flags;
+ *     DWORDLONG TransferLength;
+ *     BYTE Token[512];
+ * } FSCTL_OFFLOAD_READ_OUTPUT
+ * }
+ */
 public class FSCTL_OFFLOAD_READ_OUTPUT extends _FSCTL_OFFLOAD_READ_OUTPUT {
 
+    FSCTL_OFFLOAD_READ_OUTPUT() {
+        // Should not be called directly
+    }
 }
-
 

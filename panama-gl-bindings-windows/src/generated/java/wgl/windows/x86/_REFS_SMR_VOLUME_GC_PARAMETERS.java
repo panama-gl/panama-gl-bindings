@@ -2,130 +2,435 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REFS_SMR_VOLUME_GC_PARAMETERS {
+ *     DWORD Version;
+ *     DWORD Flags;
+ *     REFS_SMR_VOLUME_GC_ACTION Action;
+ *     REFS_SMR_VOLUME_GC_METHOD Method;
+ *     DWORD IoGranularity;
+ *     DWORD CompressionFormat;
+ *     DWORDLONG Unused[8];
+ * }
+ * }
+ */
 public class _REFS_SMR_VOLUME_GC_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("Action"),
-        Constants$root.C_LONG$LAYOUT.withName("Method"),
-        Constants$root.C_LONG$LAYOUT.withName("IoGranularity"),
-        Constants$root.C_LONG$LAYOUT.withName("CompressionFormat"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_LONG_LONG$LAYOUT).withName("Unused")
-    ).withName("_REFS_SMR_VOLUME_GC_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.$struct$LAYOUT;
+    _REFS_SMR_VOLUME_GC_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Action$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Action"));
-    public static VarHandle Action$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.Action$VH;
-    }
-    public static int Action$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Action$VH.get(seg);
-    }
-    public static void Action$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Action$VH.set(seg, x);
-    }
-    public static int Action$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Action$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Action$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Action$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Method$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Method"));
-    public static VarHandle Method$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.Method$VH;
-    }
-    public static int Method$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Method$VH.get(seg);
-    }
-    public static void Method$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Method$VH.set(seg, x);
-    }
-    public static int Method$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.Method$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Method$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.Method$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle IoGranularity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("IoGranularity"));
-    public static VarHandle IoGranularity$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.IoGranularity$VH;
-    }
-    public static int IoGranularity$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.IoGranularity$VH.get(seg);
-    }
-    public static void IoGranularity$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.IoGranularity$VH.set(seg, x);
-    }
-    public static int IoGranularity$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.IoGranularity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IoGranularity$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.IoGranularity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CompressionFormat$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CompressionFormat"));
-    public static VarHandle CompressionFormat$VH() {
-        return _REFS_SMR_VOLUME_GC_PARAMETERS.CompressionFormat$VH;
-    }
-    public static int CompressionFormat$get(MemorySegment seg) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.CompressionFormat$VH.get(seg);
-    }
-    public static void CompressionFormat$set( MemorySegment seg, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.CompressionFormat$VH.set(seg, x);
-    }
-    public static int CompressionFormat$get(MemorySegment seg, long index) {
-        return (int)_REFS_SMR_VOLUME_GC_PARAMETERS.CompressionFormat$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CompressionFormat$set(MemorySegment seg, long index, int x) {
-        _REFS_SMR_VOLUME_GC_PARAMETERS.CompressionFormat$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Unused$slice(MemorySegment seg) {
-        return seg.asSlice(24, 64);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_INT.withName("Action"),
+        wgl_h.C_INT.withName("Method"),
+        wgl_h.C_LONG.withName("IoGranularity"),
+        wgl_h.C_LONG.withName("CompressionFormat"),
+        MemoryLayout.sequenceLayout(8, wgl_h.C_LONG_LONG).withName("Unused")
+    ).withName("_REFS_SMR_VOLUME_GC_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Action$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Action"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_ACTION Action
+     * }
+     */
+    public static final OfInt Action$layout() {
+        return Action$LAYOUT;
+    }
+
+    private static final long Action$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_ACTION Action
+     * }
+     */
+    public static final long Action$offset() {
+        return Action$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_ACTION Action
+     * }
+     */
+    public static int Action(MemorySegment struct) {
+        return struct.get(Action$LAYOUT, Action$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_ACTION Action
+     * }
+     */
+    public static void Action(MemorySegment struct, int fieldValue) {
+        struct.set(Action$LAYOUT, Action$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Method$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Method"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_METHOD Method
+     * }
+     */
+    public static final OfInt Method$layout() {
+        return Method$LAYOUT;
+    }
+
+    private static final long Method$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_METHOD Method
+     * }
+     */
+    public static final long Method$offset() {
+        return Method$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_METHOD Method
+     * }
+     */
+    public static int Method(MemorySegment struct) {
+        return struct.get(Method$LAYOUT, Method$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * REFS_SMR_VOLUME_GC_METHOD Method
+     * }
+     */
+    public static void Method(MemorySegment struct, int fieldValue) {
+        struct.set(Method$LAYOUT, Method$OFFSET, fieldValue);
+    }
+
+    private static final OfInt IoGranularity$LAYOUT = (OfInt)$LAYOUT.select(groupElement("IoGranularity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD IoGranularity
+     * }
+     */
+    public static final OfInt IoGranularity$layout() {
+        return IoGranularity$LAYOUT;
+    }
+
+    private static final long IoGranularity$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD IoGranularity
+     * }
+     */
+    public static final long IoGranularity$offset() {
+        return IoGranularity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD IoGranularity
+     * }
+     */
+    public static int IoGranularity(MemorySegment struct) {
+        return struct.get(IoGranularity$LAYOUT, IoGranularity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD IoGranularity
+     * }
+     */
+    public static void IoGranularity(MemorySegment struct, int fieldValue) {
+        struct.set(IoGranularity$LAYOUT, IoGranularity$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CompressionFormat$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CompressionFormat"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CompressionFormat
+     * }
+     */
+    public static final OfInt CompressionFormat$layout() {
+        return CompressionFormat$LAYOUT;
+    }
+
+    private static final long CompressionFormat$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CompressionFormat
+     * }
+     */
+    public static final long CompressionFormat$offset() {
+        return CompressionFormat$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CompressionFormat
+     * }
+     */
+    public static int CompressionFormat(MemorySegment struct) {
+        return struct.get(CompressionFormat$LAYOUT, CompressionFormat$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CompressionFormat
+     * }
+     */
+    public static void CompressionFormat(MemorySegment struct, int fieldValue) {
+        struct.set(CompressionFormat$LAYOUT, CompressionFormat$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout Unused$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Unused"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static final SequenceLayout Unused$layout() {
+        return Unused$LAYOUT;
+    }
+
+    private static final long Unused$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static final long Unused$offset() {
+        return Unused$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static MemorySegment Unused(MemorySegment struct) {
+        return struct.asSlice(Unused$OFFSET, Unused$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static void Unused(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Unused$OFFSET, Unused$LAYOUT.byteSize());
+    }
+
+    private static long[] Unused$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static long[] Unused$dimensions() {
+        return Unused$DIMS;
+    }
+    private static final VarHandle Unused$ELEM_HANDLE = Unused$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static long Unused(MemorySegment struct, long index0) {
+        return (long)Unused$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Unused[8]
+     * }
+     */
+    public static void Unused(MemorySegment struct, long index0, long fieldValue) {
+        Unused$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

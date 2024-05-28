@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _REDIRECTION_FUNCTION_DESCRIPTOR {
+ *     PCSTR DllName;
+ *     PCSTR FunctionName;
+ *     PVOID RedirectionTarget;
+ * }
+ * }
+ */
 public class _REDIRECTION_FUNCTION_DESCRIPTOR {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("DllName"),
-        Constants$root.C_POINTER$LAYOUT.withName("FunctionName"),
-        Constants$root.C_POINTER$LAYOUT.withName("RedirectionTarget")
-    ).withName("_REDIRECTION_FUNCTION_DESCRIPTOR");
-    public static MemoryLayout $LAYOUT() {
-        return _REDIRECTION_FUNCTION_DESCRIPTOR.$struct$LAYOUT;
+    _REDIRECTION_FUNCTION_DESCRIPTOR() {
+        // Should not be called directly
     }
-    static final VarHandle DllName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DllName"));
-    public static VarHandle DllName$VH() {
-        return _REDIRECTION_FUNCTION_DESCRIPTOR.DllName$VH;
-    }
-    public static MemoryAddress DllName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.DllName$VH.get(seg);
-    }
-    public static void DllName$set( MemorySegment seg, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.DllName$VH.set(seg, x);
-    }
-    public static MemoryAddress DllName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.DllName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DllName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.DllName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle FunctionName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("FunctionName"));
-    public static VarHandle FunctionName$VH() {
-        return _REDIRECTION_FUNCTION_DESCRIPTOR.FunctionName$VH;
-    }
-    public static MemoryAddress FunctionName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.FunctionName$VH.get(seg);
-    }
-    public static void FunctionName$set( MemorySegment seg, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.FunctionName$VH.set(seg, x);
-    }
-    public static MemoryAddress FunctionName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.FunctionName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void FunctionName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.FunctionName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle RedirectionTarget$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RedirectionTarget"));
-    public static VarHandle RedirectionTarget$VH() {
-        return _REDIRECTION_FUNCTION_DESCRIPTOR.RedirectionTarget$VH;
-    }
-    public static MemoryAddress RedirectionTarget$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.RedirectionTarget$VH.get(seg);
-    }
-    public static void RedirectionTarget$set( MemorySegment seg, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.RedirectionTarget$VH.set(seg, x);
-    }
-    public static MemoryAddress RedirectionTarget$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_REDIRECTION_FUNCTION_DESCRIPTOR.RedirectionTarget$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RedirectionTarget$set(MemorySegment seg, long index, MemoryAddress x) {
-        _REDIRECTION_FUNCTION_DESCRIPTOR.RedirectionTarget$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("DllName"),
+        wgl_h.C_POINTER.withName("FunctionName"),
+        wgl_h.C_POINTER.withName("RedirectionTarget")
+    ).withName("_REDIRECTION_FUNCTION_DESCRIPTOR");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout DllName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DllName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCSTR DllName
+     * }
+     */
+    public static final AddressLayout DllName$layout() {
+        return DllName$LAYOUT;
+    }
+
+    private static final long DllName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCSTR DllName
+     * }
+     */
+    public static final long DllName$offset() {
+        return DllName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCSTR DllName
+     * }
+     */
+    public static MemorySegment DllName(MemorySegment struct) {
+        return struct.get(DllName$LAYOUT, DllName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCSTR DllName
+     * }
+     */
+    public static void DllName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DllName$LAYOUT, DllName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout FunctionName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("FunctionName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCSTR FunctionName
+     * }
+     */
+    public static final AddressLayout FunctionName$layout() {
+        return FunctionName$LAYOUT;
+    }
+
+    private static final long FunctionName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCSTR FunctionName
+     * }
+     */
+    public static final long FunctionName$offset() {
+        return FunctionName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCSTR FunctionName
+     * }
+     */
+    public static MemorySegment FunctionName(MemorySegment struct) {
+        return struct.get(FunctionName$LAYOUT, FunctionName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCSTR FunctionName
+     * }
+     */
+    public static void FunctionName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(FunctionName$LAYOUT, FunctionName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RedirectionTarget$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RedirectionTarget"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PVOID RedirectionTarget
+     * }
+     */
+    public static final AddressLayout RedirectionTarget$layout() {
+        return RedirectionTarget$LAYOUT;
+    }
+
+    private static final long RedirectionTarget$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PVOID RedirectionTarget
+     * }
+     */
+    public static final long RedirectionTarget$offset() {
+        return RedirectionTarget$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PVOID RedirectionTarget
+     * }
+     */
+    public static MemorySegment RedirectionTarget(MemorySegment struct) {
+        return struct.get(RedirectionTarget$LAYOUT, RedirectionTarget$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PVOID RedirectionTarget
+     * }
+     */
+    public static void RedirectionTarget(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RedirectionTarget$LAYOUT, RedirectionTarget$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

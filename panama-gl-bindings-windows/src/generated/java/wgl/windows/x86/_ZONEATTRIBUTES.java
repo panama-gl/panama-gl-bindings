@@ -2,121 +2,547 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ZONEATTRIBUTES {
+ *     ULONG cbSize;
+ *     WCHAR szDisplayName[260];
+ *     WCHAR szDescription[200];
+ *     WCHAR szIconPath[260];
+ *     DWORD dwTemplateMinLevel;
+ *     DWORD dwTemplateRecommended;
+ *     DWORD dwTemplateCurrentLevel;
+ *     DWORD dwFlags;
+ * }
+ * }
+ */
 public class _ZONEATTRIBUTES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.sequenceLayout(260, Constants$root.C_SHORT$LAYOUT).withName("szDisplayName"),
-        MemoryLayout.sequenceLayout(200, Constants$root.C_SHORT$LAYOUT).withName("szDescription"),
-        MemoryLayout.sequenceLayout(260, Constants$root.C_SHORT$LAYOUT).withName("szIconPath"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTemplateMinLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTemplateRecommended"),
-        Constants$root.C_LONG$LAYOUT.withName("dwTemplateCurrentLevel"),
-        Constants$root.C_LONG$LAYOUT.withName("dwFlags")
-    ).withName("_ZONEATTRIBUTES");
-    public static MemoryLayout $LAYOUT() {
-        return _ZONEATTRIBUTES.$struct$LAYOUT;
+    _ZONEATTRIBUTES() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _ZONEATTRIBUTES.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_ZONEATTRIBUTES.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _ZONEATTRIBUTES.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_ZONEATTRIBUTES.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _ZONEATTRIBUTES.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment szDisplayName$slice(MemorySegment seg) {
-        return seg.asSlice(4, 520);
-    }
-    public static MemorySegment szDescription$slice(MemorySegment seg) {
-        return seg.asSlice(524, 400);
-    }
-    public static MemorySegment szIconPath$slice(MemorySegment seg) {
-        return seg.asSlice(924, 520);
-    }
-    static final VarHandle dwTemplateMinLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTemplateMinLevel"));
-    public static VarHandle dwTemplateMinLevel$VH() {
-        return _ZONEATTRIBUTES.dwTemplateMinLevel$VH;
-    }
-    public static int dwTemplateMinLevel$get(MemorySegment seg) {
-        return (int)_ZONEATTRIBUTES.dwTemplateMinLevel$VH.get(seg);
-    }
-    public static void dwTemplateMinLevel$set( MemorySegment seg, int x) {
-        _ZONEATTRIBUTES.dwTemplateMinLevel$VH.set(seg, x);
-    }
-    public static int dwTemplateMinLevel$get(MemorySegment seg, long index) {
-        return (int)_ZONEATTRIBUTES.dwTemplateMinLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTemplateMinLevel$set(MemorySegment seg, long index, int x) {
-        _ZONEATTRIBUTES.dwTemplateMinLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTemplateRecommended$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTemplateRecommended"));
-    public static VarHandle dwTemplateRecommended$VH() {
-        return _ZONEATTRIBUTES.dwTemplateRecommended$VH;
-    }
-    public static int dwTemplateRecommended$get(MemorySegment seg) {
-        return (int)_ZONEATTRIBUTES.dwTemplateRecommended$VH.get(seg);
-    }
-    public static void dwTemplateRecommended$set( MemorySegment seg, int x) {
-        _ZONEATTRIBUTES.dwTemplateRecommended$VH.set(seg, x);
-    }
-    public static int dwTemplateRecommended$get(MemorySegment seg, long index) {
-        return (int)_ZONEATTRIBUTES.dwTemplateRecommended$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTemplateRecommended$set(MemorySegment seg, long index, int x) {
-        _ZONEATTRIBUTES.dwTemplateRecommended$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwTemplateCurrentLevel$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwTemplateCurrentLevel"));
-    public static VarHandle dwTemplateCurrentLevel$VH() {
-        return _ZONEATTRIBUTES.dwTemplateCurrentLevel$VH;
-    }
-    public static int dwTemplateCurrentLevel$get(MemorySegment seg) {
-        return (int)_ZONEATTRIBUTES.dwTemplateCurrentLevel$VH.get(seg);
-    }
-    public static void dwTemplateCurrentLevel$set( MemorySegment seg, int x) {
-        _ZONEATTRIBUTES.dwTemplateCurrentLevel$VH.set(seg, x);
-    }
-    public static int dwTemplateCurrentLevel$get(MemorySegment seg, long index) {
-        return (int)_ZONEATTRIBUTES.dwTemplateCurrentLevel$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwTemplateCurrentLevel$set(MemorySegment seg, long index, int x) {
-        _ZONEATTRIBUTES.dwTemplateCurrentLevel$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwFlags"));
-    public static VarHandle dwFlags$VH() {
-        return _ZONEATTRIBUTES.dwFlags$VH;
-    }
-    public static int dwFlags$get(MemorySegment seg) {
-        return (int)_ZONEATTRIBUTES.dwFlags$VH.get(seg);
-    }
-    public static void dwFlags$set( MemorySegment seg, int x) {
-        _ZONEATTRIBUTES.dwFlags$VH.set(seg, x);
-    }
-    public static int dwFlags$get(MemorySegment seg, long index) {
-        return (int)_ZONEATTRIBUTES.dwFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwFlags$set(MemorySegment seg, long index, int x) {
-        _ZONEATTRIBUTES.dwFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.sequenceLayout(260, wgl_h.C_SHORT).withName("szDisplayName"),
+        MemoryLayout.sequenceLayout(200, wgl_h.C_SHORT).withName("szDescription"),
+        MemoryLayout.sequenceLayout(260, wgl_h.C_SHORT).withName("szIconPath"),
+        wgl_h.C_LONG.withName("dwTemplateMinLevel"),
+        wgl_h.C_LONG.withName("dwTemplateRecommended"),
+        wgl_h.C_LONG.withName("dwTemplateCurrentLevel"),
+        wgl_h.C_LONG.withName("dwFlags")
+    ).withName("_ZONEATTRIBUTES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout szDisplayName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szDisplayName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static final SequenceLayout szDisplayName$layout() {
+        return szDisplayName$LAYOUT;
+    }
+
+    private static final long szDisplayName$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static final long szDisplayName$offset() {
+        return szDisplayName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static MemorySegment szDisplayName(MemorySegment struct) {
+        return struct.asSlice(szDisplayName$OFFSET, szDisplayName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static void szDisplayName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szDisplayName$OFFSET, szDisplayName$LAYOUT.byteSize());
+    }
+
+    private static long[] szDisplayName$DIMS = { 260 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static long[] szDisplayName$dimensions() {
+        return szDisplayName$DIMS;
+    }
+    private static final VarHandle szDisplayName$ELEM_HANDLE = szDisplayName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static short szDisplayName(MemorySegment struct, long index0) {
+        return (short)szDisplayName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR szDisplayName[260]
+     * }
+     */
+    public static void szDisplayName(MemorySegment struct, long index0, short fieldValue) {
+        szDisplayName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout szDescription$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szDescription"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static final SequenceLayout szDescription$layout() {
+        return szDescription$LAYOUT;
+    }
+
+    private static final long szDescription$OFFSET = 524;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static final long szDescription$offset() {
+        return szDescription$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static MemorySegment szDescription(MemorySegment struct) {
+        return struct.asSlice(szDescription$OFFSET, szDescription$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static void szDescription(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szDescription$OFFSET, szDescription$LAYOUT.byteSize());
+    }
+
+    private static long[] szDescription$DIMS = { 200 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static long[] szDescription$dimensions() {
+        return szDescription$DIMS;
+    }
+    private static final VarHandle szDescription$ELEM_HANDLE = szDescription$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static short szDescription(MemorySegment struct, long index0) {
+        return (short)szDescription$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR szDescription[200]
+     * }
+     */
+    public static void szDescription(MemorySegment struct, long index0, short fieldValue) {
+        szDescription$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout szIconPath$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("szIconPath"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static final SequenceLayout szIconPath$layout() {
+        return szIconPath$LAYOUT;
+    }
+
+    private static final long szIconPath$OFFSET = 924;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static final long szIconPath$offset() {
+        return szIconPath$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static MemorySegment szIconPath(MemorySegment struct) {
+        return struct.asSlice(szIconPath$OFFSET, szIconPath$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static void szIconPath(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, szIconPath$OFFSET, szIconPath$LAYOUT.byteSize());
+    }
+
+    private static long[] szIconPath$DIMS = { 260 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static long[] szIconPath$dimensions() {
+        return szIconPath$DIMS;
+    }
+    private static final VarHandle szIconPath$ELEM_HANDLE = szIconPath$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static short szIconPath(MemorySegment struct, long index0) {
+        return (short)szIconPath$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR szIconPath[260]
+     * }
+     */
+    public static void szIconPath(MemorySegment struct, long index0, short fieldValue) {
+        szIconPath$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt dwTemplateMinLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTemplateMinLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateMinLevel
+     * }
+     */
+    public static final OfInt dwTemplateMinLevel$layout() {
+        return dwTemplateMinLevel$LAYOUT;
+    }
+
+    private static final long dwTemplateMinLevel$OFFSET = 1444;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateMinLevel
+     * }
+     */
+    public static final long dwTemplateMinLevel$offset() {
+        return dwTemplateMinLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateMinLevel
+     * }
+     */
+    public static int dwTemplateMinLevel(MemorySegment struct) {
+        return struct.get(dwTemplateMinLevel$LAYOUT, dwTemplateMinLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateMinLevel
+     * }
+     */
+    public static void dwTemplateMinLevel(MemorySegment struct, int fieldValue) {
+        struct.set(dwTemplateMinLevel$LAYOUT, dwTemplateMinLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTemplateRecommended$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTemplateRecommended"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateRecommended
+     * }
+     */
+    public static final OfInt dwTemplateRecommended$layout() {
+        return dwTemplateRecommended$LAYOUT;
+    }
+
+    private static final long dwTemplateRecommended$OFFSET = 1448;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateRecommended
+     * }
+     */
+    public static final long dwTemplateRecommended$offset() {
+        return dwTemplateRecommended$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateRecommended
+     * }
+     */
+    public static int dwTemplateRecommended(MemorySegment struct) {
+        return struct.get(dwTemplateRecommended$LAYOUT, dwTemplateRecommended$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateRecommended
+     * }
+     */
+    public static void dwTemplateRecommended(MemorySegment struct, int fieldValue) {
+        struct.set(dwTemplateRecommended$LAYOUT, dwTemplateRecommended$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwTemplateCurrentLevel$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwTemplateCurrentLevel"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateCurrentLevel
+     * }
+     */
+    public static final OfInt dwTemplateCurrentLevel$layout() {
+        return dwTemplateCurrentLevel$LAYOUT;
+    }
+
+    private static final long dwTemplateCurrentLevel$OFFSET = 1452;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateCurrentLevel
+     * }
+     */
+    public static final long dwTemplateCurrentLevel$offset() {
+        return dwTemplateCurrentLevel$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateCurrentLevel
+     * }
+     */
+    public static int dwTemplateCurrentLevel(MemorySegment struct) {
+        return struct.get(dwTemplateCurrentLevel$LAYOUT, dwTemplateCurrentLevel$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwTemplateCurrentLevel
+     * }
+     */
+    public static void dwTemplateCurrentLevel(MemorySegment struct, int fieldValue) {
+        struct.set(dwTemplateCurrentLevel$LAYOUT, dwTemplateCurrentLevel$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final OfInt dwFlags$layout() {
+        return dwFlags$LAYOUT;
+    }
+
+    private static final long dwFlags$OFFSET = 1456;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static final long dwFlags$offset() {
+        return dwFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static int dwFlags(MemorySegment struct) {
+        return struct.get(dwFlags$LAYOUT, dwFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwFlags
+     * }
+     */
+    public static void dwFlags(MemorySegment struct, int fieldValue) {
+        struct.set(dwFlags$LAYOUT, dwFlags$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

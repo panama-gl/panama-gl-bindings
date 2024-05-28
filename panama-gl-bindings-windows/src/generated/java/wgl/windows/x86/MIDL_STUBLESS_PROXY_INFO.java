@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _MIDL_STUBLESS_PROXY_INFO {
+ *     PMIDL_STUB_DESC pStubDesc;
+ *     PFORMAT_STRING ProcFormatString;
+ *     const unsigned short *FormatStringOffset;
+ *     PRPC_SYNTAX_IDENTIFIER pTransferSyntax;
+ *     ULONG_PTR nCount;
+ *     PMIDL_SYNTAX_INFO pSyntaxInfo;
+ * } MIDL_STUBLESS_PROXY_INFO
+ * }
+ */
 public class MIDL_STUBLESS_PROXY_INFO extends _MIDL_STUBLESS_PROXY_INFO {
 
+    MIDL_STUBLESS_PROXY_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,79 +2,297 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCM_PHYSICAL_DEVICE_INSTANCE {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD NfitHandle;
+ *     WCHAR SymbolicLink[256];
+ * }
+ * }
+ */
 public class _SCM_PHYSICAL_DEVICE_INSTANCE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("NfitHandle"),
-        MemoryLayout.sequenceLayout(256, Constants$root.C_SHORT$LAYOUT).withName("SymbolicLink")
-    ).withName("_SCM_PHYSICAL_DEVICE_INSTANCE");
-    public static MemoryLayout $LAYOUT() {
-        return _SCM_PHYSICAL_DEVICE_INSTANCE.$struct$LAYOUT;
+    _SCM_PHYSICAL_DEVICE_INSTANCE() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _SCM_PHYSICAL_DEVICE_INSTANCE.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SCM_PHYSICAL_DEVICE_INSTANCE.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NfitHandle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NfitHandle"));
-    public static VarHandle NfitHandle$VH() {
-        return _SCM_PHYSICAL_DEVICE_INSTANCE.NfitHandle$VH;
-    }
-    public static int NfitHandle$get(MemorySegment seg) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.NfitHandle$VH.get(seg);
-    }
-    public static void NfitHandle$set( MemorySegment seg, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.NfitHandle$VH.set(seg, x);
-    }
-    public static int NfitHandle$get(MemorySegment seg, long index) {
-        return (int)_SCM_PHYSICAL_DEVICE_INSTANCE.NfitHandle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NfitHandle$set(MemorySegment seg, long index, int x) {
-        _SCM_PHYSICAL_DEVICE_INSTANCE.NfitHandle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment SymbolicLink$slice(MemorySegment seg) {
-        return seg.asSlice(12, 512);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("NfitHandle"),
+        MemoryLayout.sequenceLayout(256, wgl_h.C_SHORT).withName("SymbolicLink")
+    ).withName("_SCM_PHYSICAL_DEVICE_INSTANCE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NfitHandle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NfitHandle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static final OfInt NfitHandle$layout() {
+        return NfitHandle$LAYOUT;
+    }
+
+    private static final long NfitHandle$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static final long NfitHandle$offset() {
+        return NfitHandle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static int NfitHandle(MemorySegment struct) {
+        return struct.get(NfitHandle$LAYOUT, NfitHandle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NfitHandle
+     * }
+     */
+    public static void NfitHandle(MemorySegment struct, int fieldValue) {
+        struct.set(NfitHandle$LAYOUT, NfitHandle$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout SymbolicLink$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SymbolicLink"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static final SequenceLayout SymbolicLink$layout() {
+        return SymbolicLink$LAYOUT;
+    }
+
+    private static final long SymbolicLink$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static final long SymbolicLink$offset() {
+        return SymbolicLink$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static MemorySegment SymbolicLink(MemorySegment struct) {
+        return struct.asSlice(SymbolicLink$OFFSET, SymbolicLink$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static void SymbolicLink(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SymbolicLink$OFFSET, SymbolicLink$LAYOUT.byteSize());
+    }
+
+    private static long[] SymbolicLink$DIMS = { 256 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static long[] SymbolicLink$dimensions() {
+        return SymbolicLink$DIMS;
+    }
+    private static final VarHandle SymbolicLink$ELEM_HANDLE = SymbolicLink$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static short SymbolicLink(MemorySegment struct, long index0) {
+        return (short)SymbolicLink$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR SymbolicLink[256]
+     * }
+     */
+    public static void SymbolicLink(MemorySegment struct, long index0, short fieldValue) {
+        SymbolicLink$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

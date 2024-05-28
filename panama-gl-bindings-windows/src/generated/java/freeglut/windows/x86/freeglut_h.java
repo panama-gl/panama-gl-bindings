@@ -2,3022 +2,1358 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public class freeglut_h extends freeglut_h_25 {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    /* package-private */ freeglut_h() {}
-    public static OfByte C_CHAR = Constants$root.C_CHAR$LAYOUT;
-    public static OfShort C_SHORT = Constants$root.C_SHORT$LAYOUT;
-    public static OfInt C_INT = Constants$root.C_LONG$LAYOUT;
-    public static OfInt C_LONG = Constants$root.C_LONG$LAYOUT;
-    public static OfLong C_LONG_LONG = Constants$root.C_LONG_LONG$LAYOUT;
-    public static OfFloat C_FLOAT = Constants$root.C_FLOAT$LAYOUT;
-    public static OfDouble C_DOUBLE = Constants$root.C_DOUBLE$LAYOUT;
-    public static OfAddress C_POINTER = Constants$root.C_POINTER$LAYOUT;
-    public static int FREEGLUT_LIB_PRAGMAS() {
-        return (int)1L;
-    }
-    public static int WIN32_LEAN_AND_MEAN() {
-        return (int)1L;
-    }
-    public static int WINAPI_FAMILY_PC_APP() {
-        return (int)2L;
-    }
-    public static int WINAPI_FAMILY_PHONE_APP() {
-        return (int)3L;
-    }
-    public static int WINAPI_FAMILY_SYSTEM() {
-        return (int)4L;
-    }
-    public static int WINAPI_FAMILY_SERVER() {
-        return (int)5L;
-    }
-    public static int WINAPI_FAMILY_GAMES() {
-        return (int)6L;
-    }
-    public static int WINAPI_FAMILY_DESKTOP_APP() {
-        return (int)100L;
-    }
-    public static int _WIN32_WINNT_NT4() {
-        return (int)1024L;
-    }
-    public static int _WIN32_WINNT_WIN2K() {
-        return (int)1280L;
-    }
-    public static int _WIN32_WINNT_WINXP() {
-        return (int)1281L;
-    }
-    public static int _WIN32_WINNT_WS03() {
-        return (int)1282L;
-    }
-    public static int _WIN32_WINNT_WIN6() {
-        return (int)1536L;
-    }
-    public static int _WIN32_WINNT_VISTA() {
-        return (int)1536L;
-    }
-    public static int _WIN32_WINNT_WS08() {
-        return (int)1536L;
-    }
-    public static int _WIN32_WINNT_LONGHORN() {
-        return (int)1536L;
-    }
-    public static int _WIN32_WINNT_WIN7() {
-        return (int)1537L;
-    }
-    public static int _WIN32_WINNT_WIN8() {
-        return (int)1538L;
-    }
-    public static int _WIN32_WINNT_WINBLUE() {
-        return (int)1539L;
-    }
-    public static int _WIN32_WINNT_WINTHRESHOLD() {
-        return (int)2560L;
-    }
-    public static int _WIN32_WINNT_WIN10() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_IE20() {
-        return (int)512L;
-    }
-    public static int _WIN32_IE_IE30() {
-        return (int)768L;
-    }
-    public static int _WIN32_IE_IE302() {
-        return (int)770L;
-    }
-    public static int _WIN32_IE_IE40() {
-        return (int)1024L;
-    }
-    public static int _WIN32_IE_IE401() {
-        return (int)1025L;
-    }
-    public static int _WIN32_IE_IE50() {
-        return (int)1280L;
-    }
-    public static int _WIN32_IE_IE501() {
-        return (int)1281L;
-    }
-    public static int _WIN32_IE_IE55() {
-        return (int)1360L;
-    }
-    public static int _WIN32_IE_IE60() {
-        return (int)1536L;
-    }
-    public static int _WIN32_IE_IE60SP1() {
-        return (int)1537L;
-    }
-    public static int _WIN32_IE_IE60SP2() {
-        return (int)1539L;
-    }
-    public static int _WIN32_IE_IE70() {
-        return (int)1792L;
-    }
-    public static int _WIN32_IE_IE80() {
-        return (int)2048L;
-    }
-    public static int _WIN32_IE_IE90() {
-        return (int)2304L;
-    }
-    public static int _WIN32_IE_IE100() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_IE110() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE_WS03() {
-        return (int)1538L;
-    }
-    public static int NTDDI_WIN4() {
-        return (int)67108864L;
-    }
-    public static int NTDDI_WIN2K() {
-        return (int)83886080L;
-    }
-    public static int NTDDI_WIN2KSP1() {
-        return (int)83886336L;
-    }
-    public static int NTDDI_WIN2KSP2() {
-        return (int)83886592L;
-    }
-    public static int NTDDI_WIN2KSP3() {
-        return (int)83886848L;
-    }
-    public static int NTDDI_WIN2KSP4() {
-        return (int)83887104L;
-    }
-    public static int NTDDI_WINXP() {
-        return (int)83951616L;
-    }
-    public static int NTDDI_WINXPSP1() {
-        return (int)83951872L;
-    }
-    public static int NTDDI_WINXPSP2() {
-        return (int)83952128L;
-    }
-    public static int NTDDI_WINXPSP3() {
-        return (int)83952384L;
-    }
-    public static int NTDDI_WINXPSP4() {
-        return (int)83952640L;
-    }
-    public static int NTDDI_WS03() {
-        return (int)84017152L;
-    }
-    public static int NTDDI_WS03SP1() {
-        return (int)84017408L;
-    }
-    public static int NTDDI_WS03SP2() {
-        return (int)84017664L;
-    }
-    public static int NTDDI_WS03SP3() {
-        return (int)84017920L;
-    }
-    public static int NTDDI_WS03SP4() {
-        return (int)84018176L;
-    }
-    public static int NTDDI_WIN6() {
-        return (int)100663296L;
-    }
-    public static int NTDDI_WIN6SP1() {
-        return (int)100663552L;
-    }
-    public static int NTDDI_WIN6SP2() {
-        return (int)100663808L;
-    }
-    public static int NTDDI_WIN6SP3() {
-        return (int)100664064L;
-    }
-    public static int NTDDI_WIN6SP4() {
-        return (int)100664320L;
-    }
-    public static int NTDDI_WIN7() {
-        return (int)100728832L;
-    }
-    public static int NTDDI_WIN8() {
-        return (int)100794368L;
-    }
-    public static int NTDDI_WINBLUE() {
-        return (int)100859904L;
-    }
-    public static int NTDDI_WINTHRESHOLD() {
-        return (int)167772160L;
-    }
-    public static int NTDDI_WIN10() {
-        return (int)167772160L;
-    }
-    public static int NTDDI_WIN10_TH2() {
-        return (int)167772161L;
-    }
-    public static int NTDDI_WIN10_RS1() {
-        return (int)167772162L;
-    }
-    public static int NTDDI_WIN10_RS2() {
-        return (int)167772163L;
-    }
-    public static int NTDDI_WIN10_RS3() {
-        return (int)167772164L;
-    }
-    public static int NTDDI_WIN10_RS4() {
-        return (int)167772165L;
-    }
-    public static int NTDDI_WIN10_RS5() {
-        return (int)167772166L;
-    }
-    public static int NTDDI_WIN10_19H1() {
-        return (int)167772167L;
-    }
-    public static int NTDDI_WIN10_VB() {
-        return (int)167772168L;
-    }
-    public static int NTDDI_WIN10_MN() {
-        return (int)167772169L;
-    }
-    public static int NTDDI_WIN10_FE() {
-        return (int)167772170L;
-    }
-    public static int NTDDI_WIN10_CO() {
-        return (int)167772171L;
-    }
-    public static int SPVERSION_MASK() {
-        return (int)65280L;
-    }
-    public static int SUBVERSION_MASK() {
-        return (int)255L;
-    }
-    public static int _WIN32_WINNT() {
-        return (int)2560L;
-    }
-    public static int _WIN32_IE() {
-        return (int)2560L;
-    }
-    public static int _VCRT_COMPILER_PREPROCESSOR() {
-        return (int)1L;
-    }
-    public static int _SAL_VERSION() {
-        return (int)20L;
-    }
-    public static int __SAL_H_VERSION() {
-        return (int)180000000L;
-    }
-    public static int _USE_DECLSPECS_FOR_SAL() {
-        return (int)0L;
-    }
-    public static int _USE_ATTRIBUTES_FOR_SAL() {
-        return (int)0L;
-    }
-    public static int _CRT_PACKING() {
-        return (int)8L;
-    }
-    public static int _HAS_EXCEPTIONS() {
-        return (int)1L;
-    }
-    public static int _HAS_CXX17() {
-        return (int)0L;
-    }
-    public static int _HAS_CXX20() {
-        return (int)0L;
-    }
-    public static int _HAS_CXX23() {
-        return (int)0L;
-    }
-    public static int _HAS_NODISCARD() {
-        return (int)0L;
-    }
-    public static int EXCEPTION_EXECUTE_HANDLER() {
-        return (int)1L;
-    }
-    public static int EXCEPTION_CONTINUE_SEARCH() {
-        return (int)0L;
-    }
-    public static int __GNUC_VA_LIST() {
-        return (int)1L;
-    }
-    public static int __SAL_H_FULL_VER() {
-        return (int)140050727L;
-    }
-    public static int __SPECSTRINGS_STRICT_LEVEL() {
-        return (int)1L;
-    }
-    public static int __drv_typeConst() {
-        return (int)0L;
-    }
-    public static int __drv_typeCond() {
-        return (int)1L;
-    }
-    public static int __drv_typeBitset() {
-        return (int)2L;
-    }
-    public static int __drv_typeExpr() {
-        return (int)3L;
-    }
-    public static int STRICT() {
-        return (int)1L;
-    }
-    public static int MAX_PATH() {
-        return (int)260L;
-    }
-    public static int FALSE() {
-        return (int)0L;
-    }
-    public static int TRUE() {
-        return (int)1L;
-    }
-    public static int _ARM_WINAPI_PARTITION_DESKTOP_SDK_AVAILABLE() {
-        return (int)1L;
-    }
-    public static int _CRT_BUILD_DESKTOP_APP() {
-        return (int)1L;
-    }
-    public static int _ARGMAX() {
-        return (int)100L;
-    }
-    public static int _CRT_INT_MAX() {
-        return (int)2147483647L;
-    }
-    public static int _CRT_FUNCTIONS_REQUIRED() {
-        return (int)1L;
-    }
-    public static int _CRT_HAS_CXX17() {
-        return (int)0L;
-    }
-    public static int _CRT_HAS_C11() {
-        return (int)1L;
-    }
-    public static int _CRT_INTERNAL_NONSTDC_NAMES() {
-        return (int)1L;
-    }
-    public static int __STDC_WANT_SECURE_LIB__() {
-        return (int)1L;
-    }
-    public static int _SECURECRT_FILL_BUFFER_PATTERN() {
-        return (int)254L;
-    }
-    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES() {
-        return (int)0L;
-    }
-    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_COUNT() {
-        return (int)0L;
-    }
-    public static int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES() {
-        return (int)1L;
-    }
-    public static int _CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES_MEMORY() {
-        return (int)0L;
-    }
-    public static int _CRT_SECURE_CPP_OVERLOAD_SECURE_NAMES_MEMORY() {
-        return (int)0L;
-    }
-    public static int _UPPER() {
-        return (int)1L;
-    }
-    public static int _LOWER() {
-        return (int)2L;
-    }
-    public static int _DIGIT() {
-        return (int)4L;
-    }
-    public static int _SPACE() {
-        return (int)8L;
-    }
-    public static int _PUNCT() {
-        return (int)16L;
-    }
-    public static int _CONTROL() {
-        return (int)32L;
-    }
-    public static int _BLANK() {
-        return (int)64L;
-    }
-    public static int _HEX() {
-        return (int)128L;
-    }
-    public static int _LEADBYTE() {
-        return (int)32768L;
-    }
-    public static int ANYSIZE_ARRAY() {
-        return (int)1L;
-    }
-    public static int DISPATCH_LEVEL() {
-        return (int)2L;
-    }
-    public static int APC_LEVEL() {
-        return (int)1L;
-    }
-    public static int PASSIVE_LEVEL() {
-        return (int)0L;
-    }
-    public static int HIGH_LEVEL() {
-        return (int)15L;
-    }
-    public static int MEMORY_ALLOCATION_ALIGNMENT() {
-        return (int)16L;
-    }
-    public static int X86_CACHE_ALIGNMENT_SIZE() {
-        return (int)64L;
-    }
-    public static int ARM_CACHE_ALIGNMENT_SIZE() {
-        return (int)128L;
-    }
-    public static int PRAGMA_DEPRECATED_DDK() {
-        return (int)0L;
-    }
-    public static int ALL_PROCESSOR_GROUPS() {
-        return (int)65535L;
-    }
-    public static int MAXIMUM_PROC_PER_GROUP() {
-        return (int)64L;
-    }
-    public static int APPLICATION_ERROR_MASK() {
-        return (int)536870912L;
-    }
-    public static int ERROR_SEVERITY_SUCCESS() {
-        return (int)0L;
-    }
-    public static int ERROR_SEVERITY_INFORMATIONAL() {
-        return (int)1073741824L;
-    }
-    public static int EPERM() {
-        return (int)1L;
-    }
-    public static int ENOENT() {
-        return (int)2L;
-    }
-    public static int ESRCH() {
-        return (int)3L;
-    }
-    public static int EINTR() {
-        return (int)4L;
-    }
-    public static int EIO() {
-        return (int)5L;
-    }
-    public static int ENXIO() {
-        return (int)6L;
-    }
-    public static int E2BIG() {
-        return (int)7L;
-    }
-    public static int ENOEXEC() {
-        return (int)8L;
-    }
-    public static int EBADF() {
-        return (int)9L;
-    }
-    public static int ECHILD() {
-        return (int)10L;
-    }
-    public static int EAGAIN() {
-        return (int)11L;
-    }
-    public static int ENOMEM() {
-        return (int)12L;
-    }
-    public static int EACCES() {
-        return (int)13L;
-    }
-    public static int EFAULT() {
-        return (int)14L;
-    }
-    public static int EBUSY() {
-        return (int)16L;
-    }
-    public static int EEXIST() {
-        return (int)17L;
-    }
-    public static int EXDEV() {
-        return (int)18L;
-    }
-    public static int ENODEV() {
-        return (int)19L;
-    }
-    public static int ENOTDIR() {
-        return (int)20L;
-    }
-    public static int EISDIR() {
-        return (int)21L;
-    }
-    public static int ENFILE() {
-        return (int)23L;
-    }
-    public static int EMFILE() {
-        return (int)24L;
-    }
-    public static int ENOTTY() {
-        return (int)25L;
-    }
-    public static int EFBIG() {
-        return (int)27L;
-    }
-    public static int ENOSPC() {
-        return (int)28L;
-    }
-    public static int ESPIPE() {
-        return (int)29L;
-    }
-    public static int EROFS() {
-        return (int)30L;
-    }
-    public static int EMLINK() {
-        return (int)31L;
-    }
-    public static int EPIPE() {
-        return (int)32L;
-    }
-    public static int EDOM() {
-        return (int)33L;
-    }
-    public static int EDEADLK() {
-        return (int)36L;
-    }
-    public static int ENAMETOOLONG() {
-        return (int)38L;
-    }
-    public static int ENOLCK() {
-        return (int)39L;
-    }
-    public static int ENOSYS() {
-        return (int)40L;
-    }
-    public static int ENOTEMPTY() {
-        return (int)41L;
-    }
-    public static int EINVAL() {
-        return (int)22L;
-    }
-    public static int ERANGE() {
-        return (int)34L;
-    }
-    public static int EILSEQ() {
-        return (int)42L;
-    }
-    public static int STRUNCATE() {
-        return (int)80L;
-    }
-    public static int EADDRINUSE() {
-        return (int)100L;
-    }
-    public static int EADDRNOTAVAIL() {
-        return (int)101L;
-    }
-    public static int EAFNOSUPPORT() {
-        return (int)102L;
-    }
-    public static int EALREADY() {
-        return (int)103L;
-    }
-    public static int EBADMSG() {
-        return (int)104L;
-    }
-    public static int ECANCELED() {
-        return (int)105L;
-    }
-    public static int ECONNABORTED() {
-        return (int)106L;
-    }
-    public static int ECONNREFUSED() {
-        return (int)107L;
-    }
-    public static int ECONNRESET() {
-        return (int)108L;
-    }
-    public static int EDESTADDRREQ() {
-        return (int)109L;
-    }
-    public static int EHOSTUNREACH() {
-        return (int)110L;
-    }
-    public static int EIDRM() {
-        return (int)111L;
-    }
-    public static int EINPROGRESS() {
-        return (int)112L;
-    }
-    public static int EISCONN() {
-        return (int)113L;
-    }
-    public static int ELOOP() {
-        return (int)114L;
-    }
-    public static int EMSGSIZE() {
-        return (int)115L;
-    }
-    public static int ENETDOWN() {
-        return (int)116L;
-    }
-    public static int ENETRESET() {
-        return (int)117L;
-    }
-    public static int ENETUNREACH() {
-        return (int)118L;
-    }
-    public static int ENOBUFS() {
-        return (int)119L;
-    }
-    public static int ENODATA() {
-        return (int)120L;
-    }
-    public static int ENOLINK() {
-        return (int)121L;
-    }
-    public static int ENOMSG() {
-        return (int)122L;
-    }
-    public static int ENOPROTOOPT() {
-        return (int)123L;
-    }
-    public static int ENOSR() {
-        return (int)124L;
-    }
-    public static int ENOSTR() {
-        return (int)125L;
-    }
-    public static int ENOTCONN() {
-        return (int)126L;
-    }
-    public static int ENOTRECOVERABLE() {
-        return (int)127L;
-    }
-    public static int ENOTSOCK() {
-        return (int)128L;
-    }
-    public static int ENOTSUP() {
-        return (int)129L;
-    }
-    public static int EOPNOTSUPP() {
-        return (int)130L;
-    }
-    public static int EOTHER() {
-        return (int)131L;
-    }
-    public static int EOVERFLOW() {
-        return (int)132L;
-    }
-    public static int EOWNERDEAD() {
-        return (int)133L;
-    }
-    public static int EPROTO() {
-        return (int)134L;
-    }
-    public static int EPROTONOSUPPORT() {
-        return (int)135L;
-    }
-    public static int EPROTOTYPE() {
-        return (int)136L;
-    }
-    public static int ETIME() {
-        return (int)137L;
-    }
-    public static int ETIMEDOUT() {
-        return (int)138L;
-    }
-    public static int ETXTBSY() {
-        return (int)139L;
-    }
-    public static int EWOULDBLOCK() {
-        return (int)140L;
-    }
-    public static int MINCHAR() {
-        return (int)128L;
-    }
-    public static int MAXCHAR() {
-        return (int)127L;
-    }
-    public static int MINSHORT() {
-        return (int)32768L;
-    }
-    public static int MAXSHORT() {
-        return (int)32767L;
-    }
-    public static int MAXLONG() {
-        return (int)2147483647L;
-    }
-    public static int MAXBYTE() {
-        return (int)255L;
-    }
-    public static int MAXWORD() {
-        return (int)65535L;
-    }
-    public static int ENCLAVE_SHORT_ID_LENGTH() {
-        return (int)16L;
-    }
-    public static int ENCLAVE_LONG_ID_LENGTH() {
-        return (int)32L;
-    }
-    public static int VER_WORKSTATION_NT() {
-        return (int)1073741824L;
-    }
-    public static int VER_SUITE_SMALLBUSINESS() {
-        return (int)1L;
-    }
-    public static int VER_SUITE_ENTERPRISE() {
-        return (int)2L;
-    }
-    public static int VER_SUITE_BACKOFFICE() {
-        return (int)4L;
-    }
-    public static int VER_SUITE_COMMUNICATIONS() {
-        return (int)8L;
-    }
-    public static int VER_SUITE_TERMINAL() {
-        return (int)16L;
-    }
-    public static int VER_SUITE_SMALLBUSINESS_RESTRICTED() {
-        return (int)32L;
-    }
-    public static int VER_SUITE_EMBEDDEDNT() {
-        return (int)64L;
-    }
-    public static int VER_SUITE_DATACENTER() {
-        return (int)128L;
-    }
-    public static int VER_SUITE_SINGLEUSERTS() {
-        return (int)256L;
-    }
-    public static int VER_SUITE_PERSONAL() {
-        return (int)512L;
-    }
-    public static int VER_SUITE_BLADE() {
-        return (int)1024L;
-    }
-    public static int VER_SUITE_EMBEDDED_RESTRICTED() {
-        return (int)2048L;
-    }
-    public static int VER_SUITE_SECURITY_APPLIANCE() {
-        return (int)4096L;
-    }
-    public static int VER_SUITE_STORAGE_SERVER() {
-        return (int)8192L;
-    }
-    public static int VER_SUITE_COMPUTE_SERVER() {
-        return (int)16384L;
-    }
-    public static int VER_SUITE_WH_SERVER() {
-        return (int)32768L;
-    }
-    public static int VER_SUITE_MULTIUSERTS() {
-        return (int)131072L;
-    }
-    public static int PRODUCT_UNDEFINED() {
-        return (int)0L;
-    }
-    public static int PRODUCT_ULTIMATE() {
-        return (int)1L;
-    }
-    public static int PRODUCT_HOME_BASIC() {
-        return (int)2L;
-    }
-    public static int PRODUCT_HOME_PREMIUM() {
-        return (int)3L;
-    }
-    public static int PRODUCT_ENTERPRISE() {
-        return (int)4L;
-    }
-    public static int PRODUCT_HOME_BASIC_N() {
-        return (int)5L;
-    }
-    public static int PRODUCT_BUSINESS() {
-        return (int)6L;
-    }
-    public static int PRODUCT_STANDARD_SERVER() {
-        return (int)7L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER() {
-        return (int)8L;
-    }
-    public static int PRODUCT_SMALLBUSINESS_SERVER() {
-        return (int)9L;
-    }
-    public static int PRODUCT_ENTERPRISE_SERVER() {
-        return (int)10L;
-    }
-    public static int PRODUCT_STARTER() {
-        return (int)11L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER_CORE() {
-        return (int)12L;
-    }
-    public static int PRODUCT_STANDARD_SERVER_CORE() {
-        return (int)13L;
-    }
-    public static int PRODUCT_ENTERPRISE_SERVER_CORE() {
-        return (int)14L;
-    }
-    public static int PRODUCT_ENTERPRISE_SERVER_IA64() {
-        return (int)15L;
-    }
-    public static int PRODUCT_BUSINESS_N() {
-        return (int)16L;
-    }
-    public static int PRODUCT_WEB_SERVER() {
-        return (int)17L;
-    }
-    public static int PRODUCT_CLUSTER_SERVER() {
-        return (int)18L;
-    }
-    public static int PRODUCT_HOME_SERVER() {
-        return (int)19L;
-    }
-    public static int PRODUCT_STORAGE_EXPRESS_SERVER() {
-        return (int)20L;
-    }
-    public static int PRODUCT_STORAGE_STANDARD_SERVER() {
-        return (int)21L;
-    }
-    public static int PRODUCT_STORAGE_WORKGROUP_SERVER() {
-        return (int)22L;
-    }
-    public static int PRODUCT_STORAGE_ENTERPRISE_SERVER() {
-        return (int)23L;
-    }
-    public static int PRODUCT_SERVER_FOR_SMALLBUSINESS() {
-        return (int)24L;
-    }
-    public static int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM() {
-        return (int)25L;
-    }
-    public static int PRODUCT_HOME_PREMIUM_N() {
-        return (int)26L;
-    }
-    public static int PRODUCT_ENTERPRISE_N() {
-        return (int)27L;
-    }
-    public static int PRODUCT_ULTIMATE_N() {
-        return (int)28L;
-    }
-    public static int PRODUCT_WEB_SERVER_CORE() {
-        return (int)29L;
-    }
-    public static int PRODUCT_MEDIUMBUSINESS_SERVER_MANAGEMENT() {
-        return (int)30L;
-    }
-    public static int PRODUCT_MEDIUMBUSINESS_SERVER_SECURITY() {
-        return (int)31L;
-    }
-    public static int PRODUCT_MEDIUMBUSINESS_SERVER_MESSAGING() {
-        return (int)32L;
-    }
-    public static int PRODUCT_SERVER_FOUNDATION() {
-        return (int)33L;
-    }
-    public static int PRODUCT_HOME_PREMIUM_SERVER() {
-        return (int)34L;
-    }
-    public static int PRODUCT_SERVER_FOR_SMALLBUSINESS_V() {
-        return (int)35L;
-    }
-    public static int PRODUCT_STANDARD_SERVER_V() {
-        return (int)36L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER_V() {
-        return (int)37L;
-    }
-    public static int PRODUCT_ENTERPRISE_SERVER_V() {
-        return (int)38L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER_CORE_V() {
-        return (int)39L;
-    }
-    public static int PRODUCT_STANDARD_SERVER_CORE_V() {
-        return (int)40L;
-    }
-    public static int PRODUCT_ENTERPRISE_SERVER_CORE_V() {
-        return (int)41L;
-    }
-    public static int PRODUCT_HYPERV() {
-        return (int)42L;
-    }
-    public static int PRODUCT_STORAGE_EXPRESS_SERVER_CORE() {
-        return (int)43L;
-    }
-    public static int PRODUCT_STORAGE_STANDARD_SERVER_CORE() {
-        return (int)44L;
-    }
-    public static int PRODUCT_STORAGE_WORKGROUP_SERVER_CORE() {
-        return (int)45L;
-    }
-    public static int PRODUCT_STORAGE_ENTERPRISE_SERVER_CORE() {
-        return (int)46L;
-    }
-    public static int PRODUCT_STARTER_N() {
-        return (int)47L;
-    }
-    public static int PRODUCT_PROFESSIONAL() {
-        return (int)48L;
-    }
-    public static int PRODUCT_PROFESSIONAL_N() {
-        return (int)49L;
-    }
-    public static int PRODUCT_SB_SOLUTION_SERVER() {
-        return (int)50L;
-    }
-    public static int PRODUCT_SERVER_FOR_SB_SOLUTIONS() {
-        return (int)51L;
-    }
-    public static int PRODUCT_STANDARD_SERVER_SOLUTIONS() {
-        return (int)52L;
-    }
-    public static int PRODUCT_STANDARD_SERVER_SOLUTIONS_CORE() {
-        return (int)53L;
-    }
-    public static int PRODUCT_SB_SOLUTION_SERVER_EM() {
-        return (int)54L;
-    }
-    public static int PRODUCT_SERVER_FOR_SB_SOLUTIONS_EM() {
-        return (int)55L;
-    }
-    public static int PRODUCT_SOLUTION_EMBEDDEDSERVER() {
-        return (int)56L;
-    }
-    public static int PRODUCT_SOLUTION_EMBEDDEDSERVER_CORE() {
-        return (int)57L;
-    }
-    public static int PRODUCT_PROFESSIONAL_EMBEDDED() {
-        return (int)58L;
-    }
-    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMT() {
-        return (int)59L;
-    }
-    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDL() {
-        return (int)60L;
-    }
-    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_MGMTSVC() {
-        return (int)61L;
-    }
-    public static int PRODUCT_ESSENTIALBUSINESS_SERVER_ADDLSVC() {
-        return (int)62L;
-    }
-    public static int PRODUCT_SMALLBUSINESS_SERVER_PREMIUM_CORE() {
-        return (int)63L;
-    }
-    public static int PRODUCT_CLUSTER_SERVER_V() {
-        return (int)64L;
-    }
-    public static int PRODUCT_EMBEDDED() {
-        return (int)65L;
-    }
-    public static int PRODUCT_STARTER_E() {
-        return (int)66L;
-    }
-    public static int PRODUCT_HOME_BASIC_E() {
-        return (int)67L;
-    }
-    public static int PRODUCT_HOME_PREMIUM_E() {
-        return (int)68L;
-    }
-    public static int PRODUCT_PROFESSIONAL_E() {
-        return (int)69L;
-    }
-    public static int PRODUCT_ENTERPRISE_E() {
-        return (int)70L;
-    }
-    public static int PRODUCT_ULTIMATE_E() {
-        return (int)71L;
-    }
-    public static int PRODUCT_ENTERPRISE_EVALUATION() {
-        return (int)72L;
-    }
-    public static int PRODUCT_MULTIPOINT_STANDARD_SERVER() {
-        return (int)76L;
-    }
-    public static int PRODUCT_MULTIPOINT_PREMIUM_SERVER() {
-        return (int)77L;
-    }
-    public static int PRODUCT_STANDARD_EVALUATION_SERVER() {
-        return (int)79L;
-    }
-    public static int PRODUCT_DATACENTER_EVALUATION_SERVER() {
-        return (int)80L;
-    }
-    public static int PRODUCT_ENTERPRISE_N_EVALUATION() {
-        return (int)84L;
-    }
-    public static int PRODUCT_EMBEDDED_AUTOMOTIVE() {
-        return (int)85L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY_A() {
-        return (int)86L;
-    }
-    public static int PRODUCT_THINPC() {
-        return (int)87L;
-    }
-    public static int PRODUCT_EMBEDDED_A() {
-        return (int)88L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY() {
-        return (int)89L;
-    }
-    public static int PRODUCT_EMBEDDED_E() {
-        return (int)90L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY_E() {
-        return (int)91L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY_A_E() {
-        return (int)92L;
-    }
-    public static int PRODUCT_STORAGE_WORKGROUP_EVALUATION_SERVER() {
-        return (int)95L;
-    }
-    public static int PRODUCT_STORAGE_STANDARD_EVALUATION_SERVER() {
-        return (int)96L;
-    }
-    public static int PRODUCT_CORE_ARM() {
-        return (int)97L;
-    }
-    public static int PRODUCT_CORE_N() {
-        return (int)98L;
-    }
-    public static int PRODUCT_CORE_COUNTRYSPECIFIC() {
-        return (int)99L;
-    }
-    public static int PRODUCT_CORE_SINGLELANGUAGE() {
-        return (int)100L;
-    }
-    public static int PRODUCT_CORE() {
-        return (int)101L;
-    }
-    public static int PRODUCT_PROFESSIONAL_WMC() {
-        return (int)103L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY_EVAL() {
-        return (int)105L;
-    }
-    public static int PRODUCT_EMBEDDED_INDUSTRY_E_EVAL() {
-        return (int)106L;
-    }
-    public static int PRODUCT_EMBEDDED_EVAL() {
-        return (int)107L;
-    }
-    public static int PRODUCT_EMBEDDED_E_EVAL() {
-        return (int)108L;
-    }
-    public static int PRODUCT_NANO_SERVER() {
-        return (int)109L;
-    }
-    public static int PRODUCT_CLOUD_STORAGE_SERVER() {
-        return (int)110L;
-    }
-    public static int PRODUCT_CORE_CONNECTED() {
-        return (int)111L;
-    }
-    public static int PRODUCT_PROFESSIONAL_STUDENT() {
-        return (int)112L;
-    }
-    public static int PRODUCT_CORE_CONNECTED_N() {
-        return (int)113L;
-    }
-    public static int PRODUCT_PROFESSIONAL_STUDENT_N() {
-        return (int)114L;
-    }
-    public static int PRODUCT_CORE_CONNECTED_SINGLELANGUAGE() {
-        return (int)115L;
-    }
-    public static int PRODUCT_CORE_CONNECTED_COUNTRYSPECIFIC() {
-        return (int)116L;
-    }
-    public static int PRODUCT_CONNECTED_CAR() {
-        return (int)117L;
-    }
-    public static int PRODUCT_INDUSTRY_HANDHELD() {
-        return (int)118L;
-    }
-    public static int PRODUCT_PPI_PRO() {
-        return (int)119L;
-    }
-    public static int PRODUCT_ARM64_SERVER() {
-        return (int)120L;
-    }
-    public static int PRODUCT_EDUCATION() {
-        return (int)121L;
-    }
-    public static int PRODUCT_EDUCATION_N() {
-        return (int)122L;
-    }
-    public static int PRODUCT_IOTUAP() {
-        return (int)123L;
-    }
-    public static int PRODUCT_CLOUD_HOST_INFRASTRUCTURE_SERVER() {
-        return (int)124L;
-    }
-    public static int PRODUCT_ENTERPRISE_S() {
-        return (int)125L;
-    }
-    public static int PRODUCT_ENTERPRISE_S_N() {
-        return (int)126L;
-    }
-    public static int PRODUCT_PROFESSIONAL_S() {
-        return (int)127L;
-    }
-    public static int PRODUCT_PROFESSIONAL_S_N() {
-        return (int)128L;
-    }
-    public static int PRODUCT_ENTERPRISE_S_EVALUATION() {
-        return (int)129L;
-    }
-    public static int PRODUCT_ENTERPRISE_S_N_EVALUATION() {
-        return (int)130L;
-    }
-    public static int PRODUCT_HOLOGRAPHIC() {
-        return (int)135L;
-    }
-    public static int PRODUCT_HOLOGRAPHIC_BUSINESS() {
-        return (int)136L;
-    }
-    public static int PRODUCT_PRO_SINGLE_LANGUAGE() {
-        return (int)138L;
-    }
-    public static int PRODUCT_PRO_CHINA() {
-        return (int)139L;
-    }
-    public static int PRODUCT_ENTERPRISE_SUBSCRIPTION() {
-        return (int)140L;
-    }
-    public static int PRODUCT_ENTERPRISE_SUBSCRIPTION_N() {
-        return (int)141L;
-    }
-    public static int PRODUCT_DATACENTER_NANO_SERVER() {
-        return (int)143L;
-    }
-    public static int PRODUCT_STANDARD_NANO_SERVER() {
-        return (int)144L;
-    }
-    public static int PRODUCT_DATACENTER_A_SERVER_CORE() {
-        return (int)145L;
-    }
-    public static int PRODUCT_STANDARD_A_SERVER_CORE() {
-        return (int)146L;
-    }
-    public static int PRODUCT_DATACENTER_WS_SERVER_CORE() {
-        return (int)147L;
-    }
-    public static int PRODUCT_STANDARD_WS_SERVER_CORE() {
-        return (int)148L;
-    }
-    public static int PRODUCT_UTILITY_VM() {
-        return (int)149L;
-    }
-    public static int PRODUCT_DATACENTER_EVALUATION_SERVER_CORE() {
-        return (int)159L;
-    }
-    public static int PRODUCT_STANDARD_EVALUATION_SERVER_CORE() {
-        return (int)160L;
-    }
-    public static int PRODUCT_PRO_WORKSTATION() {
-        return (int)161L;
-    }
-    public static int PRODUCT_PRO_WORKSTATION_N() {
-        return (int)162L;
-    }
-    public static int PRODUCT_PRO_FOR_EDUCATION() {
-        return (int)164L;
-    }
-    public static int PRODUCT_PRO_FOR_EDUCATION_N() {
-        return (int)165L;
-    }
-    public static int PRODUCT_AZURE_SERVER_CORE() {
-        return (int)168L;
-    }
-    public static int PRODUCT_AZURE_NANO_SERVER() {
-        return (int)169L;
-    }
-    public static int PRODUCT_ENTERPRISEG() {
-        return (int)171L;
-    }
-    public static int PRODUCT_ENTERPRISEGN() {
-        return (int)172L;
-    }
-    public static int PRODUCT_SERVERRDSH() {
-        return (int)175L;
-    }
-    public static int PRODUCT_CLOUD() {
-        return (int)178L;
-    }
-    public static int PRODUCT_CLOUDN() {
-        return (int)179L;
-    }
-    public static int PRODUCT_HUBOS() {
-        return (int)180L;
-    }
-    public static int PRODUCT_ONECOREUPDATEOS() {
-        return (int)182L;
-    }
-    public static int PRODUCT_CLOUDE() {
-        return (int)183L;
-    }
-    public static int PRODUCT_IOTOS() {
-        return (int)185L;
-    }
-    public static int PRODUCT_CLOUDEN() {
-        return (int)186L;
-    }
-    public static int PRODUCT_IOTEDGEOS() {
-        return (int)187L;
-    }
-    public static int PRODUCT_IOTENTERPRISE() {
-        return (int)188L;
-    }
-    public static int PRODUCT_LITE() {
-        return (int)189L;
-    }
-    public static int PRODUCT_IOTENTERPRISES() {
-        return (int)191L;
-    }
-    public static int PRODUCT_XBOX_SYSTEMOS() {
-        return (int)192L;
-    }
-    public static int PRODUCT_XBOX_NATIVEOS() {
-        return (int)193L;
-    }
-    public static int PRODUCT_XBOX_GAMEOS() {
-        return (int)194L;
-    }
-    public static int PRODUCT_XBOX_ERAOS() {
-        return (int)195L;
-    }
-    public static int PRODUCT_XBOX_DURANGOHOSTOS() {
-        return (int)196L;
-    }
-    public static int PRODUCT_XBOX_SCARLETTHOSTOS() {
-        return (int)197L;
-    }
-    public static int PRODUCT_AZURE_SERVER_CLOUDHOST() {
-        return (int)199L;
-    }
-    public static int PRODUCT_AZURE_SERVER_CLOUDMOS() {
-        return (int)200L;
-    }
-    public static int PRODUCT_CLOUDEDITIONN() {
-        return (int)202L;
-    }
-    public static int PRODUCT_CLOUDEDITION() {
-        return (int)203L;
-    }
-    public static int PRODUCT_AZURESTACKHCI_SERVER_CORE() {
-        return (int)406L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER_AZURE_EDITION() {
-        return (int)407L;
-    }
-    public static int PRODUCT_DATACENTER_SERVER_CORE_AZURE_EDITION() {
-        return (int)408L;
-    }
-    public static int LANG_NEUTRAL() {
-        return (int)0L;
-    }
-    public static int LANG_INVARIANT() {
-        return (int)127L;
-    }
-    public static int LANG_AFRIKAANS() {
-        return (int)54L;
-    }
-    public static int LANG_ALBANIAN() {
-        return (int)28L;
-    }
-    public static int LANG_ALSATIAN() {
-        return (int)132L;
-    }
-    public static int LANG_AMHARIC() {
-        return (int)94L;
-    }
-    public static int LANG_ARABIC() {
-        return (int)1L;
-    }
-    public static int LANG_ARMENIAN() {
-        return (int)43L;
-    }
-    public static int LANG_ASSAMESE() {
-        return (int)77L;
-    }
-    public static int LANG_AZERI() {
-        return (int)44L;
-    }
-    public static int LANG_AZERBAIJANI() {
-        return (int)44L;
-    }
-    public static int LANG_BANGLA() {
-        return (int)69L;
-    }
-    public static int LANG_BASHKIR() {
-        return (int)109L;
-    }
-    public static int LANG_BASQUE() {
-        return (int)45L;
-    }
-    public static int LANG_BELARUSIAN() {
-        return (int)35L;
-    }
-    public static int LANG_BENGALI() {
-        return (int)69L;
-    }
-    public static int LANG_BRETON() {
-        return (int)126L;
-    }
-    public static int LANG_BOSNIAN() {
-        return (int)26L;
-    }
-    public static int LANG_BOSNIAN_NEUTRAL() {
-        return (int)30746L;
-    }
-    public static int LANG_BULGARIAN() {
-        return (int)2L;
-    }
-    public static int LANG_CATALAN() {
-        return (int)3L;
-    }
-    public static int LANG_CENTRAL_KURDISH() {
-        return (int)146L;
-    }
-    public static int LANG_CHEROKEE() {
-        return (int)92L;
-    }
-    public static int LANG_CHINESE() {
-        return (int)4L;
-    }
-    public static int LANG_CHINESE_SIMPLIFIED() {
-        return (int)4L;
-    }
-    public static int LANG_CHINESE_TRADITIONAL() {
-        return (int)31748L;
-    }
-    public static int LANG_CORSICAN() {
-        return (int)131L;
-    }
-    public static int LANG_CROATIAN() {
-        return (int)26L;
-    }
-    public static int LANG_CZECH() {
-        return (int)5L;
-    }
-    public static int LANG_DANISH() {
-        return (int)6L;
-    }
-    public static int LANG_DARI() {
-        return (int)140L;
-    }
-    public static int LANG_DIVEHI() {
-        return (int)101L;
-    }
-    public static int LANG_DUTCH() {
-        return (int)19L;
-    }
-    public static int LANG_ENGLISH() {
-        return (int)9L;
-    }
-    public static int LANG_ESTONIAN() {
-        return (int)37L;
-    }
-    public static int LANG_FAEROESE() {
-        return (int)56L;
-    }
-    public static int LANG_FARSI() {
-        return (int)41L;
-    }
-    public static int LANG_FILIPINO() {
-        return (int)100L;
-    }
-    public static int LANG_FINNISH() {
-        return (int)11L;
-    }
-    public static int LANG_FRENCH() {
-        return (int)12L;
-    }
-    public static int LANG_FRISIAN() {
-        return (int)98L;
-    }
-    public static int LANG_FULAH() {
-        return (int)103L;
-    }
-    public static int LANG_GALICIAN() {
-        return (int)86L;
-    }
-    public static int LANG_GEORGIAN() {
-        return (int)55L;
-    }
-    public static int LANG_GERMAN() {
-        return (int)7L;
-    }
-    public static int LANG_GREEK() {
-        return (int)8L;
-    }
-    public static int LANG_GREENLANDIC() {
-        return (int)111L;
-    }
-    public static int LANG_GUJARATI() {
-        return (int)71L;
-    }
-    public static int LANG_HAUSA() {
-        return (int)104L;
-    }
-    public static int LANG_HAWAIIAN() {
-        return (int)117L;
-    }
-    public static int LANG_HEBREW() {
-        return (int)13L;
-    }
-    public static int LANG_HINDI() {
-        return (int)57L;
-    }
-    public static int LANG_HUNGARIAN() {
-        return (int)14L;
-    }
-    public static int LANG_ICELANDIC() {
-        return (int)15L;
-    }
-    public static int LANG_IGBO() {
-        return (int)112L;
-    }
-    public static int LANG_INDONESIAN() {
-        return (int)33L;
-    }
-    public static int LANG_INUKTITUT() {
-        return (int)93L;
-    }
-    public static int LANG_IRISH() {
-        return (int)60L;
-    }
-    public static int LANG_ITALIAN() {
-        return (int)16L;
-    }
-    public static int LANG_JAPANESE() {
-        return (int)17L;
-    }
-    public static int LANG_KANNADA() {
-        return (int)75L;
-    }
-    public static int LANG_KASHMIRI() {
-        return (int)96L;
-    }
-    public static int LANG_KAZAK() {
-        return (int)63L;
-    }
-    public static int LANG_KHMER() {
-        return (int)83L;
-    }
-    public static int LANG_KICHE() {
-        return (int)134L;
-    }
-    public static int LANG_KINYARWANDA() {
-        return (int)135L;
-    }
-    public static int LANG_KONKANI() {
-        return (int)87L;
-    }
-    public static int LANG_KOREAN() {
-        return (int)18L;
-    }
-    public static int LANG_KYRGYZ() {
-        return (int)64L;
-    }
-    public static int LANG_LAO() {
-        return (int)84L;
-    }
-    public static int LANG_LATVIAN() {
-        return (int)38L;
-    }
-    public static int LANG_LITHUANIAN() {
-        return (int)39L;
-    }
-    public static int LANG_LOWER_SORBIAN() {
-        return (int)46L;
-    }
-    public static int LANG_LUXEMBOURGISH() {
-        return (int)110L;
-    }
-    public static int LANG_MACEDONIAN() {
-        return (int)47L;
-    }
-    public static int LANG_MALAY() {
-        return (int)62L;
-    }
-    public static int LANG_MALAYALAM() {
-        return (int)76L;
-    }
-    public static int LANG_MALTESE() {
-        return (int)58L;
-    }
-    public static int LANG_MANIPURI() {
-        return (int)88L;
-    }
-    public static int LANG_MAORI() {
-        return (int)129L;
-    }
-    public static int LANG_MAPUDUNGUN() {
-        return (int)122L;
-    }
-    public static int LANG_MARATHI() {
-        return (int)78L;
-    }
-    public static int LANG_MOHAWK() {
-        return (int)124L;
-    }
-    public static int LANG_MONGOLIAN() {
-        return (int)80L;
-    }
-    public static int LANG_NEPALI() {
-        return (int)97L;
-    }
-    public static int LANG_NORWEGIAN() {
-        return (int)20L;
-    }
-    public static int LANG_OCCITAN() {
-        return (int)130L;
-    }
-    public static int LANG_ODIA() {
-        return (int)72L;
-    }
-    public static int LANG_ORIYA() {
-        return (int)72L;
-    }
-    public static int LANG_PASHTO() {
-        return (int)99L;
-    }
-    public static int LANG_PERSIAN() {
-        return (int)41L;
-    }
-    public static int LANG_POLISH() {
-        return (int)21L;
-    }
-    public static int LANG_PORTUGUESE() {
-        return (int)22L;
-    }
-    public static int LANG_PULAR() {
-        return (int)103L;
-    }
-    public static int LANG_PUNJABI() {
-        return (int)70L;
-    }
-    public static int LANG_QUECHUA() {
-        return (int)107L;
-    }
-    public static int LANG_ROMANIAN() {
-        return (int)24L;
-    }
-    public static int LANG_ROMANSH() {
-        return (int)23L;
-    }
-    public static int LANG_RUSSIAN() {
-        return (int)25L;
-    }
-    public static int LANG_SAKHA() {
-        return (int)133L;
-    }
-    public static int LANG_SAMI() {
-        return (int)59L;
-    }
-    public static int LANG_SANSKRIT() {
-        return (int)79L;
-    }
-    public static int LANG_SCOTTISH_GAELIC() {
-        return (int)145L;
-    }
-    public static int LANG_SERBIAN() {
-        return (int)26L;
-    }
-    public static int LANG_SERBIAN_NEUTRAL() {
-        return (int)31770L;
-    }
-    public static int LANG_SINDHI() {
-        return (int)89L;
-    }
-    public static int LANG_SINHALESE() {
-        return (int)91L;
-    }
-    public static int LANG_SLOVAK() {
-        return (int)27L;
-    }
-    public static int LANG_SLOVENIAN() {
-        return (int)36L;
-    }
-    public static int LANG_SOTHO() {
-        return (int)108L;
-    }
-    public static int LANG_SPANISH() {
-        return (int)10L;
-    }
-    public static int LANG_SWAHILI() {
-        return (int)65L;
-    }
-    public static int LANG_SWEDISH() {
-        return (int)29L;
-    }
-    public static int LANG_SYRIAC() {
-        return (int)90L;
-    }
-    public static int LANG_TAJIK() {
-        return (int)40L;
-    }
-    public static int LANG_TAMAZIGHT() {
-        return (int)95L;
-    }
-    public static int LANG_TAMIL() {
-        return (int)73L;
-    }
-    public static int LANG_TATAR() {
-        return (int)68L;
-    }
-    public static int LANG_TELUGU() {
-        return (int)74L;
-    }
-    public static int LANG_THAI() {
-        return (int)30L;
-    }
-    public static int LANG_TIBETAN() {
-        return (int)81L;
-    }
-    public static int LANG_TIGRIGNA() {
-        return (int)115L;
-    }
-    public static int LANG_TIGRINYA() {
-        return (int)115L;
-    }
-    public static int LANG_TSWANA() {
-        return (int)50L;
-    }
-    public static int LANG_TURKISH() {
-        return (int)31L;
-    }
-    public static int LANG_TURKMEN() {
-        return (int)66L;
-    }
-    public static int LANG_UIGHUR() {
-        return (int)128L;
-    }
-    public static int LANG_UKRAINIAN() {
-        return (int)34L;
-    }
-    public static int LANG_UPPER_SORBIAN() {
-        return (int)46L;
-    }
-    public static int LANG_URDU() {
-        return (int)32L;
-    }
-    public static int LANG_UZBEK() {
-        return (int)67L;
-    }
-    public static int LANG_VALENCIAN() {
-        return (int)3L;
-    }
-    public static int LANG_VIETNAMESE() {
-        return (int)42L;
-    }
-    public static int LANG_WELSH() {
-        return (int)82L;
-    }
-    public static int LANG_WOLOF() {
-        return (int)136L;
-    }
-    public static int LANG_XHOSA() {
-        return (int)52L;
-    }
-    public static int LANG_YAKUT() {
-        return (int)133L;
-    }
-    public static int LANG_YI() {
-        return (int)120L;
-    }
-    public static int LANG_YORUBA() {
-        return (int)106L;
-    }
-    public static int LANG_ZULU() {
-        return (int)53L;
-    }
-    public static int SUBLANG_NEUTRAL() {
-        return (int)0L;
-    }
-    public static int SUBLANG_DEFAULT() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SYS_DEFAULT() {
-        return (int)2L;
-    }
-    public static int SUBLANG_CUSTOM_DEFAULT() {
-        return (int)3L;
-    }
-    public static int SUBLANG_CUSTOM_UNSPECIFIED() {
-        return (int)4L;
-    }
-    public static int SUBLANG_UI_CUSTOM_DEFAULT() {
-        return (int)5L;
-    }
-    public static int SUBLANG_AFRIKAANS_SOUTH_AFRICA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ALBANIAN_ALBANIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ALSATIAN_FRANCE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_AMHARIC_ETHIOPIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ARABIC_SAUDI_ARABIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ARABIC_IRAQ() {
-        return (int)2L;
-    }
-    public static int SUBLANG_ARABIC_EGYPT() {
-        return (int)3L;
-    }
-    public static int SUBLANG_ARABIC_LIBYA() {
-        return (int)4L;
-    }
-    public static int SUBLANG_ARABIC_ALGERIA() {
-        return (int)5L;
-    }
-    public static int SUBLANG_ARABIC_MOROCCO() {
-        return (int)6L;
-    }
-    public static int SUBLANG_ARABIC_TUNISIA() {
-        return (int)7L;
-    }
-    public static int SUBLANG_ARABIC_OMAN() {
-        return (int)8L;
-    }
-    public static int SUBLANG_ARABIC_YEMEN() {
-        return (int)9L;
-    }
-    public static int SUBLANG_ARABIC_SYRIA() {
-        return (int)10L;
-    }
-    public static int SUBLANG_ARABIC_JORDAN() {
-        return (int)11L;
-    }
-    public static int SUBLANG_ARABIC_LEBANON() {
-        return (int)12L;
-    }
-    public static int SUBLANG_ARABIC_KUWAIT() {
-        return (int)13L;
-    }
-    public static int SUBLANG_ARABIC_UAE() {
-        return (int)14L;
-    }
-    public static int SUBLANG_ARABIC_BAHRAIN() {
-        return (int)15L;
-    }
-    public static int SUBLANG_ARABIC_QATAR() {
-        return (int)16L;
-    }
-    public static int SUBLANG_ARMENIAN_ARMENIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ASSAMESE_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_AZERI_LATIN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_AZERI_CYRILLIC() {
-        return (int)2L;
-    }
-    public static int SUBLANG_AZERBAIJANI_AZERBAIJAN_LATIN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_AZERBAIJANI_AZERBAIJAN_CYRILLIC() {
-        return (int)2L;
-    }
-    public static int SUBLANG_BANGLA_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BANGLA_BANGLADESH() {
-        return (int)2L;
-    }
-    public static int SUBLANG_BASHKIR_RUSSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BASQUE_BASQUE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BELARUSIAN_BELARUS() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BENGALI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BENGALI_BANGLADESH() {
-        return (int)2L;
-    }
-    public static int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN() {
-        return (int)5L;
-    }
-    public static int SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_CYRILLIC() {
-        return (int)8L;
-    }
-    public static int SUBLANG_BRETON_FRANCE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_BULGARIAN_BULGARIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CATALAN_CATALAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CENTRAL_KURDISH_IRAQ() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CHEROKEE_CHEROKEE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CHINESE_TRADITIONAL() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CHINESE_SIMPLIFIED() {
-        return (int)2L;
-    }
-    public static int SUBLANG_CHINESE_HONGKONG() {
-        return (int)3L;
-    }
-    public static int SUBLANG_CHINESE_SINGAPORE() {
-        return (int)4L;
-    }
-    public static int SUBLANG_CHINESE_MACAU() {
-        return (int)5L;
-    }
-    public static int SUBLANG_CORSICAN_FRANCE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CZECH_CZECH_REPUBLIC() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CROATIAN_CROATIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN() {
-        return (int)4L;
-    }
-    public static int SUBLANG_DANISH_DENMARK() {
-        return (int)1L;
-    }
-    public static int SUBLANG_DARI_AFGHANISTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_DIVEHI_MALDIVES() {
-        return (int)1L;
-    }
-    public static int SUBLANG_DUTCH() {
-        return (int)1L;
-    }
-    public static int SUBLANG_DUTCH_BELGIAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_ENGLISH_US() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ENGLISH_UK() {
-        return (int)2L;
-    }
-    public static int SUBLANG_ENGLISH_AUS() {
-        return (int)3L;
-    }
-    public static int SUBLANG_ENGLISH_CAN() {
-        return (int)4L;
-    }
-    public static int SUBLANG_ENGLISH_NZ() {
-        return (int)5L;
-    }
-    public static int SUBLANG_ENGLISH_EIRE() {
-        return (int)6L;
-    }
-    public static int SUBLANG_ENGLISH_SOUTH_AFRICA() {
-        return (int)7L;
-    }
-    public static int SUBLANG_ENGLISH_JAMAICA() {
-        return (int)8L;
-    }
-    public static int SUBLANG_ENGLISH_CARIBBEAN() {
-        return (int)9L;
-    }
-    public static int SUBLANG_ENGLISH_BELIZE() {
-        return (int)10L;
-    }
-    public static int SUBLANG_ENGLISH_TRINIDAD() {
-        return (int)11L;
-    }
-    public static int SUBLANG_ENGLISH_ZIMBABWE() {
-        return (int)12L;
-    }
-    public static int SUBLANG_ENGLISH_PHILIPPINES() {
-        return (int)13L;
-    }
-    public static int SUBLANG_ENGLISH_INDIA() {
-        return (int)16L;
-    }
-    public static int SUBLANG_ENGLISH_MALAYSIA() {
-        return (int)17L;
-    }
-    public static int SUBLANG_ENGLISH_SINGAPORE() {
-        return (int)18L;
-    }
-    public static int SUBLANG_ESTONIAN_ESTONIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FAEROESE_FAROE_ISLANDS() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FILIPINO_PHILIPPINES() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FINNISH_FINLAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FRENCH() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FRENCH_BELGIAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_FRENCH_CANADIAN() {
-        return (int)3L;
-    }
-    public static int SUBLANG_FRENCH_SWISS() {
-        return (int)4L;
-    }
-    public static int SUBLANG_FRENCH_LUXEMBOURG() {
-        return (int)5L;
-    }
-    public static int SUBLANG_FRENCH_MONACO() {
-        return (int)6L;
-    }
-    public static int SUBLANG_FRISIAN_NETHERLANDS() {
-        return (int)1L;
-    }
-    public static int SUBLANG_FULAH_SENEGAL() {
-        return (int)2L;
-    }
-    public static int SUBLANG_GALICIAN_GALICIAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_GEORGIAN_GEORGIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_GERMAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_GERMAN_SWISS() {
-        return (int)2L;
-    }
-    public static int SUBLANG_GERMAN_AUSTRIAN() {
-        return (int)3L;
-    }
-    public static int SUBLANG_GERMAN_LUXEMBOURG() {
-        return (int)4L;
-    }
-    public static int SUBLANG_GERMAN_LIECHTENSTEIN() {
-        return (int)5L;
-    }
-    public static int SUBLANG_GREEK_GREECE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_GREENLANDIC_GREENLAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_GUJARATI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_HAUSA_NIGERIA_LATIN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_HAWAIIAN_US() {
-        return (int)1L;
-    }
-    public static int SUBLANG_HEBREW_ISRAEL() {
-        return (int)1L;
-    }
-    public static int SUBLANG_HINDI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_HUNGARIAN_HUNGARY() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ICELANDIC_ICELAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_IGBO_NIGERIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_INDONESIAN_INDONESIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_INUKTITUT_CANADA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_INUKTITUT_CANADA_LATIN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_IRISH_IRELAND() {
-        return (int)2L;
-    }
-    public static int SUBLANG_ITALIAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ITALIAN_SWISS() {
-        return (int)2L;
-    }
-    public static int SUBLANG_JAPANESE_JAPAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KANNADA_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KASHMIRI_SASIA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_KASHMIRI_INDIA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_KAZAK_KAZAKHSTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KHMER_CAMBODIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KICHE_GUATEMALA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KINYARWANDA_RWANDA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KONKANI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KOREAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_KYRGYZ_KYRGYZSTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_LAO_LAO() {
-        return (int)1L;
-    }
-    public static int SUBLANG_LATVIAN_LATVIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_LITHUANIAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_LOWER_SORBIAN_GERMANY() {
-        return (int)2L;
-    }
-    public static int SUBLANG_LUXEMBOURGISH_LUXEMBOURG() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MACEDONIAN_MACEDONIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MALAY_MALAYSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MALAY_BRUNEI_DARUSSALAM() {
-        return (int)2L;
-    }
-    public static int SUBLANG_MALAYALAM_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MALTESE_MALTA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MAORI_NEW_ZEALAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MAPUDUNGUN_CHILE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MARATHI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MOHAWK_MOHAWK() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MONGOLIAN_CYRILLIC_MONGOLIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_MONGOLIAN_PRC() {
-        return (int)2L;
-    }
-    public static int SUBLANG_NEPALI_INDIA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_NEPALI_NEPAL() {
-        return (int)1L;
-    }
-    public static int SUBLANG_NORWEGIAN_BOKMAL() {
-        return (int)1L;
-    }
-    public static int SUBLANG_NORWEGIAN_NYNORSK() {
-        return (int)2L;
-    }
-    public static int SUBLANG_OCCITAN_FRANCE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ODIA_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ORIYA_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_PASHTO_AFGHANISTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_PERSIAN_IRAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_POLISH_POLAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_PORTUGUESE() {
-        return (int)2L;
-    }
-    public static int SUBLANG_PORTUGUESE_BRAZILIAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_PULAR_SENEGAL() {
-        return (int)2L;
-    }
-    public static int SUBLANG_PUNJABI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_PUNJABI_PAKISTAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_QUECHUA_BOLIVIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_QUECHUA_ECUADOR() {
-        return (int)2L;
-    }
-    public static int SUBLANG_QUECHUA_PERU() {
-        return (int)3L;
-    }
-    public static int SUBLANG_ROMANIAN_ROMANIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ROMANSH_SWITZERLAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_RUSSIAN_RUSSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SAKHA_RUSSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SAMI_NORTHERN_NORWAY() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SAMI_NORTHERN_SWEDEN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SAMI_NORTHERN_FINLAND() {
-        return (int)3L;
-    }
-    public static int SUBLANG_SAMI_LULE_NORWAY() {
-        return (int)4L;
-    }
-    public static int SUBLANG_SAMI_LULE_SWEDEN() {
-        return (int)5L;
-    }
-    public static int SUBLANG_SAMI_SOUTHERN_NORWAY() {
-        return (int)6L;
-    }
-    public static int SUBLANG_SAMI_SOUTHERN_SWEDEN() {
-        return (int)7L;
-    }
-    public static int SUBLANG_SAMI_SKOLT_FINLAND() {
-        return (int)8L;
-    }
-    public static int SUBLANG_SAMI_INARI_FINLAND() {
-        return (int)9L;
-    }
-    public static int SUBLANG_SANSKRIT_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SCOTTISH_GAELIC() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN() {
-        return (int)6L;
-    }
-    public static int SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC() {
-        return (int)7L;
-    }
-    public static int SUBLANG_SERBIAN_MONTENEGRO_LATIN() {
-        return (int)11L;
-    }
-    public static int SUBLANG_SERBIAN_MONTENEGRO_CYRILLIC() {
-        return (int)12L;
-    }
-    public static int SUBLANG_SERBIAN_SERBIA_LATIN() {
-        return (int)9L;
-    }
-    public static int SUBLANG_SERBIAN_SERBIA_CYRILLIC() {
-        return (int)10L;
-    }
-    public static int SUBLANG_SERBIAN_CROATIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SERBIAN_LATIN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SERBIAN_CYRILLIC() {
-        return (int)3L;
-    }
-    public static int SUBLANG_SINDHI_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SINDHI_PAKISTAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SINDHI_AFGHANISTAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SINHALESE_SRI_LANKA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SLOVAK_SLOVAKIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SLOVENIAN_SLOVENIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SPANISH() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SPANISH_MEXICAN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SPANISH_MODERN() {
-        return (int)3L;
-    }
-    public static int SUBLANG_SPANISH_GUATEMALA() {
-        return (int)4L;
-    }
-    public static int SUBLANG_SPANISH_COSTA_RICA() {
-        return (int)5L;
-    }
-    public static int SUBLANG_SPANISH_PANAMA() {
-        return (int)6L;
-    }
-    public static int SUBLANG_SPANISH_DOMINICAN_REPUBLIC() {
-        return (int)7L;
-    }
-    public static int SUBLANG_SPANISH_VENEZUELA() {
-        return (int)8L;
-    }
-    public static int SUBLANG_SPANISH_COLOMBIA() {
-        return (int)9L;
-    }
-    public static int SUBLANG_SPANISH_PERU() {
-        return (int)10L;
-    }
-    public static int SUBLANG_SPANISH_ARGENTINA() {
-        return (int)11L;
-    }
-    public static int SUBLANG_SPANISH_ECUADOR() {
-        return (int)12L;
-    }
-    public static int SUBLANG_SPANISH_CHILE() {
-        return (int)13L;
-    }
-    public static int SUBLANG_SPANISH_URUGUAY() {
-        return (int)14L;
-    }
-    public static int SUBLANG_SPANISH_PARAGUAY() {
-        return (int)15L;
-    }
-    public static int SUBLANG_SPANISH_BOLIVIA() {
-        return (int)16L;
-    }
-    public static int SUBLANG_SPANISH_EL_SALVADOR() {
-        return (int)17L;
-    }
-    public static int SUBLANG_SPANISH_HONDURAS() {
-        return (int)18L;
-    }
-    public static int SUBLANG_SPANISH_NICARAGUA() {
-        return (int)19L;
-    }
-    public static int SUBLANG_SPANISH_PUERTO_RICO() {
-        return (int)20L;
-    }
-    public static int SUBLANG_SPANISH_US() {
-        return (int)21L;
-    }
-    public static int SUBLANG_SWAHILI_KENYA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SWEDISH() {
-        return (int)1L;
-    }
-    public static int SUBLANG_SWEDISH_FINLAND() {
-        return (int)2L;
-    }
-    public static int SUBLANG_SYRIAC_SYRIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TAJIK_TAJIKISTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TAMAZIGHT_ALGERIA_LATIN() {
-        return (int)2L;
-    }
-    public static int SUBLANG_TAMAZIGHT_MOROCCO_TIFINAGH() {
-        return (int)4L;
-    }
-    public static int SUBLANG_TAMIL_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TAMIL_SRI_LANKA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_TATAR_RUSSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TELUGU_INDIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_THAI_THAILAND() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TIBETAN_PRC() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TIGRIGNA_ERITREA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_TIGRINYA_ERITREA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_TIGRINYA_ETHIOPIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TSWANA_BOTSWANA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_TSWANA_SOUTH_AFRICA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TURKISH_TURKEY() {
-        return (int)1L;
-    }
-    public static int SUBLANG_TURKMEN_TURKMENISTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_UIGHUR_PRC() {
-        return (int)1L;
-    }
-    public static int SUBLANG_UKRAINIAN_UKRAINE() {
-        return (int)1L;
-    }
-    public static int SUBLANG_UPPER_SORBIAN_GERMANY() {
-        return (int)1L;
-    }
-    public static int SUBLANG_URDU_PAKISTAN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_URDU_INDIA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_UZBEK_LATIN() {
-        return (int)1L;
-    }
-    public static int SUBLANG_UZBEK_CYRILLIC() {
-        return (int)2L;
-    }
-    public static int SUBLANG_VALENCIAN_VALENCIA() {
-        return (int)2L;
-    }
-    public static int SUBLANG_VIETNAMESE_VIETNAM() {
-        return (int)1L;
-    }
-    public static int SUBLANG_WELSH_UNITED_KINGDOM() {
-        return (int)1L;
-    }
-    public static int SUBLANG_WOLOF_SENEGAL() {
-        return (int)1L;
-    }
-    public static int SUBLANG_XHOSA_SOUTH_AFRICA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_YAKUT_RUSSIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_YI_PRC() {
-        return (int)1L;
-    }
-    public static int SUBLANG_YORUBA_NIGERIA() {
-        return (int)1L;
-    }
-    public static int SUBLANG_ZULU_SOUTH_AFRICA() {
-        return (int)1L;
-    }
-    public static int SORT_DEFAULT() {
-        return (int)0L;
-    }
-    public static int SORT_INVARIANT_MATH() {
-        return (int)1L;
-    }
-    public static int SORT_JAPANESE_XJIS() {
-        return (int)0L;
-    }
-    public static int SORT_JAPANESE_UNICODE() {
-        return (int)1L;
-    }
-    public static int SORT_JAPANESE_RADICALSTROKE() {
-        return (int)4L;
-    }
-    public static int SORT_CHINESE_BIG5() {
-        return (int)0L;
-    }
-    public static int SORT_CHINESE_PRCP() {
-        return (int)0L;
-    }
-    public static int SORT_CHINESE_UNICODE() {
-        return (int)1L;
-    }
-    public static int SORT_CHINESE_PRC() {
-        return (int)2L;
-    }
-    public static int SORT_CHINESE_BOPOMOFO() {
-        return (int)3L;
-    }
-    public static int SORT_CHINESE_RADICALSTROKE() {
-        return (int)4L;
-    }
-    public static int SORT_KOREAN_KSC() {
-        return (int)0L;
-    }
-    public static int SORT_KOREAN_UNICODE() {
-        return (int)1L;
-    }
-    public static int SORT_GERMAN_PHONE_BOOK() {
-        return (int)1L;
-    }
-    public static int SORT_HUNGARIAN_DEFAULT() {
-        return (int)0L;
-    }
-    public static int SORT_HUNGARIAN_TECHNICAL() {
-        return (int)1L;
-    }
-    public static int SORT_GEORGIAN_TRADITIONAL() {
-        return (int)0L;
-    }
-    public static int SORT_GEORGIAN_MODERN() {
-        return (int)1L;
-    }
-    public static int NLS_VALID_LOCALE_MASK() {
-        return (int)1048575L;
-    }
-    public static int LOCALE_NAME_MAX_LENGTH() {
-        return (int)85L;
-    }
-    public static int LOCALE_TRANSIENT_KEYBOARD1() {
-        return (int)8192L;
-    }
-    public static int LOCALE_TRANSIENT_KEYBOARD2() {
-        return (int)9216L;
-    }
-    public static int LOCALE_TRANSIENT_KEYBOARD3() {
-        return (int)10240L;
-    }
-    public static int LOCALE_TRANSIENT_KEYBOARD4() {
-        return (int)11264L;
-    }
-    public static int MAXIMUM_WAIT_OBJECTS() {
-        return (int)64L;
-    }
-    public static int _MM_HINT_T0() {
-        return (int)1L;
-    }
-    public static int _MM_HINT_T1() {
-        return (int)2L;
-    }
-    public static int _MM_HINT_T2() {
-        return (int)3L;
-    }
-    public static int _MM_HINT_NTA() {
-        return (int)0L;
-    }
-    public static int EXCEPTION_READ_FAULT() {
-        return (int)0L;
-    }
-    public static int EXCEPTION_WRITE_FAULT() {
-        return (int)1L;
-    }
-    public static int EXCEPTION_EXECUTE_FAULT() {
-        return (int)8L;
-    }
-    public static int CONTEXT_UNWOUND_TO_CALL() {
-        return (int)536870912L;
-    }
-    public static int INITIAL_MXCSR() {
-        return (int)8064L;
-    }
-    public static int INITIAL_FPCSR() {
-        return (int)639L;
-    }
-    public static int RUNTIME_FUNCTION_INDIRECT() {
-        return (int)1L;
-    }
-    public static int UNW_FLAG_NHANDLER() {
-        return (int)0L;
-    }
-    public static int UNW_FLAG_EHANDLER() {
-        return (int)1L;
-    }
-    public static int UNW_FLAG_UHANDLER() {
-        return (int)2L;
-    }
-    public static int UNW_FLAG_CHAININFO() {
-        return (int)4L;
-    }
-    public static int UNWIND_CHAIN_LIMIT() {
-        return (int)32L;
-    }
-    public static int CONTEXT_ARM64_UNWOUND_TO_CALL() {
-        return (int)536870912L;
-    }
-    public static int CONTEXT_ARM64_RET_TO_GUEST() {
-        return (int)67108864L;
-    }
-    public static int ARM64_MAX_BREAKPOINTS() {
-        return (int)8L;
-    }
-    public static int ARM64_MAX_WATCHPOINTS() {
-        return (int)2L;
-    }
-    public static int WOW64_CONTEXT_i386() {
-        return (int)65536L;
-    }
-    public static int WOW64_CONTEXT_i486() {
-        return (int)65536L;
-    }
-    public static int WOW64_CONTEXT_EXCEPTION_ACTIVE() {
-        return (int)134217728L;
-    }
-    public static int WOW64_CONTEXT_SERVICE_ACTIVE() {
-        return (int)268435456L;
-    }
-    public static int WOW64_CONTEXT_EXCEPTION_REQUEST() {
-        return (int)1073741824L;
-    }
-    public static int WOW64_SIZE_OF_80387_REGISTERS() {
-        return (int)80L;
-    }
-    public static int WOW64_MAXIMUM_SUPPORTED_EXTENSION() {
-        return (int)512L;
-    }
-    public static int EXCEPTION_NONCONTINUABLE() {
-        return (int)1L;
-    }
-    public static int EXCEPTION_UNWINDING() {
-        return (int)2L;
-    }
-    public static int EXCEPTION_EXIT_UNWIND() {
-        return (int)4L;
-    }
-    public static int EXCEPTION_STACK_INVALID() {
-        return (int)8L;
-    }
-    public static int EXCEPTION_NESTED_CALL() {
-        return (int)16L;
-    }
-    public static int EXCEPTION_TARGET_UNWIND() {
-        return (int)32L;
-    }
-    public static int EXCEPTION_COLLIDED_UNWIND() {
-        return (int)64L;
-    }
-    public static int EXCEPTION_SOFTWARE_ORIGINATE() {
-        return (int)128L;
-    }
-    public static int EXCEPTION_MAXIMUM_PARAMETERS() {
-        return (int)15L;
-    }
-    public static int SID_HASH_SIZE() {
-        return (int)32L;
-    }
-    public static int SECURITY_TRUSTED_INSTALLER_RID1() {
-        return (int)956008885L;
-    }
-    public static int SECURITY_TRUSTED_INSTALLER_RID3() {
-        return (int)1831038044L;
-    }
-    public static int SECURITY_TRUSTED_INSTALLER_RID4() {
-        return (int)1853292631L;
-    }
-    public static int SYSTEM_MANDATORY_LABEL_NO_WRITE_UP() {
-        return (int)1L;
-    }
-    public static int SYSTEM_MANDATORY_LABEL_NO_READ_UP() {
-        return (int)2L;
-    }
-    public static int SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP() {
-        return (int)4L;
-    }
-    public static int SYSTEM_PROCESS_TRUST_LABEL_VALID_MASK() {
-        return (int)16777215L;
-    }
-    public static int SYSTEM_ACCESS_FILTER_VALID_MASK() {
-        return (int)16777215L;
-    }
-    public static int ACE_OBJECT_TYPE_PRESENT() {
-        return (int)1L;
-    }
-    public static int ACE_INHERITED_OBJECT_TYPE_PRESENT() {
-        return (int)2L;
-    }
-    public static int ACCESS_OBJECT_GUID() {
-        return (int)0L;
-    }
-    public static int ACCESS_PROPERTY_SET_GUID() {
-        return (int)1L;
-    }
-    public static int ACCESS_PROPERTY_GUID() {
-        return (int)2L;
-    }
-    public static int ACCESS_MAX_LEVEL() {
-        return (int)4L;
-    }
-    public static int AUDIT_ALLOW_NO_PRIVILEGE() {
-        return (int)1L;
-    }
-    public static int ACCESS_REASON_TYPE_MASK() {
-        return (int)16711680L;
-    }
-    public static int ACCESS_REASON_DATA_MASK() {
-        return (int)65535L;
-    }
-    public static int ACCESS_REASON_EXDATA_MASK() {
-        return (int)2130706432L;
-    }
-    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_OWNER_ACE() {
-        return (int)1L;
-    }
-    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_LABEL_ACE() {
-        return (int)2L;
-    }
-    public static int SE_SECURITY_DESCRIPTOR_FLAG_NO_ACCESS_FILTER_ACE() {
-        return (int)4L;
-    }
-    public static int SE_SECURITY_DESCRIPTOR_VALID_FLAGS() {
-        return (int)7L;
-    }
-    public static int SE_ACCESS_CHECK_FLAG_NO_LEARNING_MODE_LOGGING() {
-        return (int)8L;
-    }
-    public static int SE_ACCESS_CHECK_VALID_FLAGS() {
-        return (int)8L;
-    }
-    public static int TOKEN_MANDATORY_POLICY_OFF() {
-        return (int)0L;
-    }
-    public static int TOKEN_MANDATORY_POLICY_NO_WRITE_UP() {
-        return (int)1L;
-    }
-    public static int TOKEN_MANDATORY_POLICY_NEW_PROCESS_MIN() {
-        return (int)2L;
-    }
-    public static int TOKEN_SOURCE_LENGTH() {
-        return (int)8L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_INVALID() {
-        return (int)0L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_INT64() {
-        return (int)1L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_UINT64() {
-        return (int)2L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_STRING() {
-        return (int)3L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_FQBN() {
-        return (int)4L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_SID() {
-        return (int)5L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_BOOLEAN() {
-        return (int)6L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_TYPE_OCTET_STRING() {
-        return (int)16L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_NON_INHERITABLE() {
-        return (int)1L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE() {
-        return (int)2L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_USE_FOR_DENY_ONLY() {
-        return (int)4L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_DISABLED_BY_DEFAULT() {
-        return (int)8L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_DISABLED() {
-        return (int)16L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTE_MANDATORY() {
-        return (int)32L;
-    }
-    public static int CLAIM_SECURITY_ATTRIBUTES_INFORMATION_VERSION_V1() {
-        return (int)1L;
-    }
-    public static int DISABLE_MAX_PRIVILEGE() {
-        return (int)1L;
-    }
-    public static int SANDBOX_INERT() {
-        return (int)2L;
-    }
-    public static int LUA_TOKEN() {
-        return (int)4L;
-    }
-    public static int WRITE_RESTRICTED() {
-        return (int)8L;
-    }
-    public static int SE_SIGNING_LEVEL_UNCHECKED() {
-        return (int)0L;
-    }
-    public static int SE_SIGNING_LEVEL_UNSIGNED() {
-        return (int)1L;
-    }
-    public static int SE_SIGNING_LEVEL_ENTERPRISE() {
-        return (int)2L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_1() {
-        return (int)3L;
-    }
-    public static int SE_SIGNING_LEVEL_AUTHENTICODE() {
-        return (int)4L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_2() {
-        return (int)5L;
-    }
-    public static int SE_SIGNING_LEVEL_STORE() {
-        return (int)6L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_3() {
-        return (int)7L;
-    }
-    public static int SE_SIGNING_LEVEL_MICROSOFT() {
-        return (int)8L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_4() {
-        return (int)9L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_5() {
-        return (int)10L;
-    }
-    public static int SE_SIGNING_LEVEL_DYNAMIC_CODEGEN() {
-        return (int)11L;
-    }
-    public static int SE_SIGNING_LEVEL_WINDOWS() {
-        return (int)12L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_7() {
-        return (int)13L;
-    }
-    public static int SE_SIGNING_LEVEL_WINDOWS_TCB() {
-        return (int)14L;
-    }
-    public static int SE_SIGNING_LEVEL_CUSTOM_6() {
-        return (int)15L;
-    }
-    public static int SE_LEARNING_MODE_FLAG_PERMISSIVE() {
-        return (int)1L;
-    }
-    public static int FLS_MAXIMUM_AVAILABLE() {
-        return (int)4080L;
-    }
-    public static int TLS_MINIMUM_AVAILABLE() {
-        return (int)64L;
-    }
-    public static int THREAD_DYNAMIC_CODE_ALLOW() {
-        return (int)1L;
-    }
-    public static int THREAD_BASE_PRIORITY_LOWRT() {
-        return (int)15L;
-    }
-    public static int THREAD_BASE_PRIORITY_MAX() {
-        return (int)2L;
-    }
-    public static int COMPONENT_KTM() {
-        return (int)1L;
-    }
-    public static int MEMORY_PRIORITY_LOWEST() {
-        return (int)0L;
-    }
-    public static int MEMORY_PRIORITY_VERY_LOW() {
-        return (int)1L;
-    }
-    public static int MEMORY_PRIORITY_LOW() {
-        return (int)2L;
-    }
-    public static int MEMORY_PRIORITY_MEDIUM() {
-        return (int)3L;
-    }
-    public static int MEMORY_PRIORITY_BELOW_NORMAL() {
-        return (int)4L;
-    }
-    public static int MEMORY_PRIORITY_NORMAL() {
-        return (int)5L;
-    }
-    public static int QUOTA_LIMITS_HARDWS_MIN_ENABLE() {
-        return (int)1L;
-    }
-    public static int QUOTA_LIMITS_HARDWS_MIN_DISABLE() {
-        return (int)2L;
-    }
-    public static int QUOTA_LIMITS_HARDWS_MAX_ENABLE() {
-        return (int)4L;
-    }
-    public static int QUOTA_LIMITS_HARDWS_MAX_DISABLE() {
-        return (int)8L;
-    }
-    public static int QUOTA_LIMITS_USE_DEFAULT_LIMITS() {
-        return (int)16L;
-    }
-    public static int MAX_HW_COUNTERS() {
-        return (int)16L;
-    }
-    public static int THREAD_PROFILING_FLAG_DISPATCH() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_NET_RATE_CONTROL_MAX_DSCP_TAG() {
-        return (int)64L;
-    }
-    public static int JOB_OBJECT_TERMINATE_AT_END_OF_JOB() {
-        return (int)0L;
-    }
-    public static int JOB_OBJECT_POST_AT_END_OF_JOB() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_MSG_END_OF_JOB_TIME() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_MSG_END_OF_PROCESS_TIME() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_MSG_ACTIVE_PROCESS_LIMIT() {
-        return (int)3L;
-    }
-    public static int JOB_OBJECT_MSG_ACTIVE_PROCESS_ZERO() {
-        return (int)4L;
-    }
-    public static int JOB_OBJECT_MSG_NEW_PROCESS() {
-        return (int)6L;
-    }
-    public static int JOB_OBJECT_MSG_EXIT_PROCESS() {
-        return (int)7L;
-    }
-    public static int JOB_OBJECT_MSG_ABNORMAL_EXIT_PROCESS() {
-        return (int)8L;
-    }
-    public static int JOB_OBJECT_MSG_PROCESS_MEMORY_LIMIT() {
-        return (int)9L;
-    }
-    public static int JOB_OBJECT_MSG_JOB_MEMORY_LIMIT() {
-        return (int)10L;
-    }
-    public static int JOB_OBJECT_MSG_NOTIFICATION_LIMIT() {
-        return (int)11L;
-    }
-    public static int JOB_OBJECT_MSG_JOB_CYCLE_TIME_LIMIT() {
-        return (int)12L;
-    }
-    public static int JOB_OBJECT_MSG_SILO_TERMINATED() {
-        return (int)13L;
-    }
-    public static int JOB_OBJECT_MSG_MINIMUM() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_MSG_MAXIMUM() {
-        return (int)13L;
-    }
-    public static int JOB_OBJECT_LIMIT_WORKINGSET() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_LIMIT_PROCESS_TIME() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_LIMIT_JOB_TIME() {
-        return (int)4L;
-    }
-    public static int JOB_OBJECT_LIMIT_ACTIVE_PROCESS() {
-        return (int)8L;
-    }
-    public static int JOB_OBJECT_LIMIT_AFFINITY() {
-        return (int)16L;
-    }
-    public static int JOB_OBJECT_LIMIT_PRIORITY_CLASS() {
-        return (int)32L;
-    }
-    public static int JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME() {
-        return (int)64L;
-    }
-    public static int JOB_OBJECT_LIMIT_SCHEDULING_CLASS() {
-        return (int)128L;
-    }
-    public static int JOB_OBJECT_LIMIT_PROCESS_MEMORY() {
-        return (int)256L;
-    }
-    public static int JOB_OBJECT_LIMIT_JOB_MEMORY() {
-        return (int)512L;
-    }
-    public static int JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION() {
-        return (int)1024L;
-    }
-    public static int JOB_OBJECT_LIMIT_BREAKAWAY_OK() {
-        return (int)2048L;
-    }
-    public static int JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK() {
-        return (int)4096L;
-    }
-    public static int JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE() {
-        return (int)8192L;
-    }
-    public static int JOB_OBJECT_LIMIT_SUBSET_AFFINITY() {
-        return (int)16384L;
-    }
-    public static int JOB_OBJECT_LIMIT_JOB_MEMORY_LOW() {
-        return (int)32768L;
-    }
-    public static int JOB_OBJECT_LIMIT_JOB_READ_BYTES() {
-        return (int)65536L;
-    }
-    public static int JOB_OBJECT_LIMIT_JOB_WRITE_BYTES() {
-        return (int)131072L;
-    }
-    public static int JOB_OBJECT_LIMIT_RATE_CONTROL() {
-        return (int)262144L;
-    }
-    public static int JOB_OBJECT_LIMIT_IO_RATE_CONTROL() {
-        return (int)524288L;
-    }
-    public static int JOB_OBJECT_LIMIT_NET_RATE_CONTROL() {
-        return (int)1048576L;
-    }
-    public static int JOB_OBJECT_LIMIT_VALID_FLAGS() {
-        return (int)524287L;
-    }
-    public static int JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS() {
-        return (int)255L;
-    }
-    public static int JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS() {
-        return (int)32767L;
-    }
-    public static int JOB_OBJECT_UILIMIT_NONE() {
-        return (int)0L;
-    }
-    public static int JOB_OBJECT_UILIMIT_HANDLES() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_UILIMIT_READCLIPBOARD() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_UILIMIT_WRITECLIPBOARD() {
-        return (int)4L;
-    }
-    public static int JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS() {
-        return (int)8L;
-    }
-    public static int JOB_OBJECT_UILIMIT_DISPLAYSETTINGS() {
-        return (int)16L;
-    }
-    public static int JOB_OBJECT_UILIMIT_GLOBALATOMS() {
-        return (int)32L;
-    }
-    public static int JOB_OBJECT_UILIMIT_DESKTOP() {
-        return (int)64L;
-    }
-    public static int JOB_OBJECT_UILIMIT_EXITWINDOWS() {
-        return (int)128L;
-    }
-    public static int JOB_OBJECT_UILIMIT_ALL() {
-        return (int)255L;
-    }
-    public static int JOB_OBJECT_UI_VALID_FLAGS() {
-        return (int)255L;
-    }
-    public static int JOB_OBJECT_SECURITY_NO_ADMIN() {
-        return (int)1L;
-    }
-    public static int JOB_OBJECT_SECURITY_RESTRICTED_TOKEN() {
-        return (int)2L;
-    }
-    public static int JOB_OBJECT_SECURITY_ONLY_TOKEN() {
-        return (int)4L;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class freeglut_h extends freeglut_h_1 {
+
+    freeglut_h() {
+        // Should not be called directly
+    }
+    private static final int SERVICE_STOP_REASON_FLAG_MAX = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_STOP_REASON_FLAG_MAX 2147483648
+     * }
+     */
+    public static int SERVICE_STOP_REASON_FLAG_MAX() {
+        return SERVICE_STOP_REASON_FLAG_MAX;
+    }
+    private static final int SERVICE_SID_TYPE_RESTRICTED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_SID_TYPE_RESTRICTED 3
+     * }
+     */
+    public static int SERVICE_SID_TYPE_RESTRICTED() {
+        return SERVICE_SID_TYPE_RESTRICTED;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SERVICE_TRIGGER_STARTED_ARGUMENT "T"
+     * }
+     */
+    public static MemorySegment SERVICE_TRIGGER_STARTED_ARGUMENT() {
+        class Holder {
+            static final MemorySegment SERVICE_TRIGGER_STARTED_ARGUMENT
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("T");
+        }
+        return Holder.SERVICE_TRIGGER_STARTED_ARGUMENT;
+    }
+    /**
+     * {@snippet lang=c :
+     * #define SC_AGGREGATE_STORAGE_KEY "S"
+     * }
+     */
+    public static MemorySegment SC_AGGREGATE_STORAGE_KEY() {
+        class Holder {
+            static final MemorySegment SC_AGGREGATE_STORAGE_KEY
+                = freeglut_h.LIBRARY_ARENA.allocateFrom("S");
+        }
+        return Holder.SC_AGGREGATE_STORAGE_KEY;
+    }
+    private static final int MDM_MASK_PROTOCOLINFO = (int)268369920L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_PROTOCOLINFO 268369920
+     * }
+     */
+    public static int MDM_MASK_PROTOCOLINFO() {
+        return MDM_MASK_PROTOCOLINFO;
+    }
+    private static final int MDM_SHIFT_PROTOCOLINFO = (int)16L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_SHIFT_PROTOCOLINFO 16
+     * }
+     */
+    public static int MDM_SHIFT_PROTOCOLINFO() {
+        return MDM_SHIFT_PROTOCOLINFO;
+    }
+    private static final int MDM_MASK_EXTENDEDINFO = (int)268431360L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_EXTENDEDINFO 268431360
+     * }
+     */
+    public static int MDM_MASK_EXTENDEDINFO() {
+        return MDM_MASK_EXTENDEDINFO;
+    }
+    private static final int MDM_SHIFT_EXTENDEDINFO = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_SHIFT_EXTENDEDINFO 12
+     * }
+     */
+    public static int MDM_SHIFT_EXTENDEDINFO() {
+        return MDM_SHIFT_EXTENDEDINFO;
+    }
+    private static final int MDM_MASK_HDLCPPP_AUTH = (int)56L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_HDLCPPP_AUTH 56
+     * }
+     */
+    public static int MDM_MASK_HDLCPPP_AUTH() {
+        return MDM_MASK_HDLCPPP_AUTH;
+    }
+    private static final int MDM_MASK_HDLCPPP_ML = (int)192L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_HDLCPPP_ML 192
+     * }
+     */
+    public static int MDM_MASK_HDLCPPP_ML() {
+        return MDM_MASK_HDLCPPP_ML;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_64K = (int)1114112L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_64K 1114112
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_64K() {
+        return MDM_PROTOCOL_HDLCPPP_64K;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_56K = (int)2162688L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_56K 2162688
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_56K() {
+        return MDM_PROTOCOL_HDLCPPP_56K;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_112K = (int)136380416L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_112K 136380416
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_112K() {
+        return MDM_PROTOCOL_HDLCPPP_112K;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_112K_PAP = (int)153157632L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_112K_PAP 153157632
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_112K_PAP() {
+        return MDM_PROTOCOL_HDLCPPP_112K_PAP;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_112K_CHAP = (int)161546240L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_112K_CHAP 161546240
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_112K_CHAP() {
+        return MDM_PROTOCOL_HDLCPPP_112K_CHAP;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_112K_MSCHAP = (int)169934848L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_112K_MSCHAP 169934848
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_112K_MSCHAP() {
+        return MDM_PROTOCOL_HDLCPPP_112K_MSCHAP;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_128K = (int)135331840L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_128K 135331840
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_128K() {
+        return MDM_PROTOCOL_HDLCPPP_128K;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_128K_PAP = (int)152109056L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_128K_PAP 152109056
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_128K_PAP() {
+        return MDM_PROTOCOL_HDLCPPP_128K_PAP;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_128K_CHAP = (int)160497664L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_128K_CHAP 160497664
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_128K_CHAP() {
+        return MDM_PROTOCOL_HDLCPPP_128K_CHAP;
+    }
+    private static final int MDM_PROTOCOL_HDLCPPP_128K_MSCHAP = (int)168886272L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_HDLCPPP_128K_MSCHAP 168886272
+     * }
+     */
+    public static int MDM_PROTOCOL_HDLCPPP_128K_MSCHAP() {
+        return MDM_PROTOCOL_HDLCPPP_128K_MSCHAP;
+    }
+    private static final int MDM_MASK_V120_ML = (int)192L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_V120_ML 192
+     * }
+     */
+    public static int MDM_MASK_V120_ML() {
+        return MDM_MASK_V120_ML;
+    }
+    private static final int MDM_PROTOCOL_V120_64K = (int)68485120L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V120_64K 68485120
+     * }
+     */
+    public static int MDM_PROTOCOL_V120_64K() {
+        return MDM_PROTOCOL_V120_64K;
+    }
+    private static final int MDM_PROTOCOL_V120_56K = (int)69533696L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V120_56K 69533696
+     * }
+     */
+    public static int MDM_PROTOCOL_V120_56K() {
+        return MDM_PROTOCOL_V120_56K;
+    }
+    private static final int MDM_PROTOCOL_V120_112K = (int)136642560L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V120_112K 136642560
+     * }
+     */
+    public static int MDM_PROTOCOL_V120_112K() {
+        return MDM_PROTOCOL_V120_112K;
+    }
+    private static final int MDM_PROTOCOL_V120_128K = (int)135593984L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V120_128K 135593984
+     * }
+     */
+    public static int MDM_PROTOCOL_V120_128K() {
+        return MDM_PROTOCOL_V120_128K;
+    }
+    private static final int MDM_PROTOCOL_X75_64K = (int)1245184L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_X75_64K 1245184
+     * }
+     */
+    public static int MDM_PROTOCOL_X75_64K() {
+        return MDM_PROTOCOL_X75_64K;
+    }
+    private static final int MDM_PROTOCOL_X75_128K = (int)2293760L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_X75_128K 2293760
+     * }
+     */
+    public static int MDM_PROTOCOL_X75_128K() {
+        return MDM_PROTOCOL_X75_128K;
+    }
+    private static final int MDM_PROTOCOL_X75_T_70 = (int)3342336L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_X75_T_70 3342336
+     * }
+     */
+    public static int MDM_PROTOCOL_X75_T_70() {
+        return MDM_PROTOCOL_X75_T_70;
+    }
+    private static final int MDM_PROTOCOL_X75_BTX = (int)4390912L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_X75_BTX 4390912
+     * }
+     */
+    public static int MDM_PROTOCOL_X75_BTX() {
+        return MDM_PROTOCOL_X75_BTX;
+    }
+    private static final int MDM_PROTOCOL_V110_1DOT2K = (int)1310720L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_1DOT2K 1310720
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_1DOT2K() {
+        return MDM_PROTOCOL_V110_1DOT2K;
+    }
+    private static final int MDM_PROTOCOL_V110_2DOT4K = (int)2359296L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_2DOT4K 2359296
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_2DOT4K() {
+        return MDM_PROTOCOL_V110_2DOT4K;
+    }
+    private static final int MDM_PROTOCOL_V110_4DOT8K = (int)3407872L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_4DOT8K 3407872
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_4DOT8K() {
+        return MDM_PROTOCOL_V110_4DOT8K;
+    }
+    private static final int MDM_PROTOCOL_V110_9DOT6K = (int)4456448L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_9DOT6K 4456448
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_9DOT6K() {
+        return MDM_PROTOCOL_V110_9DOT6K;
+    }
+    private static final int MDM_PROTOCOL_V110_12DOT0K = (int)5505024L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_12DOT0K 5505024
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_12DOT0K() {
+        return MDM_PROTOCOL_V110_12DOT0K;
+    }
+    private static final int MDM_PROTOCOL_V110_14DOT4K = (int)6553600L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_14DOT4K 6553600
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_14DOT4K() {
+        return MDM_PROTOCOL_V110_14DOT4K;
+    }
+    private static final int MDM_PROTOCOL_V110_19DOT2K = (int)7602176L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_19DOT2K 7602176
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_19DOT2K() {
+        return MDM_PROTOCOL_V110_19DOT2K;
+    }
+    private static final int MDM_PROTOCOL_V110_28DOT8K = (int)8650752L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_28DOT8K 8650752
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_28DOT8K() {
+        return MDM_PROTOCOL_V110_28DOT8K;
+    }
+    private static final int MDM_PROTOCOL_V110_38DOT4K = (int)9699328L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_38DOT4K 9699328
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_38DOT4K() {
+        return MDM_PROTOCOL_V110_38DOT4K;
+    }
+    private static final int MDM_PROTOCOL_V110_57DOT6K = (int)10747904L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_V110_57DOT6K 10747904
+     * }
+     */
+    public static int MDM_PROTOCOL_V110_57DOT6K() {
+        return MDM_PROTOCOL_V110_57DOT6K;
+    }
+    private static final int MDM_MASK_AUTO_ML = (int)192L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_MASK_AUTO_ML 192
+     * }
+     */
+    public static int MDM_MASK_AUTO_ML() {
+        return MDM_MASK_AUTO_ML;
+    }
+    private static final int MDM_PROTOCOL_AUTO_1CH = (int)67502080L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_AUTO_1CH 67502080
+     * }
+     */
+    public static int MDM_PROTOCOL_AUTO_1CH() {
+        return MDM_PROTOCOL_AUTO_1CH;
+    }
+    private static final int MDM_PROTOCOL_AUTO_2CH = (int)134610944L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_AUTO_2CH 134610944
+     * }
+     */
+    public static int MDM_PROTOCOL_AUTO_2CH() {
+        return MDM_PROTOCOL_AUTO_2CH;
+    }
+    private static final int MDM_PROTOCOL_ANALOG_RLP = (int)458752L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_ANALOG_RLP 458752
+     * }
+     */
+    public static int MDM_PROTOCOL_ANALOG_RLP() {
+        return MDM_PROTOCOL_ANALOG_RLP;
+    }
+    private static final int MDM_PROTOCOL_ANALOG_NRLP = (int)1507328L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_ANALOG_NRLP 1507328
+     * }
+     */
+    public static int MDM_PROTOCOL_ANALOG_NRLP() {
+        return MDM_PROTOCOL_ANALOG_NRLP;
+    }
+    private static final int MDM_PROTOCOL_ANALOG_V34 = (int)2555904L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_ANALOG_V34 2555904
+     * }
+     */
+    public static int MDM_PROTOCOL_ANALOG_V34() {
+        return MDM_PROTOCOL_ANALOG_V34;
+    }
+    private static final int MDM_PROTOCOL_GPRS = (int)524288L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_GPRS 524288
+     * }
+     */
+    public static int MDM_PROTOCOL_GPRS() {
+        return MDM_PROTOCOL_GPRS;
+    }
+    private static final int MDM_PROTOCOL_PIAFS_INCOMING = (int)589824L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_PIAFS_INCOMING 589824
+     * }
+     */
+    public static int MDM_PROTOCOL_PIAFS_INCOMING() {
+        return MDM_PROTOCOL_PIAFS_INCOMING;
+    }
+    private static final int MDM_PROTOCOL_PIAFS_OUTGOING = (int)1638400L;
+    /**
+     * {@snippet lang=c :
+     * #define MDM_PROTOCOL_PIAFS_OUTGOING 1638400
+     * }
+     */
+    public static int MDM_PROTOCOL_PIAFS_OUTGOING() {
+        return MDM_PROTOCOL_PIAFS_OUTGOING;
+    }
+    private static final int ISC_SHOWUICOMPOSITIONWINDOW = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define ISC_SHOWUICOMPOSITIONWINDOW 2147483648
+     * }
+     */
+    public static int ISC_SHOWUICOMPOSITIONWINDOW() {
+        return ISC_SHOWUICOMPOSITIONWINDOW;
+    }
+    private static final int ISC_SHOWUIALL = (int)3221225487L;
+    /**
+     * {@snippet lang=c :
+     * #define ISC_SHOWUIALL 3221225487
+     * }
+     */
+    public static int ISC_SHOWUIALL() {
+        return ISC_SHOWUIALL;
+    }
+    private static final int IGP_GETIMEVERSION = (int)4294967292L;
+    /**
+     * {@snippet lang=c :
+     * #define IGP_GETIMEVERSION 4294967292
+     * }
+     */
+    public static int IGP_GETIMEVERSION() {
+        return IGP_GETIMEVERSION;
+    }
+    private static final int SCS_SETSTR = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define SCS_SETSTR 9
+     * }
+     */
+    public static int SCS_SETSTR() {
+        return SCS_SETSTR;
+    }
+    private static final int SCS_CHANGEATTR = (int)18L;
+    /**
+     * {@snippet lang=c :
+     * #define SCS_CHANGEATTR 18
+     * }
+     */
+    public static int SCS_CHANGEATTR() {
+        return SCS_CHANGEATTR;
+    }
+    private static final int SCS_CHANGECLAUSE = (int)36L;
+    /**
+     * {@snippet lang=c :
+     * #define SCS_CHANGECLAUSE 36
+     * }
+     */
+    public static int SCS_CHANGECLAUSE() {
+        return SCS_CHANGECLAUSE;
+    }
+    private static final int IME_CMODE_CHINESE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CMODE_CHINESE 1
+     * }
+     */
+    public static int IME_CMODE_CHINESE() {
+        return IME_CMODE_CHINESE;
+    }
+    private static final int IME_CMODE_HANGUL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CMODE_HANGUL 1
+     * }
+     */
+    public static int IME_CMODE_HANGUL() {
+        return IME_CMODE_HANGUL;
+    }
+    private static final int IME_CMODE_JAPANESE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CMODE_JAPANESE 1
+     * }
+     */
+    public static int IME_CMODE_JAPANESE() {
+        return IME_CMODE_JAPANESE;
+    }
+    private static final int IME_CMODE_HANGEUL = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CMODE_HANGEUL 1
+     * }
+     */
+    public static int IME_CMODE_HANGEUL() {
+        return IME_CMODE_HANGEUL;
+    }
+    private static final int IME_CMODE_RESERVED = (int)4026531840L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_CMODE_RESERVED 4026531840
+     * }
+     */
+    public static int IME_CMODE_RESERVED() {
+        return IME_CMODE_RESERVED;
+    }
+    private static final int IMM_ERROR_NODATA = (int)-1L;
+    /**
+     * {@snippet lang=c :
+     * #define IMM_ERROR_NODATA -1
+     * }
+     */
+    public static int IMM_ERROR_NODATA() {
+        return IMM_ERROR_NODATA;
+    }
+    private static final int IMM_ERROR_GENERAL = (int)-2L;
+    /**
+     * {@snippet lang=c :
+     * #define IMM_ERROR_GENERAL -2
+     * }
+     */
+    public static int IMM_ERROR_GENERAL() {
+        return IMM_ERROR_GENERAL;
+    }
+    private static final int IME_REGWORD_STYLE_USER_FIRST = (int)2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_REGWORD_STYLE_USER_FIRST 2147483648
+     * }
+     */
+    public static int IME_REGWORD_STYLE_USER_FIRST() {
+        return IME_REGWORD_STYLE_USER_FIRST;
+    }
+    private static final int IME_REGWORD_STYLE_USER_LAST = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define IME_REGWORD_STYLE_USER_LAST 4294967295
+     * }
+     */
+    public static int IME_REGWORD_STYLE_USER_LAST() {
+        return IME_REGWORD_STYLE_USER_LAST;
+    }
+    private static final int IMFS_GRAYED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_GRAYED 3
+     * }
+     */
+    public static int IMFS_GRAYED() {
+        return IMFS_GRAYED;
+    }
+    private static final int IMFS_DISABLED = (int)3L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_DISABLED 3
+     * }
+     */
+    public static int IMFS_DISABLED() {
+        return IMFS_DISABLED;
+    }
+    private static final int IMFS_CHECKED = (int)8L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_CHECKED 8
+     * }
+     */
+    public static int IMFS_CHECKED() {
+        return IMFS_CHECKED;
+    }
+    private static final int IMFS_HILITE = (int)128L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_HILITE 128
+     * }
+     */
+    public static int IMFS_HILITE() {
+        return IMFS_HILITE;
+    }
+    private static final int IMFS_ENABLED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_ENABLED 0
+     * }
+     */
+    public static int IMFS_ENABLED() {
+        return IMFS_ENABLED;
+    }
+    private static final int IMFS_UNCHECKED = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_UNCHECKED 0
+     * }
+     */
+    public static int IMFS_UNCHECKED() {
+        return IMFS_UNCHECKED;
+    }
+    private static final int IMFS_UNHILITE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_UNHILITE 0
+     * }
+     */
+    public static int IMFS_UNHILITE() {
+        return IMFS_UNHILITE;
+    }
+    private static final int IMFS_DEFAULT = (int)4096L;
+    /**
+     * {@snippet lang=c :
+     * #define IMFS_DEFAULT 4096
+     * }
+     */
+    public static int IMFS_DEFAULT() {
+        return IMFS_DEFAULT;
+    }
+    private static final int GL_CLIENT_ALL_ATTRIB_BITS = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_CLIENT_ALL_ATTRIB_BITS 4294967295
+     * }
+     */
+    public static int GL_CLIENT_ALL_ATTRIB_BITS() {
+        return GL_CLIENT_ALL_ATTRIB_BITS;
+    }
+    private static final int GL_DOUBLE_EXT = (int)5130L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_DOUBLE_EXT 5130
+     * }
+     */
+    public static int GL_DOUBLE_EXT() {
+        return GL_DOUBLE_EXT;
+    }
+    private static final int GL_LOGIC_OP = (int)3057L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_LOGIC_OP 3057
+     * }
+     */
+    public static int GL_LOGIC_OP() {
+        return GL_LOGIC_OP;
+    }
+    private static final int GL_TEXTURE_COMPONENTS = (int)4099L;
+    /**
+     * {@snippet lang=c :
+     * #define GL_TEXTURE_COMPONENTS 4099
+     * }
+     */
+    public static int GL_TEXTURE_COMPONENTS() {
+        return GL_TEXTURE_COMPONENTS;
+    }
+    private static final int GLU_TRUE = (int)1L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TRUE 1
+     * }
+     */
+    public static int GLU_TRUE() {
+        return GLU_TRUE;
+    }
+    private static final int GLU_FALSE = (int)0L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_FALSE 0
+     * }
+     */
+    public static int GLU_FALSE() {
+        return GLU_FALSE;
+    }
+    private static final double GLU_TESS_MAX_COORD = 1.0E150d;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_MAX_COORD 1.0E150
+     * }
+     */
+    public static double GLU_TESS_MAX_COORD() {
+        return GLU_TESS_MAX_COORD;
+    }
+    private static final int GLU_TESS_MISSING_BEGIN_POLYGON = (int)100151L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_MISSING_BEGIN_POLYGON 100151
+     * }
+     */
+    public static int GLU_TESS_MISSING_BEGIN_POLYGON() {
+        return GLU_TESS_MISSING_BEGIN_POLYGON;
+    }
+    private static final int GLU_TESS_MISSING_BEGIN_CONTOUR = (int)100152L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_MISSING_BEGIN_CONTOUR 100152
+     * }
+     */
+    public static int GLU_TESS_MISSING_BEGIN_CONTOUR() {
+        return GLU_TESS_MISSING_BEGIN_CONTOUR;
+    }
+    private static final int GLU_TESS_MISSING_END_POLYGON = (int)100153L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_MISSING_END_POLYGON 100153
+     * }
+     */
+    public static int GLU_TESS_MISSING_END_POLYGON() {
+        return GLU_TESS_MISSING_END_POLYGON;
+    }
+    private static final int GLU_TESS_MISSING_END_CONTOUR = (int)100154L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_MISSING_END_CONTOUR 100154
+     * }
+     */
+    public static int GLU_TESS_MISSING_END_CONTOUR() {
+        return GLU_TESS_MISSING_END_CONTOUR;
+    }
+    private static final int GLU_TESS_COORD_TOO_LARGE = (int)100155L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_COORD_TOO_LARGE 100155
+     * }
+     */
+    public static int GLU_TESS_COORD_TOO_LARGE() {
+        return GLU_TESS_COORD_TOO_LARGE;
+    }
+    private static final int GLU_TESS_NEED_COMBINE_CALLBACK = (int)100156L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_TESS_NEED_COMBINE_CALLBACK 100156
+     * }
+     */
+    public static int GLU_TESS_NEED_COMBINE_CALLBACK() {
+        return GLU_TESS_NEED_COMBINE_CALLBACK;
+    }
+    private static final int GLU_BEGIN = (int)100100L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_BEGIN 100100
+     * }
+     */
+    public static int GLU_BEGIN() {
+        return GLU_BEGIN;
+    }
+    private static final int GLU_VERTEX = (int)100101L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_VERTEX 100101
+     * }
+     */
+    public static int GLU_VERTEX() {
+        return GLU_VERTEX;
+    }
+    private static final int GLU_END = (int)100102L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_END 100102
+     * }
+     */
+    public static int GLU_END() {
+        return GLU_END;
+    }
+    private static final int GLU_ERROR = (int)100103L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_ERROR 100103
+     * }
+     */
+    public static int GLU_ERROR() {
+        return GLU_ERROR;
+    }
+    private static final int GLU_EDGE_FLAG = (int)100104L;
+    /**
+     * {@snippet lang=c :
+     * #define GLU_EDGE_FLAG 100104
+     * }
+     */
+    public static int GLU_EDGE_FLAG() {
+        return GLU_EDGE_FLAG;
+    }
+    private static final MemorySegment GLUT_STROKE_ROMAN = MemorySegment.ofAddress(0L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_STROKE_ROMAN (void*) 0
+     * }
+     */
+    public static MemorySegment GLUT_STROKE_ROMAN() {
+        return GLUT_STROKE_ROMAN;
+    }
+    private static final MemorySegment GLUT_STROKE_MONO_ROMAN = MemorySegment.ofAddress(1L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_STROKE_MONO_ROMAN (void*) 1
+     * }
+     */
+    public static MemorySegment GLUT_STROKE_MONO_ROMAN() {
+        return GLUT_STROKE_MONO_ROMAN;
+    }
+    private static final MemorySegment GLUT_BITMAP_9_BY_15 = MemorySegment.ofAddress(2L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_9_BY_15 (void*) 2
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_9_BY_15() {
+        return GLUT_BITMAP_9_BY_15;
+    }
+    private static final MemorySegment GLUT_BITMAP_8_BY_13 = MemorySegment.ofAddress(3L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_8_BY_13 (void*) 3
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_8_BY_13() {
+        return GLUT_BITMAP_8_BY_13;
+    }
+    private static final MemorySegment GLUT_BITMAP_TIMES_ROMAN_10 = MemorySegment.ofAddress(4L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_TIMES_ROMAN_10 (void*) 4
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_TIMES_ROMAN_10() {
+        return GLUT_BITMAP_TIMES_ROMAN_10;
+    }
+    private static final MemorySegment GLUT_BITMAP_TIMES_ROMAN_24 = MemorySegment.ofAddress(5L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_TIMES_ROMAN_24 (void*) 5
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_TIMES_ROMAN_24() {
+        return GLUT_BITMAP_TIMES_ROMAN_24;
+    }
+    private static final MemorySegment GLUT_BITMAP_HELVETICA_10 = MemorySegment.ofAddress(6L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_HELVETICA_10 (void*) 6
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_HELVETICA_10() {
+        return GLUT_BITMAP_HELVETICA_10;
+    }
+    private static final MemorySegment GLUT_BITMAP_HELVETICA_12 = MemorySegment.ofAddress(7L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_HELVETICA_12 (void*) 7
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_HELVETICA_12() {
+        return GLUT_BITMAP_HELVETICA_12;
+    }
+    private static final MemorySegment GLUT_BITMAP_HELVETICA_18 = MemorySegment.ofAddress(8L);
+    /**
+     * {@snippet lang=c :
+     * #define GLUT_BITMAP_HELVETICA_18 (void*) 8
+     * }
+     */
+    public static MemorySegment GLUT_BITMAP_HELVETICA_18() {
+        return GLUT_BITMAP_HELVETICA_18;
+    }
+    private static final int _MAX_ITOSTR_BASE16_COUNT = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ITOSTR_BASE16_COUNT 9
+     * }
+     */
+    public static int _MAX_ITOSTR_BASE16_COUNT() {
+        return _MAX_ITOSTR_BASE16_COUNT;
+    }
+    private static final int _MAX_ITOSTR_BASE10_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ITOSTR_BASE10_COUNT 12
+     * }
+     */
+    public static int _MAX_ITOSTR_BASE10_COUNT() {
+        return _MAX_ITOSTR_BASE10_COUNT;
+    }
+    private static final int _MAX_ITOSTR_BASE8_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ITOSTR_BASE8_COUNT 12
+     * }
+     */
+    public static int _MAX_ITOSTR_BASE8_COUNT() {
+        return _MAX_ITOSTR_BASE8_COUNT;
+    }
+    private static final int _MAX_ITOSTR_BASE2_COUNT = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ITOSTR_BASE2_COUNT 33
+     * }
+     */
+    public static int _MAX_ITOSTR_BASE2_COUNT() {
+        return _MAX_ITOSTR_BASE2_COUNT;
+    }
+    private static final int _MAX_LTOSTR_BASE16_COUNT = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_LTOSTR_BASE16_COUNT 9
+     * }
+     */
+    public static int _MAX_LTOSTR_BASE16_COUNT() {
+        return _MAX_LTOSTR_BASE16_COUNT;
+    }
+    private static final int _MAX_LTOSTR_BASE10_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_LTOSTR_BASE10_COUNT 12
+     * }
+     */
+    public static int _MAX_LTOSTR_BASE10_COUNT() {
+        return _MAX_LTOSTR_BASE10_COUNT;
+    }
+    private static final int _MAX_LTOSTR_BASE8_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_LTOSTR_BASE8_COUNT 12
+     * }
+     */
+    public static int _MAX_LTOSTR_BASE8_COUNT() {
+        return _MAX_LTOSTR_BASE8_COUNT;
+    }
+    private static final int _MAX_LTOSTR_BASE2_COUNT = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_LTOSTR_BASE2_COUNT 33
+     * }
+     */
+    public static int _MAX_LTOSTR_BASE2_COUNT() {
+        return _MAX_LTOSTR_BASE2_COUNT;
+    }
+    private static final int _MAX_ULTOSTR_BASE16_COUNT = (int)9L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ULTOSTR_BASE16_COUNT 9
+     * }
+     */
+    public static int _MAX_ULTOSTR_BASE16_COUNT() {
+        return _MAX_ULTOSTR_BASE16_COUNT;
+    }
+    private static final int _MAX_ULTOSTR_BASE10_COUNT = (int)11L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ULTOSTR_BASE10_COUNT 11
+     * }
+     */
+    public static int _MAX_ULTOSTR_BASE10_COUNT() {
+        return _MAX_ULTOSTR_BASE10_COUNT;
+    }
+    private static final int _MAX_ULTOSTR_BASE8_COUNT = (int)12L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ULTOSTR_BASE8_COUNT 12
+     * }
+     */
+    public static int _MAX_ULTOSTR_BASE8_COUNT() {
+        return _MAX_ULTOSTR_BASE8_COUNT;
+    }
+    private static final int _MAX_ULTOSTR_BASE2_COUNT = (int)33L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_ULTOSTR_BASE2_COUNT 33
+     * }
+     */
+    public static int _MAX_ULTOSTR_BASE2_COUNT() {
+        return _MAX_ULTOSTR_BASE2_COUNT;
+    }
+    private static final int _MAX_I64TOSTR_BASE16_COUNT = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_I64TOSTR_BASE16_COUNT 17
+     * }
+     */
+    public static int _MAX_I64TOSTR_BASE16_COUNT() {
+        return _MAX_I64TOSTR_BASE16_COUNT;
+    }
+    private static final int _MAX_I64TOSTR_BASE10_COUNT = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_I64TOSTR_BASE10_COUNT 21
+     * }
+     */
+    public static int _MAX_I64TOSTR_BASE10_COUNT() {
+        return _MAX_I64TOSTR_BASE10_COUNT;
+    }
+    private static final int _MAX_I64TOSTR_BASE8_COUNT = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_I64TOSTR_BASE8_COUNT 23
+     * }
+     */
+    public static int _MAX_I64TOSTR_BASE8_COUNT() {
+        return _MAX_I64TOSTR_BASE8_COUNT;
+    }
+    private static final int _MAX_I64TOSTR_BASE2_COUNT = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_I64TOSTR_BASE2_COUNT 65
+     * }
+     */
+    public static int _MAX_I64TOSTR_BASE2_COUNT() {
+        return _MAX_I64TOSTR_BASE2_COUNT;
+    }
+    private static final int _MAX_U64TOSTR_BASE16_COUNT = (int)17L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_U64TOSTR_BASE16_COUNT 17
+     * }
+     */
+    public static int _MAX_U64TOSTR_BASE16_COUNT() {
+        return _MAX_U64TOSTR_BASE16_COUNT;
+    }
+    private static final int _MAX_U64TOSTR_BASE10_COUNT = (int)21L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_U64TOSTR_BASE10_COUNT 21
+     * }
+     */
+    public static int _MAX_U64TOSTR_BASE10_COUNT() {
+        return _MAX_U64TOSTR_BASE10_COUNT;
+    }
+    private static final int _MAX_U64TOSTR_BASE8_COUNT = (int)23L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_U64TOSTR_BASE8_COUNT 23
+     * }
+     */
+    public static int _MAX_U64TOSTR_BASE8_COUNT() {
+        return _MAX_U64TOSTR_BASE8_COUNT;
+    }
+    private static final int _MAX_U64TOSTR_BASE2_COUNT = (int)65L;
+    /**
+     * {@snippet lang=c :
+     * #define _MAX_U64TOSTR_BASE2_COUNT 65
+     * }
+     */
+    public static int _MAX_U64TOSTR_BASE2_COUNT() {
+        return _MAX_U64TOSTR_BASE2_COUNT;
+    }
+    private static final int SCHAR_MIN = (int)-128L;
+    /**
+     * {@snippet lang=c :
+     * #define SCHAR_MIN -128
+     * }
+     */
+    public static int SCHAR_MIN() {
+        return SCHAR_MIN;
+    }
+    private static final int CHAR_MIN = (int)-128L;
+    /**
+     * {@snippet lang=c :
+     * #define CHAR_MIN -128
+     * }
+     */
+    public static int CHAR_MIN() {
+        return CHAR_MIN;
+    }
+    private static final int CHAR_MAX = (int)127L;
+    /**
+     * {@snippet lang=c :
+     * #define CHAR_MAX 127
+     * }
+     */
+    public static int CHAR_MAX() {
+        return CHAR_MAX;
+    }
+    private static final int SHRT_MIN = (int)-32768L;
+    /**
+     * {@snippet lang=c :
+     * #define SHRT_MIN -32768
+     * }
+     */
+    public static int SHRT_MIN() {
+        return SHRT_MIN;
+    }
+    private static final int INT_MIN = (int)-2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define INT_MIN -2147483648
+     * }
+     */
+    public static int INT_MIN() {
+        return INT_MIN;
+    }
+    private static final int UINT_MAX = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define UINT_MAX 4294967295
+     * }
+     */
+    public static int UINT_MAX() {
+        return UINT_MAX;
+    }
+    private static final int LONG_MIN = (int)-2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define LONG_MIN -2147483648
+     * }
+     */
+    public static int LONG_MIN() {
+        return LONG_MIN;
+    }
+    private static final int LONG_MAX = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define LONG_MAX 2147483647
+     * }
+     */
+    public static int LONG_MAX() {
+        return LONG_MAX;
+    }
+    private static final int ULONG_MAX = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define ULONG_MAX 4294967295
+     * }
+     */
+    public static int ULONG_MAX() {
+        return ULONG_MAX;
+    }
+    private static final long LLONG_MAX = 9223372036854775807L;
+    /**
+     * {@snippet lang=c :
+     * #define LLONG_MAX 9223372036854775807
+     * }
+     */
+    public static long LLONG_MAX() {
+        return LLONG_MAX;
+    }
+    private static final long LLONG_MIN = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define LLONG_MIN -9223372036854775808
+     * }
+     */
+    public static long LLONG_MIN() {
+        return LLONG_MIN;
+    }
+    private static final long ULLONG_MAX = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define ULLONG_MAX -1
+     * }
+     */
+    public static long ULLONG_MAX() {
+        return ULLONG_MAX;
+    }
+    private static final int _I8_MIN = (int)-128L;
+    /**
+     * {@snippet lang=c :
+     * #define _I8_MIN -128
+     * }
+     */
+    public static int _I8_MIN() {
+        return _I8_MIN;
+    }
+    private static final byte _I8_MAX = (byte)127L;
+    /**
+     * {@snippet lang=c :
+     * #define _I8_MAX 127
+     * }
+     */
+    public static byte _I8_MAX() {
+        return _I8_MAX;
+    }
+    private static final byte _UI8_MAX = (byte)255L;
+    /**
+     * {@snippet lang=c :
+     * #define _UI8_MAX 255
+     * }
+     */
+    public static byte _UI8_MAX() {
+        return _UI8_MAX;
+    }
+    private static final int _I16_MIN = (int)-32768L;
+    /**
+     * {@snippet lang=c :
+     * #define _I16_MIN -32768
+     * }
+     */
+    public static int _I16_MIN() {
+        return _I16_MIN;
+    }
+    private static final short _I16_MAX = (short)32767L;
+    /**
+     * {@snippet lang=c :
+     * #define _I16_MAX 32767
+     * }
+     */
+    public static short _I16_MAX() {
+        return _I16_MAX;
+    }
+    private static final short _UI16_MAX = (short)65535L;
+    /**
+     * {@snippet lang=c :
+     * #define _UI16_MAX 65535
+     * }
+     */
+    public static short _UI16_MAX() {
+        return _UI16_MAX;
+    }
+    private static final int _I32_MIN = (int)-2147483648L;
+    /**
+     * {@snippet lang=c :
+     * #define _I32_MIN -2147483648
+     * }
+     */
+    public static int _I32_MIN() {
+        return _I32_MIN;
+    }
+    private static final int _I32_MAX = (int)2147483647L;
+    /**
+     * {@snippet lang=c :
+     * #define _I32_MAX 2147483647
+     * }
+     */
+    public static int _I32_MAX() {
+        return _I32_MAX;
+    }
+    private static final int _UI32_MAX = (int)4294967295L;
+    /**
+     * {@snippet lang=c :
+     * #define _UI32_MAX 4294967295
+     * }
+     */
+    public static int _UI32_MAX() {
+        return _UI32_MAX;
+    }
+    private static final long _I64_MIN = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define _I64_MIN -9223372036854775808
+     * }
+     */
+    public static long _I64_MIN() {
+        return _I64_MIN;
+    }
+    private static final long _I64_MAX = 9223372036854775807L;
+    /**
+     * {@snippet lang=c :
+     * #define _I64_MAX 9223372036854775807
+     * }
+     */
+    public static long _I64_MAX() {
+        return _I64_MAX;
+    }
+    private static final long _UI64_MAX = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define _UI64_MAX -1
+     * }
+     */
+    public static long _UI64_MAX() {
+        return _UI64_MAX;
+    }
+    private static final long SIZE_MAX = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define SIZE_MAX -1
+     * }
+     */
+    public static long SIZE_MAX() {
+        return SIZE_MAX;
+    }
+    private static final long RSIZE_MAX = 9223372036854775807L;
+    /**
+     * {@snippet lang=c :
+     * #define RSIZE_MAX 9223372036854775807
+     * }
+     */
+    public static long RSIZE_MAX() {
+        return RSIZE_MAX;
+    }
+    private static final long LONG_LONG_MAX = 9223372036854775807L;
+    /**
+     * {@snippet lang=c :
+     * #define LONG_LONG_MAX 9223372036854775807
+     * }
+     */
+    public static long LONG_LONG_MAX() {
+        return LONG_LONG_MAX;
+    }
+    private static final long LONG_LONG_MIN = -9223372036854775808L;
+    /**
+     * {@snippet lang=c :
+     * #define LONG_LONG_MIN -9223372036854775808
+     * }
+     */
+    public static long LONG_LONG_MIN() {
+        return LONG_LONG_MIN;
+    }
+    private static final long ULONG_LONG_MAX = -1L;
+    /**
+     * {@snippet lang=c :
+     * #define ULONG_LONG_MAX -1
+     * }
+     */
+    public static long ULONG_LONG_MAX() {
+        return ULONG_LONG_MAX;
+    }
+    private static final int _CVTBUFSIZE = (int)349L;
+    /**
+     * {@snippet lang=c :
+     * #define _CVTBUFSIZE 349
+     * }
+     */
+    public static int _CVTBUFSIZE() {
+        return _CVTBUFSIZE;
     }
 }
-
 

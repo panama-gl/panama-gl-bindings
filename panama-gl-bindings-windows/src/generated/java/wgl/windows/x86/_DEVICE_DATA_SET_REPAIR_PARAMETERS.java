@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_DATA_SET_REPAIR_PARAMETERS {
+ *     DWORD NumberOfRepairCopies;
+ *     DWORD SourceCopy;
+ *     DWORD RepairCopies[1];
+ * }
+ * }
+ */
 public class _DEVICE_DATA_SET_REPAIR_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfRepairCopies"),
-        Constants$root.C_LONG$LAYOUT.withName("SourceCopy"),
-        MemoryLayout.sequenceLayout(1, Constants$root.C_LONG$LAYOUT).withName("RepairCopies")
-    ).withName("_DEVICE_DATA_SET_REPAIR_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_DATA_SET_REPAIR_PARAMETERS.$struct$LAYOUT;
+    _DEVICE_DATA_SET_REPAIR_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle NumberOfRepairCopies$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfRepairCopies"));
-    public static VarHandle NumberOfRepairCopies$VH() {
-        return _DEVICE_DATA_SET_REPAIR_PARAMETERS.NumberOfRepairCopies$VH;
-    }
-    public static int NumberOfRepairCopies$get(MemorySegment seg) {
-        return (int)_DEVICE_DATA_SET_REPAIR_PARAMETERS.NumberOfRepairCopies$VH.get(seg);
-    }
-    public static void NumberOfRepairCopies$set( MemorySegment seg, int x) {
-        _DEVICE_DATA_SET_REPAIR_PARAMETERS.NumberOfRepairCopies$VH.set(seg, x);
-    }
-    public static int NumberOfRepairCopies$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DATA_SET_REPAIR_PARAMETERS.NumberOfRepairCopies$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfRepairCopies$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DATA_SET_REPAIR_PARAMETERS.NumberOfRepairCopies$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SourceCopy$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SourceCopy"));
-    public static VarHandle SourceCopy$VH() {
-        return _DEVICE_DATA_SET_REPAIR_PARAMETERS.SourceCopy$VH;
-    }
-    public static int SourceCopy$get(MemorySegment seg) {
-        return (int)_DEVICE_DATA_SET_REPAIR_PARAMETERS.SourceCopy$VH.get(seg);
-    }
-    public static void SourceCopy$set( MemorySegment seg, int x) {
-        _DEVICE_DATA_SET_REPAIR_PARAMETERS.SourceCopy$VH.set(seg, x);
-    }
-    public static int SourceCopy$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DATA_SET_REPAIR_PARAMETERS.SourceCopy$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SourceCopy$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DATA_SET_REPAIR_PARAMETERS.SourceCopy$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment RepairCopies$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("NumberOfRepairCopies"),
+        wgl_h.C_LONG.withName("SourceCopy"),
+        MemoryLayout.sequenceLayout(1, wgl_h.C_LONG).withName("RepairCopies")
+    ).withName("_DEVICE_DATA_SET_REPAIR_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NumberOfRepairCopies$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfRepairCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static final OfInt NumberOfRepairCopies$layout() {
+        return NumberOfRepairCopies$LAYOUT;
+    }
+
+    private static final long NumberOfRepairCopies$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static final long NumberOfRepairCopies$offset() {
+        return NumberOfRepairCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static int NumberOfRepairCopies(MemorySegment struct) {
+        return struct.get(NumberOfRepairCopies$LAYOUT, NumberOfRepairCopies$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfRepairCopies
+     * }
+     */
+    public static void NumberOfRepairCopies(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfRepairCopies$LAYOUT, NumberOfRepairCopies$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SourceCopy$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SourceCopy"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static final OfInt SourceCopy$layout() {
+        return SourceCopy$LAYOUT;
+    }
+
+    private static final long SourceCopy$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static final long SourceCopy$offset() {
+        return SourceCopy$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static int SourceCopy(MemorySegment struct) {
+        return struct.get(SourceCopy$LAYOUT, SourceCopy$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SourceCopy
+     * }
+     */
+    public static void SourceCopy(MemorySegment struct, int fieldValue) {
+        struct.set(SourceCopy$LAYOUT, SourceCopy$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout RepairCopies$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("RepairCopies"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static final SequenceLayout RepairCopies$layout() {
+        return RepairCopies$LAYOUT;
+    }
+
+    private static final long RepairCopies$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static final long RepairCopies$offset() {
+        return RepairCopies$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static MemorySegment RepairCopies(MemorySegment struct) {
+        return struct.asSlice(RepairCopies$OFFSET, RepairCopies$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static void RepairCopies(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RepairCopies$OFFSET, RepairCopies$LAYOUT.byteSize());
+    }
+
+    private static long[] RepairCopies$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static long[] RepairCopies$dimensions() {
+        return RepairCopies$DIMS;
+    }
+    private static final VarHandle RepairCopies$ELEM_HANDLE = RepairCopies$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static int RepairCopies(MemorySegment struct, long index0) {
+        return (int)RepairCopies$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DWORD RepairCopies[1]
+     * }
+     */
+    public static void RepairCopies(MemorySegment struct, long index0, int fieldValue) {
+        RepairCopies$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

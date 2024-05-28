@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagKEYBDINPUT {
+ *     WORD wVk;
+ *     WORD wScan;
+ *     DWORD dwFlags;
+ *     DWORD time;
+ *     ULONG_PTR dwExtraInfo;
+ * } KEYBDINPUT
+ * }
+ */
 public class KEYBDINPUT extends tagKEYBDINPUT {
 
+    KEYBDINPUT() {
+        // Should not be called directly
+    }
 }
-
 

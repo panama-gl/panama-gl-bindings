@@ -2,13 +2,33 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CACHE_RELATIONSHIP {
+ *     BYTE Level;
+ *     BYTE Associativity;
+ *     WORD LineSize;
+ *     DWORD CacheSize;
+ *     PROCESSOR_CACHE_TYPE Type;
+ *     BYTE Reserved[20];
+ *     GROUP_AFFINITY GroupMask;
+ * } CACHE_RELATIONSHIP
+ * }
+ */
 public class CACHE_RELATIONSHIP extends _CACHE_RELATIONSHIP {
 
+    CACHE_RELATIONSHIP() {
+        // Should not be called directly
+    }
 }
-
 

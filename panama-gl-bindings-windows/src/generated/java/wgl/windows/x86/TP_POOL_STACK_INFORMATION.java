@@ -2,13 +2,28 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TP_POOL_STACK_INFORMATION {
+ *     SIZE_T StackReserve;
+ *     SIZE_T StackCommit;
+ * } TP_POOL_STACK_INFORMATION
+ * }
+ */
 public class TP_POOL_STACK_INFORMATION extends _TP_POOL_STACK_INFORMATION {
 
+    TP_POOL_STACK_INFORMATION() {
+        // Should not be called directly
+    }
 }
-
 

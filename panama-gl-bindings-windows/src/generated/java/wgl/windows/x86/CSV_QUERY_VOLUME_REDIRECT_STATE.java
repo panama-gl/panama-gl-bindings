@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CSV_QUERY_VOLUME_REDIRECT_STATE {
+ *     DWORD MdsNodeId;
+ *     DWORD DsNodeId;
+ *     BOOLEAN IsDiskConnected;
+ *     BOOLEAN ClusterEnableDirectIo;
+ *     CSVFS_DISK_CONNECTIVITY DiskConnectivity;
+ * } CSV_QUERY_VOLUME_REDIRECT_STATE
+ * }
+ */
 public class CSV_QUERY_VOLUME_REDIRECT_STATE extends _CSV_QUERY_VOLUME_REDIRECT_STATE {
 
+    CSV_QUERY_VOLUME_REDIRECT_STATE() {
+        // Should not be called directly
+    }
 }
-
 

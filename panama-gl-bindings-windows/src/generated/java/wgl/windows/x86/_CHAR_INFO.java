@@ -2,97 +2,346 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CHAR_INFO {
+ *     union {
+ *         WCHAR UnicodeChar;
+ *         CHAR AsciiChar;
+ *     } Char;
+ *     WORD Attributes;
+ * }
+ * }
+ */
 public class _CHAR_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-            Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-        ).withName("Char"),
-        Constants$root.C_SHORT$LAYOUT.withName("Attributes")
-    ).withName("_CHAR_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CHAR_INFO.$struct$LAYOUT;
+    _CHAR_INFO() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _CHAR_INFO.Char.layout().withName("Char"),
+        wgl_h.C_SHORT.withName("Attributes")
+    ).withName("_CHAR_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * }
+     * }
+     */
     public static class Char {
 
-        static final  GroupLayout Char$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_SHORT$LAYOUT.withName("UnicodeChar"),
-            Constants$root.C_CHAR$LAYOUT.withName("AsciiChar")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Char.Char$union$LAYOUT;
+        Char() {
+            // Should not be called directly
         }
-        static final VarHandle UnicodeChar$VH = Char$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UnicodeChar"));
-        public static VarHandle UnicodeChar$VH() {
-            return Char.UnicodeChar$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            wgl_h.C_SHORT.withName("UnicodeChar"),
+            wgl_h.C_CHAR.withName("AsciiChar")
+        ).withName("$anon$144:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static short UnicodeChar$get(MemorySegment seg) {
-            return (short)Char.UnicodeChar$VH.get(seg);
+
+        private static final OfShort UnicodeChar$LAYOUT = (OfShort)$LAYOUT.select(groupElement("UnicodeChar"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static final OfShort UnicodeChar$layout() {
+            return UnicodeChar$LAYOUT;
         }
-        public static void UnicodeChar$set( MemorySegment seg, short x) {
-            Char.UnicodeChar$VH.set(seg, x);
+
+        private static final long UnicodeChar$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static final long UnicodeChar$offset() {
+            return UnicodeChar$OFFSET;
         }
-        public static short UnicodeChar$get(MemorySegment seg, long index) {
-            return (short)Char.UnicodeChar$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static short UnicodeChar(MemorySegment union) {
+            return union.get(UnicodeChar$LAYOUT, UnicodeChar$OFFSET);
         }
-        public static void UnicodeChar$set(MemorySegment seg, long index, short x) {
-            Char.UnicodeChar$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * WCHAR UnicodeChar
+         * }
+         */
+        public static void UnicodeChar(MemorySegment union, short fieldValue) {
+            union.set(UnicodeChar$LAYOUT, UnicodeChar$OFFSET, fieldValue);
         }
-        static final VarHandle AsciiChar$VH = Char$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsciiChar"));
-        public static VarHandle AsciiChar$VH() {
-            return Char.AsciiChar$VH;
+
+        private static final OfByte AsciiChar$LAYOUT = (OfByte)$LAYOUT.select(groupElement("AsciiChar"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static final OfByte AsciiChar$layout() {
+            return AsciiChar$LAYOUT;
         }
-        public static byte AsciiChar$get(MemorySegment seg) {
-            return (byte)Char.AsciiChar$VH.get(seg);
+
+        private static final long AsciiChar$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static final long AsciiChar$offset() {
+            return AsciiChar$OFFSET;
         }
-        public static void AsciiChar$set( MemorySegment seg, byte x) {
-            Char.AsciiChar$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static byte AsciiChar(MemorySegment union) {
+            return union.get(AsciiChar$LAYOUT, AsciiChar$OFFSET);
         }
-        public static byte AsciiChar$get(MemorySegment seg, long index) {
-            return (byte)Char.AsciiChar$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * CHAR AsciiChar
+         * }
+         */
+        public static void AsciiChar(MemorySegment union, byte fieldValue) {
+            union.set(AsciiChar$LAYOUT, AsciiChar$OFFSET, fieldValue);
         }
-        public static void AsciiChar$set(MemorySegment seg, long index, byte x) {
-            Char.AsciiChar$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Char$slice(MemorySegment seg) {
-        return seg.asSlice(0, 2);
+    private static final GroupLayout Char$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Char"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } Char
+     * }
+     */
+    public static final GroupLayout Char$layout() {
+        return Char$LAYOUT;
     }
-    static final VarHandle Attributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Attributes"));
-    public static VarHandle Attributes$VH() {
-        return _CHAR_INFO.Attributes$VH;
+
+    private static final long Char$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } Char
+     * }
+     */
+    public static final long Char$offset() {
+        return Char$OFFSET;
     }
-    public static short Attributes$get(MemorySegment seg) {
-        return (short)_CHAR_INFO.Attributes$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } Char
+     * }
+     */
+    public static MemorySegment Char(MemorySegment struct) {
+        return struct.asSlice(Char$OFFSET, Char$LAYOUT.byteSize());
     }
-    public static void Attributes$set( MemorySegment seg, short x) {
-        _CHAR_INFO.Attributes$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     WCHAR UnicodeChar;
+     *     CHAR AsciiChar;
+     * } Char
+     * }
+     */
+    public static void Char(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Char$OFFSET, Char$LAYOUT.byteSize());
     }
-    public static short Attributes$get(MemorySegment seg, long index) {
-        return (short)_CHAR_INFO.Attributes$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort Attributes$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Attributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Attributes
+     * }
+     */
+    public static final OfShort Attributes$layout() {
+        return Attributes$LAYOUT;
     }
-    public static void Attributes$set(MemorySegment seg, long index, short x) {
-        _CHAR_INFO.Attributes$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Attributes$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Attributes
+     * }
+     */
+    public static final long Attributes$offset() {
+        return Attributes$OFFSET;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Attributes
+     * }
+     */
+    public static short Attributes(MemorySegment struct) {
+        return struct.get(Attributes$LAYOUT, Attributes$OFFSET);
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Attributes
+     * }
+     */
+    public static void Attributes(MemorySegment struct, short fieldValue) {
+        struct.set(Attributes$LAYOUT, Attributes$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

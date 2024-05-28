@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct {
+ *     DWORD RecordLength;
+ *     WORD MajorVersion;
+ *     WORD MinorVersion;
+ * }
+ * }
+ */
 public class USN_RECORD_COMMON_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("RecordLength"),
-        Constants$root.C_SHORT$LAYOUT.withName("MajorVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("MinorVersion")
-    );
-    public static MemoryLayout $LAYOUT() {
-        return USN_RECORD_COMMON_HEADER.$struct$LAYOUT;
+    USN_RECORD_COMMON_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle RecordLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RecordLength"));
-    public static VarHandle RecordLength$VH() {
-        return USN_RECORD_COMMON_HEADER.RecordLength$VH;
-    }
-    public static int RecordLength$get(MemorySegment seg) {
-        return (int)USN_RECORD_COMMON_HEADER.RecordLength$VH.get(seg);
-    }
-    public static void RecordLength$set( MemorySegment seg, int x) {
-        USN_RECORD_COMMON_HEADER.RecordLength$VH.set(seg, x);
-    }
-    public static int RecordLength$get(MemorySegment seg, long index) {
-        return (int)USN_RECORD_COMMON_HEADER.RecordLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RecordLength$set(MemorySegment seg, long index, int x) {
-        USN_RECORD_COMMON_HEADER.RecordLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MajorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MajorVersion"));
-    public static VarHandle MajorVersion$VH() {
-        return USN_RECORD_COMMON_HEADER.MajorVersion$VH;
-    }
-    public static short MajorVersion$get(MemorySegment seg) {
-        return (short)USN_RECORD_COMMON_HEADER.MajorVersion$VH.get(seg);
-    }
-    public static void MajorVersion$set( MemorySegment seg, short x) {
-        USN_RECORD_COMMON_HEADER.MajorVersion$VH.set(seg, x);
-    }
-    public static short MajorVersion$get(MemorySegment seg, long index) {
-        return (short)USN_RECORD_COMMON_HEADER.MajorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MajorVersion$set(MemorySegment seg, long index, short x) {
-        USN_RECORD_COMMON_HEADER.MajorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinorVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinorVersion"));
-    public static VarHandle MinorVersion$VH() {
-        return USN_RECORD_COMMON_HEADER.MinorVersion$VH;
-    }
-    public static short MinorVersion$get(MemorySegment seg) {
-        return (short)USN_RECORD_COMMON_HEADER.MinorVersion$VH.get(seg);
-    }
-    public static void MinorVersion$set( MemorySegment seg, short x) {
-        USN_RECORD_COMMON_HEADER.MinorVersion$VH.set(seg, x);
-    }
-    public static short MinorVersion$get(MemorySegment seg, long index) {
-        return (short)USN_RECORD_COMMON_HEADER.MinorVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinorVersion$set(MemorySegment seg, long index, short x) {
-        USN_RECORD_COMMON_HEADER.MinorVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("RecordLength"),
+        wgl_h.C_SHORT.withName("MajorVersion"),
+        wgl_h.C_SHORT.withName("MinorVersion")
+    ).withName("$anon$10897:9");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt RecordLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("RecordLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD RecordLength
+     * }
+     */
+    public static final OfInt RecordLength$layout() {
+        return RecordLength$LAYOUT;
+    }
+
+    private static final long RecordLength$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD RecordLength
+     * }
+     */
+    public static final long RecordLength$offset() {
+        return RecordLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD RecordLength
+     * }
+     */
+    public static int RecordLength(MemorySegment struct) {
+        return struct.get(RecordLength$LAYOUT, RecordLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD RecordLength
+     * }
+     */
+    public static void RecordLength(MemorySegment struct, int fieldValue) {
+        struct.set(RecordLength$LAYOUT, RecordLength$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MajorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MajorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final OfShort MajorVersion$layout() {
+        return MajorVersion$LAYOUT;
+    }
+
+    private static final long MajorVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static final long MajorVersion$offset() {
+        return MajorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static short MajorVersion(MemorySegment struct) {
+        return struct.get(MajorVersion$LAYOUT, MajorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MajorVersion
+     * }
+     */
+    public static void MajorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MajorVersion$LAYOUT, MajorVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MinorVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MinorVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final OfShort MinorVersion$layout() {
+        return MinorVersion$LAYOUT;
+    }
+
+    private static final long MinorVersion$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static final long MinorVersion$offset() {
+        return MinorVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static short MinorVersion(MemorySegment struct) {
+        return struct.get(MinorVersion$LAYOUT, MinorVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MinorVersion
+     * }
+     */
+    public static void MinorVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MinorVersion$LAYOUT, MinorVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

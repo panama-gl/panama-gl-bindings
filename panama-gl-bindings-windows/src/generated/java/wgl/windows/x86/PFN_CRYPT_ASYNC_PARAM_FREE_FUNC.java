@@ -2,27 +2,67 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_ASYNC_PARAM_FREE_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    void apply(java.lang.foreign.MemoryAddress pszParamOid, java.lang.foreign.MemoryAddress pvParam);
-    static MemorySegment allocate(PFN_CRYPT_ASYNC_PARAM_FREE_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_ASYNC_PARAM_FREE_FUNC.class, fi, constants$803.PFN_CRYPT_ASYNC_PARAM_FREE_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef void (*PFN_CRYPT_ASYNC_PARAM_FREE_FUNC)(LPSTR, LPVOID) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_ASYNC_PARAM_FREE_FUNC {
+
+    PFN_CRYPT_ASYNC_PARAM_FREE_FUNC() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_ASYNC_PARAM_FREE_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (java.lang.foreign.MemoryAddress _pszParamOid, java.lang.foreign.MemoryAddress _pvParam) -> {
-            try {
-                constants$803.PFN_CRYPT_ASYNC_PARAM_FREE_FUNC$MH.invokeExact((Addressable)symbol, (java.lang.foreign.Addressable)_pszParamOid, (java.lang.foreign.Addressable)_pvParam);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment pszParamOid, MemorySegment pvParam);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_ASYNC_PARAM_FREE_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_ASYNC_PARAM_FREE_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr,MemorySegment pszParamOid, MemorySegment pvParam) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, pszParamOid, pvParam);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

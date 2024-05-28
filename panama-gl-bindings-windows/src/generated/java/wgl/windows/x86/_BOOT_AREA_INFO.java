@@ -2,58 +2,339 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _BOOT_AREA_INFO {
+ *     DWORD BootSectorCount;
+ *     struct {
+ *         LARGE_INTEGER Offset;
+ *     } BootSectors[2];
+ * }
+ * }
+ */
 public class _BOOT_AREA_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("BootSectorCount"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(2, MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("$anon$0"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                    Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                ).withName("u"),
-                Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-            ).withName("Offset")
-        )).withName("BootSectors")
-    ).withName("_BOOT_AREA_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _BOOT_AREA_INFO.$struct$LAYOUT;
+    _BOOT_AREA_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle BootSectorCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BootSectorCount"));
-    public static VarHandle BootSectorCount$VH() {
-        return _BOOT_AREA_INFO.BootSectorCount$VH;
-    }
-    public static int BootSectorCount$get(MemorySegment seg) {
-        return (int)_BOOT_AREA_INFO.BootSectorCount$VH.get(seg);
-    }
-    public static void BootSectorCount$set( MemorySegment seg, int x) {
-        _BOOT_AREA_INFO.BootSectorCount$VH.set(seg, x);
-    }
-    public static int BootSectorCount$get(MemorySegment seg, long index) {
-        return (int)_BOOT_AREA_INFO.BootSectorCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BootSectorCount$set(MemorySegment seg, long index, int x) {
-        _BOOT_AREA_INFO.BootSectorCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment BootSectors$slice(MemorySegment seg) {
-        return seg.asSlice(8, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("BootSectorCount"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(2, _BOOT_AREA_INFO.BootSectors.layout()).withName("BootSectors")
+    ).withName("_BOOT_AREA_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt BootSectorCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BootSectorCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BootSectorCount
+     * }
+     */
+    public static final OfInt BootSectorCount$layout() {
+        return BootSectorCount$LAYOUT;
+    }
+
+    private static final long BootSectorCount$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BootSectorCount
+     * }
+     */
+    public static final long BootSectorCount$offset() {
+        return BootSectorCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BootSectorCount
+     * }
+     */
+    public static int BootSectorCount(MemorySegment struct) {
+        return struct.get(BootSectorCount$LAYOUT, BootSectorCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BootSectorCount
+     * }
+     */
+    public static void BootSectorCount(MemorySegment struct, int fieldValue) {
+        struct.set(BootSectorCount$LAYOUT, BootSectorCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * }
+     * }
+     */
+    public static class BootSectors {
+
+        BootSectors() {
+            // Should not be called directly
+        }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            _LARGE_INTEGER.layout().withName("Offset")
+        ).withName("$anon$13108:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        private static final GroupLayout Offset$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Offset"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Offset
+         * }
+         */
+        public static final GroupLayout Offset$layout() {
+            return Offset$LAYOUT;
+        }
+
+        private static final long Offset$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Offset
+         * }
+         */
+        public static final long Offset$offset() {
+            return Offset$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Offset
+         * }
+         */
+        public static MemorySegment Offset(MemorySegment struct) {
+            return struct.asSlice(Offset$OFFSET, Offset$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LARGE_INTEGER Offset
+         * }
+         */
+        public static void Offset(MemorySegment struct, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, struct, Offset$OFFSET, Offset$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
+    }
+
+    private static final SequenceLayout BootSectors$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("BootSectors"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static final SequenceLayout BootSectors$layout() {
+        return BootSectors$LAYOUT;
+    }
+
+    private static final long BootSectors$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static final long BootSectors$offset() {
+        return BootSectors$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static MemorySegment BootSectors(MemorySegment struct) {
+        return struct.asSlice(BootSectors$OFFSET, BootSectors$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static void BootSectors(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, BootSectors$OFFSET, BootSectors$LAYOUT.byteSize());
+    }
+
+    private static long[] BootSectors$DIMS = { 2 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static long[] BootSectors$dimensions() {
+        return BootSectors$DIMS;
+    }
+    private static final MethodHandle BootSectors$ELEM_HANDLE = BootSectors$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static MemorySegment BootSectors(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)BootSectors$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LARGE_INTEGER Offset;
+     * } BootSectors[2]
+     * }
+     */
+    public static void BootSectors(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, BootSectors(struct, index0), 0L, _BOOT_AREA_INFO.BootSectors.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

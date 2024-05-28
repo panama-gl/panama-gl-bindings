@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _GDI_NONREMOTE {
+ *     LONG fContext;
+ *     union __MIDL_IWinTypes_0002 {
+ *         LONG hInproc;
+ *         DWORD_BLOB *hRemote;
+ *     } u;
+ * } GDI_NONREMOTE
+ * }
+ */
 public class GDI_NONREMOTE extends _GDI_NONREMOTE {
 
+    GDI_NONREMOTE() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS {
+ *     DWORD cbSize;
+ *     LONG lError;
+ *     WCHAR wszErrorText[512];
+ * }
+ * }
+ */
 public class _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        Constants$root.C_LONG$LAYOUT.withName("lError"),
-        MemoryLayout.sequenceLayout(512, Constants$root.C_SHORT$LAYOUT).withName("wszErrorText")
-    ).withName("_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS");
-    public static MemoryLayout $LAYOUT() {
-        return _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.$struct$LAYOUT;
+    _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lError$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lError"));
-    public static VarHandle lError$VH() {
-        return _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.lError$VH;
-    }
-    public static int lError$get(MemorySegment seg) {
-        return (int)_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.lError$VH.get(seg);
-    }
-    public static void lError$set( MemorySegment seg, int x) {
-        _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.lError$VH.set(seg, x);
-    }
-    public static int lError$get(MemorySegment seg, long index) {
-        return (int)_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.lError$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lError$set(MemorySegment seg, long index, int x) {
-        _SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS.lError$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment wszErrorText$slice(MemorySegment seg) {
-        return seg.asSlice(8, 1024);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        wgl_h.C_LONG.withName("lError"),
+        MemoryLayout.sequenceLayout(512, wgl_h.C_SHORT).withName("wszErrorText")
+    ).withName("_SSL_KEY_PIN_EXTRA_CERT_CHAIN_POLICY_STATUS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt lError$LAYOUT = (OfInt)$LAYOUT.select(groupElement("lError"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG lError
+     * }
+     */
+    public static final OfInt lError$layout() {
+        return lError$LAYOUT;
+    }
+
+    private static final long lError$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG lError
+     * }
+     */
+    public static final long lError$offset() {
+        return lError$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG lError
+     * }
+     */
+    public static int lError(MemorySegment struct) {
+        return struct.get(lError$LAYOUT, lError$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG lError
+     * }
+     */
+    public static void lError(MemorySegment struct, int fieldValue) {
+        struct.set(lError$LAYOUT, lError$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout wszErrorText$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("wszErrorText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static final SequenceLayout wszErrorText$layout() {
+        return wszErrorText$LAYOUT;
+    }
+
+    private static final long wszErrorText$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static final long wszErrorText$offset() {
+        return wszErrorText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static MemorySegment wszErrorText(MemorySegment struct) {
+        return struct.asSlice(wszErrorText$OFFSET, wszErrorText$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static void wszErrorText(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, wszErrorText$OFFSET, wszErrorText$LAYOUT.byteSize());
+    }
+
+    private static long[] wszErrorText$DIMS = { 512 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static long[] wszErrorText$dimensions() {
+        return wszErrorText$DIMS;
+    }
+    private static final VarHandle wszErrorText$ELEM_HANDLE = wszErrorText$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static short wszErrorText(MemorySegment struct, long index0) {
+        return (short)wszErrorText$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * WCHAR wszErrorText[512]
+     * }
+     */
+    public static void wszErrorText(MemorySegment struct, long index0, short fieldValue) {
+        wszErrorText$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

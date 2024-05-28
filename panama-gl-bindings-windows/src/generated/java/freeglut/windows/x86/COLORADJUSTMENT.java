@@ -2,13 +2,38 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagCOLORADJUSTMENT {
+ *     WORD caSize;
+ *     WORD caFlags;
+ *     WORD caIlluminantIndex;
+ *     WORD caRedGamma;
+ *     WORD caGreenGamma;
+ *     WORD caBlueGamma;
+ *     WORD caReferenceBlack;
+ *     WORD caReferenceWhite;
+ *     SHORT caContrast;
+ *     SHORT caBrightness;
+ *     SHORT caColorfulness;
+ *     SHORT caRedGreenTint;
+ * } COLORADJUSTMENT
+ * }
+ */
 public class COLORADJUSTMENT extends tagCOLORADJUSTMENT {
 
+    COLORADJUSTMENT() {
+        // Should not be called directly
+    }
 }
-
 

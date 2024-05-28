@@ -2,13 +2,42 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _XSAVE_FORMAT {
+ *     WORD ControlWord;
+ *     WORD StatusWord;
+ *     BYTE TagWord;
+ *     BYTE Reserved1;
+ *     WORD ErrorOpcode;
+ *     DWORD ErrorOffset;
+ *     WORD ErrorSelector;
+ *     WORD Reserved2;
+ *     DWORD DataOffset;
+ *     WORD DataSelector;
+ *     WORD Reserved3;
+ *     DWORD MxCsr;
+ *     DWORD MxCsr_Mask;
+ *     M128A FloatRegisters[8];
+ *     M128A XmmRegisters[16];
+ *     BYTE Reserved4[96];
+ * } XSAVE_FORMAT
+ * }
+ */
 public class XSAVE_FORMAT extends _XSAVE_FORMAT {
 
+    XSAVE_FORMAT() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,124 +2,439 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TXFS_GET_METADATA_INFO_OUT {
+ *     struct {
+ *         LONGLONG LowPart;
+ *         LONGLONG HighPart;
+ *     } TxfFileId;
+ *     GUID LockingTransaction;
+ *     DWORDLONG LastLsn;
+ *     DWORD TransactionState;
+ * }
+ * }
+ */
 public class _TXFS_GET_METADATA_INFO_OUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("HighPart")
-        ).withName("TxfFileId"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("LockingTransaction"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("LastLsn"),
-        Constants$root.C_LONG$LAYOUT.withName("TransactionState"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("_TXFS_GET_METADATA_INFO_OUT");
-    public static MemoryLayout $LAYOUT() {
-        return _TXFS_GET_METADATA_INFO_OUT.$struct$LAYOUT;
+    _TXFS_GET_METADATA_INFO_OUT() {
+        // Should not be called directly
     }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _TXFS_GET_METADATA_INFO_OUT.TxfFileId.layout().withName("TxfFileId"),
+        _GUID.layout().withName("LockingTransaction"),
+        wgl_h.C_LONG_LONG.withName("LastLsn"),
+        wgl_h.C_LONG.withName("TransactionState"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("_TXFS_GET_METADATA_INFO_OUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    /**
+     * {@snippet lang=c :
+     * struct {
+     *     LONGLONG LowPart;
+     *     LONGLONG HighPart;
+     * }
+     * }
+     */
     public static class TxfFileId {
 
-        static final  GroupLayout TxfFileId$struct$LAYOUT = MemoryLayout.structLayout(
-            Constants$root.C_LONG_LONG$LAYOUT.withName("LowPart"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("HighPart")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return TxfFileId.TxfFileId$struct$LAYOUT;
+        TxfFileId() {
+            // Should not be called directly
         }
-        static final VarHandle LowPart$VH = TxfFileId$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LowPart"));
-        public static VarHandle LowPart$VH() {
-            return TxfFileId.LowPart$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+            wgl_h.C_LONG_LONG.withName("LowPart"),
+            wgl_h.C_LONG_LONG.withName("HighPart")
+        ).withName("$anon$12717:5");
+
+        /**
+         * The layout of this struct
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static long LowPart$get(MemorySegment seg) {
-            return (long)TxfFileId.LowPart$VH.get(seg);
+
+        private static final OfLong LowPart$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LowPart"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LONGLONG LowPart
+         * }
+         */
+        public static final OfLong LowPart$layout() {
+            return LowPart$LAYOUT;
         }
-        public static void LowPart$set( MemorySegment seg, long x) {
-            TxfFileId.LowPart$VH.set(seg, x);
+
+        private static final long LowPart$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LONGLONG LowPart
+         * }
+         */
+        public static final long LowPart$offset() {
+            return LowPart$OFFSET;
         }
-        public static long LowPart$get(MemorySegment seg, long index) {
-            return (long)TxfFileId.LowPart$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LONGLONG LowPart
+         * }
+         */
+        public static long LowPart(MemorySegment struct) {
+            return struct.get(LowPart$LAYOUT, LowPart$OFFSET);
         }
-        public static void LowPart$set(MemorySegment seg, long index, long x) {
-            TxfFileId.LowPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LONGLONG LowPart
+         * }
+         */
+        public static void LowPart(MemorySegment struct, long fieldValue) {
+            struct.set(LowPart$LAYOUT, LowPart$OFFSET, fieldValue);
         }
-        static final VarHandle HighPart$VH = TxfFileId$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HighPart"));
-        public static VarHandle HighPart$VH() {
-            return TxfFileId.HighPart$VH;
+
+        private static final OfLong HighPart$LAYOUT = (OfLong)$LAYOUT.select(groupElement("HighPart"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * LONGLONG HighPart
+         * }
+         */
+        public static final OfLong HighPart$layout() {
+            return HighPart$LAYOUT;
         }
-        public static long HighPart$get(MemorySegment seg) {
-            return (long)TxfFileId.HighPart$VH.get(seg);
+
+        private static final long HighPart$OFFSET = 8;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * LONGLONG HighPart
+         * }
+         */
+        public static final long HighPart$offset() {
+            return HighPart$OFFSET;
         }
-        public static void HighPart$set( MemorySegment seg, long x) {
-            TxfFileId.HighPart$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * LONGLONG HighPart
+         * }
+         */
+        public static long HighPart(MemorySegment struct) {
+            return struct.get(HighPart$LAYOUT, HighPart$OFFSET);
         }
-        public static long HighPart$get(MemorySegment seg, long index) {
-            return (long)TxfFileId.HighPart$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * LONGLONG HighPart
+         * }
+         */
+        public static void HighPart(MemorySegment struct, long fieldValue) {
+            struct.set(HighPart$LAYOUT, HighPart$OFFSET, fieldValue);
         }
-        public static void HighPart$set(MemorySegment seg, long index, long x) {
-            TxfFileId.HighPart$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this struct
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment TxfFileId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
+    private static final GroupLayout TxfFileId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("TxfFileId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LONGLONG LowPart;
+     *     LONGLONG HighPart;
+     * } TxfFileId
+     * }
+     */
+    public static final GroupLayout TxfFileId$layout() {
+        return TxfFileId$LAYOUT;
     }
-    public static MemorySegment LockingTransaction$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
+
+    private static final long TxfFileId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LONGLONG LowPart;
+     *     LONGLONG HighPart;
+     * } TxfFileId
+     * }
+     */
+    public static final long TxfFileId$offset() {
+        return TxfFileId$OFFSET;
     }
-    static final VarHandle LastLsn$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LastLsn"));
-    public static VarHandle LastLsn$VH() {
-        return _TXFS_GET_METADATA_INFO_OUT.LastLsn$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LONGLONG LowPart;
+     *     LONGLONG HighPart;
+     * } TxfFileId
+     * }
+     */
+    public static MemorySegment TxfFileId(MemorySegment struct) {
+        return struct.asSlice(TxfFileId$OFFSET, TxfFileId$LAYOUT.byteSize());
     }
-    public static long LastLsn$get(MemorySegment seg) {
-        return (long)_TXFS_GET_METADATA_INFO_OUT.LastLsn$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * struct {
+     *     LONGLONG LowPart;
+     *     LONGLONG HighPart;
+     * } TxfFileId
+     * }
+     */
+    public static void TxfFileId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TxfFileId$OFFSET, TxfFileId$LAYOUT.byteSize());
     }
-    public static void LastLsn$set( MemorySegment seg, long x) {
-        _TXFS_GET_METADATA_INFO_OUT.LastLsn$VH.set(seg, x);
+
+    private static final GroupLayout LockingTransaction$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("LockingTransaction"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * GUID LockingTransaction
+     * }
+     */
+    public static final GroupLayout LockingTransaction$layout() {
+        return LockingTransaction$LAYOUT;
     }
-    public static long LastLsn$get(MemorySegment seg, long index) {
-        return (long)_TXFS_GET_METADATA_INFO_OUT.LastLsn$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long LockingTransaction$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * GUID LockingTransaction
+     * }
+     */
+    public static final long LockingTransaction$offset() {
+        return LockingTransaction$OFFSET;
     }
-    public static void LastLsn$set(MemorySegment seg, long index, long x) {
-        _TXFS_GET_METADATA_INFO_OUT.LastLsn$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * GUID LockingTransaction
+     * }
+     */
+    public static MemorySegment LockingTransaction(MemorySegment struct) {
+        return struct.asSlice(LockingTransaction$OFFSET, LockingTransaction$LAYOUT.byteSize());
     }
-    static final VarHandle TransactionState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TransactionState"));
-    public static VarHandle TransactionState$VH() {
-        return _TXFS_GET_METADATA_INFO_OUT.TransactionState$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * GUID LockingTransaction
+     * }
+     */
+    public static void LockingTransaction(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, LockingTransaction$OFFSET, LockingTransaction$LAYOUT.byteSize());
     }
-    public static int TransactionState$get(MemorySegment seg) {
-        return (int)_TXFS_GET_METADATA_INFO_OUT.TransactionState$VH.get(seg);
+
+    private static final OfLong LastLsn$LAYOUT = (OfLong)$LAYOUT.select(groupElement("LastLsn"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG LastLsn
+     * }
+     */
+    public static final OfLong LastLsn$layout() {
+        return LastLsn$LAYOUT;
     }
-    public static void TransactionState$set( MemorySegment seg, int x) {
-        _TXFS_GET_METADATA_INFO_OUT.TransactionState$VH.set(seg, x);
+
+    private static final long LastLsn$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG LastLsn
+     * }
+     */
+    public static final long LastLsn$offset() {
+        return LastLsn$OFFSET;
     }
-    public static int TransactionState$get(MemorySegment seg, long index) {
-        return (int)_TXFS_GET_METADATA_INFO_OUT.TransactionState$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LastLsn
+     * }
+     */
+    public static long LastLsn(MemorySegment struct) {
+        return struct.get(LastLsn$LAYOUT, LastLsn$OFFSET);
     }
-    public static void TransactionState$set(MemorySegment seg, long index, int x) {
-        _TXFS_GET_METADATA_INFO_OUT.TransactionState$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG LastLsn
+     * }
+     */
+    public static void LastLsn(MemorySegment struct, long fieldValue) {
+        struct.set(LastLsn$LAYOUT, LastLsn$OFFSET, fieldValue);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final OfInt TransactionState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TransactionState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static final OfInt TransactionState$layout() {
+        return TransactionState$LAYOUT;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    private static final long TransactionState$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static final long TransactionState$offset() {
+        return TransactionState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static int TransactionState(MemorySegment struct) {
+        return struct.get(TransactionState$LAYOUT, TransactionState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TransactionState
+     * }
+     */
+    public static void TransactionState(MemorySegment struct, int fieldValue) {
+        struct.set(TransactionState$LAYOUT, TransactionState$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

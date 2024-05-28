@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SERVICE_STATUS {
+ *     DWORD dwServiceType;
+ *     DWORD dwCurrentState;
+ *     DWORD dwControlsAccepted;
+ *     DWORD dwWin32ExitCode;
+ *     DWORD dwServiceSpecificExitCode;
+ *     DWORD dwCheckPoint;
+ *     DWORD dwWaitHint;
+ * } SERVICE_STATUS
+ * }
+ */
 public class SERVICE_STATUS extends _SERVICE_STATUS {
 
+    SERVICE_STATUS() {
+        // Should not be called directly
+    }
 }
-
 

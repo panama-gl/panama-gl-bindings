@@ -2,220 +2,747 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_SECTION_HEADER {
+ *     BYTE Name[8];
+ *     union {
+ *         DWORD PhysicalAddress;
+ *         DWORD VirtualSize;
+ *     } Misc;
+ *     DWORD VirtualAddress;
+ *     DWORD SizeOfRawData;
+ *     DWORD PointerToRawData;
+ *     DWORD PointerToRelocations;
+ *     DWORD PointerToLinenumbers;
+ *     WORD NumberOfRelocations;
+ *     WORD NumberOfLinenumbers;
+ *     DWORD Characteristics;
+ * }
+ * }
+ */
 public class _IMAGE_SECTION_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Name"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("PhysicalAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("VirtualSize")
-        ).withName("Misc"),
-        Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-        Constants$root.C_LONG$LAYOUT.withName("SizeOfRawData"),
-        Constants$root.C_LONG$LAYOUT.withName("PointerToRawData"),
-        Constants$root.C_LONG$LAYOUT.withName("PointerToRelocations"),
-        Constants$root.C_LONG$LAYOUT.withName("PointerToLinenumbers"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfRelocations"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfLinenumbers"),
-        Constants$root.C_LONG$LAYOUT.withName("Characteristics")
+    _IMAGE_SECTION_HEADER() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(8, freeglut_h.C_CHAR).withName("Name"),
+        _IMAGE_SECTION_HEADER.Misc.layout().withName("Misc"),
+        freeglut_h.C_LONG.withName("VirtualAddress"),
+        freeglut_h.C_LONG.withName("SizeOfRawData"),
+        freeglut_h.C_LONG.withName("PointerToRawData"),
+        freeglut_h.C_LONG.withName("PointerToRelocations"),
+        freeglut_h.C_LONG.withName("PointerToLinenumbers"),
+        freeglut_h.C_SHORT.withName("NumberOfRelocations"),
+        freeglut_h.C_SHORT.withName("NumberOfLinenumbers"),
+        freeglut_h.C_LONG.withName("Characteristics")
     ).withName("_IMAGE_SECTION_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_SECTION_HEADER.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    public static MemorySegment Name$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
+
+    private static final SequenceLayout Name$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Name"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static final SequenceLayout Name$layout() {
+        return Name$LAYOUT;
     }
+
+    private static final long Name$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static final long Name$offset() {
+        return Name$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static MemorySegment Name(MemorySegment struct) {
+        return struct.asSlice(Name$OFFSET, Name$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static void Name(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Name$OFFSET, Name$LAYOUT.byteSize());
+    }
+
+    private static long[] Name$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static long[] Name$dimensions() {
+        return Name$DIMS;
+    }
+    private static final VarHandle Name$ELEM_HANDLE = Name$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static byte Name(MemorySegment struct, long index0) {
+        return (byte)Name$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Name[8]
+     * }
+     */
+    public static void Name(MemorySegment struct, long index0, byte fieldValue) {
+        Name$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     DWORD PhysicalAddress;
+     *     DWORD VirtualSize;
+     * }
+     * }
+     */
     public static class Misc {
 
-        static final  GroupLayout Misc$union$LAYOUT = MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("PhysicalAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("VirtualSize")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return Misc.Misc$union$LAYOUT;
+        Misc() {
+            // Should not be called directly
         }
-        static final VarHandle PhysicalAddress$VH = Misc$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PhysicalAddress"));
-        public static VarHandle PhysicalAddress$VH() {
-            return Misc.PhysicalAddress$VH;
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            freeglut_h.C_LONG.withName("PhysicalAddress"),
+            freeglut_h.C_LONG.withName("VirtualSize")
+        ).withName("$anon$17315:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static int PhysicalAddress$get(MemorySegment seg) {
-            return (int)Misc.PhysicalAddress$VH.get(seg);
+
+        private static final OfInt PhysicalAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PhysicalAddress"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD PhysicalAddress
+         * }
+         */
+        public static final OfInt PhysicalAddress$layout() {
+            return PhysicalAddress$LAYOUT;
         }
-        public static void PhysicalAddress$set( MemorySegment seg, int x) {
-            Misc.PhysicalAddress$VH.set(seg, x);
+
+        private static final long PhysicalAddress$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD PhysicalAddress
+         * }
+         */
+        public static final long PhysicalAddress$offset() {
+            return PhysicalAddress$OFFSET;
         }
-        public static int PhysicalAddress$get(MemorySegment seg, long index) {
-            return (int)Misc.PhysicalAddress$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD PhysicalAddress
+         * }
+         */
+        public static int PhysicalAddress(MemorySegment union) {
+            return union.get(PhysicalAddress$LAYOUT, PhysicalAddress$OFFSET);
         }
-        public static void PhysicalAddress$set(MemorySegment seg, long index, int x) {
-            Misc.PhysicalAddress$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD PhysicalAddress
+         * }
+         */
+        public static void PhysicalAddress(MemorySegment union, int fieldValue) {
+            union.set(PhysicalAddress$LAYOUT, PhysicalAddress$OFFSET, fieldValue);
         }
-        static final VarHandle VirtualSize$VH = Misc$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VirtualSize"));
-        public static VarHandle VirtualSize$VH() {
-            return Misc.VirtualSize$VH;
+
+        private static final OfInt VirtualSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VirtualSize"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD VirtualSize
+         * }
+         */
+        public static final OfInt VirtualSize$layout() {
+            return VirtualSize$LAYOUT;
         }
-        public static int VirtualSize$get(MemorySegment seg) {
-            return (int)Misc.VirtualSize$VH.get(seg);
+
+        private static final long VirtualSize$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD VirtualSize
+         * }
+         */
+        public static final long VirtualSize$offset() {
+            return VirtualSize$OFFSET;
         }
-        public static void VirtualSize$set( MemorySegment seg, int x) {
-            Misc.VirtualSize$VH.set(seg, x);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD VirtualSize
+         * }
+         */
+        public static int VirtualSize(MemorySegment union) {
+            return union.get(VirtualSize$LAYOUT, VirtualSize$OFFSET);
         }
-        public static int VirtualSize$get(MemorySegment seg, long index) {
-            return (int)Misc.VirtualSize$VH.get(seg.asSlice(index*sizeof()));
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD VirtualSize
+         * }
+         */
+        public static void VirtualSize(MemorySegment union, int fieldValue) {
+            union.set(VirtualSize$LAYOUT, VirtualSize$OFFSET, fieldValue);
         }
-        public static void VirtualSize$set(MemorySegment seg, long index, int x) {
-            Misc.VirtualSize$VH.set(seg.asSlice(index*sizeof()), x);
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment Misc$slice(MemorySegment seg) {
-        return seg.asSlice(8, 4);
+    private static final GroupLayout Misc$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Misc"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD PhysicalAddress;
+     *     DWORD VirtualSize;
+     * } Misc
+     * }
+     */
+    public static final GroupLayout Misc$layout() {
+        return Misc$LAYOUT;
     }
-    static final VarHandle VirtualAddress$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VirtualAddress"));
-    public static VarHandle VirtualAddress$VH() {
-        return _IMAGE_SECTION_HEADER.VirtualAddress$VH;
+
+    private static final long Misc$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD PhysicalAddress;
+     *     DWORD VirtualSize;
+     * } Misc
+     * }
+     */
+    public static final long Misc$offset() {
+        return Misc$OFFSET;
     }
-    public static int VirtualAddress$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.VirtualAddress$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD PhysicalAddress;
+     *     DWORD VirtualSize;
+     * } Misc
+     * }
+     */
+    public static MemorySegment Misc(MemorySegment struct) {
+        return struct.asSlice(Misc$OFFSET, Misc$LAYOUT.byteSize());
     }
-    public static void VirtualAddress$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.VirtualAddress$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     DWORD PhysicalAddress;
+     *     DWORD VirtualSize;
+     * } Misc
+     * }
+     */
+    public static void Misc(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Misc$OFFSET, Misc$LAYOUT.byteSize());
     }
-    public static int VirtualAddress$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.VirtualAddress$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt VirtualAddress$LAYOUT = (OfInt)$LAYOUT.select(groupElement("VirtualAddress"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD VirtualAddress
+     * }
+     */
+    public static final OfInt VirtualAddress$layout() {
+        return VirtualAddress$LAYOUT;
     }
-    public static void VirtualAddress$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.VirtualAddress$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long VirtualAddress$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD VirtualAddress
+     * }
+     */
+    public static final long VirtualAddress$offset() {
+        return VirtualAddress$OFFSET;
     }
-    static final VarHandle SizeOfRawData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SizeOfRawData"));
-    public static VarHandle SizeOfRawData$VH() {
-        return _IMAGE_SECTION_HEADER.SizeOfRawData$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD VirtualAddress
+     * }
+     */
+    public static int VirtualAddress(MemorySegment struct) {
+        return struct.get(VirtualAddress$LAYOUT, VirtualAddress$OFFSET);
     }
-    public static int SizeOfRawData$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.SizeOfRawData$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD VirtualAddress
+     * }
+     */
+    public static void VirtualAddress(MemorySegment struct, int fieldValue) {
+        struct.set(VirtualAddress$LAYOUT, VirtualAddress$OFFSET, fieldValue);
     }
-    public static void SizeOfRawData$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.SizeOfRawData$VH.set(seg, x);
+
+    private static final OfInt SizeOfRawData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SizeOfRawData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfRawData
+     * }
+     */
+    public static final OfInt SizeOfRawData$layout() {
+        return SizeOfRawData$LAYOUT;
     }
-    public static int SizeOfRawData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.SizeOfRawData$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long SizeOfRawData$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfRawData
+     * }
+     */
+    public static final long SizeOfRawData$offset() {
+        return SizeOfRawData$OFFSET;
     }
-    public static void SizeOfRawData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.SizeOfRawData$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfRawData
+     * }
+     */
+    public static int SizeOfRawData(MemorySegment struct) {
+        return struct.get(SizeOfRawData$LAYOUT, SizeOfRawData$OFFSET);
     }
-    static final VarHandle PointerToRawData$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PointerToRawData"));
-    public static VarHandle PointerToRawData$VH() {
-        return _IMAGE_SECTION_HEADER.PointerToRawData$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SizeOfRawData
+     * }
+     */
+    public static void SizeOfRawData(MemorySegment struct, int fieldValue) {
+        struct.set(SizeOfRawData$LAYOUT, SizeOfRawData$OFFSET, fieldValue);
     }
-    public static int PointerToRawData$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToRawData$VH.get(seg);
+
+    private static final OfInt PointerToRawData$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PointerToRawData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRawData
+     * }
+     */
+    public static final OfInt PointerToRawData$layout() {
+        return PointerToRawData$LAYOUT;
     }
-    public static void PointerToRawData$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.PointerToRawData$VH.set(seg, x);
+
+    private static final long PointerToRawData$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRawData
+     * }
+     */
+    public static final long PointerToRawData$offset() {
+        return PointerToRawData$OFFSET;
     }
-    public static int PointerToRawData$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToRawData$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRawData
+     * }
+     */
+    public static int PointerToRawData(MemorySegment struct) {
+        return struct.get(PointerToRawData$LAYOUT, PointerToRawData$OFFSET);
     }
-    public static void PointerToRawData$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.PointerToRawData$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRawData
+     * }
+     */
+    public static void PointerToRawData(MemorySegment struct, int fieldValue) {
+        struct.set(PointerToRawData$LAYOUT, PointerToRawData$OFFSET, fieldValue);
     }
-    static final VarHandle PointerToRelocations$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PointerToRelocations"));
-    public static VarHandle PointerToRelocations$VH() {
-        return _IMAGE_SECTION_HEADER.PointerToRelocations$VH;
+
+    private static final OfInt PointerToRelocations$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PointerToRelocations"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRelocations
+     * }
+     */
+    public static final OfInt PointerToRelocations$layout() {
+        return PointerToRelocations$LAYOUT;
     }
-    public static int PointerToRelocations$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToRelocations$VH.get(seg);
+
+    private static final long PointerToRelocations$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRelocations
+     * }
+     */
+    public static final long PointerToRelocations$offset() {
+        return PointerToRelocations$OFFSET;
     }
-    public static void PointerToRelocations$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.PointerToRelocations$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRelocations
+     * }
+     */
+    public static int PointerToRelocations(MemorySegment struct) {
+        return struct.get(PointerToRelocations$LAYOUT, PointerToRelocations$OFFSET);
     }
-    public static int PointerToRelocations$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToRelocations$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToRelocations
+     * }
+     */
+    public static void PointerToRelocations(MemorySegment struct, int fieldValue) {
+        struct.set(PointerToRelocations$LAYOUT, PointerToRelocations$OFFSET, fieldValue);
     }
-    public static void PointerToRelocations$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.PointerToRelocations$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt PointerToLinenumbers$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PointerToLinenumbers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PointerToLinenumbers
+     * }
+     */
+    public static final OfInt PointerToLinenumbers$layout() {
+        return PointerToLinenumbers$LAYOUT;
     }
-    static final VarHandle PointerToLinenumbers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PointerToLinenumbers"));
-    public static VarHandle PointerToLinenumbers$VH() {
-        return _IMAGE_SECTION_HEADER.PointerToLinenumbers$VH;
+
+    private static final long PointerToLinenumbers$OFFSET = 28;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PointerToLinenumbers
+     * }
+     */
+    public static final long PointerToLinenumbers$offset() {
+        return PointerToLinenumbers$OFFSET;
     }
-    public static int PointerToLinenumbers$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToLinenumbers$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToLinenumbers
+     * }
+     */
+    public static int PointerToLinenumbers(MemorySegment struct) {
+        return struct.get(PointerToLinenumbers$LAYOUT, PointerToLinenumbers$OFFSET);
     }
-    public static void PointerToLinenumbers$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.PointerToLinenumbers$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToLinenumbers
+     * }
+     */
+    public static void PointerToLinenumbers(MemorySegment struct, int fieldValue) {
+        struct.set(PointerToLinenumbers$LAYOUT, PointerToLinenumbers$OFFSET, fieldValue);
     }
-    public static int PointerToLinenumbers$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.PointerToLinenumbers$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfShort NumberOfRelocations$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfRelocations"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfRelocations
+     * }
+     */
+    public static final OfShort NumberOfRelocations$layout() {
+        return NumberOfRelocations$LAYOUT;
     }
-    public static void PointerToLinenumbers$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.PointerToLinenumbers$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long NumberOfRelocations$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfRelocations
+     * }
+     */
+    public static final long NumberOfRelocations$offset() {
+        return NumberOfRelocations$OFFSET;
     }
-    static final VarHandle NumberOfRelocations$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfRelocations"));
-    public static VarHandle NumberOfRelocations$VH() {
-        return _IMAGE_SECTION_HEADER.NumberOfRelocations$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfRelocations
+     * }
+     */
+    public static short NumberOfRelocations(MemorySegment struct) {
+        return struct.get(NumberOfRelocations$LAYOUT, NumberOfRelocations$OFFSET);
     }
-    public static short NumberOfRelocations$get(MemorySegment seg) {
-        return (short)_IMAGE_SECTION_HEADER.NumberOfRelocations$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfRelocations
+     * }
+     */
+    public static void NumberOfRelocations(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfRelocations$LAYOUT, NumberOfRelocations$OFFSET, fieldValue);
     }
-    public static void NumberOfRelocations$set( MemorySegment seg, short x) {
-        _IMAGE_SECTION_HEADER.NumberOfRelocations$VH.set(seg, x);
+
+    private static final OfShort NumberOfLinenumbers$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfLinenumbers"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfLinenumbers
+     * }
+     */
+    public static final OfShort NumberOfLinenumbers$layout() {
+        return NumberOfLinenumbers$LAYOUT;
     }
-    public static short NumberOfRelocations$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_SECTION_HEADER.NumberOfRelocations$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final long NumberOfLinenumbers$OFFSET = 34;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfLinenumbers
+     * }
+     */
+    public static final long NumberOfLinenumbers$offset() {
+        return NumberOfLinenumbers$OFFSET;
     }
-    public static void NumberOfRelocations$set(MemorySegment seg, long index, short x) {
-        _IMAGE_SECTION_HEADER.NumberOfRelocations$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfLinenumbers
+     * }
+     */
+    public static short NumberOfLinenumbers(MemorySegment struct) {
+        return struct.get(NumberOfLinenumbers$LAYOUT, NumberOfLinenumbers$OFFSET);
     }
-    static final VarHandle NumberOfLinenumbers$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfLinenumbers"));
-    public static VarHandle NumberOfLinenumbers$VH() {
-        return _IMAGE_SECTION_HEADER.NumberOfLinenumbers$VH;
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfLinenumbers
+     * }
+     */
+    public static void NumberOfLinenumbers(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfLinenumbers$LAYOUT, NumberOfLinenumbers$OFFSET, fieldValue);
     }
-    public static short NumberOfLinenumbers$get(MemorySegment seg) {
-        return (short)_IMAGE_SECTION_HEADER.NumberOfLinenumbers$VH.get(seg);
+
+    private static final OfInt Characteristics$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Characteristics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final OfInt Characteristics$layout() {
+        return Characteristics$LAYOUT;
     }
-    public static void NumberOfLinenumbers$set( MemorySegment seg, short x) {
-        _IMAGE_SECTION_HEADER.NumberOfLinenumbers$VH.set(seg, x);
+
+    private static final long Characteristics$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static final long Characteristics$offset() {
+        return Characteristics$OFFSET;
     }
-    public static short NumberOfLinenumbers$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_SECTION_HEADER.NumberOfLinenumbers$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static int Characteristics(MemorySegment struct) {
+        return struct.get(Characteristics$LAYOUT, Characteristics$OFFSET);
     }
-    public static void NumberOfLinenumbers$set(MemorySegment seg, long index, short x) {
-        _IMAGE_SECTION_HEADER.NumberOfLinenumbers$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Characteristics
+     * }
+     */
+    public static void Characteristics(MemorySegment struct, int fieldValue) {
+        struct.set(Characteristics$LAYOUT, Characteristics$OFFSET, fieldValue);
     }
-    static final VarHandle Characteristics$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Characteristics"));
-    public static VarHandle Characteristics$VH() {
-        return _IMAGE_SECTION_HEADER.Characteristics$VH;
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
     }
-    public static int Characteristics$get(MemorySegment seg) {
-        return (int)_IMAGE_SECTION_HEADER.Characteristics$VH.get(seg);
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
     }
-    public static void Characteristics$set( MemorySegment seg, int x) {
-        _IMAGE_SECTION_HEADER.Characteristics$VH.set(seg, x);
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
     }
-    public static int Characteristics$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_SECTION_HEADER.Characteristics$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
     }
-    public static void Characteristics$set(MemorySegment seg, long index, int x) {
-        _IMAGE_SECTION_HEADER.Characteristics$VH.set(seg.asSlice(index*sizeof()), x);
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
 }
-
 

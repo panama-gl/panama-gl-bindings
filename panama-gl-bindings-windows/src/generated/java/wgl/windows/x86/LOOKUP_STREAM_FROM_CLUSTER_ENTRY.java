@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _LOOKUP_STREAM_FROM_CLUSTER_ENTRY {
+ *     DWORD OffsetToNext;
+ *     DWORD Flags;
+ *     LARGE_INTEGER Reserved;
+ *     LARGE_INTEGER Cluster;
+ *     WCHAR FileName[1];
+ * } LOOKUP_STREAM_FROM_CLUSTER_ENTRY
+ * }
+ */
 public class LOOKUP_STREAM_FROM_CLUSTER_ENTRY extends _LOOKUP_STREAM_FROM_CLUSTER_ENTRY {
 
+    LOOKUP_STREAM_FROM_CLUSTER_ENTRY() {
+        // Should not be called directly
+    }
 }
-
 

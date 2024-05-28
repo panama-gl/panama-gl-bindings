@@ -2,109 +2,310 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagKBDLLHOOKSTRUCT {
+ *     DWORD vkCode;
+ *     DWORD scanCode;
+ *     DWORD flags;
+ *     DWORD time;
+ *     ULONG_PTR dwExtraInfo;
+ * }
+ * }
+ */
 public class tagKBDLLHOOKSTRUCT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("vkCode"),
-        Constants$root.C_LONG$LAYOUT.withName("scanCode"),
-        Constants$root.C_LONG$LAYOUT.withName("flags"),
-        Constants$root.C_LONG$LAYOUT.withName("time"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwExtraInfo")
-    ).withName("tagKBDLLHOOKSTRUCT");
-    public static MemoryLayout $LAYOUT() {
-        return tagKBDLLHOOKSTRUCT.$struct$LAYOUT;
+    tagKBDLLHOOKSTRUCT() {
+        // Should not be called directly
     }
-    static final VarHandle vkCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("vkCode"));
-    public static VarHandle vkCode$VH() {
-        return tagKBDLLHOOKSTRUCT.vkCode$VH;
-    }
-    public static int vkCode$get(MemorySegment seg) {
-        return (int)tagKBDLLHOOKSTRUCT.vkCode$VH.get(seg);
-    }
-    public static void vkCode$set( MemorySegment seg, int x) {
-        tagKBDLLHOOKSTRUCT.vkCode$VH.set(seg, x);
-    }
-    public static int vkCode$get(MemorySegment seg, long index) {
-        return (int)tagKBDLLHOOKSTRUCT.vkCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void vkCode$set(MemorySegment seg, long index, int x) {
-        tagKBDLLHOOKSTRUCT.vkCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle scanCode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("scanCode"));
-    public static VarHandle scanCode$VH() {
-        return tagKBDLLHOOKSTRUCT.scanCode$VH;
-    }
-    public static int scanCode$get(MemorySegment seg) {
-        return (int)tagKBDLLHOOKSTRUCT.scanCode$VH.get(seg);
-    }
-    public static void scanCode$set( MemorySegment seg, int x) {
-        tagKBDLLHOOKSTRUCT.scanCode$VH.set(seg, x);
-    }
-    public static int scanCode$get(MemorySegment seg, long index) {
-        return (int)tagKBDLLHOOKSTRUCT.scanCode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void scanCode$set(MemorySegment seg, long index, int x) {
-        tagKBDLLHOOKSTRUCT.scanCode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("flags"));
-    public static VarHandle flags$VH() {
-        return tagKBDLLHOOKSTRUCT.flags$VH;
-    }
-    public static int flags$get(MemorySegment seg) {
-        return (int)tagKBDLLHOOKSTRUCT.flags$VH.get(seg);
-    }
-    public static void flags$set( MemorySegment seg, int x) {
-        tagKBDLLHOOKSTRUCT.flags$VH.set(seg, x);
-    }
-    public static int flags$get(MemorySegment seg, long index) {
-        return (int)tagKBDLLHOOKSTRUCT.flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void flags$set(MemorySegment seg, long index, int x) {
-        tagKBDLLHOOKSTRUCT.flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle time$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("time"));
-    public static VarHandle time$VH() {
-        return tagKBDLLHOOKSTRUCT.time$VH;
-    }
-    public static int time$get(MemorySegment seg) {
-        return (int)tagKBDLLHOOKSTRUCT.time$VH.get(seg);
-    }
-    public static void time$set( MemorySegment seg, int x) {
-        tagKBDLLHOOKSTRUCT.time$VH.set(seg, x);
-    }
-    public static int time$get(MemorySegment seg, long index) {
-        return (int)tagKBDLLHOOKSTRUCT.time$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void time$set(MemorySegment seg, long index, int x) {
-        tagKBDLLHOOKSTRUCT.time$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwExtraInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwExtraInfo"));
-    public static VarHandle dwExtraInfo$VH() {
-        return tagKBDLLHOOKSTRUCT.dwExtraInfo$VH;
-    }
-    public static long dwExtraInfo$get(MemorySegment seg) {
-        return (long)tagKBDLLHOOKSTRUCT.dwExtraInfo$VH.get(seg);
-    }
-    public static void dwExtraInfo$set( MemorySegment seg, long x) {
-        tagKBDLLHOOKSTRUCT.dwExtraInfo$VH.set(seg, x);
-    }
-    public static long dwExtraInfo$get(MemorySegment seg, long index) {
-        return (long)tagKBDLLHOOKSTRUCT.dwExtraInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwExtraInfo$set(MemorySegment seg, long index, long x) {
-        tagKBDLLHOOKSTRUCT.dwExtraInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("vkCode"),
+        freeglut_h.C_LONG.withName("scanCode"),
+        freeglut_h.C_LONG.withName("flags"),
+        freeglut_h.C_LONG.withName("time"),
+        freeglut_h.C_LONG_LONG.withName("dwExtraInfo")
+    ).withName("tagKBDLLHOOKSTRUCT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt vkCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("vkCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD vkCode
+     * }
+     */
+    public static final OfInt vkCode$layout() {
+        return vkCode$LAYOUT;
+    }
+
+    private static final long vkCode$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD vkCode
+     * }
+     */
+    public static final long vkCode$offset() {
+        return vkCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD vkCode
+     * }
+     */
+    public static int vkCode(MemorySegment struct) {
+        return struct.get(vkCode$LAYOUT, vkCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD vkCode
+     * }
+     */
+    public static void vkCode(MemorySegment struct, int fieldValue) {
+        struct.set(vkCode$LAYOUT, vkCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt scanCode$LAYOUT = (OfInt)$LAYOUT.select(groupElement("scanCode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD scanCode
+     * }
+     */
+    public static final OfInt scanCode$layout() {
+        return scanCode$LAYOUT;
+    }
+
+    private static final long scanCode$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD scanCode
+     * }
+     */
+    public static final long scanCode$offset() {
+        return scanCode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD scanCode
+     * }
+     */
+    public static int scanCode(MemorySegment struct) {
+        return struct.get(scanCode$LAYOUT, scanCode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD scanCode
+     * }
+     */
+    public static void scanCode(MemorySegment struct, int fieldValue) {
+        struct.set(scanCode$LAYOUT, scanCode$OFFSET, fieldValue);
+    }
+
+    private static final OfInt flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD flags
+     * }
+     */
+    public static final OfInt flags$layout() {
+        return flags$LAYOUT;
+    }
+
+    private static final long flags$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD flags
+     * }
+     */
+    public static final long flags$offset() {
+        return flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD flags
+     * }
+     */
+    public static int flags(MemorySegment struct) {
+        return struct.get(flags$LAYOUT, flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD flags
+     * }
+     */
+    public static void flags(MemorySegment struct, int fieldValue) {
+        struct.set(flags$LAYOUT, flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt time$LAYOUT = (OfInt)$LAYOUT.select(groupElement("time"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD time
+     * }
+     */
+    public static final OfInt time$layout() {
+        return time$LAYOUT;
+    }
+
+    private static final long time$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD time
+     * }
+     */
+    public static final long time$offset() {
+        return time$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD time
+     * }
+     */
+    public static int time(MemorySegment struct) {
+        return struct.get(time$LAYOUT, time$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD time
+     * }
+     */
+    public static void time(MemorySegment struct, int fieldValue) {
+        struct.set(time$LAYOUT, time$OFFSET, fieldValue);
+    }
+
+    private static final OfLong dwExtraInfo$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwExtraInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwExtraInfo
+     * }
+     */
+    public static final OfLong dwExtraInfo$layout() {
+        return dwExtraInfo$LAYOUT;
+    }
+
+    private static final long dwExtraInfo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwExtraInfo
+     * }
+     */
+    public static final long dwExtraInfo$offset() {
+        return dwExtraInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwExtraInfo
+     * }
+     */
+    public static long dwExtraInfo(MemorySegment struct) {
+        return struct.get(dwExtraInfo$LAYOUT, dwExtraInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR dwExtraInfo
+     * }
+     */
+    public static void dwExtraInfo(MemorySegment struct, long fieldValue) {
+        struct.set(dwExtraInfo$LAYOUT, dwExtraInfo$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

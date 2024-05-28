@@ -2,142 +2,357 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE {
+ *     DWORD cbSize;
+ *     PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet;
+ *     PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease;
+ *     PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword;
+ *     PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree;
+ *     PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier;
+ * }
+ * }
+ */
 public class _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnGet"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnRelease"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFreePassword"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFree"),
-        Constants$root.C_POINTER$LAYOUT.withName("pfnFreeIdentifier")
-    ).withName("_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.$struct$LAYOUT;
+    _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pfnGet$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnGet"));
-    public static VarHandle pfnGet$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnGet$VH;
-    }
-    public static MemoryAddress pfnGet$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnGet$VH.get(seg);
-    }
-    public static void pfnGet$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnGet$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnGet$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnGet$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnGet$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnGet$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET.ofAddress(pfnGet$get(segment), session);
-    }
-    static final VarHandle pfnRelease$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnRelease"));
-    public static VarHandle pfnRelease$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnRelease$VH;
-    }
-    public static MemoryAddress pfnRelease$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnRelease$VH.get(seg);
-    }
-    public static void pfnRelease$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnRelease$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnRelease$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnRelease$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnRelease$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnRelease$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE.ofAddress(pfnRelease$get(segment), session);
-    }
-    static final VarHandle pfnFreePassword$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFreePassword"));
-    public static VarHandle pfnFreePassword$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreePassword$VH;
-    }
-    public static MemoryAddress pfnFreePassword$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreePassword$VH.get(seg);
-    }
-    public static void pfnFreePassword$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreePassword$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFreePassword$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreePassword$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFreePassword$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreePassword$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD.ofAddress(pfnFreePassword$get(segment), session);
-    }
-    static final VarHandle pfnFree$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFree"));
-    public static VarHandle pfnFree$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFree$VH;
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFree$VH.get(seg);
-    }
-    public static void pfnFree$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFree$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFree$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFree$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFree$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFree$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE.ofAddress(pfnFree$get(segment), session);
-    }
-    static final VarHandle pfnFreeIdentifier$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pfnFreeIdentifier"));
-    public static VarHandle pfnFreeIdentifier$VH() {
-        return _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreeIdentifier$VH;
-    }
-    public static MemoryAddress pfnFreeIdentifier$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreeIdentifier$VH.get(seg);
-    }
-    public static void pfnFreeIdentifier$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreeIdentifier$VH.set(seg, x);
-    }
-    public static MemoryAddress pfnFreeIdentifier$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreeIdentifier$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pfnFreeIdentifier$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE.pfnFreeIdentifier$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier (MemorySegment segment, MemorySession session) {
-        return PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER.ofAddress(pfnFreeIdentifier$get(segment), session);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("pfnGet"),
+        wgl_h.C_POINTER.withName("pfnRelease"),
+        wgl_h.C_POINTER.withName("pfnFreePassword"),
+        wgl_h.C_POINTER.withName("pfnFree"),
+        wgl_h.C_POINTER.withName("pfnFreeIdentifier")
+    ).withName("_CRYPT_OBJECT_LOCATOR_PROVIDER_TABLE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnGet$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnGet"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet
+     * }
+     */
+    public static final AddressLayout pfnGet$layout() {
+        return pfnGet$LAYOUT;
+    }
+
+    private static final long pfnGet$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet
+     * }
+     */
+    public static final long pfnGet$offset() {
+        return pfnGet$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet
+     * }
+     */
+    public static MemorySegment pfnGet(MemorySegment struct) {
+        return struct.get(pfnGet$LAYOUT, pfnGet$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_GET pfnGet
+     * }
+     */
+    public static void pfnGet(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnGet$LAYOUT, pfnGet$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnRelease$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnRelease"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease
+     * }
+     */
+    public static final AddressLayout pfnRelease$layout() {
+        return pfnRelease$LAYOUT;
+    }
+
+    private static final long pfnRelease$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease
+     * }
+     */
+    public static final long pfnRelease$offset() {
+        return pfnRelease$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease
+     * }
+     */
+    public static MemorySegment pfnRelease(MemorySegment struct) {
+        return struct.get(pfnRelease$LAYOUT, pfnRelease$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_RELEASE pfnRelease
+     * }
+     */
+    public static void pfnRelease(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnRelease$LAYOUT, pfnRelease$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFreePassword$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFreePassword"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword
+     * }
+     */
+    public static final AddressLayout pfnFreePassword$layout() {
+        return pfnFreePassword$LAYOUT;
+    }
+
+    private static final long pfnFreePassword$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword
+     * }
+     */
+    public static final long pfnFreePassword$offset() {
+        return pfnFreePassword$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword
+     * }
+     */
+    public static MemorySegment pfnFreePassword(MemorySegment struct) {
+        return struct.get(pfnFreePassword$LAYOUT, pfnFreePassword$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_PASSWORD pfnFreePassword
+     * }
+     */
+    public static void pfnFreePassword(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFreePassword$LAYOUT, pfnFreePassword$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFree$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFree"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree
+     * }
+     */
+    public static final AddressLayout pfnFree$layout() {
+        return pfnFree$LAYOUT;
+    }
+
+    private static final long pfnFree$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree
+     * }
+     */
+    public static final long pfnFree$offset() {
+        return pfnFree$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree
+     * }
+     */
+    public static MemorySegment pfnFree(MemorySegment struct) {
+        return struct.get(pfnFree$LAYOUT, pfnFree$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE pfnFree
+     * }
+     */
+    public static void pfnFree(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFree$LAYOUT, pfnFree$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pfnFreeIdentifier$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pfnFreeIdentifier"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier
+     * }
+     */
+    public static final AddressLayout pfnFreeIdentifier$layout() {
+        return pfnFreeIdentifier$LAYOUT;
+    }
+
+    private static final long pfnFreeIdentifier$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier
+     * }
+     */
+    public static final long pfnFreeIdentifier$offset() {
+        return pfnFreeIdentifier$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier
+     * }
+     */
+    public static MemorySegment pfnFreeIdentifier(MemorySegment struct) {
+        return struct.get(pfnFreeIdentifier$LAYOUT, pfnFreeIdentifier$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PFN_CRYPT_OBJECT_LOCATOR_PROVIDER_FREE_IDENTIFIER pfnFreeIdentifier
+     * }
+     */
+    public static void pfnFreeIdentifier(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pfnFreeIdentifier$LAYOUT, pfnFreeIdentifier$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,62 +2,251 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_RC2_CBC_PARAMETERS {
+ *     DWORD dwVersion;
+ *     BOOL fIV;
+ *     BYTE rgbIV[8];
+ * }
+ * }
+ */
 public class _CRYPT_RC2_CBC_PARAMETERS {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("dwVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("fIV"),
-        MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("rgbIV")
-    ).withName("_CRYPT_RC2_CBC_PARAMETERS");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_RC2_CBC_PARAMETERS.$struct$LAYOUT;
+    _CRYPT_RC2_CBC_PARAMETERS() {
+        // Should not be called directly
     }
-    static final VarHandle dwVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwVersion"));
-    public static VarHandle dwVersion$VH() {
-        return _CRYPT_RC2_CBC_PARAMETERS.dwVersion$VH;
-    }
-    public static int dwVersion$get(MemorySegment seg) {
-        return (int)_CRYPT_RC2_CBC_PARAMETERS.dwVersion$VH.get(seg);
-    }
-    public static void dwVersion$set( MemorySegment seg, int x) {
-        _CRYPT_RC2_CBC_PARAMETERS.dwVersion$VH.set(seg, x);
-    }
-    public static int dwVersion$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RC2_CBC_PARAMETERS.dwVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwVersion$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RC2_CBC_PARAMETERS.dwVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fIV$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fIV"));
-    public static VarHandle fIV$VH() {
-        return _CRYPT_RC2_CBC_PARAMETERS.fIV$VH;
-    }
-    public static int fIV$get(MemorySegment seg) {
-        return (int)_CRYPT_RC2_CBC_PARAMETERS.fIV$VH.get(seg);
-    }
-    public static void fIV$set( MemorySegment seg, int x) {
-        _CRYPT_RC2_CBC_PARAMETERS.fIV$VH.set(seg, x);
-    }
-    public static int fIV$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_RC2_CBC_PARAMETERS.fIV$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fIV$set(MemorySegment seg, long index, int x) {
-        _CRYPT_RC2_CBC_PARAMETERS.fIV$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment rgbIV$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("dwVersion"),
+        wgl_h.C_INT.withName("fIV"),
+        MemoryLayout.sequenceLayout(8, wgl_h.C_CHAR).withName("rgbIV")
+    ).withName("_CRYPT_RC2_CBC_PARAMETERS");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt dwVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final OfInt dwVersion$layout() {
+        return dwVersion$LAYOUT;
+    }
+
+    private static final long dwVersion$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static final long dwVersion$offset() {
+        return dwVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static int dwVersion(MemorySegment struct) {
+        return struct.get(dwVersion$LAYOUT, dwVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwVersion
+     * }
+     */
+    public static void dwVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwVersion$LAYOUT, dwVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fIV$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fIV"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOL fIV
+     * }
+     */
+    public static final OfInt fIV$layout() {
+        return fIV$LAYOUT;
+    }
+
+    private static final long fIV$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOL fIV
+     * }
+     */
+    public static final long fIV$offset() {
+        return fIV$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOL fIV
+     * }
+     */
+    public static int fIV(MemorySegment struct) {
+        return struct.get(fIV$LAYOUT, fIV$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOL fIV
+     * }
+     */
+    public static void fIV(MemorySegment struct, int fieldValue) {
+        struct.set(fIV$LAYOUT, fIV$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout rgbIV$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("rgbIV"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static final SequenceLayout rgbIV$layout() {
+        return rgbIV$LAYOUT;
+    }
+
+    private static final long rgbIV$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static final long rgbIV$offset() {
+        return rgbIV$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static MemorySegment rgbIV(MemorySegment struct) {
+        return struct.asSlice(rgbIV$OFFSET, rgbIV$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static void rgbIV(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, rgbIV$OFFSET, rgbIV$LAYOUT.byteSize());
+    }
+
+    private static long[] rgbIV$DIMS = { 8 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static long[] rgbIV$dimensions() {
+        return rgbIV$DIMS;
+    }
+    private static final VarHandle rgbIV$ELEM_HANDLE = rgbIV$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static byte rgbIV(MemorySegment struct, long index0) {
+        return (byte)rgbIV$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE rgbIV[8]
+     * }
+     */
+    public static void rgbIV(MemorySegment struct, long index0, byte fieldValue) {
+        rgbIV$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

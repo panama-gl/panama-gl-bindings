@@ -2,161 +2,449 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TXFS_MODIFY_RM {
+ *     DWORD Flags;
+ *     DWORD LogContainerCountMax;
+ *     DWORD LogContainerCountMin;
+ *     DWORD LogContainerCount;
+ *     DWORD LogGrowthIncrement;
+ *     DWORD LogAutoShrinkPercentage;
+ *     DWORDLONG Reserved;
+ *     WORD LoggingMode;
+ * }
+ * }
+ */
 public class _TXFS_MODIFY_RM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        Constants$root.C_LONG$LAYOUT.withName("LogContainerCountMax"),
-        Constants$root.C_LONG$LAYOUT.withName("LogContainerCountMin"),
-        Constants$root.C_LONG$LAYOUT.withName("LogContainerCount"),
-        Constants$root.C_LONG$LAYOUT.withName("LogGrowthIncrement"),
-        Constants$root.C_LONG$LAYOUT.withName("LogAutoShrinkPercentage"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Reserved"),
-        Constants$root.C_SHORT$LAYOUT.withName("LoggingMode"),
-        MemoryLayout.paddingLayout(48)
-    ).withName("_TXFS_MODIFY_RM");
-    public static MemoryLayout $LAYOUT() {
-        return _TXFS_MODIFY_RM.$struct$LAYOUT;
+    _TXFS_MODIFY_RM() {
+        // Should not be called directly
     }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return _TXFS_MODIFY_RM.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LogContainerCountMax$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogContainerCountMax"));
-    public static VarHandle LogContainerCountMax$VH() {
-        return _TXFS_MODIFY_RM.LogContainerCountMax$VH;
-    }
-    public static int LogContainerCountMax$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCountMax$VH.get(seg);
-    }
-    public static void LogContainerCountMax$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.LogContainerCountMax$VH.set(seg, x);
-    }
-    public static int LogContainerCountMax$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCountMax$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogContainerCountMax$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.LogContainerCountMax$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LogContainerCountMin$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogContainerCountMin"));
-    public static VarHandle LogContainerCountMin$VH() {
-        return _TXFS_MODIFY_RM.LogContainerCountMin$VH;
-    }
-    public static int LogContainerCountMin$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCountMin$VH.get(seg);
-    }
-    public static void LogContainerCountMin$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.LogContainerCountMin$VH.set(seg, x);
-    }
-    public static int LogContainerCountMin$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCountMin$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogContainerCountMin$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.LogContainerCountMin$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LogContainerCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogContainerCount"));
-    public static VarHandle LogContainerCount$VH() {
-        return _TXFS_MODIFY_RM.LogContainerCount$VH;
-    }
-    public static int LogContainerCount$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCount$VH.get(seg);
-    }
-    public static void LogContainerCount$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.LogContainerCount$VH.set(seg, x);
-    }
-    public static int LogContainerCount$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.LogContainerCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogContainerCount$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.LogContainerCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LogGrowthIncrement$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogGrowthIncrement"));
-    public static VarHandle LogGrowthIncrement$VH() {
-        return _TXFS_MODIFY_RM.LogGrowthIncrement$VH;
-    }
-    public static int LogGrowthIncrement$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.LogGrowthIncrement$VH.get(seg);
-    }
-    public static void LogGrowthIncrement$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.LogGrowthIncrement$VH.set(seg, x);
-    }
-    public static int LogGrowthIncrement$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.LogGrowthIncrement$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogGrowthIncrement$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.LogGrowthIncrement$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LogAutoShrinkPercentage$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LogAutoShrinkPercentage"));
-    public static VarHandle LogAutoShrinkPercentage$VH() {
-        return _TXFS_MODIFY_RM.LogAutoShrinkPercentage$VH;
-    }
-    public static int LogAutoShrinkPercentage$get(MemorySegment seg) {
-        return (int)_TXFS_MODIFY_RM.LogAutoShrinkPercentage$VH.get(seg);
-    }
-    public static void LogAutoShrinkPercentage$set( MemorySegment seg, int x) {
-        _TXFS_MODIFY_RM.LogAutoShrinkPercentage$VH.set(seg, x);
-    }
-    public static int LogAutoShrinkPercentage$get(MemorySegment seg, long index) {
-        return (int)_TXFS_MODIFY_RM.LogAutoShrinkPercentage$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LogAutoShrinkPercentage$set(MemorySegment seg, long index, int x) {
-        _TXFS_MODIFY_RM.LogAutoShrinkPercentage$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _TXFS_MODIFY_RM.Reserved$VH;
-    }
-    public static long Reserved$get(MemorySegment seg) {
-        return (long)_TXFS_MODIFY_RM.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, long x) {
-        _TXFS_MODIFY_RM.Reserved$VH.set(seg, x);
-    }
-    public static long Reserved$get(MemorySegment seg, long index) {
-        return (long)_TXFS_MODIFY_RM.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, long x) {
-        _TXFS_MODIFY_RM.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle LoggingMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LoggingMode"));
-    public static VarHandle LoggingMode$VH() {
-        return _TXFS_MODIFY_RM.LoggingMode$VH;
-    }
-    public static short LoggingMode$get(MemorySegment seg) {
-        return (short)_TXFS_MODIFY_RM.LoggingMode$VH.get(seg);
-    }
-    public static void LoggingMode$set( MemorySegment seg, short x) {
-        _TXFS_MODIFY_RM.LoggingMode$VH.set(seg, x);
-    }
-    public static short LoggingMode$get(MemorySegment seg, long index) {
-        return (short)_TXFS_MODIFY_RM.LoggingMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LoggingMode$set(MemorySegment seg, long index, short x) {
-        _TXFS_MODIFY_RM.LoggingMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Flags"),
+        wgl_h.C_LONG.withName("LogContainerCountMax"),
+        wgl_h.C_LONG.withName("LogContainerCountMin"),
+        wgl_h.C_LONG.withName("LogContainerCount"),
+        wgl_h.C_LONG.withName("LogGrowthIncrement"),
+        wgl_h.C_LONG.withName("LogAutoShrinkPercentage"),
+        wgl_h.C_LONG_LONG.withName("Reserved"),
+        wgl_h.C_SHORT.withName("LoggingMode"),
+        MemoryLayout.paddingLayout(6)
+    ).withName("_TXFS_MODIFY_RM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LogContainerCountMax$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogContainerCountMax"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMax
+     * }
+     */
+    public static final OfInt LogContainerCountMax$layout() {
+        return LogContainerCountMax$LAYOUT;
+    }
+
+    private static final long LogContainerCountMax$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMax
+     * }
+     */
+    public static final long LogContainerCountMax$offset() {
+        return LogContainerCountMax$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMax
+     * }
+     */
+    public static int LogContainerCountMax(MemorySegment struct) {
+        return struct.get(LogContainerCountMax$LAYOUT, LogContainerCountMax$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMax
+     * }
+     */
+    public static void LogContainerCountMax(MemorySegment struct, int fieldValue) {
+        struct.set(LogContainerCountMax$LAYOUT, LogContainerCountMax$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LogContainerCountMin$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogContainerCountMin"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMin
+     * }
+     */
+    public static final OfInt LogContainerCountMin$layout() {
+        return LogContainerCountMin$LAYOUT;
+    }
+
+    private static final long LogContainerCountMin$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMin
+     * }
+     */
+    public static final long LogContainerCountMin$offset() {
+        return LogContainerCountMin$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMin
+     * }
+     */
+    public static int LogContainerCountMin(MemorySegment struct) {
+        return struct.get(LogContainerCountMin$LAYOUT, LogContainerCountMin$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCountMin
+     * }
+     */
+    public static void LogContainerCountMin(MemorySegment struct, int fieldValue) {
+        struct.set(LogContainerCountMin$LAYOUT, LogContainerCountMin$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LogContainerCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogContainerCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCount
+     * }
+     */
+    public static final OfInt LogContainerCount$layout() {
+        return LogContainerCount$LAYOUT;
+    }
+
+    private static final long LogContainerCount$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCount
+     * }
+     */
+    public static final long LogContainerCount$offset() {
+        return LogContainerCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCount
+     * }
+     */
+    public static int LogContainerCount(MemorySegment struct) {
+        return struct.get(LogContainerCount$LAYOUT, LogContainerCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogContainerCount
+     * }
+     */
+    public static void LogContainerCount(MemorySegment struct, int fieldValue) {
+        struct.set(LogContainerCount$LAYOUT, LogContainerCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LogGrowthIncrement$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogGrowthIncrement"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogGrowthIncrement
+     * }
+     */
+    public static final OfInt LogGrowthIncrement$layout() {
+        return LogGrowthIncrement$LAYOUT;
+    }
+
+    private static final long LogGrowthIncrement$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogGrowthIncrement
+     * }
+     */
+    public static final long LogGrowthIncrement$offset() {
+        return LogGrowthIncrement$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogGrowthIncrement
+     * }
+     */
+    public static int LogGrowthIncrement(MemorySegment struct) {
+        return struct.get(LogGrowthIncrement$LAYOUT, LogGrowthIncrement$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogGrowthIncrement
+     * }
+     */
+    public static void LogGrowthIncrement(MemorySegment struct, int fieldValue) {
+        struct.set(LogGrowthIncrement$LAYOUT, LogGrowthIncrement$OFFSET, fieldValue);
+    }
+
+    private static final OfInt LogAutoShrinkPercentage$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LogAutoShrinkPercentage"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LogAutoShrinkPercentage
+     * }
+     */
+    public static final OfInt LogAutoShrinkPercentage$layout() {
+        return LogAutoShrinkPercentage$LAYOUT;
+    }
+
+    private static final long LogAutoShrinkPercentage$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LogAutoShrinkPercentage
+     * }
+     */
+    public static final long LogAutoShrinkPercentage$offset() {
+        return LogAutoShrinkPercentage$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LogAutoShrinkPercentage
+     * }
+     */
+    public static int LogAutoShrinkPercentage(MemorySegment struct) {
+        return struct.get(LogAutoShrinkPercentage$LAYOUT, LogAutoShrinkPercentage$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LogAutoShrinkPercentage
+     * }
+     */
+    public static void LogAutoShrinkPercentage(MemorySegment struct, int fieldValue) {
+        struct.set(LogAutoShrinkPercentage$LAYOUT, LogAutoShrinkPercentage$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Reserved$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG Reserved
+     * }
+     */
+    public static final OfLong Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Reserved
+     * }
+     */
+    public static long Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, long fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    private static final OfShort LoggingMode$LAYOUT = (OfShort)$LAYOUT.select(groupElement("LoggingMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD LoggingMode
+     * }
+     */
+    public static final OfShort LoggingMode$layout() {
+        return LoggingMode$LAYOUT;
+    }
+
+    private static final long LoggingMode$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD LoggingMode
+     * }
+     */
+    public static final long LoggingMode$offset() {
+        return LoggingMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD LoggingMode
+     * }
+     */
+    public static short LoggingMode(MemorySegment struct) {
+        return struct.get(LoggingMode$LAYOUT, LoggingMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD LoggingMode
+     * }
+     */
+    public static void LoggingMode(MemorySegment struct, short fieldValue) {
+        struct.set(LoggingMode$LAYOUT, LoggingMode$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

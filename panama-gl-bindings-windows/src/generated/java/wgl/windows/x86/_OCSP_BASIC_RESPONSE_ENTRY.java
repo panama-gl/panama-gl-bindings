@@ -2,138 +2,408 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _OCSP_BASIC_RESPONSE_ENTRY {
+ *     OCSP_CERT_ID CertId;
+ *     DWORD dwCertStatus;
+ *     union {
+ *         POCSP_BASIC_REVOKED_INFO pRevokedInfo;
+ *     };
+ *     FILETIME ThisUpdate;
+ *     FILETIME NextUpdate;
+ *     DWORD cExtension;
+ *     PCERT_EXTENSION rgExtension;
+ * }
+ * }
+ */
 public class _OCSP_BASIC_RESPONSE_ENTRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("pszObjId"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                    MemoryLayout.paddingLayout(32),
-                    Constants$root.C_POINTER$LAYOUT.withName("pbData")
-                ).withName("Parameters")
-            ).withName("HashAlgorithm"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("IssuerNameHash"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("IssuerKeyHash"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("cbData"),
-                MemoryLayout.paddingLayout(32),
-                Constants$root.C_POINTER$LAYOUT.withName("pbData")
-            ).withName("SerialNumber")
-        ).withName("CertId"),
-        Constants$root.C_LONG$LAYOUT.withName("dwCertStatus"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.unionLayout(
-            Constants$root.C_POINTER$LAYOUT.withName("pRevokedInfo")
-        ).withName("$anon$0"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("ThisUpdate"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("NextUpdate"),
-        Constants$root.C_LONG$LAYOUT.withName("cExtension"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgExtension")
-    ).withName("_OCSP_BASIC_RESPONSE_ENTRY");
-    public static MemoryLayout $LAYOUT() {
-        return _OCSP_BASIC_RESPONSE_ENTRY.$struct$LAYOUT;
+    _OCSP_BASIC_RESPONSE_ENTRY() {
+        // Should not be called directly
     }
-    public static MemorySegment CertId$slice(MemorySegment seg) {
-        return seg.asSlice(0, 72);
-    }
-    static final VarHandle dwCertStatus$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwCertStatus"));
-    public static VarHandle dwCertStatus$VH() {
-        return _OCSP_BASIC_RESPONSE_ENTRY.dwCertStatus$VH;
-    }
-    public static int dwCertStatus$get(MemorySegment seg) {
-        return (int)_OCSP_BASIC_RESPONSE_ENTRY.dwCertStatus$VH.get(seg);
-    }
-    public static void dwCertStatus$set( MemorySegment seg, int x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.dwCertStatus$VH.set(seg, x);
-    }
-    public static int dwCertStatus$get(MemorySegment seg, long index) {
-        return (int)_OCSP_BASIC_RESPONSE_ENTRY.dwCertStatus$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwCertStatus$set(MemorySegment seg, long index, int x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.dwCertStatus$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pRevokedInfo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("pRevokedInfo"));
-    public static VarHandle pRevokedInfo$VH() {
-        return _OCSP_BASIC_RESPONSE_ENTRY.pRevokedInfo$VH;
-    }
-    public static MemoryAddress pRevokedInfo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OCSP_BASIC_RESPONSE_ENTRY.pRevokedInfo$VH.get(seg);
-    }
-    public static void pRevokedInfo$set( MemorySegment seg, MemoryAddress x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.pRevokedInfo$VH.set(seg, x);
-    }
-    public static MemoryAddress pRevokedInfo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OCSP_BASIC_RESPONSE_ENTRY.pRevokedInfo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pRevokedInfo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.pRevokedInfo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment ThisUpdate$slice(MemorySegment seg) {
-        return seg.asSlice(88, 8);
-    }
-    public static MemorySegment NextUpdate$slice(MemorySegment seg) {
-        return seg.asSlice(96, 8);
-    }
-    static final VarHandle cExtension$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cExtension"));
-    public static VarHandle cExtension$VH() {
-        return _OCSP_BASIC_RESPONSE_ENTRY.cExtension$VH;
-    }
-    public static int cExtension$get(MemorySegment seg) {
-        return (int)_OCSP_BASIC_RESPONSE_ENTRY.cExtension$VH.get(seg);
-    }
-    public static void cExtension$set( MemorySegment seg, int x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.cExtension$VH.set(seg, x);
-    }
-    public static int cExtension$get(MemorySegment seg, long index) {
-        return (int)_OCSP_BASIC_RESPONSE_ENTRY.cExtension$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cExtension$set(MemorySegment seg, long index, int x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.cExtension$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgExtension$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgExtension"));
-    public static VarHandle rgExtension$VH() {
-        return _OCSP_BASIC_RESPONSE_ENTRY.rgExtension$VH;
-    }
-    public static MemoryAddress rgExtension$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_OCSP_BASIC_RESPONSE_ENTRY.rgExtension$VH.get(seg);
-    }
-    public static void rgExtension$set( MemorySegment seg, MemoryAddress x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.rgExtension$VH.set(seg, x);
-    }
-    public static MemoryAddress rgExtension$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_OCSP_BASIC_RESPONSE_ENTRY.rgExtension$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgExtension$set(MemorySegment seg, long index, MemoryAddress x) {
-        _OCSP_BASIC_RESPONSE_ENTRY.rgExtension$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _OCSP_CERT_ID.layout().withName("CertId"),
+        wgl_h.C_LONG.withName("dwCertStatus"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.unionLayout(
+            wgl_h.C_POINTER.withName("pRevokedInfo")
+        ).withName("$anon$5682:5"),
+        _FILETIME.layout().withName("ThisUpdate"),
+        _FILETIME.layout().withName("NextUpdate"),
+        wgl_h.C_LONG.withName("cExtension"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgExtension")
+    ).withName("_OCSP_BASIC_RESPONSE_ENTRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout CertId$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("CertId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * OCSP_CERT_ID CertId
+     * }
+     */
+    public static final GroupLayout CertId$layout() {
+        return CertId$LAYOUT;
+    }
+
+    private static final long CertId$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * OCSP_CERT_ID CertId
+     * }
+     */
+    public static final long CertId$offset() {
+        return CertId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * OCSP_CERT_ID CertId
+     * }
+     */
+    public static MemorySegment CertId(MemorySegment struct) {
+        return struct.asSlice(CertId$OFFSET, CertId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * OCSP_CERT_ID CertId
+     * }
+     */
+    public static void CertId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CertId$OFFSET, CertId$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwCertStatus$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwCertStatus"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwCertStatus
+     * }
+     */
+    public static final OfInt dwCertStatus$layout() {
+        return dwCertStatus$LAYOUT;
+    }
+
+    private static final long dwCertStatus$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwCertStatus
+     * }
+     */
+    public static final long dwCertStatus$offset() {
+        return dwCertStatus$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwCertStatus
+     * }
+     */
+    public static int dwCertStatus(MemorySegment struct) {
+        return struct.get(dwCertStatus$LAYOUT, dwCertStatus$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwCertStatus
+     * }
+     */
+    public static void dwCertStatus(MemorySegment struct, int fieldValue) {
+        struct.set(dwCertStatus$LAYOUT, dwCertStatus$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pRevokedInfo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$5682:5"), groupElement("pRevokedInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * POCSP_BASIC_REVOKED_INFO pRevokedInfo
+     * }
+     */
+    public static final AddressLayout pRevokedInfo$layout() {
+        return pRevokedInfo$LAYOUT;
+    }
+
+    private static final long pRevokedInfo$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * POCSP_BASIC_REVOKED_INFO pRevokedInfo
+     * }
+     */
+    public static final long pRevokedInfo$offset() {
+        return pRevokedInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * POCSP_BASIC_REVOKED_INFO pRevokedInfo
+     * }
+     */
+    public static MemorySegment pRevokedInfo(MemorySegment struct) {
+        return struct.get(pRevokedInfo$LAYOUT, pRevokedInfo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * POCSP_BASIC_REVOKED_INFO pRevokedInfo
+     * }
+     */
+    public static void pRevokedInfo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pRevokedInfo$LAYOUT, pRevokedInfo$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout ThisUpdate$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ThisUpdate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdate
+     * }
+     */
+    public static final GroupLayout ThisUpdate$layout() {
+        return ThisUpdate$LAYOUT;
+    }
+
+    private static final long ThisUpdate$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdate
+     * }
+     */
+    public static final long ThisUpdate$offset() {
+        return ThisUpdate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdate
+     * }
+     */
+    public static MemorySegment ThisUpdate(MemorySegment struct) {
+        return struct.asSlice(ThisUpdate$OFFSET, ThisUpdate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME ThisUpdate
+     * }
+     */
+    public static void ThisUpdate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ThisUpdate$OFFSET, ThisUpdate$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout NextUpdate$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NextUpdate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdate
+     * }
+     */
+    public static final GroupLayout NextUpdate$layout() {
+        return NextUpdate$LAYOUT;
+    }
+
+    private static final long NextUpdate$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdate
+     * }
+     */
+    public static final long NextUpdate$offset() {
+        return NextUpdate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdate
+     * }
+     */
+    public static MemorySegment NextUpdate(MemorySegment struct) {
+        return struct.asSlice(NextUpdate$OFFSET, NextUpdate$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME NextUpdate
+     * }
+     */
+    public static void NextUpdate(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, NextUpdate$OFFSET, NextUpdate$LAYOUT.byteSize());
+    }
+
+    private static final OfInt cExtension$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cExtension"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cExtension
+     * }
+     */
+    public static final OfInt cExtension$layout() {
+        return cExtension$LAYOUT;
+    }
+
+    private static final long cExtension$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cExtension
+     * }
+     */
+    public static final long cExtension$offset() {
+        return cExtension$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cExtension
+     * }
+     */
+    public static int cExtension(MemorySegment struct) {
+        return struct.get(cExtension$LAYOUT, cExtension$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cExtension
+     * }
+     */
+    public static void cExtension(MemorySegment struct, int fieldValue) {
+        struct.set(cExtension$LAYOUT, cExtension$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgExtension$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgExtension"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_EXTENSION rgExtension
+     * }
+     */
+    public static final AddressLayout rgExtension$layout() {
+        return rgExtension$LAYOUT;
+    }
+
+    private static final long rgExtension$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_EXTENSION rgExtension
+     * }
+     */
+    public static final long rgExtension$offset() {
+        return rgExtension$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_EXTENSION rgExtension
+     * }
+     */
+    public static MemorySegment rgExtension(MemorySegment struct) {
+        return struct.get(rgExtension$LAYOUT, rgExtension$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_EXTENSION rgExtension
+     * }
+     */
+    public static void rgExtension(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgExtension$LAYOUT, rgExtension$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

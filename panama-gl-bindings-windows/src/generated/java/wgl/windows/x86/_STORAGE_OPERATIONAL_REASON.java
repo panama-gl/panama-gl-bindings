@@ -2,277 +2,1068 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _STORAGE_OPERATIONAL_REASON {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     STORAGE_OPERATIONAL_STATUS_REASON Reason;
+ *     union {
+ *         struct {
+ *             BYTE SenseKey;
+ *             BYTE ASC;
+ *             BYTE ASCQ;
+ *             BYTE Reserved;
+ *         } ScsiSenseKey;
+ *         struct {
+ *             BYTE CriticalHealth;
+ *             BYTE ModuleHealth[2];
+ *             BYTE ErrorThresholdStatus;
+ *         } NVDIMM_N;
+ *         DWORD AsUlong;
+ *     } RawBytes;
+ * }
+ * }
+ */
 public class _STORAGE_OPERATIONAL_REASON {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("Reason"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("SenseKey"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASC"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASCQ"),
-                Constants$root.C_CHAR$LAYOUT.withName("Reserved")
-            ).withName("ScsiSenseKey"),
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("CriticalHealth"),
-                MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("ModuleHealth"),
-                Constants$root.C_CHAR$LAYOUT.withName("ErrorThresholdStatus")
-            ).withName("NVDIMM_N"),
-            Constants$root.C_LONG$LAYOUT.withName("AsUlong")
-        ).withName("RawBytes")
+    _STORAGE_OPERATIONAL_REASON() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_INT.withName("Reason"),
+        _STORAGE_OPERATIONAL_REASON.RawBytes.layout().withName("RawBytes")
     ).withName("_STORAGE_OPERATIONAL_REASON");
-    public static MemoryLayout $LAYOUT() {
-        return _STORAGE_OPERATIONAL_REASON.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _STORAGE_OPERATIONAL_REASON.Version$VH;
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
     }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Version$VH.get(seg);
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
     }
-    public static void Version$set( MemorySegment seg, int x) {
-        _STORAGE_OPERATIONAL_REASON.Version$VH.set(seg, x);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
     }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Version$VH.get(seg.asSlice(index*sizeof()));
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
     }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _STORAGE_OPERATIONAL_REASON.Version$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
     }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _STORAGE_OPERATIONAL_REASON.Size$VH;
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
     }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Size$VH.get(seg);
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
     }
-    public static void Size$set( MemorySegment seg, int x) {
-        _STORAGE_OPERATIONAL_REASON.Size$VH.set(seg, x);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
     }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Size$VH.get(seg.asSlice(index*sizeof()));
+
+    private static final OfInt Reason$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reason"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_STATUS_REASON Reason
+     * }
+     */
+    public static final OfInt Reason$layout() {
+        return Reason$LAYOUT;
     }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _STORAGE_OPERATIONAL_REASON.Size$VH.set(seg.asSlice(index*sizeof()), x);
+
+    private static final long Reason$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_STATUS_REASON Reason
+     * }
+     */
+    public static final long Reason$offset() {
+        return Reason$OFFSET;
     }
-    static final VarHandle Reason$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reason"));
-    public static VarHandle Reason$VH() {
-        return _STORAGE_OPERATIONAL_REASON.Reason$VH;
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_STATUS_REASON Reason
+     * }
+     */
+    public static int Reason(MemorySegment struct) {
+        return struct.get(Reason$LAYOUT, Reason$OFFSET);
     }
-    public static int Reason$get(MemorySegment seg) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Reason$VH.get(seg);
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STORAGE_OPERATIONAL_STATUS_REASON Reason
+     * }
+     */
+    public static void Reason(MemorySegment struct, int fieldValue) {
+        struct.set(Reason$LAYOUT, Reason$OFFSET, fieldValue);
     }
-    public static void Reason$set( MemorySegment seg, int x) {
-        _STORAGE_OPERATIONAL_REASON.Reason$VH.set(seg, x);
-    }
-    public static int Reason$get(MemorySegment seg, long index) {
-        return (int)_STORAGE_OPERATIONAL_REASON.Reason$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reason$set(MemorySegment seg, long index, int x) {
-        _STORAGE_OPERATIONAL_REASON.Reason$VH.set(seg.asSlice(index*sizeof()), x);
-    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SenseKey;
+     *         BYTE ASC;
+     *         BYTE ASCQ;
+     *         BYTE Reserved;
+     *     } ScsiSenseKey;
+     *     struct {
+     *         BYTE CriticalHealth;
+     *         BYTE ModuleHealth[2];
+     *         BYTE ErrorThresholdStatus;
+     *     } NVDIMM_N;
+     *     DWORD AsUlong;
+     * }
+     * }
+     */
     public static class RawBytes {
 
-        static final  GroupLayout RawBytes$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("SenseKey"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASC"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASCQ"),
-                Constants$root.C_CHAR$LAYOUT.withName("Reserved")
-            ).withName("ScsiSenseKey"),
-            MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("CriticalHealth"),
-                MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("ModuleHealth"),
-                Constants$root.C_CHAR$LAYOUT.withName("ErrorThresholdStatus")
-            ).withName("NVDIMM_N"),
-            Constants$root.C_LONG$LAYOUT.withName("AsUlong")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return RawBytes.RawBytes$union$LAYOUT;
+        RawBytes() {
+            // Should not be called directly
         }
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            _STORAGE_OPERATIONAL_REASON.RawBytes.ScsiSenseKey.layout().withName("ScsiSenseKey"),
+            _STORAGE_OPERATIONAL_REASON.RawBytes.NVDIMM_N.layout().withName("NVDIMM_N"),
+            wgl_h.C_LONG.withName("AsUlong")
+        ).withName("$anon$2685:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE SenseKey;
+         *     BYTE ASC;
+         *     BYTE ASCQ;
+         *     BYTE Reserved;
+         * }
+         * }
+         */
         public static class ScsiSenseKey {
 
-            static final  GroupLayout RawBytes$ScsiSenseKey$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("SenseKey"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASC"),
-                Constants$root.C_CHAR$LAYOUT.withName("ASCQ"),
-                Constants$root.C_CHAR$LAYOUT.withName("Reserved")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return ScsiSenseKey.RawBytes$ScsiSenseKey$struct$LAYOUT;
+            ScsiSenseKey() {
+                // Should not be called directly
             }
-            static final VarHandle SenseKey$VH = RawBytes$ScsiSenseKey$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SenseKey"));
-            public static VarHandle SenseKey$VH() {
-                return ScsiSenseKey.SenseKey$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_CHAR.withName("SenseKey"),
+                wgl_h.C_CHAR.withName("ASC"),
+                wgl_h.C_CHAR.withName("ASCQ"),
+                wgl_h.C_CHAR.withName("Reserved")
+            ).withName("$anon$2690:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static byte SenseKey$get(MemorySegment seg) {
-                return (byte)ScsiSenseKey.SenseKey$VH.get(seg);
+
+            private static final OfByte SenseKey$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SenseKey"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE SenseKey
+             * }
+             */
+            public static final OfByte SenseKey$layout() {
+                return SenseKey$LAYOUT;
             }
-            public static void SenseKey$set( MemorySegment seg, byte x) {
-                ScsiSenseKey.SenseKey$VH.set(seg, x);
+
+            private static final long SenseKey$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE SenseKey
+             * }
+             */
+            public static final long SenseKey$offset() {
+                return SenseKey$OFFSET;
             }
-            public static byte SenseKey$get(MemorySegment seg, long index) {
-                return (byte)ScsiSenseKey.SenseKey$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE SenseKey
+             * }
+             */
+            public static byte SenseKey(MemorySegment struct) {
+                return struct.get(SenseKey$LAYOUT, SenseKey$OFFSET);
             }
-            public static void SenseKey$set(MemorySegment seg, long index, byte x) {
-                ScsiSenseKey.SenseKey$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE SenseKey
+             * }
+             */
+            public static void SenseKey(MemorySegment struct, byte fieldValue) {
+                struct.set(SenseKey$LAYOUT, SenseKey$OFFSET, fieldValue);
             }
-            static final VarHandle ASC$VH = RawBytes$ScsiSenseKey$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ASC"));
-            public static VarHandle ASC$VH() {
-                return ScsiSenseKey.ASC$VH;
+
+            private static final OfByte ASC$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ASC"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE ASC
+             * }
+             */
+            public static final OfByte ASC$layout() {
+                return ASC$LAYOUT;
             }
-            public static byte ASC$get(MemorySegment seg) {
-                return (byte)ScsiSenseKey.ASC$VH.get(seg);
+
+            private static final long ASC$OFFSET = 1;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE ASC
+             * }
+             */
+            public static final long ASC$offset() {
+                return ASC$OFFSET;
             }
-            public static void ASC$set( MemorySegment seg, byte x) {
-                ScsiSenseKey.ASC$VH.set(seg, x);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE ASC
+             * }
+             */
+            public static byte ASC(MemorySegment struct) {
+                return struct.get(ASC$LAYOUT, ASC$OFFSET);
             }
-            public static byte ASC$get(MemorySegment seg, long index) {
-                return (byte)ScsiSenseKey.ASC$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE ASC
+             * }
+             */
+            public static void ASC(MemorySegment struct, byte fieldValue) {
+                struct.set(ASC$LAYOUT, ASC$OFFSET, fieldValue);
             }
-            public static void ASC$set(MemorySegment seg, long index, byte x) {
-                ScsiSenseKey.ASC$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final OfByte ASCQ$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ASCQ"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE ASCQ
+             * }
+             */
+            public static final OfByte ASCQ$layout() {
+                return ASCQ$LAYOUT;
             }
-            static final VarHandle ASCQ$VH = RawBytes$ScsiSenseKey$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ASCQ"));
-            public static VarHandle ASCQ$VH() {
-                return ScsiSenseKey.ASCQ$VH;
+
+            private static final long ASCQ$OFFSET = 2;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE ASCQ
+             * }
+             */
+            public static final long ASCQ$offset() {
+                return ASCQ$OFFSET;
             }
-            public static byte ASCQ$get(MemorySegment seg) {
-                return (byte)ScsiSenseKey.ASCQ$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE ASCQ
+             * }
+             */
+            public static byte ASCQ(MemorySegment struct) {
+                return struct.get(ASCQ$LAYOUT, ASCQ$OFFSET);
             }
-            public static void ASCQ$set( MemorySegment seg, byte x) {
-                ScsiSenseKey.ASCQ$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE ASCQ
+             * }
+             */
+            public static void ASCQ(MemorySegment struct, byte fieldValue) {
+                struct.set(ASCQ$LAYOUT, ASCQ$OFFSET, fieldValue);
             }
-            public static byte ASCQ$get(MemorySegment seg, long index) {
-                return (byte)ScsiSenseKey.ASCQ$VH.get(seg.asSlice(index*sizeof()));
+
+            private static final OfByte Reserved$LAYOUT = (OfByte)$LAYOUT.select(groupElement("Reserved"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE Reserved
+             * }
+             */
+            public static final OfByte Reserved$layout() {
+                return Reserved$LAYOUT;
             }
-            public static void ASCQ$set(MemorySegment seg, long index, byte x) {
-                ScsiSenseKey.ASCQ$VH.set(seg.asSlice(index*sizeof()), x);
+
+            private static final long Reserved$OFFSET = 3;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE Reserved
+             * }
+             */
+            public static final long Reserved$offset() {
+                return Reserved$OFFSET;
             }
-            static final VarHandle Reserved$VH = RawBytes$ScsiSenseKey$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-            public static VarHandle Reserved$VH() {
-                return ScsiSenseKey.Reserved$VH;
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE Reserved
+             * }
+             */
+            public static byte Reserved(MemorySegment struct) {
+                return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
             }
-            public static byte Reserved$get(MemorySegment seg) {
-                return (byte)ScsiSenseKey.Reserved$VH.get(seg);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE Reserved
+             * }
+             */
+            public static void Reserved(MemorySegment struct, byte fieldValue) {
+                struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
             }
-            public static void Reserved$set( MemorySegment seg, byte x) {
-                ScsiSenseKey.Reserved$VH.set(seg, x);
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
             }
-            public static byte Reserved$get(MemorySegment seg, long index) {
-                return (byte)ScsiSenseKey.Reserved$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
             }
-            public static void Reserved$set(MemorySegment seg, long index, byte x) {
-                ScsiSenseKey.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment ScsiSenseKey$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout ScsiSenseKey$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ScsiSenseKey"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE SenseKey;
+         *     BYTE ASC;
+         *     BYTE ASCQ;
+         *     BYTE Reserved;
+         * } ScsiSenseKey
+         * }
+         */
+        public static final GroupLayout ScsiSenseKey$layout() {
+            return ScsiSenseKey$LAYOUT;
         }
+
+        private static final long ScsiSenseKey$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE SenseKey;
+         *     BYTE ASC;
+         *     BYTE ASCQ;
+         *     BYTE Reserved;
+         * } ScsiSenseKey
+         * }
+         */
+        public static final long ScsiSenseKey$offset() {
+            return ScsiSenseKey$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE SenseKey;
+         *     BYTE ASC;
+         *     BYTE ASCQ;
+         *     BYTE Reserved;
+         * } ScsiSenseKey
+         * }
+         */
+        public static MemorySegment ScsiSenseKey(MemorySegment union) {
+            return union.asSlice(ScsiSenseKey$OFFSET, ScsiSenseKey$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE SenseKey;
+         *     BYTE ASC;
+         *     BYTE ASCQ;
+         *     BYTE Reserved;
+         * } ScsiSenseKey
+         * }
+         */
+        public static void ScsiSenseKey(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, ScsiSenseKey$OFFSET, ScsiSenseKey$LAYOUT.byteSize());
+        }
+
+        /**
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE CriticalHealth;
+         *     BYTE ModuleHealth[2];
+         *     BYTE ErrorThresholdStatus;
+         * }
+         * }
+         */
         public static class NVDIMM_N {
 
-            static final  GroupLayout RawBytes$NVDIMM_N$struct$LAYOUT = MemoryLayout.structLayout(
-                Constants$root.C_CHAR$LAYOUT.withName("CriticalHealth"),
-                MemoryLayout.sequenceLayout(2, Constants$root.C_CHAR$LAYOUT).withName("ModuleHealth"),
-                Constants$root.C_CHAR$LAYOUT.withName("ErrorThresholdStatus")
-            );
-            public static MemoryLayout $LAYOUT() {
-                return NVDIMM_N.RawBytes$NVDIMM_N$struct$LAYOUT;
+            NVDIMM_N() {
+                // Should not be called directly
             }
-            static final VarHandle CriticalHealth$VH = RawBytes$NVDIMM_N$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CriticalHealth"));
-            public static VarHandle CriticalHealth$VH() {
-                return NVDIMM_N.CriticalHealth$VH;
+
+            private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+                wgl_h.C_CHAR.withName("CriticalHealth"),
+                MemoryLayout.sequenceLayout(2, wgl_h.C_CHAR).withName("ModuleHealth"),
+                wgl_h.C_CHAR.withName("ErrorThresholdStatus")
+            ).withName("$anon$2700:9");
+
+            /**
+             * The layout of this struct
+             */
+            public static final GroupLayout layout() {
+                return $LAYOUT;
             }
-            public static byte CriticalHealth$get(MemorySegment seg) {
-                return (byte)NVDIMM_N.CriticalHealth$VH.get(seg);
+
+            private static final OfByte CriticalHealth$LAYOUT = (OfByte)$LAYOUT.select(groupElement("CriticalHealth"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE CriticalHealth
+             * }
+             */
+            public static final OfByte CriticalHealth$layout() {
+                return CriticalHealth$LAYOUT;
             }
-            public static void CriticalHealth$set( MemorySegment seg, byte x) {
-                NVDIMM_N.CriticalHealth$VH.set(seg, x);
+
+            private static final long CriticalHealth$OFFSET = 0;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE CriticalHealth
+             * }
+             */
+            public static final long CriticalHealth$offset() {
+                return CriticalHealth$OFFSET;
             }
-            public static byte CriticalHealth$get(MemorySegment seg, long index) {
-                return (byte)NVDIMM_N.CriticalHealth$VH.get(seg.asSlice(index*sizeof()));
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE CriticalHealth
+             * }
+             */
+            public static byte CriticalHealth(MemorySegment struct) {
+                return struct.get(CriticalHealth$LAYOUT, CriticalHealth$OFFSET);
             }
-            public static void CriticalHealth$set(MemorySegment seg, long index, byte x) {
-                NVDIMM_N.CriticalHealth$VH.set(seg.asSlice(index*sizeof()), x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE CriticalHealth
+             * }
+             */
+            public static void CriticalHealth(MemorySegment struct, byte fieldValue) {
+                struct.set(CriticalHealth$LAYOUT, CriticalHealth$OFFSET, fieldValue);
             }
-            public static MemorySegment ModuleHealth$slice(MemorySegment seg) {
-                return seg.asSlice(1, 2);
+
+            private static final SequenceLayout ModuleHealth$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("ModuleHealth"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static final SequenceLayout ModuleHealth$layout() {
+                return ModuleHealth$LAYOUT;
             }
-            static final VarHandle ErrorThresholdStatus$VH = RawBytes$NVDIMM_N$struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ErrorThresholdStatus"));
-            public static VarHandle ErrorThresholdStatus$VH() {
-                return NVDIMM_N.ErrorThresholdStatus$VH;
+
+            private static final long ModuleHealth$OFFSET = 1;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static final long ModuleHealth$offset() {
+                return ModuleHealth$OFFSET;
             }
-            public static byte ErrorThresholdStatus$get(MemorySegment seg) {
-                return (byte)NVDIMM_N.ErrorThresholdStatus$VH.get(seg);
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static MemorySegment ModuleHealth(MemorySegment struct) {
+                return struct.asSlice(ModuleHealth$OFFSET, ModuleHealth$LAYOUT.byteSize());
             }
-            public static void ErrorThresholdStatus$set( MemorySegment seg, byte x) {
-                NVDIMM_N.ErrorThresholdStatus$VH.set(seg, x);
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static void ModuleHealth(MemorySegment struct, MemorySegment fieldValue) {
+                MemorySegment.copy(fieldValue, 0L, struct, ModuleHealth$OFFSET, ModuleHealth$LAYOUT.byteSize());
             }
-            public static byte ErrorThresholdStatus$get(MemorySegment seg, long index) {
-                return (byte)NVDIMM_N.ErrorThresholdStatus$VH.get(seg.asSlice(index*sizeof()));
+
+            private static long[] ModuleHealth$DIMS = { 2 };
+
+            /**
+             * Dimensions for array field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static long[] ModuleHealth$dimensions() {
+                return ModuleHealth$DIMS;
             }
-            public static void ErrorThresholdStatus$set(MemorySegment seg, long index, byte x) {
-                NVDIMM_N.ErrorThresholdStatus$VH.set(seg.asSlice(index*sizeof()), x);
+            private static final VarHandle ModuleHealth$ELEM_HANDLE = ModuleHealth$LAYOUT.varHandle(sequenceElement());
+
+            /**
+             * Indexed getter for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static byte ModuleHealth(MemorySegment struct, long index0) {
+                return (byte)ModuleHealth$ELEM_HANDLE.get(struct, 0L, index0);
             }
-            public static long sizeof() { return $LAYOUT().byteSize(); }
-            public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-            public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-                return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+            /**
+             * Indexed setter for field:
+             * {@snippet lang=c :
+             * BYTE ModuleHealth[2]
+             * }
+             */
+            public static void ModuleHealth(MemorySegment struct, long index0, byte fieldValue) {
+                ModuleHealth$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
             }
-            public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+            private static final OfByte ErrorThresholdStatus$LAYOUT = (OfByte)$LAYOUT.select(groupElement("ErrorThresholdStatus"));
+
+            /**
+             * Layout for field:
+             * {@snippet lang=c :
+             * BYTE ErrorThresholdStatus
+             * }
+             */
+            public static final OfByte ErrorThresholdStatus$layout() {
+                return ErrorThresholdStatus$LAYOUT;
+            }
+
+            private static final long ErrorThresholdStatus$OFFSET = 3;
+
+            /**
+             * Offset for field:
+             * {@snippet lang=c :
+             * BYTE ErrorThresholdStatus
+             * }
+             */
+            public static final long ErrorThresholdStatus$offset() {
+                return ErrorThresholdStatus$OFFSET;
+            }
+
+            /**
+             * Getter for field:
+             * {@snippet lang=c :
+             * BYTE ErrorThresholdStatus
+             * }
+             */
+            public static byte ErrorThresholdStatus(MemorySegment struct) {
+                return struct.get(ErrorThresholdStatus$LAYOUT, ErrorThresholdStatus$OFFSET);
+            }
+
+            /**
+             * Setter for field:
+             * {@snippet lang=c :
+             * BYTE ErrorThresholdStatus
+             * }
+             */
+            public static void ErrorThresholdStatus(MemorySegment struct, byte fieldValue) {
+                struct.set(ErrorThresholdStatus$LAYOUT, ErrorThresholdStatus$OFFSET, fieldValue);
+            }
+
+            /**
+             * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+             * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+             */
+            public static MemorySegment asSlice(MemorySegment array, long index) {
+                return array.asSlice(layout().byteSize() * index);
+            }
+
+            /**
+             * The size (in bytes) of this struct
+             */
+            public static long sizeof() { return layout().byteSize(); }
+
+            /**
+             * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+             */
+            public static MemorySegment allocate(SegmentAllocator allocator) {
+                return allocator.allocate(layout());
+            }
+
+            /**
+             * Allocate an array of size {@code elementCount} using {@code allocator}.
+             * The returned segment has size {@code elementCount * layout().byteSize()}.
+             */
+            public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+                return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+                return reinterpret(addr, 1, arena, cleanup);
+            }
+
+            /**
+             * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+             * The returned segment has size {@code elementCount * layout().byteSize()}
+             */
+            public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+                return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+            }
         }
 
-        public static MemorySegment NVDIMM_N$slice(MemorySegment seg) {
-            return seg.asSlice(0, 4);
+        private static final GroupLayout NVDIMM_N$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("NVDIMM_N"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE CriticalHealth;
+         *     BYTE ModuleHealth[2];
+         *     BYTE ErrorThresholdStatus;
+         * } NVDIMM_N
+         * }
+         */
+        public static final GroupLayout NVDIMM_N$layout() {
+            return NVDIMM_N$LAYOUT;
         }
-        static final VarHandle AsUlong$VH = RawBytes$union$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AsUlong"));
-        public static VarHandle AsUlong$VH() {
-            return RawBytes.AsUlong$VH;
+
+        private static final long NVDIMM_N$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE CriticalHealth;
+         *     BYTE ModuleHealth[2];
+         *     BYTE ErrorThresholdStatus;
+         * } NVDIMM_N
+         * }
+         */
+        public static final long NVDIMM_N$offset() {
+            return NVDIMM_N$OFFSET;
         }
-        public static int AsUlong$get(MemorySegment seg) {
-            return (int)RawBytes.AsUlong$VH.get(seg);
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE CriticalHealth;
+         *     BYTE ModuleHealth[2];
+         *     BYTE ErrorThresholdStatus;
+         * } NVDIMM_N
+         * }
+         */
+        public static MemorySegment NVDIMM_N(MemorySegment union) {
+            return union.asSlice(NVDIMM_N$OFFSET, NVDIMM_N$LAYOUT.byteSize());
         }
-        public static void AsUlong$set( MemorySegment seg, int x) {
-            RawBytes.AsUlong$VH.set(seg, x);
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * struct {
+         *     BYTE CriticalHealth;
+         *     BYTE ModuleHealth[2];
+         *     BYTE ErrorThresholdStatus;
+         * } NVDIMM_N
+         * }
+         */
+        public static void NVDIMM_N(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, NVDIMM_N$OFFSET, NVDIMM_N$LAYOUT.byteSize());
         }
-        public static int AsUlong$get(MemorySegment seg, long index) {
-            return (int)RawBytes.AsUlong$VH.get(seg.asSlice(index*sizeof()));
+
+        private static final OfInt AsUlong$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AsUlong"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * DWORD AsUlong
+         * }
+         */
+        public static final OfInt AsUlong$layout() {
+            return AsUlong$LAYOUT;
         }
-        public static void AsUlong$set(MemorySegment seg, long index, int x) {
-            RawBytes.AsUlong$VH.set(seg.asSlice(index*sizeof()), x);
+
+        private static final long AsUlong$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * DWORD AsUlong
+         * }
+         */
+        public static final long AsUlong$offset() {
+            return AsUlong$OFFSET;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * DWORD AsUlong
+         * }
+         */
+        public static int AsUlong(MemorySegment union) {
+            return union.get(AsUlong$LAYOUT, AsUlong$OFFSET);
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * DWORD AsUlong
+         * }
+         */
+        public static void AsUlong(MemorySegment union, int fieldValue) {
+            union.set(AsUlong$LAYOUT, AsUlong$OFFSET, fieldValue);
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment RawBytes$slice(MemorySegment seg) {
-        return seg.asSlice(12, 4);
+    private static final GroupLayout RawBytes$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("RawBytes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SenseKey;
+     *         BYTE ASC;
+     *         BYTE ASCQ;
+     *         BYTE Reserved;
+     *     } ScsiSenseKey;
+     *     struct {
+     *         BYTE CriticalHealth;
+     *         BYTE ModuleHealth[2];
+     *         BYTE ErrorThresholdStatus;
+     *     } NVDIMM_N;
+     *     DWORD AsUlong;
+     * } RawBytes
+     * }
+     */
+    public static final GroupLayout RawBytes$layout() {
+        return RawBytes$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long RawBytes$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SenseKey;
+     *         BYTE ASC;
+     *         BYTE ASCQ;
+     *         BYTE Reserved;
+     *     } ScsiSenseKey;
+     *     struct {
+     *         BYTE CriticalHealth;
+     *         BYTE ModuleHealth[2];
+     *         BYTE ErrorThresholdStatus;
+     *     } NVDIMM_N;
+     *     DWORD AsUlong;
+     * } RawBytes
+     * }
+     */
+    public static final long RawBytes$offset() {
+        return RawBytes$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SenseKey;
+     *         BYTE ASC;
+     *         BYTE ASCQ;
+     *         BYTE Reserved;
+     *     } ScsiSenseKey;
+     *     struct {
+     *         BYTE CriticalHealth;
+     *         BYTE ModuleHealth[2];
+     *         BYTE ErrorThresholdStatus;
+     *     } NVDIMM_N;
+     *     DWORD AsUlong;
+     * } RawBytes
+     * }
+     */
+    public static MemorySegment RawBytes(MemorySegment struct) {
+        return struct.asSlice(RawBytes$OFFSET, RawBytes$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     struct {
+     *         BYTE SenseKey;
+     *         BYTE ASC;
+     *         BYTE ASCQ;
+     *         BYTE Reserved;
+     *     } ScsiSenseKey;
+     *     struct {
+     *         BYTE CriticalHealth;
+     *         BYTE ModuleHealth[2];
+     *         BYTE ErrorThresholdStatus;
+     *     } NVDIMM_N;
+     *     DWORD AsUlong;
+     * } RawBytes
+     * }
+     */
+    public static void RawBytes(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, RawBytes$OFFSET, RawBytes$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

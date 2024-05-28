@@ -2,59 +2,173 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_SMIME_CAPABILITIES {
+ *     DWORD cCapability;
+ *     PCRYPT_SMIME_CAPABILITY rgCapability;
+ * }
+ * }
+ */
 public class _CRYPT_SMIME_CAPABILITIES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cCapability"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgCapability")
-    ).withName("_CRYPT_SMIME_CAPABILITIES");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_SMIME_CAPABILITIES.$struct$LAYOUT;
+    _CRYPT_SMIME_CAPABILITIES() {
+        // Should not be called directly
     }
-    static final VarHandle cCapability$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCapability"));
-    public static VarHandle cCapability$VH() {
-        return _CRYPT_SMIME_CAPABILITIES.cCapability$VH;
-    }
-    public static int cCapability$get(MemorySegment seg) {
-        return (int)_CRYPT_SMIME_CAPABILITIES.cCapability$VH.get(seg);
-    }
-    public static void cCapability$set( MemorySegment seg, int x) {
-        _CRYPT_SMIME_CAPABILITIES.cCapability$VH.set(seg, x);
-    }
-    public static int cCapability$get(MemorySegment seg, long index) {
-        return (int)_CRYPT_SMIME_CAPABILITIES.cCapability$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCapability$set(MemorySegment seg, long index, int x) {
-        _CRYPT_SMIME_CAPABILITIES.cCapability$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgCapability$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgCapability"));
-    public static VarHandle rgCapability$VH() {
-        return _CRYPT_SMIME_CAPABILITIES.rgCapability$VH;
-    }
-    public static MemoryAddress rgCapability$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_SMIME_CAPABILITIES.rgCapability$VH.get(seg);
-    }
-    public static void rgCapability$set( MemorySegment seg, MemoryAddress x) {
-        _CRYPT_SMIME_CAPABILITIES.rgCapability$VH.set(seg, x);
-    }
-    public static MemoryAddress rgCapability$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CRYPT_SMIME_CAPABILITIES.rgCapability$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgCapability$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CRYPT_SMIME_CAPABILITIES.rgCapability$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cCapability"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgCapability")
+    ).withName("_CRYPT_SMIME_CAPABILITIES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cCapability$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCapability"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCapability
+     * }
+     */
+    public static final OfInt cCapability$layout() {
+        return cCapability$LAYOUT;
+    }
+
+    private static final long cCapability$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCapability
+     * }
+     */
+    public static final long cCapability$offset() {
+        return cCapability$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCapability
+     * }
+     */
+    public static int cCapability(MemorySegment struct) {
+        return struct.get(cCapability$LAYOUT, cCapability$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCapability
+     * }
+     */
+    public static void cCapability(MemorySegment struct, int fieldValue) {
+        struct.set(cCapability$LAYOUT, cCapability$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgCapability$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgCapability"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCRYPT_SMIME_CAPABILITY rgCapability
+     * }
+     */
+    public static final AddressLayout rgCapability$layout() {
+        return rgCapability$LAYOUT;
+    }
+
+    private static final long rgCapability$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCRYPT_SMIME_CAPABILITY rgCapability
+     * }
+     */
+    public static final long rgCapability$offset() {
+        return rgCapability$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCRYPT_SMIME_CAPABILITY rgCapability
+     * }
+     */
+    public static MemorySegment rgCapability(MemorySegment struct) {
+        return struct.get(rgCapability$LAYOUT, rgCapability$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCRYPT_SMIME_CAPABILITY rgCapability
+     * }
+     */
+    public static void rgCapability(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgCapability$LAYOUT, rgCapability$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

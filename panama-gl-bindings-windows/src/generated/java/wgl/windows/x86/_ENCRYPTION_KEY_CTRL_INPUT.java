@@ -2,143 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCRYPTION_KEY_CTRL_INPUT {
+ *     DWORD HeaderSize;
+ *     DWORD StructureSize;
+ *     WORD KeyOffset;
+ *     WORD KeySize;
+ *     DWORD DplLock;
+ *     DWORDLONG DplUserId;
+ *     DWORDLONG DplCredentialId;
+ * }
+ * }
+ */
 public class _ENCRYPTION_KEY_CTRL_INPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("HeaderSize"),
-        Constants$root.C_LONG$LAYOUT.withName("StructureSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("KeyOffset"),
-        Constants$root.C_SHORT$LAYOUT.withName("KeySize"),
-        Constants$root.C_LONG$LAYOUT.withName("DplLock"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DplUserId"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("DplCredentialId")
-    ).withName("_ENCRYPTION_KEY_CTRL_INPUT");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.$struct$LAYOUT;
+    _ENCRYPTION_KEY_CTRL_INPUT() {
+        // Should not be called directly
     }
-    static final VarHandle HeaderSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HeaderSize"));
-    public static VarHandle HeaderSize$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.HeaderSize$VH;
-    }
-    public static int HeaderSize$get(MemorySegment seg) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.HeaderSize$VH.get(seg);
-    }
-    public static void HeaderSize$set( MemorySegment seg, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.HeaderSize$VH.set(seg, x);
-    }
-    public static int HeaderSize$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.HeaderSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HeaderSize$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.HeaderSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StructureSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StructureSize"));
-    public static VarHandle StructureSize$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.StructureSize$VH;
-    }
-    public static int StructureSize$get(MemorySegment seg) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.StructureSize$VH.get(seg);
-    }
-    public static void StructureSize$set( MemorySegment seg, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.StructureSize$VH.set(seg, x);
-    }
-    public static int StructureSize$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.StructureSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StructureSize$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.StructureSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle KeyOffset$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("KeyOffset"));
-    public static VarHandle KeyOffset$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.KeyOffset$VH;
-    }
-    public static short KeyOffset$get(MemorySegment seg) {
-        return (short)_ENCRYPTION_KEY_CTRL_INPUT.KeyOffset$VH.get(seg);
-    }
-    public static void KeyOffset$set( MemorySegment seg, short x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.KeyOffset$VH.set(seg, x);
-    }
-    public static short KeyOffset$get(MemorySegment seg, long index) {
-        return (short)_ENCRYPTION_KEY_CTRL_INPUT.KeyOffset$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void KeyOffset$set(MemorySegment seg, long index, short x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.KeyOffset$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle KeySize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("KeySize"));
-    public static VarHandle KeySize$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.KeySize$VH;
-    }
-    public static short KeySize$get(MemorySegment seg) {
-        return (short)_ENCRYPTION_KEY_CTRL_INPUT.KeySize$VH.get(seg);
-    }
-    public static void KeySize$set( MemorySegment seg, short x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.KeySize$VH.set(seg, x);
-    }
-    public static short KeySize$get(MemorySegment seg, long index) {
-        return (short)_ENCRYPTION_KEY_CTRL_INPUT.KeySize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void KeySize$set(MemorySegment seg, long index, short x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.KeySize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DplLock$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DplLock"));
-    public static VarHandle DplLock$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.DplLock$VH;
-    }
-    public static int DplLock$get(MemorySegment seg) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.DplLock$VH.get(seg);
-    }
-    public static void DplLock$set( MemorySegment seg, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplLock$VH.set(seg, x);
-    }
-    public static int DplLock$get(MemorySegment seg, long index) {
-        return (int)_ENCRYPTION_KEY_CTRL_INPUT.DplLock$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DplLock$set(MemorySegment seg, long index, int x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplLock$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DplUserId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DplUserId"));
-    public static VarHandle DplUserId$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.DplUserId$VH;
-    }
-    public static long DplUserId$get(MemorySegment seg) {
-        return (long)_ENCRYPTION_KEY_CTRL_INPUT.DplUserId$VH.get(seg);
-    }
-    public static void DplUserId$set( MemorySegment seg, long x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplUserId$VH.set(seg, x);
-    }
-    public static long DplUserId$get(MemorySegment seg, long index) {
-        return (long)_ENCRYPTION_KEY_CTRL_INPUT.DplUserId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DplUserId$set(MemorySegment seg, long index, long x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplUserId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DplCredentialId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DplCredentialId"));
-    public static VarHandle DplCredentialId$VH() {
-        return _ENCRYPTION_KEY_CTRL_INPUT.DplCredentialId$VH;
-    }
-    public static long DplCredentialId$get(MemorySegment seg) {
-        return (long)_ENCRYPTION_KEY_CTRL_INPUT.DplCredentialId$VH.get(seg);
-    }
-    public static void DplCredentialId$set( MemorySegment seg, long x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplCredentialId$VH.set(seg, x);
-    }
-    public static long DplCredentialId$get(MemorySegment seg, long index) {
-        return (long)_ENCRYPTION_KEY_CTRL_INPUT.DplCredentialId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DplCredentialId$set(MemorySegment seg, long index, long x) {
-        _ENCRYPTION_KEY_CTRL_INPUT.DplCredentialId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("HeaderSize"),
+        wgl_h.C_LONG.withName("StructureSize"),
+        wgl_h.C_SHORT.withName("KeyOffset"),
+        wgl_h.C_SHORT.withName("KeySize"),
+        wgl_h.C_LONG.withName("DplLock"),
+        wgl_h.C_LONG_LONG.withName("DplUserId"),
+        wgl_h.C_LONG_LONG.withName("DplCredentialId")
+    ).withName("_ENCRYPTION_KEY_CTRL_INPUT");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt HeaderSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("HeaderSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static final OfInt HeaderSize$layout() {
+        return HeaderSize$LAYOUT;
+    }
+
+    private static final long HeaderSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static final long HeaderSize$offset() {
+        return HeaderSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static int HeaderSize(MemorySegment struct) {
+        return struct.get(HeaderSize$LAYOUT, HeaderSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD HeaderSize
+     * }
+     */
+    public static void HeaderSize(MemorySegment struct, int fieldValue) {
+        struct.set(HeaderSize$LAYOUT, HeaderSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StructureSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StructureSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StructureSize
+     * }
+     */
+    public static final OfInt StructureSize$layout() {
+        return StructureSize$LAYOUT;
+    }
+
+    private static final long StructureSize$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StructureSize
+     * }
+     */
+    public static final long StructureSize$offset() {
+        return StructureSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StructureSize
+     * }
+     */
+    public static int StructureSize(MemorySegment struct) {
+        return struct.get(StructureSize$LAYOUT, StructureSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StructureSize
+     * }
+     */
+    public static void StructureSize(MemorySegment struct, int fieldValue) {
+        struct.set(StructureSize$LAYOUT, StructureSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort KeyOffset$LAYOUT = (OfShort)$LAYOUT.select(groupElement("KeyOffset"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD KeyOffset
+     * }
+     */
+    public static final OfShort KeyOffset$layout() {
+        return KeyOffset$LAYOUT;
+    }
+
+    private static final long KeyOffset$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD KeyOffset
+     * }
+     */
+    public static final long KeyOffset$offset() {
+        return KeyOffset$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD KeyOffset
+     * }
+     */
+    public static short KeyOffset(MemorySegment struct) {
+        return struct.get(KeyOffset$LAYOUT, KeyOffset$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD KeyOffset
+     * }
+     */
+    public static void KeyOffset(MemorySegment struct, short fieldValue) {
+        struct.set(KeyOffset$LAYOUT, KeyOffset$OFFSET, fieldValue);
+    }
+
+    private static final OfShort KeySize$LAYOUT = (OfShort)$LAYOUT.select(groupElement("KeySize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD KeySize
+     * }
+     */
+    public static final OfShort KeySize$layout() {
+        return KeySize$LAYOUT;
+    }
+
+    private static final long KeySize$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD KeySize
+     * }
+     */
+    public static final long KeySize$offset() {
+        return KeySize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD KeySize
+     * }
+     */
+    public static short KeySize(MemorySegment struct) {
+        return struct.get(KeySize$LAYOUT, KeySize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD KeySize
+     * }
+     */
+    public static void KeySize(MemorySegment struct, short fieldValue) {
+        struct.set(KeySize$LAYOUT, KeySize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DplLock$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DplLock"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DplLock
+     * }
+     */
+    public static final OfInt DplLock$layout() {
+        return DplLock$LAYOUT;
+    }
+
+    private static final long DplLock$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DplLock
+     * }
+     */
+    public static final long DplLock$offset() {
+        return DplLock$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DplLock
+     * }
+     */
+    public static int DplLock(MemorySegment struct) {
+        return struct.get(DplLock$LAYOUT, DplLock$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DplLock
+     * }
+     */
+    public static void DplLock(MemorySegment struct, int fieldValue) {
+        struct.set(DplLock$LAYOUT, DplLock$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DplUserId$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DplUserId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplUserId
+     * }
+     */
+    public static final OfLong DplUserId$layout() {
+        return DplUserId$LAYOUT;
+    }
+
+    private static final long DplUserId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplUserId
+     * }
+     */
+    public static final long DplUserId$offset() {
+        return DplUserId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplUserId
+     * }
+     */
+    public static long DplUserId(MemorySegment struct) {
+        return struct.get(DplUserId$LAYOUT, DplUserId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplUserId
+     * }
+     */
+    public static void DplUserId(MemorySegment struct, long fieldValue) {
+        struct.set(DplUserId$LAYOUT, DplUserId$OFFSET, fieldValue);
+    }
+
+    private static final OfLong DplCredentialId$LAYOUT = (OfLong)$LAYOUT.select(groupElement("DplCredentialId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplCredentialId
+     * }
+     */
+    public static final OfLong DplCredentialId$layout() {
+        return DplCredentialId$LAYOUT;
+    }
+
+    private static final long DplCredentialId$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplCredentialId
+     * }
+     */
+    public static final long DplCredentialId$offset() {
+        return DplCredentialId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplCredentialId
+     * }
+     */
+    public static long DplCredentialId(MemorySegment struct) {
+        return struct.get(DplCredentialId$LAYOUT, DplCredentialId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORDLONG DplCredentialId
+     * }
+     */
+    public static void DplCredentialId(MemorySegment struct, long fieldValue) {
+        struct.set(DplCredentialId$LAYOUT, DplCredentialId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

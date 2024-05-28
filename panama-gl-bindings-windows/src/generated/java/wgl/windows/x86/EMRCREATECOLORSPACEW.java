@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagEMRCREATECOLORSPACEW {
+ *     EMR emr;
+ *     DWORD ihCS;
+ *     LOGCOLORSPACEW lcs;
+ *     DWORD dwFlags;
+ *     DWORD cbData;
+ *     BYTE Data[1];
+ * } EMRCREATECOLORSPACEW
+ * }
+ */
 public class EMRCREATECOLORSPACEW extends tagEMRCREATECOLORSPACEW {
 
+    EMRCREATECOLORSPACEW() {
+        // Should not be called directly
+    }
 }
-
 

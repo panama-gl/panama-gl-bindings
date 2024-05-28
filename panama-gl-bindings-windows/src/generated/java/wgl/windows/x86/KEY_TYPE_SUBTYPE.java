@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _KEY_TYPE_SUBTYPE {
+ *     DWORD dwKeySpec;
+ *     GUID Type;
+ *     GUID Subtype;
+ * } KEY_TYPE_SUBTYPE
+ * }
+ */
 public class KEY_TYPE_SUBTYPE extends _KEY_TYPE_SUBTYPE {
 
+    KEY_TYPE_SUBTYPE() {
+        // Should not be called directly
+    }
 }
-
 

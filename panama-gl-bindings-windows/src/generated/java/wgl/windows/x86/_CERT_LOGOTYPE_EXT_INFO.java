@@ -2,128 +2,358 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CERT_LOGOTYPE_EXT_INFO {
+ *     DWORD cCommunityLogo;
+ *     PCERT_LOGOTYPE_INFO rgCommunityLogo;
+ *     PCERT_LOGOTYPE_INFO pIssuerLogo;
+ *     PCERT_LOGOTYPE_INFO pSubjectLogo;
+ *     DWORD cOtherLogo;
+ *     PCERT_OTHER_LOGOTYPE_INFO rgOtherLogo;
+ * }
+ * }
+ */
 public class _CERT_LOGOTYPE_EXT_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cCommunityLogo"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgCommunityLogo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pIssuerLogo"),
-        Constants$root.C_POINTER$LAYOUT.withName("pSubjectLogo"),
-        Constants$root.C_LONG$LAYOUT.withName("cOtherLogo"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("rgOtherLogo")
-    ).withName("_CERT_LOGOTYPE_EXT_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _CERT_LOGOTYPE_EXT_INFO.$struct$LAYOUT;
+    _CERT_LOGOTYPE_EXT_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle cCommunityLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cCommunityLogo"));
-    public static VarHandle cCommunityLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.cCommunityLogo$VH;
-    }
-    public static int cCommunityLogo$get(MemorySegment seg) {
-        return (int)_CERT_LOGOTYPE_EXT_INFO.cCommunityLogo$VH.get(seg);
-    }
-    public static void cCommunityLogo$set( MemorySegment seg, int x) {
-        _CERT_LOGOTYPE_EXT_INFO.cCommunityLogo$VH.set(seg, x);
-    }
-    public static int cCommunityLogo$get(MemorySegment seg, long index) {
-        return (int)_CERT_LOGOTYPE_EXT_INFO.cCommunityLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cCommunityLogo$set(MemorySegment seg, long index, int x) {
-        _CERT_LOGOTYPE_EXT_INFO.cCommunityLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgCommunityLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgCommunityLogo"));
-    public static VarHandle rgCommunityLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.rgCommunityLogo$VH;
-    }
-    public static MemoryAddress rgCommunityLogo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.rgCommunityLogo$VH.get(seg);
-    }
-    public static void rgCommunityLogo$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.rgCommunityLogo$VH.set(seg, x);
-    }
-    public static MemoryAddress rgCommunityLogo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.rgCommunityLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgCommunityLogo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.rgCommunityLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pIssuerLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pIssuerLogo"));
-    public static VarHandle pIssuerLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.pIssuerLogo$VH;
-    }
-    public static MemoryAddress pIssuerLogo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.pIssuerLogo$VH.get(seg);
-    }
-    public static void pIssuerLogo$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.pIssuerLogo$VH.set(seg, x);
-    }
-    public static MemoryAddress pIssuerLogo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.pIssuerLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pIssuerLogo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.pIssuerLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pSubjectLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pSubjectLogo"));
-    public static VarHandle pSubjectLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.pSubjectLogo$VH;
-    }
-    public static MemoryAddress pSubjectLogo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.pSubjectLogo$VH.get(seg);
-    }
-    public static void pSubjectLogo$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.pSubjectLogo$VH.set(seg, x);
-    }
-    public static MemoryAddress pSubjectLogo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.pSubjectLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSubjectLogo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.pSubjectLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cOtherLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cOtherLogo"));
-    public static VarHandle cOtherLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.cOtherLogo$VH;
-    }
-    public static int cOtherLogo$get(MemorySegment seg) {
-        return (int)_CERT_LOGOTYPE_EXT_INFO.cOtherLogo$VH.get(seg);
-    }
-    public static void cOtherLogo$set( MemorySegment seg, int x) {
-        _CERT_LOGOTYPE_EXT_INFO.cOtherLogo$VH.set(seg, x);
-    }
-    public static int cOtherLogo$get(MemorySegment seg, long index) {
-        return (int)_CERT_LOGOTYPE_EXT_INFO.cOtherLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cOtherLogo$set(MemorySegment seg, long index, int x) {
-        _CERT_LOGOTYPE_EXT_INFO.cOtherLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle rgOtherLogo$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("rgOtherLogo"));
-    public static VarHandle rgOtherLogo$VH() {
-        return _CERT_LOGOTYPE_EXT_INFO.rgOtherLogo$VH;
-    }
-    public static MemoryAddress rgOtherLogo$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.rgOtherLogo$VH.get(seg);
-    }
-    public static void rgOtherLogo$set( MemorySegment seg, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.rgOtherLogo$VH.set(seg, x);
-    }
-    public static MemoryAddress rgOtherLogo$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_CERT_LOGOTYPE_EXT_INFO.rgOtherLogo$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void rgOtherLogo$set(MemorySegment seg, long index, MemoryAddress x) {
-        _CERT_LOGOTYPE_EXT_INFO.rgOtherLogo$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cCommunityLogo"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgCommunityLogo"),
+        wgl_h.C_POINTER.withName("pIssuerLogo"),
+        wgl_h.C_POINTER.withName("pSubjectLogo"),
+        wgl_h.C_LONG.withName("cOtherLogo"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("rgOtherLogo")
+    ).withName("_CERT_LOGOTYPE_EXT_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cCommunityLogo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cCommunityLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cCommunityLogo
+     * }
+     */
+    public static final OfInt cCommunityLogo$layout() {
+        return cCommunityLogo$LAYOUT;
+    }
+
+    private static final long cCommunityLogo$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cCommunityLogo
+     * }
+     */
+    public static final long cCommunityLogo$offset() {
+        return cCommunityLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cCommunityLogo
+     * }
+     */
+    public static int cCommunityLogo(MemorySegment struct) {
+        return struct.get(cCommunityLogo$LAYOUT, cCommunityLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cCommunityLogo
+     * }
+     */
+    public static void cCommunityLogo(MemorySegment struct, int fieldValue) {
+        struct.set(cCommunityLogo$LAYOUT, cCommunityLogo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgCommunityLogo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgCommunityLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO rgCommunityLogo
+     * }
+     */
+    public static final AddressLayout rgCommunityLogo$layout() {
+        return rgCommunityLogo$LAYOUT;
+    }
+
+    private static final long rgCommunityLogo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO rgCommunityLogo
+     * }
+     */
+    public static final long rgCommunityLogo$offset() {
+        return rgCommunityLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO rgCommunityLogo
+     * }
+     */
+    public static MemorySegment rgCommunityLogo(MemorySegment struct) {
+        return struct.get(rgCommunityLogo$LAYOUT, rgCommunityLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO rgCommunityLogo
+     * }
+     */
+    public static void rgCommunityLogo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgCommunityLogo$LAYOUT, rgCommunityLogo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pIssuerLogo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pIssuerLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pIssuerLogo
+     * }
+     */
+    public static final AddressLayout pIssuerLogo$layout() {
+        return pIssuerLogo$LAYOUT;
+    }
+
+    private static final long pIssuerLogo$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pIssuerLogo
+     * }
+     */
+    public static final long pIssuerLogo$offset() {
+        return pIssuerLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pIssuerLogo
+     * }
+     */
+    public static MemorySegment pIssuerLogo(MemorySegment struct) {
+        return struct.get(pIssuerLogo$LAYOUT, pIssuerLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pIssuerLogo
+     * }
+     */
+    public static void pIssuerLogo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pIssuerLogo$LAYOUT, pIssuerLogo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pSubjectLogo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pSubjectLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pSubjectLogo
+     * }
+     */
+    public static final AddressLayout pSubjectLogo$layout() {
+        return pSubjectLogo$LAYOUT;
+    }
+
+    private static final long pSubjectLogo$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pSubjectLogo
+     * }
+     */
+    public static final long pSubjectLogo$offset() {
+        return pSubjectLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pSubjectLogo
+     * }
+     */
+    public static MemorySegment pSubjectLogo(MemorySegment struct) {
+        return struct.get(pSubjectLogo$LAYOUT, pSubjectLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_LOGOTYPE_INFO pSubjectLogo
+     * }
+     */
+    public static void pSubjectLogo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSubjectLogo$LAYOUT, pSubjectLogo$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cOtherLogo$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cOtherLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cOtherLogo
+     * }
+     */
+    public static final OfInt cOtherLogo$layout() {
+        return cOtherLogo$LAYOUT;
+    }
+
+    private static final long cOtherLogo$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cOtherLogo
+     * }
+     */
+    public static final long cOtherLogo$offset() {
+        return cOtherLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cOtherLogo
+     * }
+     */
+    public static int cOtherLogo(MemorySegment struct) {
+        return struct.get(cOtherLogo$LAYOUT, cOtherLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cOtherLogo
+     * }
+     */
+    public static void cOtherLogo(MemorySegment struct, int fieldValue) {
+        struct.set(cOtherLogo$LAYOUT, cOtherLogo$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout rgOtherLogo$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("rgOtherLogo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_LOGOTYPE_INFO rgOtherLogo
+     * }
+     */
+    public static final AddressLayout rgOtherLogo$layout() {
+        return rgOtherLogo$LAYOUT;
+    }
+
+    private static final long rgOtherLogo$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_LOGOTYPE_INFO rgOtherLogo
+     * }
+     */
+    public static final long rgOtherLogo$offset() {
+        return rgOtherLogo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_LOGOTYPE_INFO rgOtherLogo
+     * }
+     */
+    public static MemorySegment rgOtherLogo(MemorySegment struct) {
+        return struct.get(rgOtherLogo$LAYOUT, rgOtherLogo$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PCERT_OTHER_LOGOTYPE_INFO rgOtherLogo
+     * }
+     */
+    public static void rgOtherLogo(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(rgOtherLogo$LAYOUT, rgOtherLogo$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

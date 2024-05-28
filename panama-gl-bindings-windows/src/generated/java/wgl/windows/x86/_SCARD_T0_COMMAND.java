@@ -2,109 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCARD_T0_COMMAND {
+ *     BYTE bCla;
+ *     BYTE bIns;
+ *     BYTE bP1;
+ *     BYTE bP2;
+ *     BYTE bP3;
+ * }
+ * }
+ */
 public class _SCARD_T0_COMMAND {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_CHAR$LAYOUT.withName("bCla"),
-        Constants$root.C_CHAR$LAYOUT.withName("bIns"),
-        Constants$root.C_CHAR$LAYOUT.withName("bP1"),
-        Constants$root.C_CHAR$LAYOUT.withName("bP2"),
-        Constants$root.C_CHAR$LAYOUT.withName("bP3")
-    ).withName("_SCARD_T0_COMMAND");
-    public static MemoryLayout $LAYOUT() {
-        return _SCARD_T0_COMMAND.$struct$LAYOUT;
+    _SCARD_T0_COMMAND() {
+        // Should not be called directly
     }
-    static final VarHandle bCla$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bCla"));
-    public static VarHandle bCla$VH() {
-        return _SCARD_T0_COMMAND.bCla$VH;
-    }
-    public static byte bCla$get(MemorySegment seg) {
-        return (byte)_SCARD_T0_COMMAND.bCla$VH.get(seg);
-    }
-    public static void bCla$set( MemorySegment seg, byte x) {
-        _SCARD_T0_COMMAND.bCla$VH.set(seg, x);
-    }
-    public static byte bCla$get(MemorySegment seg, long index) {
-        return (byte)_SCARD_T0_COMMAND.bCla$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bCla$set(MemorySegment seg, long index, byte x) {
-        _SCARD_T0_COMMAND.bCla$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bIns$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bIns"));
-    public static VarHandle bIns$VH() {
-        return _SCARD_T0_COMMAND.bIns$VH;
-    }
-    public static byte bIns$get(MemorySegment seg) {
-        return (byte)_SCARD_T0_COMMAND.bIns$VH.get(seg);
-    }
-    public static void bIns$set( MemorySegment seg, byte x) {
-        _SCARD_T0_COMMAND.bIns$VH.set(seg, x);
-    }
-    public static byte bIns$get(MemorySegment seg, long index) {
-        return (byte)_SCARD_T0_COMMAND.bIns$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bIns$set(MemorySegment seg, long index, byte x) {
-        _SCARD_T0_COMMAND.bIns$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bP1$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bP1"));
-    public static VarHandle bP1$VH() {
-        return _SCARD_T0_COMMAND.bP1$VH;
-    }
-    public static byte bP1$get(MemorySegment seg) {
-        return (byte)_SCARD_T0_COMMAND.bP1$VH.get(seg);
-    }
-    public static void bP1$set( MemorySegment seg, byte x) {
-        _SCARD_T0_COMMAND.bP1$VH.set(seg, x);
-    }
-    public static byte bP1$get(MemorySegment seg, long index) {
-        return (byte)_SCARD_T0_COMMAND.bP1$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bP1$set(MemorySegment seg, long index, byte x) {
-        _SCARD_T0_COMMAND.bP1$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bP2$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bP2"));
-    public static VarHandle bP2$VH() {
-        return _SCARD_T0_COMMAND.bP2$VH;
-    }
-    public static byte bP2$get(MemorySegment seg) {
-        return (byte)_SCARD_T0_COMMAND.bP2$VH.get(seg);
-    }
-    public static void bP2$set( MemorySegment seg, byte x) {
-        _SCARD_T0_COMMAND.bP2$VH.set(seg, x);
-    }
-    public static byte bP2$get(MemorySegment seg, long index) {
-        return (byte)_SCARD_T0_COMMAND.bP2$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bP2$set(MemorySegment seg, long index, byte x) {
-        _SCARD_T0_COMMAND.bP2$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bP3$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bP3"));
-    public static VarHandle bP3$VH() {
-        return _SCARD_T0_COMMAND.bP3$VH;
-    }
-    public static byte bP3$get(MemorySegment seg) {
-        return (byte)_SCARD_T0_COMMAND.bP3$VH.get(seg);
-    }
-    public static void bP3$set( MemorySegment seg, byte x) {
-        _SCARD_T0_COMMAND.bP3$VH.set(seg, x);
-    }
-    public static byte bP3$get(MemorySegment seg, long index) {
-        return (byte)_SCARD_T0_COMMAND.bP3$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bP3$set(MemorySegment seg, long index, byte x) {
-        _SCARD_T0_COMMAND.bP3$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_CHAR.withName("bCla"),
+        wgl_h.C_CHAR.withName("bIns"),
+        wgl_h.C_CHAR.withName("bP1"),
+        wgl_h.C_CHAR.withName("bP2"),
+        wgl_h.C_CHAR.withName("bP3")
+    ).withName("_SCARD_T0_COMMAND");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfByte bCla$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bCla"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bCla
+     * }
+     */
+    public static final OfByte bCla$layout() {
+        return bCla$LAYOUT;
+    }
+
+    private static final long bCla$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bCla
+     * }
+     */
+    public static final long bCla$offset() {
+        return bCla$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bCla
+     * }
+     */
+    public static byte bCla(MemorySegment struct) {
+        return struct.get(bCla$LAYOUT, bCla$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bCla
+     * }
+     */
+    public static void bCla(MemorySegment struct, byte fieldValue) {
+        struct.set(bCla$LAYOUT, bCla$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bIns$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bIns"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bIns
+     * }
+     */
+    public static final OfByte bIns$layout() {
+        return bIns$LAYOUT;
+    }
+
+    private static final long bIns$OFFSET = 1;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bIns
+     * }
+     */
+    public static final long bIns$offset() {
+        return bIns$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bIns
+     * }
+     */
+    public static byte bIns(MemorySegment struct) {
+        return struct.get(bIns$LAYOUT, bIns$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bIns
+     * }
+     */
+    public static void bIns(MemorySegment struct, byte fieldValue) {
+        struct.set(bIns$LAYOUT, bIns$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bP1$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bP1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bP1
+     * }
+     */
+    public static final OfByte bP1$layout() {
+        return bP1$LAYOUT;
+    }
+
+    private static final long bP1$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bP1
+     * }
+     */
+    public static final long bP1$offset() {
+        return bP1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bP1
+     * }
+     */
+    public static byte bP1(MemorySegment struct) {
+        return struct.get(bP1$LAYOUT, bP1$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bP1
+     * }
+     */
+    public static void bP1(MemorySegment struct, byte fieldValue) {
+        struct.set(bP1$LAYOUT, bP1$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bP2$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bP2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bP2
+     * }
+     */
+    public static final OfByte bP2$layout() {
+        return bP2$LAYOUT;
+    }
+
+    private static final long bP2$OFFSET = 3;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bP2
+     * }
+     */
+    public static final long bP2$offset() {
+        return bP2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bP2
+     * }
+     */
+    public static byte bP2(MemorySegment struct) {
+        return struct.get(bP2$LAYOUT, bP2$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bP2
+     * }
+     */
+    public static void bP2(MemorySegment struct, byte fieldValue) {
+        struct.set(bP2$LAYOUT, bP2$OFFSET, fieldValue);
+    }
+
+    private static final OfByte bP3$LAYOUT = (OfByte)$LAYOUT.select(groupElement("bP3"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE bP3
+     * }
+     */
+    public static final OfByte bP3$layout() {
+        return bP3$LAYOUT;
+    }
+
+    private static final long bP3$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE bP3
+     * }
+     */
+    public static final long bP3$offset() {
+        return bP3$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE bP3
+     * }
+     */
+    public static byte bP3(MemorySegment struct) {
+        return struct.get(bP3$LAYOUT, bP3$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE bP3
+     * }
+     */
+    public static void bP3(MemorySegment struct, byte fieldValue) {
+        struct.set(bP3$LAYOUT, bP3$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

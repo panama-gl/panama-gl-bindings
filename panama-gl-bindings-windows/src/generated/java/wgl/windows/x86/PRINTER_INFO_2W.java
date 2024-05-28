@@ -2,13 +2,47 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _PRINTER_INFO_2W {
+ *     LPWSTR pServerName;
+ *     LPWSTR pPrinterName;
+ *     LPWSTR pShareName;
+ *     LPWSTR pPortName;
+ *     LPWSTR pDriverName;
+ *     LPWSTR pComment;
+ *     LPWSTR pLocation;
+ *     LPDEVMODEW pDevMode;
+ *     LPWSTR pSepFile;
+ *     LPWSTR pPrintProcessor;
+ *     LPWSTR pDatatype;
+ *     LPWSTR pParameters;
+ *     PSECURITY_DESCRIPTOR pSecurityDescriptor;
+ *     DWORD Attributes;
+ *     DWORD Priority;
+ *     DWORD DefaultPriority;
+ *     DWORD StartTime;
+ *     DWORD UntilTime;
+ *     DWORD Status;
+ *     DWORD cJobs;
+ *     DWORD AveragePPM;
+ * } PRINTER_INFO_2W
+ * }
+ */
 public class PRINTER_INFO_2W extends _PRINTER_INFO_2W {
 
+    PRINTER_INFO_2W() {
+        // Should not be called directly
+    }
 }
-
 

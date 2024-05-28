@@ -2,92 +2,264 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FULL_PTR_XLAT_TABLES {
+ *     void *RefIdToPointer;
+ *     void *PointerToRefId;
+ *     unsigned long NextRefId;
+ *     XLAT_SIDE XlatSide;
+ * }
+ * }
+ */
 public class _FULL_PTR_XLAT_TABLES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("RefIdToPointer"),
-        Constants$root.C_POINTER$LAYOUT.withName("PointerToRefId"),
-        Constants$root.C_LONG$LAYOUT.withName("NextRefId"),
-        Constants$root.C_LONG$LAYOUT.withName("XlatSide")
-    ).withName("_FULL_PTR_XLAT_TABLES");
-    public static MemoryLayout $LAYOUT() {
-        return _FULL_PTR_XLAT_TABLES.$struct$LAYOUT;
+    _FULL_PTR_XLAT_TABLES() {
+        // Should not be called directly
     }
-    static final VarHandle RefIdToPointer$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("RefIdToPointer"));
-    public static VarHandle RefIdToPointer$VH() {
-        return _FULL_PTR_XLAT_TABLES.RefIdToPointer$VH;
-    }
-    public static MemoryAddress RefIdToPointer$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_FULL_PTR_XLAT_TABLES.RefIdToPointer$VH.get(seg);
-    }
-    public static void RefIdToPointer$set( MemorySegment seg, MemoryAddress x) {
-        _FULL_PTR_XLAT_TABLES.RefIdToPointer$VH.set(seg, x);
-    }
-    public static MemoryAddress RefIdToPointer$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_FULL_PTR_XLAT_TABLES.RefIdToPointer$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RefIdToPointer$set(MemorySegment seg, long index, MemoryAddress x) {
-        _FULL_PTR_XLAT_TABLES.RefIdToPointer$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PointerToRefId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PointerToRefId"));
-    public static VarHandle PointerToRefId$VH() {
-        return _FULL_PTR_XLAT_TABLES.PointerToRefId$VH;
-    }
-    public static MemoryAddress PointerToRefId$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_FULL_PTR_XLAT_TABLES.PointerToRefId$VH.get(seg);
-    }
-    public static void PointerToRefId$set( MemorySegment seg, MemoryAddress x) {
-        _FULL_PTR_XLAT_TABLES.PointerToRefId$VH.set(seg, x);
-    }
-    public static MemoryAddress PointerToRefId$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_FULL_PTR_XLAT_TABLES.PointerToRefId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PointerToRefId$set(MemorySegment seg, long index, MemoryAddress x) {
-        _FULL_PTR_XLAT_TABLES.PointerToRefId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NextRefId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NextRefId"));
-    public static VarHandle NextRefId$VH() {
-        return _FULL_PTR_XLAT_TABLES.NextRefId$VH;
-    }
-    public static int NextRefId$get(MemorySegment seg) {
-        return (int)_FULL_PTR_XLAT_TABLES.NextRefId$VH.get(seg);
-    }
-    public static void NextRefId$set( MemorySegment seg, int x) {
-        _FULL_PTR_XLAT_TABLES.NextRefId$VH.set(seg, x);
-    }
-    public static int NextRefId$get(MemorySegment seg, long index) {
-        return (int)_FULL_PTR_XLAT_TABLES.NextRefId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NextRefId$set(MemorySegment seg, long index, int x) {
-        _FULL_PTR_XLAT_TABLES.NextRefId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle XlatSide$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("XlatSide"));
-    public static VarHandle XlatSide$VH() {
-        return _FULL_PTR_XLAT_TABLES.XlatSide$VH;
-    }
-    public static int XlatSide$get(MemorySegment seg) {
-        return (int)_FULL_PTR_XLAT_TABLES.XlatSide$VH.get(seg);
-    }
-    public static void XlatSide$set( MemorySegment seg, int x) {
-        _FULL_PTR_XLAT_TABLES.XlatSide$VH.set(seg, x);
-    }
-    public static int XlatSide$get(MemorySegment seg, long index) {
-        return (int)_FULL_PTR_XLAT_TABLES.XlatSide$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void XlatSide$set(MemorySegment seg, long index, int x) {
-        _FULL_PTR_XLAT_TABLES.XlatSide$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("RefIdToPointer"),
+        wgl_h.C_POINTER.withName("PointerToRefId"),
+        wgl_h.C_LONG.withName("NextRefId"),
+        wgl_h.C_INT.withName("XlatSide")
+    ).withName("_FULL_PTR_XLAT_TABLES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout RefIdToPointer$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("RefIdToPointer"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *RefIdToPointer
+     * }
+     */
+    public static final AddressLayout RefIdToPointer$layout() {
+        return RefIdToPointer$LAYOUT;
+    }
+
+    private static final long RefIdToPointer$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *RefIdToPointer
+     * }
+     */
+    public static final long RefIdToPointer$offset() {
+        return RefIdToPointer$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *RefIdToPointer
+     * }
+     */
+    public static MemorySegment RefIdToPointer(MemorySegment struct) {
+        return struct.get(RefIdToPointer$LAYOUT, RefIdToPointer$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *RefIdToPointer
+     * }
+     */
+    public static void RefIdToPointer(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RefIdToPointer$LAYOUT, RefIdToPointer$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout PointerToRefId$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("PointerToRefId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * void *PointerToRefId
+     * }
+     */
+    public static final AddressLayout PointerToRefId$layout() {
+        return PointerToRefId$LAYOUT;
+    }
+
+    private static final long PointerToRefId$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * void *PointerToRefId
+     * }
+     */
+    public static final long PointerToRefId$offset() {
+        return PointerToRefId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * void *PointerToRefId
+     * }
+     */
+    public static MemorySegment PointerToRefId(MemorySegment struct) {
+        return struct.get(PointerToRefId$LAYOUT, PointerToRefId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * void *PointerToRefId
+     * }
+     */
+    public static void PointerToRefId(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(PointerToRefId$LAYOUT, PointerToRefId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NextRefId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NextRefId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned long NextRefId
+     * }
+     */
+    public static final OfInt NextRefId$layout() {
+        return NextRefId$LAYOUT;
+    }
+
+    private static final long NextRefId$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned long NextRefId
+     * }
+     */
+    public static final long NextRefId$offset() {
+        return NextRefId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned long NextRefId
+     * }
+     */
+    public static int NextRefId(MemorySegment struct) {
+        return struct.get(NextRefId$LAYOUT, NextRefId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned long NextRefId
+     * }
+     */
+    public static void NextRefId(MemorySegment struct, int fieldValue) {
+        struct.set(NextRefId$LAYOUT, NextRefId$OFFSET, fieldValue);
+    }
+
+    private static final OfInt XlatSide$LAYOUT = (OfInt)$LAYOUT.select(groupElement("XlatSide"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * XLAT_SIDE XlatSide
+     * }
+     */
+    public static final OfInt XlatSide$layout() {
+        return XlatSide$LAYOUT;
+    }
+
+    private static final long XlatSide$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * XLAT_SIDE XlatSide
+     * }
+     */
+    public static final long XlatSide$offset() {
+        return XlatSide$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * XLAT_SIDE XlatSide
+     * }
+     */
+    public static int XlatSide(MemorySegment struct) {
+        return struct.get(XlatSide$LAYOUT, XlatSide$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * XLAT_SIDE XlatSide
+     * }
+     */
+    public static void XlatSide(MemorySegment struct, int fieldValue) {
+        struct.set(XlatSide$LAYOUT, XlatSide$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

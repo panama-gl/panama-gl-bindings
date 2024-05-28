@@ -2,245 +2,678 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct DISK_SPACE_INFORMATION {
+ *     ULONGLONG ActualTotalAllocationUnits;
+ *     ULONGLONG ActualAvailableAllocationUnits;
+ *     ULONGLONG ActualPoolUnavailableAllocationUnits;
+ *     ULONGLONG CallerTotalAllocationUnits;
+ *     ULONGLONG CallerAvailableAllocationUnits;
+ *     ULONGLONG CallerPoolUnavailableAllocationUnits;
+ *     ULONGLONG UsedAllocationUnits;
+ *     ULONGLONG TotalReservedAllocationUnits;
+ *     ULONGLONG VolumeStorageReserveAllocationUnits;
+ *     ULONGLONG AvailableCommittedAllocationUnits;
+ *     ULONGLONG PoolAvailableAllocationUnits;
+ *     DWORD SectorsPerAllocationUnit;
+ *     DWORD BytesPerSector;
+ * }
+ * }
+ */
 public class DISK_SPACE_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ActualTotalAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ActualAvailableAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("ActualPoolUnavailableAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CallerTotalAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CallerAvailableAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("CallerPoolUnavailableAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("UsedAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("TotalReservedAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("VolumeStorageReserveAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("AvailableCommittedAllocationUnits"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("PoolAvailableAllocationUnits"),
-        Constants$root.C_LONG$LAYOUT.withName("SectorsPerAllocationUnit"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerSector")
-    ).withName("DISK_SPACE_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return DISK_SPACE_INFORMATION.$struct$LAYOUT;
+    DISK_SPACE_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle ActualTotalAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActualTotalAllocationUnits"));
-    public static VarHandle ActualTotalAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.ActualTotalAllocationUnits$VH;
-    }
-    public static long ActualTotalAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.ActualTotalAllocationUnits$VH.get(seg);
-    }
-    public static void ActualTotalAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.ActualTotalAllocationUnits$VH.set(seg, x);
-    }
-    public static long ActualTotalAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.ActualTotalAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActualTotalAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.ActualTotalAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ActualAvailableAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActualAvailableAllocationUnits"));
-    public static VarHandle ActualAvailableAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.ActualAvailableAllocationUnits$VH;
-    }
-    public static long ActualAvailableAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.ActualAvailableAllocationUnits$VH.get(seg);
-    }
-    public static void ActualAvailableAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.ActualAvailableAllocationUnits$VH.set(seg, x);
-    }
-    public static long ActualAvailableAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.ActualAvailableAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActualAvailableAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.ActualAvailableAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ActualPoolUnavailableAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActualPoolUnavailableAllocationUnits"));
-    public static VarHandle ActualPoolUnavailableAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.ActualPoolUnavailableAllocationUnits$VH;
-    }
-    public static long ActualPoolUnavailableAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.ActualPoolUnavailableAllocationUnits$VH.get(seg);
-    }
-    public static void ActualPoolUnavailableAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.ActualPoolUnavailableAllocationUnits$VH.set(seg, x);
-    }
-    public static long ActualPoolUnavailableAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.ActualPoolUnavailableAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActualPoolUnavailableAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.ActualPoolUnavailableAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CallerTotalAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CallerTotalAllocationUnits"));
-    public static VarHandle CallerTotalAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.CallerTotalAllocationUnits$VH;
-    }
-    public static long CallerTotalAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.CallerTotalAllocationUnits$VH.get(seg);
-    }
-    public static void CallerTotalAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.CallerTotalAllocationUnits$VH.set(seg, x);
-    }
-    public static long CallerTotalAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.CallerTotalAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CallerTotalAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.CallerTotalAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CallerAvailableAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CallerAvailableAllocationUnits"));
-    public static VarHandle CallerAvailableAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.CallerAvailableAllocationUnits$VH;
-    }
-    public static long CallerAvailableAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.CallerAvailableAllocationUnits$VH.get(seg);
-    }
-    public static void CallerAvailableAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.CallerAvailableAllocationUnits$VH.set(seg, x);
-    }
-    public static long CallerAvailableAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.CallerAvailableAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CallerAvailableAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.CallerAvailableAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CallerPoolUnavailableAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CallerPoolUnavailableAllocationUnits"));
-    public static VarHandle CallerPoolUnavailableAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.CallerPoolUnavailableAllocationUnits$VH;
-    }
-    public static long CallerPoolUnavailableAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.CallerPoolUnavailableAllocationUnits$VH.get(seg);
-    }
-    public static void CallerPoolUnavailableAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.CallerPoolUnavailableAllocationUnits$VH.set(seg, x);
-    }
-    public static long CallerPoolUnavailableAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.CallerPoolUnavailableAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CallerPoolUnavailableAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.CallerPoolUnavailableAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UsedAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UsedAllocationUnits"));
-    public static VarHandle UsedAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.UsedAllocationUnits$VH;
-    }
-    public static long UsedAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.UsedAllocationUnits$VH.get(seg);
-    }
-    public static void UsedAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.UsedAllocationUnits$VH.set(seg, x);
-    }
-    public static long UsedAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.UsedAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UsedAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.UsedAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TotalReservedAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TotalReservedAllocationUnits"));
-    public static VarHandle TotalReservedAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.TotalReservedAllocationUnits$VH;
-    }
-    public static long TotalReservedAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.TotalReservedAllocationUnits$VH.get(seg);
-    }
-    public static void TotalReservedAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.TotalReservedAllocationUnits$VH.set(seg, x);
-    }
-    public static long TotalReservedAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.TotalReservedAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TotalReservedAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.TotalReservedAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle VolumeStorageReserveAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("VolumeStorageReserveAllocationUnits"));
-    public static VarHandle VolumeStorageReserveAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.VolumeStorageReserveAllocationUnits$VH;
-    }
-    public static long VolumeStorageReserveAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.VolumeStorageReserveAllocationUnits$VH.get(seg);
-    }
-    public static void VolumeStorageReserveAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.VolumeStorageReserveAllocationUnits$VH.set(seg, x);
-    }
-    public static long VolumeStorageReserveAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.VolumeStorageReserveAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void VolumeStorageReserveAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.VolumeStorageReserveAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AvailableCommittedAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AvailableCommittedAllocationUnits"));
-    public static VarHandle AvailableCommittedAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.AvailableCommittedAllocationUnits$VH;
-    }
-    public static long AvailableCommittedAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.AvailableCommittedAllocationUnits$VH.get(seg);
-    }
-    public static void AvailableCommittedAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.AvailableCommittedAllocationUnits$VH.set(seg, x);
-    }
-    public static long AvailableCommittedAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.AvailableCommittedAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AvailableCommittedAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.AvailableCommittedAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PoolAvailableAllocationUnits$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PoolAvailableAllocationUnits"));
-    public static VarHandle PoolAvailableAllocationUnits$VH() {
-        return DISK_SPACE_INFORMATION.PoolAvailableAllocationUnits$VH;
-    }
-    public static long PoolAvailableAllocationUnits$get(MemorySegment seg) {
-        return (long)DISK_SPACE_INFORMATION.PoolAvailableAllocationUnits$VH.get(seg);
-    }
-    public static void PoolAvailableAllocationUnits$set( MemorySegment seg, long x) {
-        DISK_SPACE_INFORMATION.PoolAvailableAllocationUnits$VH.set(seg, x);
-    }
-    public static long PoolAvailableAllocationUnits$get(MemorySegment seg, long index) {
-        return (long)DISK_SPACE_INFORMATION.PoolAvailableAllocationUnits$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PoolAvailableAllocationUnits$set(MemorySegment seg, long index, long x) {
-        DISK_SPACE_INFORMATION.PoolAvailableAllocationUnits$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SectorsPerAllocationUnit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorsPerAllocationUnit"));
-    public static VarHandle SectorsPerAllocationUnit$VH() {
-        return DISK_SPACE_INFORMATION.SectorsPerAllocationUnit$VH;
-    }
-    public static int SectorsPerAllocationUnit$get(MemorySegment seg) {
-        return (int)DISK_SPACE_INFORMATION.SectorsPerAllocationUnit$VH.get(seg);
-    }
-    public static void SectorsPerAllocationUnit$set( MemorySegment seg, int x) {
-        DISK_SPACE_INFORMATION.SectorsPerAllocationUnit$VH.set(seg, x);
-    }
-    public static int SectorsPerAllocationUnit$get(MemorySegment seg, long index) {
-        return (int)DISK_SPACE_INFORMATION.SectorsPerAllocationUnit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SectorsPerAllocationUnit$set(MemorySegment seg, long index, int x) {
-        DISK_SPACE_INFORMATION.SectorsPerAllocationUnit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-    public static VarHandle BytesPerSector$VH() {
-        return DISK_SPACE_INFORMATION.BytesPerSector$VH;
-    }
-    public static int BytesPerSector$get(MemorySegment seg) {
-        return (int)DISK_SPACE_INFORMATION.BytesPerSector$VH.get(seg);
-    }
-    public static void BytesPerSector$set( MemorySegment seg, int x) {
-        DISK_SPACE_INFORMATION.BytesPerSector$VH.set(seg, x);
-    }
-    public static int BytesPerSector$get(MemorySegment seg, long index) {
-        return (int)DISK_SPACE_INFORMATION.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-        DISK_SPACE_INFORMATION.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG_LONG.withName("ActualTotalAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("ActualAvailableAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("ActualPoolUnavailableAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("CallerTotalAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("CallerAvailableAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("CallerPoolUnavailableAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("UsedAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("TotalReservedAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("VolumeStorageReserveAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("AvailableCommittedAllocationUnits"),
+        freeglut_h.C_LONG_LONG.withName("PoolAvailableAllocationUnits"),
+        freeglut_h.C_LONG.withName("SectorsPerAllocationUnit"),
+        freeglut_h.C_LONG.withName("BytesPerSector")
+    ).withName("DISK_SPACE_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfLong ActualTotalAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ActualTotalAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualTotalAllocationUnits
+     * }
+     */
+    public static final OfLong ActualTotalAllocationUnits$layout() {
+        return ActualTotalAllocationUnits$LAYOUT;
+    }
+
+    private static final long ActualTotalAllocationUnits$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualTotalAllocationUnits
+     * }
+     */
+    public static final long ActualTotalAllocationUnits$offset() {
+        return ActualTotalAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualTotalAllocationUnits
+     * }
+     */
+    public static long ActualTotalAllocationUnits(MemorySegment struct) {
+        return struct.get(ActualTotalAllocationUnits$LAYOUT, ActualTotalAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualTotalAllocationUnits
+     * }
+     */
+    public static void ActualTotalAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(ActualTotalAllocationUnits$LAYOUT, ActualTotalAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ActualAvailableAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ActualAvailableAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualAvailableAllocationUnits
+     * }
+     */
+    public static final OfLong ActualAvailableAllocationUnits$layout() {
+        return ActualAvailableAllocationUnits$LAYOUT;
+    }
+
+    private static final long ActualAvailableAllocationUnits$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualAvailableAllocationUnits
+     * }
+     */
+    public static final long ActualAvailableAllocationUnits$offset() {
+        return ActualAvailableAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualAvailableAllocationUnits
+     * }
+     */
+    public static long ActualAvailableAllocationUnits(MemorySegment struct) {
+        return struct.get(ActualAvailableAllocationUnits$LAYOUT, ActualAvailableAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualAvailableAllocationUnits
+     * }
+     */
+    public static void ActualAvailableAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(ActualAvailableAllocationUnits$LAYOUT, ActualAvailableAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong ActualPoolUnavailableAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("ActualPoolUnavailableAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualPoolUnavailableAllocationUnits
+     * }
+     */
+    public static final OfLong ActualPoolUnavailableAllocationUnits$layout() {
+        return ActualPoolUnavailableAllocationUnits$LAYOUT;
+    }
+
+    private static final long ActualPoolUnavailableAllocationUnits$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualPoolUnavailableAllocationUnits
+     * }
+     */
+    public static final long ActualPoolUnavailableAllocationUnits$offset() {
+        return ActualPoolUnavailableAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualPoolUnavailableAllocationUnits
+     * }
+     */
+    public static long ActualPoolUnavailableAllocationUnits(MemorySegment struct) {
+        return struct.get(ActualPoolUnavailableAllocationUnits$LAYOUT, ActualPoolUnavailableAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG ActualPoolUnavailableAllocationUnits
+     * }
+     */
+    public static void ActualPoolUnavailableAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(ActualPoolUnavailableAllocationUnits$LAYOUT, ActualPoolUnavailableAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CallerTotalAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CallerTotalAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerTotalAllocationUnits
+     * }
+     */
+    public static final OfLong CallerTotalAllocationUnits$layout() {
+        return CallerTotalAllocationUnits$LAYOUT;
+    }
+
+    private static final long CallerTotalAllocationUnits$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerTotalAllocationUnits
+     * }
+     */
+    public static final long CallerTotalAllocationUnits$offset() {
+        return CallerTotalAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerTotalAllocationUnits
+     * }
+     */
+    public static long CallerTotalAllocationUnits(MemorySegment struct) {
+        return struct.get(CallerTotalAllocationUnits$LAYOUT, CallerTotalAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerTotalAllocationUnits
+     * }
+     */
+    public static void CallerTotalAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(CallerTotalAllocationUnits$LAYOUT, CallerTotalAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CallerAvailableAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CallerAvailableAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerAvailableAllocationUnits
+     * }
+     */
+    public static final OfLong CallerAvailableAllocationUnits$layout() {
+        return CallerAvailableAllocationUnits$LAYOUT;
+    }
+
+    private static final long CallerAvailableAllocationUnits$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerAvailableAllocationUnits
+     * }
+     */
+    public static final long CallerAvailableAllocationUnits$offset() {
+        return CallerAvailableAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerAvailableAllocationUnits
+     * }
+     */
+    public static long CallerAvailableAllocationUnits(MemorySegment struct) {
+        return struct.get(CallerAvailableAllocationUnits$LAYOUT, CallerAvailableAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerAvailableAllocationUnits
+     * }
+     */
+    public static void CallerAvailableAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(CallerAvailableAllocationUnits$LAYOUT, CallerAvailableAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong CallerPoolUnavailableAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("CallerPoolUnavailableAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerPoolUnavailableAllocationUnits
+     * }
+     */
+    public static final OfLong CallerPoolUnavailableAllocationUnits$layout() {
+        return CallerPoolUnavailableAllocationUnits$LAYOUT;
+    }
+
+    private static final long CallerPoolUnavailableAllocationUnits$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerPoolUnavailableAllocationUnits
+     * }
+     */
+    public static final long CallerPoolUnavailableAllocationUnits$offset() {
+        return CallerPoolUnavailableAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerPoolUnavailableAllocationUnits
+     * }
+     */
+    public static long CallerPoolUnavailableAllocationUnits(MemorySegment struct) {
+        return struct.get(CallerPoolUnavailableAllocationUnits$LAYOUT, CallerPoolUnavailableAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG CallerPoolUnavailableAllocationUnits
+     * }
+     */
+    public static void CallerPoolUnavailableAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(CallerPoolUnavailableAllocationUnits$LAYOUT, CallerPoolUnavailableAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong UsedAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("UsedAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG UsedAllocationUnits
+     * }
+     */
+    public static final OfLong UsedAllocationUnits$layout() {
+        return UsedAllocationUnits$LAYOUT;
+    }
+
+    private static final long UsedAllocationUnits$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG UsedAllocationUnits
+     * }
+     */
+    public static final long UsedAllocationUnits$offset() {
+        return UsedAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG UsedAllocationUnits
+     * }
+     */
+    public static long UsedAllocationUnits(MemorySegment struct) {
+        return struct.get(UsedAllocationUnits$LAYOUT, UsedAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG UsedAllocationUnits
+     * }
+     */
+    public static void UsedAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(UsedAllocationUnits$LAYOUT, UsedAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong TotalReservedAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("TotalReservedAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalReservedAllocationUnits
+     * }
+     */
+    public static final OfLong TotalReservedAllocationUnits$layout() {
+        return TotalReservedAllocationUnits$LAYOUT;
+    }
+
+    private static final long TotalReservedAllocationUnits$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalReservedAllocationUnits
+     * }
+     */
+    public static final long TotalReservedAllocationUnits$offset() {
+        return TotalReservedAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalReservedAllocationUnits
+     * }
+     */
+    public static long TotalReservedAllocationUnits(MemorySegment struct) {
+        return struct.get(TotalReservedAllocationUnits$LAYOUT, TotalReservedAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG TotalReservedAllocationUnits
+     * }
+     */
+    public static void TotalReservedAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(TotalReservedAllocationUnits$LAYOUT, TotalReservedAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong VolumeStorageReserveAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("VolumeStorageReserveAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolumeStorageReserveAllocationUnits
+     * }
+     */
+    public static final OfLong VolumeStorageReserveAllocationUnits$layout() {
+        return VolumeStorageReserveAllocationUnits$LAYOUT;
+    }
+
+    private static final long VolumeStorageReserveAllocationUnits$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolumeStorageReserveAllocationUnits
+     * }
+     */
+    public static final long VolumeStorageReserveAllocationUnits$offset() {
+        return VolumeStorageReserveAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolumeStorageReserveAllocationUnits
+     * }
+     */
+    public static long VolumeStorageReserveAllocationUnits(MemorySegment struct) {
+        return struct.get(VolumeStorageReserveAllocationUnits$LAYOUT, VolumeStorageReserveAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG VolumeStorageReserveAllocationUnits
+     * }
+     */
+    public static void VolumeStorageReserveAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(VolumeStorageReserveAllocationUnits$LAYOUT, VolumeStorageReserveAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong AvailableCommittedAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("AvailableCommittedAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG AvailableCommittedAllocationUnits
+     * }
+     */
+    public static final OfLong AvailableCommittedAllocationUnits$layout() {
+        return AvailableCommittedAllocationUnits$LAYOUT;
+    }
+
+    private static final long AvailableCommittedAllocationUnits$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG AvailableCommittedAllocationUnits
+     * }
+     */
+    public static final long AvailableCommittedAllocationUnits$offset() {
+        return AvailableCommittedAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG AvailableCommittedAllocationUnits
+     * }
+     */
+    public static long AvailableCommittedAllocationUnits(MemorySegment struct) {
+        return struct.get(AvailableCommittedAllocationUnits$LAYOUT, AvailableCommittedAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG AvailableCommittedAllocationUnits
+     * }
+     */
+    public static void AvailableCommittedAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(AvailableCommittedAllocationUnits$LAYOUT, AvailableCommittedAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfLong PoolAvailableAllocationUnits$LAYOUT = (OfLong)$LAYOUT.select(groupElement("PoolAvailableAllocationUnits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONGLONG PoolAvailableAllocationUnits
+     * }
+     */
+    public static final OfLong PoolAvailableAllocationUnits$layout() {
+        return PoolAvailableAllocationUnits$LAYOUT;
+    }
+
+    private static final long PoolAvailableAllocationUnits$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONGLONG PoolAvailableAllocationUnits
+     * }
+     */
+    public static final long PoolAvailableAllocationUnits$offset() {
+        return PoolAvailableAllocationUnits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONGLONG PoolAvailableAllocationUnits
+     * }
+     */
+    public static long PoolAvailableAllocationUnits(MemorySegment struct) {
+        return struct.get(PoolAvailableAllocationUnits$LAYOUT, PoolAvailableAllocationUnits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONGLONG PoolAvailableAllocationUnits
+     * }
+     */
+    public static void PoolAvailableAllocationUnits(MemorySegment struct, long fieldValue) {
+        struct.set(PoolAvailableAllocationUnits$LAYOUT, PoolAvailableAllocationUnits$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SectorsPerAllocationUnit$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SectorsPerAllocationUnit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerAllocationUnit
+     * }
+     */
+    public static final OfInt SectorsPerAllocationUnit$layout() {
+        return SectorsPerAllocationUnit$LAYOUT;
+    }
+
+    private static final long SectorsPerAllocationUnit$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerAllocationUnit
+     * }
+     */
+    public static final long SectorsPerAllocationUnit$offset() {
+        return SectorsPerAllocationUnit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerAllocationUnit
+     * }
+     */
+    public static int SectorsPerAllocationUnit(MemorySegment struct) {
+        return struct.get(SectorsPerAllocationUnit$LAYOUT, SectorsPerAllocationUnit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerAllocationUnit
+     * }
+     */
+    public static void SectorsPerAllocationUnit(MemorySegment struct, int fieldValue) {
+        struct.set(SectorsPerAllocationUnit$LAYOUT, SectorsPerAllocationUnit$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final OfInt BytesPerSector$layout() {
+        return BytesPerSector$LAYOUT;
+    }
+
+    private static final long BytesPerSector$OFFSET = 92;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final long BytesPerSector$offset() {
+        return BytesPerSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static int BytesPerSector(MemorySegment struct) {
+        return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,44 +2,475 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _CRYPT_AES_256_KEY_STATE {
+ *     unsigned char Key[32];
+ *     unsigned char IV[16];
+ *     unsigned char EncryptionState[15][16];
+ *     unsigned char DecryptionState[15][16];
+ *     unsigned char Feedback[16];
+ * }
+ * }
+ */
 public class _CRYPT_AES_256_KEY_STATE {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("Key"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("IV"),
-        MemoryLayout.sequenceLayout(15, MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT)).withName("EncryptionState"),
-        MemoryLayout.sequenceLayout(15, MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT)).withName("DecryptionState"),
-        MemoryLayout.sequenceLayout(16, Constants$root.C_CHAR$LAYOUT).withName("Feedback")
-    ).withName("_CRYPT_AES_256_KEY_STATE");
-    public static MemoryLayout $LAYOUT() {
-        return _CRYPT_AES_256_KEY_STATE.$struct$LAYOUT;
+    _CRYPT_AES_256_KEY_STATE() {
+        // Should not be called directly
     }
-    public static MemorySegment Key$slice(MemorySegment seg) {
-        return seg.asSlice(0, 32);
-    }
-    public static MemorySegment IV$slice(MemorySegment seg) {
-        return seg.asSlice(32, 16);
-    }
-    public static MemorySegment EncryptionState$slice(MemorySegment seg) {
-        return seg.asSlice(48, 240);
-    }
-    public static MemorySegment DecryptionState$slice(MemorySegment seg) {
-        return seg.asSlice(288, 240);
-    }
-    public static MemorySegment Feedback$slice(MemorySegment seg) {
-        return seg.asSlice(528, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("Key"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("IV"),
+        MemoryLayout.sequenceLayout(15, MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR)).withName("EncryptionState"),
+        MemoryLayout.sequenceLayout(15, MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR)).withName("DecryptionState"),
+        MemoryLayout.sequenceLayout(16, wgl_h.C_CHAR).withName("Feedback")
+    ).withName("_CRYPT_AES_256_KEY_STATE");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout Key$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Key"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static final SequenceLayout Key$layout() {
+        return Key$LAYOUT;
+    }
+
+    private static final long Key$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static final long Key$offset() {
+        return Key$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static MemorySegment Key(MemorySegment struct) {
+        return struct.asSlice(Key$OFFSET, Key$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static void Key(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Key$OFFSET, Key$LAYOUT.byteSize());
+    }
+
+    private static long[] Key$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static long[] Key$dimensions() {
+        return Key$DIMS;
+    }
+    private static final VarHandle Key$ELEM_HANDLE = Key$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static byte Key(MemorySegment struct, long index0) {
+        return (byte)Key$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * unsigned char Key[32]
+     * }
+     */
+    public static void Key(MemorySegment struct, long index0, byte fieldValue) {
+        Key$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout IV$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("IV"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static final SequenceLayout IV$layout() {
+        return IV$LAYOUT;
+    }
+
+    private static final long IV$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static final long IV$offset() {
+        return IV$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static MemorySegment IV(MemorySegment struct) {
+        return struct.asSlice(IV$OFFSET, IV$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static void IV(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, IV$OFFSET, IV$LAYOUT.byteSize());
+    }
+
+    private static long[] IV$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static long[] IV$dimensions() {
+        return IV$DIMS;
+    }
+    private static final VarHandle IV$ELEM_HANDLE = IV$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static byte IV(MemorySegment struct, long index0) {
+        return (byte)IV$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * unsigned char IV[16]
+     * }
+     */
+    public static void IV(MemorySegment struct, long index0, byte fieldValue) {
+        IV$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout EncryptionState$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("EncryptionState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static final SequenceLayout EncryptionState$layout() {
+        return EncryptionState$LAYOUT;
+    }
+
+    private static final long EncryptionState$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static final long EncryptionState$offset() {
+        return EncryptionState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static MemorySegment EncryptionState(MemorySegment struct) {
+        return struct.asSlice(EncryptionState$OFFSET, EncryptionState$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static void EncryptionState(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, EncryptionState$OFFSET, EncryptionState$LAYOUT.byteSize());
+    }
+
+    private static long[] EncryptionState$DIMS = { 15, 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static long[] EncryptionState$dimensions() {
+        return EncryptionState$DIMS;
+    }
+    private static final VarHandle EncryptionState$ELEM_HANDLE = EncryptionState$LAYOUT.varHandle(sequenceElement(), sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static byte EncryptionState(MemorySegment struct, long index0, long index1) {
+        return (byte)EncryptionState$ELEM_HANDLE.get(struct, 0L, index0, index1);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * unsigned char EncryptionState[15][16]
+     * }
+     */
+    public static void EncryptionState(MemorySegment struct, long index0, long index1, byte fieldValue) {
+        EncryptionState$ELEM_HANDLE.set(struct, 0L, index0, index1, fieldValue);
+    }
+
+    private static final SequenceLayout DecryptionState$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("DecryptionState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static final SequenceLayout DecryptionState$layout() {
+        return DecryptionState$LAYOUT;
+    }
+
+    private static final long DecryptionState$OFFSET = 288;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static final long DecryptionState$offset() {
+        return DecryptionState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static MemorySegment DecryptionState(MemorySegment struct) {
+        return struct.asSlice(DecryptionState$OFFSET, DecryptionState$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static void DecryptionState(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DecryptionState$OFFSET, DecryptionState$LAYOUT.byteSize());
+    }
+
+    private static long[] DecryptionState$DIMS = { 15, 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static long[] DecryptionState$dimensions() {
+        return DecryptionState$DIMS;
+    }
+    private static final VarHandle DecryptionState$ELEM_HANDLE = DecryptionState$LAYOUT.varHandle(sequenceElement(), sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static byte DecryptionState(MemorySegment struct, long index0, long index1) {
+        return (byte)DecryptionState$ELEM_HANDLE.get(struct, 0L, index0, index1);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * unsigned char DecryptionState[15][16]
+     * }
+     */
+    public static void DecryptionState(MemorySegment struct, long index0, long index1, byte fieldValue) {
+        DecryptionState$ELEM_HANDLE.set(struct, 0L, index0, index1, fieldValue);
+    }
+
+    private static final SequenceLayout Feedback$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Feedback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static final SequenceLayout Feedback$layout() {
+        return Feedback$LAYOUT;
+    }
+
+    private static final long Feedback$OFFSET = 528;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static final long Feedback$offset() {
+        return Feedback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static MemorySegment Feedback(MemorySegment struct) {
+        return struct.asSlice(Feedback$OFFSET, Feedback$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static void Feedback(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Feedback$OFFSET, Feedback$LAYOUT.byteSize());
+    }
+
+    private static long[] Feedback$DIMS = { 16 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static long[] Feedback$dimensions() {
+        return Feedback$DIMS;
+    }
+    private static final VarHandle Feedback$ELEM_HANDLE = Feedback$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static byte Feedback(MemorySegment struct, long index0) {
+        return (byte)Feedback$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * unsigned char Feedback[16]
+     * }
+     */
+    public static void Feedback(MemorySegment struct, long index0, byte fieldValue) {
+        Feedback$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

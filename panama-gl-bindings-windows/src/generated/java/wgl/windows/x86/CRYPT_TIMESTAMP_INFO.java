@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CRYPT_TIMESTAMP_INFO {
+ *     DWORD dwVersion;
+ *     LPSTR pszTSAPolicyId;
+ *     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+ *     CRYPT_DER_BLOB HashedMessage;
+ *     CRYPT_INTEGER_BLOB SerialNumber;
+ *     FILETIME ftTime;
+ *     PCRYPT_TIMESTAMP_ACCURACY pvAccuracy;
+ *     BOOL fOrdering;
+ *     CRYPT_DER_BLOB Nonce;
+ *     CRYPT_DER_BLOB Tsa;
+ *     DWORD cExtension;
+ *     PCERT_EXTENSION rgExtension;
+ * } CRYPT_TIMESTAMP_INFO
+ * }
+ */
 public class CRYPT_TIMESTAMP_INFO extends _CRYPT_TIMESTAMP_INFO {
 
+    CRYPT_TIMESTAMP_INFO() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,106 +2,310 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DISK_GEOMETRY {
+ *     LARGE_INTEGER Cylinders;
+ *     MEDIA_TYPE MediaType;
+ *     DWORD TracksPerCylinder;
+ *     DWORD SectorsPerTrack;
+ *     DWORD BytesPerSector;
+ * }
+ * }
+ */
 public class _DISK_GEOMETRY {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("Cylinders"),
-        Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-        Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-        Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-        Constants$root.C_LONG$LAYOUT.withName("BytesPerSector")
-    ).withName("_DISK_GEOMETRY");
-    public static MemoryLayout $LAYOUT() {
-        return _DISK_GEOMETRY.$struct$LAYOUT;
+    _DISK_GEOMETRY() {
+        // Should not be called directly
     }
-    public static MemorySegment Cylinders$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    static final VarHandle MediaType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaType"));
-    public static VarHandle MediaType$VH() {
-        return _DISK_GEOMETRY.MediaType$VH;
-    }
-    public static int MediaType$get(MemorySegment seg) {
-        return (int)_DISK_GEOMETRY.MediaType$VH.get(seg);
-    }
-    public static void MediaType$set( MemorySegment seg, int x) {
-        _DISK_GEOMETRY.MediaType$VH.set(seg, x);
-    }
-    public static int MediaType$get(MemorySegment seg, long index) {
-        return (int)_DISK_GEOMETRY.MediaType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaType$set(MemorySegment seg, long index, int x) {
-        _DISK_GEOMETRY.MediaType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TracksPerCylinder$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TracksPerCylinder"));
-    public static VarHandle TracksPerCylinder$VH() {
-        return _DISK_GEOMETRY.TracksPerCylinder$VH;
-    }
-    public static int TracksPerCylinder$get(MemorySegment seg) {
-        return (int)_DISK_GEOMETRY.TracksPerCylinder$VH.get(seg);
-    }
-    public static void TracksPerCylinder$set( MemorySegment seg, int x) {
-        _DISK_GEOMETRY.TracksPerCylinder$VH.set(seg, x);
-    }
-    public static int TracksPerCylinder$get(MemorySegment seg, long index) {
-        return (int)_DISK_GEOMETRY.TracksPerCylinder$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TracksPerCylinder$set(MemorySegment seg, long index, int x) {
-        _DISK_GEOMETRY.TracksPerCylinder$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SectorsPerTrack$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SectorsPerTrack"));
-    public static VarHandle SectorsPerTrack$VH() {
-        return _DISK_GEOMETRY.SectorsPerTrack$VH;
-    }
-    public static int SectorsPerTrack$get(MemorySegment seg) {
-        return (int)_DISK_GEOMETRY.SectorsPerTrack$VH.get(seg);
-    }
-    public static void SectorsPerTrack$set( MemorySegment seg, int x) {
-        _DISK_GEOMETRY.SectorsPerTrack$VH.set(seg, x);
-    }
-    public static int SectorsPerTrack$get(MemorySegment seg, long index) {
-        return (int)_DISK_GEOMETRY.SectorsPerTrack$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SectorsPerTrack$set(MemorySegment seg, long index, int x) {
-        _DISK_GEOMETRY.SectorsPerTrack$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle BytesPerSector$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("BytesPerSector"));
-    public static VarHandle BytesPerSector$VH() {
-        return _DISK_GEOMETRY.BytesPerSector$VH;
-    }
-    public static int BytesPerSector$get(MemorySegment seg) {
-        return (int)_DISK_GEOMETRY.BytesPerSector$VH.get(seg);
-    }
-    public static void BytesPerSector$set( MemorySegment seg, int x) {
-        _DISK_GEOMETRY.BytesPerSector$VH.set(seg, x);
-    }
-    public static int BytesPerSector$get(MemorySegment seg, long index) {
-        return (int)_DISK_GEOMETRY.BytesPerSector$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void BytesPerSector$set(MemorySegment seg, long index, int x) {
-        _DISK_GEOMETRY.BytesPerSector$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("Cylinders"),
+        wgl_h.C_INT.withName("MediaType"),
+        wgl_h.C_LONG.withName("TracksPerCylinder"),
+        wgl_h.C_LONG.withName("SectorsPerTrack"),
+        wgl_h.C_LONG.withName("BytesPerSector")
+    ).withName("_DISK_GEOMETRY");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout Cylinders$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Cylinders"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cylinders
+     * }
+     */
+    public static final GroupLayout Cylinders$layout() {
+        return Cylinders$LAYOUT;
+    }
+
+    private static final long Cylinders$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cylinders
+     * }
+     */
+    public static final long Cylinders$offset() {
+        return Cylinders$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cylinders
+     * }
+     */
+    public static MemorySegment Cylinders(MemorySegment struct) {
+        return struct.asSlice(Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER Cylinders
+     * }
+     */
+    public static void Cylinders(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Cylinders$OFFSET, Cylinders$LAYOUT.byteSize());
+    }
+
+    private static final OfInt MediaType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static final OfInt MediaType$layout() {
+        return MediaType$LAYOUT;
+    }
+
+    private static final long MediaType$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static final long MediaType$offset() {
+        return MediaType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static int MediaType(MemorySegment struct) {
+        return struct.get(MediaType$LAYOUT, MediaType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MEDIA_TYPE MediaType
+     * }
+     */
+    public static void MediaType(MemorySegment struct, int fieldValue) {
+        struct.set(MediaType$LAYOUT, MediaType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TracksPerCylinder$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TracksPerCylinder"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TracksPerCylinder
+     * }
+     */
+    public static final OfInt TracksPerCylinder$layout() {
+        return TracksPerCylinder$LAYOUT;
+    }
+
+    private static final long TracksPerCylinder$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TracksPerCylinder
+     * }
+     */
+    public static final long TracksPerCylinder$offset() {
+        return TracksPerCylinder$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TracksPerCylinder
+     * }
+     */
+    public static int TracksPerCylinder(MemorySegment struct) {
+        return struct.get(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TracksPerCylinder
+     * }
+     */
+    public static void TracksPerCylinder(MemorySegment struct, int fieldValue) {
+        struct.set(TracksPerCylinder$LAYOUT, TracksPerCylinder$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SectorsPerTrack$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SectorsPerTrack"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerTrack
+     * }
+     */
+    public static final OfInt SectorsPerTrack$layout() {
+        return SectorsPerTrack$LAYOUT;
+    }
+
+    private static final long SectorsPerTrack$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerTrack
+     * }
+     */
+    public static final long SectorsPerTrack$offset() {
+        return SectorsPerTrack$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerTrack
+     * }
+     */
+    public static int SectorsPerTrack(MemorySegment struct) {
+        return struct.get(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SectorsPerTrack
+     * }
+     */
+    public static void SectorsPerTrack(MemorySegment struct, int fieldValue) {
+        struct.set(SectorsPerTrack$LAYOUT, SectorsPerTrack$OFFSET, fieldValue);
+    }
+
+    private static final OfInt BytesPerSector$LAYOUT = (OfInt)$LAYOUT.select(groupElement("BytesPerSector"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final OfInt BytesPerSector$layout() {
+        return BytesPerSector$LAYOUT;
+    }
+
+    private static final long BytesPerSector$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static final long BytesPerSector$offset() {
+        return BytesPerSector$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static int BytesPerSector(MemorySegment struct) {
+        return struct.get(BytesPerSector$LAYOUT, BytesPerSector$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD BytesPerSector
+     * }
+     */
+    public static void BytesPerSector(MemorySegment struct, int fieldValue) {
+        struct.set(BytesPerSector$LAYOUT, BytesPerSector$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

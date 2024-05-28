@@ -2,52 +2,209 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _TRANSACTION_LIST_INFORMATION {
+ *     DWORD NumberOfTransactions;
+ *     TRANSACTION_LIST_ENTRY TransactionInformation[1];
+ * }
+ * }
+ */
 public class _TRANSACTION_LIST_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfTransactions"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("Data1"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-                Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-                MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-            ).withName("UOW")
-        ).withName("_TRANSACTION_LIST_ENTRY")).withName("TransactionInformation")
-    ).withName("_TRANSACTION_LIST_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _TRANSACTION_LIST_INFORMATION.$struct$LAYOUT;
+    _TRANSACTION_LIST_INFORMATION() {
+        // Should not be called directly
     }
-    static final VarHandle NumberOfTransactions$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfTransactions"));
-    public static VarHandle NumberOfTransactions$VH() {
-        return _TRANSACTION_LIST_INFORMATION.NumberOfTransactions$VH;
-    }
-    public static int NumberOfTransactions$get(MemorySegment seg) {
-        return (int)_TRANSACTION_LIST_INFORMATION.NumberOfTransactions$VH.get(seg);
-    }
-    public static void NumberOfTransactions$set( MemorySegment seg, int x) {
-        _TRANSACTION_LIST_INFORMATION.NumberOfTransactions$VH.set(seg, x);
-    }
-    public static int NumberOfTransactions$get(MemorySegment seg, long index) {
-        return (int)_TRANSACTION_LIST_INFORMATION.NumberOfTransactions$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfTransactions$set(MemorySegment seg, long index, int x) {
-        _TRANSACTION_LIST_INFORMATION.NumberOfTransactions$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment TransactionInformation$slice(MemorySegment seg) {
-        return seg.asSlice(4, 16);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("NumberOfTransactions"),
+        MemoryLayout.sequenceLayout(1, _TRANSACTION_LIST_ENTRY.layout()).withName("TransactionInformation")
+    ).withName("_TRANSACTION_LIST_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt NumberOfTransactions$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfTransactions"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTransactions
+     * }
+     */
+    public static final OfInt NumberOfTransactions$layout() {
+        return NumberOfTransactions$LAYOUT;
+    }
+
+    private static final long NumberOfTransactions$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTransactions
+     * }
+     */
+    public static final long NumberOfTransactions$offset() {
+        return NumberOfTransactions$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTransactions
+     * }
+     */
+    public static int NumberOfTransactions(MemorySegment struct) {
+        return struct.get(NumberOfTransactions$LAYOUT, NumberOfTransactions$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfTransactions
+     * }
+     */
+    public static void NumberOfTransactions(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfTransactions$LAYOUT, NumberOfTransactions$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout TransactionInformation$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("TransactionInformation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static final SequenceLayout TransactionInformation$layout() {
+        return TransactionInformation$LAYOUT;
+    }
+
+    private static final long TransactionInformation$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static final long TransactionInformation$offset() {
+        return TransactionInformation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static MemorySegment TransactionInformation(MemorySegment struct) {
+        return struct.asSlice(TransactionInformation$OFFSET, TransactionInformation$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static void TransactionInformation(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, TransactionInformation$OFFSET, TransactionInformation$LAYOUT.byteSize());
+    }
+
+    private static long[] TransactionInformation$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static long[] TransactionInformation$dimensions() {
+        return TransactionInformation$DIMS;
+    }
+    private static final MethodHandle TransactionInformation$ELEM_HANDLE = TransactionInformation$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static MemorySegment TransactionInformation(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)TransactionInformation$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * TRANSACTION_LIST_ENTRY TransactionInformation[1]
+     * }
+     */
+    public static void TransactionInformation(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, TransactionInformation(struct, index0), 0L, _TRANSACTION_LIST_ENTRY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

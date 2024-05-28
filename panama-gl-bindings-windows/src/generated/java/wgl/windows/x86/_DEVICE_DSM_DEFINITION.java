@@ -2,145 +2,404 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _DEVICE_DSM_DEFINITION {
+ *     DEVICE_DSM_ACTION Action;
+ *     BOOLEAN SingleRange;
+ *     DWORD ParameterBlockAlignment;
+ *     DWORD ParameterBlockLength;
+ *     BOOLEAN HasOutput;
+ *     DWORD OutputBlockAlignment;
+ *     DWORD OutputBlockLength;
+ * }
+ * }
+ */
 public class _DEVICE_DSM_DEFINITION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Action"),
-        Constants$root.C_CHAR$LAYOUT.withName("SingleRange"),
-        MemoryLayout.paddingLayout(24),
-        Constants$root.C_LONG$LAYOUT.withName("ParameterBlockAlignment"),
-        Constants$root.C_LONG$LAYOUT.withName("ParameterBlockLength"),
-        Constants$root.C_CHAR$LAYOUT.withName("HasOutput"),
-        MemoryLayout.paddingLayout(24),
-        Constants$root.C_LONG$LAYOUT.withName("OutputBlockAlignment"),
-        Constants$root.C_LONG$LAYOUT.withName("OutputBlockLength")
-    ).withName("_DEVICE_DSM_DEFINITION");
-    public static MemoryLayout $LAYOUT() {
-        return _DEVICE_DSM_DEFINITION.$struct$LAYOUT;
+    _DEVICE_DSM_DEFINITION() {
+        // Should not be called directly
     }
-    static final VarHandle Action$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Action"));
-    public static VarHandle Action$VH() {
-        return _DEVICE_DSM_DEFINITION.Action$VH;
-    }
-    public static int Action$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_DEFINITION.Action$VH.get(seg);
-    }
-    public static void Action$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_DEFINITION.Action$VH.set(seg, x);
-    }
-    public static int Action$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_DEFINITION.Action$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Action$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_DEFINITION.Action$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SingleRange$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SingleRange"));
-    public static VarHandle SingleRange$VH() {
-        return _DEVICE_DSM_DEFINITION.SingleRange$VH;
-    }
-    public static byte SingleRange$get(MemorySegment seg) {
-        return (byte)_DEVICE_DSM_DEFINITION.SingleRange$VH.get(seg);
-    }
-    public static void SingleRange$set( MemorySegment seg, byte x) {
-        _DEVICE_DSM_DEFINITION.SingleRange$VH.set(seg, x);
-    }
-    public static byte SingleRange$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_DSM_DEFINITION.SingleRange$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SingleRange$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_DSM_DEFINITION.SingleRange$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ParameterBlockAlignment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ParameterBlockAlignment"));
-    public static VarHandle ParameterBlockAlignment$VH() {
-        return _DEVICE_DSM_DEFINITION.ParameterBlockAlignment$VH;
-    }
-    public static int ParameterBlockAlignment$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_DEFINITION.ParameterBlockAlignment$VH.get(seg);
-    }
-    public static void ParameterBlockAlignment$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_DEFINITION.ParameterBlockAlignment$VH.set(seg, x);
-    }
-    public static int ParameterBlockAlignment$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_DEFINITION.ParameterBlockAlignment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ParameterBlockAlignment$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_DEFINITION.ParameterBlockAlignment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ParameterBlockLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ParameterBlockLength"));
-    public static VarHandle ParameterBlockLength$VH() {
-        return _DEVICE_DSM_DEFINITION.ParameterBlockLength$VH;
-    }
-    public static int ParameterBlockLength$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_DEFINITION.ParameterBlockLength$VH.get(seg);
-    }
-    public static void ParameterBlockLength$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_DEFINITION.ParameterBlockLength$VH.set(seg, x);
-    }
-    public static int ParameterBlockLength$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_DEFINITION.ParameterBlockLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ParameterBlockLength$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_DEFINITION.ParameterBlockLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle HasOutput$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("HasOutput"));
-    public static VarHandle HasOutput$VH() {
-        return _DEVICE_DSM_DEFINITION.HasOutput$VH;
-    }
-    public static byte HasOutput$get(MemorySegment seg) {
-        return (byte)_DEVICE_DSM_DEFINITION.HasOutput$VH.get(seg);
-    }
-    public static void HasOutput$set( MemorySegment seg, byte x) {
-        _DEVICE_DSM_DEFINITION.HasOutput$VH.set(seg, x);
-    }
-    public static byte HasOutput$get(MemorySegment seg, long index) {
-        return (byte)_DEVICE_DSM_DEFINITION.HasOutput$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void HasOutput$set(MemorySegment seg, long index, byte x) {
-        _DEVICE_DSM_DEFINITION.HasOutput$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OutputBlockAlignment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OutputBlockAlignment"));
-    public static VarHandle OutputBlockAlignment$VH() {
-        return _DEVICE_DSM_DEFINITION.OutputBlockAlignment$VH;
-    }
-    public static int OutputBlockAlignment$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_DEFINITION.OutputBlockAlignment$VH.get(seg);
-    }
-    public static void OutputBlockAlignment$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_DEFINITION.OutputBlockAlignment$VH.set(seg, x);
-    }
-    public static int OutputBlockAlignment$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_DEFINITION.OutputBlockAlignment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OutputBlockAlignment$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_DEFINITION.OutputBlockAlignment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle OutputBlockLength$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("OutputBlockLength"));
-    public static VarHandle OutputBlockLength$VH() {
-        return _DEVICE_DSM_DEFINITION.OutputBlockLength$VH;
-    }
-    public static int OutputBlockLength$get(MemorySegment seg) {
-        return (int)_DEVICE_DSM_DEFINITION.OutputBlockLength$VH.get(seg);
-    }
-    public static void OutputBlockLength$set( MemorySegment seg, int x) {
-        _DEVICE_DSM_DEFINITION.OutputBlockLength$VH.set(seg, x);
-    }
-    public static int OutputBlockLength$get(MemorySegment seg, long index) {
-        return (int)_DEVICE_DSM_DEFINITION.OutputBlockLength$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void OutputBlockLength$set(MemorySegment seg, long index, int x) {
-        _DEVICE_DSM_DEFINITION.OutputBlockLength$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Action"),
+        wgl_h.C_CHAR.withName("SingleRange"),
+        MemoryLayout.paddingLayout(3),
+        wgl_h.C_LONG.withName("ParameterBlockAlignment"),
+        wgl_h.C_LONG.withName("ParameterBlockLength"),
+        wgl_h.C_CHAR.withName("HasOutput"),
+        MemoryLayout.paddingLayout(3),
+        wgl_h.C_LONG.withName("OutputBlockAlignment"),
+        wgl_h.C_LONG.withName("OutputBlockLength")
+    ).withName("_DEVICE_DSM_DEFINITION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Action$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Action"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICE_DSM_ACTION Action
+     * }
+     */
+    public static final OfInt Action$layout() {
+        return Action$LAYOUT;
+    }
+
+    private static final long Action$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICE_DSM_ACTION Action
+     * }
+     */
+    public static final long Action$offset() {
+        return Action$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICE_DSM_ACTION Action
+     * }
+     */
+    public static int Action(MemorySegment struct) {
+        return struct.get(Action$LAYOUT, Action$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICE_DSM_ACTION Action
+     * }
+     */
+    public static void Action(MemorySegment struct, int fieldValue) {
+        struct.set(Action$LAYOUT, Action$OFFSET, fieldValue);
+    }
+
+    private static final OfByte SingleRange$LAYOUT = (OfByte)$LAYOUT.select(groupElement("SingleRange"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN SingleRange
+     * }
+     */
+    public static final OfByte SingleRange$layout() {
+        return SingleRange$LAYOUT;
+    }
+
+    private static final long SingleRange$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN SingleRange
+     * }
+     */
+    public static final long SingleRange$offset() {
+        return SingleRange$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN SingleRange
+     * }
+     */
+    public static byte SingleRange(MemorySegment struct) {
+        return struct.get(SingleRange$LAYOUT, SingleRange$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN SingleRange
+     * }
+     */
+    public static void SingleRange(MemorySegment struct, byte fieldValue) {
+        struct.set(SingleRange$LAYOUT, SingleRange$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ParameterBlockAlignment$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ParameterBlockAlignment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockAlignment
+     * }
+     */
+    public static final OfInt ParameterBlockAlignment$layout() {
+        return ParameterBlockAlignment$LAYOUT;
+    }
+
+    private static final long ParameterBlockAlignment$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockAlignment
+     * }
+     */
+    public static final long ParameterBlockAlignment$offset() {
+        return ParameterBlockAlignment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockAlignment
+     * }
+     */
+    public static int ParameterBlockAlignment(MemorySegment struct) {
+        return struct.get(ParameterBlockAlignment$LAYOUT, ParameterBlockAlignment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockAlignment
+     * }
+     */
+    public static void ParameterBlockAlignment(MemorySegment struct, int fieldValue) {
+        struct.set(ParameterBlockAlignment$LAYOUT, ParameterBlockAlignment$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ParameterBlockLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ParameterBlockLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockLength
+     * }
+     */
+    public static final OfInt ParameterBlockLength$layout() {
+        return ParameterBlockLength$LAYOUT;
+    }
+
+    private static final long ParameterBlockLength$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockLength
+     * }
+     */
+    public static final long ParameterBlockLength$offset() {
+        return ParameterBlockLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockLength
+     * }
+     */
+    public static int ParameterBlockLength(MemorySegment struct) {
+        return struct.get(ParameterBlockLength$LAYOUT, ParameterBlockLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ParameterBlockLength
+     * }
+     */
+    public static void ParameterBlockLength(MemorySegment struct, int fieldValue) {
+        struct.set(ParameterBlockLength$LAYOUT, ParameterBlockLength$OFFSET, fieldValue);
+    }
+
+    private static final OfByte HasOutput$LAYOUT = (OfByte)$LAYOUT.select(groupElement("HasOutput"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BOOLEAN HasOutput
+     * }
+     */
+    public static final OfByte HasOutput$layout() {
+        return HasOutput$LAYOUT;
+    }
+
+    private static final long HasOutput$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BOOLEAN HasOutput
+     * }
+     */
+    public static final long HasOutput$offset() {
+        return HasOutput$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BOOLEAN HasOutput
+     * }
+     */
+    public static byte HasOutput(MemorySegment struct) {
+        return struct.get(HasOutput$LAYOUT, HasOutput$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BOOLEAN HasOutput
+     * }
+     */
+    public static void HasOutput(MemorySegment struct, byte fieldValue) {
+        struct.set(HasOutput$LAYOUT, HasOutput$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OutputBlockAlignment$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OutputBlockAlignment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockAlignment
+     * }
+     */
+    public static final OfInt OutputBlockAlignment$layout() {
+        return OutputBlockAlignment$LAYOUT;
+    }
+
+    private static final long OutputBlockAlignment$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockAlignment
+     * }
+     */
+    public static final long OutputBlockAlignment$offset() {
+        return OutputBlockAlignment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockAlignment
+     * }
+     */
+    public static int OutputBlockAlignment(MemorySegment struct) {
+        return struct.get(OutputBlockAlignment$LAYOUT, OutputBlockAlignment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockAlignment
+     * }
+     */
+    public static void OutputBlockAlignment(MemorySegment struct, int fieldValue) {
+        struct.set(OutputBlockAlignment$LAYOUT, OutputBlockAlignment$OFFSET, fieldValue);
+    }
+
+    private static final OfInt OutputBlockLength$LAYOUT = (OfInt)$LAYOUT.select(groupElement("OutputBlockLength"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockLength
+     * }
+     */
+    public static final OfInt OutputBlockLength$layout() {
+        return OutputBlockLength$LAYOUT;
+    }
+
+    private static final long OutputBlockLength$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockLength
+     * }
+     */
+    public static final long OutputBlockLength$offset() {
+        return OutputBlockLength$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockLength
+     * }
+     */
+    public static int OutputBlockLength(MemorySegment struct) {
+        return struct.get(OutputBlockLength$LAYOUT, OutputBlockLength$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD OutputBlockLength
+     * }
+     */
+    public static void OutputBlockLength(MemorySegment struct, int fieldValue) {
+        struct.set(OutputBlockLength$LAYOUT, OutputBlockLength$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

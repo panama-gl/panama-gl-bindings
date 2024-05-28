@@ -2,13 +2,38 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_PROTOCOL_SPECIFIC_DATA_EXT {
+ *     STORAGE_PROTOCOL_TYPE ProtocolType;
+ *     DWORD DataType;
+ *     DWORD ProtocolDataValue;
+ *     DWORD ProtocolDataSubValue;
+ *     DWORD ProtocolDataOffset;
+ *     DWORD ProtocolDataLength;
+ *     DWORD FixedProtocolReturnData;
+ *     DWORD ProtocolDataSubValue2;
+ *     DWORD ProtocolDataSubValue3;
+ *     DWORD ProtocolDataSubValue4;
+ *     DWORD ProtocolDataSubValue5;
+ *     DWORD Reserved[5];
+ * } STORAGE_PROTOCOL_SPECIFIC_DATA_EXT
+ * }
+ */
 public class STORAGE_PROTOCOL_SPECIFIC_DATA_EXT extends _STORAGE_PROTOCOL_SPECIFIC_DATA_EXT {
 
+    STORAGE_PROTOCOL_SPECIFIC_DATA_EXT() {
+        // Should not be called directly
+    }
 }
-
 

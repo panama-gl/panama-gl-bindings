@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _RPC_SECURITY_QOS_V5_W {
+ *     unsigned long Version;
+ *     unsigned long Capabilities;
+ *     unsigned long IdentityTracking;
+ *     unsigned long ImpersonationType;
+ *     unsigned long AdditionalSecurityInfoType;
+ *     union {
+ *         RPC_HTTP_TRANSPORT_CREDENTIALS_W *HttpCredentials;
+ *     } u;
+ *     void *Sid;
+ *     unsigned int EffectiveOnly;
+ *     void *ServerSecurityDescriptor;
+ * } RPC_SECURITY_QOS_V5_W
+ * }
+ */
 public class RPC_SECURITY_QOS_V5_W extends _RPC_SECURITY_QOS_V5_W {
 
+    RPC_SECURITY_QOS_V5_W() {
+        // Should not be called directly
+    }
 }
-
 

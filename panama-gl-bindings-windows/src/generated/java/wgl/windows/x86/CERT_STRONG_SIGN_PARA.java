@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _CERT_STRONG_SIGN_PARA {
+ *     DWORD cbSize;
+ *     DWORD dwInfoChoice;
+ *     union {
+ *         void *pvInfo;
+ *         PCERT_STRONG_SIGN_SERIALIZED_INFO pSerializedInfo;
+ *         LPSTR pszOID;
+ *     };
+ * } CERT_STRONG_SIGN_PARA
+ * }
+ */
 public class CERT_STRONG_SIGN_PARA extends _CERT_STRONG_SIGN_PARA {
 
+    CERT_STRONG_SIGN_PARA() {
+        // Should not be called directly
+    }
 }
-
 

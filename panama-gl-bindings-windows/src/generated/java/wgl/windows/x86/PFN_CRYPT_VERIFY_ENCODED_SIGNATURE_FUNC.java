@@ -2,27 +2,76 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwCertEncodingType, java.lang.foreign.MemoryAddress pPubKeyInfo, java.lang.foreign.MemoryAddress pSignatureAlgorithm, java.lang.foreign.MemoryAddress pvDecodedSignPara, java.lang.foreign.MemoryAddress pwszCNGPubKeyAlgid, java.lang.foreign.MemoryAddress pwszCNGHashAlgid, java.lang.foreign.MemoryAddress pbComputedHash, int cbComputedHash, java.lang.foreign.MemoryAddress pbSignature, int cbSignature);
-    static MemorySegment allocate(PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC.class, fi, constants$791.PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC)(DWORD, PCERT_PUBLIC_KEY_INFO, PCRYPT_ALGORITHM_IDENTIFIER, void *, LPCWSTR, LPCWSTR, BYTE *, DWORD, BYTE *, DWORD) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC {
+
+    PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwCertEncodingType, java.lang.foreign.MemoryAddress _pPubKeyInfo, java.lang.foreign.MemoryAddress _pSignatureAlgorithm, java.lang.foreign.MemoryAddress _pvDecodedSignPara, java.lang.foreign.MemoryAddress _pwszCNGPubKeyAlgid, java.lang.foreign.MemoryAddress _pwszCNGHashAlgid, java.lang.foreign.MemoryAddress _pbComputedHash, int _cbComputedHash, java.lang.foreign.MemoryAddress _pbSignature, int _cbSignature) -> {
-            try {
-                return (int)constants$791.PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC$MH.invokeExact((Addressable)symbol, _dwCertEncodingType, (java.lang.foreign.Addressable)_pPubKeyInfo, (java.lang.foreign.Addressable)_pSignatureAlgorithm, (java.lang.foreign.Addressable)_pvDecodedSignPara, (java.lang.foreign.Addressable)_pwszCNGPubKeyAlgid, (java.lang.foreign.Addressable)_pwszCNGHashAlgid, (java.lang.foreign.Addressable)_pbComputedHash, _cbComputedHash, (java.lang.foreign.Addressable)_pbSignature, _cbSignature);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwCertEncodingType, MemorySegment pPubKeyInfo, MemorySegment pSignatureAlgorithm, MemorySegment pvDecodedSignPara, MemorySegment pwszCNGPubKeyAlgid, MemorySegment pwszCNGHashAlgid, MemorySegment pbComputedHash, int cbComputedHash, MemorySegment pbSignature, int cbSignature);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_VERIFY_ENCODED_SIGNATURE_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwCertEncodingType, MemorySegment pPubKeyInfo, MemorySegment pSignatureAlgorithm, MemorySegment pvDecodedSignPara, MemorySegment pwszCNGPubKeyAlgid, MemorySegment pwszCNGHashAlgid, MemorySegment pbComputedHash, int cbComputedHash, MemorySegment pbSignature, int cbSignature) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwCertEncodingType, pPubKeyInfo, pSignatureAlgorithm, pvDecodedSignPara, pwszCNGPubKeyAlgid, pwszCNGHashAlgid, pbComputedHash, cbComputedHash, pbSignature, cbSignature);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

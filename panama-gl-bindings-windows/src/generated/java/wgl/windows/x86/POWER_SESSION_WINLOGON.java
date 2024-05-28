@@ -2,13 +2,29 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _POWER_SESSION_WINLOGON {
+ *     DWORD SessionId;
+ *     BOOLEAN Console;
+ *     BOOLEAN Locked;
+ * } POWER_SESSION_WINLOGON
+ * }
+ */
 public class POWER_SESSION_WINLOGON extends _POWER_SESSION_WINLOGON {
 
+    POWER_SESSION_WINLOGON() {
+        // Should not be called directly
+    }
 }
-
 

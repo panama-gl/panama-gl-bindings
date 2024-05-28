@@ -2,120 +2,397 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagRAWINPUT {
+ *     RAWINPUTHEADER header;
+ *     union {
+ *         RAWMOUSE mouse;
+ *         RAWKEYBOARD keyboard;
+ *         RAWHID hid;
+ *     } data;
+ * }
+ * }
+ */
 public class tagRAWINPUT {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwType"),
-            Constants$root.C_LONG$LAYOUT.withName("dwSize"),
-            Constants$root.C_POINTER$LAYOUT.withName("hDevice"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("wParam")
-        ).withName("header"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("usFlags"),
-                MemoryLayout.paddingLayout(16),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("ulButtons"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_SHORT$LAYOUT.withName("usButtonFlags"),
-                        Constants$root.C_SHORT$LAYOUT.withName("usButtonData")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                Constants$root.C_LONG$LAYOUT.withName("ulRawButtons"),
-                Constants$root.C_LONG$LAYOUT.withName("lLastX"),
-                Constants$root.C_LONG$LAYOUT.withName("lLastY"),
-                Constants$root.C_LONG$LAYOUT.withName("ulExtraInformation")
-            ).withName("mouse"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("MakeCode"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-                Constants$root.C_SHORT$LAYOUT.withName("VKey"),
-                Constants$root.C_LONG$LAYOUT.withName("Message"),
-                Constants$root.C_LONG$LAYOUT.withName("ExtraInformation")
-            ).withName("keyboard"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwSizeHid"),
-                Constants$root.C_LONG$LAYOUT.withName("dwCount"),
-                MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("bRawData"),
-                MemoryLayout.paddingLayout(24)
-            ).withName("hid")
-        ).withName("data")
+    tagRAWINPUT() {
+        // Should not be called directly
+    }
+
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagRAWINPUTHEADER.layout().withName("header"),
+        tagRAWINPUT.data.layout().withName("data")
     ).withName("tagRAWINPUT");
-    public static MemoryLayout $LAYOUT() {
-        return tagRAWINPUT.$struct$LAYOUT;
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
     }
-    public static MemorySegment header$slice(MemorySegment seg) {
-        return seg.asSlice(0, 24);
+
+    private static final GroupLayout header$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("header"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * RAWINPUTHEADER header
+     * }
+     */
+    public static final GroupLayout header$layout() {
+        return header$LAYOUT;
     }
+
+    private static final long header$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * RAWINPUTHEADER header
+     * }
+     */
+    public static final long header$offset() {
+        return header$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * RAWINPUTHEADER header
+     * }
+     */
+    public static MemorySegment header(MemorySegment struct) {
+        return struct.asSlice(header$OFFSET, header$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * RAWINPUTHEADER header
+     * }
+     */
+    public static void header(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, header$OFFSET, header$LAYOUT.byteSize());
+    }
+
+    /**
+     * {@snippet lang=c :
+     * union {
+     *     RAWMOUSE mouse;
+     *     RAWKEYBOARD keyboard;
+     *     RAWHID hid;
+     * }
+     * }
+     */
     public static class data {
 
-        static final  GroupLayout data$union$LAYOUT = MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("usFlags"),
-                MemoryLayout.paddingLayout(16),
-                MemoryLayout.unionLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("ulButtons"),
-                    MemoryLayout.structLayout(
-                        Constants$root.C_SHORT$LAYOUT.withName("usButtonFlags"),
-                        Constants$root.C_SHORT$LAYOUT.withName("usButtonData")
-                    ).withName("$anon$0")
-                ).withName("$anon$0"),
-                Constants$root.C_LONG$LAYOUT.withName("ulRawButtons"),
-                Constants$root.C_LONG$LAYOUT.withName("lLastX"),
-                Constants$root.C_LONG$LAYOUT.withName("lLastY"),
-                Constants$root.C_LONG$LAYOUT.withName("ulExtraInformation")
-            ).withName("mouse"),
-            MemoryLayout.structLayout(
-                Constants$root.C_SHORT$LAYOUT.withName("MakeCode"),
-                Constants$root.C_SHORT$LAYOUT.withName("Flags"),
-                Constants$root.C_SHORT$LAYOUT.withName("Reserved"),
-                Constants$root.C_SHORT$LAYOUT.withName("VKey"),
-                Constants$root.C_LONG$LAYOUT.withName("Message"),
-                Constants$root.C_LONG$LAYOUT.withName("ExtraInformation")
-            ).withName("keyboard"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("dwSizeHid"),
-                Constants$root.C_LONG$LAYOUT.withName("dwCount"),
-                MemoryLayout.sequenceLayout(1, Constants$root.C_CHAR$LAYOUT).withName("bRawData"),
-                MemoryLayout.paddingLayout(24)
-            ).withName("hid")
-        );
-        public static MemoryLayout $LAYOUT() {
-            return data.data$union$LAYOUT;
+        data() {
+            // Should not be called directly
         }
-        public static MemorySegment mouse$slice(MemorySegment seg) {
-            return seg.asSlice(0, 24);
+
+        private static final GroupLayout $LAYOUT = MemoryLayout.unionLayout(
+            tagRAWMOUSE.layout().withName("mouse"),
+            tagRAWKEYBOARD.layout().withName("keyboard"),
+            tagRAWHID.layout().withName("hid")
+        ).withName("$anon$15072:5");
+
+        /**
+         * The layout of this union
+         */
+        public static final GroupLayout layout() {
+            return $LAYOUT;
         }
-        public static MemorySegment keyboard$slice(MemorySegment seg) {
-            return seg.asSlice(0, 16);
+
+        private static final GroupLayout mouse$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("mouse"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * RAWMOUSE mouse
+         * }
+         */
+        public static final GroupLayout mouse$layout() {
+            return mouse$LAYOUT;
         }
-        public static MemorySegment hid$slice(MemorySegment seg) {
-            return seg.asSlice(0, 12);
+
+        private static final long mouse$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * RAWMOUSE mouse
+         * }
+         */
+        public static final long mouse$offset() {
+            return mouse$OFFSET;
         }
-        public static long sizeof() { return $LAYOUT().byteSize(); }
-        public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-        public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-            return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * RAWMOUSE mouse
+         * }
+         */
+        public static MemorySegment mouse(MemorySegment union) {
+            return union.asSlice(mouse$OFFSET, mouse$LAYOUT.byteSize());
         }
-        public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * RAWMOUSE mouse
+         * }
+         */
+        public static void mouse(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, mouse$OFFSET, mouse$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout keyboard$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("keyboard"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * RAWKEYBOARD keyboard
+         * }
+         */
+        public static final GroupLayout keyboard$layout() {
+            return keyboard$LAYOUT;
+        }
+
+        private static final long keyboard$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * RAWKEYBOARD keyboard
+         * }
+         */
+        public static final long keyboard$offset() {
+            return keyboard$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * RAWKEYBOARD keyboard
+         * }
+         */
+        public static MemorySegment keyboard(MemorySegment union) {
+            return union.asSlice(keyboard$OFFSET, keyboard$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * RAWKEYBOARD keyboard
+         * }
+         */
+        public static void keyboard(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, keyboard$OFFSET, keyboard$LAYOUT.byteSize());
+        }
+
+        private static final GroupLayout hid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("hid"));
+
+        /**
+         * Layout for field:
+         * {@snippet lang=c :
+         * RAWHID hid
+         * }
+         */
+        public static final GroupLayout hid$layout() {
+            return hid$LAYOUT;
+        }
+
+        private static final long hid$OFFSET = 0;
+
+        /**
+         * Offset for field:
+         * {@snippet lang=c :
+         * RAWHID hid
+         * }
+         */
+        public static final long hid$offset() {
+            return hid$OFFSET;
+        }
+
+        /**
+         * Getter for field:
+         * {@snippet lang=c :
+         * RAWHID hid
+         * }
+         */
+        public static MemorySegment hid(MemorySegment union) {
+            return union.asSlice(hid$OFFSET, hid$LAYOUT.byteSize());
+        }
+
+        /**
+         * Setter for field:
+         * {@snippet lang=c :
+         * RAWHID hid
+         * }
+         */
+        public static void hid(MemorySegment union, MemorySegment fieldValue) {
+            MemorySegment.copy(fieldValue, 0L, union, hid$OFFSET, hid$LAYOUT.byteSize());
+        }
+
+        /**
+         * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+         * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+         */
+        public static MemorySegment asSlice(MemorySegment array, long index) {
+            return array.asSlice(layout().byteSize() * index);
+        }
+
+        /**
+         * The size (in bytes) of this union
+         */
+        public static long sizeof() { return layout().byteSize(); }
+
+        /**
+         * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+         */
+        public static MemorySegment allocate(SegmentAllocator allocator) {
+            return allocator.allocate(layout());
+        }
+
+        /**
+         * Allocate an array of size {@code elementCount} using {@code allocator}.
+         * The returned segment has size {@code elementCount * layout().byteSize()}.
+         */
+        public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+            return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+            return reinterpret(addr, 1, arena, cleanup);
+        }
+
+        /**
+         * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+         * The returned segment has size {@code elementCount * layout().byteSize()}
+         */
+        public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+            return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+        }
     }
 
-    public static MemorySegment data$slice(MemorySegment seg) {
-        return seg.asSlice(24, 24);
+    private static final GroupLayout data$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("data"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * union {
+     *     RAWMOUSE mouse;
+     *     RAWKEYBOARD keyboard;
+     *     RAWHID hid;
+     * } data
+     * }
+     */
+    public static final GroupLayout data$layout() {
+        return data$LAYOUT;
     }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
+
+    private static final long data$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * union {
+     *     RAWMOUSE mouse;
+     *     RAWKEYBOARD keyboard;
+     *     RAWHID hid;
+     * } data
+     * }
+     */
+    public static final long data$offset() {
+        return data$OFFSET;
     }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * union {
+     *     RAWMOUSE mouse;
+     *     RAWKEYBOARD keyboard;
+     *     RAWHID hid;
+     * } data
+     * }
+     */
+    public static MemorySegment data(MemorySegment struct) {
+        return struct.asSlice(data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * union {
+     *     RAWMOUSE mouse;
+     *     RAWKEYBOARD keyboard;
+     *     RAWHID hid;
+     * } data
+     * }
+     */
+    public static void data(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, data$OFFSET, data$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
 }
-
 

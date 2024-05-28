@@ -2,143 +2,402 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _IMAGE_FILE_HEADER {
+ *     WORD Machine;
+ *     WORD NumberOfSections;
+ *     DWORD TimeDateStamp;
+ *     DWORD PointerToSymbolTable;
+ *     DWORD NumberOfSymbols;
+ *     WORD SizeOfOptionalHeader;
+ *     WORD Characteristics;
+ * }
+ * }
+ */
 public class _IMAGE_FILE_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_SHORT$LAYOUT.withName("Machine"),
-        Constants$root.C_SHORT$LAYOUT.withName("NumberOfSections"),
-        Constants$root.C_LONG$LAYOUT.withName("TimeDateStamp"),
-        Constants$root.C_LONG$LAYOUT.withName("PointerToSymbolTable"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfSymbols"),
-        Constants$root.C_SHORT$LAYOUT.withName("SizeOfOptionalHeader"),
-        Constants$root.C_SHORT$LAYOUT.withName("Characteristics")
-    ).withName("_IMAGE_FILE_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return _IMAGE_FILE_HEADER.$struct$LAYOUT;
+    _IMAGE_FILE_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle Machine$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Machine"));
-    public static VarHandle Machine$VH() {
-        return _IMAGE_FILE_HEADER.Machine$VH;
-    }
-    public static short Machine$get(MemorySegment seg) {
-        return (short)_IMAGE_FILE_HEADER.Machine$VH.get(seg);
-    }
-    public static void Machine$set( MemorySegment seg, short x) {
-        _IMAGE_FILE_HEADER.Machine$VH.set(seg, x);
-    }
-    public static short Machine$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_FILE_HEADER.Machine$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Machine$set(MemorySegment seg, long index, short x) {
-        _IMAGE_FILE_HEADER.Machine$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfSections$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfSections"));
-    public static VarHandle NumberOfSections$VH() {
-        return _IMAGE_FILE_HEADER.NumberOfSections$VH;
-    }
-    public static short NumberOfSections$get(MemorySegment seg) {
-        return (short)_IMAGE_FILE_HEADER.NumberOfSections$VH.get(seg);
-    }
-    public static void NumberOfSections$set( MemorySegment seg, short x) {
-        _IMAGE_FILE_HEADER.NumberOfSections$VH.set(seg, x);
-    }
-    public static short NumberOfSections$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_FILE_HEADER.NumberOfSections$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfSections$set(MemorySegment seg, long index, short x) {
-        _IMAGE_FILE_HEADER.NumberOfSections$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle TimeDateStamp$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("TimeDateStamp"));
-    public static VarHandle TimeDateStamp$VH() {
-        return _IMAGE_FILE_HEADER.TimeDateStamp$VH;
-    }
-    public static int TimeDateStamp$get(MemorySegment seg) {
-        return (int)_IMAGE_FILE_HEADER.TimeDateStamp$VH.get(seg);
-    }
-    public static void TimeDateStamp$set( MemorySegment seg, int x) {
-        _IMAGE_FILE_HEADER.TimeDateStamp$VH.set(seg, x);
-    }
-    public static int TimeDateStamp$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_FILE_HEADER.TimeDateStamp$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TimeDateStamp$set(MemorySegment seg, long index, int x) {
-        _IMAGE_FILE_HEADER.TimeDateStamp$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PointerToSymbolTable$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PointerToSymbolTable"));
-    public static VarHandle PointerToSymbolTable$VH() {
-        return _IMAGE_FILE_HEADER.PointerToSymbolTable$VH;
-    }
-    public static int PointerToSymbolTable$get(MemorySegment seg) {
-        return (int)_IMAGE_FILE_HEADER.PointerToSymbolTable$VH.get(seg);
-    }
-    public static void PointerToSymbolTable$set( MemorySegment seg, int x) {
-        _IMAGE_FILE_HEADER.PointerToSymbolTable$VH.set(seg, x);
-    }
-    public static int PointerToSymbolTable$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_FILE_HEADER.PointerToSymbolTable$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PointerToSymbolTable$set(MemorySegment seg, long index, int x) {
-        _IMAGE_FILE_HEADER.PointerToSymbolTable$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfSymbols$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfSymbols"));
-    public static VarHandle NumberOfSymbols$VH() {
-        return _IMAGE_FILE_HEADER.NumberOfSymbols$VH;
-    }
-    public static int NumberOfSymbols$get(MemorySegment seg) {
-        return (int)_IMAGE_FILE_HEADER.NumberOfSymbols$VH.get(seg);
-    }
-    public static void NumberOfSymbols$set( MemorySegment seg, int x) {
-        _IMAGE_FILE_HEADER.NumberOfSymbols$VH.set(seg, x);
-    }
-    public static int NumberOfSymbols$get(MemorySegment seg, long index) {
-        return (int)_IMAGE_FILE_HEADER.NumberOfSymbols$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfSymbols$set(MemorySegment seg, long index, int x) {
-        _IMAGE_FILE_HEADER.NumberOfSymbols$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SizeOfOptionalHeader$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SizeOfOptionalHeader"));
-    public static VarHandle SizeOfOptionalHeader$VH() {
-        return _IMAGE_FILE_HEADER.SizeOfOptionalHeader$VH;
-    }
-    public static short SizeOfOptionalHeader$get(MemorySegment seg) {
-        return (short)_IMAGE_FILE_HEADER.SizeOfOptionalHeader$VH.get(seg);
-    }
-    public static void SizeOfOptionalHeader$set( MemorySegment seg, short x) {
-        _IMAGE_FILE_HEADER.SizeOfOptionalHeader$VH.set(seg, x);
-    }
-    public static short SizeOfOptionalHeader$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_FILE_HEADER.SizeOfOptionalHeader$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SizeOfOptionalHeader$set(MemorySegment seg, long index, short x) {
-        _IMAGE_FILE_HEADER.SizeOfOptionalHeader$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Characteristics$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Characteristics"));
-    public static VarHandle Characteristics$VH() {
-        return _IMAGE_FILE_HEADER.Characteristics$VH;
-    }
-    public static short Characteristics$get(MemorySegment seg) {
-        return (short)_IMAGE_FILE_HEADER.Characteristics$VH.get(seg);
-    }
-    public static void Characteristics$set( MemorySegment seg, short x) {
-        _IMAGE_FILE_HEADER.Characteristics$VH.set(seg, x);
-    }
-    public static short Characteristics$get(MemorySegment seg, long index) {
-        return (short)_IMAGE_FILE_HEADER.Characteristics$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Characteristics$set(MemorySegment seg, long index, short x) {
-        _IMAGE_FILE_HEADER.Characteristics$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_SHORT.withName("Machine"),
+        freeglut_h.C_SHORT.withName("NumberOfSections"),
+        freeglut_h.C_LONG.withName("TimeDateStamp"),
+        freeglut_h.C_LONG.withName("PointerToSymbolTable"),
+        freeglut_h.C_LONG.withName("NumberOfSymbols"),
+        freeglut_h.C_SHORT.withName("SizeOfOptionalHeader"),
+        freeglut_h.C_SHORT.withName("Characteristics")
+    ).withName("_IMAGE_FILE_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfShort Machine$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Machine"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static final OfShort Machine$layout() {
+        return Machine$LAYOUT;
+    }
+
+    private static final long Machine$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static final long Machine$offset() {
+        return Machine$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static short Machine(MemorySegment struct) {
+        return struct.get(Machine$LAYOUT, Machine$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Machine
+     * }
+     */
+    public static void Machine(MemorySegment struct, short fieldValue) {
+        struct.set(Machine$LAYOUT, Machine$OFFSET, fieldValue);
+    }
+
+    private static final OfShort NumberOfSections$LAYOUT = (OfShort)$LAYOUT.select(groupElement("NumberOfSections"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD NumberOfSections
+     * }
+     */
+    public static final OfShort NumberOfSections$layout() {
+        return NumberOfSections$LAYOUT;
+    }
+
+    private static final long NumberOfSections$OFFSET = 2;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD NumberOfSections
+     * }
+     */
+    public static final long NumberOfSections$offset() {
+        return NumberOfSections$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfSections
+     * }
+     */
+    public static short NumberOfSections(MemorySegment struct) {
+        return struct.get(NumberOfSections$LAYOUT, NumberOfSections$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD NumberOfSections
+     * }
+     */
+    public static void NumberOfSections(MemorySegment struct, short fieldValue) {
+        struct.set(NumberOfSections$LAYOUT, NumberOfSections$OFFSET, fieldValue);
+    }
+
+    private static final OfInt TimeDateStamp$LAYOUT = (OfInt)$LAYOUT.select(groupElement("TimeDateStamp"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final OfInt TimeDateStamp$layout() {
+        return TimeDateStamp$LAYOUT;
+    }
+
+    private static final long TimeDateStamp$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static final long TimeDateStamp$offset() {
+        return TimeDateStamp$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static int TimeDateStamp(MemorySegment struct) {
+        return struct.get(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD TimeDateStamp
+     * }
+     */
+    public static void TimeDateStamp(MemorySegment struct, int fieldValue) {
+        struct.set(TimeDateStamp$LAYOUT, TimeDateStamp$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PointerToSymbolTable$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PointerToSymbolTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PointerToSymbolTable
+     * }
+     */
+    public static final OfInt PointerToSymbolTable$layout() {
+        return PointerToSymbolTable$LAYOUT;
+    }
+
+    private static final long PointerToSymbolTable$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PointerToSymbolTable
+     * }
+     */
+    public static final long PointerToSymbolTable$offset() {
+        return PointerToSymbolTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToSymbolTable
+     * }
+     */
+    public static int PointerToSymbolTable(MemorySegment struct) {
+        return struct.get(PointerToSymbolTable$LAYOUT, PointerToSymbolTable$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PointerToSymbolTable
+     * }
+     */
+    public static void PointerToSymbolTable(MemorySegment struct, int fieldValue) {
+        struct.set(PointerToSymbolTable$LAYOUT, PointerToSymbolTable$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfSymbols$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfSymbols"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static final OfInt NumberOfSymbols$layout() {
+        return NumberOfSymbols$LAYOUT;
+    }
+
+    private static final long NumberOfSymbols$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static final long NumberOfSymbols$offset() {
+        return NumberOfSymbols$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static int NumberOfSymbols(MemorySegment struct) {
+        return struct.get(NumberOfSymbols$LAYOUT, NumberOfSymbols$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfSymbols
+     * }
+     */
+    public static void NumberOfSymbols(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfSymbols$LAYOUT, NumberOfSymbols$OFFSET, fieldValue);
+    }
+
+    private static final OfShort SizeOfOptionalHeader$LAYOUT = (OfShort)$LAYOUT.select(groupElement("SizeOfOptionalHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD SizeOfOptionalHeader
+     * }
+     */
+    public static final OfShort SizeOfOptionalHeader$layout() {
+        return SizeOfOptionalHeader$LAYOUT;
+    }
+
+    private static final long SizeOfOptionalHeader$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD SizeOfOptionalHeader
+     * }
+     */
+    public static final long SizeOfOptionalHeader$offset() {
+        return SizeOfOptionalHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD SizeOfOptionalHeader
+     * }
+     */
+    public static short SizeOfOptionalHeader(MemorySegment struct) {
+        return struct.get(SizeOfOptionalHeader$LAYOUT, SizeOfOptionalHeader$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD SizeOfOptionalHeader
+     * }
+     */
+    public static void SizeOfOptionalHeader(MemorySegment struct, short fieldValue) {
+        struct.set(SizeOfOptionalHeader$LAYOUT, SizeOfOptionalHeader$OFFSET, fieldValue);
+    }
+
+    private static final OfShort Characteristics$LAYOUT = (OfShort)$LAYOUT.select(groupElement("Characteristics"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static final OfShort Characteristics$layout() {
+        return Characteristics$LAYOUT;
+    }
+
+    private static final long Characteristics$OFFSET = 18;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static final long Characteristics$offset() {
+        return Characteristics$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static short Characteristics(MemorySegment struct) {
+        return struct.get(Characteristics$LAYOUT, Characteristics$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD Characteristics
+     * }
+     */
+    public static void Characteristics(MemorySegment struct, short fieldValue) {
+        struct.set(Characteristics$LAYOUT, Characteristics$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

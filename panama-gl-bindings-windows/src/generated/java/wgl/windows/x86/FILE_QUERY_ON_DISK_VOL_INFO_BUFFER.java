@@ -2,13 +2,37 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER {
+ *     LARGE_INTEGER DirectoryCount;
+ *     LARGE_INTEGER FileCount;
+ *     WORD FsFormatMajVersion;
+ *     WORD FsFormatMinVersion;
+ *     WCHAR FsFormatName[12];
+ *     LARGE_INTEGER FormatTime;
+ *     LARGE_INTEGER LastUpdateTime;
+ *     WCHAR CopyrightInfo[34];
+ *     WCHAR AbstractInfo[34];
+ *     WCHAR FormattingImplementationInfo[34];
+ *     WCHAR LastModifyingImplementationInfo[34];
+ * } FILE_QUERY_ON_DISK_VOL_INFO_BUFFER
+ * }
+ */
 public class FILE_QUERY_ON_DISK_VOL_INFO_BUFFER extends _FILE_QUERY_ON_DISK_VOL_INFO_BUFFER {
 
+    FILE_QUERY_ON_DISK_VOL_INFO_BUFFER() {
+        // Should not be called directly
+    }
 }
-
 

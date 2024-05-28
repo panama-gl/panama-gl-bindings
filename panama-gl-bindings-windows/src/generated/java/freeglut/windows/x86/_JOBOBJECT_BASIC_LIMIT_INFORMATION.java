@@ -2,173 +2,496 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _JOBOBJECT_BASIC_LIMIT_INFORMATION {
+ *     LARGE_INTEGER PerProcessUserTimeLimit;
+ *     LARGE_INTEGER PerJobUserTimeLimit;
+ *     DWORD LimitFlags;
+ *     SIZE_T MinimumWorkingSetSize;
+ *     SIZE_T MaximumWorkingSetSize;
+ *     DWORD ActiveProcessLimit;
+ *     ULONG_PTR Affinity;
+ *     DWORD PriorityClass;
+ *     DWORD SchedulingClass;
+ * }
+ * }
+ */
 public class _JOBOBJECT_BASIC_LIMIT_INFORMATION {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("PerProcessUserTimeLimit"),
-        MemoryLayout.unionLayout(
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("$anon$0"),
-            MemoryLayout.structLayout(
-                Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                Constants$root.C_LONG$LAYOUT.withName("HighPart")
-            ).withName("u"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-        ).withName("PerJobUserTimeLimit"),
-        Constants$root.C_LONG$LAYOUT.withName("LimitFlags"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MinimumWorkingSetSize"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("MaximumWorkingSetSize"),
-        Constants$root.C_LONG$LAYOUT.withName("ActiveProcessLimit"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("Affinity"),
-        Constants$root.C_LONG$LAYOUT.withName("PriorityClass"),
-        Constants$root.C_LONG$LAYOUT.withName("SchedulingClass")
-    ).withName("_JOBOBJECT_BASIC_LIMIT_INFORMATION");
-    public static MemoryLayout $LAYOUT() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.$struct$LAYOUT;
+    _JOBOBJECT_BASIC_LIMIT_INFORMATION() {
+        // Should not be called directly
     }
-    public static MemorySegment PerProcessUserTimeLimit$slice(MemorySegment seg) {
-        return seg.asSlice(0, 8);
-    }
-    public static MemorySegment PerJobUserTimeLimit$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle LimitFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("LimitFlags"));
-    public static VarHandle LimitFlags$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags$VH;
-    }
-    public static int LimitFlags$get(MemorySegment seg) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags$VH.get(seg);
-    }
-    public static void LimitFlags$set( MemorySegment seg, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags$VH.set(seg, x);
-    }
-    public static int LimitFlags$get(MemorySegment seg, long index) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LimitFlags$set(MemorySegment seg, long index, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.LimitFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinimumWorkingSetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinimumWorkingSetSize"));
-    public static VarHandle MinimumWorkingSetSize$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.MinimumWorkingSetSize$VH;
-    }
-    public static long MinimumWorkingSetSize$get(MemorySegment seg) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.MinimumWorkingSetSize$VH.get(seg);
-    }
-    public static void MinimumWorkingSetSize$set( MemorySegment seg, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.MinimumWorkingSetSize$VH.set(seg, x);
-    }
-    public static long MinimumWorkingSetSize$get(MemorySegment seg, long index) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.MinimumWorkingSetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinimumWorkingSetSize$set(MemorySegment seg, long index, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.MinimumWorkingSetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MaximumWorkingSetSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MaximumWorkingSetSize"));
-    public static VarHandle MaximumWorkingSetSize$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.MaximumWorkingSetSize$VH;
-    }
-    public static long MaximumWorkingSetSize$get(MemorySegment seg) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.MaximumWorkingSetSize$VH.get(seg);
-    }
-    public static void MaximumWorkingSetSize$set( MemorySegment seg, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.MaximumWorkingSetSize$VH.set(seg, x);
-    }
-    public static long MaximumWorkingSetSize$get(MemorySegment seg, long index) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.MaximumWorkingSetSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaximumWorkingSetSize$set(MemorySegment seg, long index, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.MaximumWorkingSetSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle ActiveProcessLimit$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ActiveProcessLimit"));
-    public static VarHandle ActiveProcessLimit$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.ActiveProcessLimit$VH;
-    }
-    public static int ActiveProcessLimit$get(MemorySegment seg) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.ActiveProcessLimit$VH.get(seg);
-    }
-    public static void ActiveProcessLimit$set( MemorySegment seg, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.ActiveProcessLimit$VH.set(seg, x);
-    }
-    public static int ActiveProcessLimit$get(MemorySegment seg, long index) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.ActiveProcessLimit$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ActiveProcessLimit$set(MemorySegment seg, long index, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.ActiveProcessLimit$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Affinity$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Affinity"));
-    public static VarHandle Affinity$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.Affinity$VH;
-    }
-    public static long Affinity$get(MemorySegment seg) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.Affinity$VH.get(seg);
-    }
-    public static void Affinity$set( MemorySegment seg, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.Affinity$VH.set(seg, x);
-    }
-    public static long Affinity$get(MemorySegment seg, long index) {
-        return (long)_JOBOBJECT_BASIC_LIMIT_INFORMATION.Affinity$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Affinity$set(MemorySegment seg, long index, long x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.Affinity$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PriorityClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PriorityClass"));
-    public static VarHandle PriorityClass$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.PriorityClass$VH;
-    }
-    public static int PriorityClass$get(MemorySegment seg) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.PriorityClass$VH.get(seg);
-    }
-    public static void PriorityClass$set( MemorySegment seg, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.PriorityClass$VH.set(seg, x);
-    }
-    public static int PriorityClass$get(MemorySegment seg, long index) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.PriorityClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PriorityClass$set(MemorySegment seg, long index, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.PriorityClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle SchedulingClass$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("SchedulingClass"));
-    public static VarHandle SchedulingClass$VH() {
-        return _JOBOBJECT_BASIC_LIMIT_INFORMATION.SchedulingClass$VH;
-    }
-    public static int SchedulingClass$get(MemorySegment seg) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.SchedulingClass$VH.get(seg);
-    }
-    public static void SchedulingClass$set( MemorySegment seg, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.SchedulingClass$VH.set(seg, x);
-    }
-    public static int SchedulingClass$get(MemorySegment seg, long index) {
-        return (int)_JOBOBJECT_BASIC_LIMIT_INFORMATION.SchedulingClass$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SchedulingClass$set(MemorySegment seg, long index, int x) {
-        _JOBOBJECT_BASIC_LIMIT_INFORMATION.SchedulingClass$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _LARGE_INTEGER.layout().withName("PerProcessUserTimeLimit"),
+        _LARGE_INTEGER.layout().withName("PerJobUserTimeLimit"),
+        freeglut_h.C_LONG.withName("LimitFlags"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("MinimumWorkingSetSize"),
+        freeglut_h.C_LONG_LONG.withName("MaximumWorkingSetSize"),
+        freeglut_h.C_LONG.withName("ActiveProcessLimit"),
+        MemoryLayout.paddingLayout(4),
+        freeglut_h.C_LONG_LONG.withName("Affinity"),
+        freeglut_h.C_LONG.withName("PriorityClass"),
+        freeglut_h.C_LONG.withName("SchedulingClass")
+    ).withName("_JOBOBJECT_BASIC_LIMIT_INFORMATION");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout PerProcessUserTimeLimit$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PerProcessUserTimeLimit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerProcessUserTimeLimit
+     * }
+     */
+    public static final GroupLayout PerProcessUserTimeLimit$layout() {
+        return PerProcessUserTimeLimit$LAYOUT;
+    }
+
+    private static final long PerProcessUserTimeLimit$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerProcessUserTimeLimit
+     * }
+     */
+    public static final long PerProcessUserTimeLimit$offset() {
+        return PerProcessUserTimeLimit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerProcessUserTimeLimit
+     * }
+     */
+    public static MemorySegment PerProcessUserTimeLimit(MemorySegment struct) {
+        return struct.asSlice(PerProcessUserTimeLimit$OFFSET, PerProcessUserTimeLimit$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerProcessUserTimeLimit
+     * }
+     */
+    public static void PerProcessUserTimeLimit(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PerProcessUserTimeLimit$OFFSET, PerProcessUserTimeLimit$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout PerJobUserTimeLimit$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("PerJobUserTimeLimit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerJobUserTimeLimit
+     * }
+     */
+    public static final GroupLayout PerJobUserTimeLimit$layout() {
+        return PerJobUserTimeLimit$LAYOUT;
+    }
+
+    private static final long PerJobUserTimeLimit$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerJobUserTimeLimit
+     * }
+     */
+    public static final long PerJobUserTimeLimit$offset() {
+        return PerJobUserTimeLimit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerJobUserTimeLimit
+     * }
+     */
+    public static MemorySegment PerJobUserTimeLimit(MemorySegment struct) {
+        return struct.asSlice(PerJobUserTimeLimit$OFFSET, PerJobUserTimeLimit$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LARGE_INTEGER PerJobUserTimeLimit
+     * }
+     */
+    public static void PerJobUserTimeLimit(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PerJobUserTimeLimit$OFFSET, PerJobUserTimeLimit$LAYOUT.byteSize());
+    }
+
+    private static final OfInt LimitFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("LimitFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD LimitFlags
+     * }
+     */
+    public static final OfInt LimitFlags$layout() {
+        return LimitFlags$LAYOUT;
+    }
+
+    private static final long LimitFlags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD LimitFlags
+     * }
+     */
+    public static final long LimitFlags$offset() {
+        return LimitFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD LimitFlags
+     * }
+     */
+    public static int LimitFlags(MemorySegment struct) {
+        return struct.get(LimitFlags$LAYOUT, LimitFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD LimitFlags
+     * }
+     */
+    public static void LimitFlags(MemorySegment struct, int fieldValue) {
+        struct.set(LimitFlags$LAYOUT, LimitFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MinimumWorkingSetSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MinimumWorkingSetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T MinimumWorkingSetSize
+     * }
+     */
+    public static final OfLong MinimumWorkingSetSize$layout() {
+        return MinimumWorkingSetSize$LAYOUT;
+    }
+
+    private static final long MinimumWorkingSetSize$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T MinimumWorkingSetSize
+     * }
+     */
+    public static final long MinimumWorkingSetSize$offset() {
+        return MinimumWorkingSetSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T MinimumWorkingSetSize
+     * }
+     */
+    public static long MinimumWorkingSetSize(MemorySegment struct) {
+        return struct.get(MinimumWorkingSetSize$LAYOUT, MinimumWorkingSetSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T MinimumWorkingSetSize
+     * }
+     */
+    public static void MinimumWorkingSetSize(MemorySegment struct, long fieldValue) {
+        struct.set(MinimumWorkingSetSize$LAYOUT, MinimumWorkingSetSize$OFFSET, fieldValue);
+    }
+
+    private static final OfLong MaximumWorkingSetSize$LAYOUT = (OfLong)$LAYOUT.select(groupElement("MaximumWorkingSetSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SIZE_T MaximumWorkingSetSize
+     * }
+     */
+    public static final OfLong MaximumWorkingSetSize$layout() {
+        return MaximumWorkingSetSize$LAYOUT;
+    }
+
+    private static final long MaximumWorkingSetSize$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SIZE_T MaximumWorkingSetSize
+     * }
+     */
+    public static final long MaximumWorkingSetSize$offset() {
+        return MaximumWorkingSetSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SIZE_T MaximumWorkingSetSize
+     * }
+     */
+    public static long MaximumWorkingSetSize(MemorySegment struct) {
+        return struct.get(MaximumWorkingSetSize$LAYOUT, MaximumWorkingSetSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SIZE_T MaximumWorkingSetSize
+     * }
+     */
+    public static void MaximumWorkingSetSize(MemorySegment struct, long fieldValue) {
+        struct.set(MaximumWorkingSetSize$LAYOUT, MaximumWorkingSetSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt ActiveProcessLimit$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ActiveProcessLimit"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD ActiveProcessLimit
+     * }
+     */
+    public static final OfInt ActiveProcessLimit$layout() {
+        return ActiveProcessLimit$LAYOUT;
+    }
+
+    private static final long ActiveProcessLimit$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD ActiveProcessLimit
+     * }
+     */
+    public static final long ActiveProcessLimit$offset() {
+        return ActiveProcessLimit$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD ActiveProcessLimit
+     * }
+     */
+    public static int ActiveProcessLimit(MemorySegment struct) {
+        return struct.get(ActiveProcessLimit$LAYOUT, ActiveProcessLimit$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD ActiveProcessLimit
+     * }
+     */
+    public static void ActiveProcessLimit(MemorySegment struct, int fieldValue) {
+        struct.set(ActiveProcessLimit$LAYOUT, ActiveProcessLimit$OFFSET, fieldValue);
+    }
+
+    private static final OfLong Affinity$LAYOUT = (OfLong)$LAYOUT.select(groupElement("Affinity"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Affinity
+     * }
+     */
+    public static final OfLong Affinity$layout() {
+        return Affinity$LAYOUT;
+    }
+
+    private static final long Affinity$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Affinity
+     * }
+     */
+    public static final long Affinity$offset() {
+        return Affinity$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Affinity
+     * }
+     */
+    public static long Affinity(MemorySegment struct) {
+        return struct.get(Affinity$LAYOUT, Affinity$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * ULONG_PTR Affinity
+     * }
+     */
+    public static void Affinity(MemorySegment struct, long fieldValue) {
+        struct.set(Affinity$LAYOUT, Affinity$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PriorityClass$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PriorityClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PriorityClass
+     * }
+     */
+    public static final OfInt PriorityClass$layout() {
+        return PriorityClass$LAYOUT;
+    }
+
+    private static final long PriorityClass$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PriorityClass
+     * }
+     */
+    public static final long PriorityClass$offset() {
+        return PriorityClass$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PriorityClass
+     * }
+     */
+    public static int PriorityClass(MemorySegment struct) {
+        return struct.get(PriorityClass$LAYOUT, PriorityClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PriorityClass
+     * }
+     */
+    public static void PriorityClass(MemorySegment struct, int fieldValue) {
+        struct.set(PriorityClass$LAYOUT, PriorityClass$OFFSET, fieldValue);
+    }
+
+    private static final OfInt SchedulingClass$LAYOUT = (OfInt)$LAYOUT.select(groupElement("SchedulingClass"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD SchedulingClass
+     * }
+     */
+    public static final OfInt SchedulingClass$layout() {
+        return SchedulingClass$LAYOUT;
+    }
+
+    private static final long SchedulingClass$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD SchedulingClass
+     * }
+     */
+    public static final long SchedulingClass$offset() {
+        return SchedulingClass$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD SchedulingClass
+     * }
+     */
+    public static int SchedulingClass(MemorySegment struct) {
+        return struct.get(SchedulingClass$LAYOUT, SchedulingClass$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD SchedulingClass
+     * }
+     */
+    public static void SchedulingClass(MemorySegment struct, int fieldValue) {
+        struct.set(SchedulingClass$LAYOUT, SchedulingClass$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

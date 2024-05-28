@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _ADMINISTRATOR_POWER_POLICY {
+ *     SYSTEM_POWER_STATE MinSleep;
+ *     SYSTEM_POWER_STATE MaxSleep;
+ *     DWORD MinVideoTimeout;
+ *     DWORD MaxVideoTimeout;
+ *     DWORD MinSpindownTimeout;
+ *     DWORD MaxSpindownTimeout;
+ * } ADMINISTRATOR_POWER_POLICY
+ * }
+ */
 public class ADMINISTRATOR_POWER_POLICY extends _ADMINISTRATOR_POWER_POLICY {
 
+    ADMINISTRATOR_POWER_POLICY() {
+        // Should not be called directly
+    }
 }
-
 

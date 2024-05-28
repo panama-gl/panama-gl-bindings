@@ -2,116 +2,255 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _GET_MEDIA_TYPES {
+ *     DWORD DeviceType;
+ *     DWORD MediaInfoCount;
+ *     DEVICE_MEDIA_INFO MediaInfo[1];
+ * }
+ * }
+ */
 public class _GET_MEDIA_TYPES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("DeviceType"),
-        Constants$root.C_LONG$LAYOUT.withName("MediaInfoCount"),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.unionLayout(
-                MemoryLayout.structLayout(
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("$anon$0"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("u"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                    ).withName("Cylinders"),
-                    Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                    Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                    Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                    Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                    Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                    Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-                ).withName("DiskInfo"),
-                MemoryLayout.structLayout(
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("$anon$0"),
-                        MemoryLayout.structLayout(
-                            Constants$root.C_LONG$LAYOUT.withName("LowPart"),
-                            Constants$root.C_LONG$LAYOUT.withName("HighPart")
-                        ).withName("u"),
-                        Constants$root.C_LONG_LONG$LAYOUT.withName("QuadPart")
-                    ).withName("Cylinders"),
-                    Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                    Constants$root.C_LONG$LAYOUT.withName("TracksPerCylinder"),
-                    Constants$root.C_LONG$LAYOUT.withName("SectorsPerTrack"),
-                    Constants$root.C_LONG$LAYOUT.withName("BytesPerSector"),
-                    Constants$root.C_LONG$LAYOUT.withName("NumberMediaSides"),
-                    Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics")
-                ).withName("RemovableDiskInfo"),
-                MemoryLayout.structLayout(
-                    Constants$root.C_LONG$LAYOUT.withName("MediaType"),
-                    Constants$root.C_LONG$LAYOUT.withName("MediaCharacteristics"),
-                    Constants$root.C_LONG$LAYOUT.withName("CurrentBlockSize"),
-                    Constants$root.C_LONG$LAYOUT.withName("BusType"),
-                    MemoryLayout.unionLayout(
-                        MemoryLayout.structLayout(
-                            Constants$root.C_CHAR$LAYOUT.withName("MediumType"),
-                            Constants$root.C_CHAR$LAYOUT.withName("DensityCode")
-                        ).withName("ScsiInformation")
-                    ).withName("BusSpecificData"),
-                    MemoryLayout.paddingLayout(16)
-                ).withName("TapeInfo")
-            ).withName("DeviceSpecific")
-        ).withName("_DEVICE_MEDIA_INFO")).withName("MediaInfo")
-    ).withName("_GET_MEDIA_TYPES");
-    public static MemoryLayout $LAYOUT() {
-        return _GET_MEDIA_TYPES.$struct$LAYOUT;
+    _GET_MEDIA_TYPES() {
+        // Should not be called directly
     }
-    static final VarHandle DeviceType$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DeviceType"));
-    public static VarHandle DeviceType$VH() {
-        return _GET_MEDIA_TYPES.DeviceType$VH;
-    }
-    public static int DeviceType$get(MemorySegment seg) {
-        return (int)_GET_MEDIA_TYPES.DeviceType$VH.get(seg);
-    }
-    public static void DeviceType$set( MemorySegment seg, int x) {
-        _GET_MEDIA_TYPES.DeviceType$VH.set(seg, x);
-    }
-    public static int DeviceType$get(MemorySegment seg, long index) {
-        return (int)_GET_MEDIA_TYPES.DeviceType$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DeviceType$set(MemorySegment seg, long index, int x) {
-        _GET_MEDIA_TYPES.DeviceType$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MediaInfoCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MediaInfoCount"));
-    public static VarHandle MediaInfoCount$VH() {
-        return _GET_MEDIA_TYPES.MediaInfoCount$VH;
-    }
-    public static int MediaInfoCount$get(MemorySegment seg) {
-        return (int)_GET_MEDIA_TYPES.MediaInfoCount$VH.get(seg);
-    }
-    public static void MediaInfoCount$set( MemorySegment seg, int x) {
-        _GET_MEDIA_TYPES.MediaInfoCount$VH.set(seg, x);
-    }
-    public static int MediaInfoCount$get(MemorySegment seg, long index) {
-        return (int)_GET_MEDIA_TYPES.MediaInfoCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MediaInfoCount$set(MemorySegment seg, long index, int x) {
-        _GET_MEDIA_TYPES.MediaInfoCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment MediaInfo$slice(MemorySegment seg) {
-        return seg.asSlice(8, 32);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("DeviceType"),
+        wgl_h.C_LONG.withName("MediaInfoCount"),
+        MemoryLayout.sequenceLayout(1, _DEVICE_MEDIA_INFO.layout()).withName("MediaInfo")
+    ).withName("_GET_MEDIA_TYPES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt DeviceType$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DeviceType"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DeviceType
+     * }
+     */
+    public static final OfInt DeviceType$layout() {
+        return DeviceType$LAYOUT;
+    }
+
+    private static final long DeviceType$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DeviceType
+     * }
+     */
+    public static final long DeviceType$offset() {
+        return DeviceType$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DeviceType
+     * }
+     */
+    public static int DeviceType(MemorySegment struct) {
+        return struct.get(DeviceType$LAYOUT, DeviceType$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DeviceType
+     * }
+     */
+    public static void DeviceType(MemorySegment struct, int fieldValue) {
+        struct.set(DeviceType$LAYOUT, DeviceType$OFFSET, fieldValue);
+    }
+
+    private static final OfInt MediaInfoCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("MediaInfoCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD MediaInfoCount
+     * }
+     */
+    public static final OfInt MediaInfoCount$layout() {
+        return MediaInfoCount$LAYOUT;
+    }
+
+    private static final long MediaInfoCount$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD MediaInfoCount
+     * }
+     */
+    public static final long MediaInfoCount$offset() {
+        return MediaInfoCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD MediaInfoCount
+     * }
+     */
+    public static int MediaInfoCount(MemorySegment struct) {
+        return struct.get(MediaInfoCount$LAYOUT, MediaInfoCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD MediaInfoCount
+     * }
+     */
+    public static void MediaInfoCount(MemorySegment struct, int fieldValue) {
+        struct.set(MediaInfoCount$LAYOUT, MediaInfoCount$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout MediaInfo$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("MediaInfo"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static final SequenceLayout MediaInfo$layout() {
+        return MediaInfo$LAYOUT;
+    }
+
+    private static final long MediaInfo$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static final long MediaInfo$offset() {
+        return MediaInfo$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static MemorySegment MediaInfo(MemorySegment struct) {
+        return struct.asSlice(MediaInfo$OFFSET, MediaInfo$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static void MediaInfo(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MediaInfo$OFFSET, MediaInfo$LAYOUT.byteSize());
+    }
+
+    private static long[] MediaInfo$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static long[] MediaInfo$dimensions() {
+        return MediaInfo$DIMS;
+    }
+    private static final MethodHandle MediaInfo$ELEM_HANDLE = MediaInfo$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static MemorySegment MediaInfo(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)MediaInfo$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DEVICE_MEDIA_INFO MediaInfo[1]
+     * }
+     */
+    public static void MediaInfo(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, MediaInfo(struct, index0), 0L, _DEVICE_MEDIA_INFO.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

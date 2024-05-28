@@ -2,13 +2,33 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _TXFS_GET_METADATA_INFO_OUT {
+ *     struct {
+ *         LONGLONG LowPart;
+ *         LONGLONG HighPart;
+ *     } TxfFileId;
+ *     GUID LockingTransaction;
+ *     DWORDLONG LastLsn;
+ *     DWORD TransactionState;
+ * } TXFS_GET_METADATA_INFO_OUT
+ * }
+ */
 public class TXFS_GET_METADATA_INFO_OUT extends _TXFS_GET_METADATA_INFO_OUT {
 
+    TXFS_GET_METADATA_INFO_OUT() {
+        // Should not be called directly
+    }
 }
-
 

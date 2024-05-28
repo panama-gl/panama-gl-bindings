@@ -2,13 +2,34 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagRECONVERTSTRING {
+ *     DWORD dwSize;
+ *     DWORD dwVersion;
+ *     DWORD dwStrLen;
+ *     DWORD dwStrOffset;
+ *     DWORD dwCompStrLen;
+ *     DWORD dwCompStrOffset;
+ *     DWORD dwTargetStrLen;
+ *     DWORD dwTargetStrOffset;
+ * } RECONVERTSTRING
+ * }
+ */
 public class RECONVERTSTRING extends tagRECONVERTSTRING {
 
+    RECONVERTSTRING() {
+        // Should not be called directly
+    }
 }
-
 

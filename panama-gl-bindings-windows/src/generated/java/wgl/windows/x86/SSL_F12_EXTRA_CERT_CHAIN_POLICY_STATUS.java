@@ -2,13 +2,31 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS {
+ *     DWORD cbSize;
+ *     DWORD dwErrorLevel;
+ *     DWORD dwErrorCategory;
+ *     DWORD dwReserved;
+ *     WCHAR wszErrorText[256];
+ * } SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS
+ * }
+ */
 public class SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS extends _SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS {
 
+    SSL_F12_EXTRA_CERT_CHAIN_POLICY_STATUS() {
+        // Should not be called directly
+    }
 }
-
 

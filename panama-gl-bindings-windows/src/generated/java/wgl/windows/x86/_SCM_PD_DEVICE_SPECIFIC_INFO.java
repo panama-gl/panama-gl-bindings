@@ -2,83 +2,302 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SCM_PD_DEVICE_SPECIFIC_INFO {
+ *     DWORD Version;
+ *     DWORD Size;
+ *     DWORD NumberOfProperties;
+ *     SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1];
+ * }
+ * }
+ */
 public class _SCM_PD_DEVICE_SPECIFIC_INFO {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("Version"),
-        Constants$root.C_LONG$LAYOUT.withName("Size"),
-        Constants$root.C_LONG$LAYOUT.withName("NumberOfProperties"),
-        MemoryLayout.paddingLayout(32),
-        MemoryLayout.sequenceLayout(1, MemoryLayout.structLayout(
-            MemoryLayout.sequenceLayout(128, Constants$root.C_SHORT$LAYOUT).withName("Name"),
-            Constants$root.C_LONG_LONG$LAYOUT.withName("Value")
-        ).withName("_SCM_PD_DEVICE_SPECIFIC_PROPERTY")).withName("DeviceSpecificProperties")
-    ).withName("_SCM_PD_DEVICE_SPECIFIC_INFO");
-    public static MemoryLayout $LAYOUT() {
-        return _SCM_PD_DEVICE_SPECIFIC_INFO.$struct$LAYOUT;
+    _SCM_PD_DEVICE_SPECIFIC_INFO() {
+        // Should not be called directly
     }
-    static final VarHandle Version$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Version"));
-    public static VarHandle Version$VH() {
-        return _SCM_PD_DEVICE_SPECIFIC_INFO.Version$VH;
-    }
-    public static int Version$get(MemorySegment seg) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.Version$VH.get(seg);
-    }
-    public static void Version$set( MemorySegment seg, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.Version$VH.set(seg, x);
-    }
-    public static int Version$get(MemorySegment seg, long index) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.Version$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Version$set(MemorySegment seg, long index, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.Version$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Size"));
-    public static VarHandle Size$VH() {
-        return _SCM_PD_DEVICE_SPECIFIC_INFO.Size$VH;
-    }
-    public static int Size$get(MemorySegment seg) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.Size$VH.get(seg);
-    }
-    public static void Size$set( MemorySegment seg, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.Size$VH.set(seg, x);
-    }
-    public static int Size$get(MemorySegment seg, long index) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Size$set(MemorySegment seg, long index, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle NumberOfProperties$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("NumberOfProperties"));
-    public static VarHandle NumberOfProperties$VH() {
-        return _SCM_PD_DEVICE_SPECIFIC_INFO.NumberOfProperties$VH;
-    }
-    public static int NumberOfProperties$get(MemorySegment seg) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.NumberOfProperties$VH.get(seg);
-    }
-    public static void NumberOfProperties$set( MemorySegment seg, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.NumberOfProperties$VH.set(seg, x);
-    }
-    public static int NumberOfProperties$get(MemorySegment seg, long index) {
-        return (int)_SCM_PD_DEVICE_SPECIFIC_INFO.NumberOfProperties$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void NumberOfProperties$set(MemorySegment seg, long index, int x) {
-        _SCM_PD_DEVICE_SPECIFIC_INFO.NumberOfProperties$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment DeviceSpecificProperties$slice(MemorySegment seg) {
-        return seg.asSlice(16, 264);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("Version"),
+        wgl_h.C_LONG.withName("Size"),
+        wgl_h.C_LONG.withName("NumberOfProperties"),
+        MemoryLayout.paddingLayout(4),
+        MemoryLayout.sequenceLayout(1, _SCM_PD_DEVICE_SPECIFIC_PROPERTY.layout()).withName("DeviceSpecificProperties")
+    ).withName("_SCM_PD_DEVICE_SPECIFIC_INFO");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt Version$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Version"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final OfInt Version$layout() {
+        return Version$LAYOUT;
+    }
+
+    private static final long Version$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static final long Version$offset() {
+        return Version$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static int Version(MemorySegment struct) {
+        return struct.get(Version$LAYOUT, Version$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Version
+     * }
+     */
+    public static void Version(MemorySegment struct, int fieldValue) {
+        struct.set(Version$LAYOUT, Version$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final OfInt Size$layout() {
+        return Size$LAYOUT;
+    }
+
+    private static final long Size$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static final long Size$offset() {
+        return Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static int Size(MemorySegment struct) {
+        return struct.get(Size$LAYOUT, Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Size
+     * }
+     */
+    public static void Size(MemorySegment struct, int fieldValue) {
+        struct.set(Size$LAYOUT, Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt NumberOfProperties$LAYOUT = (OfInt)$LAYOUT.select(groupElement("NumberOfProperties"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfProperties
+     * }
+     */
+    public static final OfInt NumberOfProperties$layout() {
+        return NumberOfProperties$LAYOUT;
+    }
+
+    private static final long NumberOfProperties$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfProperties
+     * }
+     */
+    public static final long NumberOfProperties$offset() {
+        return NumberOfProperties$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfProperties
+     * }
+     */
+    public static int NumberOfProperties(MemorySegment struct) {
+        return struct.get(NumberOfProperties$LAYOUT, NumberOfProperties$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD NumberOfProperties
+     * }
+     */
+    public static void NumberOfProperties(MemorySegment struct, int fieldValue) {
+        struct.set(NumberOfProperties$LAYOUT, NumberOfProperties$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout DeviceSpecificProperties$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("DeviceSpecificProperties"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static final SequenceLayout DeviceSpecificProperties$layout() {
+        return DeviceSpecificProperties$LAYOUT;
+    }
+
+    private static final long DeviceSpecificProperties$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static final long DeviceSpecificProperties$offset() {
+        return DeviceSpecificProperties$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static MemorySegment DeviceSpecificProperties(MemorySegment struct) {
+        return struct.asSlice(DeviceSpecificProperties$OFFSET, DeviceSpecificProperties$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static void DeviceSpecificProperties(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, DeviceSpecificProperties$OFFSET, DeviceSpecificProperties$LAYOUT.byteSize());
+    }
+
+    private static long[] DeviceSpecificProperties$DIMS = { 1 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static long[] DeviceSpecificProperties$dimensions() {
+        return DeviceSpecificProperties$DIMS;
+    }
+    private static final MethodHandle DeviceSpecificProperties$ELEM_HANDLE = DeviceSpecificProperties$LAYOUT.sliceHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static MemorySegment DeviceSpecificProperties(MemorySegment struct, long index0) {
+        try {
+            return (MemorySegment)DeviceSpecificProperties$ELEM_HANDLE.invokeExact(struct, 0L, index0);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * SCM_PD_DEVICE_SPECIFIC_PROPERTY DeviceSpecificProperties[1]
+     * }
+     */
+    public static void DeviceSpecificProperties(MemorySegment struct, long index0, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, DeviceSpecificProperties(struct, index0), 0L, _SCM_PD_DEVICE_SPECIFIC_PROPERTY.layout().byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,97 +2,402 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagSTATPROPSETSTG {
+ *     FMTID fmtid;
+ *     CLSID clsid;
+ *     DWORD grfFlags;
+ *     FILETIME mtime;
+ *     FILETIME ctime;
+ *     FILETIME atime;
+ *     DWORD dwOSVersion;
+ * }
+ * }
+ */
 public class tagSTATPROPSETSTG {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("fmtid"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("Data1"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data2"),
-            Constants$root.C_SHORT$LAYOUT.withName("Data3"),
-            MemoryLayout.sequenceLayout(8, Constants$root.C_CHAR$LAYOUT).withName("Data4")
-        ).withName("clsid"),
-        Constants$root.C_LONG$LAYOUT.withName("grfFlags"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("mtime"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("ctime"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("dwLowDateTime"),
-            Constants$root.C_LONG$LAYOUT.withName("dwHighDateTime")
-        ).withName("atime"),
-        Constants$root.C_LONG$LAYOUT.withName("dwOSVersion")
-    ).withName("tagSTATPROPSETSTG");
-    public static MemoryLayout $LAYOUT() {
-        return tagSTATPROPSETSTG.$struct$LAYOUT;
+    tagSTATPROPSETSTG() {
+        // Should not be called directly
     }
-    public static MemorySegment fmtid$slice(MemorySegment seg) {
-        return seg.asSlice(0, 16);
-    }
-    public static MemorySegment clsid$slice(MemorySegment seg) {
-        return seg.asSlice(16, 16);
-    }
-    static final VarHandle grfFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("grfFlags"));
-    public static VarHandle grfFlags$VH() {
-        return tagSTATPROPSETSTG.grfFlags$VH;
-    }
-    public static int grfFlags$get(MemorySegment seg) {
-        return (int)tagSTATPROPSETSTG.grfFlags$VH.get(seg);
-    }
-    public static void grfFlags$set( MemorySegment seg, int x) {
-        tagSTATPROPSETSTG.grfFlags$VH.set(seg, x);
-    }
-    public static int grfFlags$get(MemorySegment seg, long index) {
-        return (int)tagSTATPROPSETSTG.grfFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void grfFlags$set(MemorySegment seg, long index, int x) {
-        tagSTATPROPSETSTG.grfFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment mtime$slice(MemorySegment seg) {
-        return seg.asSlice(36, 8);
-    }
-    public static MemorySegment ctime$slice(MemorySegment seg) {
-        return seg.asSlice(44, 8);
-    }
-    public static MemorySegment atime$slice(MemorySegment seg) {
-        return seg.asSlice(52, 8);
-    }
-    static final VarHandle dwOSVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwOSVersion"));
-    public static VarHandle dwOSVersion$VH() {
-        return tagSTATPROPSETSTG.dwOSVersion$VH;
-    }
-    public static int dwOSVersion$get(MemorySegment seg) {
-        return (int)tagSTATPROPSETSTG.dwOSVersion$VH.get(seg);
-    }
-    public static void dwOSVersion$set( MemorySegment seg, int x) {
-        tagSTATPROPSETSTG.dwOSVersion$VH.set(seg, x);
-    }
-    public static int dwOSVersion$get(MemorySegment seg, long index) {
-        return (int)tagSTATPROPSETSTG.dwOSVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwOSVersion$set(MemorySegment seg, long index, int x) {
-        tagSTATPROPSETSTG.dwOSVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        _GUID.layout().withName("fmtid"),
+        _GUID.layout().withName("clsid"),
+        wgl_h.C_LONG.withName("grfFlags"),
+        _FILETIME.layout().withName("mtime"),
+        _FILETIME.layout().withName("ctime"),
+        _FILETIME.layout().withName("atime"),
+        wgl_h.C_LONG.withName("dwOSVersion")
+    ).withName("tagSTATPROPSETSTG");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout fmtid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("fmtid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FMTID fmtid
+     * }
+     */
+    public static final GroupLayout fmtid$layout() {
+        return fmtid$LAYOUT;
+    }
+
+    private static final long fmtid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FMTID fmtid
+     * }
+     */
+    public static final long fmtid$offset() {
+        return fmtid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FMTID fmtid
+     * }
+     */
+    public static MemorySegment fmtid(MemorySegment struct) {
+        return struct.asSlice(fmtid$OFFSET, fmtid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FMTID fmtid
+     * }
+     */
+    public static void fmtid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, fmtid$OFFSET, fmtid$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout clsid$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("clsid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * CLSID clsid
+     * }
+     */
+    public static final GroupLayout clsid$layout() {
+        return clsid$LAYOUT;
+    }
+
+    private static final long clsid$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * CLSID clsid
+     * }
+     */
+    public static final long clsid$offset() {
+        return clsid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * CLSID clsid
+     * }
+     */
+    public static MemorySegment clsid(MemorySegment struct) {
+        return struct.asSlice(clsid$OFFSET, clsid$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * CLSID clsid
+     * }
+     */
+    public static void clsid(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, clsid$OFFSET, clsid$LAYOUT.byteSize());
+    }
+
+    private static final OfInt grfFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("grfFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD grfFlags
+     * }
+     */
+    public static final OfInt grfFlags$layout() {
+        return grfFlags$LAYOUT;
+    }
+
+    private static final long grfFlags$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD grfFlags
+     * }
+     */
+    public static final long grfFlags$offset() {
+        return grfFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD grfFlags
+     * }
+     */
+    public static int grfFlags(MemorySegment struct) {
+        return struct.get(grfFlags$LAYOUT, grfFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD grfFlags
+     * }
+     */
+    public static void grfFlags(MemorySegment struct, int fieldValue) {
+        struct.set(grfFlags$LAYOUT, grfFlags$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout mtime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("mtime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME mtime
+     * }
+     */
+    public static final GroupLayout mtime$layout() {
+        return mtime$LAYOUT;
+    }
+
+    private static final long mtime$OFFSET = 36;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME mtime
+     * }
+     */
+    public static final long mtime$offset() {
+        return mtime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME mtime
+     * }
+     */
+    public static MemorySegment mtime(MemorySegment struct) {
+        return struct.asSlice(mtime$OFFSET, mtime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME mtime
+     * }
+     */
+    public static void mtime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, mtime$OFFSET, mtime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ctime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ctime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME ctime
+     * }
+     */
+    public static final GroupLayout ctime$layout() {
+        return ctime$LAYOUT;
+    }
+
+    private static final long ctime$OFFSET = 44;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME ctime
+     * }
+     */
+    public static final long ctime$offset() {
+        return ctime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME ctime
+     * }
+     */
+    public static MemorySegment ctime(MemorySegment struct) {
+        return struct.asSlice(ctime$OFFSET, ctime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME ctime
+     * }
+     */
+    public static void ctime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ctime$OFFSET, ctime$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout atime$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("atime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * FILETIME atime
+     * }
+     */
+    public static final GroupLayout atime$layout() {
+        return atime$LAYOUT;
+    }
+
+    private static final long atime$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * FILETIME atime
+     * }
+     */
+    public static final long atime$offset() {
+        return atime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * FILETIME atime
+     * }
+     */
+    public static MemorySegment atime(MemorySegment struct) {
+        return struct.asSlice(atime$OFFSET, atime$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * FILETIME atime
+     * }
+     */
+    public static void atime(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, atime$OFFSET, atime$LAYOUT.byteSize());
+    }
+
+    private static final OfInt dwOSVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwOSVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwOSVersion
+     * }
+     */
+    public static final OfInt dwOSVersion$layout() {
+        return dwOSVersion$LAYOUT;
+    }
+
+    private static final long dwOSVersion$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwOSVersion
+     * }
+     */
+    public static final long dwOSVersion$offset() {
+        return dwOSVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwOSVersion
+     * }
+     */
+    public static int dwOSVersion(MemorySegment struct) {
+        return struct.get(dwOSVersion$LAYOUT, dwOSVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwOSVersion
+     * }
+     */
+    public static void dwOSVersion(MemorySegment struct, int fieldValue) {
+        struct.set(dwOSVersion$LAYOUT, dwOSVersion$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

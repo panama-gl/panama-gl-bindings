@@ -2,147 +2,481 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct CM_Power_Data_s {
+ *     DWORD PD_Size;
+ *     DEVICE_POWER_STATE PD_MostRecentPowerState;
+ *     DWORD PD_Capabilities;
+ *     DWORD PD_D1Latency;
+ *     DWORD PD_D2Latency;
+ *     DWORD PD_D3Latency;
+ *     DEVICE_POWER_STATE PD_PowerStateMapping[7];
+ *     SYSTEM_POWER_STATE PD_DeepestSystemWake;
+ * }
+ * }
+ */
 public class CM_Power_Data_s {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("PD_Size"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_MostRecentPowerState"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_Capabilities"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_D1Latency"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_D2Latency"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_D3Latency"),
-        MemoryLayout.sequenceLayout(7, Constants$root.C_LONG$LAYOUT).withName("PD_PowerStateMapping"),
-        Constants$root.C_LONG$LAYOUT.withName("PD_DeepestSystemWake")
-    ).withName("CM_Power_Data_s");
-    public static MemoryLayout $LAYOUT() {
-        return CM_Power_Data_s.$struct$LAYOUT;
+    CM_Power_Data_s() {
+        // Should not be called directly
     }
-    static final VarHandle PD_Size$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_Size"));
-    public static VarHandle PD_Size$VH() {
-        return CM_Power_Data_s.PD_Size$VH;
-    }
-    public static int PD_Size$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_Size$VH.get(seg);
-    }
-    public static void PD_Size$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_Size$VH.set(seg, x);
-    }
-    public static int PD_Size$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_Size$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_Size$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_Size$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PD_MostRecentPowerState$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_MostRecentPowerState"));
-    public static VarHandle PD_MostRecentPowerState$VH() {
-        return CM_Power_Data_s.PD_MostRecentPowerState$VH;
-    }
-    public static int PD_MostRecentPowerState$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_MostRecentPowerState$VH.get(seg);
-    }
-    public static void PD_MostRecentPowerState$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_MostRecentPowerState$VH.set(seg, x);
-    }
-    public static int PD_MostRecentPowerState$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_MostRecentPowerState$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_MostRecentPowerState$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_MostRecentPowerState$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PD_Capabilities$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_Capabilities"));
-    public static VarHandle PD_Capabilities$VH() {
-        return CM_Power_Data_s.PD_Capabilities$VH;
-    }
-    public static int PD_Capabilities$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_Capabilities$VH.get(seg);
-    }
-    public static void PD_Capabilities$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_Capabilities$VH.set(seg, x);
-    }
-    public static int PD_Capabilities$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_Capabilities$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_Capabilities$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_Capabilities$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PD_D1Latency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_D1Latency"));
-    public static VarHandle PD_D1Latency$VH() {
-        return CM_Power_Data_s.PD_D1Latency$VH;
-    }
-    public static int PD_D1Latency$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_D1Latency$VH.get(seg);
-    }
-    public static void PD_D1Latency$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_D1Latency$VH.set(seg, x);
-    }
-    public static int PD_D1Latency$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_D1Latency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_D1Latency$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_D1Latency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PD_D2Latency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_D2Latency"));
-    public static VarHandle PD_D2Latency$VH() {
-        return CM_Power_Data_s.PD_D2Latency$VH;
-    }
-    public static int PD_D2Latency$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_D2Latency$VH.get(seg);
-    }
-    public static void PD_D2Latency$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_D2Latency$VH.set(seg, x);
-    }
-    public static int PD_D2Latency$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_D2Latency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_D2Latency$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_D2Latency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle PD_D3Latency$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_D3Latency"));
-    public static VarHandle PD_D3Latency$VH() {
-        return CM_Power_Data_s.PD_D3Latency$VH;
-    }
-    public static int PD_D3Latency$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_D3Latency$VH.get(seg);
-    }
-    public static void PD_D3Latency$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_D3Latency$VH.set(seg, x);
-    }
-    public static int PD_D3Latency$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_D3Latency$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_D3Latency$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_D3Latency$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment PD_PowerStateMapping$slice(MemorySegment seg) {
-        return seg.asSlice(24, 28);
-    }
-    static final VarHandle PD_DeepestSystemWake$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("PD_DeepestSystemWake"));
-    public static VarHandle PD_DeepestSystemWake$VH() {
-        return CM_Power_Data_s.PD_DeepestSystemWake$VH;
-    }
-    public static int PD_DeepestSystemWake$get(MemorySegment seg) {
-        return (int)CM_Power_Data_s.PD_DeepestSystemWake$VH.get(seg);
-    }
-    public static void PD_DeepestSystemWake$set( MemorySegment seg, int x) {
-        CM_Power_Data_s.PD_DeepestSystemWake$VH.set(seg, x);
-    }
-    public static int PD_DeepestSystemWake$get(MemorySegment seg, long index) {
-        return (int)CM_Power_Data_s.PD_DeepestSystemWake$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void PD_DeepestSystemWake$set(MemorySegment seg, long index, int x) {
-        CM_Power_Data_s.PD_DeepestSystemWake$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("PD_Size"),
+        freeglut_h.C_INT.withName("PD_MostRecentPowerState"),
+        freeglut_h.C_LONG.withName("PD_Capabilities"),
+        freeglut_h.C_LONG.withName("PD_D1Latency"),
+        freeglut_h.C_LONG.withName("PD_D2Latency"),
+        freeglut_h.C_LONG.withName("PD_D3Latency"),
+        MemoryLayout.sequenceLayout(7, freeglut_h.C_INT).withName("PD_PowerStateMapping"),
+        freeglut_h.C_INT.withName("PD_DeepestSystemWake")
+    ).withName("CM_Power_Data_s");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt PD_Size$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_Size"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PD_Size
+     * }
+     */
+    public static final OfInt PD_Size$layout() {
+        return PD_Size$LAYOUT;
+    }
+
+    private static final long PD_Size$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PD_Size
+     * }
+     */
+    public static final long PD_Size$offset() {
+        return PD_Size$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PD_Size
+     * }
+     */
+    public static int PD_Size(MemorySegment struct) {
+        return struct.get(PD_Size$LAYOUT, PD_Size$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PD_Size
+     * }
+     */
+    public static void PD_Size(MemorySegment struct, int fieldValue) {
+        struct.set(PD_Size$LAYOUT, PD_Size$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PD_MostRecentPowerState$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_MostRecentPowerState"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_MostRecentPowerState
+     * }
+     */
+    public static final OfInt PD_MostRecentPowerState$layout() {
+        return PD_MostRecentPowerState$LAYOUT;
+    }
+
+    private static final long PD_MostRecentPowerState$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_MostRecentPowerState
+     * }
+     */
+    public static final long PD_MostRecentPowerState$offset() {
+        return PD_MostRecentPowerState$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_MostRecentPowerState
+     * }
+     */
+    public static int PD_MostRecentPowerState(MemorySegment struct) {
+        return struct.get(PD_MostRecentPowerState$LAYOUT, PD_MostRecentPowerState$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_MostRecentPowerState
+     * }
+     */
+    public static void PD_MostRecentPowerState(MemorySegment struct, int fieldValue) {
+        struct.set(PD_MostRecentPowerState$LAYOUT, PD_MostRecentPowerState$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PD_Capabilities$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_Capabilities"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PD_Capabilities
+     * }
+     */
+    public static final OfInt PD_Capabilities$layout() {
+        return PD_Capabilities$LAYOUT;
+    }
+
+    private static final long PD_Capabilities$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PD_Capabilities
+     * }
+     */
+    public static final long PD_Capabilities$offset() {
+        return PD_Capabilities$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PD_Capabilities
+     * }
+     */
+    public static int PD_Capabilities(MemorySegment struct) {
+        return struct.get(PD_Capabilities$LAYOUT, PD_Capabilities$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PD_Capabilities
+     * }
+     */
+    public static void PD_Capabilities(MemorySegment struct, int fieldValue) {
+        struct.set(PD_Capabilities$LAYOUT, PD_Capabilities$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PD_D1Latency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_D1Latency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PD_D1Latency
+     * }
+     */
+    public static final OfInt PD_D1Latency$layout() {
+        return PD_D1Latency$LAYOUT;
+    }
+
+    private static final long PD_D1Latency$OFFSET = 12;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PD_D1Latency
+     * }
+     */
+    public static final long PD_D1Latency$offset() {
+        return PD_D1Latency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D1Latency
+     * }
+     */
+    public static int PD_D1Latency(MemorySegment struct) {
+        return struct.get(PD_D1Latency$LAYOUT, PD_D1Latency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D1Latency
+     * }
+     */
+    public static void PD_D1Latency(MemorySegment struct, int fieldValue) {
+        struct.set(PD_D1Latency$LAYOUT, PD_D1Latency$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PD_D2Latency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_D2Latency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PD_D2Latency
+     * }
+     */
+    public static final OfInt PD_D2Latency$layout() {
+        return PD_D2Latency$LAYOUT;
+    }
+
+    private static final long PD_D2Latency$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PD_D2Latency
+     * }
+     */
+    public static final long PD_D2Latency$offset() {
+        return PD_D2Latency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D2Latency
+     * }
+     */
+    public static int PD_D2Latency(MemorySegment struct) {
+        return struct.get(PD_D2Latency$LAYOUT, PD_D2Latency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D2Latency
+     * }
+     */
+    public static void PD_D2Latency(MemorySegment struct, int fieldValue) {
+        struct.set(PD_D2Latency$LAYOUT, PD_D2Latency$OFFSET, fieldValue);
+    }
+
+    private static final OfInt PD_D3Latency$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_D3Latency"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD PD_D3Latency
+     * }
+     */
+    public static final OfInt PD_D3Latency$layout() {
+        return PD_D3Latency$LAYOUT;
+    }
+
+    private static final long PD_D3Latency$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD PD_D3Latency
+     * }
+     */
+    public static final long PD_D3Latency$offset() {
+        return PD_D3Latency$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D3Latency
+     * }
+     */
+    public static int PD_D3Latency(MemorySegment struct) {
+        return struct.get(PD_D3Latency$LAYOUT, PD_D3Latency$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD PD_D3Latency
+     * }
+     */
+    public static void PD_D3Latency(MemorySegment struct, int fieldValue) {
+        struct.set(PD_D3Latency$LAYOUT, PD_D3Latency$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout PD_PowerStateMapping$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("PD_PowerStateMapping"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static final SequenceLayout PD_PowerStateMapping$layout() {
+        return PD_PowerStateMapping$LAYOUT;
+    }
+
+    private static final long PD_PowerStateMapping$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static final long PD_PowerStateMapping$offset() {
+        return PD_PowerStateMapping$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static MemorySegment PD_PowerStateMapping(MemorySegment struct) {
+        return struct.asSlice(PD_PowerStateMapping$OFFSET, PD_PowerStateMapping$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static void PD_PowerStateMapping(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, PD_PowerStateMapping$OFFSET, PD_PowerStateMapping$LAYOUT.byteSize());
+    }
+
+    private static long[] PD_PowerStateMapping$DIMS = { 7 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static long[] PD_PowerStateMapping$dimensions() {
+        return PD_PowerStateMapping$DIMS;
+    }
+    private static final VarHandle PD_PowerStateMapping$ELEM_HANDLE = PD_PowerStateMapping$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static int PD_PowerStateMapping(MemorySegment struct, long index0) {
+        return (int)PD_PowerStateMapping$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * DEVICE_POWER_STATE PD_PowerStateMapping[7]
+     * }
+     */
+    public static void PD_PowerStateMapping(MemorySegment struct, long index0, int fieldValue) {
+        PD_PowerStateMapping$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt PD_DeepestSystemWake$LAYOUT = (OfInt)$LAYOUT.select(groupElement("PD_DeepestSystemWake"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE PD_DeepestSystemWake
+     * }
+     */
+    public static final OfInt PD_DeepestSystemWake$layout() {
+        return PD_DeepestSystemWake$LAYOUT;
+    }
+
+    private static final long PD_DeepestSystemWake$OFFSET = 52;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE PD_DeepestSystemWake
+     * }
+     */
+    public static final long PD_DeepestSystemWake$offset() {
+        return PD_DeepestSystemWake$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE PD_DeepestSystemWake
+     * }
+     */
+    public static int PD_DeepestSystemWake(MemorySegment struct) {
+        return struct.get(PD_DeepestSystemWake$LAYOUT, PD_DeepestSystemWake$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * SYSTEM_POWER_STATE PD_DeepestSystemWake
+     * }
+     */
+    public static void PD_DeepestSystemWake(MemorySegment struct, int fieldValue) {
+        struct.set(PD_DeepestSystemWake$LAYOUT, PD_DeepestSystemWake$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

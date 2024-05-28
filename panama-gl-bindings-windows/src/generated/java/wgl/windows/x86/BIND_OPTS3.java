@@ -2,13 +2,35 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct tagBIND_OPTS3 {
+ *     DWORD cbStruct;
+ *     DWORD grfFlags;
+ *     DWORD grfMode;
+ *     DWORD dwTickCountDeadline;
+ *     DWORD dwTrackFlags;
+ *     DWORD dwClassContext;
+ *     LCID locale;
+ *     COSERVERINFO *pServerInfo;
+ *     HWND hwnd;
+ * } BIND_OPTS3
+ * }
+ */
 public class BIND_OPTS3 extends tagBIND_OPTS3 {
 
+    BIND_OPTS3() {
+        // Should not be called directly
+    }
 }
-
 

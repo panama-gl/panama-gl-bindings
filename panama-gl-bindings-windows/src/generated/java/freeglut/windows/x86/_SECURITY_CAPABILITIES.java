@@ -2,92 +2,264 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _SECURITY_CAPABILITIES {
+ *     PSID AppContainerSid;
+ *     PSID_AND_ATTRIBUTES Capabilities;
+ *     DWORD CapabilityCount;
+ *     DWORD Reserved;
+ * }
+ * }
+ */
 public class _SECURITY_CAPABILITIES {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("AppContainerSid"),
-        Constants$root.C_POINTER$LAYOUT.withName("Capabilities"),
-        Constants$root.C_LONG$LAYOUT.withName("CapabilityCount"),
-        Constants$root.C_LONG$LAYOUT.withName("Reserved")
-    ).withName("_SECURITY_CAPABILITIES");
-    public static MemoryLayout $LAYOUT() {
-        return _SECURITY_CAPABILITIES.$struct$LAYOUT;
+    _SECURITY_CAPABILITIES() {
+        // Should not be called directly
     }
-    static final VarHandle AppContainerSid$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AppContainerSid"));
-    public static VarHandle AppContainerSid$VH() {
-        return _SECURITY_CAPABILITIES.AppContainerSid$VH;
-    }
-    public static MemoryAddress AppContainerSid$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_CAPABILITIES.AppContainerSid$VH.get(seg);
-    }
-    public static void AppContainerSid$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_CAPABILITIES.AppContainerSid$VH.set(seg, x);
-    }
-    public static MemoryAddress AppContainerSid$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_CAPABILITIES.AppContainerSid$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AppContainerSid$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_CAPABILITIES.AppContainerSid$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Capabilities$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Capabilities"));
-    public static VarHandle Capabilities$VH() {
-        return _SECURITY_CAPABILITIES.Capabilities$VH;
-    }
-    public static MemoryAddress Capabilities$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_CAPABILITIES.Capabilities$VH.get(seg);
-    }
-    public static void Capabilities$set( MemorySegment seg, MemoryAddress x) {
-        _SECURITY_CAPABILITIES.Capabilities$VH.set(seg, x);
-    }
-    public static MemoryAddress Capabilities$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_SECURITY_CAPABILITIES.Capabilities$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Capabilities$set(MemorySegment seg, long index, MemoryAddress x) {
-        _SECURITY_CAPABILITIES.Capabilities$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle CapabilityCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("CapabilityCount"));
-    public static VarHandle CapabilityCount$VH() {
-        return _SECURITY_CAPABILITIES.CapabilityCount$VH;
-    }
-    public static int CapabilityCount$get(MemorySegment seg) {
-        return (int)_SECURITY_CAPABILITIES.CapabilityCount$VH.get(seg);
-    }
-    public static void CapabilityCount$set( MemorySegment seg, int x) {
-        _SECURITY_CAPABILITIES.CapabilityCount$VH.set(seg, x);
-    }
-    public static int CapabilityCount$get(MemorySegment seg, long index) {
-        return (int)_SECURITY_CAPABILITIES.CapabilityCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void CapabilityCount$set(MemorySegment seg, long index, int x) {
-        _SECURITY_CAPABILITIES.CapabilityCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Reserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Reserved"));
-    public static VarHandle Reserved$VH() {
-        return _SECURITY_CAPABILITIES.Reserved$VH;
-    }
-    public static int Reserved$get(MemorySegment seg) {
-        return (int)_SECURITY_CAPABILITIES.Reserved$VH.get(seg);
-    }
-    public static void Reserved$set( MemorySegment seg, int x) {
-        _SECURITY_CAPABILITIES.Reserved$VH.set(seg, x);
-    }
-    public static int Reserved$get(MemorySegment seg, long index) {
-        return (int)_SECURITY_CAPABILITIES.Reserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Reserved$set(MemorySegment seg, long index, int x) {
-        _SECURITY_CAPABILITIES.Reserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_POINTER.withName("AppContainerSid"),
+        freeglut_h.C_POINTER.withName("Capabilities"),
+        freeglut_h.C_LONG.withName("CapabilityCount"),
+        freeglut_h.C_LONG.withName("Reserved")
+    ).withName("_SECURITY_CAPABILITIES");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout AppContainerSid$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("AppContainerSid"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID AppContainerSid
+     * }
+     */
+    public static final AddressLayout AppContainerSid$layout() {
+        return AppContainerSid$LAYOUT;
+    }
+
+    private static final long AppContainerSid$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID AppContainerSid
+     * }
+     */
+    public static final long AppContainerSid$offset() {
+        return AppContainerSid$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID AppContainerSid
+     * }
+     */
+    public static MemorySegment AppContainerSid(MemorySegment struct) {
+        return struct.get(AppContainerSid$LAYOUT, AppContainerSid$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID AppContainerSid
+     * }
+     */
+    public static void AppContainerSid(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(AppContainerSid$LAYOUT, AppContainerSid$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Capabilities$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("Capabilities"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSID_AND_ATTRIBUTES Capabilities
+     * }
+     */
+    public static final AddressLayout Capabilities$layout() {
+        return Capabilities$LAYOUT;
+    }
+
+    private static final long Capabilities$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSID_AND_ATTRIBUTES Capabilities
+     * }
+     */
+    public static final long Capabilities$offset() {
+        return Capabilities$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSID_AND_ATTRIBUTES Capabilities
+     * }
+     */
+    public static MemorySegment Capabilities(MemorySegment struct) {
+        return struct.get(Capabilities$LAYOUT, Capabilities$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSID_AND_ATTRIBUTES Capabilities
+     * }
+     */
+    public static void Capabilities(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Capabilities$LAYOUT, Capabilities$OFFSET, fieldValue);
+    }
+
+    private static final OfInt CapabilityCount$LAYOUT = (OfInt)$LAYOUT.select(groupElement("CapabilityCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD CapabilityCount
+     * }
+     */
+    public static final OfInt CapabilityCount$layout() {
+        return CapabilityCount$LAYOUT;
+    }
+
+    private static final long CapabilityCount$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD CapabilityCount
+     * }
+     */
+    public static final long CapabilityCount$offset() {
+        return CapabilityCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD CapabilityCount
+     * }
+     */
+    public static int CapabilityCount(MemorySegment struct) {
+        return struct.get(CapabilityCount$LAYOUT, CapabilityCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD CapabilityCount
+     * }
+     */
+    public static void CapabilityCount(MemorySegment struct, int fieldValue) {
+        struct.set(CapabilityCount$LAYOUT, CapabilityCount$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Reserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Reserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final OfInt Reserved$layout() {
+        return Reserved$LAYOUT;
+    }
+
+    private static final long Reserved$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static final long Reserved$offset() {
+        return Reserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static int Reserved(MemorySegment struct) {
+        return struct.get(Reserved$LAYOUT, Reserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Reserved
+     * }
+     */
+    public static void Reserved(MemorySegment struct, int fieldValue) {
+        struct.set(Reserved$LAYOUT, Reserved$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

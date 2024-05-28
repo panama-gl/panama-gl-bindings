@@ -2,40 +2,396 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _ENCLAVE_INIT_INFO_SGX {
+ *     BYTE SigStruct[1808];
+ *     BYTE Reserved1[240];
+ *     BYTE EInitToken[304];
+ *     BYTE Reserved2[1744];
+ * }
+ * }
+ */
 public class _ENCLAVE_INIT_INFO_SGX {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.sequenceLayout(1808, Constants$root.C_CHAR$LAYOUT).withName("SigStruct"),
-        MemoryLayout.sequenceLayout(240, Constants$root.C_CHAR$LAYOUT).withName("Reserved1"),
-        MemoryLayout.sequenceLayout(304, Constants$root.C_CHAR$LAYOUT).withName("EInitToken"),
-        MemoryLayout.sequenceLayout(1744, Constants$root.C_CHAR$LAYOUT).withName("Reserved2")
-    ).withName("_ENCLAVE_INIT_INFO_SGX");
-    public static MemoryLayout $LAYOUT() {
-        return _ENCLAVE_INIT_INFO_SGX.$struct$LAYOUT;
+    _ENCLAVE_INIT_INFO_SGX() {
+        // Should not be called directly
     }
-    public static MemorySegment SigStruct$slice(MemorySegment seg) {
-        return seg.asSlice(0, 1808);
-    }
-    public static MemorySegment Reserved1$slice(MemorySegment seg) {
-        return seg.asSlice(1808, 240);
-    }
-    public static MemorySegment EInitToken$slice(MemorySegment seg) {
-        return seg.asSlice(2048, 304);
-    }
-    public static MemorySegment Reserved2$slice(MemorySegment seg) {
-        return seg.asSlice(2352, 1744);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        MemoryLayout.sequenceLayout(1808, freeglut_h.C_CHAR).withName("SigStruct"),
+        MemoryLayout.sequenceLayout(240, freeglut_h.C_CHAR).withName("Reserved1"),
+        MemoryLayout.sequenceLayout(304, freeglut_h.C_CHAR).withName("EInitToken"),
+        MemoryLayout.sequenceLayout(1744, freeglut_h.C_CHAR).withName("Reserved2")
+    ).withName("_ENCLAVE_INIT_INFO_SGX");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final SequenceLayout SigStruct$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("SigStruct"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static final SequenceLayout SigStruct$layout() {
+        return SigStruct$LAYOUT;
+    }
+
+    private static final long SigStruct$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static final long SigStruct$offset() {
+        return SigStruct$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static MemorySegment SigStruct(MemorySegment struct) {
+        return struct.asSlice(SigStruct$OFFSET, SigStruct$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static void SigStruct(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, SigStruct$OFFSET, SigStruct$LAYOUT.byteSize());
+    }
+
+    private static long[] SigStruct$DIMS = { 1808 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static long[] SigStruct$dimensions() {
+        return SigStruct$DIMS;
+    }
+    private static final VarHandle SigStruct$ELEM_HANDLE = SigStruct$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static byte SigStruct(MemorySegment struct, long index0) {
+        return (byte)SigStruct$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE SigStruct[1808]
+     * }
+     */
+    public static void SigStruct(MemorySegment struct, long index0, byte fieldValue) {
+        SigStruct$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved1$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved1"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static final SequenceLayout Reserved1$layout() {
+        return Reserved1$LAYOUT;
+    }
+
+    private static final long Reserved1$OFFSET = 1808;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static final long Reserved1$offset() {
+        return Reserved1$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static MemorySegment Reserved1(MemorySegment struct) {
+        return struct.asSlice(Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved1$OFFSET, Reserved1$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved1$DIMS = { 240 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static long[] Reserved1$dimensions() {
+        return Reserved1$DIMS;
+    }
+    private static final VarHandle Reserved1$ELEM_HANDLE = Reserved1$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static byte Reserved1(MemorySegment struct, long index0) {
+        return (byte)Reserved1$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved1[240]
+     * }
+     */
+    public static void Reserved1(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved1$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout EInitToken$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("EInitToken"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static final SequenceLayout EInitToken$layout() {
+        return EInitToken$LAYOUT;
+    }
+
+    private static final long EInitToken$OFFSET = 2048;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static final long EInitToken$offset() {
+        return EInitToken$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static MemorySegment EInitToken(MemorySegment struct) {
+        return struct.asSlice(EInitToken$OFFSET, EInitToken$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static void EInitToken(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, EInitToken$OFFSET, EInitToken$LAYOUT.byteSize());
+    }
+
+    private static long[] EInitToken$DIMS = { 304 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static long[] EInitToken$dimensions() {
+        return EInitToken$DIMS;
+    }
+    private static final VarHandle EInitToken$ELEM_HANDLE = EInitToken$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static byte EInitToken(MemorySegment struct, long index0) {
+        return (byte)EInitToken$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE EInitToken[304]
+     * }
+     */
+    public static void EInitToken(MemorySegment struct, long index0, byte fieldValue) {
+        EInitToken$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout Reserved2$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("Reserved2"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static final SequenceLayout Reserved2$layout() {
+        return Reserved2$LAYOUT;
+    }
+
+    private static final long Reserved2$OFFSET = 2352;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static final long Reserved2$offset() {
+        return Reserved2$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static MemorySegment Reserved2(MemorySegment struct) {
+        return struct.asSlice(Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Reserved2$OFFSET, Reserved2$LAYOUT.byteSize());
+    }
+
+    private static long[] Reserved2$DIMS = { 1744 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static long[] Reserved2$dimensions() {
+        return Reserved2$DIMS;
+    }
+    private static final VarHandle Reserved2$ELEM_HANDLE = Reserved2$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static byte Reserved2(MemorySegment struct, long index0) {
+        return (byte)Reserved2$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE Reserved2[1744]
+     * }
+     */
+    public static void Reserved2(MemorySegment struct, long index0, byte fieldValue) {
+        Reserved2$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

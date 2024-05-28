@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PROVIDOR_INFO_1W {
+ *     LPWSTR pName;
+ *     LPWSTR pEnvironment;
+ *     LPWSTR pDLLName;
+ * }
+ * }
+ */
 public class _PROVIDOR_INFO_1W {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pEnvironment"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDLLName")
-    ).withName("_PROVIDOR_INFO_1W");
-    public static MemoryLayout $LAYOUT() {
-        return _PROVIDOR_INFO_1W.$struct$LAYOUT;
+    _PROVIDOR_INFO_1W() {
+        // Should not be called directly
     }
-    static final VarHandle pName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pName"));
-    public static VarHandle pName$VH() {
-        return _PROVIDOR_INFO_1W.pName$VH;
-    }
-    public static MemoryAddress pName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pName$VH.get(seg);
-    }
-    public static void pName$set( MemorySegment seg, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pName$VH.set(seg, x);
-    }
-    public static MemoryAddress pName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pEnvironment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pEnvironment"));
-    public static VarHandle pEnvironment$VH() {
-        return _PROVIDOR_INFO_1W.pEnvironment$VH;
-    }
-    public static MemoryAddress pEnvironment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pEnvironment$VH.get(seg);
-    }
-    public static void pEnvironment$set( MemorySegment seg, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pEnvironment$VH.set(seg, x);
-    }
-    public static MemoryAddress pEnvironment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pEnvironment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pEnvironment$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pEnvironment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDLLName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDLLName"));
-    public static VarHandle pDLLName$VH() {
-        return _PROVIDOR_INFO_1W.pDLLName$VH;
-    }
-    public static MemoryAddress pDLLName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pDLLName$VH.get(seg);
-    }
-    public static void pDLLName$set( MemorySegment seg, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pDLLName$VH.set(seg, x);
-    }
-    public static MemoryAddress pDLLName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PROVIDOR_INFO_1W.pDLLName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDLLName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PROVIDOR_INFO_1W.pDLLName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pName"),
+        wgl_h.C_POINTER.withName("pEnvironment"),
+        wgl_h.C_POINTER.withName("pDLLName")
+    ).withName("_PROVIDOR_INFO_1W");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static final AddressLayout pName$layout() {
+        return pName$LAYOUT;
+    }
+
+    private static final long pName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static final long pName$offset() {
+        return pName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static MemorySegment pName(MemorySegment struct) {
+        return struct.get(pName$LAYOUT, pName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pName
+     * }
+     */
+    public static void pName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pName$LAYOUT, pName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pEnvironment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pEnvironment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static final AddressLayout pEnvironment$layout() {
+        return pEnvironment$LAYOUT;
+    }
+
+    private static final long pEnvironment$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static final long pEnvironment$offset() {
+        return pEnvironment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static MemorySegment pEnvironment(MemorySegment struct) {
+        return struct.get(pEnvironment$LAYOUT, pEnvironment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pEnvironment
+     * }
+     */
+    public static void pEnvironment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pEnvironment$LAYOUT, pEnvironment$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDLLName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDLLName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPWSTR pDLLName
+     * }
+     */
+    public static final AddressLayout pDLLName$layout() {
+        return pDLLName$LAYOUT;
+    }
+
+    private static final long pDLLName$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPWSTR pDLLName
+     * }
+     */
+    public static final long pDLLName$offset() {
+        return pDLLName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDLLName
+     * }
+     */
+    public static MemorySegment pDLLName(MemorySegment struct) {
+        return struct.get(pDLLName$LAYOUT, pDLLName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPWSTR pDLLName
+     * }
+     */
+    public static void pDLLName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDLLName$LAYOUT, pDLLName$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

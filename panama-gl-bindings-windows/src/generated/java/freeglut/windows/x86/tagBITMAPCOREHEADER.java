@@ -2,109 +2,310 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagBITMAPCOREHEADER {
+ *     DWORD bcSize;
+ *     WORD bcWidth;
+ *     WORD bcHeight;
+ *     WORD bcPlanes;
+ *     WORD bcBitCount;
+ * }
+ * }
+ */
 public class tagBITMAPCOREHEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("bcSize"),
-        Constants$root.C_SHORT$LAYOUT.withName("bcWidth"),
-        Constants$root.C_SHORT$LAYOUT.withName("bcHeight"),
-        Constants$root.C_SHORT$LAYOUT.withName("bcPlanes"),
-        Constants$root.C_SHORT$LAYOUT.withName("bcBitCount")
-    ).withName("tagBITMAPCOREHEADER");
-    public static MemoryLayout $LAYOUT() {
-        return tagBITMAPCOREHEADER.$struct$LAYOUT;
+    tagBITMAPCOREHEADER() {
+        // Should not be called directly
     }
-    static final VarHandle bcSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bcSize"));
-    public static VarHandle bcSize$VH() {
-        return tagBITMAPCOREHEADER.bcSize$VH;
-    }
-    public static int bcSize$get(MemorySegment seg) {
-        return (int)tagBITMAPCOREHEADER.bcSize$VH.get(seg);
-    }
-    public static void bcSize$set( MemorySegment seg, int x) {
-        tagBITMAPCOREHEADER.bcSize$VH.set(seg, x);
-    }
-    public static int bcSize$get(MemorySegment seg, long index) {
-        return (int)tagBITMAPCOREHEADER.bcSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bcSize$set(MemorySegment seg, long index, int x) {
-        tagBITMAPCOREHEADER.bcSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bcWidth$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bcWidth"));
-    public static VarHandle bcWidth$VH() {
-        return tagBITMAPCOREHEADER.bcWidth$VH;
-    }
-    public static short bcWidth$get(MemorySegment seg) {
-        return (short)tagBITMAPCOREHEADER.bcWidth$VH.get(seg);
-    }
-    public static void bcWidth$set( MemorySegment seg, short x) {
-        tagBITMAPCOREHEADER.bcWidth$VH.set(seg, x);
-    }
-    public static short bcWidth$get(MemorySegment seg, long index) {
-        return (short)tagBITMAPCOREHEADER.bcWidth$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bcWidth$set(MemorySegment seg, long index, short x) {
-        tagBITMAPCOREHEADER.bcWidth$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bcHeight$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bcHeight"));
-    public static VarHandle bcHeight$VH() {
-        return tagBITMAPCOREHEADER.bcHeight$VH;
-    }
-    public static short bcHeight$get(MemorySegment seg) {
-        return (short)tagBITMAPCOREHEADER.bcHeight$VH.get(seg);
-    }
-    public static void bcHeight$set( MemorySegment seg, short x) {
-        tagBITMAPCOREHEADER.bcHeight$VH.set(seg, x);
-    }
-    public static short bcHeight$get(MemorySegment seg, long index) {
-        return (short)tagBITMAPCOREHEADER.bcHeight$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bcHeight$set(MemorySegment seg, long index, short x) {
-        tagBITMAPCOREHEADER.bcHeight$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bcPlanes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bcPlanes"));
-    public static VarHandle bcPlanes$VH() {
-        return tagBITMAPCOREHEADER.bcPlanes$VH;
-    }
-    public static short bcPlanes$get(MemorySegment seg) {
-        return (short)tagBITMAPCOREHEADER.bcPlanes$VH.get(seg);
-    }
-    public static void bcPlanes$set( MemorySegment seg, short x) {
-        tagBITMAPCOREHEADER.bcPlanes$VH.set(seg, x);
-    }
-    public static short bcPlanes$get(MemorySegment seg, long index) {
-        return (short)tagBITMAPCOREHEADER.bcPlanes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bcPlanes$set(MemorySegment seg, long index, short x) {
-        tagBITMAPCOREHEADER.bcPlanes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle bcBitCount$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("bcBitCount"));
-    public static VarHandle bcBitCount$VH() {
-        return tagBITMAPCOREHEADER.bcBitCount$VH;
-    }
-    public static short bcBitCount$get(MemorySegment seg) {
-        return (short)tagBITMAPCOREHEADER.bcBitCount$VH.get(seg);
-    }
-    public static void bcBitCount$set( MemorySegment seg, short x) {
-        tagBITMAPCOREHEADER.bcBitCount$VH.set(seg, x);
-    }
-    public static short bcBitCount$get(MemorySegment seg, long index) {
-        return (short)tagBITMAPCOREHEADER.bcBitCount$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void bcBitCount$set(MemorySegment seg, long index, short x) {
-        tagBITMAPCOREHEADER.bcBitCount$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        freeglut_h.C_LONG.withName("bcSize"),
+        freeglut_h.C_SHORT.withName("bcWidth"),
+        freeglut_h.C_SHORT.withName("bcHeight"),
+        freeglut_h.C_SHORT.withName("bcPlanes"),
+        freeglut_h.C_SHORT.withName("bcBitCount")
+    ).withName("tagBITMAPCOREHEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt bcSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("bcSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD bcSize
+     * }
+     */
+    public static final OfInt bcSize$layout() {
+        return bcSize$LAYOUT;
+    }
+
+    private static final long bcSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD bcSize
+     * }
+     */
+    public static final long bcSize$offset() {
+        return bcSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD bcSize
+     * }
+     */
+    public static int bcSize(MemorySegment struct) {
+        return struct.get(bcSize$LAYOUT, bcSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD bcSize
+     * }
+     */
+    public static void bcSize(MemorySegment struct, int fieldValue) {
+        struct.set(bcSize$LAYOUT, bcSize$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bcWidth$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bcWidth"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bcWidth
+     * }
+     */
+    public static final OfShort bcWidth$layout() {
+        return bcWidth$LAYOUT;
+    }
+
+    private static final long bcWidth$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bcWidth
+     * }
+     */
+    public static final long bcWidth$offset() {
+        return bcWidth$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bcWidth
+     * }
+     */
+    public static short bcWidth(MemorySegment struct) {
+        return struct.get(bcWidth$LAYOUT, bcWidth$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bcWidth
+     * }
+     */
+    public static void bcWidth(MemorySegment struct, short fieldValue) {
+        struct.set(bcWidth$LAYOUT, bcWidth$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bcHeight$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bcHeight"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bcHeight
+     * }
+     */
+    public static final OfShort bcHeight$layout() {
+        return bcHeight$LAYOUT;
+    }
+
+    private static final long bcHeight$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bcHeight
+     * }
+     */
+    public static final long bcHeight$offset() {
+        return bcHeight$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bcHeight
+     * }
+     */
+    public static short bcHeight(MemorySegment struct) {
+        return struct.get(bcHeight$LAYOUT, bcHeight$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bcHeight
+     * }
+     */
+    public static void bcHeight(MemorySegment struct, short fieldValue) {
+        struct.set(bcHeight$LAYOUT, bcHeight$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bcPlanes$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bcPlanes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bcPlanes
+     * }
+     */
+    public static final OfShort bcPlanes$layout() {
+        return bcPlanes$LAYOUT;
+    }
+
+    private static final long bcPlanes$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bcPlanes
+     * }
+     */
+    public static final long bcPlanes$offset() {
+        return bcPlanes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bcPlanes
+     * }
+     */
+    public static short bcPlanes(MemorySegment struct) {
+        return struct.get(bcPlanes$LAYOUT, bcPlanes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bcPlanes
+     * }
+     */
+    public static void bcPlanes(MemorySegment struct, short fieldValue) {
+        struct.set(bcPlanes$LAYOUT, bcPlanes$OFFSET, fieldValue);
+    }
+
+    private static final OfShort bcBitCount$LAYOUT = (OfShort)$LAYOUT.select(groupElement("bcBitCount"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD bcBitCount
+     * }
+     */
+    public static final OfShort bcBitCount$layout() {
+        return bcBitCount$LAYOUT;
+    }
+
+    private static final long bcBitCount$OFFSET = 10;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD bcBitCount
+     * }
+     */
+    public static final long bcBitCount$offset() {
+        return bcBitCount$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD bcBitCount
+     * }
+     */
+    public static short bcBitCount(MemorySegment struct) {
+        return struct.get(bcBitCount$LAYOUT, bcBitCount$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD bcBitCount
+     * }
+     */
+    public static void bcBitCount(MemorySegment struct, short fieldValue) {
+        struct.set(bcBitCount$LAYOUT, bcBitCount$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

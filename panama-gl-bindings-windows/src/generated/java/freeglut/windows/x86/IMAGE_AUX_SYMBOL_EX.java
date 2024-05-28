@@ -2,13 +2,53 @@
 
 package freeglut.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef union _IMAGE_AUX_SYMBOL_EX {
+ *     struct {
+ *         DWORD WeakDefaultSymIndex;
+ *         DWORD WeakSearchType;
+ *         BYTE rgbReserved[12];
+ *     } Sym;
+ *     struct {
+ *         BYTE Name[20];
+ *     } File;
+ *     struct {
+ *         DWORD Length;
+ *         WORD NumberOfRelocations;
+ *         WORD NumberOfLinenumbers;
+ *         DWORD CheckSum;
+ *         SHORT Number;
+ *         BYTE Selection;
+ *         BYTE bReserved;
+ *         SHORT HighNumber;
+ *         BYTE rgbReserved[2];
+ *     } Section;
+ *     struct {
+ *         IMAGE_AUX_SYMBOL_TOKEN_DEF TokenDef;
+ *         BYTE rgbReserved[2];
+ *     };
+ *     struct {
+ *         DWORD crc;
+ *         BYTE rgbReserved[16];
+ *     } CRC;
+ * } IMAGE_AUX_SYMBOL_EX
+ * }
+ */
 public class IMAGE_AUX_SYMBOL_EX extends _IMAGE_AUX_SYMBOL_EX {
 
+    IMAGE_AUX_SYMBOL_EX() {
+        // Should not be called directly
+    }
 }
-
 

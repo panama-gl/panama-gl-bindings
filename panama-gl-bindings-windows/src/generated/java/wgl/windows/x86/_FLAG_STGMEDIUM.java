@@ -2,75 +2,218 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _FLAG_STGMEDIUM {
+ *     LONG ContextFlags;
+ *     LONG fPassOwnership;
+ *     STGMEDIUM Stgmed;
+ * }
+ * }
+ */
 public class _FLAG_STGMEDIUM {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("ContextFlags"),
-        Constants$root.C_LONG$LAYOUT.withName("fPassOwnership"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("tymed"),
-            MemoryLayout.paddingLayout(32),
-            MemoryLayout.unionLayout(
-                Constants$root.C_POINTER$LAYOUT.withName("hBitmap"),
-                Constants$root.C_POINTER$LAYOUT.withName("hMetaFilePict"),
-                Constants$root.C_POINTER$LAYOUT.withName("hEnhMetaFile"),
-                Constants$root.C_POINTER$LAYOUT.withName("hGlobal"),
-                Constants$root.C_POINTER$LAYOUT.withName("lpszFileName"),
-                Constants$root.C_POINTER$LAYOUT.withName("pstm"),
-                Constants$root.C_POINTER$LAYOUT.withName("pstg")
-            ).withName("$anon$0"),
-            Constants$root.C_POINTER$LAYOUT.withName("pUnkForRelease")
-        ).withName("Stgmed")
-    ).withName("_FLAG_STGMEDIUM");
-    public static MemoryLayout $LAYOUT() {
-        return _FLAG_STGMEDIUM.$struct$LAYOUT;
+    _FLAG_STGMEDIUM() {
+        // Should not be called directly
     }
-    static final VarHandle ContextFlags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("ContextFlags"));
-    public static VarHandle ContextFlags$VH() {
-        return _FLAG_STGMEDIUM.ContextFlags$VH;
-    }
-    public static int ContextFlags$get(MemorySegment seg) {
-        return (int)_FLAG_STGMEDIUM.ContextFlags$VH.get(seg);
-    }
-    public static void ContextFlags$set( MemorySegment seg, int x) {
-        _FLAG_STGMEDIUM.ContextFlags$VH.set(seg, x);
-    }
-    public static int ContextFlags$get(MemorySegment seg, long index) {
-        return (int)_FLAG_STGMEDIUM.ContextFlags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ContextFlags$set(MemorySegment seg, long index, int x) {
-        _FLAG_STGMEDIUM.ContextFlags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle fPassOwnership$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("fPassOwnership"));
-    public static VarHandle fPassOwnership$VH() {
-        return _FLAG_STGMEDIUM.fPassOwnership$VH;
-    }
-    public static int fPassOwnership$get(MemorySegment seg) {
-        return (int)_FLAG_STGMEDIUM.fPassOwnership$VH.get(seg);
-    }
-    public static void fPassOwnership$set( MemorySegment seg, int x) {
-        _FLAG_STGMEDIUM.fPassOwnership$VH.set(seg, x);
-    }
-    public static int fPassOwnership$get(MemorySegment seg, long index) {
-        return (int)_FLAG_STGMEDIUM.fPassOwnership$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void fPassOwnership$set(MemorySegment seg, long index, int x) {
-        _FLAG_STGMEDIUM.fPassOwnership$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Stgmed$slice(MemorySegment seg) {
-        return seg.asSlice(8, 24);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("ContextFlags"),
+        wgl_h.C_LONG.withName("fPassOwnership"),
+        tagSTGMEDIUM.layout().withName("Stgmed")
+    ).withName("_FLAG_STGMEDIUM");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt ContextFlags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("ContextFlags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG ContextFlags
+     * }
+     */
+    public static final OfInt ContextFlags$layout() {
+        return ContextFlags$LAYOUT;
+    }
+
+    private static final long ContextFlags$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG ContextFlags
+     * }
+     */
+    public static final long ContextFlags$offset() {
+        return ContextFlags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG ContextFlags
+     * }
+     */
+    public static int ContextFlags(MemorySegment struct) {
+        return struct.get(ContextFlags$LAYOUT, ContextFlags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG ContextFlags
+     * }
+     */
+    public static void ContextFlags(MemorySegment struct, int fieldValue) {
+        struct.set(ContextFlags$LAYOUT, ContextFlags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt fPassOwnership$LAYOUT = (OfInt)$LAYOUT.select(groupElement("fPassOwnership"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LONG fPassOwnership
+     * }
+     */
+    public static final OfInt fPassOwnership$layout() {
+        return fPassOwnership$LAYOUT;
+    }
+
+    private static final long fPassOwnership$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LONG fPassOwnership
+     * }
+     */
+    public static final long fPassOwnership$offset() {
+        return fPassOwnership$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LONG fPassOwnership
+     * }
+     */
+    public static int fPassOwnership(MemorySegment struct) {
+        return struct.get(fPassOwnership$LAYOUT, fPassOwnership$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LONG fPassOwnership
+     * }
+     */
+    public static void fPassOwnership(MemorySegment struct, int fieldValue) {
+        struct.set(fPassOwnership$LAYOUT, fPassOwnership$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Stgmed$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Stgmed"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * STGMEDIUM Stgmed
+     * }
+     */
+    public static final GroupLayout Stgmed$layout() {
+        return Stgmed$LAYOUT;
+    }
+
+    private static final long Stgmed$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * STGMEDIUM Stgmed
+     * }
+     */
+    public static final long Stgmed$offset() {
+        return Stgmed$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * STGMEDIUM Stgmed
+     * }
+     */
+    public static MemorySegment Stgmed(MemorySegment struct) {
+        return struct.asSlice(Stgmed$OFFSET, Stgmed$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * STGMEDIUM Stgmed
+     * }
+     */
+    public static void Stgmed(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Stgmed$OFFSET, Stgmed$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

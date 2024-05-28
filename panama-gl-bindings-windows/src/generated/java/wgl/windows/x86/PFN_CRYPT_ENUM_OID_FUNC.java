@@ -2,27 +2,75 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public interface PFN_CRYPT_ENUM_OID_FUNC {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    int apply(int dwEncodingType, java.lang.foreign.MemoryAddress pszFuncName, java.lang.foreign.MemoryAddress pszOID, int cValue, java.lang.foreign.MemoryAddress rgdwValueType, java.lang.foreign.MemoryAddress rgpwszValueName, java.lang.foreign.MemoryAddress rgpbValueData, java.lang.foreign.MemoryAddress rgcbValueData, java.lang.foreign.MemoryAddress pvArg);
-    static MemorySegment allocate(PFN_CRYPT_ENUM_OID_FUNC fi, MemorySession session) {
-        return RuntimeHelper.upcallStub(PFN_CRYPT_ENUM_OID_FUNC.class, fi, constants$757.PFN_CRYPT_ENUM_OID_FUNC$FUNC, session);
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef BOOL (*PFN_CRYPT_ENUM_OID_FUNC)(DWORD, LPCSTR, LPCSTR, DWORD, const DWORD *, const LPCWSTR *, const BYTE *const *, const DWORD *, void *) __attribute__((stdcall))
+ * }
+ */
+public class PFN_CRYPT_ENUM_OID_FUNC {
+
+    PFN_CRYPT_ENUM_OID_FUNC() {
+        // Should not be called directly
     }
-    static PFN_CRYPT_ENUM_OID_FUNC ofAddress(MemoryAddress addr, MemorySession session) {
-        MemorySegment symbol = MemorySegment.ofAddress(addr, 0, session);
-        return (int _dwEncodingType, java.lang.foreign.MemoryAddress _pszFuncName, java.lang.foreign.MemoryAddress _pszOID, int _cValue, java.lang.foreign.MemoryAddress _rgdwValueType, java.lang.foreign.MemoryAddress _rgpwszValueName, java.lang.foreign.MemoryAddress _rgpbValueData, java.lang.foreign.MemoryAddress _rgcbValueData, java.lang.foreign.MemoryAddress _pvArg) -> {
-            try {
-                return (int)constants$757.PFN_CRYPT_ENUM_OID_FUNC$MH.invokeExact((Addressable)symbol, _dwEncodingType, (java.lang.foreign.Addressable)_pszFuncName, (java.lang.foreign.Addressable)_pszOID, _cValue, (java.lang.foreign.Addressable)_rgdwValueType, (java.lang.foreign.Addressable)_rgpwszValueName, (java.lang.foreign.Addressable)_rgpbValueData, (java.lang.foreign.Addressable)_rgcbValueData, (java.lang.foreign.Addressable)_pvArg);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int dwEncodingType, MemorySegment pszFuncName, MemorySegment pszOID, int cValue, MemorySegment rgdwValueType, MemorySegment rgpwszValueName, MemorySegment rgpbValueData, MemorySegment rgcbValueData, MemorySegment pvArg);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        wgl_h.C_INT,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_LONG,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER,
+        wgl_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = wgl_h.upcallHandle(PFN_CRYPT_ENUM_OID_FUNC.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(PFN_CRYPT_ENUM_OID_FUNC.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr,int dwEncodingType, MemorySegment pszFuncName, MemorySegment pszOID, int cValue, MemorySegment rgdwValueType, MemorySegment rgpwszValueName, MemorySegment rgpbValueData, MemorySegment rgcbValueData, MemorySegment pvArg) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, dwEncodingType, pszFuncName, pszOID, cValue, rgdwValueType, rgpwszValueName, rgpbValueData, rgcbValueData, pvArg);
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -2,200 +2,543 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagMSGBOXPARAMSW {
+ *     UINT cbSize;
+ *     HWND hwndOwner;
+ *     HINSTANCE hInstance;
+ *     LPCWSTR lpszText;
+ *     LPCWSTR lpszCaption;
+ *     DWORD dwStyle;
+ *     LPCWSTR lpszIcon;
+ *     DWORD_PTR dwContextHelpId;
+ *     MSGBOXCALLBACK lpfnMsgBoxCallback;
+ *     DWORD dwLanguageId;
+ * }
+ * }
+ */
 public class tagMSGBOXPARAMSW {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cbSize"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("hwndOwner"),
-        Constants$root.C_POINTER$LAYOUT.withName("hInstance"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpszText"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpszCaption"),
-        Constants$root.C_LONG$LAYOUT.withName("dwStyle"),
-        MemoryLayout.paddingLayout(32),
-        Constants$root.C_POINTER$LAYOUT.withName("lpszIcon"),
-        Constants$root.C_LONG_LONG$LAYOUT.withName("dwContextHelpId"),
-        Constants$root.C_POINTER$LAYOUT.withName("lpfnMsgBoxCallback"),
-        Constants$root.C_LONG$LAYOUT.withName("dwLanguageId"),
-        MemoryLayout.paddingLayout(32)
-    ).withName("tagMSGBOXPARAMSW");
-    public static MemoryLayout $LAYOUT() {
-        return tagMSGBOXPARAMSW.$struct$LAYOUT;
+    tagMSGBOXPARAMSW() {
+        // Should not be called directly
     }
-    static final VarHandle cbSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cbSize"));
-    public static VarHandle cbSize$VH() {
-        return tagMSGBOXPARAMSW.cbSize$VH;
-    }
-    public static int cbSize$get(MemorySegment seg) {
-        return (int)tagMSGBOXPARAMSW.cbSize$VH.get(seg);
-    }
-    public static void cbSize$set( MemorySegment seg, int x) {
-        tagMSGBOXPARAMSW.cbSize$VH.set(seg, x);
-    }
-    public static int cbSize$get(MemorySegment seg, long index) {
-        return (int)tagMSGBOXPARAMSW.cbSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cbSize$set(MemorySegment seg, long index, int x) {
-        tagMSGBOXPARAMSW.cbSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hwndOwner$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hwndOwner"));
-    public static VarHandle hwndOwner$VH() {
-        return tagMSGBOXPARAMSW.hwndOwner$VH;
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.hwndOwner$VH.get(seg);
-    }
-    public static void hwndOwner$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.hwndOwner$VH.set(seg, x);
-    }
-    public static MemoryAddress hwndOwner$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.hwndOwner$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hwndOwner$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.hwndOwner$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle hInstance$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("hInstance"));
-    public static VarHandle hInstance$VH() {
-        return tagMSGBOXPARAMSW.hInstance$VH;
-    }
-    public static MemoryAddress hInstance$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.hInstance$VH.get(seg);
-    }
-    public static void hInstance$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.hInstance$VH.set(seg, x);
-    }
-    public static MemoryAddress hInstance$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.hInstance$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void hInstance$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.hInstance$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszText$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpszText"));
-    public static VarHandle lpszText$VH() {
-        return tagMSGBOXPARAMSW.lpszText$VH;
-    }
-    public static MemoryAddress lpszText$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszText$VH.get(seg);
-    }
-    public static void lpszText$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszText$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszText$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszText$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszText$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszText$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszCaption$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpszCaption"));
-    public static VarHandle lpszCaption$VH() {
-        return tagMSGBOXPARAMSW.lpszCaption$VH;
-    }
-    public static MemoryAddress lpszCaption$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszCaption$VH.get(seg);
-    }
-    public static void lpszCaption$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszCaption$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszCaption$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszCaption$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszCaption$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszCaption$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwStyle$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwStyle"));
-    public static VarHandle dwStyle$VH() {
-        return tagMSGBOXPARAMSW.dwStyle$VH;
-    }
-    public static int dwStyle$get(MemorySegment seg) {
-        return (int)tagMSGBOXPARAMSW.dwStyle$VH.get(seg);
-    }
-    public static void dwStyle$set( MemorySegment seg, int x) {
-        tagMSGBOXPARAMSW.dwStyle$VH.set(seg, x);
-    }
-    public static int dwStyle$get(MemorySegment seg, long index) {
-        return (int)tagMSGBOXPARAMSW.dwStyle$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwStyle$set(MemorySegment seg, long index, int x) {
-        tagMSGBOXPARAMSW.dwStyle$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpszIcon$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpszIcon"));
-    public static VarHandle lpszIcon$VH() {
-        return tagMSGBOXPARAMSW.lpszIcon$VH;
-    }
-    public static MemoryAddress lpszIcon$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszIcon$VH.get(seg);
-    }
-    public static void lpszIcon$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszIcon$VH.set(seg, x);
-    }
-    public static MemoryAddress lpszIcon$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpszIcon$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpszIcon$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpszIcon$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle dwContextHelpId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwContextHelpId"));
-    public static VarHandle dwContextHelpId$VH() {
-        return tagMSGBOXPARAMSW.dwContextHelpId$VH;
-    }
-    public static long dwContextHelpId$get(MemorySegment seg) {
-        return (long)tagMSGBOXPARAMSW.dwContextHelpId$VH.get(seg);
-    }
-    public static void dwContextHelpId$set( MemorySegment seg, long x) {
-        tagMSGBOXPARAMSW.dwContextHelpId$VH.set(seg, x);
-    }
-    public static long dwContextHelpId$get(MemorySegment seg, long index) {
-        return (long)tagMSGBOXPARAMSW.dwContextHelpId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwContextHelpId$set(MemorySegment seg, long index, long x) {
-        tagMSGBOXPARAMSW.dwContextHelpId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle lpfnMsgBoxCallback$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("lpfnMsgBoxCallback"));
-    public static VarHandle lpfnMsgBoxCallback$VH() {
-        return tagMSGBOXPARAMSW.lpfnMsgBoxCallback$VH;
-    }
-    public static MemoryAddress lpfnMsgBoxCallback$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpfnMsgBoxCallback$VH.get(seg);
-    }
-    public static void lpfnMsgBoxCallback$set( MemorySegment seg, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpfnMsgBoxCallback$VH.set(seg, x);
-    }
-    public static MemoryAddress lpfnMsgBoxCallback$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)tagMSGBOXPARAMSW.lpfnMsgBoxCallback$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void lpfnMsgBoxCallback$set(MemorySegment seg, long index, MemoryAddress x) {
-        tagMSGBOXPARAMSW.lpfnMsgBoxCallback$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MSGBOXCALLBACK lpfnMsgBoxCallback (MemorySegment segment, MemorySession session) {
-        return MSGBOXCALLBACK.ofAddress(lpfnMsgBoxCallback$get(segment), session);
-    }
-    static final VarHandle dwLanguageId$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("dwLanguageId"));
-    public static VarHandle dwLanguageId$VH() {
-        return tagMSGBOXPARAMSW.dwLanguageId$VH;
-    }
-    public static int dwLanguageId$get(MemorySegment seg) {
-        return (int)tagMSGBOXPARAMSW.dwLanguageId$VH.get(seg);
-    }
-    public static void dwLanguageId$set( MemorySegment seg, int x) {
-        tagMSGBOXPARAMSW.dwLanguageId$VH.set(seg, x);
-    }
-    public static int dwLanguageId$get(MemorySegment seg, long index) {
-        return (int)tagMSGBOXPARAMSW.dwLanguageId$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void dwLanguageId$set(MemorySegment seg, long index, int x) {
-        tagMSGBOXPARAMSW.dwLanguageId$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_INT.withName("cbSize"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("hwndOwner"),
+        wgl_h.C_POINTER.withName("hInstance"),
+        wgl_h.C_POINTER.withName("lpszText"),
+        wgl_h.C_POINTER.withName("lpszCaption"),
+        wgl_h.C_LONG.withName("dwStyle"),
+        MemoryLayout.paddingLayout(4),
+        wgl_h.C_POINTER.withName("lpszIcon"),
+        wgl_h.C_LONG_LONG.withName("dwContextHelpId"),
+        wgl_h.C_POINTER.withName("lpfnMsgBoxCallback"),
+        wgl_h.C_LONG.withName("dwLanguageId"),
+        MemoryLayout.paddingLayout(4)
+    ).withName("tagMSGBOXPARAMSW");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cbSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cbSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final OfInt cbSize$layout() {
+        return cbSize$LAYOUT;
+    }
+
+    private static final long cbSize$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static final long cbSize$offset() {
+        return cbSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static int cbSize(MemorySegment struct) {
+        return struct.get(cbSize$LAYOUT, cbSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * UINT cbSize
+     * }
+     */
+    public static void cbSize(MemorySegment struct, int fieldValue) {
+        struct.set(cbSize$LAYOUT, cbSize$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hwndOwner$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hwndOwner"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final AddressLayout hwndOwner$layout() {
+        return hwndOwner$LAYOUT;
+    }
+
+    private static final long hwndOwner$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static final long hwndOwner$offset() {
+        return hwndOwner$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static MemorySegment hwndOwner(MemorySegment struct) {
+        return struct.get(hwndOwner$LAYOUT, hwndOwner$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HWND hwndOwner
+     * }
+     */
+    public static void hwndOwner(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hwndOwner$LAYOUT, hwndOwner$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout hInstance$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("hInstance"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static final AddressLayout hInstance$layout() {
+        return hInstance$LAYOUT;
+    }
+
+    private static final long hInstance$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static final long hInstance$offset() {
+        return hInstance$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static MemorySegment hInstance(MemorySegment struct) {
+        return struct.get(hInstance$LAYOUT, hInstance$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * HINSTANCE hInstance
+     * }
+     */
+    public static void hInstance(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(hInstance$LAYOUT, hInstance$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszText$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpszText"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszText
+     * }
+     */
+    public static final AddressLayout lpszText$layout() {
+        return lpszText$LAYOUT;
+    }
+
+    private static final long lpszText$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszText
+     * }
+     */
+    public static final long lpszText$offset() {
+        return lpszText$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszText
+     * }
+     */
+    public static MemorySegment lpszText(MemorySegment struct) {
+        return struct.get(lpszText$LAYOUT, lpszText$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszText
+     * }
+     */
+    public static void lpszText(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszText$LAYOUT, lpszText$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszCaption$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpszCaption"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszCaption
+     * }
+     */
+    public static final AddressLayout lpszCaption$layout() {
+        return lpszCaption$LAYOUT;
+    }
+
+    private static final long lpszCaption$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszCaption
+     * }
+     */
+    public static final long lpszCaption$offset() {
+        return lpszCaption$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszCaption
+     * }
+     */
+    public static MemorySegment lpszCaption(MemorySegment struct) {
+        return struct.get(lpszCaption$LAYOUT, lpszCaption$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszCaption
+     * }
+     */
+    public static void lpszCaption(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszCaption$LAYOUT, lpszCaption$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwStyle$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static final OfInt dwStyle$layout() {
+        return dwStyle$LAYOUT;
+    }
+
+    private static final long dwStyle$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static final long dwStyle$offset() {
+        return dwStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static int dwStyle(MemorySegment struct) {
+        return struct.get(dwStyle$LAYOUT, dwStyle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwStyle
+     * }
+     */
+    public static void dwStyle(MemorySegment struct, int fieldValue) {
+        struct.set(dwStyle$LAYOUT, dwStyle$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpszIcon$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpszIcon"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszIcon
+     * }
+     */
+    public static final AddressLayout lpszIcon$layout() {
+        return lpszIcon$LAYOUT;
+    }
+
+    private static final long lpszIcon$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszIcon
+     * }
+     */
+    public static final long lpszIcon$offset() {
+        return lpszIcon$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszIcon
+     * }
+     */
+    public static MemorySegment lpszIcon(MemorySegment struct) {
+        return struct.get(lpszIcon$LAYOUT, lpszIcon$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPCWSTR lpszIcon
+     * }
+     */
+    public static void lpszIcon(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpszIcon$LAYOUT, lpszIcon$OFFSET, fieldValue);
+    }
+
+    private static final OfLong dwContextHelpId$LAYOUT = (OfLong)$LAYOUT.select(groupElement("dwContextHelpId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwContextHelpId
+     * }
+     */
+    public static final OfLong dwContextHelpId$layout() {
+        return dwContextHelpId$LAYOUT;
+    }
+
+    private static final long dwContextHelpId$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwContextHelpId
+     * }
+     */
+    public static final long dwContextHelpId$offset() {
+        return dwContextHelpId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwContextHelpId
+     * }
+     */
+    public static long dwContextHelpId(MemorySegment struct) {
+        return struct.get(dwContextHelpId$LAYOUT, dwContextHelpId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD_PTR dwContextHelpId
+     * }
+     */
+    public static void dwContextHelpId(MemorySegment struct, long fieldValue) {
+        struct.set(dwContextHelpId$LAYOUT, dwContextHelpId$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout lpfnMsgBoxCallback$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("lpfnMsgBoxCallback"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * MSGBOXCALLBACK lpfnMsgBoxCallback
+     * }
+     */
+    public static final AddressLayout lpfnMsgBoxCallback$layout() {
+        return lpfnMsgBoxCallback$LAYOUT;
+    }
+
+    private static final long lpfnMsgBoxCallback$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * MSGBOXCALLBACK lpfnMsgBoxCallback
+     * }
+     */
+    public static final long lpfnMsgBoxCallback$offset() {
+        return lpfnMsgBoxCallback$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * MSGBOXCALLBACK lpfnMsgBoxCallback
+     * }
+     */
+    public static MemorySegment lpfnMsgBoxCallback(MemorySegment struct) {
+        return struct.get(lpfnMsgBoxCallback$LAYOUT, lpfnMsgBoxCallback$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * MSGBOXCALLBACK lpfnMsgBoxCallback
+     * }
+     */
+    public static void lpfnMsgBoxCallback(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(lpfnMsgBoxCallback$LAYOUT, lpfnMsgBoxCallback$OFFSET, fieldValue);
+    }
+
+    private static final OfInt dwLanguageId$LAYOUT = (OfInt)$LAYOUT.select(groupElement("dwLanguageId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageId
+     * }
+     */
+    public static final OfInt dwLanguageId$layout() {
+        return dwLanguageId$LAYOUT;
+    }
+
+    private static final long dwLanguageId$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageId
+     * }
+     */
+    public static final long dwLanguageId$offset() {
+        return dwLanguageId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageId
+     * }
+     */
+    public static int dwLanguageId(MemorySegment struct) {
+        return struct.get(dwLanguageId$LAYOUT, dwLanguageId$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD dwLanguageId
+     * }
+     */
+    public static void dwLanguageId(MemorySegment struct, int fieldValue) {
+        struct.set(dwLanguageId$LAYOUT, dwLanguageId$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

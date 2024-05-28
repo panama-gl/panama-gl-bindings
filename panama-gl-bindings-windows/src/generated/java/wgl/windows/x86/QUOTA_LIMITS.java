@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _QUOTA_LIMITS {
+ *     SIZE_T PagedPoolLimit;
+ *     SIZE_T NonPagedPoolLimit;
+ *     SIZE_T MinimumWorkingSetSize;
+ *     SIZE_T MaximumWorkingSetSize;
+ *     SIZE_T PagefileLimit;
+ *     LARGE_INTEGER TimeLimit;
+ * } QUOTA_LIMITS
+ * }
+ */
 public class QUOTA_LIMITS extends _QUOTA_LIMITS {
 
+    QUOTA_LIMITS() {
+        // Should not be called directly
+    }
 }
-
 

@@ -2,177 +2,682 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct IMAGE_COR20_HEADER {
+ *     DWORD cb;
+ *     WORD MajorRuntimeVersion;
+ *     WORD MinorRuntimeVersion;
+ *     IMAGE_DATA_DIRECTORY MetaData;
+ *     DWORD Flags;
+ *     union {
+ *         DWORD EntryPointToken;
+ *         DWORD EntryPointRVA;
+ *     };
+ *     IMAGE_DATA_DIRECTORY Resources;
+ *     IMAGE_DATA_DIRECTORY StrongNameSignature;
+ *     IMAGE_DATA_DIRECTORY CodeManagerTable;
+ *     IMAGE_DATA_DIRECTORY VTableFixups;
+ *     IMAGE_DATA_DIRECTORY ExportAddressTableJumps;
+ *     IMAGE_DATA_DIRECTORY ManagedNativeHeader;
+ * }
+ * }
+ */
 public class IMAGE_COR20_HEADER {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_LONG$LAYOUT.withName("cb"),
-        Constants$root.C_SHORT$LAYOUT.withName("MajorRuntimeVersion"),
-        Constants$root.C_SHORT$LAYOUT.withName("MinorRuntimeVersion"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("MetaData"),
-        Constants$root.C_LONG$LAYOUT.withName("Flags"),
-        MemoryLayout.unionLayout(
-            Constants$root.C_LONG$LAYOUT.withName("EntryPointToken"),
-            Constants$root.C_LONG$LAYOUT.withName("EntryPointRVA")
-        ).withName("$anon$0"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("Resources"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("StrongNameSignature"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("CodeManagerTable"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("VTableFixups"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("ExportAddressTableJumps"),
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("VirtualAddress"),
-            Constants$root.C_LONG$LAYOUT.withName("Size")
-        ).withName("ManagedNativeHeader")
-    ).withName("IMAGE_COR20_HEADER");
-    public static MemoryLayout $LAYOUT() {
-        return IMAGE_COR20_HEADER.$struct$LAYOUT;
+    IMAGE_COR20_HEADER() {
+        // Should not be called directly
     }
-    static final VarHandle cb$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cb"));
-    public static VarHandle cb$VH() {
-        return IMAGE_COR20_HEADER.cb$VH;
-    }
-    public static int cb$get(MemorySegment seg) {
-        return (int)IMAGE_COR20_HEADER.cb$VH.get(seg);
-    }
-    public static void cb$set( MemorySegment seg, int x) {
-        IMAGE_COR20_HEADER.cb$VH.set(seg, x);
-    }
-    public static int cb$get(MemorySegment seg, long index) {
-        return (int)IMAGE_COR20_HEADER.cb$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cb$set(MemorySegment seg, long index, int x) {
-        IMAGE_COR20_HEADER.cb$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MajorRuntimeVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MajorRuntimeVersion"));
-    public static VarHandle MajorRuntimeVersion$VH() {
-        return IMAGE_COR20_HEADER.MajorRuntimeVersion$VH;
-    }
-    public static short MajorRuntimeVersion$get(MemorySegment seg) {
-        return (short)IMAGE_COR20_HEADER.MajorRuntimeVersion$VH.get(seg);
-    }
-    public static void MajorRuntimeVersion$set( MemorySegment seg, short x) {
-        IMAGE_COR20_HEADER.MajorRuntimeVersion$VH.set(seg, x);
-    }
-    public static short MajorRuntimeVersion$get(MemorySegment seg, long index) {
-        return (short)IMAGE_COR20_HEADER.MajorRuntimeVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MajorRuntimeVersion$set(MemorySegment seg, long index, short x) {
-        IMAGE_COR20_HEADER.MajorRuntimeVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle MinorRuntimeVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("MinorRuntimeVersion"));
-    public static VarHandle MinorRuntimeVersion$VH() {
-        return IMAGE_COR20_HEADER.MinorRuntimeVersion$VH;
-    }
-    public static short MinorRuntimeVersion$get(MemorySegment seg) {
-        return (short)IMAGE_COR20_HEADER.MinorRuntimeVersion$VH.get(seg);
-    }
-    public static void MinorRuntimeVersion$set( MemorySegment seg, short x) {
-        IMAGE_COR20_HEADER.MinorRuntimeVersion$VH.set(seg, x);
-    }
-    public static short MinorRuntimeVersion$get(MemorySegment seg, long index) {
-        return (short)IMAGE_COR20_HEADER.MinorRuntimeVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MinorRuntimeVersion$set(MemorySegment seg, long index, short x) {
-        IMAGE_COR20_HEADER.MinorRuntimeVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment MetaData$slice(MemorySegment seg) {
-        return seg.asSlice(8, 8);
-    }
-    static final VarHandle Flags$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Flags"));
-    public static VarHandle Flags$VH() {
-        return IMAGE_COR20_HEADER.Flags$VH;
-    }
-    public static int Flags$get(MemorySegment seg) {
-        return (int)IMAGE_COR20_HEADER.Flags$VH.get(seg);
-    }
-    public static void Flags$set( MemorySegment seg, int x) {
-        IMAGE_COR20_HEADER.Flags$VH.set(seg, x);
-    }
-    public static int Flags$get(MemorySegment seg, long index) {
-        return (int)IMAGE_COR20_HEADER.Flags$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Flags$set(MemorySegment seg, long index, int x) {
-        IMAGE_COR20_HEADER.Flags$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EntryPointToken$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("EntryPointToken"));
-    public static VarHandle EntryPointToken$VH() {
-        return IMAGE_COR20_HEADER.EntryPointToken$VH;
-    }
-    public static int EntryPointToken$get(MemorySegment seg) {
-        return (int)IMAGE_COR20_HEADER.EntryPointToken$VH.get(seg);
-    }
-    public static void EntryPointToken$set( MemorySegment seg, int x) {
-        IMAGE_COR20_HEADER.EntryPointToken$VH.set(seg, x);
-    }
-    public static int EntryPointToken$get(MemorySegment seg, long index) {
-        return (int)IMAGE_COR20_HEADER.EntryPointToken$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EntryPointToken$set(MemorySegment seg, long index, int x) {
-        IMAGE_COR20_HEADER.EntryPointToken$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle EntryPointRVA$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("$anon$0"), MemoryLayout.PathElement.groupElement("EntryPointRVA"));
-    public static VarHandle EntryPointRVA$VH() {
-        return IMAGE_COR20_HEADER.EntryPointRVA$VH;
-    }
-    public static int EntryPointRVA$get(MemorySegment seg) {
-        return (int)IMAGE_COR20_HEADER.EntryPointRVA$VH.get(seg);
-    }
-    public static void EntryPointRVA$set( MemorySegment seg, int x) {
-        IMAGE_COR20_HEADER.EntryPointRVA$VH.set(seg, x);
-    }
-    public static int EntryPointRVA$get(MemorySegment seg, long index) {
-        return (int)IMAGE_COR20_HEADER.EntryPointRVA$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EntryPointRVA$set(MemorySegment seg, long index, int x) {
-        IMAGE_COR20_HEADER.EntryPointRVA$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment Resources$slice(MemorySegment seg) {
-        return seg.asSlice(24, 8);
-    }
-    public static MemorySegment StrongNameSignature$slice(MemorySegment seg) {
-        return seg.asSlice(32, 8);
-    }
-    public static MemorySegment CodeManagerTable$slice(MemorySegment seg) {
-        return seg.asSlice(40, 8);
-    }
-    public static MemorySegment VTableFixups$slice(MemorySegment seg) {
-        return seg.asSlice(48, 8);
-    }
-    public static MemorySegment ExportAddressTableJumps$slice(MemorySegment seg) {
-        return seg.asSlice(56, 8);
-    }
-    public static MemorySegment ManagedNativeHeader$slice(MemorySegment seg) {
-        return seg.asSlice(64, 8);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_LONG.withName("cb"),
+        wgl_h.C_SHORT.withName("MajorRuntimeVersion"),
+        wgl_h.C_SHORT.withName("MinorRuntimeVersion"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("MetaData"),
+        wgl_h.C_LONG.withName("Flags"),
+        MemoryLayout.unionLayout(
+            wgl_h.C_LONG.withName("EntryPointToken"),
+            wgl_h.C_LONG.withName("EntryPointRVA")
+        ).withName("$anon$19265:5"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("Resources"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("StrongNameSignature"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("CodeManagerTable"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("VTableFixups"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("ExportAddressTableJumps"),
+        _IMAGE_DATA_DIRECTORY.layout().withName("ManagedNativeHeader")
+    ).withName("IMAGE_COR20_HEADER");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final OfInt cb$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cb"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static final OfInt cb$layout() {
+        return cb$LAYOUT;
+    }
+
+    private static final long cb$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static final long cb$offset() {
+        return cb$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static int cb(MemorySegment struct) {
+        return struct.get(cb$LAYOUT, cb$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cb
+     * }
+     */
+    public static void cb(MemorySegment struct, int fieldValue) {
+        struct.set(cb$LAYOUT, cb$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MajorRuntimeVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MajorRuntimeVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MajorRuntimeVersion
+     * }
+     */
+    public static final OfShort MajorRuntimeVersion$layout() {
+        return MajorRuntimeVersion$LAYOUT;
+    }
+
+    private static final long MajorRuntimeVersion$OFFSET = 4;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MajorRuntimeVersion
+     * }
+     */
+    public static final long MajorRuntimeVersion$offset() {
+        return MajorRuntimeVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MajorRuntimeVersion
+     * }
+     */
+    public static short MajorRuntimeVersion(MemorySegment struct) {
+        return struct.get(MajorRuntimeVersion$LAYOUT, MajorRuntimeVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MajorRuntimeVersion
+     * }
+     */
+    public static void MajorRuntimeVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MajorRuntimeVersion$LAYOUT, MajorRuntimeVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfShort MinorRuntimeVersion$LAYOUT = (OfShort)$LAYOUT.select(groupElement("MinorRuntimeVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * WORD MinorRuntimeVersion
+     * }
+     */
+    public static final OfShort MinorRuntimeVersion$layout() {
+        return MinorRuntimeVersion$LAYOUT;
+    }
+
+    private static final long MinorRuntimeVersion$OFFSET = 6;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * WORD MinorRuntimeVersion
+     * }
+     */
+    public static final long MinorRuntimeVersion$offset() {
+        return MinorRuntimeVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * WORD MinorRuntimeVersion
+     * }
+     */
+    public static short MinorRuntimeVersion(MemorySegment struct) {
+        return struct.get(MinorRuntimeVersion$LAYOUT, MinorRuntimeVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * WORD MinorRuntimeVersion
+     * }
+     */
+    public static void MinorRuntimeVersion(MemorySegment struct, short fieldValue) {
+        struct.set(MinorRuntimeVersion$LAYOUT, MinorRuntimeVersion$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout MetaData$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("MetaData"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY MetaData
+     * }
+     */
+    public static final GroupLayout MetaData$layout() {
+        return MetaData$LAYOUT;
+    }
+
+    private static final long MetaData$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY MetaData
+     * }
+     */
+    public static final long MetaData$offset() {
+        return MetaData$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY MetaData
+     * }
+     */
+    public static MemorySegment MetaData(MemorySegment struct) {
+        return struct.asSlice(MetaData$OFFSET, MetaData$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY MetaData
+     * }
+     */
+    public static void MetaData(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, MetaData$OFFSET, MetaData$LAYOUT.byteSize());
+    }
+
+    private static final OfInt Flags$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Flags"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final OfInt Flags$layout() {
+        return Flags$LAYOUT;
+    }
+
+    private static final long Flags$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static final long Flags$offset() {
+        return Flags$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static int Flags(MemorySegment struct) {
+        return struct.get(Flags$LAYOUT, Flags$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Flags
+     * }
+     */
+    public static void Flags(MemorySegment struct, int fieldValue) {
+        struct.set(Flags$LAYOUT, Flags$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EntryPointToken$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$19265:5"), groupElement("EntryPointToken"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointToken
+     * }
+     */
+    public static final OfInt EntryPointToken$layout() {
+        return EntryPointToken$LAYOUT;
+    }
+
+    private static final long EntryPointToken$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointToken
+     * }
+     */
+    public static final long EntryPointToken$offset() {
+        return EntryPointToken$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointToken
+     * }
+     */
+    public static int EntryPointToken(MemorySegment struct) {
+        return struct.get(EntryPointToken$LAYOUT, EntryPointToken$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointToken
+     * }
+     */
+    public static void EntryPointToken(MemorySegment struct, int fieldValue) {
+        struct.set(EntryPointToken$LAYOUT, EntryPointToken$OFFSET, fieldValue);
+    }
+
+    private static final OfInt EntryPointRVA$LAYOUT = (OfInt)$LAYOUT.select(groupElement("$anon$19265:5"), groupElement("EntryPointRVA"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointRVA
+     * }
+     */
+    public static final OfInt EntryPointRVA$layout() {
+        return EntryPointRVA$LAYOUT;
+    }
+
+    private static final long EntryPointRVA$OFFSET = 20;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointRVA
+     * }
+     */
+    public static final long EntryPointRVA$offset() {
+        return EntryPointRVA$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointRVA
+     * }
+     */
+    public static int EntryPointRVA(MemorySegment struct) {
+        return struct.get(EntryPointRVA$LAYOUT, EntryPointRVA$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD EntryPointRVA
+     * }
+     */
+    public static void EntryPointRVA(MemorySegment struct, int fieldValue) {
+        struct.set(EntryPointRVA$LAYOUT, EntryPointRVA$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout Resources$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("Resources"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY Resources
+     * }
+     */
+    public static final GroupLayout Resources$layout() {
+        return Resources$LAYOUT;
+    }
+
+    private static final long Resources$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY Resources
+     * }
+     */
+    public static final long Resources$offset() {
+        return Resources$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY Resources
+     * }
+     */
+    public static MemorySegment Resources(MemorySegment struct) {
+        return struct.asSlice(Resources$OFFSET, Resources$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY Resources
+     * }
+     */
+    public static void Resources(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, Resources$OFFSET, Resources$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout StrongNameSignature$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("StrongNameSignature"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY StrongNameSignature
+     * }
+     */
+    public static final GroupLayout StrongNameSignature$layout() {
+        return StrongNameSignature$LAYOUT;
+    }
+
+    private static final long StrongNameSignature$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY StrongNameSignature
+     * }
+     */
+    public static final long StrongNameSignature$offset() {
+        return StrongNameSignature$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY StrongNameSignature
+     * }
+     */
+    public static MemorySegment StrongNameSignature(MemorySegment struct) {
+        return struct.asSlice(StrongNameSignature$OFFSET, StrongNameSignature$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY StrongNameSignature
+     * }
+     */
+    public static void StrongNameSignature(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, StrongNameSignature$OFFSET, StrongNameSignature$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout CodeManagerTable$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("CodeManagerTable"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY CodeManagerTable
+     * }
+     */
+    public static final GroupLayout CodeManagerTable$layout() {
+        return CodeManagerTable$LAYOUT;
+    }
+
+    private static final long CodeManagerTable$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY CodeManagerTable
+     * }
+     */
+    public static final long CodeManagerTable$offset() {
+        return CodeManagerTable$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY CodeManagerTable
+     * }
+     */
+    public static MemorySegment CodeManagerTable(MemorySegment struct) {
+        return struct.asSlice(CodeManagerTable$OFFSET, CodeManagerTable$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY CodeManagerTable
+     * }
+     */
+    public static void CodeManagerTable(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, CodeManagerTable$OFFSET, CodeManagerTable$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout VTableFixups$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("VTableFixups"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY VTableFixups
+     * }
+     */
+    public static final GroupLayout VTableFixups$layout() {
+        return VTableFixups$LAYOUT;
+    }
+
+    private static final long VTableFixups$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY VTableFixups
+     * }
+     */
+    public static final long VTableFixups$offset() {
+        return VTableFixups$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY VTableFixups
+     * }
+     */
+    public static MemorySegment VTableFixups(MemorySegment struct) {
+        return struct.asSlice(VTableFixups$OFFSET, VTableFixups$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY VTableFixups
+     * }
+     */
+    public static void VTableFixups(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, VTableFixups$OFFSET, VTableFixups$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ExportAddressTableJumps$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ExportAddressTableJumps"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ExportAddressTableJumps
+     * }
+     */
+    public static final GroupLayout ExportAddressTableJumps$layout() {
+        return ExportAddressTableJumps$LAYOUT;
+    }
+
+    private static final long ExportAddressTableJumps$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ExportAddressTableJumps
+     * }
+     */
+    public static final long ExportAddressTableJumps$offset() {
+        return ExportAddressTableJumps$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ExportAddressTableJumps
+     * }
+     */
+    public static MemorySegment ExportAddressTableJumps(MemorySegment struct) {
+        return struct.asSlice(ExportAddressTableJumps$OFFSET, ExportAddressTableJumps$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ExportAddressTableJumps
+     * }
+     */
+    public static void ExportAddressTableJumps(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ExportAddressTableJumps$OFFSET, ExportAddressTableJumps$LAYOUT.byteSize());
+    }
+
+    private static final GroupLayout ManagedNativeHeader$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("ManagedNativeHeader"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ManagedNativeHeader
+     * }
+     */
+    public static final GroupLayout ManagedNativeHeader$layout() {
+        return ManagedNativeHeader$LAYOUT;
+    }
+
+    private static final long ManagedNativeHeader$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ManagedNativeHeader
+     * }
+     */
+    public static final long ManagedNativeHeader$offset() {
+        return ManagedNativeHeader$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ManagedNativeHeader
+     * }
+     */
+    public static MemorySegment ManagedNativeHeader(MemorySegment struct) {
+        return struct.asSlice(ManagedNativeHeader$OFFSET, ManagedNativeHeader$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * IMAGE_DATA_DIRECTORY ManagedNativeHeader
+     * }
+     */
+    public static void ManagedNativeHeader(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, ManagedNativeHeader$OFFSET, ManagedNativeHeader$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

@@ -2,156 +2,640 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct tagEXTLOGFONTA {
+ *     LOGFONTA elfLogFont;
+ *     BYTE elfFullName[64];
+ *     BYTE elfStyle[32];
+ *     DWORD elfVersion;
+ *     DWORD elfStyleSize;
+ *     DWORD elfMatch;
+ *     DWORD elfReserved;
+ *     BYTE elfVendorId[4];
+ *     DWORD elfCulture;
+ *     PANOSE elfPanose;
+ * }
+ * }
+ */
 public class tagEXTLOGFONTA {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        MemoryLayout.structLayout(
-            Constants$root.C_LONG$LAYOUT.withName("lfHeight"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWidth"),
-            Constants$root.C_LONG$LAYOUT.withName("lfEscapement"),
-            Constants$root.C_LONG$LAYOUT.withName("lfOrientation"),
-            Constants$root.C_LONG$LAYOUT.withName("lfWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfItalic"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfUnderline"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfStrikeOut"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfCharSet"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfOutPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfClipPrecision"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfQuality"),
-            Constants$root.C_CHAR$LAYOUT.withName("lfPitchAndFamily"),
-            MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("lfFaceName")
-        ).withName("elfLogFont"),
-        MemoryLayout.sequenceLayout(64, Constants$root.C_CHAR$LAYOUT).withName("elfFullName"),
-        MemoryLayout.sequenceLayout(32, Constants$root.C_CHAR$LAYOUT).withName("elfStyle"),
-        Constants$root.C_LONG$LAYOUT.withName("elfVersion"),
-        Constants$root.C_LONG$LAYOUT.withName("elfStyleSize"),
-        Constants$root.C_LONG$LAYOUT.withName("elfMatch"),
-        Constants$root.C_LONG$LAYOUT.withName("elfReserved"),
-        MemoryLayout.sequenceLayout(4, Constants$root.C_CHAR$LAYOUT).withName("elfVendorId"),
-        Constants$root.C_LONG$LAYOUT.withName("elfCulture"),
-        MemoryLayout.structLayout(
-            Constants$root.C_CHAR$LAYOUT.withName("bFamilyType"),
-            Constants$root.C_CHAR$LAYOUT.withName("bSerifStyle"),
-            Constants$root.C_CHAR$LAYOUT.withName("bWeight"),
-            Constants$root.C_CHAR$LAYOUT.withName("bProportion"),
-            Constants$root.C_CHAR$LAYOUT.withName("bContrast"),
-            Constants$root.C_CHAR$LAYOUT.withName("bStrokeVariation"),
-            Constants$root.C_CHAR$LAYOUT.withName("bArmStyle"),
-            Constants$root.C_CHAR$LAYOUT.withName("bLetterform"),
-            Constants$root.C_CHAR$LAYOUT.withName("bMidline"),
-            Constants$root.C_CHAR$LAYOUT.withName("bXHeight")
-        ).withName("elfPanose"),
-        MemoryLayout.paddingLayout(16)
-    ).withName("tagEXTLOGFONTA");
-    public static MemoryLayout $LAYOUT() {
-        return tagEXTLOGFONTA.$struct$LAYOUT;
+    tagEXTLOGFONTA() {
+        // Should not be called directly
     }
-    public static MemorySegment elfLogFont$slice(MemorySegment seg) {
-        return seg.asSlice(0, 60);
-    }
-    public static MemorySegment elfFullName$slice(MemorySegment seg) {
-        return seg.asSlice(60, 64);
-    }
-    public static MemorySegment elfStyle$slice(MemorySegment seg) {
-        return seg.asSlice(124, 32);
-    }
-    static final VarHandle elfVersion$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("elfVersion"));
-    public static VarHandle elfVersion$VH() {
-        return tagEXTLOGFONTA.elfVersion$VH;
-    }
-    public static int elfVersion$get(MemorySegment seg) {
-        return (int)tagEXTLOGFONTA.elfVersion$VH.get(seg);
-    }
-    public static void elfVersion$set( MemorySegment seg, int x) {
-        tagEXTLOGFONTA.elfVersion$VH.set(seg, x);
-    }
-    public static int elfVersion$get(MemorySegment seg, long index) {
-        return (int)tagEXTLOGFONTA.elfVersion$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void elfVersion$set(MemorySegment seg, long index, int x) {
-        tagEXTLOGFONTA.elfVersion$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle elfStyleSize$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("elfStyleSize"));
-    public static VarHandle elfStyleSize$VH() {
-        return tagEXTLOGFONTA.elfStyleSize$VH;
-    }
-    public static int elfStyleSize$get(MemorySegment seg) {
-        return (int)tagEXTLOGFONTA.elfStyleSize$VH.get(seg);
-    }
-    public static void elfStyleSize$set( MemorySegment seg, int x) {
-        tagEXTLOGFONTA.elfStyleSize$VH.set(seg, x);
-    }
-    public static int elfStyleSize$get(MemorySegment seg, long index) {
-        return (int)tagEXTLOGFONTA.elfStyleSize$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void elfStyleSize$set(MemorySegment seg, long index, int x) {
-        tagEXTLOGFONTA.elfStyleSize$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle elfMatch$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("elfMatch"));
-    public static VarHandle elfMatch$VH() {
-        return tagEXTLOGFONTA.elfMatch$VH;
-    }
-    public static int elfMatch$get(MemorySegment seg) {
-        return (int)tagEXTLOGFONTA.elfMatch$VH.get(seg);
-    }
-    public static void elfMatch$set( MemorySegment seg, int x) {
-        tagEXTLOGFONTA.elfMatch$VH.set(seg, x);
-    }
-    public static int elfMatch$get(MemorySegment seg, long index) {
-        return (int)tagEXTLOGFONTA.elfMatch$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void elfMatch$set(MemorySegment seg, long index, int x) {
-        tagEXTLOGFONTA.elfMatch$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle elfReserved$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("elfReserved"));
-    public static VarHandle elfReserved$VH() {
-        return tagEXTLOGFONTA.elfReserved$VH;
-    }
-    public static int elfReserved$get(MemorySegment seg) {
-        return (int)tagEXTLOGFONTA.elfReserved$VH.get(seg);
-    }
-    public static void elfReserved$set( MemorySegment seg, int x) {
-        tagEXTLOGFONTA.elfReserved$VH.set(seg, x);
-    }
-    public static int elfReserved$get(MemorySegment seg, long index) {
-        return (int)tagEXTLOGFONTA.elfReserved$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void elfReserved$set(MemorySegment seg, long index, int x) {
-        tagEXTLOGFONTA.elfReserved$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment elfVendorId$slice(MemorySegment seg) {
-        return seg.asSlice(172, 4);
-    }
-    static final VarHandle elfCulture$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("elfCulture"));
-    public static VarHandle elfCulture$VH() {
-        return tagEXTLOGFONTA.elfCulture$VH;
-    }
-    public static int elfCulture$get(MemorySegment seg) {
-        return (int)tagEXTLOGFONTA.elfCulture$VH.get(seg);
-    }
-    public static void elfCulture$set( MemorySegment seg, int x) {
-        tagEXTLOGFONTA.elfCulture$VH.set(seg, x);
-    }
-    public static int elfCulture$get(MemorySegment seg, long index) {
-        return (int)tagEXTLOGFONTA.elfCulture$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void elfCulture$set(MemorySegment seg, long index, int x) {
-        tagEXTLOGFONTA.elfCulture$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static MemorySegment elfPanose$slice(MemorySegment seg) {
-        return seg.asSlice(180, 10);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        tagLOGFONTA.layout().withName("elfLogFont"),
+        MemoryLayout.sequenceLayout(64, wgl_h.C_CHAR).withName("elfFullName"),
+        MemoryLayout.sequenceLayout(32, wgl_h.C_CHAR).withName("elfStyle"),
+        wgl_h.C_LONG.withName("elfVersion"),
+        wgl_h.C_LONG.withName("elfStyleSize"),
+        wgl_h.C_LONG.withName("elfMatch"),
+        wgl_h.C_LONG.withName("elfReserved"),
+        MemoryLayout.sequenceLayout(4, wgl_h.C_CHAR).withName("elfVendorId"),
+        wgl_h.C_LONG.withName("elfCulture"),
+        tagPANOSE.layout().withName("elfPanose"),
+        MemoryLayout.paddingLayout(2)
+    ).withName("tagEXTLOGFONTA");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final GroupLayout elfLogFont$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("elfLogFont"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LOGFONTA elfLogFont
+     * }
+     */
+    public static final GroupLayout elfLogFont$layout() {
+        return elfLogFont$LAYOUT;
+    }
+
+    private static final long elfLogFont$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LOGFONTA elfLogFont
+     * }
+     */
+    public static final long elfLogFont$offset() {
+        return elfLogFont$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LOGFONTA elfLogFont
+     * }
+     */
+    public static MemorySegment elfLogFont(MemorySegment struct) {
+        return struct.asSlice(elfLogFont$OFFSET, elfLogFont$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LOGFONTA elfLogFont
+     * }
+     */
+    public static void elfLogFont(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elfLogFont$OFFSET, elfLogFont$LAYOUT.byteSize());
+    }
+
+    private static final SequenceLayout elfFullName$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("elfFullName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static final SequenceLayout elfFullName$layout() {
+        return elfFullName$LAYOUT;
+    }
+
+    private static final long elfFullName$OFFSET = 60;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static final long elfFullName$offset() {
+        return elfFullName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static MemorySegment elfFullName(MemorySegment struct) {
+        return struct.asSlice(elfFullName$OFFSET, elfFullName$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static void elfFullName(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elfFullName$OFFSET, elfFullName$LAYOUT.byteSize());
+    }
+
+    private static long[] elfFullName$DIMS = { 64 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static long[] elfFullName$dimensions() {
+        return elfFullName$DIMS;
+    }
+    private static final VarHandle elfFullName$ELEM_HANDLE = elfFullName$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static byte elfFullName(MemorySegment struct, long index0) {
+        return (byte)elfFullName$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE elfFullName[64]
+     * }
+     */
+    public static void elfFullName(MemorySegment struct, long index0, byte fieldValue) {
+        elfFullName$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final SequenceLayout elfStyle$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("elfStyle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static final SequenceLayout elfStyle$layout() {
+        return elfStyle$LAYOUT;
+    }
+
+    private static final long elfStyle$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static final long elfStyle$offset() {
+        return elfStyle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static MemorySegment elfStyle(MemorySegment struct) {
+        return struct.asSlice(elfStyle$OFFSET, elfStyle$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static void elfStyle(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elfStyle$OFFSET, elfStyle$LAYOUT.byteSize());
+    }
+
+    private static long[] elfStyle$DIMS = { 32 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static long[] elfStyle$dimensions() {
+        return elfStyle$DIMS;
+    }
+    private static final VarHandle elfStyle$ELEM_HANDLE = elfStyle$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static byte elfStyle(MemorySegment struct, long index0) {
+        return (byte)elfStyle$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE elfStyle[32]
+     * }
+     */
+    public static void elfStyle(MemorySegment struct, long index0, byte fieldValue) {
+        elfStyle$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt elfVersion$LAYOUT = (OfInt)$LAYOUT.select(groupElement("elfVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD elfVersion
+     * }
+     */
+    public static final OfInt elfVersion$layout() {
+        return elfVersion$LAYOUT;
+    }
+
+    private static final long elfVersion$OFFSET = 156;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD elfVersion
+     * }
+     */
+    public static final long elfVersion$offset() {
+        return elfVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD elfVersion
+     * }
+     */
+    public static int elfVersion(MemorySegment struct) {
+        return struct.get(elfVersion$LAYOUT, elfVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD elfVersion
+     * }
+     */
+    public static void elfVersion(MemorySegment struct, int fieldValue) {
+        struct.set(elfVersion$LAYOUT, elfVersion$OFFSET, fieldValue);
+    }
+
+    private static final OfInt elfStyleSize$LAYOUT = (OfInt)$LAYOUT.select(groupElement("elfStyleSize"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD elfStyleSize
+     * }
+     */
+    public static final OfInt elfStyleSize$layout() {
+        return elfStyleSize$LAYOUT;
+    }
+
+    private static final long elfStyleSize$OFFSET = 160;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD elfStyleSize
+     * }
+     */
+    public static final long elfStyleSize$offset() {
+        return elfStyleSize$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD elfStyleSize
+     * }
+     */
+    public static int elfStyleSize(MemorySegment struct) {
+        return struct.get(elfStyleSize$LAYOUT, elfStyleSize$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD elfStyleSize
+     * }
+     */
+    public static void elfStyleSize(MemorySegment struct, int fieldValue) {
+        struct.set(elfStyleSize$LAYOUT, elfStyleSize$OFFSET, fieldValue);
+    }
+
+    private static final OfInt elfMatch$LAYOUT = (OfInt)$LAYOUT.select(groupElement("elfMatch"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD elfMatch
+     * }
+     */
+    public static final OfInt elfMatch$layout() {
+        return elfMatch$LAYOUT;
+    }
+
+    private static final long elfMatch$OFFSET = 164;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD elfMatch
+     * }
+     */
+    public static final long elfMatch$offset() {
+        return elfMatch$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD elfMatch
+     * }
+     */
+    public static int elfMatch(MemorySegment struct) {
+        return struct.get(elfMatch$LAYOUT, elfMatch$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD elfMatch
+     * }
+     */
+    public static void elfMatch(MemorySegment struct, int fieldValue) {
+        struct.set(elfMatch$LAYOUT, elfMatch$OFFSET, fieldValue);
+    }
+
+    private static final OfInt elfReserved$LAYOUT = (OfInt)$LAYOUT.select(groupElement("elfReserved"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD elfReserved
+     * }
+     */
+    public static final OfInt elfReserved$layout() {
+        return elfReserved$LAYOUT;
+    }
+
+    private static final long elfReserved$OFFSET = 168;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD elfReserved
+     * }
+     */
+    public static final long elfReserved$offset() {
+        return elfReserved$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD elfReserved
+     * }
+     */
+    public static int elfReserved(MemorySegment struct) {
+        return struct.get(elfReserved$LAYOUT, elfReserved$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD elfReserved
+     * }
+     */
+    public static void elfReserved(MemorySegment struct, int fieldValue) {
+        struct.set(elfReserved$LAYOUT, elfReserved$OFFSET, fieldValue);
+    }
+
+    private static final SequenceLayout elfVendorId$LAYOUT = (SequenceLayout)$LAYOUT.select(groupElement("elfVendorId"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static final SequenceLayout elfVendorId$layout() {
+        return elfVendorId$LAYOUT;
+    }
+
+    private static final long elfVendorId$OFFSET = 172;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static final long elfVendorId$offset() {
+        return elfVendorId$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static MemorySegment elfVendorId(MemorySegment struct) {
+        return struct.asSlice(elfVendorId$OFFSET, elfVendorId$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static void elfVendorId(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elfVendorId$OFFSET, elfVendorId$LAYOUT.byteSize());
+    }
+
+    private static long[] elfVendorId$DIMS = { 4 };
+
+    /**
+     * Dimensions for array field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static long[] elfVendorId$dimensions() {
+        return elfVendorId$DIMS;
+    }
+    private static final VarHandle elfVendorId$ELEM_HANDLE = elfVendorId$LAYOUT.varHandle(sequenceElement());
+
+    /**
+     * Indexed getter for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static byte elfVendorId(MemorySegment struct, long index0) {
+        return (byte)elfVendorId$ELEM_HANDLE.get(struct, 0L, index0);
+    }
+
+    /**
+     * Indexed setter for field:
+     * {@snippet lang=c :
+     * BYTE elfVendorId[4]
+     * }
+     */
+    public static void elfVendorId(MemorySegment struct, long index0, byte fieldValue) {
+        elfVendorId$ELEM_HANDLE.set(struct, 0L, index0, fieldValue);
+    }
+
+    private static final OfInt elfCulture$LAYOUT = (OfInt)$LAYOUT.select(groupElement("elfCulture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD elfCulture
+     * }
+     */
+    public static final OfInt elfCulture$layout() {
+        return elfCulture$LAYOUT;
+    }
+
+    private static final long elfCulture$OFFSET = 176;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD elfCulture
+     * }
+     */
+    public static final long elfCulture$offset() {
+        return elfCulture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD elfCulture
+     * }
+     */
+    public static int elfCulture(MemorySegment struct) {
+        return struct.get(elfCulture$LAYOUT, elfCulture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD elfCulture
+     * }
+     */
+    public static void elfCulture(MemorySegment struct, int fieldValue) {
+        struct.set(elfCulture$LAYOUT, elfCulture$OFFSET, fieldValue);
+    }
+
+    private static final GroupLayout elfPanose$LAYOUT = (GroupLayout)$LAYOUT.select(groupElement("elfPanose"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PANOSE elfPanose
+     * }
+     */
+    public static final GroupLayout elfPanose$layout() {
+        return elfPanose$LAYOUT;
+    }
+
+    private static final long elfPanose$OFFSET = 180;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PANOSE elfPanose
+     * }
+     */
+    public static final long elfPanose$offset() {
+        return elfPanose$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PANOSE elfPanose
+     * }
+     */
+    public static MemorySegment elfPanose(MemorySegment struct) {
+        return struct.asSlice(elfPanose$OFFSET, elfPanose$LAYOUT.byteSize());
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PANOSE elfPanose
+     * }
+     */
+    public static void elfPanose(MemorySegment struct, MemorySegment fieldValue) {
+        MemorySegment.copy(fieldValue, 0L, struct, elfPanose$OFFSET, elfPanose$LAYOUT.byteSize());
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

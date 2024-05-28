@@ -2,13 +2,32 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * typedef struct _STORAGE_IDENTIFIER {
+ *     STORAGE_IDENTIFIER_CODE_SET CodeSet;
+ *     STORAGE_IDENTIFIER_TYPE Type;
+ *     WORD IdentifierSize;
+ *     WORD NextOffset;
+ *     STORAGE_ASSOCIATION_TYPE Association;
+ *     BYTE Identifier[1];
+ * } STORAGE_IDENTIFIER
+ * }
+ */
 public class STORAGE_IDENTIFIER extends _STORAGE_IDENTIFIER {
 
+    STORAGE_IDENTIFIER() {
+        // Should not be called directly
+    }
 }
-
 

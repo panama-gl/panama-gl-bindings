@@ -2,381 +2,1046 @@
 
 package wgl.windows.x86;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+/**
+ * {@snippet lang=c :
+ * struct _PRINTER_INFO_2A {
+ *     LPSTR pServerName;
+ *     LPSTR pPrinterName;
+ *     LPSTR pShareName;
+ *     LPSTR pPortName;
+ *     LPSTR pDriverName;
+ *     LPSTR pComment;
+ *     LPSTR pLocation;
+ *     LPDEVMODEA pDevMode;
+ *     LPSTR pSepFile;
+ *     LPSTR pPrintProcessor;
+ *     LPSTR pDatatype;
+ *     LPSTR pParameters;
+ *     PSECURITY_DESCRIPTOR pSecurityDescriptor;
+ *     DWORD Attributes;
+ *     DWORD Priority;
+ *     DWORD DefaultPriority;
+ *     DWORD StartTime;
+ *     DWORD UntilTime;
+ *     DWORD Status;
+ *     DWORD cJobs;
+ *     DWORD AveragePPM;
+ * }
+ * }
+ */
 public class _PRINTER_INFO_2A {
 
-    static final  GroupLayout $struct$LAYOUT = MemoryLayout.structLayout(
-        Constants$root.C_POINTER$LAYOUT.withName("pServerName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pPrinterName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pShareName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pPortName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDriverName"),
-        Constants$root.C_POINTER$LAYOUT.withName("pComment"),
-        Constants$root.C_POINTER$LAYOUT.withName("pLocation"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDevMode"),
-        Constants$root.C_POINTER$LAYOUT.withName("pSepFile"),
-        Constants$root.C_POINTER$LAYOUT.withName("pPrintProcessor"),
-        Constants$root.C_POINTER$LAYOUT.withName("pDatatype"),
-        Constants$root.C_POINTER$LAYOUT.withName("pParameters"),
-        Constants$root.C_POINTER$LAYOUT.withName("pSecurityDescriptor"),
-        Constants$root.C_LONG$LAYOUT.withName("Attributes"),
-        Constants$root.C_LONG$LAYOUT.withName("Priority"),
-        Constants$root.C_LONG$LAYOUT.withName("DefaultPriority"),
-        Constants$root.C_LONG$LAYOUT.withName("StartTime"),
-        Constants$root.C_LONG$LAYOUT.withName("UntilTime"),
-        Constants$root.C_LONG$LAYOUT.withName("Status"),
-        Constants$root.C_LONG$LAYOUT.withName("cJobs"),
-        Constants$root.C_LONG$LAYOUT.withName("AveragePPM")
-    ).withName("_PRINTER_INFO_2A");
-    public static MemoryLayout $LAYOUT() {
-        return _PRINTER_INFO_2A.$struct$LAYOUT;
+    _PRINTER_INFO_2A() {
+        // Should not be called directly
     }
-    static final VarHandle pServerName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pServerName"));
-    public static VarHandle pServerName$VH() {
-        return _PRINTER_INFO_2A.pServerName$VH;
-    }
-    public static MemoryAddress pServerName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pServerName$VH.get(seg);
-    }
-    public static void pServerName$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pServerName$VH.set(seg, x);
-    }
-    public static MemoryAddress pServerName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pServerName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pServerName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pServerName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pPrinterName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPrinterName"));
-    public static VarHandle pPrinterName$VH() {
-        return _PRINTER_INFO_2A.pPrinterName$VH;
-    }
-    public static MemoryAddress pPrinterName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPrinterName$VH.get(seg);
-    }
-    public static void pPrinterName$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPrinterName$VH.set(seg, x);
-    }
-    public static MemoryAddress pPrinterName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPrinterName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPrinterName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPrinterName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pShareName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pShareName"));
-    public static VarHandle pShareName$VH() {
-        return _PRINTER_INFO_2A.pShareName$VH;
-    }
-    public static MemoryAddress pShareName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pShareName$VH.get(seg);
-    }
-    public static void pShareName$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pShareName$VH.set(seg, x);
-    }
-    public static MemoryAddress pShareName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pShareName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pShareName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pShareName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pPortName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPortName"));
-    public static VarHandle pPortName$VH() {
-        return _PRINTER_INFO_2A.pPortName$VH;
-    }
-    public static MemoryAddress pPortName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPortName$VH.get(seg);
-    }
-    public static void pPortName$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPortName$VH.set(seg, x);
-    }
-    public static MemoryAddress pPortName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPortName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPortName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPortName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDriverName$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDriverName"));
-    public static VarHandle pDriverName$VH() {
-        return _PRINTER_INFO_2A.pDriverName$VH;
-    }
-    public static MemoryAddress pDriverName$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDriverName$VH.get(seg);
-    }
-    public static void pDriverName$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDriverName$VH.set(seg, x);
-    }
-    public static MemoryAddress pDriverName$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDriverName$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDriverName$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDriverName$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pComment$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pComment"));
-    public static VarHandle pComment$VH() {
-        return _PRINTER_INFO_2A.pComment$VH;
-    }
-    public static MemoryAddress pComment$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pComment$VH.get(seg);
-    }
-    public static void pComment$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pComment$VH.set(seg, x);
-    }
-    public static MemoryAddress pComment$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pComment$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pComment$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pComment$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pLocation$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pLocation"));
-    public static VarHandle pLocation$VH() {
-        return _PRINTER_INFO_2A.pLocation$VH;
-    }
-    public static MemoryAddress pLocation$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pLocation$VH.get(seg);
-    }
-    public static void pLocation$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pLocation$VH.set(seg, x);
-    }
-    public static MemoryAddress pLocation$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pLocation$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pLocation$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pLocation$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDevMode$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDevMode"));
-    public static VarHandle pDevMode$VH() {
-        return _PRINTER_INFO_2A.pDevMode$VH;
-    }
-    public static MemoryAddress pDevMode$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDevMode$VH.get(seg);
-    }
-    public static void pDevMode$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDevMode$VH.set(seg, x);
-    }
-    public static MemoryAddress pDevMode$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDevMode$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDevMode$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDevMode$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pSepFile$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pSepFile"));
-    public static VarHandle pSepFile$VH() {
-        return _PRINTER_INFO_2A.pSepFile$VH;
-    }
-    public static MemoryAddress pSepFile$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pSepFile$VH.get(seg);
-    }
-    public static void pSepFile$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pSepFile$VH.set(seg, x);
-    }
-    public static MemoryAddress pSepFile$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pSepFile$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSepFile$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pSepFile$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pPrintProcessor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pPrintProcessor"));
-    public static VarHandle pPrintProcessor$VH() {
-        return _PRINTER_INFO_2A.pPrintProcessor$VH;
-    }
-    public static MemoryAddress pPrintProcessor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPrintProcessor$VH.get(seg);
-    }
-    public static void pPrintProcessor$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPrintProcessor$VH.set(seg, x);
-    }
-    public static MemoryAddress pPrintProcessor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pPrintProcessor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pPrintProcessor$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pPrintProcessor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pDatatype$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pDatatype"));
-    public static VarHandle pDatatype$VH() {
-        return _PRINTER_INFO_2A.pDatatype$VH;
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDatatype$VH.get(seg);
-    }
-    public static void pDatatype$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDatatype$VH.set(seg, x);
-    }
-    public static MemoryAddress pDatatype$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pDatatype$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pDatatype$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pDatatype$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pParameters$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pParameters"));
-    public static VarHandle pParameters$VH() {
-        return _PRINTER_INFO_2A.pParameters$VH;
-    }
-    public static MemoryAddress pParameters$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pParameters$VH.get(seg);
-    }
-    public static void pParameters$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pParameters$VH.set(seg, x);
-    }
-    public static MemoryAddress pParameters$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pParameters$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pParameters$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pParameters$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle pSecurityDescriptor$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("pSecurityDescriptor"));
-    public static VarHandle pSecurityDescriptor$VH() {
-        return _PRINTER_INFO_2A.pSecurityDescriptor$VH;
-    }
-    public static MemoryAddress pSecurityDescriptor$get(MemorySegment seg) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pSecurityDescriptor$VH.get(seg);
-    }
-    public static void pSecurityDescriptor$set( MemorySegment seg, MemoryAddress x) {
-        _PRINTER_INFO_2A.pSecurityDescriptor$VH.set(seg, x);
-    }
-    public static MemoryAddress pSecurityDescriptor$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemoryAddress)_PRINTER_INFO_2A.pSecurityDescriptor$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void pSecurityDescriptor$set(MemorySegment seg, long index, MemoryAddress x) {
-        _PRINTER_INFO_2A.pSecurityDescriptor$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Attributes$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Attributes"));
-    public static VarHandle Attributes$VH() {
-        return _PRINTER_INFO_2A.Attributes$VH;
-    }
-    public static int Attributes$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.Attributes$VH.get(seg);
-    }
-    public static void Attributes$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.Attributes$VH.set(seg, x);
-    }
-    public static int Attributes$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.Attributes$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Attributes$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.Attributes$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Priority$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Priority"));
-    public static VarHandle Priority$VH() {
-        return _PRINTER_INFO_2A.Priority$VH;
-    }
-    public static int Priority$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.Priority$VH.get(seg);
-    }
-    public static void Priority$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.Priority$VH.set(seg, x);
-    }
-    public static int Priority$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.Priority$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Priority$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.Priority$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle DefaultPriority$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("DefaultPriority"));
-    public static VarHandle DefaultPriority$VH() {
-        return _PRINTER_INFO_2A.DefaultPriority$VH;
-    }
-    public static int DefaultPriority$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.DefaultPriority$VH.get(seg);
-    }
-    public static void DefaultPriority$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.DefaultPriority$VH.set(seg, x);
-    }
-    public static int DefaultPriority$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.DefaultPriority$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DefaultPriority$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.DefaultPriority$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle StartTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("StartTime"));
-    public static VarHandle StartTime$VH() {
-        return _PRINTER_INFO_2A.StartTime$VH;
-    }
-    public static int StartTime$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.StartTime$VH.get(seg);
-    }
-    public static void StartTime$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.StartTime$VH.set(seg, x);
-    }
-    public static int StartTime$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.StartTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartTime$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.StartTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle UntilTime$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("UntilTime"));
-    public static VarHandle UntilTime$VH() {
-        return _PRINTER_INFO_2A.UntilTime$VH;
-    }
-    public static int UntilTime$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.UntilTime$VH.get(seg);
-    }
-    public static void UntilTime$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.UntilTime$VH.set(seg, x);
-    }
-    public static int UntilTime$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.UntilTime$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UntilTime$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.UntilTime$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle Status$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("Status"));
-    public static VarHandle Status$VH() {
-        return _PRINTER_INFO_2A.Status$VH;
-    }
-    public static int Status$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.Status$VH.get(seg);
-    }
-    public static void Status$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.Status$VH.set(seg, x);
-    }
-    public static int Status$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.Status$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Status$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.Status$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle cJobs$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("cJobs"));
-    public static VarHandle cJobs$VH() {
-        return _PRINTER_INFO_2A.cJobs$VH;
-    }
-    public static int cJobs$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.cJobs$VH.get(seg);
-    }
-    public static void cJobs$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.cJobs$VH.set(seg, x);
-    }
-    public static int cJobs$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.cJobs$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void cJobs$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.cJobs$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    static final VarHandle AveragePPM$VH = $struct$LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("AveragePPM"));
-    public static VarHandle AveragePPM$VH() {
-        return _PRINTER_INFO_2A.AveragePPM$VH;
-    }
-    public static int AveragePPM$get(MemorySegment seg) {
-        return (int)_PRINTER_INFO_2A.AveragePPM$VH.get(seg);
-    }
-    public static void AveragePPM$set( MemorySegment seg, int x) {
-        _PRINTER_INFO_2A.AveragePPM$VH.set(seg, x);
-    }
-    public static int AveragePPM$get(MemorySegment seg, long index) {
-        return (int)_PRINTER_INFO_2A.AveragePPM$VH.get(seg.asSlice(index*sizeof()));
-    }
-    public static void AveragePPM$set(MemorySegment seg, long index, int x) {
-        _PRINTER_INFO_2A.AveragePPM$VH.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(int len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemoryAddress addr, MemorySession session) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, session); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        wgl_h.C_POINTER.withName("pServerName"),
+        wgl_h.C_POINTER.withName("pPrinterName"),
+        wgl_h.C_POINTER.withName("pShareName"),
+        wgl_h.C_POINTER.withName("pPortName"),
+        wgl_h.C_POINTER.withName("pDriverName"),
+        wgl_h.C_POINTER.withName("pComment"),
+        wgl_h.C_POINTER.withName("pLocation"),
+        wgl_h.C_POINTER.withName("pDevMode"),
+        wgl_h.C_POINTER.withName("pSepFile"),
+        wgl_h.C_POINTER.withName("pPrintProcessor"),
+        wgl_h.C_POINTER.withName("pDatatype"),
+        wgl_h.C_POINTER.withName("pParameters"),
+        wgl_h.C_POINTER.withName("pSecurityDescriptor"),
+        wgl_h.C_LONG.withName("Attributes"),
+        wgl_h.C_LONG.withName("Priority"),
+        wgl_h.C_LONG.withName("DefaultPriority"),
+        wgl_h.C_LONG.withName("StartTime"),
+        wgl_h.C_LONG.withName("UntilTime"),
+        wgl_h.C_LONG.withName("Status"),
+        wgl_h.C_LONG.withName("cJobs"),
+        wgl_h.C_LONG.withName("AveragePPM")
+    ).withName("_PRINTER_INFO_2A");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout pServerName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pServerName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pServerName
+     * }
+     */
+    public static final AddressLayout pServerName$layout() {
+        return pServerName$LAYOUT;
+    }
+
+    private static final long pServerName$OFFSET = 0;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pServerName
+     * }
+     */
+    public static final long pServerName$offset() {
+        return pServerName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pServerName
+     * }
+     */
+    public static MemorySegment pServerName(MemorySegment struct) {
+        return struct.get(pServerName$LAYOUT, pServerName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pServerName
+     * }
+     */
+    public static void pServerName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pServerName$LAYOUT, pServerName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pPrinterName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPrinterName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pPrinterName
+     * }
+     */
+    public static final AddressLayout pPrinterName$layout() {
+        return pPrinterName$LAYOUT;
+    }
+
+    private static final long pPrinterName$OFFSET = 8;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pPrinterName
+     * }
+     */
+    public static final long pPrinterName$offset() {
+        return pPrinterName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pPrinterName
+     * }
+     */
+    public static MemorySegment pPrinterName(MemorySegment struct) {
+        return struct.get(pPrinterName$LAYOUT, pPrinterName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pPrinterName
+     * }
+     */
+    public static void pPrinterName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPrinterName$LAYOUT, pPrinterName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pShareName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pShareName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pShareName
+     * }
+     */
+    public static final AddressLayout pShareName$layout() {
+        return pShareName$LAYOUT;
+    }
+
+    private static final long pShareName$OFFSET = 16;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pShareName
+     * }
+     */
+    public static final long pShareName$offset() {
+        return pShareName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pShareName
+     * }
+     */
+    public static MemorySegment pShareName(MemorySegment struct) {
+        return struct.get(pShareName$LAYOUT, pShareName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pShareName
+     * }
+     */
+    public static void pShareName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pShareName$LAYOUT, pShareName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pPortName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPortName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pPortName
+     * }
+     */
+    public static final AddressLayout pPortName$layout() {
+        return pPortName$LAYOUT;
+    }
+
+    private static final long pPortName$OFFSET = 24;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pPortName
+     * }
+     */
+    public static final long pPortName$offset() {
+        return pPortName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pPortName
+     * }
+     */
+    public static MemorySegment pPortName(MemorySegment struct) {
+        return struct.get(pPortName$LAYOUT, pPortName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pPortName
+     * }
+     */
+    public static void pPortName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPortName$LAYOUT, pPortName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDriverName$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDriverName"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pDriverName
+     * }
+     */
+    public static final AddressLayout pDriverName$layout() {
+        return pDriverName$LAYOUT;
+    }
+
+    private static final long pDriverName$OFFSET = 32;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pDriverName
+     * }
+     */
+    public static final long pDriverName$offset() {
+        return pDriverName$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pDriverName
+     * }
+     */
+    public static MemorySegment pDriverName(MemorySegment struct) {
+        return struct.get(pDriverName$LAYOUT, pDriverName$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pDriverName
+     * }
+     */
+    public static void pDriverName(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDriverName$LAYOUT, pDriverName$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pComment$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pComment"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pComment
+     * }
+     */
+    public static final AddressLayout pComment$layout() {
+        return pComment$LAYOUT;
+    }
+
+    private static final long pComment$OFFSET = 40;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pComment
+     * }
+     */
+    public static final long pComment$offset() {
+        return pComment$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pComment
+     * }
+     */
+    public static MemorySegment pComment(MemorySegment struct) {
+        return struct.get(pComment$LAYOUT, pComment$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pComment
+     * }
+     */
+    public static void pComment(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pComment$LAYOUT, pComment$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pLocation$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pLocation"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pLocation
+     * }
+     */
+    public static final AddressLayout pLocation$layout() {
+        return pLocation$LAYOUT;
+    }
+
+    private static final long pLocation$OFFSET = 48;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pLocation
+     * }
+     */
+    public static final long pLocation$offset() {
+        return pLocation$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pLocation
+     * }
+     */
+    public static MemorySegment pLocation(MemorySegment struct) {
+        return struct.get(pLocation$LAYOUT, pLocation$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pLocation
+     * }
+     */
+    public static void pLocation(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pLocation$LAYOUT, pLocation$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDevMode$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDevMode"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPDEVMODEA pDevMode
+     * }
+     */
+    public static final AddressLayout pDevMode$layout() {
+        return pDevMode$LAYOUT;
+    }
+
+    private static final long pDevMode$OFFSET = 56;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPDEVMODEA pDevMode
+     * }
+     */
+    public static final long pDevMode$offset() {
+        return pDevMode$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPDEVMODEA pDevMode
+     * }
+     */
+    public static MemorySegment pDevMode(MemorySegment struct) {
+        return struct.get(pDevMode$LAYOUT, pDevMode$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPDEVMODEA pDevMode
+     * }
+     */
+    public static void pDevMode(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDevMode$LAYOUT, pDevMode$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pSepFile$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pSepFile"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pSepFile
+     * }
+     */
+    public static final AddressLayout pSepFile$layout() {
+        return pSepFile$LAYOUT;
+    }
+
+    private static final long pSepFile$OFFSET = 64;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pSepFile
+     * }
+     */
+    public static final long pSepFile$offset() {
+        return pSepFile$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pSepFile
+     * }
+     */
+    public static MemorySegment pSepFile(MemorySegment struct) {
+        return struct.get(pSepFile$LAYOUT, pSepFile$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pSepFile
+     * }
+     */
+    public static void pSepFile(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSepFile$LAYOUT, pSepFile$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pPrintProcessor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pPrintProcessor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pPrintProcessor
+     * }
+     */
+    public static final AddressLayout pPrintProcessor$layout() {
+        return pPrintProcessor$LAYOUT;
+    }
+
+    private static final long pPrintProcessor$OFFSET = 72;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pPrintProcessor
+     * }
+     */
+    public static final long pPrintProcessor$offset() {
+        return pPrintProcessor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pPrintProcessor
+     * }
+     */
+    public static MemorySegment pPrintProcessor(MemorySegment struct) {
+        return struct.get(pPrintProcessor$LAYOUT, pPrintProcessor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pPrintProcessor
+     * }
+     */
+    public static void pPrintProcessor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pPrintProcessor$LAYOUT, pPrintProcessor$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pDatatype$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pDatatype"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pDatatype
+     * }
+     */
+    public static final AddressLayout pDatatype$layout() {
+        return pDatatype$LAYOUT;
+    }
+
+    private static final long pDatatype$OFFSET = 80;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pDatatype
+     * }
+     */
+    public static final long pDatatype$offset() {
+        return pDatatype$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pDatatype
+     * }
+     */
+    public static MemorySegment pDatatype(MemorySegment struct) {
+        return struct.get(pDatatype$LAYOUT, pDatatype$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pDatatype
+     * }
+     */
+    public static void pDatatype(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pDatatype$LAYOUT, pDatatype$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pParameters$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pParameters"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * LPSTR pParameters
+     * }
+     */
+    public static final AddressLayout pParameters$layout() {
+        return pParameters$LAYOUT;
+    }
+
+    private static final long pParameters$OFFSET = 88;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * LPSTR pParameters
+     * }
+     */
+    public static final long pParameters$offset() {
+        return pParameters$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * LPSTR pParameters
+     * }
+     */
+    public static MemorySegment pParameters(MemorySegment struct) {
+        return struct.get(pParameters$LAYOUT, pParameters$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * LPSTR pParameters
+     * }
+     */
+    public static void pParameters(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pParameters$LAYOUT, pParameters$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout pSecurityDescriptor$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("pSecurityDescriptor"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR pSecurityDescriptor
+     * }
+     */
+    public static final AddressLayout pSecurityDescriptor$layout() {
+        return pSecurityDescriptor$LAYOUT;
+    }
+
+    private static final long pSecurityDescriptor$OFFSET = 96;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR pSecurityDescriptor
+     * }
+     */
+    public static final long pSecurityDescriptor$offset() {
+        return pSecurityDescriptor$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR pSecurityDescriptor
+     * }
+     */
+    public static MemorySegment pSecurityDescriptor(MemorySegment struct) {
+        return struct.get(pSecurityDescriptor$LAYOUT, pSecurityDescriptor$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * PSECURITY_DESCRIPTOR pSecurityDescriptor
+     * }
+     */
+    public static void pSecurityDescriptor(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(pSecurityDescriptor$LAYOUT, pSecurityDescriptor$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Attributes$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Attributes"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static final OfInt Attributes$layout() {
+        return Attributes$LAYOUT;
+    }
+
+    private static final long Attributes$OFFSET = 104;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static final long Attributes$offset() {
+        return Attributes$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static int Attributes(MemorySegment struct) {
+        return struct.get(Attributes$LAYOUT, Attributes$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Attributes
+     * }
+     */
+    public static void Attributes(MemorySegment struct, int fieldValue) {
+        struct.set(Attributes$LAYOUT, Attributes$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Priority$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Priority"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Priority
+     * }
+     */
+    public static final OfInt Priority$layout() {
+        return Priority$LAYOUT;
+    }
+
+    private static final long Priority$OFFSET = 108;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Priority
+     * }
+     */
+    public static final long Priority$offset() {
+        return Priority$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Priority
+     * }
+     */
+    public static int Priority(MemorySegment struct) {
+        return struct.get(Priority$LAYOUT, Priority$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Priority
+     * }
+     */
+    public static void Priority(MemorySegment struct, int fieldValue) {
+        struct.set(Priority$LAYOUT, Priority$OFFSET, fieldValue);
+    }
+
+    private static final OfInt DefaultPriority$LAYOUT = (OfInt)$LAYOUT.select(groupElement("DefaultPriority"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD DefaultPriority
+     * }
+     */
+    public static final OfInt DefaultPriority$layout() {
+        return DefaultPriority$LAYOUT;
+    }
+
+    private static final long DefaultPriority$OFFSET = 112;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD DefaultPriority
+     * }
+     */
+    public static final long DefaultPriority$offset() {
+        return DefaultPriority$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD DefaultPriority
+     * }
+     */
+    public static int DefaultPriority(MemorySegment struct) {
+        return struct.get(DefaultPriority$LAYOUT, DefaultPriority$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD DefaultPriority
+     * }
+     */
+    public static void DefaultPriority(MemorySegment struct, int fieldValue) {
+        struct.set(DefaultPriority$LAYOUT, DefaultPriority$OFFSET, fieldValue);
+    }
+
+    private static final OfInt StartTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("StartTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD StartTime
+     * }
+     */
+    public static final OfInt StartTime$layout() {
+        return StartTime$LAYOUT;
+    }
+
+    private static final long StartTime$OFFSET = 116;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD StartTime
+     * }
+     */
+    public static final long StartTime$offset() {
+        return StartTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD StartTime
+     * }
+     */
+    public static int StartTime(MemorySegment struct) {
+        return struct.get(StartTime$LAYOUT, StartTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD StartTime
+     * }
+     */
+    public static void StartTime(MemorySegment struct, int fieldValue) {
+        struct.set(StartTime$LAYOUT, StartTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt UntilTime$LAYOUT = (OfInt)$LAYOUT.select(groupElement("UntilTime"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD UntilTime
+     * }
+     */
+    public static final OfInt UntilTime$layout() {
+        return UntilTime$LAYOUT;
+    }
+
+    private static final long UntilTime$OFFSET = 120;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD UntilTime
+     * }
+     */
+    public static final long UntilTime$offset() {
+        return UntilTime$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD UntilTime
+     * }
+     */
+    public static int UntilTime(MemorySegment struct) {
+        return struct.get(UntilTime$LAYOUT, UntilTime$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD UntilTime
+     * }
+     */
+    public static void UntilTime(MemorySegment struct, int fieldValue) {
+        struct.set(UntilTime$LAYOUT, UntilTime$OFFSET, fieldValue);
+    }
+
+    private static final OfInt Status$LAYOUT = (OfInt)$LAYOUT.select(groupElement("Status"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD Status
+     * }
+     */
+    public static final OfInt Status$layout() {
+        return Status$LAYOUT;
+    }
+
+    private static final long Status$OFFSET = 124;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD Status
+     * }
+     */
+    public static final long Status$offset() {
+        return Status$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD Status
+     * }
+     */
+    public static int Status(MemorySegment struct) {
+        return struct.get(Status$LAYOUT, Status$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD Status
+     * }
+     */
+    public static void Status(MemorySegment struct, int fieldValue) {
+        struct.set(Status$LAYOUT, Status$OFFSET, fieldValue);
+    }
+
+    private static final OfInt cJobs$LAYOUT = (OfInt)$LAYOUT.select(groupElement("cJobs"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD cJobs
+     * }
+     */
+    public static final OfInt cJobs$layout() {
+        return cJobs$LAYOUT;
+    }
+
+    private static final long cJobs$OFFSET = 128;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD cJobs
+     * }
+     */
+    public static final long cJobs$offset() {
+        return cJobs$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD cJobs
+     * }
+     */
+    public static int cJobs(MemorySegment struct) {
+        return struct.get(cJobs$LAYOUT, cJobs$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD cJobs
+     * }
+     */
+    public static void cJobs(MemorySegment struct, int fieldValue) {
+        struct.set(cJobs$LAYOUT, cJobs$OFFSET, fieldValue);
+    }
+
+    private static final OfInt AveragePPM$LAYOUT = (OfInt)$LAYOUT.select(groupElement("AveragePPM"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * DWORD AveragePPM
+     * }
+     */
+    public static final OfInt AveragePPM$layout() {
+        return AveragePPM$LAYOUT;
+    }
+
+    private static final long AveragePPM$OFFSET = 132;
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * DWORD AveragePPM
+     * }
+     */
+    public static final long AveragePPM$offset() {
+        return AveragePPM$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * DWORD AveragePPM
+     * }
+     */
+    public static int AveragePPM(MemorySegment struct) {
+        return struct.get(AveragePPM$LAYOUT, AveragePPM$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * DWORD AveragePPM
+     * }
+     */
+    public static void AveragePPM(MemorySegment struct, int fieldValue) {
+        struct.set(AveragePPM$LAYOUT, AveragePPM$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 
